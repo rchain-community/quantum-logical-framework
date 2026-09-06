@@ -908,3 +908,43 @@ is why route (a) *does* land `2/(3π) = (4/π)·(1/6)`. So **route (b) is closed
 phase-locking), but it cannot deliver the **coefficient** — it is the wrong side of the
 amplitude/probability square root. The `B_P/(2/3π) = 3(1−p)²/π ≈ 0.6216 ≈ w` near-coincidence is that
 same unresolvable `~3/π` factor, now explained and firmly **flagged, not built on**.
+
+---
+
+## 9f. The two-loop coefficient — route (a)'s obstacle characterised ([`alpha_twoloop_weights.py`](alpha_twoloop_weights.py))
+
+The one-loop coefficient `2/(3π) = 2·(1/6)·2·(1/π)` has the split census `1/6 = ∫₀¹ x(1−x) dx` as its
+**proven, value-free** piece and the two `2`s **rendered** (Dirac trace). First move on the two-loop
+piece: is the *transcendental content* of the two-loop electron-anomaly coefficient the census's own
+vocabulary?
+
+$$A_1^{(4)} \;=\; \tfrac{197}{144} \;+\; \tfrac12\zeta(2) \;-\; 3\,\zeta(2)\ln 2 \;+\; \tfrac34\zeta(3)
+\;=\; -0.328478965579\ldots \qquad\text{(Petermann 1957, Sommerfield 1958)}$$
+
+Its basis is `{1, ζ(2), ζ(3), ζ(2)ln2}`, and every generator sits in the census vocabulary — verified
+numerically (assembly reproduces `−0.328478965` to `10⁻¹³`):
+
+| generator | census representation | reading |
+|---|---|---|
+| `ζ(2)` | `3·Σ_{k≥1} 1/(k²·C(2k,k))` | **unsigned** central-binomial census, pole order 2 (as the one-loop `1/6`) |
+| `ζ(3)` | `(5/2)·Σ_{k≥1} (−1)^{k−1}/(k³·C(2k,k))` (Apéry) | **signed** census — the `(−1)^{#neg}` phase rule — pole order 3 |
+| `ln 2` | `−ΔF = binary_kl(1, ½)` | the ZFA closure quantum (`QLF_FreeEnergy`) |
+
+**Honest about what is and isn't new.** That `ζ(2), ζ(3)` have central-binomial series is *classical*
+(Comtet, Apéry) — any calculation producing them could say so. The QLF-specific reading: `C(2k,k)` **is**
+the order-`k` closure multiplicity, so `Σ 1/(k^p C(2k,k))` is "sum over closure orders weighted by
+inverse multiplicity", and the alternating sign **is** the phase. So the structural claim is modest but
+real — **the loop expansion's period content is organised by the closure census's own pole order
+(`2 → 3` from one loop to two) and sign (unsigned → signed)**; the one-loop `1/6 = ∫x(1−x)` is the
+unsigned `p = 2` case, the two-loop `ζ(3)` the signed `p = 3` case.
+
+**Not derived:** the rational coefficients `197/144, ½, −3, ¾` (Dirac trace + on-shell subtraction) —
+the `k`-arc split census gives only `1/(2m−1)!` rationals (`1/6, 1/120, 1/5040, …`), and `197/144` is
+none of them. Same honest scope as the one-loop's two rendered `2`s. **Route (a)'s obstacle is
+characterised, not removed:** the census fixes *which periods* appear at each loop order, not their
+rational kinematic coefficients.
+
+**Falsifiable (method rule 4):** the census period-vocabulary should cover `g−2` through **3 loops**
+(MZVs, Clausen values — central-binomial-representable) and **break at 4 loops** (elliptic / modular,
+Laporta 2017) — the *same wall* §9e's π-parity gave route (b). If a `≤ 3`-loop `g−2` transcendental
+turns out to be an irreducible non-census period, the reading is wrong.
