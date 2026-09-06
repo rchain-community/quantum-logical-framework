@@ -252,6 +252,39 @@ def main():
     print("x=1/16 carry the resonant (integer-spaced) exponents whose log solution IS")
     print("the running logarithm — the d=4 marginal signature, now read off the ODE.")
 
+    step3(a)
+
+
+def step3(a):
+    """Step 3: the conifold connection constant at x = 1/64, vs the QED coefficients.
+    Q(x) = A + B·(1−64x)·log(1−64x) + analytic  near the conifold; B is exact from
+    the tail asymptotic A039699(n) ~ 64ⁿ·κ/n² and Σ(κ/n²)yⁿ = κ·Li₂(y):
+        B = κ = 2/π² = 1/(3ζ(2))          (Q, probability level)
+        B_P = κ(1−p)²   for P = 1 − 1/Q   (first-return level)"""
+    from math import pi
+    print("\n" + "="*78)
+    print("STEP 3 — conifold connection constant at x = 1/64\n")
+    kappa = 2/pi**2
+    print(f"  B = κ = 2/π² = 1/(3ζ(2)) = {kappa:.10f}     [EXACT; κ·ζ(2) = 1/3]")
+    print("  numeric check  A039699(n)·n²/64ⁿ → κ :  "
+          + "  ".join(f"n{n}:{a[n]*n*n/64.0**n:.5f}" for n in (8,10,12,14) if n < len(a)))
+    A = 1.2394671218                       # Glasser–Guttmann C₀ = Q(1/64)
+    p = 1 - 1/A
+    B_P = kappa*(1-p)**2
+    print(f"  A = Q(1/64) = {A:.8f} (Glasser–Guttmann),  p = 1−1/A = {p:.8f}")
+    print(f"  B_P = κ(1−p)² = {B_P:.10f}\n")
+    qed1 = 2/(3*pi)
+    print(f"  QED one-loop log coeff 2/(3π) = {qed1:.10f}")
+    print(f"    B  /(2/3π) = 3/π           = {kappa/qed1:.8f}   (transcendental)")
+    print(f"    B_P/(2/3π) = 3(1−p)²/π     = {B_P/qed1:.8f}   (≈ §2a w — the flagged near-miss)")
+    print(f"    B  /(−0.328479 two-loop)   = {kappa/-0.328478965579:.5f}   (not clean)")
+    print("\n  VERDICT: B is exact and π-EVEN (1/π², from the 4-D Gaussian (2π)^{d/2}).")
+    print("  The QED coefficient 2/(3π) is π-ODD.  B = c·(2/3π) ⇒ c = 3/π, transcendental.")
+    print("  Q(x) is a probability-level object (Σ |amp|² returns); its periods are π-even.")
+    print("  The coefficient lives at amplitude level, where route (a)'s C(2n,n) census —")
+    print("  with its √π signature C(2n,n) ~ 4ⁿ/√(πn) — correctly gives 2/(3π) = (4/π)(1/6).")
+    print("  ⇒ route (b) forces the log's EXISTENCE and ORIGIN, not its COEFFICIENT. CLOSED.")
+
 
 if __name__ == "__main__":
     main()

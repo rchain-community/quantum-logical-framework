@@ -888,7 +888,23 @@ central-binomial g.f. (rank 1) and the Domb / 3-loop-sunrise g.f. (rank 3, weigh
 are exactly where subsets of the four axis-modes **phase-lock**: all four at `x = 1/64`, pairs at
 `x = 1/16`. Each lock is a **resonance** — integer-spaced exponents, a Jordan block in the monodromy —
 and the resonance *response is a logarithm*. The `κ(1−64x)log(1/(1−64x))` term of §9d is now read off the
-ODE, not just fitted: it is the conifold-`(0,1,1,2)` log at the 4-axis lock. **Next (step 3):** compute
-the conifold connection constant at `x = 1/64` from the ODE (the ratio of the exponent-`0` period to its
-log-partner) and the weight-3 modular form's critical L-values, and test them against `2/(3π)` and the
-two-loop `−0.328479` — an unambiguous pass/fail, and the one place route (b) can still deliver.
+ODE, not just fitted: it is the conifold-`(0,1,1,2)` log at the 4-axis lock.
+
+**Step 3 — the conifold connection constant, and route (b) closed.** The coefficient of the log-solution
+at the `x = 1/64` conifold is exact, from the tail asymptotic `A039699(n) ~ 64ⁿ·κ/n²` and
+`Σ (κ/n²) yⁿ = κ·Li₂(y)`:
+
+$$B \;=\; \kappa \;=\; \frac{2}{\pi^2} \;=\; \frac{1}{3\,\zeta(2)} \qquad (\kappa\,\zeta(2) = \tfrac13 \text{ exactly}),$$
+
+and `B_P = κ(1−p)² ≈ 0.13190` for the first-return `P = 1 − 1/Q` (`p = 1 − 1/G_{ℤ⁴}(0)`,
+`G_{ℤ⁴}(0) = 1.23946712…`, Glasser–Guttmann). Against the QED one-loop log coefficient `2/(3π)`:
+`B/(2/3π) = 3/π` — **transcendental**, so no algebraic identity. The obstruction is **π-parity**: `B` is
+π-*even* (`1/π²`, from the 4-D Gaussian `(2π)^{d/2}`, `d = 4`), while `2/(3π)` is π-*odd* (`1/π`, from
+`e² = 4πα` over the `(4π)²` loop measure). `Q(x)` is a **probability-level** object — `Σ |amplitude|²`
+return counts — so its periods are π-even; the QED coefficient lives at **amplitude level**, and route
+(a)'s `C(2n,n)` census carries exactly the `√π` (Wallis) amplitude signature `C(2n,n) ~ 4ⁿ/√(πn)`, which
+is why route (a) *does* land `2/(3π) = (4/π)·(1/6)`. So **route (b) is closed**: it forces the log's
+**existence** (the `d = 4` conifold resonance) and pins its **origin** (commensurate axis-modes
+phase-locking), but it cannot deliver the **coefficient** — it is the wrong side of the
+amplitude/probability square root. The `B_P/(2/3π) = 3(1−p)²/π ≈ 0.6216 ≈ w` near-coincidence is that
+same unresolvable `~3/π` factor, now explained and firmly **flagged, not built on**.
