@@ -538,7 +538,11 @@ closes many at once. The three genuinely-distinct open quantities are:
    the QLF-derived `8 = 2³`) to {mass-spectrum thresholds + the SM's own hadronic problem + absolute
    scale} (**not fitted**; the `0.036` minefield stays pre-buried, `QLF_AlphaRigidity`). The tower
    supplies the skeleton, the census the charges; the thresholds are the mass spectrum. Success also
-   tightens `α(M_Z)` and the `sin²θ_W` running.
+   tightens `α(M_Z)` and the `sin²θ_W` running. **The census reaches exactly to 4-loop QED** — two
+   independent arguments (the closure-return Picard–Fuchs operator's π-parity; the `g−2`
+   central-binomial-MZV nesting ladder, depth = loop order) put the boundary there, beyond which the
+   periods turn elliptic ([`Alpha_Residual.md`](Alpha_Residual.md) §9d–§9g,
+   [#151](https://github.com/rchain-community/quantum-logical-framework/issues/151)).
 3. **The holographic-density resolution** — *why* the realized horizon entropy is `N/4` not `N log 2`
    (the residual is **exactly `4 log 2 = 4 × log 2`**, quantified + decomposed into derived constants,
    `QLF_HolographicDensity`; the *classification* — floor deviation vs. `1/(4 log 2)` packing vs.
