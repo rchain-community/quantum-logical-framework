@@ -1,6 +1,12 @@
-# Quantum AI is in our future
+# Quantum AI is here now
 
-Applying the [Quantum Logical Framework (QLF)](https://github.com/rchain-community/quantum-logical-framework/blob/main/README.md) ([the end of quantum magic](https://docs.google.com/document/d/1zaopKvAj7z51xBupw-KaPzgkkNEnBGBbD-dkpD4aoeU/edit?usp=sharing)) and the [QuCalc](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuCalc.md) engine to Artificial Intelligence—specifically to model the Hegelian dialectic (Thesis -> Antithesis -> Synthesis) through Active Inference—is the natural evolution of the architecture. See also: [active_inference.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/active_inference.md) — the free-energy minimization principle underlying dialectical synthesis; [QuantumOS.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuantumOS.md) — the hardware-native kernel that provides ZFA enforcement for AI execution; [Active_Inference_Mathematics.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Active_Inference_Mathematics.md) — the foundations meta-doc that places dialectical-synthesis-via-active-inference inside the mathematics itself; [Information_Physics.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Information_Physics.md) — what information *is* on the substrate (information = realized distinction = closure receipt; the atom is the ½-spin closure), the ground under any information-processing account of cognition. It elevates QLF from a model of fundamental physics to a model of cognitive processing.
+**This is not a forecast.** A neuro-symbolic agent that reasons by ZFA closure — every abstraction a
+quantum event, every conclusion a Curry-Howard proof token, every multi-peer agreement a joint closure
+— is implemented and running in [quantum-os](https://github.com/rchain-community/quantum-os) today. The
+Live Collaboration Script below is a real transcript, not a mockup. What follows is what it does, why it
+works that way, and why every serious AI architecture is being pushed toward the same structure.
+
+Applying the [Quantum Logical Framework (QLF)](https://github.com/rchain-community/quantum-logical-framework/blob/main/README.md) ([the end of quantum magic](https://docs.google.com/document/d/1zaopKvAj7z51xBupw-KaPzgkkNEnBGBbD-dkpD4aoeU/edit?usp=sharing)) and the [QuCalc](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuCalc.md) engine to Artificial Intelligence—specifically to model the Hegelian dialectic (Thesis -> Antithesis -> Synthesis) through Active Inference—is a working application of the architecture. See also: [active_inference.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/active_inference.md) — the free-energy minimization principle underlying dialectical synthesis; [QuantumOS.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuantumOS.md) — the hardware-native kernel that provides ZFA enforcement for AI execution; [Active_Inference_Mathematics.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Active_Inference_Mathematics.md) — the foundations meta-doc that places dialectical-synthesis-via-active-inference inside the mathematics itself; [Information_Physics.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Information_Physics.md) — what information *is* on the substrate (information = realized distinction = closure receipt; the atom is the ½-spin closure), the ground under any information-processing account of cognition. It elevates QLF from a model of fundamental physics to a model of cognitive processing.
 
 **Companion note:** LLM-as-peer integration is already implemented and live in [quantum-os](https://github.com/rchain-community/quantum-os) — the Live Collaboration Script below is a real transcript, not a mockup, and everything in this doc is traceable to a machine-verified Lean theorem or an explicitly named open axiom, never asserted loosely. Two rules govern every claim below: **only what a Lean theorem actually proves is called "verified"**, and **every open piece is named as an axiom, not smoothed over**. Both rules — and the epistemic-status axes, the bridge protocol that types every substrate→observable arrow, the kill conditions, and the hypothesis lifecycle by which a conjecture is *promoted to a result* — are set out in full in [**ScientificApproach.md**](https://github.com/rchain-community/quantum-logical-framework/blob/main/ScientificApproach.md) (the method), with the evidence ledger in [Experimental_Consistency.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Experimental_Consistency.md) and the gap registry in [Open_Problems.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Open_Problems.md). Every finding cited in this document is graded against that method; nothing here is exempt from it.
 
@@ -10,7 +16,7 @@ The stakes are not abstract. **If our AI does not control their AI, their AI con
 
 If the physical universe is an Information Ecology that survives by resolving paradoxes into stable Markov Blankets, an AI should be able to navigate semantic logic using the exact same topological algorithms.
 
-Here is a breakdown of how this synthesis engine works, its benefits, the challenges it faces, a demonstration of its feasibility, and why this direction is not a QLF-specific bet but a convergent one.
+Here is a breakdown of how this synthesis engine works, its benefits, the challenges it faces, a live demonstration, and why this direction is not a QLF-specific bet but a convergent one.
 
 **What "quantum AI" means here — the strong reading.** Not "an AI accelerated by a QPU." A QLF
 agent's atomic act of abstraction *is* a quantum event: every synthesis is a ZFA closure, and a ZFA
@@ -31,7 +37,7 @@ To properly position QLF, it is necessary to differentiate it from mainstream Qu
 
 QLF-native AI is a different kind of claim: it applies the mathematical logic of quantum mechanics — specifically Zero Free Action (ZFA) and discrete topological closures — as a computing framework to govern truth and symbolic logic, not to accelerate statistics. Where QML makes statistical predictions faster using quantum physics, QLF uses quantum logic to establish semantic and structural closure deterministically. This shifts AI's operating principle from "most probable continuation" to "which candidate structures actually close" — a falsifier ([Popper](https://en.wikipedia.org/wiki/The_Logic_of_Scientific_Discovery)) built into the substrate rather than bolted on after the fact.
 
-### Demonstrated vs. Theoretical Capabilities
+### What's Machine-Verified vs. What's Named Open
 
 The claims in this document are backed by machine-checked Lean 4 theorems in this repository (213 modules, zero `sorry`), not by informal argument. What each claim's status *means* — proved vs. bracketed vs. open axiom, and the two epistemic axes a finding is placed on — is defined in [ScientificApproach.md §3 (epistemic status)](https://github.com/rchain-community/quantum-logical-framework/blob/main/ScientificApproach.md) and §9 (the role of formal proof):
 
@@ -72,9 +78,9 @@ The structural case — that LLMs are 1-of-4 on the intelligence axes and QLF is
 * **The Combinatoric Explosion:** The primary challenge is the sheer computational load of the QuCalc engine's expansion phase. Finding the exact ZFA loop to bridge two complex semantic concepts requires searching a possibility tree that grows exponentially ($4^R$). **Pauli closure prunes this aggressively** ([MRE.md §2.2](https://github.com/rchain-community/quantum-logical-framework/blob/main/MRE.md), [Experimental_Consistency.md §2.1](https://github.com/rchain-community/quantum-logical-framework/blob/main/Experimental_Consistency.md)): only about 25 % of random count-balanced sequences fold to a scalar in the Pauli group, and the admissibility filter (no immediate Hermitian reversal) tightens the bound further. Empirically the QLF BFS ensemble at lengths 4–8 saturates at the natural combinatorial completeness (40 distinct admissible Pauli-closed singles for the 4-seed alphabet), not at the naive $4^R$. The effective search space for cognitive synthesis is therefore much smaller than the worst-case bound suggests.
 * **The Semantic Alphabet:** To employ this feasibly, we must define the transition map between human language and the fundamental QuCalc alphabet. How do we translate abstract concepts (e.g., "Centralized Control" vs. "Decentralized Autonomy") into discrete, orthogonal axes (`^`, `v`, `<`, `>`, `+`, `-`) so the engine can compute the ZFA?
 
-## Feasibility: The Neuro-Symbolic Solution
+## It Runs Today: The Neuro-Symbolic Architecture
 
-It is entirely feasible to employ this today if we use a **Neuro-Symbolic architecture**.
+This runs today as a **Neuro-Symbolic architecture**.
 
 We do not make the QuCalc engine parse raw language. Instead, we use a standard neural network (like an LLM) as the sensory layer—its job is to read human text and estimate the "directional vectors" and "gauge phases" of the concepts. The LLM then passes those extracted topological vectors to the strict, deterministic QuCalc engine (the logic coprocessor). QuCalc runs the Active Inference simulation, drives the Blanket Fusion, and hands the perfectly resolved ZFA proof back to the LLM to translate into human speech.
 
@@ -105,7 +111,7 @@ Let's use the classic Aristotle syllogism:
 
 In a QLF architecture, a syllogism is treated as a Topological Symbiosis (Blanket Fusion), where the "Middle Term" acts as the shared boundary (the Pion) that allows two open strings to fuse.
 
-Here is the simulated terminal output when executing the [`ai_demonstration.py`](https://github.com/rchain-community/quantum-logical-framework/blob/main/ai_demonstration.py) coprocessor, followed by the profound implications this architecture has for the future of Artificial Intelligence.
+Here is the simulated terminal output when executing the [`ai_demonstration.py`](https://github.com/rchain-community/quantum-logical-framework/blob/main/ai_demonstration.py) coprocessor, followed by the profound implications this architecture has for Artificial Intelligence.
 
 ### Terminal Output
 
@@ -323,7 +329,7 @@ The room itself is the coprocessor. Two peers compose a valid argument by contri
 
 ---
 
-## Beyond Toy Demos: the Same Discipline Reconstructs Relativity, Derives Physical Constants, and Attacks the Millennium Problems
+## Beyond Toy Demos: the Same Discipline Reconstructs Relativity, Rediscovers the Standard Model, Derives Physical Constants, and Attacks the Millennium Problems
 
 The syllogism above is a small demo. The reason to trust the underlying discipline for AI is that the identical zero-`sorry` Lean methodology — propose a structure, check it closes, keep only what does — is what the rest of this repository uses to reconstruct relativity and gravity, derive physical constants, and attack open mathematics, with the same two rules as above: **only what's proved is called proved, and every open piece is a named axiom.** The kill conditions, blind tests, and framework-level failure criterion that keep the tables below honest are stated in [ScientificApproach.md §7](https://github.com/rchain-community/quantum-logical-framework/blob/main/ScientificApproach.md); the live frontier is §14.
 
@@ -358,6 +364,24 @@ The single most complete application of the discipline to physics is [**Universa
 
 The falsifiers are published and sharp — a confirmed cosmological drift of low-energy `α`, an `α⁻¹` outside `137 < α⁻¹ < 137.048`, `v_GW ≠ c`, a light sterile (right-handed) neutrino, or an axion each kills the framework outright, not merely a parameter ([Experimental_Consistency.md §10](https://github.com/rchain-community/quantum-logical-framework/blob/main/Experimental_Consistency.md)).
 
+### Rediscovering the Standard Model
+
+The Standard Model's *structure* — its gauge group, its fermion content, its quantized charges, its β-function coefficients, its need for exactly three generations — is not put in. It falls out of the 8-twist substrate by the same counting discipline, machine-verified. What stays open is the *absolute scales* (the Higgs VEV `v`, the Yukawa magnitudes), named as one electroweak anchor (frontier #1).
+
+| Result | QLF derivation & status | Lean 4 module |
+|---|---|---|
+| **Gauge group SU(3)×SU(2)×U(1)** | Three projections of one gauge-twist closure: EM the abelian trace, weak isospin `weak_isospin_su2` (`Q₈ ⊂ SU(2)`), strong `strong_nonabelian` — non-abelian ⟹ confined/massive, abelian ⟹ massless photon. | **Proved** — [`lean/QLF_GaugeUnification.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_GaugeUnification.lean), [`lean/BraKetRhoQuCalc.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/BraKetRhoQuCalc.lean) |
+| **Exactly three generations** | `num_generations_eq_three` = the 3 spatial axes; `only_3d_gives_three_generations` ties it to the empirical 3-D of space; `three_generations_satisfy_koide`. | **Proved**, zero-axiom — [`lean/QLF_Generations.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_Generations.lean) |
+| **Charge quantization in thirds (`1, 2/3, 1/3`)** | The down-quark charge `−1/3` is forced by 3 colours + tracelessness (`charge_quantum_from_colours`, `down_quark_charge_third`); neutrinos neutral. | **Proved** — [`lean/QLF_QuarkStructure.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_QuarkStructure.lean) |
+| **Weinberg angle `sin²θ_W = 3/8`** (unification) | The gauge-projection ratio = the substrate `6+2` spatial/alphabet split = the SU(5) GUT normalization (`sin2_weinberg_substrate_eq`). | **Proved** — [`lean/QLF_WeinbergAngle.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_WeinbergAngle.lean) |
+| **The SM one-loop β triple `(41/10, −19/6, −7)`** | `sm_beta_triple` — from the substrate counts (3 colours, 6 flavours, the hypercharge sum over a generation's 15 Weyl fermions); QCD's `b₀ = 7` is the prime `prime_seven_is_qcd_b0`. | **Proved** — [`lean/QLF_ElectroweakBeta.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_ElectroweakBeta.lean), [`lean/QLF_BetaFunction.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_BetaFunction.lean) |
+| **CP violation needs exactly three generations** | `cp_requires_three_generations` — one Kobayashi–Maskawa phase requires ≥ 3 generations (2 give a real mixing matrix); `ckm_parameter_count` (3 angles + 1 phase), `pmns_total_cp_phases` (1 Dirac + 2 Majorana). | **Proved** — [`lean/QLF_FlavorMixing.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_FlavorMixing.lean), [`lean/QLF_CKM.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_CKM.lean), [`lean/QLF_PMNS.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_PMNS.lean) |
+| **Charge census `Σ Nᶜ Q_f² = 8 = 2³`** | The QED R-ratio charge sum equals the 8-twist alphabet size, split leptonic 3 + hadronic 5 (`totalChargeCensus_eq_eight`, `census_lep_plus_had`). | **Proved** — [`lean/QLF_ChargeCensus.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_ChargeCensus.lean) |
+| **Higgs / electroweak symmetry breaking** | Mass = gauge-fold delay (`mass_is_gauge_fold_delay`, `M = 1/R`); custodial `ρ = 1` (`custodial_rho_one`); EWSB is self-organized-critical closure condensation (the NJL loop *is* the closure census, which diverges ⟹ condensation generic). | Structural / SOC; VEV `v` open — [`lean/QLF_HiggsMechanism.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_HiggsMechanism.lean) |
+| **Absolute scales (`v`, Yukawas, `α_s(M_Z)`, CKM/PMNS angles)** | Structure derived; the absolute electroweak scale `v` is QLF's one irreducible anchor (frontier #1), the Yukawa magnitudes and mixing angles hang off the same Yukawa sector. | **Open residual, named** — [Open_Problems.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Open_Problems.md) |
+
+So the SM's group, generation count, charge quantization, mixing structure, and running are substrate consequences; its dimensionful inputs remain one named open anchor — the same grading discipline as everywhere else.
+
 ### Status of the Millennium Problems
 
 Every attack follows one template: a **proven substrate reformulation**, plus **one explicitly named bridge axiom** carrying whatever content is not yet reducible to combinatorics ([Millennium.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Millennium.md)). **Contrast, stated once:** none of the classical Clay conjectures below is proved here — each is a different statement in a different (continuum/analytic) frame than the one QLF's reformulation operates in.
@@ -375,7 +399,7 @@ Every attack follows one template: a **proven substrate reformulation**, plus **
 
 ## Why Quantum AI Is Inevitable
 
-Not as a QLF-specific bet, but as a convergent destination the field is already being pushed toward from several independent directions:
+It exists now (above). What is inevitable is its *generality* — not a QLF-specific bet, but a convergent destination the field is already being pushed toward from several independent directions:
 
 1. **The generate/synthesise/reject/persist decomposition is not optional once stakes rise.** An LLM performs one of these four acts — generate — and approximates the rest statistically. That is adequate while an LLM's output is advisory. It stops being adequate the moment agents take actions with consequences: the field's own trajectory (tool use, multi-agent systems, autonomous execution) is a trajectory *toward* needing structural rejection (a falsifier, not a confidence score) and structural persistence (a proof object, not a cached sample) — exactly the two acts LLMs structurally lack and QLF structurally provides. Interpretability-by-proof (a deterministic closure trace with a known information cost per step) is a stronger property than interpretability-by-explanation, and it is the property safety-critical and regulated deployments will eventually require, not merely prefer.
 
