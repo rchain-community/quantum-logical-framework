@@ -10,7 +10,17 @@ Applying the [Quantum Logical Framework (QLF)](https://github.com/rchain-communi
 
 **Companion note:** LLM-as-peer integration is already implemented and live in [quantum-os](https://github.com/rchain-community/quantum-os) — the Live Collaboration Script below is a real transcript, not a mockup, and everything in this doc is traceable to a machine-verified Lean theorem or an explicitly named open axiom, never asserted loosely. Two rules govern every claim below: **only what a Lean theorem actually proves is called "verified"**, and **every open piece is named as an axiom, not smoothed over**. Both rules — and the epistemic-status axes, the bridge protocol that types every substrate→observable arrow, the kill conditions, and the hypothesis lifecycle by which a conjecture is *promoted to a result* — are set out in full in [**ScientificApproach.md**](https://github.com/rchain-community/quantum-logical-framework/blob/main/ScientificApproach.md) (the method), with the evidence ledger in [Experimental_Consistency.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Experimental_Consistency.md) and the gap registry in [Open_Problems.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Open_Problems.md). Every finding cited in this document is graded against that method; nothing here is exempt from it.
 
-**The mandate.** [quantum-os](https://github.com/rchain-community/quantum-os) and QLF exist to promote **decentralized collective intelligence of humans *and* agents** — a shared substrate on which every closure is independently recomputable by every participant and every rejection is a decidable falsifier, so no mind in the room (human or machine) has to be trusted, only checked. Standard AI integrations are first-class: a peer brings whatever model it runs, and the substrate — not the vendor — is what makes its contributions verifiable and its errors rejectable ([quantum-os#132](https://github.com/rchain-community/quantum-os/issues/132) tracks the agent layer: backend-agnostic integration, agents that actively fill their roles and consolidate results, and an agent that emits Lean proofs for what the room concludes).
+## The Aspiration: Decentralized Collective Intelligence
+
+Everything below — the physics, the AI mechanism, the quantum hardware — is in service of one goal.
+[quantum-os](https://github.com/rchain-community/quantum-os) and QLF exist to promote **decentralized
+collective intelligence of humans *and* agents** — a shared substrate on which every closure is
+independently recomputable by every participant and every rejection is a decidable falsifier, so no mind
+in the room (human or machine) has to be trusted, only checked. Standard AI integrations are first-class:
+a peer brings whatever model it runs, and the substrate — not the vendor — is what makes its
+contributions verifiable and its errors rejectable ([quantum-os#132](https://github.com/rchain-community/quantum-os/issues/132)
+tracks the agent layer: backend-agnostic integration, agents that actively fill their roles and
+consolidate results, and an agent that emits Lean proofs for what the room concludes).
 
 The stakes are not abstract. **If our AI does not control their AI, their AI controls us** — where *control* means the ability to verify and bound. An agent whose reasoning is a proof trace with a known information cost per step can audit and constrain an agent whose reasoning is not; the reverse is impossible. A civilization whose collective intelligence runs on opaque, unfalsifiable models cannot check the agents acting in its name, and cedes the checking to whoever can. The substrate is what keeps that check in the hands of the many rather than the few.
 
@@ -25,8 +35,11 @@ closure is a 2×2 Hermitian Pauli fold to a scalar in `{±I, ±iI}` with a per-e
 the wavefunction, we close the history string"). The synthesis step and the measurement step are the
 same step. Its memory is a set of Curry-Howard `cap:` tokens, each literally an amplitude's phase;
 its multi-peer consensus is a *joint* closure — entanglement (ER=EPR). QLF is the operating system it
-runs on, targeting real quantum hardware including the crystal QPU
-([`QuantumOS.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuantumOS.md) §1a, [`Crystal_QuantumOS.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/Crystal_QuantumOS.md) §5a,
+runs on. A twist history compiles to a single-qubit Clifford circuit and a joint closure to a
+CNOT-linked one, so ZFA closures are runnable on **existing cloud QPUs (IBM Quantum, IonQ, AWS Braket)
+today** — quantum-os as the control/verification layer, `full_zeno_prune` the classical decoder; the
+quiet-frequency crystal QPU ([`Crystal_QuantumOS.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/Crystal_QuantumOS.md) §5a)
+is the native endgame ([`QuantumOS.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuantumOS.md) §1a,
 [`QLF_as_Intelligence.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/QLF_as_Intelligence.md) §7b–§7c).
 
 ---
