@@ -153,11 +153,12 @@ So the picture is symmetric across the discrete/continuum seam:
 Poisson summation is the cleanest statement of QLF's "the continuum is a rendering": the lattice sum and
 the continuum integral carry the **same information**, so π — the continuum constant it produces — is
 realizable, a forward limit of the census counts (`censusTail_eq`, the Wallis/Catalan family), not an
-independent transcendental input. Accepting π therefore adds no proof strength: it is already available in
-`RCA₀`, and ζ's functional equation with it. What is *not* on this seam is the **location** of the
-zeros — that stays the `spectral_hilbert_polya` boundary, and RH-conditional machinery like Schoenfeld's
-bound (or the value of Mills' constant, which that bound pins down under RH) sits *downstream* of the
-boundary, not a route across it.
+independent transcendental input. The *constant* π is thus not the lever on RH — it is already available
+in `RCA₀`, and ζ's functional equation with it. The *census that produces* π is: the discrete count layer
+where the reformulation operates (`resonant_computation_for`, the MRE-saturation program), and refining it
+is the open constructive direction. The zero **location** stays the `spectral_hilbert_polya` boundary, and
+RH-conditional analytic machinery (Schoenfeld's `√x log x / 8π`, the value of Mills' constant it pins down)
+sits *downstream* of that boundary.
 
 **Falsifiability (method rule 4).** This is a structural identification — the π that appears and the `1/2`
 QLF derives structurally are the same self-duality seen from two sides. It changes no count of ways, so it
