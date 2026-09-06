@@ -129,6 +129,40 @@ Physical reality is selected as the **self-adjoint = time-reversal-fixed** subse
 selection is the same `H ↔ H†` whose fixed line carries the Riemann zeros. Time-reversal symmetry, the
 reality of energies, and the critical line are **one** involution.
 
+## 6a. Why π is already in it — Poisson self-duality  *[structural reading]*
+
+§6 puts the critical line at the fixed axis of `H ↔ H†`. On the continuum side that same axis is the
+fixed line of ζ's functional equation `s ↔ 1 − s`, and **π sits in that functional equation for exactly
+the reason the involution exists** — not as an extra constant to be explained.
+
+The completed zeta function carries the factor `π^{−s/2} Γ(s/2)`, the Mellin transform of the Gaussian
+`e^{−πx}`. The Gaussian is there because `e^{−πx²}` is the **fixed point of the Fourier transform**
+(`∫ e^{−πx²} e^{−2πixξ} dx = e^{−πξ²}`), and Poisson summation — *lattice sum = dual-lattice sum* — turns
+that fixed-point property into the Jacobi theta identity `θ(1/t) = √t · θ(t)`, hence into ζ's `s ↔ 1 − s`.
+Every explicit constant downstream inherits the π: the zero-counting density `N(T) ∼ (T/2π) log(T/2π)`,
+and through it the RH-conditional error bounds (Schoenfeld's `√x log x / 8π`).
+
+So the picture is symmetric across the discrete/continuum seam:
+
+| | discrete side | continuum side |
+|---|---|---|
+| the self-duality | `H ↔ H†` involution (`eval_dagger`, §1) | Fourier: `e^{−πx²}` is its own transform |
+| the bridge | twist-history ↔ spectral mode (`toSpectralMode_hermitian`) | Poisson summation (lattice ↔ dual lattice) |
+| the fixed set | `H = H†` closures (`spectral_symmetric_eq_scalar_id`) | `Re(s) = 1/2`, fixed axis of `s ↔ 1 − s` |
+
+Poisson summation is the cleanest statement of QLF's "the continuum is a rendering": the lattice sum and
+the continuum integral carry the **same information**, so π — the continuum constant it produces — is
+realizable, a forward limit of the census counts (`censusTail_eq`, the Wallis/Catalan family), not an
+independent transcendental input. Accepting π therefore adds no proof strength: it is already available in
+`RCA₀`, and ζ's functional equation with it. What is *not* on this seam is the **location** of the
+zeros — that stays the `spectral_hilbert_polya` boundary, and RH-conditional machinery like Schoenfeld's
+bound (or the value of Mills' constant, which that bound pins down under RH) sits *downstream* of the
+boundary, not a route across it.
+
+**Falsifiability (method rule 4).** This is a structural identification — the π that appears and the `1/2`
+QLF derives structurally are the same self-duality seen from two sides. It changes no count of ways, so it
+is framing-clarifying bookkeeping, not a new prediction; labelled accordingly.
+
 ## 7. Are reversible theories wrong? — *half-right*
 
 Not wholesale. Reversibility is a **real** symmetry of the QLF laws (the dagger; every closure `H = H†`),
@@ -298,7 +332,9 @@ histories per closure) is verified as **`time_reverse_involutive_but_closure_deg
 `fredkin_bijective` carrying the free-ledger claim; what is *not* a Lean statement there is the reading
 of a gate as one physical event, which [`Fredkin_QLF.md`](Fredkin_QLF.md) §6 marks as modelled. The
 remaining synthesized-time framing (there is no meta-axis in which to *run* the reverse) is prose
-grounded in `ZFAEventDynamics` (`f = 1/t`), not a further Lean obligation. The `†` here is the `*`-involution of
+grounded in `ZFAEventDynamics` (`f = 1/t`), not a further Lean obligation. §6a's π/Poisson identification
+is likewise prose — a reading of standard analytic number theory against the verified `H ↔ H†` involution,
+carrying no Lean obligation and, by method rule 4, no new count. The `†` here is the `*`-involution of
 the substrate's state ring — a finite-rank `ℤ[i]`-lattice, not Hilbert space; see
 [`The_QLF_State_Space.md`](The_QLF_State_Space.md). See [`Decoherence.md`](Decoherence.md),
 [`Entropy.md`](Entropy.md), [`Conservation.md`](Conservation.md), [`Philosophy.md`](Philosophy.md), and the
