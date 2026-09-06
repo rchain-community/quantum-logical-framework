@@ -22,7 +22,10 @@
 > as `q²→0` — and that count *is* the continuum vacuum-polarisation running, the Standard Model's own
 > un-derived frontier. Every substrate mechanism swing is closed (§*Bounds*, [`Alpha_Residual.md`](Alpha_Residual.md) §9c).
 > So: **`1/137` = derived leading value; `137.032` = the structural `w=½` prediction; `1/137.036` = the
-> exact value, its last `~0.004` the continuum running.**
+> exact value, its last `~0.004` the continuum running.** In digits: QLF suggests **~5 significant
+> figures** of `α⁻¹` (`137.03`) — of the residual `+0.036`, only its leading `0.03`; the `~0.004` beyond
+> is not suggested as a number, and the census provably reaches only to 4-loop QED
+> ([`Alpha_Residual.md`](Alpha_Residual.md) §9d–§9g).
 
 **The canonical QLF document for the fine-structure constant `α ≈ 1/137`.** It collects, in one place,
 everything QLF says about α and links every related proof:

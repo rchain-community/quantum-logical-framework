@@ -15,6 +15,16 @@ Companion to [`Alpha.md`](Alpha.md) and [`lean/QLF_AlphaBound.lean`](lean/QLF_Al
 ([`QLF_FineStructureSubstrate`](lean/QLF_FineStructureSubstrate.lean), `alpha_QLF_eq`). The measured
 (CODATA, q²→0 Thomson) value is `α⁻¹ = 137.035999`. The residual `r = +0.035999` is the open piece.
 
+**How many digits QLF suggests, stated once, up front.** QLF's structural prediction is
+`α⁻¹ = 137.032` (`w = 1/2`, §2a) — **~5 significant figures of `α⁻¹`**, and of the residual `+0.036`
+only its leading `0.03` (order and first digit; ≈ 89% of the magnitude). The remaining **`~0.004` is
+not suggested as a number** — it is the continuum vacuum-polarization running (the SM's own un-derived
+precision frontier), needing the fermion mass thresholds (frontier #1) and `Δα_had` (open in the SM).
+This document does **not** close that gap: it *derives the leading structure* (§1–§8), *characterises
+the residual* as higher-order EM running, and *locates the census/continuum boundary at 4-loop QED*
+(§9d–§9g — two independent arguments: the closure-return Picard–Fuchs operator's π-parity, and the
+`g−2` central-binomial-MZV nesting ladder). No route delivers the `~0.004`.
+
 **Binding discipline (the whole point of this file).** The residual must be *derived* from the
 substrate, **never tuned** to CODATA. QLF is rich in meaningful constants (`3/8`, `5`, `2/3`, `π`, …),
 so a coefficient that hits `0.036` within a percent can always be found by dividing the answer by a
