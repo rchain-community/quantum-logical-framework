@@ -71,7 +71,11 @@ def render_table(block):
     headers = split_row(lines[0])
     rows = [split_row(l) for l in lines[2:]]
     widths = col_widths(headers, rows)
-    colgroup = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in widths) + "</colgroup>"
+    # Presentational `width` attribute, not inline `style`: Google Docs' paste
+    # importer only reads the attribute, and HTML sanitizers (e.g. the Claude
+    # artifact renderer) strip inline `style` — which silently drops every column
+    # width and collapses `table-layout:fixed` to first-row sizing.
+    colgroup = "<colgroup>" + "".join(f'<col width="{w}%">' for w in widths) + "</colgroup>"
     th = "".join(f"<th>{inline(h)}</th>" for h in headers)
     trs = []
     for r in rows:
