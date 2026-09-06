@@ -846,13 +846,19 @@ census has a **closed-form generating function** `P(x) = 1 − 1/Q(x)`, `Q(x) = 
   function, the geometric sum of 1PI first-returns — the lattice analogue of `1/(1−Π(0))`. So
   `Z_limit = p_return(ℤ⁴)` is the substrate's `Π(0)`, an exact closed-form number.
 
-**Positive geometry — a flagged direction, no worked correspondence.** Three hooks: (i) `1/(1−I)` is the
-canonical form of a simplicial cone / the free monoid's composition space (weak — every geometric
-resummation is); (ii) the Catalan/central-binomial layer (`(1−4x)^{−1/2}`, *algebraic*) would be a
-**non-polytopal** positive geometry (curved boundary, M₀,ₙ-type), associahedron-indexed; (iii) most
-promising — `Q(x)`'s `∫ e^{−t} I₀(…)⁴ dt` form is exactly a **cosmological-polytope / flat-space
-wavefunction** integral (Arkani-Hamed–Benincasa–Postnikov; the 2024 cosmohedron), whose facets are
-*subgraph* singularities — the natural home for the closure/sub-closure grading the census already uses.
-Whether the cosmological polytope's canonical form reproduces `P(x)` and whether its `x = 1/64` facet
-carries the kinematic weight route (a) needs is open, and is the one place these findings point *forward*
-rather than closing a channel.
+**Positive geometry — scoped, and the right object is *not* the cosmohedron.** `Q(x)` is not a
+Tr(φ³) wavefunction (the cosmohedron's setting — an interacting, multi-kinematic-variable rational
+function; wrong theory, wrong variable count). It is a **Bessel moment**: `∫₀^∞ e^{−t} I₀(2t√x)⁴ dt` is
+the generating function of the **4-D hypercubic lattice Green's function**, equivalently the **3-loop
+banana Feynman integral** family (four Bessel factors = four propagators). This is heavily studied —
+Bailey–Borwein–Broadhurst–Glasser ([arXiv:0803.1007](https://arxiv.org/abs/0803.1007)) tie 4-D lattice
+integrals directly to **4-loop g−2 master integrals**, the QED precision sector the residual lives in;
+Glasser–Guttmann ([arXiv:cond-mat/9408097](https://arxiv.org/abs/cond-mat/9408097)) give `Q(1/64) =
+G_{ℤ⁴}(0)` in closed hypergeometric form. The associated geometry is a **K3 surface**, `Q(x)` satisfies a
+**4th-order Picard–Fuchs ODE** whose singular points are the closure "octave" thresholds
+(`x = 1/4, 1/16, 1/36, 1/64`), and its special values are periods / critical L-values of a weight-3
+modular form (Broadhurst–Mellit). The scoped calculation: (1) the P–F ODE for `Q(x)` (in the
+lattice-Green literature / via `HolonomicFunctions`); (2) its local exponents at `x = 1/64` — the
+`(1−64x)log` we found is a resonance (Jordan block) in the local monodromy, the d = 4 marginal signature;
+(3) whether the ODE's connection constants or the modular L-values reproduce `2/(3π)` or the two-loop
+`−0.328` cleanly. Weeks, not a script, but concrete first moves and the right physics.
