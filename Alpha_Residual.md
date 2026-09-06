@@ -855,10 +855,40 @@ Bailey–Borwein–Broadhurst–Glasser ([arXiv:0803.1007](https://arxiv.org/abs
 integrals directly to **4-loop g−2 master integrals**, the QED precision sector the residual lives in;
 Glasser–Guttmann ([arXiv:cond-mat/9408097](https://arxiv.org/abs/cond-mat/9408097)) give `Q(1/64) =
 G_{ℤ⁴}(0)` in closed hypergeometric form. The associated geometry is a **K3 surface**, `Q(x)` satisfies a
-**4th-order Picard–Fuchs ODE** whose singular points are the closure "octave" thresholds
-(`x = 1/4, 1/16, 1/36, 1/64`), and its special values are periods / critical L-values of a weight-3
-modular form (Broadhurst–Mellit). The scoped calculation: (1) the P–F ODE for `Q(x)` (in the
-lattice-Green literature / via `HolonomicFunctions`); (2) its local exponents at `x = 1/64` — the
-`(1−64x)log` we found is a resonance (Jordan block) in the local monodromy, the d = 4 marginal signature;
-(3) whether the ODE's connection constants or the modular L-values reproduce `2/(3π)` or the two-loop
-`−0.328` cleanly. Weeks, not a script, but concrete first moves and the right physics.
+**4th-order Picard–Fuchs ODE** with singular points `x ∈ {0, 1/16, 1/64, ∞}` (worked in §9e), and its
+special values are periods / critical L-values of a weight-3 modular form (Broadhurst–Mellit). The
+scoped calculation: (1) the P–F ODE for `Q(x)` — **done, §9e**; (2) its local exponents at `x = 1/64` —
+**done, §9e**: a resonant `(0,1,1,2)` conifold, the log is forced; (3) whether the ODE's connection
+constants or the modular L-values reproduce `2/(3π)` or the two-loop `−0.328` cleanly — **open, the next
+step**. Weeks, not a script, but concrete first moves and the right physics.
+
+## 9e. Project 2b — the Picard–Fuchs ODE, pulled and classified ([`alpha_pf_ode.py`](alpha_pf_ode.py))
+
+`Q(x) = Σ A039699(n) xⁿ` satisfies (Bradley Klee, [OEIS A039699](https://oeis.org/A039699), 2018;
+verified here against the exact transfer-recursion terms and the scalar recurrence
+`256(n−1)²(2n−3)(2n−1)a(n−2) − 4(2n−1)²(5n²−5n+2)a(n−1) + n⁴a(n) = 0`):
+
+```
+P₀ = −8 + 768x            P₁ = 1 − 424x + 14592x²        P₂ = 7x − 1172x² + 25344x³
+P₃ = 6x² − 640x³ + 10240x⁴            P₄ = x³ − 80x⁴ + 1024x⁵ = 1024·x³·(x − 1/16)(x − 1/64)
+Σⱼ Pⱼ(x)·Q⁽ʲ⁾(x) = 0
+```
+
+It is a **rank-4 Calabi–Yau operator** — `Q(x) = (1−4x)^{−1/2} ⋆ Domb(x)` is the Hadamard product of the
+central-binomial g.f. (rank 1) and the Domb / 3-loop-sunrise g.f. (rank 3, weight-3 level-6 modular),
+`A039699(n) = C(2n,n)·A002895(n)` exactly (rank `1 + 3 = 4`). Riemann scheme (local exponents), i.e. the
+**resonant-frequency structure**:
+
+| `x = 0` (empty history) | `x = 1/16` (2-axis lock) | `x = 1/64` (4-axis lock — physical) | `x = ∞` (`p² = 0`) |
+|:---:|:---:|:---:|:---:|
+| `0, 0, 0, 0` | `0, 1, 1, 2` | `0, 1, 1, 2` | `½, 1, 1, 3⁄2` |
+| MUM — nilpotent monodromy of maximal order (`1, log, log², log³`); the CY "large complex structure" point | **conifold** — the `(1,1)` pair is resonant ⟹ one `log` solution | **conifold** — same; this `log` **is** the QED running logarithm | half-integer branch + resonant `(1,1)` |
+
+(Fuchs relation checks: exponents sum to `0 + 4 + 4 + 4 = 12 = (n(n−1)/2)(p−2)`.) So the singular points
+are exactly where subsets of the four axis-modes **phase-lock**: all four at `x = 1/64`, pairs at
+`x = 1/16`. Each lock is a **resonance** — integer-spaced exponents, a Jordan block in the monodromy —
+and the resonance *response is a logarithm*. The `κ(1−64x)log(1/(1−64x))` term of §9d is now read off the
+ODE, not just fitted: it is the conifold-`(0,1,1,2)` log at the 4-axis lock. **Next (step 3):** compute
+the conifold connection constant at `x = 1/64` from the ODE (the ratio of the exponent-`0` period to its
+log-partner) and the weight-3 modular form's critical L-values, and test them against `2/(3π)` and the
+two-loop `−0.328479` — an unambiguous pass/fail, and the one place route (b) can still deliver.
