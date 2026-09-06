@@ -819,3 +819,40 @@ seeded, at converged depth. So the turbulence swing delivered a side-derivation 
 **`w = 1/2` is structural; `α⁻¹ = 137.032` is the pure-ZFA prediction; the last `~0.004` (and the full
 `+0.036` over `137`) is the continuum vacuum-polarisation running — the Standard Model's own
 un-derived precision frontier, which QLF brackets by design.**
+
+---
+
+## 9d. Route (b), explored — the A359801 singularity structure ([`alpha_residual_deep.py`](alpha_residual_deep.py), route_b probe)
+
+Route (b) asks for an *exact* substrate self-consistency rather than an order-by-order sum. The
+[OEIS A359801](https://oeis.org/A359801) identification (§9b) hands over the raw material: the prime
+census has a **closed-form generating function** `P(x) = 1 − 1/Q(x)`, `Q(x) = ∫₀^∞ e^{−t} I₀(2t√x)⁴ dt`
+(the ℤ⁴ worldline / Schwinger integral), radius `1/64`. One real gain and one honest miss:
+
+- **The QED log is *not* an external input — it is the `d = 4` marginal singularity type, shared.**
+  `Q(x)`'s singular term at `x = 1/64` is `−κ·(1−64x)·log(1/(1−64x))` with `κ = 2/π²` (confirmed
+  numerically: `A039699(n)·n²/64ⁿ → 0.2026`, the local-CLT constant `2·2⁴·(2π)^{−2}·(¼)^{−2}`). `d = 2`
+  gives a *divergent* log (recurrent), `d = 3` a `√` (no log), `d = 6` no singular log — **`d = 4` is the
+  first even dimension whose closure-return g.f. carries a logarithm**, for exactly the reason QED's
+  coupling runs logarithmically in `d = 4` (marginal, dimensionless). §9b's table called the log "an
+  information-theoretic input the prime census does not itself derive"; this locates its *origin* — the
+  substrate being 4-dimensional (`v,h,d,l`) — even though the coefficient is still not delivered.
+- **The coefficient still misses (naive).** The first-return singular constant is
+  `B_P = κ·(1−p)² ≈ 0.132` (`p = p_return(ℤ⁴) ≈ 0.193206`, the `Z_limit` of §9b). Against the QED
+  one-loop log coefficient this is `B_P / (2/3π) = 3(1−p)²/π ≈ 0.6216`. That is *close to* the §2a
+  weight `w ≈ 0.624` — but misses at the third digit, so it goes in the same drawer as the §6b/§9
+  one-term coincidences: **flagged, not built on** (method rule 4 — an exact identity would not miss).
+- **The renewal = Dyson identity is exact.** `Q(1/64) = 1/(1−p) = G(0,0)` is the lattice Green's
+  function, the geometric sum of 1PI first-returns — the lattice analogue of `1/(1−Π(0))`. So
+  `Z_limit = p_return(ℤ⁴)` is the substrate's `Π(0)`, an exact closed-form number.
+
+**Positive geometry — a flagged direction, no worked correspondence.** Three hooks: (i) `1/(1−I)` is the
+canonical form of a simplicial cone / the free monoid's composition space (weak — every geometric
+resummation is); (ii) the Catalan/central-binomial layer (`(1−4x)^{−1/2}`, *algebraic*) would be a
+**non-polytopal** positive geometry (curved boundary, M₀,ₙ-type), associahedron-indexed; (iii) most
+promising — `Q(x)`'s `∫ e^{−t} I₀(…)⁴ dt` form is exactly a **cosmological-polytope / flat-space
+wavefunction** integral (Arkani-Hamed–Benincasa–Postnikov; the 2024 cosmohedron), whose facets are
+*subgraph* singularities — the natural home for the closure/sub-closure grading the census already uses.
+Whether the cosmological polytope's canonical form reproduces `P(x)` and whether its `x = 1/64` facet
+carries the kinematic weight route (a) needs is open, and is the one place these findings point *forward*
+rather than closing a channel.
