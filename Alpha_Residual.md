@@ -948,3 +948,39 @@ rational kinematic coefficients.
 (MZVs, Clausen values — central-binomial-representable) and **break at 4 loops** (elliptic / modular,
 Laporta 2017) — the *same wall* §9e's π-parity gave route (b). If a `≤ 3`-loop `g−2` transcendental
 turns out to be an irreducible non-census period, the reading is wrong.
+
+---
+
+## 9g. Three-loop `g−2` — census-representable, and the nesting depth tracks the loop order ([`alpha_threeloop_weights.py`](alpha_threeloop_weights.py))
+
+The 3-loop mass-independent electron anomaly (Laporta–Remiddi 1996, 72 diagrams,
+`A₁⁽⁶⁾ ≈ 1.181241456587`) has ten transcendental constants:
+`{1, ζ(2), ζ(3), ζ(2)ln2, ζ(4), Li₄(1/2), ln⁴2, ζ(2)ln²2, ζ(2)ζ(3), ζ(5)}`. **Every one is
+census-representable** (assembly reproduces `1.181241456` to `10⁻¹³`), but the vocabulary extends by
+one step per loop:
+
+| loop order | census form needed | verified generator |
+|---|---|---|
+| 1 | single **unsigned** sum | `1/6 = ∫x(1−x)`, `Σ 1/(k²·C(2k,k))` (pole 2) |
+| 2 | single sum + **phase** | `ζ(3) = (5/2)·Σ (−1)^{k−1}/(k³·C(2k,k))` (Apéry) |
+| 3 | **nested** sums + **free-energy weight** | `ζ(5) = 2·Σ(−1)^{k−1}/(k⁵·C) − (5/2)·Σ(−1)^{k−1} H^{(2)}_{k−1}/(k³·C)` (Borwein–Bradley); `Li₄(1/2) = Σ 2^{−k}/k⁴ = Σ e^{kΔF}/k⁴` |
+
+(`ζ(4) = (36/17)·Σ 1/(k⁴·C(2k,k))` is Comtet's classical central-binomial series — a single sum.)
+
+**The structural finding: census nesting depth = loop order.** The `ζ(5)` nested sum
+`Σ (−1)^{k−1} H^{(2)}_{k−1}/(k³·C(2k,k))` is a **central-binomial multiple zeta value** — a closure
+weighted by a sum over its *sub-closures*. That is exactly the `IsDiagram` binding/nesting clause
+(`QLF_FractalDiagram`), the Russian-doll structure. So each additional loop adds one level of
+closure-nesting to the census sum: 1 loop = flat sum, 2 loops = + phase, 3 loops = + one nesting level
+(+ the free-energy weight `2^{−k} = e^{kΔF}` for `Li₄(1/2)`). A sharper form of §9f's prediction.
+
+**Honest scope.** The central-binomial series for `ζ(2), ζ(3), ζ(4), ζ(5)` are all *classical* (Comtet,
+Apéry, Borwein–Bradley); QLF contributes the *reading* — `C(2k,k)` is the order-`k` closure
+multiplicity, the sign is the phase, the nesting is sub-closures, `2^{−k}` is the free-energy weight.
+Two vocabulary lines: **narrow** (single Apéry-like sums only) breaks already at 3 loops; **nested**
+(central-binomial MZVs, motivated by the nesting clause) covers 3 loops with nesting depth = loop
+order. The rational coefficients (`28259/5184`, `17101/810`, …) stay rendered, as at one and two loops.
+
+**The 4-loop wall.** `A₁⁽⁸⁾` (Laporta 2017) carries genuine **elliptic / modular** periods — *not*
+central-binomial MZVs at any nesting depth, a different motive. So two independent arguments —
+this loop-order/nesting ladder and §9e's π-parity — place the census boundary at **4-loop QED**.
