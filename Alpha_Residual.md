@@ -688,6 +688,22 @@ bifurcation/log-periodic line that could move the §2a weight `w` off `1/2` — 
 to "null at depth". (The `QLF_ExactRG` signed limit also converges: `amp_limit = −0.113574` identical at
 `L ≤ 22` and `L ≤ 28`.)
 
+**The prime census is a known sequence — [OEIS A359801](https://oeis.org/A359801), and the identification
+carries the null.** `8, 104, 2944, 108136, 4525888, 204981888, …` is *"the number of 4-dimensional cubic
+lattice walks that start and end at the origin after `2n` steps, not touching the origin at intermediate
+stages"* — which is exactly what the 8-twist first-closure census counts (the 8 twists are `±e₁…±e₄`,
+count balance is return to origin, "prime" is first return). This is not a coincidence to explain; it is
+what the census *is*. Three consequences: (i) the total census is `INVERT(A359801)` = `A039699` (all 4-D
+returns), so QLF's `G = 1/(1−I)` (`census_irreducible_resummation`) **is** the classical first-return /
+renewal relation `Q = 1/(1−P)` (Novak 2014) — the free-monoid/bifibration argument has a classical twin
+in renewal theory. (ii) The census has a **closed-form generating function**:
+`P(x) = 2 − 1/Q(x)`, `Q(x) = ∫₀^∞ e^{−t} I₀(2t√x)⁴ dt` (Bessel). Its only positive-real singularity is the
+combinatorial radius `x = 1/64` — a **single dominant real singularity**, which is precisely "no
+log-periodic line" stated as an analytic fact, no new argument needed. (iii) The `QLF_ExactRG` `Z_limit`
+is `Σ A359801(n)/64ⁿ = P(1/64)` = the **4-D Pólya return probability `≈ 0.193206`** (the truncated
+`0.1835` at `L ≤ 24` converges up to it); `amp_limit ≈ −0.1136` is its phase-signed analogue. So the RG
+`Z` flow has an exact closed-form limit, a named lattice constant.
+
 **And the null is forced, not lucky — the bifibration is upstream of the self-similarity** (per Jim: *in
 the possibilist realm the bifibration is one thing that happens, and it is responsible for the
 self-similarity*). The chain: closures factor **uniquely** into an ordered sequence of primes (§4,

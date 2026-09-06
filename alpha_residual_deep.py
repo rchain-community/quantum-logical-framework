@@ -16,6 +16,13 @@ which reaches L ≈ 24 / R ≈ 12 in seconds, so the deep excursion levels are f
 Question: does the null (scale-invariant, period-1 cascade — no log-periodic line that
 could move the §2a weight `w` off 1/2) survive at converged depth, or was it an artifact?
 
+The prime census turns out to be OEIS A359801 (4-D cubic-lattice first-return walks),
+so `G = 1/(1−I)` is the classical renewal relation, the census g.f. is closed-form
+(`P(x) = 2 − 1/Q(x)`, `Q` a Bessel integral) with a single positive-real singularity at
+`x = 1/64`, and `Z_limit = P(1/64)` is the 4-D Pólya return probability `≈ 0.193206`.
+The single dominant real singularity IS "no log-periodic line" as an analytic fact —
+this script's periodogram is the numerical confirmation of it.
+
 Matches the repo exactly:
   * prime = count-balanced (all 4 conjugate-pair counts equal) with no proper even
     count-balanced prefix (absorbing / first closure).
@@ -71,10 +78,17 @@ def first_closure_census(L_max: int, R_max: int):
     return clos
 
 
-# The published first-closure ("prime") counts from Alpha_Residual.md §9b, obtained
-# there by brute enumeration (balanced_histories, L <= 10, ~5 min). The transfer
-# recursion must reproduce these exactly.
-PUBLISHED_PRIMES = {2: 8, 4: 104, 6: 2944, 8: 108136, 10: 4525888}
+# The first-closure ("prime") census IS OEIS A359801 — "4-dimensional cubic lattice
+# walks that start and end at the origin after 2n steps, not touching the origin at
+# intermediate stages" (the 8 twists are ±e_1..±e_4, count balance = return, prime =
+# first return). Total census = INVERT(A359801) = A039699 (all 4-D returns); the
+# renewal g.f. is P(x) = 2 - 1/Q(x), Q(x) = INT_0^inf e^-t I_0(2 t sqrt x)^4 dt,
+# with a single positive-real singularity at x = 1/64. Terms below are A359801(n),
+# n = 1..12 (a(0)=1 dropped); the transfer recursion must reproduce them exactly.
+PUBLISHED_PRIMES = {2: 8, 4: 104, 6: 2944, 8: 108136, 10: 4525888,
+                    12: 204981888, 14: 9792786432, 16: 486323201640,
+                    18: 24874892400064, 20: 1302278744460352,
+                    22: 69474942954714112, 24: 3764568243058030208}
 
 
 def lstsq(xs, ys):
@@ -131,10 +145,10 @@ def main():
         print(f"  L={L:>2}:  {by_L[L]:>16,}{r}{conv}")
         prev = by_L[L]
 
-    ok = all(by_L.get(L) == n for L, n in PUBLISHED_PRIMES.items() if R_max >= L // 2)
-    mism = {L: (by_L.get(L), n) for L, n in PUBLISHED_PRIMES.items()
-            if R_max >= L // 2 and by_L.get(L) != n}
-    print(f"\n  cross-check vs §9b brute counts (L ≤ 10): "
+    checkable = {L: n for L, n in PUBLISHED_PRIMES.items() if L <= L_max and R_max >= L // 2}
+    ok = all(by_L.get(L) == n for L, n in checkable.items())
+    mism = {L: (by_L.get(L), n) for L, n in checkable.items() if by_L.get(L) != n}
+    print(f"\n  cross-check vs OEIS A359801 (L ≤ {max(checkable)}): "
           f"{'MATCH' if ok else 'MISMATCH ' + str(mism)}")
 
     # ---- census by excursion level R (summed over all L) ---------------------
