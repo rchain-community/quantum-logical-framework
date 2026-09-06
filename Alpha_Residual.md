@@ -673,13 +673,20 @@ confirmed 1PI/prime object, not just a census fit), the log-carrier is relocated
 (already Lean-anchored, `QLF_VacuumPolarizationTower`), and the higher-order tail is the same open
 piece as before — frontier #1. The `+0.036` value is **not** delivered, and no reference to it entered.
 
-**Fractal / Zipf probe** (per Jim, *"fractals and zipf might close the gap"*): run at lengths ≤ 10 and
-**null so far** — the octave self-similarity ratios are truncation-dominated (the deep excursion levels
-are still filling in at `L = 10`), and the Zipf rank–frequency slope of the prime multiplicities is
-`≈ −4.7`, steepening with depth, not the `−1` of a Zipfian law. This is consistent with `genesis.py`'s
-pre-registered log-periodic (discrete-scale-invariance) probe, which is also null: the census is
-scale-*invariant* (period-1 cascade), with no bifurcation/log-periodic line that could move the §2a
-weight `w` off `1/2`.
+**Fractal / Zipf probe** (per Jim, *"fractals and zipf might close the gap"*): **null, and now confirmed
+at converged depth** ([`alpha_residual_deep.py`](alpha_residual_deep.py)). The brute run capped at `L = 10`
+left the deep excursion levels unfilled; an exact transfer recursion (state `(v,h,d,l,inv,maxexc)`, the
+`intermittency_bridge.py` method) reruns the identical first-closure census to `L ≤ 28` in seconds — the
+prime sequence continues `8, 104, 2944, 108136, 4525888, 204981888, 9792786432, 486323201640, …` (first
+five as before), ratio climbing `13 → 53`. At that depth: the octave Kraft-mass self-similarity ratio
+**decays monotonically with no oscillation** (the forced `twist_kraft` decay, nothing riding on it); the
+Zipf rank–frequency slope keeps steepening `−4.2 → −11.2` as the cutoff grows, never approaching `−1`
+(not a power law); and the `genesis.py`-style log-periodic probe gives a single-arch residual with
+periodogram `peak/rms ≈ 1.4` (O(1), the DSI kill threshold) — a Stirling-type trend, not a
+discrete-scale-invariance line. So the census is scale-*invariant* (period-1 cascade), with **no**
+bifurcation/log-periodic line that could move the §2a weight `w` off `1/2` — upgraded from "null so far"
+to "null at depth". (The `QLF_ExactRG` signed limit also converges: `amp_limit = −0.113574` identical at
+`L ≤ 22` and `L ≤ 28`.)
 
 **And the null is forced, not lucky — the bifibration is upstream of the self-similarity** (per Jim: *in
 the possibilist realm the bifibration is one thing that happens, and it is responsible for the
