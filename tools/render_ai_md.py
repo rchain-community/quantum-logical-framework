@@ -11,12 +11,14 @@ The output opens in a browser with a "Copy for Google Docs" button that selects
 the rendered article and copies it as rich text — paste straight into a Doc.
 
 Why a bespoke converter rather than pandoc: the text is dense with the twist
-alphabet (^ v < > / \\ + -), so < > & escaping has to be exact, and Google Docs'
-paste-table importer ignores CSS width but respects an explicit <col> width
-attribute — so every table gets a <colgroup> with per-column percentages
-auto-sized from its content. Chips/badges are avoided (Docs mangles per-run
-background/border); status text is plain bold. Reads the source file verbatim,
-so it never drifts from the doc.
+alphabet (^ v < > / \\ + -), so < > & escaping has to be exact. Tables use
+table-layout:auto (content-sized columns) with no <col> widths — the Claude
+artifact HTML sanitizer strips both inline style and presentational width
+attributes, so any per-column width silently vanished and collapsed tables to
+equal columns; auto sizing is also what a short-label/long-prose table wants,
+and Google Docs re-sizes on paste anyway. Chips/badges are avoided (Docs mangles
+per-run background/border); status text is plain bold. Reads the source file
+verbatim, so it never drifts from the doc.
 """
 import argparse
 import html
@@ -70,18 +72,22 @@ def render_table(block):
     lines = [l for l in block if l.strip()]
     headers = split_row(lines[0])
     rows = [split_row(l) for l in lines[2:]]
-    widths = col_widths(headers, rows)
-    # Presentational `width` attribute, not inline `style`: Google Docs' paste
-    # importer only reads the attribute, and HTML sanitizers (e.g. the Claude
-    # artifact renderer) strip inline `style` — which silently drops every column
-    # width and collapses `table-layout:fixed` to first-row sizing.
-    colgroup = "<colgroup>" + "".join(f'<col width="{w}%">' for w in widths) + "</colgroup>"
+    # No <colgroup>/<col> and no table-layout:fixed. Earlier versions carried
+    # per-column widths (as inline style, then as the width attribute); both were
+    # dropped by the Claude artifact HTML sanitizer, collapsing every table to
+    # equal columns — prose wrapping into thin ribbons. table-layout:auto sizes
+    # columns to their content, which is what a mixed short-label/long-prose
+    # table wants anyway, and Google Docs re-sizes on paste regardless.
+    ncol = len(headers)
     th = "".join(f"<th>{inline(h)}</th>" for h in headers)
     trs = []
     for r in rows:
-        cells = "".join(f"<td>{inline(r[i]) if i < len(r) else ''}</td>" for i in range(len(headers)))
+        cells = "".join(f"<td>{inline(r[i]) if i < len(r) else ''}</td>" for i in range(ncol))
         trs.append(f"<tr>{cells}</tr>")
-    return (f'<div class="table-wrap"><table>{colgroup}<thead><tr>{th}</tr>'
+    # class carries the column count -> a per-count min-width in the stylesheet
+    # (a <style> rule, so it survives the sanitizer where inline widths did not);
+    # below that width the .table-wrap scrolls horizontally.
+    return (f'<div class="table-wrap"><table class="tbl tbl-{ncol}"><thead><tr>{th}</tr>'
             f'</thead><tbody>{"".join(trs)}</tbody></table></div>\n')
 
 
@@ -265,14 +271,18 @@ pre.plain{background:var(--console-bg); color:var(--console-ink); border-radius:
   overflow-x:auto; font-family:'IBM Plex Mono',monospace; font-size:0.84rem; line-height:1.6;
   box-shadow:var(--shadow); margin:0 0 20px; white-space:pre;}
 pre.plain code{background:none; border:0; padding:0; color:inherit; font-size:1em; white-space:pre;}
-.table-wrap{overflow-x:auto; margin:0 0 20px; border:1px solid var(--line); border-radius:8px;}
-table{border-collapse:collapse; width:100%; font-size:0.92rem; min-width:640px; table-layout:fixed;}
-thead th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:.06em;
+.table-wrap{overflow-x:auto; margin:0 0 22px; border:1px solid var(--line); border-radius:8px;}
+table.tbl{border-collapse:collapse; width:100%; font-size:0.9rem; line-height:1.5; table-layout:auto;}
+table.tbl-2{min-width:520px;} table.tbl-3{min-width:660px;}
+table.tbl-4{min-width:780px;} table.tbl-5{min-width:880px;}
+thead th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-soft); background:var(--paper-raise); padding:11px 14px;
-  border-bottom:1px solid var(--line); word-wrap:break-word;}
-tbody td{padding:13px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; word-wrap:break-word;}
+  border-bottom:1px solid var(--line); white-space:nowrap; vertical-align:bottom;}
+tbody td{padding:12px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top;
+  overflow-wrap:break-word;}
+tbody td:first-child{color:var(--ink);}
 tbody tr:last-child td{border-bottom:0;}
-.table-wrap code{background:none; border:0; padding:0; border-radius:0;}
+.table-wrap code{background:none; border:0; padding:0; border-radius:0; overflow-wrap:anywhere;}
 hr.sep{border:0; border-top:1px solid var(--line); margin:40px 0;}
 footer.colophon{margin-top:64px; padding-top:22px; border-top:1px solid var(--line);
   font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--ink-soft);
