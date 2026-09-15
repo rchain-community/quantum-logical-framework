@@ -563,6 +563,8 @@ The most useful contributions right now are:
 * adding small executable examples that clarify one claim at a time
 * opening issues where a document overstates, understates, or mismatches the code
 
+**rchain-community is supported as a legal entity by [Rho Vision Community](https://opencollective.com/rho-vision-community) on Open Collective** — transparent budget, expenses, and funding for this and related repos. If you want to help beyond opening issues and PRs, you can join as a **contributor** (code, proofs, docs, review) or a **financial sponsor** through the collective.
+
 ---
 
 ## Repository
