@@ -327,6 +327,12 @@ This is the selection principle in action: `+-+-` (gap=0) survives as a physical
 
 See [`BraKetRhoQuCalc.md`](BraKetRhoQuCalc.md) for the `/braket` command that evaluates `Form.toMatrix` directly.
 
+### `/search` and `/solve` — the admissible next closures
+
+From any position, **`/search` is the experiment**: it enumerates every admissible next closure reachable from here — the twist continuations that make the whole history ZFA-balanced — shortest first, laying out the a-priori possibility space and asking the substrate which of it closes. **`/solve` is the truth divination**: of the ways a position can close, the substrate takes one — the least free action, the shallowest-horizon closure — and the deterministic cascade names it, a reading rather than an opinion. Both are defined once, precisely, in [`QucalcSearch.md`](QucalcSearch.md) (§ *What search and solve are*) and implemented as the reference CLI in [`qucalc_search.py`](qucalc_search.py); [quantum-os](https://github.com/rchain-community/quantum-os) computes the identical `/search`/`/solve` **client-side in the browser**, ported 1:1 from that spec, with no deployed service ([quantum-os#119](https://github.com/rchain-community/quantum-os/issues/119)).
+
+Bare `/search` (no position) and `/solve` on a room's joint position turn this into **the meeting of minds**: every peer's `/qlf-action` proposal joins one enumeration, and because the cascade is deterministic, every peer divines the identical answer — consensus by closure, not negotiation, joiner-local like `/poll` ([`QLF_as_Intelligence.md`](QLF_as_Intelligence.md) §8). `mode=events` makes the search side of this literal: a closure *is* an event, so each discovered branch is registered as a room lemma the moment it first resolves, and a re-run finds its own past discoveries already named rather than rediscovering them.
+
 ### Collaborative governance on the same substrate
 
 Beyond evaluation, a room runs **group governance** as the *same* ZFA operation — dyncap-signed envelopes plus a deterministic, joiner-local tally (no central counter):
