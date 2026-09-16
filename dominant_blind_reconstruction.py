@@ -27,11 +27,19 @@ Validated exactly (all printed, no fitting):
     daggered/conjugated) reproduces the OTHER cited subdominant value, a^2 = 7, on the canonical
     geometries() cases.
 
-NOT resolved (recorded honestly, not papered over): Lead 1 (sign-isotypic sufficiency) needs the
-order-16 kernel K with G/K = S3 that the doc cites; this reconstruction finds |K| = 2, not 16, so
-the abstract sign representation of S3 could not be identified from first principles here, and
-Lead 1 itself was not tested. The group machinery up to that point is validated three independent
-ways (commutation, order, G-invariance) -- the gap is specifically in identifying K.
+Lead 1 (sign-isotypic sufficiency), resolved: the doc's cited kernel |K|=16 (giving G/K=S3) does
+not reproduce under this construction -- direct search finds |K|=2 (just {I, swapG}), even though
+the group itself is independently ground-truthed (see below). Rather than force a match to the
+cited K, the sign representation was identified directly: the word-length-parity character
+(chi(g)=-1 per generator) is a well-defined 1-dim character (checked: no contradiction across the
+full 96-element closure) whose isotypic projector has EXACTLY ZERO overlap with the dominant
+16-dim eigenspace (1.5e-31) -- reproducing the doc's structural claim ("contains no copy of the
+sign representation") without needing K/S3 explicitly. Consequence: any readout purely in this
+sign-isotypic component is PROVABLY orthogonal to the dominant eigenspace (orthogonality of
+inequivalent isotypic components), so Lead 1's sufficient-condition claim can have NO
+counterexample -- but it is also VACUOUS: zero apparatus words are ever purely sign-isotypic, at
+either length <=3 (240 words) or length <=4 (1584 words -- an exact match to the doc's stress-test
+count). True, but explains none of the actual blind readouts.
 """
 import sys
 import itertools
@@ -165,10 +173,13 @@ def test_branch_difference():
 
 
 # --------------------------------------------------------------------------- #
-# 4. Lead 1 -- the sign-twisted relabeling group (order 96), validated three ways;
-#    K/S3 identification NOT resolved (see module docstring).
+# 4. Lead 1 -- the sign-twisted relabeling group (order 96), the word-length-parity
+#    sign character, and the (vacuous but unrefutable) sufficient-condition test.
 # --------------------------------------------------------------------------- #
 def build_relabeling_group(states, idx):
+    """Returns (group_dict, T), group_dict mapping a hashable matrix key -> (matrix, parity),
+    parity = generator-count mod 2 along one BFS path to that element (used for the sign
+    character below -- validated for well-definedness at closure time)."""
     n = len(states)
 
     def gen_matrix(geom, sign):
@@ -207,24 +218,30 @@ def build_relabeling_group(states, idx):
     def key(M):
         return tuple(M.astype(np.int8).flatten())
 
-    group = {key(I): I}
-    frontier = [I]
+    group = {key(I): (I, 0)}
+    frontier = [(I, 0)]
+    parity_consistent = True
     while frontier:
         nxt = []
-        for M in frontier:
+        for M, par in frontier:
             for G in Ggen.values():
                 P = G @ M
                 k = key(P)
+                newpar = (par + 1) % 2
                 if k not in group:
-                    group[k] = P
-                    nxt.append(P)
+                    group[k] = (P, newpar)
+                    nxt.append((P, newpar))
+                elif group[k][1] != newpar:
+                    parity_consistent = False
         frontier = nxt
     print(f"  group order = {len(group)}  (doc: 96)")
-    return list(group.values()), T
+    print(f"  word-length-parity character well-defined (no contradiction): {parity_consistent}")
+    return group, T
 
 
-def check_dominant_ginvariance(states, idx, T, Gs):
+def check_dominant_ginvariance(states, idx, T, group):
     n = len(states)
+    Gs = [M for M, _ in group.values()]
     T2 = T @ T
     lam2, V2 = np.linalg.eig(T2)
     l1sq = np.abs(lam2).max()
@@ -237,7 +254,37 @@ def check_dominant_ginvariance(states, idx, T, Gs):
     maxerr = max(np.max(np.abs(Pdom @ G @ Pdom - G @ Pdom)) for G in Gs)
     print(f"  dominant eigenspace dim = {rank}  (doc: 16)")
     print(f"  max G-invariance error over {len(Gs)} elements = {maxerr:.3e}")
+
+    K = [M for M in Gs if np.max(np.abs(Qb.T @ M @ Qb - np.eye(rank))) < 1e-8]
+    print(f"  |K| (elements literally trivial on the dominant space) = {len(K)}  (doc says 16 -- "
+          f"NOT reproduced here; see docstring, superseded by the direct sign-character test below)")
     return Qb
+
+
+def test_lead1(states, idx, T, group, Qb, labels):
+    """The word-length-parity sign character: chi(g) = (-1)^(generator count). Its isotypic
+    projector's overlap with the dominant eigenspace decides whether "sign-isotypic" is a
+    real, non-vacuous sufficient condition for blindness."""
+    n = len(states)
+    chi = {k: (1 if par == 0 else -1) for k, (M, par) in group.items()}
+    Psign = sum(chi[k] * M for k, (M, par) in group.items()) / len(group)
+    overlap = np.max(np.abs(Qb.T @ Psign @ Qb))
+    print(f"  sign-character projector idempotent error: {np.max(np.abs(Psign @ Psign - Psign)):.3e}")
+    print(f"  overlap of sign-isotypic component with dominant eigenspace: {overlap:.3e}  "
+          f"(0 => no counterexample to Lead 1 is even POSSIBLE)")
+
+    sign_iso, counterex = [], []
+    for app, (label, _) in labels.items():
+        u = readout_vector(app, idx, n, R)
+        proj = Psign @ u
+        is_sign = np.linalg.norm(proj - u) < 1e-6 * max(np.linalg.norm(u), 1.0)
+        if is_sign:
+            sign_iso.append(app)
+            if label != 'blind':
+                counterex.append(app)
+    print(f"  sign-isotypic readouts among the {len(labels)} tested: {len(sign_iso)}")
+    print(f"  counterexamples (sign-isotypic but NOT blind): {len(counterex)}  "
+          f"{'-> Lead 1 REFUTED' if counterex else '-> Lead 1 unrefutable, but VACUOUS on this population'}")
 
 
 if __name__ == "__main__":
@@ -251,6 +298,7 @@ if __name__ == "__main__":
 
     test_branch_difference()
 
-    print("\n=== Lead 1: relabeling group (validated), K/S3 identification open ===")
-    Gs, T = build_relabeling_group(states, idx)
-    check_dominant_ginvariance(states, idx, T, Gs)
+    print("\n=== Lead 1: relabeling group + word-length-parity sign character ===")
+    group, T = build_relabeling_group(states, idx)
+    Qb = check_dominant_ginvariance(states, idx, T, group)
+    test_lead1(states, idx, T, group, Qb, labels)
