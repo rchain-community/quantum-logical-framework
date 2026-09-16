@@ -224,12 +224,20 @@ The whole ladder is a single loop, both directions:
 - the temperature → stable-rung correspondence, demonstrated in the constructor but not analytically derived.
 
 **🔵 Open (real research, not doc-work — do not fake):**
-- **The priority gap — the ladder mass map `(R, axis) ↦ observed mass ratio`.** QLF fixes the *count*
-  (3 generations), *one* relation (Koide `Q=2/3`), and the *exponential structure* (`spectrum_one_scale`,
-  `log_transmuted_hierarchy`), but **not** the full ratio ladder `m_e:m_μ:m_τ:m_p` as an explicit
-  function of fold depth and axis (`mass_spectrum_in_progress`). *Suggested Lean target:* a `depth`/`axis`
-  → mass-ratio function reproducing the Koide relation as a special case and the measured `m_μ/m_e`,
-  `m_τ/m_μ` to stated precision — the honest next module for this ladder.
+- **The priority gap — narrowed from a mass map to one phase.** A direct `(R, axis) ↦ observed mass
+  ratio` census map is a **proven negative**: every census integer at the lepton rungs is 5-smooth, the
+  measured mass ratios are not, off by `0.14–0.61%` — orders of magnitude outside where the model
+  otherwise holds ([`Weak_Force.md` §5c‴](Weak_Force.md#5c-the-r-axis--mass-ratio-map-a-shape-theorem)).
+  The map instead factors `census → Δ → masses`: three phases `1+√2·cos(Δ/3+2πk/3)` at a single rational
+  `Δ = 2/3` (`m_μ/m_e = 206.77`) reproduce the Koide relation and `m_τ/m_e` to `0.01%`, and the `~3500×`
+  hierarchy is now understood structurally — proximity to a derived "massless wall" `1+√2 cos θ=0`
+  (`A²=2` from the two transverse axes), quadratically amplified, not a hierarchy of scales
+  ([`Weak_Force.md` §5c⁗](Weak_Force.md#5c-deriving--23--what-stands-what-is-closed-and-the-one-live-candidate)).
+  **What's still open:** deriving `Δ = 2/3` itself as a *forced*, not selected, `O(1)` rational — eleven
+  routes tried and closed (census count-ratio, circle division, all three curvature notions, symmetric
+  spectral functionals, absolute-mass arguments, …), one live unclosed candidate (`Δ` as a mode-locked
+  circle-map rotation number — plausible but QLF has no substrate circle map written down yet), full
+  history in [#140](https://github.com/jimscarver/quantum-logical-framework/issues/140).
 - **The pair-production rate** — the *mechanism* is modeled (deterministic census creation + thermal
   freeze-out, [`pair_production_demo.py`](pair_production_demo.py)), and the **onsets are now calibrated**
   ([`pair_freezeout_calibration.py`](pair_freezeout_calibration.py), #141): each species turns on at
