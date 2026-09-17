@@ -38,28 +38,28 @@ open Function
 variable {ι : Type*} {S : ι → Type*} [DecidableEq ι]
 
 /-- **A free-action functional** for `n` players. -/
-def HasFreeAction (u : ∀ i, ((j : ι) → S j) → ℝ) : Prop :=
+def HasFreeAction (u : ι → ((j : ι) → S j) → ℝ) : Prop :=
   ∃ F : ((j : ι) → S j) → ℝ,
     ∀ (i : ι) (s : (j : ι) → S j) (x : S i), u i (update s i x) - u i s = F s - F (update s i x)
 
 /-- **An exact potential** for `n` players. -/
-def IsPotential (u : ∀ i, ((j : ι) → S j) → ℝ) (P : ((j : ι) → S j) → ℝ) : Prop :=
+def IsPotential (u : ι → ((j : ι) → S j) → ℝ) (P : ((j : ι) → S j) → ℝ) : Prop :=
   ∀ (i : ι) (s : (j : ι) → S j) (x : S i), u i (update s i x) - u i s = P (update s i x) - P s
 
 /-- A potential for the players in `T` only — the induction invariant. -/
-def IsPotentialOn (u : ∀ i, ((j : ι) → S j) → ℝ) (T : Finset ι)
+def IsPotentialOn (u : ι → ((j : ι) → S j) → ℝ) (T : Finset ι)
     (P : ((j : ι) → S j) → ℝ) : Prop :=
   ∀ i ∈ T, ∀ (s : (j : ι) → S j) (x : S i), u i (update s i x) - u i s = P (update s i x) - P s
 
 /-- **The square condition** for every pair of distinct players. -/
-def FourCycle (u : ∀ i, ((j : ι) → S j) → ℝ) : Prop :=
+def FourCycle (u : ι → ((j : ι) → S j) → ℝ) : Prop :=
   ∀ (i j : ι), i ≠ j → ∀ (s : (j : ι) → S j) (x : S i) (y : S j),
     (u i (update s i x) - u i s)
     + (u j (update (update s i x) j y) - u j (update s i x))
     + (u i (update s j y) - u i (update (update s i x) j y))
     + (u j s - u j (update s j y)) = 0
 
-theorem hasFreeAction_iff_exists_potential {u : ∀ i, ((j : ι) → S j) → ℝ} :
+theorem hasFreeAction_iff_exists_potential {u : ι → ((j : ι) → S j) → ℝ} :
     HasFreeAction u ↔ ∃ P, IsPotential u P := by
   constructor
   · rintro ⟨F, hF⟩
@@ -81,7 +81,7 @@ theorem hasFreeAction_iff_exists_potential {u : ∀ i, ((j : ι) → S j) → �
 theorem update_update_self_of_ne {i j : ι} (hij : i ≠ j) (s : (k : ι) → S k) (x : S i) (y : S j) :
     update (update (update s i x) j y) i (s i) = update s j y := by
   rw [update_comm hij, update_idem]
-  have hne : update s j y i = s i := by simp [hij, hij.symm]
+  have hne : update s j y i = s i := by simp [hij]
   conv_lhs => rw [← hne]
   exact update_eq_self i (update s j y)
 
@@ -90,7 +90,7 @@ theorem update_update_same_self (s : (k : ι) → S k) (j : ι) (y : S j) :
   rw [update_idem]
   exact update_eq_self j s
 
-theorem potential_fourCycle {u : ∀ i, ((j : ι) → S j) → ℝ} {P : ((j : ι) → S j) → ℝ}
+theorem potential_fourCycle {u : ι → ((j : ι) → S j) → ℝ} {P : ((j : ι) → S j) → ℝ}
     (hP : IsPotential u P) : FourCycle u := by
   intro i j hij s x y
   have t1 := hP i s x
@@ -108,7 +108,7 @@ theorem potential_fourCycle {u : ∀ i, ((j : ι) → S j) → ℝ} {P : ((j : �
 /-- Given a potential for the players in `T` and a base profile `b`, extend it to `insert j T`:
     reset `j` to `b j`, add `j`'s own payoff difference, and commute `j`'s move past each earlier
     player's with one square. -/
-theorem fourCycle_potential_on (u : ∀ i, ((j : ι) → S j) → ℝ) (b : (j : ι) → S j)
+theorem fourCycle_potential_on (u : ι → ((j : ι) → S j) → ℝ) (b : (j : ι) → S j)
     (h : FourCycle u) (T : Finset ι) : ∃ P, IsPotentialOn u T P := by
   classical
   refine Finset.induction_on T ?_ ?_
@@ -139,7 +139,7 @@ theorem fourCycle_potential_on (u : ∀ i, ((j : ι) → S j) → ℝ) (b : (j :
 /-- **A game admits a free-action functional iff its payoff changes are path-independent around
     every square** — for any number of players. -/
 theorem free_action_iff_four_cycle [Fintype ι] [∀ i, Nonempty (S i)]
-    {u : ∀ i, ((j : ι) → S j) → ℝ} : HasFreeAction u ↔ FourCycle u := by
+    {u : ι → ((j : ι) → S j) → ℝ} : HasFreeAction u ↔ FourCycle u := by
   constructor
   · intro hF
     obtain ⟨P, hP⟩ := hasFreeAction_iff_exists_potential.mp hF
@@ -154,7 +154,7 @@ theorem free_action_iff_four_cycle [Fintype ι] [∀ i, Nonempty (S i)]
 -- ==========================================
 
 /-- A Nash equilibrium: no player gains by a unilateral move. -/
-def IsNash (u : ∀ i, ((j : ι) → S j) → ℝ) (s : (j : ι) → S j) : Prop :=
+def IsNash (u : ι → ((j : ι) → S j) → ℝ) (s : (j : ι) → S j) : Prop :=
   ∀ (i : ι) (x : S i), u i (update s i x) ≤ u i s
 
 /-- A ZFA closure of a free-action functional: no unilateral move lowers it. -/
@@ -162,7 +162,7 @@ def IsClosure (F : ((j : ι) → S j) → ℝ) (s : (j : ι) → S j) : Prop :=
   ∀ (i : ι) (x : S i), F s ≤ F (update s i x)
 
 /-- **Nash equilibrium = ZFA closure**, `n` players. -/
-theorem nash_iff_closure {u : ∀ i, ((j : ι) → S j) → ℝ} {F : ((j : ι) → S j) → ℝ}
+theorem nash_iff_closure {u : ι → ((j : ι) → S j) → ℝ} {F : ((j : ι) → S j) → ℝ}
     (hF : ∀ (i : ι) (s : (j : ι) → S j) (x : S i),
       u i (update s i x) - u i s = F s - F (update s i x))
     (s : (j : ι) → S j) : IsNash u s ↔ IsClosure F s := by
@@ -178,7 +178,7 @@ theorem nash_iff_closure {u : ∀ i, ((j : ι) → S j) → ℝ} {F : ((j : ι) 
 
 /-- **Every finite `n`-player potential game has a pure Nash equilibrium.** -/
 theorem exists_nash_of_potential [Fintype ι] [∀ i, Fintype (S i)] [∀ i, Nonempty (S i)]
-    {u : ∀ i, ((j : ι) → S j) → ℝ} {P : ((j : ι) → S j) → ℝ} (hP : IsPotential u P) :
+    {u : ι → ((j : ι) → S j) → ℝ} {P : ((j : ι) → S j) → ℝ} (hP : IsPotential u P) :
     ∃ s, IsNash u s := by
   classical
   obtain ⟨s, -, hmax⟩ :=
@@ -195,7 +195,7 @@ theorem common_interest_potential (W : ((j : ι) → S j) → ℝ) : IsPotential
 /-- **Make the closure joint, at `n`:** paying every player the total welfare `Σ j, u j` is a
     common-interest game, hence a potential game whose potential is welfare — least free action is
     welfare maximisation. -/
-theorem welfare_game_potential [Fintype ι] (u : ∀ i, ((j : ι) → S j) → ℝ) :
+theorem welfare_game_potential [Fintype ι] (u : ι → ((j : ι) → S j) → ℝ) :
     IsPotential (fun _ s => ∑ j, u j s) (fun s => ∑ j, u j s) :=
   common_interest_potential _
 
