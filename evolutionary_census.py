@@ -170,7 +170,17 @@ basin), not the temperature.
 
     python3 evolutionary_census.py --race        # the emergent first-closure race + replicator
     python3 evolutionary_census.py --race --deep # same with all 24 L1<=2 strands as players
+WELFARE (`--optimize --welfare`): make the closure joint — pay every player the total
+W(s,t) = u(s,t) + u(t,s).  That is a common-interest game, hence a potential game with potential W
+(QLF_PotentialGames.welfare_game_potential), so least free action IS welfare maximisation.
+Pre-registered: the Stag Hunts relaxation lost under private payoffs are won once re-scored;
+kill: annealing still lands on Hare.  RESULT: 100 % Stag on all three (vs 0 % private), and the
+Prisoner's Dilemma becomes 100 % cooperation (under welfare, C is dominant).  For the room: score
+candidates by the shared objective, not by private gain — the conservative-convention problem
+disappears by theorem, not by tuning.
+
     python3 evolutionary_census.py --optimize    # given games, regret = free action, annealing
+    python3 evolutionary_census.py --optimize --welfare   # the same games re-scored by welfare
 """
 import argparse
 import itertools
@@ -491,7 +501,7 @@ def race_game(D: int = 14, deep: bool = False):
     print(f"uniform state: every strand earns {f[0]:.4f} (an equilibrium) -- unstable above")
 
 
-def optimize_games(N: int = 50, steps: int = 6000, runs: int = 200):
+def optimize_games(N: int = 50, steps: int = 6000, runs: int = 200, welfare: bool = False):
     import math
     import random
     random.seed(7)
@@ -533,6 +543,10 @@ def optimize_games(N: int = 50, steps: int = 6000, runs: int = 200):
         'SH4 a=3 b=1 c=2 d=2': [[3, 1], [2, 2]],
         'PD  T=5 R=3 P=1 S=0': [[3, 0], [5, 1]],
     }
+    if welfare:
+        # make the closure joint: every player is paid the total welfare W(s,t) = u(s,t) + u(t,s)
+        games = {k + ' [welfare]': [[2 * u[0][0], u[0][1] + u[1][0]], [u[0][1] + u[1][0], 2 * u[1][1]]]
+                 for k, u in games.items()}
     print(f"=== given games as input, regret = free action, logit revision; N={N}, {steps} revisions, "
           f"{runs} runs ===")
     print("outcome = share of runs ending with a Stag (cooperate) majority")
@@ -563,6 +577,7 @@ def main():
     ap.add_argument('--race', action='store_true', help='the emergent first-closure race + replicator dynamics')
     ap.add_argument('--deep', action='store_true', help='with --race: admit all L1<=2 imbalance vectors (24 players)')
     ap.add_argument('--optimize', action='store_true', help='given games as input; regret = free action; annealing')
+    ap.add_argument('--welfare', action='store_true', help='with --optimize: pay every player the total welfare (the joint closure)')
     args = ap.parse_args()
     if args.alphabets:
         alphabet_scan()
@@ -571,7 +586,7 @@ def main():
         race_game(deep=args.deep)
         return
     if args.optimize:
-        optimize_games()
+        optimize_games(welfare=args.welfare)
         return
 
     seeds = [''.join(p) for L in range(1, args.maxseed + 1)

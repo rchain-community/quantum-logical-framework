@@ -40,6 +40,12 @@ For a two-player game `u₁ u₂ : S₁ → S₂ → ℝ`:
   selects the risk-dominant convention — Kandori–Mailath–Rob / Young's stochastic stability, read
   as "the closure with the most ways to arrive" — and not the welfare-optimal one. Measured:
   0 % payoff-dominant under annealing across three Stag Hunts.
+* **`welfare_game_potential` / `welfare_nash_iff_local_optimum`** — *what if we want welfare?*
+  Make the closure joint: pay every player the total `W = u₁ + u₂`. That is a common-interest
+  game, so a potential game with potential `W`, and its closures are the local welfare optima —
+  least free action becomes welfare maximisation (Groves/VCG alignment, read as "score by the
+  shared objective"). Measured: the Stag Hunts relaxation lost under private payoffs (0 %) are won
+  100 % once re-scored by welfare; the Prisoner's Dilemma becomes 100 % cooperation.
 * **`matching_pennies_no_free_action`** — the boundary: a pure-conflict game violates the square
   condition, so it has **no** free-action functional. The substrate can *solve* it (regret is still
   defined; the dynamics cycle, reporting that there is no potential to descend) but cannot
@@ -217,6 +223,30 @@ theorem risk_dominance_is_potential_order (u : Bool → Bool → ℝ) (P : Bool 
   have e2 := h2 false false true     -- P H S − P H H = swap u H S − swap u H H
   simp only [swap] at e2
   linarith
+
+/-- **Welfare maximisation: make the closure joint.** Replace every player's payoff by the
+    total welfare `W a b = u₁ a b + u₂ a b` (the team game — Groves/VCG alignment). This is a
+    common-interest game, hence a potential game with potential `W` itself, so its ZFA closures
+    are exactly the profiles no unilateral move can improve *in welfare*, and least free action
+    (`F = −W`) is welfare maximisation. Measured: the three Stag Hunts that relaxation lost under
+    private payoffs (0 % payoff-dominant) are won 100 % once re-scored by welfare. -/
+theorem welfare_game_potential (u₁ u₂ : S₁ → S₂ → ℝ) :
+    IsPotential (fun a b => u₁ a b + u₂ a b) (fun a b => u₁ a b + u₂ a b)
+      (fun a b => u₁ a b + u₂ a b) :=
+  common_interest_potential _
+
+/-- In the welfare game, a Nash equilibrium is a profile no unilateral move can improve in total
+    welfare — a local welfare optimum. -/
+theorem welfare_nash_iff_local_optimum (u₁ u₂ : S₁ → S₂ → ℝ) (a : S₁) (b : S₂) :
+    IsNash (fun a b => u₁ a b + u₂ a b) (fun a b => u₁ a b + u₂ a b) a b ↔
+      IsClosure (fun a b => -(u₁ a b + u₂ a b)) a b := by
+  apply nash_iff_closure
+  · intro a a' b
+    show (u₁ a' b + u₂ a' b) - (u₁ a b + u₂ a b) = -(u₁ a b + u₂ a b) - -(u₁ a' b + u₂ a' b)
+    ring
+  · intro a b b'
+    show (u₁ a b' + u₂ a b') - (u₁ a b + u₂ a b) = -(u₁ a b + u₂ a b) - -(u₁ a b' + u₂ a b')
+    ring
 
 /-- Matching pennies: the row player wants to match, the column player to mismatch. -/
 noncomputable def mp₁ : Bool → Bool → ℝ := fun a b => if a = b then 1 else -1
