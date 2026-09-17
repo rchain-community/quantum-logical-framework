@@ -137,8 +137,40 @@ RESULT (depth ≤ 14, exact rationals; ordering stable from depth 8 to 20):
     python3 evolutionary_census.py --t 3         # horizon 3 (slower)
     python3 evolutionary_census.py --alphabets   # strategies as move sets, horizons 2 and 3
     python3 evolutionary_census.py --cost        # the free-action-cost game + exact Moran verdict
+THE CORRECTION (`--optimize`): the game is INPUT, the substrate is the SOLVER.  Everything above
+derived the payoffs from closure counts, and any payoff that is the multiplicity of a shared event
+is a potential game by construction — so no Stag Hunt or Prisoner's Dilemma could ever appear.
+That applied the no-fitting rule to the wrong object: in an optimization problem the objective is
+given, and what must be parameter-free is the solver (Collective_Optimization.md: the room
+"relaxes toward a low-energy consensus" for a stated objective).  Canonical encoding, no constant:
+
+  * a symmetric 2×2 game's payoffs (a, b, c, d) are data, like a QUBO;
+  * the free action of a population state x = #S is its total REGRET (the gain agents could take
+    by switching unilaterally) — a Nash equilibrium is a ZFA closure, zero regret = zero free action
+    (the mixed equilibrium shows up as an unstable interior closure, e.g. x = 34 of 50);
+  * "the ways to arrive" at a closure are its basin under the revision dynamics (one agent revises
+    per step, logit/Boltzmann choice at inverse temperature β); annealing = β rising over the run.
+
+Pre-registered: (i) cold dynamics from random starts land by basin — the Stag share equals 1 − p*
+(Young 1993, p* = (d−b)/((a−c)+(d−b))); (ii) a slow anneal (hot → cold) reaches the
+payoff-dominant equilibrium MORE often than a cold start (the optimization claim); kill for (ii):
+no improvement over cold.
+
+RESULT (N = 50, 6000 revisions, 200 runs): (i) confirmed to two decimals — Stag share 0.32 / 0.24 /
+0.13 against 1 − p* = 0.33 / 0.25 / 0.12 for the three Stag Hunts: "most ways" IS the basin.
+(ii) KILLED, decisively — annealing reaches the payoff-dominant equilibrium in 0 % of runs, worse
+than cold: the hot phase equilibrates on the stochastically stable (risk-dominant) state and
+cooling locks it in, exactly Kandori–Mailath–Rob.  The Prisoner's Dilemma ends all-defect every
+run (its unique closure).  So the substrate is a reliable optimizer of STOCHASTIC POTENTIAL —
+the noise-robust equilibrium — and not of welfare, and no temperature schedule makes it one.
+For the room this is the falsifiable content: consensus-by-relaxation is conservative; in a
+coordination problem with a risk/payoff split it converges on the safe convention, and reaching
+the better one requires changing the game (commitments, trust-weighting that enlarges the Stag
+basin), not the temperature.
+
     python3 evolutionary_census.py --race        # the emergent first-closure race + replicator
     python3 evolutionary_census.py --race --deep # same with all 24 L1<=2 strands as players
+    python3 evolutionary_census.py --optimize    # given games, regret = free action, annealing
 """
 import argparse
 import itertools
@@ -459,6 +491,69 @@ def race_game(D: int = 14, deep: bool = False):
     print(f"uniform state: every strand earns {f[0]:.4f} (an equilibrium) -- unstable above")
 
 
+def optimize_games(N: int = 50, steps: int = 6000, runs: int = 200):
+    import math
+    import random
+    random.seed(7)
+
+    def analyze(u):
+        a, b, c, d = u[0][0], u[0][1], u[1][0], u[1][1]
+        coord = a > c and d > b
+        pd = 'S' if a > d else 'H'
+        rd = 'S' if (a - c) > (d - b) else 'H'
+        ps = (d - b) / ((a - c) + (d - b)) if (a - c) + (d - b) != 0 else float('nan')
+        return coord, pd, rd, ps
+
+    def regret(x, u):
+        a, b, c, d = u[0][0], u[0][1], u[1][0], u[1][1]
+        fS = ((x - 1) * a + (N - x) * b) / (N - 1) if x > 0 else 0
+        fH = (x * c + (N - x - 1) * d) / (N - 1) if x < N else 0
+        rS = max(0.0, fH - fS) if x > 0 else 0
+        rH = max(0.0, fS - fH) if x < N else 0
+        return x * rS + (N - x) * rH
+
+    def logit_run(u, beta_sched, x0, T):
+        x = x0
+        a, b, c, d = u[0][0], u[0][1], u[1][0], u[1][1]
+        for t in range(T):
+            beta = beta_sched(t, T)
+            i_isS = random.random() < x / N
+            oS = x - 1 if i_isS else x
+            fS = (oS * a + (N - 1 - oS) * b) / (N - 1)
+            fH = (oS * c + (N - 1 - oS) * d) / (N - 1)
+            z = beta * (fS - fH)
+            pS = 1 / (1 + math.exp(-z)) if z > -700 else 0.0
+            x += (1 if random.random() < pS else 0) - (1 if i_isS else 0)
+        return x
+
+    games = {
+        'SH1 a=4 b=0 c=3 d=2': [[4, 0], [3, 2]],
+        'SH2 a=5 b=0 c=4 d=3': [[5, 0], [4, 3]],
+        'SH3 a=9 b=0 c=8 d=7': [[9, 0], [8, 7]],
+        'SH4 a=3 b=1 c=2 d=2': [[3, 1], [2, 2]],
+        'PD  T=5 R=3 P=1 S=0': [[3, 0], [5, 1]],
+    }
+    print(f"=== given games as input, regret = free action, logit revision; N={N}, {steps} revisions, "
+          f"{runs} runs ===")
+    print("outcome = share of runs ending with a Stag (cooperate) majority")
+    print(f"{'game':22} {'type':6} {'pd':>3} {'rd':>3} {'1-p*':>5} | {'cold b=8':>8} {'hot b=.3':>8} "
+          f"{'anneal':>7} {'slow':>7}  closures (x=#S)")
+    for name, u in games.items():
+        coord, pd, rd, ps = analyze(u)
+        closures = [x for x in range(N + 1) if regret(x, u) == 0]
+
+        def frac(sched, T=steps):
+            return sum(logit_run(u, sched, random.randint(0, N), T) > N / 2 for _ in range(runs)) / runs
+        cold = frac(lambda t, T: 8.0)
+        hot = frac(lambda t, T: 0.3)
+        ann = frac(lambda t, T: 0.3 * (8.0 / 0.3) ** (t / T))
+        slow = frac(lambda t, T: 0.3 * (8.0 / 0.3) ** (t / T), T=4 * steps)
+        print(f"{name:22} {'coord' if coord else 'dom':6} {pd:>3} {rd:>3} {1 - ps:5.2f} | {cold:8.2f} "
+              f"{hot:8.2f} {ann:7.2f} {slow:7.2f}  {closures}")
+    print("(i) 'ways = basin': cold Stag share should equal 1 - p*.   (ii) annealing should beat cold "
+          "if relaxation optimised welfare -- it does not: it finds the risk-dominant state (KMR).")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--t', type=int, default=2, help='horizon: continuation length per side')
@@ -467,12 +562,16 @@ def main():
     ap.add_argument('--cost', action='store_true', help='the free-action-cost game + exact Moran verdict')
     ap.add_argument('--race', action='store_true', help='the emergent first-closure race + replicator dynamics')
     ap.add_argument('--deep', action='store_true', help='with --race: admit all L1<=2 imbalance vectors (24 players)')
+    ap.add_argument('--optimize', action='store_true', help='given games as input; regret = free action; annealing')
     args = ap.parse_args()
     if args.alphabets:
         alphabet_scan()
         return
     if args.race:
         race_game(deep=args.deep)
+        return
+    if args.optimize:
+        optimize_games()
         return
 
     seeds = [''.join(p) for L in range(1, args.maxseed + 1)
