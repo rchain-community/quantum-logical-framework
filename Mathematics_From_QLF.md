@@ -273,6 +273,41 @@ TL loop-count, the named-knot brackets, and the linking-number Reidemeister inva
 diagram's R2/R3 invariance and the continuum TQFT are the cited pieces. Knot theory is the rung where the
 "mathematics from QLF" thesis is not an origin *story* but a Lean *construction*.
 
+### Rung 10 — game theory: potential games generated, all games solved
+
+The second rung built bottom-up in Lean ([`Game_Theory_QLF.md`](Game_Theory_QLF.md);
+[`QLF_PotentialGames`](lean/QLF_PotentialGames.lean), [`QLF_EvolutionaryGames`](lean/QLF_EvolutionaryGames.lean),
+no axioms), and the first where the substrate's selection principle reproduces a named result *outside
+physics*. Read a two-player game through the ledger — profiles are histories, a profile's **free
+action** is its total regret — and three things are theorems:
+
+- **The class the substrate can carry.** A game has a free-action functional **iff** it is a *potential
+  game* (Monderer–Shapley's square condition: payoff changes path-independent, `free_action_iff_four_cycle`,
+  both directions). Under that functional a **Nash equilibrium is a ZFA closure** (`nash_iff_closure`), every
+  finite potential game has one (`exists_nash_of_potential`, the potential's maximiser), and free-action
+  descent cannot cycle (`Descent.eventually_fixed`) — the `QLF_PvsNP` framing made game-theoretic: an
+  equilibrium is `O(n)` to verify and reached by descent exactly when a potential exists.
+- **What the substrate generates.** A payoff that is the multiplicity of a *shared* closure is a potential
+  game (`common_interest_potential`) — which is why five pre-registered attempts to grow a Stag Hunt or a
+  Prisoner's Dilemma out of closure counting all failed: a closure is a shared event, there is no private
+  payoff in it. What the census's own first-closure dynamic *does* generate is complementarity (best reply
+  = the conjugate, `u = 1`), Fisher's `1 : 1` as an ESS (`fisher_half_ess`), and a collective **basis
+  choice** with an exact threshold (`pair_uninvadable_iff`: the population must pick an axis iff
+  `1 + a > 2b`) — the `SEX.md` pairing and the `QLF_BasisIndependence` slogan, from the census alone.
+- **What "most ways happens first" selects.** The ways to a closure are its basin
+  (`basins_partition`, `sum_frequency`: closure frequency is multiplicity — the finite form of
+  Kandori–Mailath–Rob / Young's stochastic stability, measured to two decimals), and every potential of a
+  symmetric 2×2 game orders its equilibria by **risk dominance** (`risk_dominance_is_potential_order`).
+  So least free action finds the noise-robust convention, never the welfare-optimal one; to maximise
+  welfare you **make the closure joint** — pay every player the total, a potential game with potential `W`
+  (`welfare_game_potential`; measured `0 % → 100 %`).
+
+The boundary is sharp: matching pennies has no free-action functional (`matching_pennies_no_free_action`).
+**The substrate generates potential games and solves all games**, and the line between them is where a
+question's conflict content lives. The operational consequence for the QuantumOS room — consensus by
+relaxation is conservative; the remedy is the objective, not the temperature — is drawn in quantum-os's
+[`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md).
+
 ---
 
 ## 2. The bootstrapping resolution — is using rings to prove QLF circular?
@@ -349,4 +384,5 @@ So QLF does not merely say "mathematics is effective because reality is mathemat
 - [`BraKetRhoQuCalc.md`](BraKetRhoQuCalc.md) — `+` = parallel, `×` = sequence; the bra-ket ↔ ρ-calculus correspondence.
 - [`Physical_Pi.md`](Physical_Pi.md) — `π` from the closure census, the exemplar of a continuum constant recovered finitely.
 - [`Related_Frameworks.md`](Related_Frameworks.md) Part II — the mathematics of information as a *measure stack over an unspecified ontology* (Shannon counts, AIT prices, Fisher measures); ZFA supplies the missing bottom layer (information = realized distinction = closure receipt), the same "realizable math = the substrate" move as §4 here (Wigner dissolved).
+- [`Game_Theory_QLF.md`](Game_Theory_QLF.md) — Rung 10 worked out: potential games generated, all games solved; Nash = ZFA closure; risk dominance is the free-action order; welfare by making the closure joint.
 - [`Fredkin_QLF.md`](Fredkin_QLF.md) — Rung 5b worked out: Fredkin & Toffoli's conservative logic on the substrate, where the gate is an **automorphism of the admissible closure space** ([`lean/QLF_Fredkin.lean`](lean/QLF_Fredkin.lean), no axioms). Watch it: [`fredkin_machine.html`](fredkin_machine.html).
