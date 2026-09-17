@@ -159,6 +159,14 @@ The falsifiable, theorem-backed content for
   quantum-os #137): does the room converge on the safe convention as the model says (it does in
   Van Huyck–Battalio–Beil 1990), and does a commitment round flip it only when it crosses the
   threshold?
+* **The instrument exists.** quantum-os's `observer` agent (`node agent.mjs --role observer`) is a
+  peer with no potency that records a live game — `/observer start <label> payoffs a,b,c,d
+  stag=… hare=… predict: …` … `/observer stop` — every poll with every ballot (raw *and*
+  trust-weighted tally), estimate round, `/lemma` commitment and message, timestamped and signed,
+  with the pre-registration as the record's first event; `/observer summarize` adds the AI reading.
+  [`game_log_analysis.py`](game_log_analysis.py) reads the record and scores it against the three
+  #137 predictions — held / killed / not testable — with the Stag share per round, before and after
+  the first commitment, raw and weighted.
 
 ## Honest scope
 
