@@ -8,9 +8,11 @@
 > what is **structural** (prose/numeric), and what is **open**.
 
 **Honest framing up front.** QLF already has the *primitives* and most *rungs* of this ladder as
-verified or structural results. What is **not** yet done is (a) an explicit map from topological
-depth/axis to the observed mass ratios along the *whole* chain, and (b) a temperature-dependent
-pair-production *rate* derived from the census. Those are named open, not glossed. So this is a
+verified or structural results. What is **not** yet done is an explicit map from topological
+depth/axis to the observed mass ratios along the *whole* chain (now narrowed to one phase, `Δ = 2/3`,
+§5). The temperature-dependent pair-production *rate* has since been reduced: its onset law and shape
+are derived from the finite-capacity prune, and what remains is a measurement, not a derivation (§5).
+The open piece is named, not glossed. So this is a
 **synthesis + honest ledger**, in the style of [`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md)
 and [`Information_Physics.md`](Information_Physics.md) — not a claim that the full ladder is proven.
 
@@ -27,7 +29,7 @@ and [`Information_Physics.md`](Information_Physics.md) — not a claim that the 
 | bound-state atoms · fusion channel opening · temperature → stable rung | ◻ structural / modeled |
 | pair-production mechanism (deterministic census + thermal freeze-out) | ◻ modeled — constructor + [`pair_production_demo.py`](pair_production_demo.py) |
 | **`(R, axis) → observed mass ratios`** along the full chain | 🔵 **open — the priority gap** |
-| **analytic pair-production rate calibrated to measured onsets** | 🔵 open |
+| analytic pair-production rate: onset law + shape derived from `boundedPrune`, residual is a measurement (#141) | ◻ reduced — [`census_congestion_freezeout.py`](census_congestion_freezeout.py) |
 
 <p align="center"><a href="#rung-links"><img src="diagrams/particle_ladder.svg" alt="Bidirectional ladder: up the left (vacuum pair → lepton → generations e/μ/τ → hadron → atom → collective), down the right (black hole → Hawking unwind releasing log 2 → cascade → vacuum), hinged by particle = quantum black hole (Compton = Schwarzschild); creation is a deterministic census, temperature sets the freeze-out fraction" width="760"></a></p>
 
@@ -75,7 +77,7 @@ from particles to black holes and back.
 
 | Stage | Object | Structure / depth | QLF status |
 |---|---|---|---|
-| **0. Vacuum fluctuation** | transient pair (e.g. `e⁺e⁻`), a horizon-open/unbalanced closure | `R ≈ 1`, short-lived | ✅ conjugate-pair closure (`ER_EPR_QLF`, `conjugate_pair_closes`); **promotion rate open** |
+| **0. Vacuum fluctuation** | transient pair (e.g. `e⁺e⁻`), a horizon-open/unbalanced closure | `R ≈ 1`, short-lived | ✅ conjugate-pair closure (`ER_EPR_QLF`, `conjugate_pair_closes`); promotion *onset law* derived from the finite-capacity prune, normalisation `K_e` an input (#141, §5) |
 | **1. Stable lepton** | one ½-spin (+ optional gauge fold) | `R` small | ✅ spin = twists (`QLF_Spin`); ν is Majorana (`neutrino_majorana`), e is Dirac |
 | **2. Heavier generations** | same topology, deeper fold / higher-frequency axis | axis 2, 3 | ✅ **3 generations = 3 axes** (`num_generations_eq_three`); Koide `Q=2/3 ⟹ m_τ` (`three_generations_satisfy_koide`); free-lepton mass *ratios* not the observable (bound systems are) |
 | **3. Hadron / proton** | three-axis colour-locked closure + gauge (Borromean) | `R` larger | ✅ **needs all three colours** (`baryon_needs_all_three_axes`, `single_colour_not_baryon`); confinement = a topological necessity; hadron = quantum BH (`compton_eq_schwarzschild_iff`) |
@@ -238,13 +240,16 @@ The whole ladder is a single loop, both directions:
   spectral functionals, absolute-mass arguments, …), one live unclosed candidate (`Δ` as a mode-locked
   circle-map rotation number — plausible but QLF has no substrate circle map written down yet), full
   history in [#140](https://github.com/jimscarver/quantum-logical-framework/issues/140).
-- **The pair-production rate** — the *mechanism* is modeled (deterministic census creation + thermal
-  freeze-out, [`pair_production_demo.py`](pair_production_demo.py)), and the **onsets are now calibrated**
-  ([`pair_freezeout_calibration.py`](pair_freezeout_calibration.py), #141): each species turns on at
-  `T_onset = K_e·(m/m_e)`, so the census's frequency ordering (`m = ℏf/R`, lightest dominate) **is** the
-  observed e→μ→p onset sequence, at the textbook temperatures (~10¹⁰, 10¹², 10¹³ K). **Still open:**
-  deriving the freeze-out functional form + normalisation from the census itself (rather than gating the
-  onsets by the measured masses).
+- **The pair-production rate — reduced to one measurement (#141, closed).** The *mechanism* is modeled
+  (deterministic census creation + thermal freeze-out, [`pair_production_demo.py`](pair_production_demo.py)),
+  the **onsets are calibrated** ([`pair_freezeout_calibration.py`](pair_freezeout_calibration.py)) to the
+  textbook e→μ→p temperatures (~10¹⁰, 10¹², 10¹³ K), and the **functional form is now derived, not posited**:
+  running the actual `boundedPrune` against a thermal pruning budget `R ~ Poisson(λ(T))`, the linear onset
+  `T_onset ∝ d_s ∝ m` *emerges* from `λ(T)=T`, and the shape is a Poisson-tail freeze-out **sharper** than
+  the constructor's logistic — a distinct, testable prediction ([`census_congestion_freezeout.py`](census_congestion_freezeout.py)).
+  What remains is not a derivation gap but a **measurement**: under `λ(T) ∝ T^p` the onset scales as
+  `T_onset ∝ d^{1/p}`, so the onset-vs-mass log–log slope *is* the budget exponent (`slope 1 ⟺ λ ∝ T`).
+  Inputs kept honest: `K_e` (the absolute normalisation) and the linearity of `λ(T)`.
 - absolute mass scale (`v = R_stable`, frontier #1, [`Open_Problems.md`](Open_Problems.md)).
 
 **Deliberately *not* built:** a "unified Lean module" for the ladder. It would be reuse-only — re-exporting the theorems above with no new content — so it is not worth a module. The ladder's value is as this synthesis; each rung is already verified in its own module.
