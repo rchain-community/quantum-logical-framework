@@ -238,5 +238,6 @@ lean_lib QLF where
     `QLF_MultiObserver,
     `QLF_ClosureEquivalence,
     `QLF_ShannonFromCounts,
-    `QLF_PotentialGames
+    `QLF_PotentialGames,
+    `QLF_EvolutionaryGames
   ]
