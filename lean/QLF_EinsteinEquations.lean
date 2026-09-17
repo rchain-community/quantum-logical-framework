@@ -6,6 +6,8 @@ set_option linter.unusedVariables false
 /-!
 # QLF_EinsteinEquations — the Einstein equations as the substrate's equation of state (Jacobson)
 
+Write-up: [`Einstein_Equations.md`](../Einstein_Equations.md).
+
 QLF already had Newton's law, `G = L_P²c³/ℏ`, the Mercury perihelion, and the weak-field
 Schwarzschild metric — but the **full** field equations `G_μν = (8πG/c⁴) T_μν` were flagged open
 (only the `8π` factor + the weak-field limit). The honest route to the full equations is

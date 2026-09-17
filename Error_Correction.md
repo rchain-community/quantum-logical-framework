@@ -12,7 +12,7 @@ The QuCalc engine (via `qucalc_engine.py` and `MultiParticle.py`) corrects this 
 - **Gauge-buffered ZFA search** (long-term storage and resolution)  
 - **Clocked dual-phase evaluation** (fine-grained per-tick correction)
 
-Both emerge directly from the same ZFA + orthogonality rules that generate superposition, tunneling, and entanglement (see `Superposition.md`, `Tunneling.md`, and `QuCalc.md`). No extra code or postulates are required.
+Both emerge directly from the same ZFA + orthogonality rules that generate superposition, tunneling, and entanglement (see [`Superposition.md`](Superposition.md), [`Tunnelling.md`](Tunnelling.md), and [`QuCalc.md`](QuCalc.md)). No extra code or postulates are required.
 
 ---
 
@@ -113,7 +113,7 @@ Histories containing `+` or `-` (gauge) and/or non-zero out-of-phase ticks show 
 ## 6. Relation to Other QLF Phenomena
 
 - **Superposition.md** — supplies the redundant branches for both layers.  
-- **Tunneling.md** — identical gauge-synthesis step, applied to temporal phase. 
+- [**Tunnelling.md**](Tunnelling.md) — identical gauge-synthesis step, applied to temporal phase. 
 - **Zeno_Effect.md** — frequent clock ticks can freeze the buffer (enhanced suppression).  
 - **Frequency_Synchronization.md** — the broader phenomenon that these two mechanisms implement.  
 - **Primordial_Entanglement.md** — early shared histories reduce initial mismatch.

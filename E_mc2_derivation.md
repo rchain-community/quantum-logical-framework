@@ -231,7 +231,7 @@ This closes the QLF loop: every fundamental law is a constructive proof from the
 1. Add this file.
 2. Implement `derive_emc2.py` demo using `path_integral.py` counts.
 3. Cross-link from `Energy_Combinatorics.md`, `SpaceTime.md`, `Particles.md`, white paper, and `README.md`.
-4. Update `Predictions_and_Derivations.md` with this theorem.
+4. Update [`Experimental_Consistency.md`](Experimental_Consistency.md) with this theorem.
 
 **References** (all in repo):
 - `Energy_Combinatorics.md` (multiplicity \( N(R) \))

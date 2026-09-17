@@ -5,6 +5,8 @@ set_option linter.unusedVariables false
 /-!
 # QLF_LawOfExceptions — a system with more states always breaks a finite closure
 
+Write-up: [`Law_Of_Exceptions.md`](../Law_Of_Exceptions.md).
+
 > **Law of Exceptions.** There is an exception to every restrictive law except this law.
 
 The aphorism is old (the base form, *"there is an exception to every rule,"* is recorded in English

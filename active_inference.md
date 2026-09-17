@@ -6,7 +6,7 @@ This is why active inference — by actively creating new information through th
 
 ## What the Python Demo Demonstrates
 
-Our `active_inference_demo.py` shows a simple agent using Zero Free Action minimization to select among possible actions. The output demonstrates possibilistic agency: instead of following a fixed deterministic path, the agent evaluates possible futures and chooses the one that minimizes surprise.
+Our [`active_inference.py`](active_inference.py) shows a simple agent using Zero Free Action minimization to select among possible actions. The output demonstrates possibilistic agency: instead of following a fixed deterministic path, the agent evaluates possible futures and chooses the one that minimizes surprise.
 
 This mirrors how agency works in the larger framework — selecting among timeless logical possibilities rather than determining them. The deterministic motor runs *after* the selection is made.
 

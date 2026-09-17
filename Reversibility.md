@@ -315,7 +315,7 @@ conservation has mistaken the present-local balance of the closure for the whole
 | each closure synthesizes one bit `ΔF = −log 2` | `zfa_closure_minimizes_free_energy` (`QLF_FreeEnergy`) |
 | time is synthesized, `f = 1/t` | `ZFAEventDynamics` |
 | `H = H†` fixed points = the critical line | `spectral_hilbert_polya` (`QLF_Riemann`), `functional_equation_fixed_real` |
-| **capstone:** reverse is involutive **but** forward closure is many-to-one | `time_reverse_involutive_but_closure_degenerate` (`QLF_Reversibility`) |
+| **capstone:** reverse is involutive **but** forward closure is many-to-one | `time_reverse_involutive_but_closure_degenerate` ([`QLF_Reversibility`](lean/QLF_Reversibility.lean)) |
 | **conservative logic is ZFA**: a Fredkin gate acts by permutation, so it preserves closure | `encode_fredkin_perm`, `fredkin_preserves_zfa` (`QLF_Fredkin`) |
 | a reversible gate is a bijection — nothing merges, so nothing is receipted | `fredkin_involutive`, `fredkin_bijective` (`QLF_Fredkin`) |
 | an `n`-deep reversible circuit is still a bijection (free-side premise survives composition) | `fredkin_iterate_bijective` (`QLF_Fredkin`) |

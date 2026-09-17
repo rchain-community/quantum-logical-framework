@@ -1,5 +1,5 @@
 """
-Legacy-compatible QuCalc interface.
+Legacy-compatible QuCalc interface. Language reference: QuCalc.md.
 
 This file preserves the older top-level function names while delegating all
 actual logic to twist_core.py.  That removes the former drift between

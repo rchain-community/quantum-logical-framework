@@ -1,3 +1,4 @@
+"""Spacetime latency grid for the QuCalc engine. Write-up: SpaceTime.md."""
 import math
 
 

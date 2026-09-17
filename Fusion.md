@@ -13,6 +13,8 @@ The gauge-folding rule makes this precise: nuclei containing accessible `+`–`�
 
 Fusion is therefore an **active-inference event** at the nuclear scale: two hadronic history strings anticipate and resolve each other’s topological deficits, producing a more compact, stable ZFA attractor. All behavior is native to the QuCalc rewrite rules and requires no additional forces or fine-tuned potentials.
 
+**Lean anchor.** The first fusion step's keystone — that joining two Markov blankets needs distinguishability, so `p + p → ²H + e⁺ + ν_e` must be a fusion *and* a β⁺ decay — is machine-verified in [`lean/QLF_Fusion.lean`](lean/QLF_Fusion.lean) (`pp_join_requires_distinguishability`, packaging `diproton_pauli_blocked` and `deuteron_channel_closes`; see §4 below and [`lean/QLF_Nucleosynthesis.lean`](lean/QLF_Nucleosynthesis.lean)).
+
 ## 1. The Topological Picture of a Nucleus
 
 A nucleus is a composite Markov blanket formed by interlocking fractional open strings (quarks).  

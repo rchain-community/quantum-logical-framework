@@ -1,6 +1,7 @@
 """
 twist_core.py
 Core twist-action engine for the Quantum Logical Framework (QLF).
+Full reference: twist_core.md.
 
 Provides the canonical 8-twist algebra, signed action vector,
 Zero-Free-Action (ZFA) detection, Pauli-matrix folding, history

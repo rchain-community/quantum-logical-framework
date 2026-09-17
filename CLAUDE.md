@@ -257,7 +257,7 @@ theorem foo (p : RhoProcess) : achieves_ZFA (toTopoString p) :=
 5. Do NOT run `lake build` locally — see the note under **Project overview** (OOM / slow mount)
 
 ### md-only changes (`.md`, `.py`, `lakefile.lean` roots array, `README.md`)
-1. Edit, commit, push — **CI does not run and does not need to.**
+1. Edit, then run `python3 scripts/doc_network_check.py` — it fails on any orphaned root `.md` or dead relative link (6,800+ links, seconds) and warns on missing doc↔code back-links (#149). Commit, push — **CI does not run and does not need to.**
 2. Do NOT mention CI, check CI, or wait for CI after a docs-only commit.
 
 ### Axioms — the audit gates CI

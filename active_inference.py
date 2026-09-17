@@ -1,5 +1,5 @@
 """
-QLF ACTIVE INFERENCE DEMO
+QLF ACTIVE INFERENCE DEMO (write-up: active_inference.md)
 Extends blanket_kinematics.py to show possibilistic agency via ZFA minimization.
 """
 

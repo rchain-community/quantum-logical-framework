@@ -1,5 +1,6 @@
 -- QLF_Universality.lean
 -- Universality: QLF generates all terminating finitely-encoded logical computations
+-- Write-up: Universality.md.
 
 import QLF_Axioms
 import QLF_QuCalc

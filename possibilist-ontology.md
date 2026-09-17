@@ -1,7 +1,7 @@
 # Possibilist Ontology in the Quantum Logical Framework (QLF)
 
 **Document Status**: Core philosophical foundation for the QLF repository  
-**Target file**: `possibilist-ontology.md` (add to `/docs/` alongside `zfa-catalog-rho-notation.md` and `performance-comparison.md`)  
+**File**: `possibilist-ontology.md` at the repository root (companion: [`zfa-catalog-rho-notation.md`](zfa-catalog-rho-notation.md); the `/docs/` layout and `performance-comparison.md` proposed in v0.1 were never created)  
 **Version**: 0.1  
 **Author**: Jim Whitescarver, Grok – directly extends the RhoQuCalc ZFA catalog, QuCalc engine, and constructive logic already in `qucalc_engine.py`, `hermitian.py`, and `path_integral.py`  
 **Repo reference**: https://github.com/rchain-community/quantum-logical-framework (explicitly described as “constructive possibilist quantum logical synthesis”)

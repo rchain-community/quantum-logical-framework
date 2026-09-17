@@ -7,6 +7,8 @@ set_option linter.unusedVariables false
 /-!
 # QLF_Turbulence — turbulence as a quantized-vortex tangle; the cascade as a frequency hierarchy
 
+Write-up: [`Turbulence.md`](../Turbulence.md).
+
 The vorticity-quantization finding ([`QLF_AngularMomentum`](lean/QLF_AngularMomentum.lean)) says
 circulation comes in **unit quanta** (`signTriple ∈ {−1,0,+1}` per cell). Pushed into turbulence, the
 substrate picture is sharp:

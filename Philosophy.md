@@ -339,7 +339,7 @@ From this single constraint everything else is derived (all proven in the repo):
 - Gravity as net radial bias in spatial twists (`gravitational_tensor.py`)
 - The dynamical event-synthesis tensor that completes Einstein’s equations (`SpacetimeDynamics.lean`)
 - Pauli exclusion as antisymmetric parallel composition (`PauliExclusion.lean`)
-- RhoQuCalc parallelism and replication (`QuCalc.lean`)
+- RhoQuCalc parallelism and replication ([`RhoQuCalc.lean`](lean/RhoQuCalc.lean))
 
 Nothing else is postulated. Constants are derived, not inserted. Singularities are impossible because curvature is bounded by discrete event density.
 

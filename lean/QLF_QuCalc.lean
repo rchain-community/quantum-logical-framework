@@ -1,6 +1,9 @@
 import QLF_Axioms
 import Mathlib.Data.List.Basic
 
+-- QLF_QuCalc.lean — the phase-generation engine and the ZFA filter (`full_zeno_prune`).
+-- Language reference: QuCalc.md; runtime counterpart: twist_core.py.
+
 -- ==========================================
 -- 1. THE POSSIBILIST EXPANSION ENGINE
 -- ==========================================

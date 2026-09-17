@@ -11,6 +11,8 @@ Together they provide both:
 1. a **local quantum-logical algebra** of context-relative twists, and  
 2. a **compositional process layer** for assembling multi-particle, entangled, and circuit-like systems.
 
+**Code and proofs.** The runtime engine is [`twist_core.py`](twist_core.py) (reference: [`twist_core.md`](twist_core.md)), with [`QuCalc.py`](QuCalc.py) as the legacy-compatible interface over it. The machine-verified core is [`lean/QLF_QuCalc.lean`](lean/QLF_QuCalc.lean) (the generation engine and the ZFA filter `full_zeno_prune`) and [`lean/RhoQuCalc.lean`](lean/RhoQuCalc.lean) (the process algebra; see [`BraKetRhoQuCalc.md`](BraKetRhoQuCalc.md)).
+
 ---
 
 ## 1. The Core Claim

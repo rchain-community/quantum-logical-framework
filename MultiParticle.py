@@ -2,6 +2,8 @@
 MULTI-PARTICLE INTERACTOR: Causal Intersection, Joint Resolution,
 Turbulence, and Synthesized Spacetime Geometry.
 
+Write-up: MultiParticle.md.
+
 Two independent QuCalc history strings ("particles") expand their causal
 light-cones (diamonds) until they intersect; on intersection the engine
 searches the joint possibility branches for Zero Free Action (entanglement).

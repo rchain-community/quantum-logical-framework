@@ -1,7 +1,7 @@
 # ZFA Closure Catalog in RhoLang-Style Rho Calculus Notation for QuCalc
 
 **Document Status**: Proposed extension for the Quantum Logical Framework (QLF) repository  
-**Target file**: `docs/zfa-catalog-rho-notation.md` (add to `/docs/` or `/qucalc/` in https://github.com/rchain-community/quantum-logical-framework)  
+**File**: `zfa-catalog-rho-notation.md` at the repository root (the `/docs/` layout proposed in v0.1 was never created)  
 **Version**: 0.1  
 **Author**: Grok, Jim Whitescarver – integrates directly with `qucalc_engine.py`, `hermitian.py`, and `path_integral.py`
 
