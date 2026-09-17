@@ -118,11 +118,21 @@ RESULT (depth ≤ 14, exact rationals; ordering stable from depth 8 to 20):
   Unclosed mass ≈ 0.5–0.7 at these depths is the 3-D walk's transience — Kraft leakage, the
   payoffs are lower bounds with a stable ordering.
 
+  Extension (`--race --deep`), pre-registered: admit every imbalance vector of L1 ≤ 2 as a
+  player — 6 unit, 6 same-axis doubled (^^), 12 two-axis (^<): 24 strategies.  H_SH: a
+  Stag-Hunt-type pair arises naturally (kill: none does).  H_pop: the replicator still settles
+  on a UNIT conjugate pair.  RESULT: H_SH killed — 174 anti-coordination pairs, 102 dominance,
+  0 coordination games, hence 0 Stag Hunt; H_pop confirmed — every run ends on a unit conjugate
+  pair at ½:½, the deeper strands go extinct (self-payoff 0.046–0.08 vs 0.148).  The emergent
+  structure is robust: complementarity within an axis, symmetry breaking across axes, depth
+  dominated.  A Stag Hunt does not emerge from closure counting at any of these levels.
+
     python3 evolutionary_census.py               # seeds of length ≤ 2, horizon 2
     python3 evolutionary_census.py --t 3         # horizon 3 (slower)
     python3 evolutionary_census.py --alphabets   # strategies as move sets, horizons 2 and 3
     python3 evolutionary_census.py --cost        # the free-action-cost game + exact Moran verdict
     python3 evolutionary_census.py --race        # the emergent first-closure race + replicator
+    python3 evolutionary_census.py --race --deep # same with all 24 L1<=2 strands as players
 """
 import argparse
 import itertools
@@ -373,17 +383,29 @@ def race_payoff(a: str, b: str, D: int, split: bool = True):
     return float(mA + mJ), float(1 - mA - mB - mJ)
 
 
-def race_game(D: int = 14):
+def race_game(D: int = 14, deep: bool = False):
     import random
-    n = len(SPATIAL)
-    U = [[race_payoff(a, b, D)[0] for b in SPATIAL] for a in SPATIAL]
-    print(f"=== the emergent first-closure race, six open unit strands, depth <= {D} ===")
+    if deep:
+        vecs = sorted({v for v in itertools.product((-2, -1, 0, 1, 2), repeat=3)
+                       if 0 < sum(map(abs, v)) <= 2})
+        players = []
+        for v in vecs:
+            w = ''
+            for ax, (pl, mi) in enumerate((('>', '<'), ('^', 'v'), ('/', '\\'))):
+                w += (pl if v[ax] > 0 else mi) * abs(v[ax])
+            players.append(w)
+    else:
+        players = list(SPATIAL)
+    n = len(players)
+    U = [[race_payoff(a, b, D)[0] for b in players] for a in players]
+    print(f"=== the emergent first-closure race, {n} open strands, depth <= {D} ===")
     print("u(a|b) = P(a closed, own or joint, before b wins):")
-    for i, a in enumerate(SPATIAL):
-        print(f"  {a:>2} " + " ".join(f"{U[i][j]:6.3f}" for j in range(n)))
-    for i, a in enumerate(SPATIAL):
+    for i, a in enumerate(players):
+        print(f"  {a:>3} " + " ".join(f"{U[i][j]:6.3f}" for j in range(n)))
+    for i, a in enumerate(players):
         br = max(range(n), key=lambda j: U[j][i])
-        print(f"  best reply to {a!r}: {SPATIAL[br]!r} ({U[br][i]:.3f})")
+        if not deep:
+            print(f"  best reply to {a!r}: {players[br]!r} ({U[br][i]:.3f})")
     kinds = {'coord': 0, 'anti': 0, 'dominance': 0}
     sh = []
     for i, j in itertools.combinations(range(n), 2):
@@ -392,7 +414,7 @@ def race_game(D: int = 14):
             kinds['coord'] += 1
             c = classify(uxx, uxy, uyx, uyy)
             if c and c[0] != c[1] and 'tie' not in c:
-                sh.append((SPATIAL[i], SPATIAL[j]))
+                sh.append((players[i], players[j]))
         elif uyx > uxx and uxy > uyy:
             kinds['anti'] += 1
         else:
@@ -413,12 +435,8 @@ def race_game(D: int = 14):
         x = [random.random() for _ in range(n)]
         tot = sum(x)
         xf = replicator([v / tot for v in x])
-        axes = [(xf[0] + xf[1]), (xf[2] + xf[3]), (xf[4] + xf[5])]
-        win = max(range(3), key=lambda k: axes[k])
-        pair = (xf[2 * win], xf[2 * win + 1])
-        print("  " + " ".join(f"{v:.3f}" for v in xf) +
-              f"   axis shares {axes[0]:.2f} {axes[1]:.2f} {axes[2]:.2f}  winning pair split "
-              f"{pair[0]:.3f}:{pair[1]:.3f}")
+        surv = [(players[i], round(xf[i], 3)) for i in range(n) if xf[i] > 0.01]
+        print("  survivors (share > 0.01):", surv)
     x = [1 / n] * n
     f = [sum(U[i][j] * x[j] for j in range(n)) for i in range(n)]
     print(f"uniform state: every strand earns {f[0]:.4f} (an equilibrium) -- unstable above")
@@ -431,12 +449,13 @@ def main():
     ap.add_argument('--alphabets', action='store_true', help='strategies as move sets (see docstring)')
     ap.add_argument('--cost', action='store_true', help='the free-action-cost game + exact Moran verdict')
     ap.add_argument('--race', action='store_true', help='the emergent first-closure race + replicator dynamics')
+    ap.add_argument('--deep', action='store_true', help='with --race: admit all L1<=2 imbalance vectors (24 players)')
     args = ap.parse_args()
     if args.alphabets:
         alphabet_scan()
         return
     if args.race:
-        race_game()
+        race_game(deep=args.deep)
         return
 
     seeds = [''.join(p) for L in range(1, args.maxseed + 1)
