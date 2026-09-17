@@ -59,9 +59,38 @@ content.  A discriminating test needs a payoff that breaks the potential structu
 holding a deep strand open (the free-action ledger, QLF_FreeEnergy) or an order-/capacity-
 asymmetric closure — which is a modelling decision to make openly, not to fit here.
 
+THE FREE-ACTION COST (step 3, second pass — decided openly on #209, not fitted).  The payoff
+that breaks the potential structure must be parameter-free or it is a fitted kernel.  Measure both
+sides in the census's own units: ways closed → information log₂ W (bits, QLF_ShannonFromCounts);
+an open strand's free action F = the capacity it demands (its imbalance — one unclosed half-spin
+per unit, one bit each, ΔF = log 2 per closure, QLF_FreeEnergy).  Net information in bits is
+log₂ W − F, so
+
+    fitness(a|b) = W_own(a|b) / 2^F(a)        (ways, discounted one factor of 2 per bit held open)
+
+— the Kraft-weighting shape of the census itself, and no free constant.  A "Stag" is a strand
+that commits to a deeper closure (F = 2); it pays whether or not the partner matches, so it can
+now be VULNERABLE when unmatched.  Pre-registered before the dynamics were run:
+
+  H_naive  the payoff-dominant state (larger diagonal fitness — "most ways AT") is selected;
+  H_KMR    the risk-dominant state ("most ways to ARRIVE") is selected.
+  Verdict = the absorbing state carrying the stationary mass of the Moran process with mutation
+  as μ → 0 at the largest population, computed EXACTLY (birth–death product formula, no
+  simulation) for N ∈ {10, 20, 50, 100}, μ ∈ {1e-2, 1e-4, 1e-6}.
+  Kill condition for H_naive: risk-dominant wins on a majority of the Stag-Hunt-type pairs.
+
+RESULT OF THE COST GAME (run as pre-registered, horizons 2 and 3): Stag-Hunt-type pairs: 0 — the
+Moran verdict was never reached.  Reason: self-fitness is strictly decreasing in depth
+(F=0: 36, F=1: 7.5, F=2: ≤ 1 at horizon 2), because a deeper open strand already has fewer
+closing ways and the discount lowers it further; so a deep commitment is never payoff-dominant
+against a shallower one, and a Stag Hunt requires exactly that.  Depth would need a BENEFIT the
+count does not give (bits released at closure ∝ depth, the cascade reading) — a third modelling
+choice, at which point the game is being built to produce the phenomenon (R2a).  Stopped there.
+
     python3 evolutionary_census.py               # seeds of length ≤ 2, horizon 2
     python3 evolutionary_census.py --t 3         # horizon 3 (slower)
     python3 evolutionary_census.py --alphabets   # strategies as move sets, horizons 2 and 3
+    python3 evolutionary_census.py --cost        # the free-action-cost game + exact Moran verdict
 """
 import argparse
 import itertools
@@ -70,7 +99,7 @@ import time
 from collections import Counter
 
 sys.path.insert(0, ".")
-from twist_core import is_zfa
+from twist_core import is_zfa, spatial_free_action
 
 SPATIAL = ['^', 'v', '<', '>', '/', '\\']
 PAIRS = (('^', 'v'), ('>', '<'), ('/', '\\'), ('+', '-'))
@@ -166,11 +195,108 @@ def alphabet_scan():
         print(f"coordination games: {coord}   risk==payoff: {agree}   STAG-HUNT-TYPE: {len(sh)} {sh}")
 
 
+def moran_stationary(uAA, uAB, uBA, uBB, N, mu, eps=1e-12):
+    """Exact stationary distribution of the two-strategy Moran process with mutation on
+    i = #A ∈ {0..N}: reproduce ∝ fitness, offspring mutates w.p. mu, replaces a uniform
+    individual.  Birth–death chain ⟹ pi_i ∝ ∏_{k=1}^{i} T+(k−1)/T−(k).  Returns pi_N/(pi_0+pi_N)
+    — the share of the absorbing mass at all-A."""
+    def fit(i):
+        if N == 1:
+            return uAA, uBB
+        fA = ((i - 1) * uAA + (N - i) * uAB) / (N - 1) if i > 0 else 0.0
+        fB = (i * uBA + (N - i - 1) * uBB) / (N - 1) if i < N else 0.0
+        return max(fA, 0.0) + eps, max(fB, 0.0) + eps
+    import math
+    logpi = [0.0]
+    for k in range(1, N + 1):
+        # T+(k-1): from k-1 A's to k
+        i = k - 1
+        fA, fB = fit(i)
+        tot = i * fA + (N - i) * fB
+        pA = i * fA / tot
+        pB = (N - i) * fB / tot
+        Tp = (pA * (1 - mu) + pB * mu) * (N - i) / N
+        # T-(k): from k A's to k-1
+        i = k
+        fA, fB = fit(i)
+        tot = i * fA + (N - i) * fB
+        pA = i * fA / tot
+        pB = (N - i) * fB / tot
+        Tm = (pB * (1 - mu) + pA * mu) * i / N
+        logpi.append(logpi[-1] + math.log(Tp) - math.log(Tm))
+    m = max(logpi)
+    w = [math.exp(x - m) for x in logpi]
+    return w[N] / (w[0] + w[N])
+
+
+def cost_game(seeds, own):
+    """fitness(a|b) = W_own(a|b) / 2^F(a), F = spatial free action of the seed."""
+    F = {a: spatial_free_action(a) for a in seeds}
+    u = {(a, b): own[(a, b)] / (2.0 ** F[a]) for (a, b) in own}
+    return u, F
+
+
+def cost_scan(seeds, own, t):
+    u, F = cost_game(seeds, own)
+    stag_hunt, coord, agree = [], 0, 0
+    for x, y in itertools.combinations(seeds, 2):
+        c = classify(u[(x, x)], u[(x, y)], u[(y, x)], u[(y, y)])
+        if not c:
+            continue
+        coord += 1
+        pd, rd = c
+        if pd == rd:
+            agree += 1
+        elif 'tie' not in (pd, rd):
+            stag_hunt.append((x, y, pd, rd))
+    print(f"\n=== free-action cost game, horizon {t}: fitness = W_own / 2^F ===")
+    print(f"seed pairs: {len(seeds) * (len(seeds) - 1) // 2}   coordination games: {coord}   "
+          f"risk==payoff: {agree}   STAG-HUNT-TYPE: {len(stag_hunt)}")
+    if not stag_hunt:
+        print("no Stag-Hunt-type pair: nothing to test at this horizon")
+        return
+    Ns, mus = (10, 20, 50, 100), (1e-2, 1e-4, 1e-6)
+    naive_wins = kmr_wins = 0
+    print(f"{'pair':16} {'F':>5} {'u(x|x)':>8} {'u(x|y)':>8} {'u(y|x)':>8} {'u(y|y)':>8}  pd rd  "
+          + "  ".join(f"N={N}" for N in Ns) + "   selected")
+    for x, y, pd, rd in stag_hunt:
+        row = []
+        for N in Ns:
+            share = moran_stationary(u[(x, x)], u[(x, y)], u[(y, x)], u[(y, y)], N, mus[-1])
+            row.append(share)
+        # verdict at the largest N, smallest mu: which absorbing state holds the mass
+        sel = 'x' if row[-1] > 0.5 else 'y'
+        if sel == pd:
+            naive_wins += 1
+        if sel == rd:
+            kmr_wins += 1
+        print(f"{x!r:>7} vs {y!r:<6} {F[x]:d},{F[y]:d} {u[(x,x)]:8.3f} {u[(x,y)]:8.3f} "
+              f"{u[(y,x)]:8.3f} {u[(y,y)]:8.3f}   {pd}  {rd}  "
+              + "  ".join(f"{r:4.2f}" for r in row) + f"   {sel} (share of x at all-x)")
+    n = len(stag_hunt)
+    print(f"\nverdict at N={Ns[-1]}, mu={mus[-1]}: payoff-dominant selected on {naive_wins}/{n}, "
+          f"risk-dominant selected on {kmr_wins}/{n}")
+    print("H_naive " + ("KILLED" if kmr_wins > n / 2 else "survives") +
+          " (kill condition: risk-dominant wins on a majority);  H_KMR " +
+          ("supported" if kmr_wins > n / 2 else "not supported"))
+    # sensitivity: does the verdict depend on mu at the largest N?
+    flips = 0
+    for x, y, pd, rd in stag_hunt:
+        sels = set()
+        for mu in mus:
+            share = moran_stationary(u[(x, x)], u[(x, y)], u[(y, x)], u[(y, y)], Ns[-1], mu)
+            sels.add('x' if share > 0.5 else 'y')
+        if len(sels) > 1:
+            flips += 1
+    print(f"pairs whose verdict at N={Ns[-1]} changes with mu across {mus}: {flips}/{n}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--t', type=int, default=2, help='horizon: continuation length per side')
     ap.add_argument('--maxseed', type=int, default=2, help='max seed length')
     ap.add_argument('--alphabets', action='store_true', help='strategies as move sets (see docstring)')
+    ap.add_argument('--cost', action='store_true', help='the free-action-cost game + exact Moran verdict')
     args = ap.parse_args()
     if args.alphabets:
         alphabet_scan()
@@ -240,6 +366,9 @@ def main():
               f"   payoff-dominant={pd}  risk-dominant={rd}")
     if len(stag_hunt) > 20:
         print(f"  ... {len(stag_hunt) - 20} more")
+    if args.cost:
+        cost_scan(seeds, own, args.t)
+        return
     if stag_hunt:
         print("\nPre-registered for step 4 (Moran process with vanishing mutation on these pairs):")
         print("  H_naive: payoff-dominant state selected;  H_KMR: risk-dominant state selected.")
