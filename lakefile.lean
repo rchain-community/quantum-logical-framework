@@ -236,5 +236,6 @@ lean_lib QLF where
     `QLF_Inertia,
     `QLF_ExactRG,
     `QLF_MultiObserver,
-    `QLF_ClosureEquivalence
+    `QLF_ClosureEquivalence,
+    `QLF_ShannonFromCounts
   ]
