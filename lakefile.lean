@@ -237,5 +237,6 @@ lean_lib QLF where
     `QLF_ExactRG,
     `QLF_MultiObserver,
     `QLF_ClosureEquivalence,
-    `QLF_ShannonFromCounts
+    `QLF_ShannonFromCounts,
+    `QLF_PotentialGames
   ]
