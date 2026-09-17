@@ -1,0 +1,41 @@
+name: Document network check
+
+# The repo is ~180 root Markdown files plus lean/README.md, and readability means a
+# reader following a claim always lands on its proof or its parent doc (issue #149).
+# scripts/doc_network_check.py fails on any orphaned root .md (no incoming link from
+# another .md) or any dead relative Markdown link, and warns on missing doc<->code
+# back-links between same-named X.md / X.py / lean/QLF_X.lean pairs. Seconds to run.
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**.md'
+      - '*.py'
+      - 'lean/**'
+      - 'scripts/doc_network_check.py'
+      - '.github/workflows/doc-network-check.yml'
+
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.md'
+      - '*.py'
+      - 'lean/**'
+      - 'scripts/doc_network_check.py'
+      - '.github/workflows/doc-network-check.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check the document network
+        run: python3 scripts/doc_network_check.py
