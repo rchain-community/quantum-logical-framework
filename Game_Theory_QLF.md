@@ -134,7 +134,7 @@ as distributions over ways is open, and flagged as speculative.
 
 | # | statement | anchor |
 |---|---|---|
-| 1 | a game has a free-action functional iff it is a potential game (Monderer–Shapley's square condition, both directions) | `free_action_iff_four_cycle` |
+| 1 | a game has a free-action functional iff it is a potential game (Monderer–Shapley's square condition, both directions) — two players, and at any `n` | `free_action_iff_four_cycle` (`QLF_PotentialGames`; `QLF_NPlayerPotential`) |
 | 2 | the ways to a closure are its basin; basins partition the state space; closure frequency is multiplicity — the finite form of stochastic stability (KMR/Young's `μ → 0` limit cited) | `basins_partition`, `sum_frequency`, `ways_eq_zero_of_not_fixed` |
 | 3 | free-action descent terminates on any finite state space; a unilateral improvement raises the potential; every finite two-player potential game has a pure Nash equilibrium | `Descent.eventually_fixed`, `improve_increases_potential`, `exists_nash_of_potential` |
 | 4 | the population picks a basis iff `1 + a > 2b`, and the measured race is past it | `pair_uninvadable_iff`, `pair_beats_uniform_iff`, `measured_threshold_holds` |
@@ -162,8 +162,11 @@ The falsifiable, theorem-backed content for
 
 ## Honest scope
 
-Two-player games in Lean; `n`-player Monderer–Shapley and Young's stochastic-stability theorem are
-cited, not reproven. The lattice inequality behind "like-with-like is the worst partner" (an
+The characterization, Nash = closure, pure-equilibrium existence and the welfare theorem are proven at
+**any number of players** ([`QLF_NPlayerPotential`](lean/QLF_NPlayerPotential.lean) — the room's arity;
+Monderer–Shapley's *squares suffice* proven by a `Finset` induction over players); the selection results
+(`risk_dominance_is_potential_order`, the race thresholds) are 2×2 statements by nature; Young's
+stochastic-stability theorem is cited, not reproven. The lattice inequality behind "like-with-like is the worst partner" (an
 orthogonal partner beats a copy in the ℤ³ first-passage race) is measured, not proven. Everything
 numerical is a lower bound with a stable ordering (the 3-D walk is transient; Kraft leakage).
 

@@ -283,7 +283,7 @@ action** is its total regret — and three things are theorems:
 
 - **The class the substrate can carry.** A game has a free-action functional **iff** it is a *potential
   game* (Monderer–Shapley's square condition: payoff changes path-independent, `free_action_iff_four_cycle`,
-  both directions). Under that functional a **Nash equilibrium is a ZFA closure** (`nash_iff_closure`), every
+  both directions — and at any number of players, [`QLF_NPlayerPotential`](lean/QLF_NPlayerPotential.lean)). Under that functional a **Nash equilibrium is a ZFA closure** (`nash_iff_closure`), every
   finite potential game has one (`exists_nash_of_potential`, the potential's maximiser), and free-action
   descent cannot cycle (`Descent.eventually_fixed`) — the `QLF_PvsNP` framing made game-theoretic: an
   equilibrium is `O(n)` to verify and reached by descent exactly when a potential exists.
