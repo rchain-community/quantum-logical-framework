@@ -87,10 +87,42 @@ against a shallower one, and a Stag Hunt requires exactly that.  Depth would nee
 count does not give (bits released at closure ∝ depth, the cascade reading) — a third modelling
 choice, at which point the game is being built to produce the phenomenon (R2a).  Stopped there.
 
+THE CENSUS'S OWN DYNAMIC (`--race`, the inversion decided on #209: look for game structure
+EMERGING from the first-closure census rather than imposing a game).  Two open strands `a`, `b`
+share one walk over the six spatial twists — the substrate's free steps, chosen by neither.  The
+absorbing census's own events decide the run: at each step the walk can close `a` alone
+(imb(walk) = −imb(a)), `b` alone, or the PAIR jointly (imb(walk) = −(imb(a)+imb(b)), the shared
+closure of Chemistry.md / SEX.md); the first event ends the run.  A player's payoff is the
+ontological one — did it get closed, own or joint — under the census's cylinder measure 6^−d.
+No kernel: the payoff is the closure event's own frequency.  (Identical strands hitting their
+common target split the closure: only one of two identical open strands can be absorbed by one
+hit; the no-split rule changes only the same-vs-orthogonal order, not the population result.)
+
+Pre-registered: P1 the best reply to any strand is its conjugate (joint closure at depth 0 —
+complementarity emerges as anti-coordination); P2 no Stag-Hunt-type pair appears; P3 the
+replicator dynamics settle at 1:1 within a conjugate pair (Fisher's sex-ratio argument).
+
+RESULT (depth ≤ 14, exact rationals; ordering stable from depth 8 to 20):
+  * P1 holds exactly: u(conjugate) = 1.000 ≫ u(orthogonal) ≈ 0.25 > u(same strand) ≈ 0.15.
+    Like-with-like is the WORST partner (two identical strands race for one target),
+    complementary pairs bind — SEX.md's pn-binds / pp-blocked pattern, from the census alone.
+  * P2 holds: 21 anti-coordination pairs, 0 coordination games, 0 Stag Hunt.
+  * P3 holds: every replicator run ends at exactly ½ : ½ within one conjugate pair.
+  * NOT pre-registered, observed: the population SPONTANEOUSLY PICKS ONE AXIS.  The uniform
+    state is an equilibrium (every strand earns 0.3559 against it) but is unstable; the other
+    two axes go extinct, the winner set by initial conditions.  So the emergent structure is
+    two-level: anti-coordination within an axis (complementarity, 1:1) and coordination ACROSS
+    axes (three symmetric equilibria — a collective basis choice, "the basis belongs to the
+    question", QLF_BasisIndependence).  The pair state repels an orthogonal invader
+    (0.574 vs 0.247 per encounter).
+  Unclosed mass ≈ 0.5–0.7 at these depths is the 3-D walk's transience — Kraft leakage, the
+  payoffs are lower bounds with a stable ordering.
+
     python3 evolutionary_census.py               # seeds of length ≤ 2, horizon 2
     python3 evolutionary_census.py --t 3         # horizon 3 (slower)
     python3 evolutionary_census.py --alphabets   # strategies as move sets, horizons 2 and 3
     python3 evolutionary_census.py --cost        # the free-action-cost game + exact Moran verdict
+    python3 evolutionary_census.py --race        # the emergent first-closure race + replicator
 """
 import argparse
 import itertools
@@ -291,15 +323,120 @@ def cost_scan(seeds, own, t):
     print(f"pairs whose verdict at N={Ns[-1]} changes with mu across {mus}: {flips}/{n}")
 
 
+_STEP = {'^': (0, 1, 0), 'v': (0, -1, 0), '>': (1, 0, 0), '<': (-1, 0, 0),
+         '/': (0, 0, 1), '\\': (0, 0, -1)}
+
+
+def _imb(s):
+    v = [0, 0, 0]
+    for c in s:
+        v = [v[i] + _STEP[c][i] for i in range(3)]
+    return tuple(v)
+
+
+def race_payoff(a: str, b: str, D: int, split: bool = True):
+    """Exact first-event masses under the cylinder measure 6^-d for two open strands sharing one
+    walk.  Returns (u_a, unclosed) with u_a = mass of runs in which `a` is closed (own or joint)
+    before `b` wins the race."""
+    from fractions import Fraction
+    from collections import defaultdict
+    add = lambda u, v: tuple(x + y for x, y in zip(u, v))
+    neg = lambda u: tuple(-x for x in u)
+    tA, tB, tJ = neg(_imb(a)), neg(_imb(b)), neg(add(_imb(a), _imb(b)))
+    mA = mB = mJ = Fraction(0)
+    states = {(0, 0, 0): Fraction(1)}
+    for d in range(D + 1):
+        nxt = defaultdict(Fraction)
+        for st, m in states.items():
+            if st == tJ:
+                mJ += m
+                continue
+            if st == tA and st == tB:
+                if split:
+                    mA += m / 2
+                    mB += m / 2
+                else:
+                    mA += m
+                    mB += m
+                continue
+            if st == tA:
+                mA += m
+                continue
+            if st == tB:
+                mB += m
+                continue
+            if d == D:
+                continue
+            for c in SPATIAL:
+                nxt[add(st, _STEP[c])] += m / 6
+        states = nxt
+    return float(mA + mJ), float(1 - mA - mB - mJ)
+
+
+def race_game(D: int = 14):
+    import random
+    n = len(SPATIAL)
+    U = [[race_payoff(a, b, D)[0] for b in SPATIAL] for a in SPATIAL]
+    print(f"=== the emergent first-closure race, six open unit strands, depth <= {D} ===")
+    print("u(a|b) = P(a closed, own or joint, before b wins):")
+    for i, a in enumerate(SPATIAL):
+        print(f"  {a:>2} " + " ".join(f"{U[i][j]:6.3f}" for j in range(n)))
+    for i, a in enumerate(SPATIAL):
+        br = max(range(n), key=lambda j: U[j][i])
+        print(f"  best reply to {a!r}: {SPATIAL[br]!r} ({U[br][i]:.3f})")
+    kinds = {'coord': 0, 'anti': 0, 'dominance': 0}
+    sh = []
+    for i, j in itertools.combinations(range(n), 2):
+        uxx, uxy, uyx, uyy = U[i][i], U[i][j], U[j][i], U[j][j]
+        if uxx > uyx and uyy > uxy:
+            kinds['coord'] += 1
+            c = classify(uxx, uxy, uyx, uyy)
+            if c and c[0] != c[1] and 'tie' not in c:
+                sh.append((SPATIAL[i], SPATIAL[j]))
+        elif uyx > uxx and uxy > uyy:
+            kinds['anti'] += 1
+        else:
+            kinds['dominance'] += 1
+    print(f"pair types: {kinds}   Stag-Hunt-type: {sh}")
+
+    def replicator(x, steps=20000, dt=0.05):
+        for _ in range(steps):
+            f = [sum(U[i][j] * x[j] for j in range(n)) for i in range(n)]
+            phi = sum(x[i] * f[i] for i in range(n))
+            x = [x[i] + dt * x[i] * (f[i] - phi) for i in range(n)]
+            tot = sum(x)
+            x = [v / tot for v in x]
+        return x
+    random.seed(1)
+    print("replicator dynamics from random starts -> final shares (^ v < > / \\):")
+    for _ in range(6):
+        x = [random.random() for _ in range(n)]
+        tot = sum(x)
+        xf = replicator([v / tot for v in x])
+        axes = [(xf[0] + xf[1]), (xf[2] + xf[3]), (xf[4] + xf[5])]
+        win = max(range(3), key=lambda k: axes[k])
+        pair = (xf[2 * win], xf[2 * win + 1])
+        print("  " + " ".join(f"{v:.3f}" for v in xf) +
+              f"   axis shares {axes[0]:.2f} {axes[1]:.2f} {axes[2]:.2f}  winning pair split "
+              f"{pair[0]:.3f}:{pair[1]:.3f}")
+    x = [1 / n] * n
+    f = [sum(U[i][j] * x[j] for j in range(n)) for i in range(n)]
+    print(f"uniform state: every strand earns {f[0]:.4f} (an equilibrium) -- unstable above")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--t', type=int, default=2, help='horizon: continuation length per side')
     ap.add_argument('--maxseed', type=int, default=2, help='max seed length')
     ap.add_argument('--alphabets', action='store_true', help='strategies as move sets (see docstring)')
     ap.add_argument('--cost', action='store_true', help='the free-action-cost game + exact Moran verdict')
+    ap.add_argument('--race', action='store_true', help='the emergent first-closure race + replicator dynamics')
     args = ap.parse_args()
     if args.alphabets:
         alphabet_scan()
+        return
+    if args.race:
+        race_game()
         return
 
     seeds = [''.join(p) for L in range(1, args.maxseed + 1)
