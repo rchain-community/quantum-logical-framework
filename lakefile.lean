@@ -239,5 +239,6 @@ lean_lib QLF where
     `QLF_ClosureEquivalence,
     `QLF_ShannonFromCounts,
     `QLF_PotentialGames,
-    `QLF_EvolutionaryGames
+    `QLF_EvolutionaryGames,
+    `QLF_NPlayerPotential
   ]
