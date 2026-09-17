@@ -1,7 +1,7 @@
 # Game theory from QLF — what the closure census generates, and what it solves
 
-**Status:** two machine-verified modules ([`QLF_PotentialGames`](lean/QLF_PotentialGames.lean),
-[`QLF_EvolutionaryGames`](lean/QLF_EvolutionaryGames.lean), no axioms), one exact/numerical tool
+**Status:** three machine-verified modules ([`QLF_PotentialGames`](lean/QLF_PotentialGames.lean),
+[`QLF_EvolutionaryGames`](lean/QLF_EvolutionaryGames.lean), [`QLF_NPlayerPotential`](lean/QLF_NPlayerPotential.lean), no axioms), one exact/numerical tool
 ([`evolutionary_census.py`](evolutionary_census.py)), five pre-registered runs whose outcomes are
 recorded below whichever way they landed, and one operational consequence for the QuantumOS room
 ([`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md)).
