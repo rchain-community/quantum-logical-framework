@@ -234,11 +234,13 @@ The whole ladder is a single loop, both directions:
   `Δ = 2/3` (`m_μ/m_e = 206.77`) reproduce the Koide relation and `m_τ/m_e` to `0.01%`, and the `~3500×`
   hierarchy is now understood structurally — proximity to a derived "massless wall" `1+√2 cos θ=0`
   (`A²=2` from the two transverse axes), quadratically amplified, not a hierarchy of scales
-  ([`Weak_Force.md` §5c⁗](Weak_Force.md#5c-deriving--23--what-stands-what-is-closed-and-the-one-live-candidate)).
-  **What's still open:** deriving `Δ = 2/3` itself as a *forced*, not selected, `O(1)` rational — eleven
+  ([`Weak_Force.md` §5c⁗](Weak_Force.md#5c-deriving--23--what-stands-what-is-closed-and-the-specification-that-remains)).
+  **What's still open:** deriving `Δ = 2/3` itself as a *forced*, not selected, `O(1)` rational — twelve
   routes tried and closed (census count-ratio, circle division, all three curvature notions, symmetric
-  spectral functionals, absolute-mass arguments, …), one live unclosed candidate (`Δ` as a mode-locked
-  circle-map rotation number — plausible but QLF has no substrate circle map written down yet), full
+  spectral functionals, absolute-mass arguments, and last the mode-locked rotation number — a rotation
+  number is a turn-fraction and `Δ` is `1/(3π)` of a turn, so the data admits no locking below
+  denominator `311`), **zero live candidates**; a three-clause specification any future one must meet
+  (`O(1)` rational in radians, forced, of arc-over-radius shape); full
   history in [#140](https://github.com/jimscarver/quantum-logical-framework/issues/140).
 - **The pair-production rate — reduced to one measurement (#141, closed).** The *mechanism* is modeled
   (deterministic census creation + thermal freeze-out, [`pair_production_demo.py`](pair_production_demo.py)),

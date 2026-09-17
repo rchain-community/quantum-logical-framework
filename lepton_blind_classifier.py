@@ -71,9 +71,12 @@ H-M. DERIVING Delta = 2/3 (the round-by-round record is issue #140)
      notions (J, K) | eps as a better coordinate (M1) | symmetric-functional
      extremization (M3) | absolute mass scales (M4a) | ratios of
      commensurable angles (M4b).
-   Route LIVE: Delta as a mode-locked ROTATION NUMBER (M5) -- explains why a
-     simple rational at all, and why Farey depth = description length, but
-     does not pick 2/3.  A candidate class, not a derivation.
+   Route CLOSED (part N): Delta as a mode-locked ROTATION NUMBER (M5).  A
+     rotation number is a fraction of a TURN; Delta is 2/3 of a RADIAN, i.e.
+     1/(3 pi) turns, and the smallest rational turn-fraction the data admits
+     has denominator 311 -- the narrowest tongue, not the widest.  What
+     survives of M5 is the side result Farey depth = description length.
+     Delta = 2/3 is open with ZERO live candidates.
    Also in K: the possibility graph is HYPERBOLIC while synthesized space is
    Ollivier-flat -- a result about the substrate that outlived the question,
    written up in Curvature.md sec 1c.
@@ -1729,10 +1732,143 @@ def epsilon_audit():
     print("  O(1) RATIONAL IN RADIANS and must be FORCED rather than selected.")
     print("  Closed: circle divisions, census count-ratios, all three curvature")
     print("  notions, symmetric functionals, absolute mass scales, ratios of")
-    print("  commensurable angles.  LIVE: the rotation-number mechanism -- a")
-    print("  candidate CLASS, not a derivation, since QLF exhibits no substrate")
-    print("  circle map for the generation phase.  Until one is written down,")
-    print("  'the dynamics chooses' is unearned.  Delta = 2/3 stays open.")
+    print("  commensurable angles.  LIVE (as of this part): the rotation-number")
+    print("  mechanism -- a candidate CLASS, not a derivation, since QLF exhibits")
+    print("  no substrate circle map for the generation phase.  Delta = 2/3 stays")
+    print("  open.  [Part N then tests the candidate in its own units: CLOSED.]")
+
+
+# ---------- N. the rotation-number candidate, priced in its own units ----------
+
+def _sine_map(x, omega, K):
+    return x + omega + K / (2 * math.pi) * math.sin(2 * math.pi * x)
+
+
+def _tongue_edges(p, q, K, span=0.3, grid=1200, iters=48):
+    """Exact Arnold-tongue edges of p/q for the sine circle map at coupling K.
+
+    rho = p/q iff a period-q orbit winding p times exists, i.e. iff
+    g(x) = f^q(x) - x - p has a zero.  g is monotone in omega, so the left edge
+    is where max_x g crosses 0 and the right edge is where min_x g does; both
+    are found by bisection over omega, with x on a grid.  Valid for K <= 1
+    (the map is a homeomorphism there, so the rotation number is unique)."""
+    def extrema(omega):
+        mn, mx = 1e9, -1e9
+        for i in range(grid):
+            x0 = i / grid
+            x = x0
+            for _ in range(q):
+                x = _sine_map(x, omega, K)
+            v = x - x0 - p
+            mn, mx = min(mn, v), max(mx, v)
+        return mn, mx
+    rho = p / q
+    a, b = rho - span, rho + span
+    for _ in range(iters):
+        m = (a + b) / 2
+        if extrema(m)[1] < 0:
+            a = m
+        else:
+            b = m
+    left = b
+    a, b = rho - span, rho + span
+    for _ in range(iters):
+        m = (a + b) / 2
+        if extrema(m)[0] > 0:
+            b = m
+        else:
+            a = m
+    return left, a
+
+
+def rotation_number_audit():
+    """Part N -- the M5 candidate tested in the units a rotation number has.
+
+    Pre-registered before computing anything:
+      claim under test: Delta is a mode-locked rotation number of some circle
+        map on the generation-phase circle, and 2/3 is picked because low-
+        denominator rationals own the widest Arnold tongues.
+      the check: a rotation number is a fraction of a TURN.  So the claim
+        needs Delta measured in turns to be a low-denominator rational, and
+        the tongue at that rational to be wide.
+      kill condition: if the smallest denominator compatible with the data
+        exceeds ~10, or the tongue at that rational is narrower than the 2/3
+        tongue by more than 10^3 at every coupling K <= 1, the route is dead.
+    """
+    print("\n=== N. THE ROTATION-NUMBER CANDIDATE, IN ITS OWN UNITS ===\n")
+    D = 2.0 / 3.0
+    DM, SD = 0.666689, 0.000025            # free 3-parameter fit, part C
+
+    print("N1. A ROTATION NUMBER IS A TURN-FRACTION, AND Delta IS NOT ONE.")
+    print("  rho = lim (f^n(x) - x)/n counts turns per iterate; rho = 2/3 means")
+    print("  two-thirds of a TURN = 4pi/3 = 4.18879 rad -- not 0.66667 rad.  M5")
+    print("  read the numeral 2/3 as a rotation number; the quantity is 2/3 of")
+    print("  a RADIAN.  Part H1 already had the conversion:")
+    print(f"    Delta in turns = 2/3 / 2pi = 1/(3pi) = {D/(2*math.pi):.9f}  (transcendental)")
+    print("  and part H2 the smallest rational turn-fraction the DATA admits:")
+    lo, hi = DM - 2 * SD, DM + 2 * SD
+    hits = []
+    for q in range(1, 401):
+        for p_ in range(1, q):
+            if math.gcd(p_, q) == 1 and lo <= 2 * math.pi * p_ / q <= hi:
+                hits.append((p_, q))
+                break
+    print("    " + ", ".join(f"{p_}/{q}" for p_, q in hits[:4]) +
+          f"   (smallest denominator q = {hits[0][1]})")
+    print("  So IF Delta is a locked rotation number, it is locked at a rational")
+    print(f"  of denominator >= {hits[0][1]}, Stern-Brocot depth in the hundreds --")
+    print("  the narrowest kind of tongue there is, not one of the widest.  The")
+    print("  wide-tongue argument, applied in the right units, points the other")
+    print("  way.  Kill condition (q_min > 10) is met.\n")
+
+    print("N2. HOW MUCH NARROWER -- exact tongue widths of the sine circle map.")
+    print("  Widths from the period-q tangency condition (bisection on omega):")
+    print(f"  {'p/q':>6}   {'K=0.2':>10} {'K=0.5':>10} {'K=1.0 (critical)':>18}")
+    rows = [(1, 2), (1, 3), (2, 3), (1, 4), (1, 5), (1, 6), (1, 8), (1, 12), (1, 16)]
+    W = {}
+    for p_, q in rows:
+        W[(p_, q)] = []
+        for K in (0.2, 0.5, 1.0):
+            l, r = _tongue_edges(p_, q, K)
+            W[(p_, q)].append(r - l)
+        w = W[(p_, q)]
+        print(f"  {p_}/{q:<4}   {w[0]:10.3e} {w[1]:10.3e} {w[2]:18.3e}")
+    # power law at criticality from the 1/q family, q >= 4
+    qs = [q for (p_, q) in rows if p_ == 1 and q >= 4]
+    xs = [math.log(q) for q in qs]
+    ys = [math.log(W[(1, q)][2]) for q in qs]
+    n = len(qs)
+    sx, sy = sum(xs), sum(ys)
+    sxx, sxy = sum(x * x for x in xs), sum(x * y for x, y in zip(xs, ys))
+    slope = (n * sxy - sx * sy) / (n * sxx - sx * sx)
+    q_star = hits[0][1]
+    ratio_crit = (q_star / 3) ** (-slope)
+    print(f"\n  Below criticality widths fall like K^q (Arnold): the {hits[0][0]}/{q_star}")
+    print(f"  tongue is ~K^{q_star - 3} narrower than 2/3's -- at K = 0.8 that is")
+    print(f"  ~10^{(q_star - 3) * math.log10(0.8):.0f}, i.e. zero.  AT criticality (K = 1),")
+    print(f"  where the tongues fill the line, the 1/q widths fit q^{slope:.2f}, so the")
+    print(f"  {hits[0][0]}/{q_star} tongue is still ~{ratio_crit:.1e}x narrower than the 2/3")
+    print("  tongue.  Kill condition (>10^3 narrower at every K <= 1) is met.\n")
+
+    print("N3. THE ONE ESCAPE, AND WHY IT IS THE SAME SMUGGLING AS BEFORE.")
+    print("  A map on some OTHER circle could lock at rho = 2/3 turns, with the")
+    print("  generation phase then set to  Delta = rho x (1 radian).  The factor")
+    print("  '1 radian per turn of the other circle' is the whole content: it is")
+    print("  the unit choice part H1 showed the 5-smoothness lives in, and part")
+    print("  M4(b) already closed 'a rational rewritten with the pi cancelled'.")
+    print("  A mechanism that needs that factor has derived nothing.\n")
+
+    print("N4. WHAT SURVIVES OF M5.  Its two side results stand on their own:")
+    print("  Farey depth and description length are the same ordering (true of")
+    print("  rationals, not of leptons), and the Occam curve of part I is that")
+    print("  ordering's shadow.  What does not stand is the mechanism: no circle")
+    print("  map on the phase circle can lock at 2/3 rad, because 2/3 rad is not")
+    print("  a rational rotation number.  M5 is CLOSED and M6's 'LIVE' is")
+    print("  withdrawn.  The specification tightens by one clause: a derivation")
+    print("  must produce a rational number of RADIANS, which no dynamics on the")
+    print("  phase circle can do -- only an arc-over-radius (curvature-shaped)")
+    print("  reading (H3) has that unit, and QLF has no object of that shape (J).")
+    print("  Delta = 2/3 stays open, now with ZERO live candidates.")
 
 
 def third_curvature_deep_check(max_len: int = 12):
@@ -1815,6 +1951,7 @@ def main():
     third_curvature_audit()
     wall_audit()
     epsilon_audit()
+    rotation_number_audit()
 
 
 if __name__ == "__main__":
