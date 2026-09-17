@@ -127,6 +127,12 @@ RESULT (depth ≤ 14, exact rationals; ordering stable from depth 8 to 20):
   structure is robust: complementarity within an axis, symmetry breaking across axes, depth
   dominated.  A Stag Hunt does not emerge from closure counting at any of these levels.
 
+  Prisoner's Dilemma (`--race --deep` also scans for it; pre-registered H_PD: a PD-type pair —
+  D dominant over C, yet mutual C better than mutual D — exists; kill: none).  RESULT: H_PD
+  killed — 0 PD-type pairs, and in ALL 102 of 102 dominance relations the dominant strategy
+  also has the better mutual outcome.  The census race has no defection structure: a closure is
+  a shared event, so there is no private payoff to capture at a partner's expense.
+
     python3 evolutionary_census.py               # seeds of length ≤ 2, horizon 2
     python3 evolutionary_census.py --t 3         # horizon 3 (slower)
     python3 evolutionary_census.py --alphabets   # strategies as move sets, horizons 2 and 3
@@ -419,7 +425,18 @@ def race_game(D: int = 14, deep: bool = False):
             kinds['anti'] += 1
         else:
             kinds['dominance'] += 1
+    pd = 0
+    harmony = 0
+    for i, j in itertools.permutations(range(n), 2):
+        c, d = i, j
+        if U[d][c] > U[c][c] and U[d][d] > U[c][d]:      # d dominates c
+            if U[c][c] > U[d][d]:
+                pd += 1
+            else:
+                harmony += 1
     print(f"pair types: {kinds}   Stag-Hunt-type: {sh}")
+    print(f"dominance relations: {pd + harmony}; Prisoner's-Dilemma-type (mutual C > mutual D): {pd}; "
+          f"dominant also collectively best: {harmony}")
 
     def replicator(x, steps=20000, dt=0.05):
         for _ in range(steps):
