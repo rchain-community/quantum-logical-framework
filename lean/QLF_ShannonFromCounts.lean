@@ -23,8 +23,8 @@ ratios of integers.
   `log W = Σ p i · log (W i) + (−Σ p i · log (p i))`.
   The Boltzmann entropy of the whole is the expected Boltzmann entropy of the cells **plus** the
   Shannon entropy of the partition. So `−Σ p log p` is exactly the information *in the partition* —
-  the information that learning the cell buys when information is `log ways`. This is why the
-  Shannon form is forced for non-uniform way-counts: it is the only thing `log W − E[log W i]` can be.
+  the information that learning the cell buys when information is `log ways`: it is what
+  `log W − E[log W i]` *is*, for any multiplicities, uniform or not.
 * **`shannon_uniform`** — with one way per cell, the partition entropy is `log n`: Shannon *is*
   Boltzmann on the uniform census, recovering the finite wing.
 * **`shannon_indep_join`** — for independent censuses (way-counts multiply, `W i · V j`, the
@@ -35,11 +35,14 @@ ratios of integers.
 
 ## Honest scope
 
-This is the derivation of the `−Σ p log p` form from counts — **given** that information is
-`log ways` (the uniform wing). It is *not* the Faddeev / Baez–Fritz–Leinster uniqueness theorem
-(that only this form satisfies the grouping rule with continuity): that is a statement about all
-conceivable measures on a continuum of weights, and QLF's claim is the discrete one, that the
-census forces the form the way it forces the count. No axioms.
+This is the **consistency** direction: *given* that information is `log ways`, the general
+non-uniform partition carries the Shannon form and satisfies the grouping rule (whole = expected
+cells + partition) and independent additivity. It is **not** the **necessity** direction — that
+grouping plus a regularity axiom forces the logarithm (Faddeev / Baez–Fritz–Leinster), which
+[`Information_Physics.md`](../Information_Physics.md) §10 records as open: "ways multiply,
+information adds" alone does not force `log` (completely additive arithmetic functions are free
+on the primes). What is settled is that once `log` is anchored on the binary census
+(`QLF_EntropyUniqueness`), nothing further is needed for the non-uniform form. No axioms.
 -/
 
 namespace QLF.ShannonFromCounts
@@ -157,7 +160,8 @@ theorem shannon_indep_join {κ : Type*} [Fintype κ] [Nonempty ι] [Nonempty κ]
 /-- **Status.** Given information = `log ways` (the uniform wing, `QLF_EntropyUniqueness`), the
     Shannon form for a non-uniform way-count partition is the identity
     `−Σ p log p = log W − Σ p log Wᵢ`, it reduces to `log n` on the uniform census, and it adds on
-    independent joins. The form is derived from counting, not postulated. -/
+    independent joins: the consistency direction is closed. The necessity direction (grouping +
+    regularity ⟹ `log`) stays open, as `Information_Physics.md` §10 records. -/
 theorem shannon_from_counts_summary : True := trivial
 
 end QLF.ShannonFromCounts

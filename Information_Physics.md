@@ -580,9 +580,12 @@ negative-entropy potential `φ = −H` (dual coordinates `θ` natural ↔ `η` e
 1/φ''(η)`), and the **generalized Pythagorean theorem** holds — `D(P‖R) = D(P‖Q) + D(Q‖R)` when `Q` is
 the information projection of `R` onto a linear family containing `P` (m-geodesic ⊥ e-geodesic). So the
 whole of Amari's information geometry — metric, two flat connections, the Pythagorean theorem — is the
-census's own, built on the KL the substrate already machine-checks. **Still open (#142):** the
-**continuum** (`n→∞`) rendering of this manifold, and the general distributional entropy-uniqueness
-beyond the finite-counting wing (`QLF_EntropyUniqueness`).
+census's own, built on the KL the substrate already machine-checks. **Where #142 lands:** the
+distributional wing's consistency direction is machine-checked ([`QLF_ShannonFromCounts`](lean/QLF_ShannonFromCounts.lean), §10);
+the **continuum** (`n→∞`) rendering of the manifold — the α-connection family in the scaling limit —
+is a rendering-layer statement about an exponential family (Amari 2016, Ch. 2–3), settled mathematics
+that changes no count of ways ([`Philosophy.md`](Philosophy.md) §3a rule 4), so it is recorded here as
+citation rather than pursued as a derivation target.
 
 ---
 
@@ -692,7 +695,13 @@ made constructive end-to-end.
   (`Ω(n)` is additive and is not a log). What is proven is the uniform binary case — `W = 2ⁿ` with the
   one-bit anchor gives `H = log W` (`QLF_EntropyUniqueness`) — i.e. **the logarithm is forced on the
   census QLF has**. The general (non-uniform, arbitrary-multiplicity) theorem needs a
-  grouping/regularity axiom and is open.
+  grouping/regularity axiom and is open — in its **necessity** direction. Its **consistency**
+  direction is now machine-checked ([`QLF_ShannonFromCounts`](lean/QLF_ShannonFromCounts.lean),
+  #142): given `log ways`, the non-uniform partition carries the Shannon form as the identity
+  `log W = Σ pᵢ log Wᵢ + (−Σ pᵢ log pᵢ)` (`log_total_eq_expected_log_add_shannon`), reduces to
+  `log n` on the uniform census, and adds on independent joins (`shannon_indep_join`) — the grouping
+  rule holds with no further axiom. What remains open is only that grouping + regularity *forces*
+  `log`.
 - **Born:** the `ℤ[i]`-norm ratios form a consistent finite probability measure, and the **exponent** is
   now explained rather than posited — the square is the ket–bra pair, and integrality rules the modulus
   out independently (`QLF_BornCounting`). The **degeneracy decomposition** is fixed by `μ₄`
