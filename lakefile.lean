@@ -242,5 +242,6 @@ lean_lib QLF where
     `QLF_EvolutionaryGames,
     `QLF_NPlayerPotential,
     `QLF_EdgeSign,
-    `QLF_PolyaTransience
+    `QLF_PolyaTransience,
+    `QLF_ProductWalk
   ]
