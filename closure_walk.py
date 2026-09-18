@@ -1,49 +1,33 @@
 #!/usr/bin/env python3
 """
-compression_census.py — can the substrate compress its own histories, and by how much?
+closure_walk.py — the census as a closed walk on ℤ⁴, and what that fixes.
 
-QLF holds the *theory* of lossless compression already: Kraft's inequality
-(`twist_kraft`, QLF_KraftMeasure), Shannon entropy from counts
-(`QLF_ShannonFromCounts`), Landauer's `ΔF = −log 2` per many-to-one closure
-(`QLF_FreeEnergy`), and unique factorization of every closure into primes
-(`decomposes_into_primes`, `irreducibility_invariant_is_dyson`). This script turns
-that theory into a measurement. Nothing here compresses a file — the input is
-the substrate's own object, a ZFA closure (a count-balanced twist history), and
-the question is how many bits one needs versus the raw `3 bits/twist` of the
-8-letter alphabet.
+A count-balanced history is a closed walk of the simple random walk on ℤ⁴: the eight
+twists are the unit vectors ±e_a of a four-dimensional lattice (one axis per conjugate
+pair; `+/−` is the fourth), and ZFA count balance is *the walk returns to the origin*.
+This script measures the constants that identification fixes, checks them against fresh
+enumeration, and verifies the ℤ₂ connection that carries the half-spin phase on top of
+the walk. Full write-up: `Closure_Walk.md`.
 
-Three codes, from the most knowledge to the least:
+Counted layer (exact integers, default to L = 1000):
+  * `W_L`  — closures of length L, via the ℤ²×ℤ² split (O(L) per length);
+  * `I_L`  — primes (first returns), from the Dyson recursion `I_L = W_L − Σ I_ℓ W_{L−ℓ}`;
+  * `F_L`  — total prime-factor count, so `F_L/W_L` is the mean number of returns;
+  * `M(L) = Σ_{ℓ≤L} I_ℓ 8^{−ℓ}` — the Kraft mass of the primes, whose limit is Pólya's
+    return probability `p₄ = 0.1932…`: the fraction of the uniform possibility measure
+    that ever closes at all.
 
-  1. **Enumerative (block) bound** — `log2 W_L / L` bits per twist, where `W_L`
-     is the count of closures of length `L` (`balanced_history_count`). This is
-     the Shannon floor for the set: no lossless code of length-`L` closures beats
-     it. Exact, counted, no enumeration.
+Enumerated checks (every closure to `--max-len`, 195,416 at 8): factors concatenate back,
+every factor is prime and Pauli-closed, prime counts equal `I_L`, factor totals equal
+`F_L`, and the **edge-sign rule** — sign of the step `x → x + s·e_a` is
+`s · (−1)^{Σ_{spatial b ranked above a} x_b}` — reproduces the fold phase of every
+closure (the phase is the holonomy of a ℤ₂ connection on the Cayley graph).
 
-  2. **Cylinder-prime code (streaming)** — factor the closure into primes (first
-     returns to balance; unique, `decomposes_into_primes`) and code each prime `π`
-     with the substrate's own measure, `q(π) = 8^{−|π|} / M`, `M = Σ_π 8^{−|π|}`.
-     The prime lengths never need to be known in advance and the code is
-     prefix-free by construction (`twist_kraft`): cost `3|π| + log2 M` per factor,
-     i.e. every closure *event* saves exactly `−log2 M` bits. `M` is the vacuum
-     first-closure Kraft mass, converged at `0.18267…` (`intermittency_bridge.py`),
-     recomputed here from the Dyson recursion `I_L = W_L − Σ I_ℓ W_{L−ℓ}`.
+Generative layer: for every prime to `--solve-len`, the least prefix from which
+`qucalc_search.solve` regenerates it — how much of a prime is the substrate's own choice.
 
-  3. **Seed + /solve (generative)** — keep only a prefix of a prime and let
-     `qucalc_search.solve` regenerate the rest: the decoder is the substrate's
-     own selection rule (least excursion → shortest → phase +1 → lex). Stores
-     `k` raw twists for a prime of length `|π|`; ratio `k/|π|`. Only the primes
-     the substrate *would have chosen* from a short seed compress this way —
-     the fraction that do, by how much, is the measurement ("the most ways
-     happen first", read as a codec).
-
-Invariants asserted against fresh enumeration (all length ≤ `--max-len`):
-  * every closure factors uniquely into primes, and the factors concatenate back;
-  * the enumerated prime counts equal the Dyson recursion `I_L`;
-  * `Σ_{closures of length L} #factors` equals the DP total `F_L`;
-  * the cylinder-prime code is Kraft-legal (`Σ q(π) ≤ 1` at every truncation).
-
-Run:  python3 compression_census.py [--max-len 8] [--solve-len 6] [--dp-len 1000]  (~3 min)
-Writes data/compression_census.json.
+Run:  python3 closure_walk.py [--max-len 8] [--solve-len 6] [--dp-len 1000]  (~3 min)
+Writes data/closure_walk.json.
 """
 from __future__ import annotations
 
@@ -59,7 +43,7 @@ from census_inventory import (balanced_histories, balanced_history_count,
 from qucalc_search import solve, max_excursion
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-OUT_PATH = os.path.join(_HERE, "data", "compression_census.json")
+OUT_PATH = os.path.join(_HERE, "data", "closure_walk.json")
 RAW_BITS = 3.0                         # log2 8, one twist
 
 
@@ -85,6 +69,37 @@ def prime_factors(h: str) -> list[str]:
 
 def is_prime(h: str) -> bool:
     return len(prime_factors(h)) == 1
+
+
+# --------------------------------------------------------------------------- #
+# the ℤ₂ connection — the half-spin phase as a holonomy on the Cayley graph
+# --------------------------------------------------------------------------- #
+_AX = {'^': (0, 1), 'v': (0, -1), '>': (1, 1), '<': (1, -1),
+       '/': (2, 1), '\\': (2, -1), '+': (3, 1), '-': (3, -1)}
+_RANK = {1: 0, 0: 1, 2: 2}          # spatial axes X < Y < Z (census AXIS_ORDER); gauge axis 3 commutes
+
+
+def edge_sign(x: list[int], a: int, s: int) -> int:
+    """Sign carried by the directed edge x → x + s·e_a: the twist's own sign times
+    (−1)^(Σ x_b over spatial axes b ranked above a). The parity of the axis-b count so far
+    equals the parity of x_b, so this is the inversion count the phase rule adds — a
+    function of the node, which is what makes it a connection on the graph."""
+    sgn = s
+    if a != 3 and sum(x[b] for b in (0, 1, 2) if _RANK[b] > _RANK[a]) % 2:
+        sgn = -sgn
+    return sgn
+
+
+def connection_phase(h: str) -> str:
+    """Product of edge signs along the path — the holonomy. Equals `fold_phase` on
+    every closure (asserted by the enumerated layer)."""
+    x = [0, 0, 0, 0]
+    sgn = 1
+    for c in h:
+        a, s = _AX[c]
+        sgn *= edge_sign(x, a, s)
+        x[a] += s
+    return "+1" if sgn > 0 else "-1"
 
 
 # --------------------------------------------------------------------------- #
@@ -200,6 +215,8 @@ def enumerated_layer(max_len: int, counted: dict) -> dict:
             if len(fs) == 1:
                 primes += 1
             total_factors += len(fs)
+            if connection_phase(h) != fold_phase(h):
+                problems.append(f"L={L}: edge-sign rule ≠ fold phase for {h}")
         if n != counted["W"][L]:
             problems.append(f"L={L}: enumerated {n} ≠ counted W_L {counted['W'][L]}")
         if primes != counted["I"][L]:
@@ -283,7 +300,7 @@ def main(argv=None) -> int:
     print(f"enumerated check to L={args.max_len}: "
           f"{'OK' if not enum['problems'] else 'FAILED'} "
           f"({sum(r['closures'] for r in enum['by_length'].values())} closures, "
-          f"unique factorization + Dyson primes + factor totals)")
+          f"unique factorization + Dyson primes + factor totals + edge-sign rule = fold phase)")
     print()
 
     sl = solve_layer(args.solve_len)

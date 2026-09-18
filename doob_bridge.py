@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-doob_bridge.py — sample ZFA closures *proportional to ways*: the census as a diffusion model.
+doob_bridge.py — sample ZFA closures uniformly, by the h-transform of the closure walk.
 
 A count-balanced history is a closed walk on ℤ⁴ (one axis per conjugate pair). Conditioning
 the free walk to return to the origin at step `L` is **Doob's h-transform**: at position `x`
@@ -9,9 +9,10 @@ with `t` steps left, take twist `e` with probability
     P(e | x, t) = h(x + e, t − 1) / h(x, t),     h(x, t) = #walks of length t from x to 0,
 
 and the result is exactly uniform over the `W_L` closures — the step probabilities telescope
-to `h(0,0)/h(0,L) = 1/W_L`. The drift `∇ log h` is the **score** a diffusion model has to
-learn from data; here it is a count, written down. `qucalc_search.solve` is the argmax of
-the same `h` (the mode, "what happens in the most ways happens first"); this is the sampler.
+to `h(0,0)/h(0,L) = 1/W_L`. `qucalc_search.solve` is the argmax of the same `h` (the mode,
+"what happens in the most ways happens first"); this is the sampler. It samples the
+*unsigned* census — ways, not the half-spin phase, which is a ℤ₂ holonomy on top of the
+walk (`Closure_Walk.md` §2) and cannot drive a sampler (it goes negative).
 
 Why it matters: rejection sampling (draw a random string, keep it if it closes) succeeds
 with probability `W_L / 8^L ≈ (8/π²)/L²` — one in 12,000 at `L = 100`. The bridge never
@@ -23,7 +24,13 @@ What is asserted, per run:
   * **exactness, empirical** — at `L = 6` a chi-square of sample counts against the
     enumerated census, per max-excursion stratum and prime/composite;
   * **agreement with the counted layer at scale** — the sample mean of the number of prime
-    factors at `L ∈ {20, 50, 100}` versus the exact `F_L / W_L` of `compression_census.py`.
+    factors at `L ∈ {20, 50, 100}` versus the exact `F_L / W_L` of `closure_walk.py`.
+
+**Primes only.** Swap `h` for the taboo count `f(x, t)` — walks from `x` that reach the
+origin for the *first* time at step `t`, read off the first-return decomposition
+`h(x,t) = Σ_s f(x,s)·W_{t−s}` — and the same bridge samples uniformly over the `I_L`
+primes (it telescopes to `1/I_L`, since `Σ_e f(e, L−1) = I_L` is the Dyson recursion).
+`sample_prime` is that; it never emits a composite and never rejects.
 
 Run:  python3 doob_bridge.py [--samples 20000] [--max-len 100] [--seed 1]
 Writes data/doob_bridge.json.
@@ -39,7 +46,7 @@ import sys
 from fractions import Fraction
 from functools import lru_cache
 
-from compression_census import prime_factors, counted_layer, closed_walk_count
+from closure_walk import prime_factors, counted_layer, closed_walk_count
 from census_inventory import balanced_histories, predicted_phase
 from qucalc_search import max_excursion
 
@@ -80,12 +87,25 @@ def h(x: tuple[int, int, int, int], t: int) -> int:
                for k in range(a + b, t - c - d + 1))
 
 
+@lru_cache(maxsize=None)
+def f_taboo(x: tuple[int, int, int, int], t: int) -> int:
+    """Walks of length t from x that reach the origin for the FIRST time at step t.
+    First-return decomposition: every walk x→0 in t steps first hits 0 at some s ≤ t
+    and then makes a closed walk of length t−s, so h(x,t) = Σ_s f(x,s)·W_{t−s}, and
+    f is read off by inverting. f(0,0) = 1; f(0,t>0) = 0 (already at the origin)."""
+    if x == (0, 0, 0, 0):
+        return 1 if t == 0 else 0
+    ht = h(x, t)
+    if ht == 0:
+        return 0
+    return ht - sum(f_taboo(x, s) * closed_walk_count(t - s) for s in range(1, t, 1)
+                    if (t - s) % 2 == 0)
+
+
 # --------------------------------------------------------------------------- #
 # the bridge
 # --------------------------------------------------------------------------- #
-def sample_closure(L: int, rng: random.Random, with_prob: bool = False):
-    """One closure of length L, uniform over the W_L. Optionally returns the exact
-    probability the sampler assigned it (a Fraction), for the telescoping check."""
+def _bridge(L: int, rng: random.Random, weight, with_prob: bool):
     x = [0, 0, 0, 0]
     out = []
     prob = Fraction(1)
@@ -94,7 +114,7 @@ def sample_closure(L: int, rng: random.Random, with_prob: bool = False):
         for e in TWISTS:
             ax, s = STEP[e]
             x[ax] += s
-            weights.append(h(tuple(x), t - 1))
+            weights.append(weight(tuple(x), t - 1))
             x[ax] -= s
         total = sum(weights)
         r = rng.randrange(total)                       # exact: no float in the choice
@@ -111,6 +131,19 @@ def sample_closure(L: int, rng: random.Random, with_prob: bool = False):
     assert x == [0, 0, 0, 0]
     hist = "".join(out)
     return (hist, prob) if with_prob else hist
+
+
+def sample_prime(L: int, rng: random.Random, with_prob: bool = False):
+    """One PRIME closure of length L (first return to balance at L), uniform over the
+    I_L primes: the same h-transform with the taboo count in place of h. Telescopes to
+    1/I_L because Σ_e f(e, L−1) = I_L (the Dyson recursion, read as first steps)."""
+    return _bridge(L, rng, f_taboo, with_prob)
+
+
+def sample_closure(L: int, rng: random.Random, with_prob: bool = False):
+    """One closure of length L, uniform over the W_L. Optionally returns the exact
+    probability the sampler assigned it (a Fraction), for the telescoping check."""
+    return _bridge(L, rng, h, with_prob)
 
 
 def score(x: tuple[int, int, int, int], t: int) -> list[float]:
@@ -184,7 +217,7 @@ def main(argv=None) -> int:
                                      for k in sorted(strata_exp)}}
 
     # 3. at scale: mean prime factors and closure depth vs the counted layer
-    counted = counted_layer(args.max_len)
+    counted = counted_layer(max(args.max_len, 50))
     Wd, Fd = counted["W"], counted["F"]
     scale = {}
     print("\nat scale (sample mean ± s.e. vs exact F_L/W_L):")
@@ -211,6 +244,52 @@ def main(argv=None) -> int:
                     "rejection_cost_strings_per_sample": rej}
     result["at_scale"] = scale
 
+    # 3b. primes only — the taboo bridge
+    print("\nprimes only (taboo h-transform):")
+    Id = counted["I"]
+    prime_tele = {}
+    for L in (4, 6, 8, 12, 20, 50):
+        ok = True
+        for _ in range(50):
+            hh, pr = sample_prime(L, rng, with_prob=True)
+            ok &= (pr == Fraction(1, Id[L])) and len(prime_factors(hh)) == 1
+        prime_tele[L] = ok
+        print(f"  L={L:>3}: 50 samples, each prime and assigned exactly 1/I_L = 1/{Id[L]}: {'OK' if ok else 'FAIL'}")
+    if not all(prime_tele.values()):
+        return 1
+    primes6 = [hh for hh in census if len(prime_factors(hh)) == 1]
+    pexp = {}
+    for hh in primes6:
+        key = f"exc={max_excursion(hh)},{predicted_phase(hh)}"
+        pexp[key] = pexp.get(key, 0) + 1
+    pobs, pseen = {}, {}
+    for _ in range(n):
+        hh = sample_prime(6, rng)
+        key = f"exc={max_excursion(hh)},{predicted_phase(hh)}"
+        pobs[key] = pobs.get(key, 0) + 1
+        pseen[hh] = pseen.get(hh, 0) + 1
+    I6 = len(primes6)
+    pexpected = {k: v * n / I6 for k, v in pexp.items()}
+    pchi, pdof = chi_square(pobs, pexpected)
+    pchi_all = sum((pseen.get(hh, 0) - n / I6) ** 2 / (n / I6) for hh in primes6)
+    print(f"  L=6, {n} samples vs the {I6} enumerated primes: strata chi² = {pchi:.1f} on {pdof} dof; "
+          f"per-prime chi² = {pchi_all:.0f} on {I6 - 1} dof (sd {math.sqrt(2 * (I6 - 1)):.0f})")
+    pscale = {}
+    for L in sorted({20, 50, args.max_len}):
+        if L > args.max_len or L % 2:
+            continue
+        m = max(200, args.samples // L)
+        excs = [max_excursion(sample_prime(L, rng)) for _ in range(m)]
+        mean_e = sum(excs) / m
+        frac = Id[L] / Wd[L]
+        print(f"  L={L:>4}: {m} primes; mean depth {mean_e:.2f} (all closures {scale[L]['mean_max_excursion']:.2f}); "
+              f"primes are {frac:.3f} of closures, so filtering the closure bridge would waste 1 in {1 / (1 - frac):.2f}")
+        pscale[L] = {"samples": m, "mean_max_excursion": mean_e, "prime_fraction_exact": frac}
+    result["primes"] = {"telescoping_exact": prime_tele,
+                        "L6_check": {"I": I6, "strata_chi2": pchi, "strata_dof": pdof,
+                                     "per_prime_chi2": pchi_all, "per_prime_dof": I6 - 1},
+                        "at_scale": pscale}
+
     # 4. the score: discrete ∇ log h against the Gaussian −4x/t
     print("\nscore ∇log h at (x, t) vs Gaussian −4x_i/t:")
     sc = {}
@@ -223,6 +302,7 @@ def main(argv=None) -> int:
 
     ex = [sample_closure(args.max_len, rng) for _ in range(3)]
     result["examples"] = ex
+    result["prime_examples"] = [sample_prime(args.max_len, rng) for _ in range(2)]
     print(f"\nthree uniform closures at L={args.max_len}:")
     for e in ex:
         print(f"  {e}  (factors {len(prime_factors(e))}, depth {max_excursion(e)})")
