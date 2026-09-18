@@ -120,7 +120,7 @@ theorem walkCount_eight : walkCount 8 = 190120 := by decide
 theorem choose_mul_succ_succ (L k : ℕ) (hk : k ≤ L) :
     L.choose k * ((L + 1) * (L + 1 + 1))
       = (L + 1 + 1).choose (k + 1) * ((k + 1) * (L + 1 - k)) := by
-  have h1 : (L + 1) * L.choose k = (L + 1).choose (k + 1) * (k + 1) := Nat.succ_mul_choose_eq L k
+  have h1 : (L + 1) * L.choose k = (L + 1).choose (k + 1) * (k + 1) := Nat.add_one_mul_choose_eq L k
   have h2 : (L + 1).choose (k + 1) * (L + 1 + 1)
       = (L + 1 + 1).choose (k + 1) * (L + 1 + 1 - (k + 1)) := Nat.choose_mul_succ_eq (L + 1) (k + 1)
   have h3 : L + 1 + 1 - (k + 1) = L + 1 - k := by omega
