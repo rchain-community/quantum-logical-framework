@@ -801,7 +801,7 @@ was pushed to convergence with an **exact transfer recursion** — forward propa
 `(−1)^{L/2}·(−1)^{inv}` (for a closure `#neg = L/2` exactly; `inv` = the `QLF_PhaseRule` axis-inversion
 parity, its update local because the axis-count parities equal the excursion parities). It reproduces the
 brute counts (`8, 104, 2944, 108136, 4525888`, per-phase) exactly, and reaches `R = 11` where the total
-first-closure Kraft mass is converged to `M(∞) = 0.18267…`. The per-octave flux multiplier
+first-closure Kraft mass is converged to `M(∞) = 0.18267…` (converged in `R`; truncated at `L = 22` — the length limit is Pólya's `ℤ⁴` return probability `0.1932`, see [`Data_Compression.md`](Data_Compression.md) §3a; the `W(R)` profile below is unaffected). The per-octave flux multiplier
 `W(R) = ΔM(R)/ΔM(R−1)` then reads `0.25, 0.43, 0.52, 0.47, 0.37, 0.28, 0.20, 0.14, 0.09, 0.04` — it rises
 to a peak near `R = 4` and then **decays monotonically toward 0**. There is **no inertial range**: the
 per-octave census flux does not cascade scale-invariantly, it dies out (the deepest strata hold `O(1)`
