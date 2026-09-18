@@ -42,7 +42,7 @@ Invariants asserted against fresh enumeration (all length ≤ `--max-len`):
   * `Σ_{closures of length L} #factors` equals the DP total `F_L`;
   * the cylinder-prime code is Kraft-legal (`Σ q(π) ≤ 1` at every truncation).
 
-Run:  python3 compression_census.py [--max-len 8] [--solve-len 6] [--dp-len 200]  (~2 min)
+Run:  python3 compression_census.py [--max-len 8] [--solve-len 6] [--dp-len 1000]  (~3 min)
 Writes data/compression_census.json.
 """
 from __future__ import annotations
@@ -90,10 +90,20 @@ def is_prime(h: str) -> bool:
 # --------------------------------------------------------------------------- #
 # counted layer — W_L, I_L (Dyson), F_L (total factor count), all exact
 # --------------------------------------------------------------------------- #
+def closed_walk_count(L: int) -> int:
+    """`W_L` as a closed walk on ℤ⁴ = ℤ² × ℤ²: split the `L` steps between the two
+    planes, each plane closing in `C(k, k/2)²` ways. Equals `balanced_history_count`
+    (asserted below for small `L`) but O(L) per length instead of O(L³)."""
+    return sum(math.comb(L, k) * math.comb(k, k // 2) ** 2 * math.comb(L - k, (L - k) // 2) ** 2
+               for k in range(0, L + 1, 2))
+
+
 def counted_layer(dp_len: int) -> dict:
     W = {0: 1}
     for L in range(2, dp_len + 1, 2):
-        W[L] = balanced_history_count(L)
+        W[L] = closed_walk_count(L)
+        if L <= 12:
+            assert W[L] == balanced_history_count(L), f"W_{L} split-count mismatch"
     # Dyson: G = 1/(1 − I)  ⟺  W_L = Σ_{ℓ} I_ℓ W_{L−ℓ}, so I_L = W_L − Σ_{ℓ<L} I_ℓ W_{L−ℓ}
     I = {}
     for L in range(2, dp_len + 1, 2):
@@ -116,13 +126,33 @@ POLYA_P4 = 0.193201673        # P(return to origin), simple random walk on Z^4 (
                               # value: Finch, *Mathematical Constants*, §5.9)
 
 
+def _tail_fit(f, L3: int) -> float:
+    """Fit f(L) = f∞ − a/L − b/L² through L3/2, 3L3/4, L3 and return f∞."""
+    Ls = [L3 // 2, (3 * L3) // 4, L3]
+    Ls = [L - (L % 2) for L in Ls]
+    A = [[1.0, -1 / L, -1 / L ** 2] for L in Ls]
+    y = [f(L) for L in Ls]
+
+    def det(m):
+        return (m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1])
+                - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+                + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
+    return det([[y[i]] + A[i][1:] for i in range(3)]) / det(A)
+
+
+def sci(n: int) -> str:
+    """`n` in scientific notation without going through float (8^1000 overflows)."""
+    d = str(n)
+    return d if len(d) < 8 else f"{d[0]}.{d[1:4]}e+{len(d) - 1}"
+
+
 def rates(counted: dict, dp_len: int) -> dict:
     W, F, M_partial = counted["W"], counted["F"], counted["M_partial"]
     M_trunc = float(M_partial[dp_len])
-    # the tail of Σ_π 8^{-|π|} decays like a/L (first-return probability ~ L^{-2} in d=4),
-    # so one Richardson step on the partial sums estimates the limit
+    # the tail of Σ_π 8^{-|π|} decays like a/L + b/L² (first-return probability ~ L^{-2}
+    # in d=4), so a three-point fit on the partial sums pins the limit
+    M = _tail_fit(lambda L: float(M_partial[L]), dp_len)
     half = (dp_len // 2) - ((dp_len // 2) % 2)
-    M = 2 * M_trunc - float(M_partial[half])
     save_per_event = -math.log2(M)          # bits every closure event is worth
     rows = {}
     for L in range(2, dp_len + 1, 2):
@@ -142,7 +172,8 @@ def rates(counted: dict, dp_len: int) -> dict:
     return {"M_inf": M, "M_truncated": M_trunc, "polya_p4": POLYA_P4,
             "bits_saved_per_closure_event": save_per_event,
             "W_L_L2_over_8L": W[dp_len] * dp_len ** 2 / 8 ** dp_len,   # → 8/π² = 0.8106
-            "mean_prime_factors_extrapolated": 2 * F[dp_len] / W[dp_len] - F[half] / W[half],
+            "mean_prime_factors_extrapolated": _tail_fit(lambda L: F[L] / W[L], dp_len),
+            "bridge_returns_conjecture": (1 + POLYA_P4) / (1 - POLYA_P4),
             "by_length": rows}
 
 
@@ -225,7 +256,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-len", type=int, default=8, help="enumerated check ceiling")
     ap.add_argument("--solve-len", type=int, default=6, help="seed+/solve ceiling")
-    ap.add_argument("--dp-len", type=int, default=200, help="counted-layer ceiling")
+    ap.add_argument("--dp-len", type=int, default=1000, help="counted-layer ceiling")
     args = ap.parse_args(argv)
 
     counted = counted_layer(args.dp_len)
@@ -236,12 +267,12 @@ def main(argv=None) -> int:
     print(f"W_L·L²/8^L at L={args.dp_len}: {rt['W_L_L2_over_8L']:.4f}  (8/π² = {8 / math.pi ** 2:.4f}) "
           f"→ a length-L closure is compressible by only 2·log2 L − log2(8/π²) bits in total")
     print(f"mean prime factors per closure: extrapolated {rt['mean_prime_factors_extrapolated']:.4f} "
-          f"(bounded — the Z⁴ walk is transient)")
+          f"(bounded — the Z⁴ walk is transient; (1+p₄)/(1−p₄) = {rt['bridge_returns_conjecture']:.4f})")
     print()
     print(f"{'L':>3} {'closures':>14} {'primes':>14} {'E#fac':>7} {'enum':>7} {'prime':>7}   ratio(enum/prime)")
     for L, r in rt["by_length"].items():
-        if L <= 12 or L in (16, 24, 32, 48, 64, 96, 128, 200):
-            print(f"{L:>3} {float(r['closures']):>14.4g} {float(r['primes']):>14.4g} {r['mean_prime_factors']:>7.3f} "
+        if L <= 12 or L in (16, 32, 64, 128, 200, 400, 600, 800, 1000):
+            print(f"{L:>3} {sci(r['closures']):>14} {sci(r['primes']):>14} {r['mean_prime_factors']:>7.3f} "
                   f"{r['enumerative_bits_per_twist']:>7.4f} {r['cylinder_prime_bits_per_twist']:>7.4f}   "
                   f"{r['enumerative_ratio']:.3f} / {r['cylinder_prime_ratio']:.3f}")
     print()

@@ -1,0 +1,141 @@
+{
+ "samples": 20000,
+ "seed": 1,
+ "telescoping_exact": {
+  "4": true,
+  "6": true,
+  "8": true,
+  "12": true,
+  "20": true,
+  "50": true
+ },
+ "L6_check": {
+  "W": 5120,
+  "strata_chi2": 0.6140482861743731,
+  "strata_dof": 6,
+  "per_closure_chi2": 5210.3679999999695,
+  "per_closure_dof": 5119,
+  "strata": {
+   "exc=1,composite,-1": {
+    "expected": 2000.0,
+    "observed": 2017
+   },
+   "exc=2,composite,+1": {
+    "expected": 1500.0,
+    "observed": 1508
+   },
+   "exc=2,composite,-1": {
+    "expected": 5000.0,
+    "observed": 4972
+   },
+   "exc=2,prime,+1": {
+    "expected": 1687.5,
+    "observed": 1702
+   },
+   "exc=2,prime,-1": {
+    "expected": 3593.75,
+    "observed": 3597
+   },
+   "exc=3,prime,+1": {
+    "expected": 2625.0,
+    "observed": 2606
+   },
+   "exc=3,prime,-1": {
+    "expected": 3593.75,
+    "observed": 3598
+   }
+  }
+ },
+ "at_scale": {
+  "20": {
+   "samples": 1000,
+   "mean_factors": 1.629,
+   "se": 0.027859201983099355,
+   "exact_mean_factors": 1.6013798961377506,
+   "mean_max_excursion": 4.936,
+   "phase_plus_fraction": 0.479,
+   "rejection_cost_strings_per_sample": 517.9943218806183
+  },
+  "50": {
+   "samples": 400,
+   "mean_factors": 1.57,
+   "se": 0.04306840161934414,
+   "exact_mean_factors": 1.5605128278990406,
+   "mean_max_excursion": 8.145,
+   "phase_plus_fraction": 0.5175,
+   "rejection_cost_strings_per_sample": 3145.88259504863
+  },
+  "100": {
+   "samples": 200,
+   "mean_factors": 1.45,
+   "se": 0.05,
+   "exact_mean_factors": 1.531751563798595,
+   "mean_max_excursion": 11.41,
+   "phase_plus_fraction": 0.445,
+   "rejection_cost_strings_per_sample": 12460.349836760763
+  }
+ },
+ "score_vs_gaussian": {
+  "(3, 0, 0, 0),21": {
+   "score": [
+    -0.5607440650983861,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "gaussian": [
+    -0.5714285714285714,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "(3, 0, 0, 0),101": {
+   "score": [
+    -0.11873578782180921,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "gaussian": [
+    -0.1188118811881188,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "(5, 2, 0, 1),100": {
+   "score": [
+    -0.19984184855597747,
+    -0.08039729495486368,
+    0.0,
+    -0.04023213803604309
+   ],
+   "gaussian": [
+    -0.2,
+    -0.08,
+    0.0,
+    -0.04
+   ]
+  },
+  "(5, 2, 0, 1),400": {
+   "score": [
+    -0.04999781006350133,
+    -0.020006175857284442,
+    0.0,
+    -0.01000359218016325
+   ],
+   "gaussian": [
+    -0.05,
+    -0.02,
+    0.0,
+    -0.01
+   ]
+  }
+ },
+ "examples": [
+  "/v<\\^/++/+-\\\\\\<v+v^^\\-^++v-^>^</+>-/>/<>>\\--</^-+^/>v/\\-+-v<+\\>-^<->+v+<^-/+^+v--^v^\\--<>+vv<v<v>\\>+",
+  "/v-+v-<v\\-^\\/+--+-+v-v\\^><-/^>/+^+^^/-v>-\\//+^v<>+\\---^++<^+v+>\\v++-v<\\^>>^\\v++-^-\\/+v\\///<<\\/-v^\\-+",
+  "\\+\\/+-^/\\>/>\\<-v<>^-\\>v-><\\>+v+^++^<+/v-\\-^\\-vv-^^v-<-\\-\\\\v<//\\//</v--+>><<>/>+v<\\/\\/v+^>^^<+</>+/+^"
+ ]
+}
