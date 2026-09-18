@@ -147,8 +147,19 @@ The directed vector graph of ZFA, at capacity `R`:
   ball is the capacity; a directed cycle is an event; its holonomy is its spin phase; the flux through a
   plaquette is anticommutation. Nothing on the graph is an observer.
 
-This is a finite object at any `R` (`R = 3`: `129 × 2` nodes, `≤ 8` edges each) and can be built and drawn
-directly; the phase, the depth law and `/solve` are all graph-local.
+**Built, checked and rendered** — [`closure_graph.py`](closure_graph.py) → [`closure_graph.html`](closure_graph.html)
+([live](https://rchain-community.github.io/quantum-logical-framework/closure_graph.html); self-contained canvas,
+drag to rotate, hover a node for `h(x,t)`) and [`data/closure_graph_R3.json`](data/closure_graph_R3.json). At
+`R = 3`: **129 nodes, 528 directed edges** (264 undirected, 56 carrying connection `−1`), **168 plaquettes of
+which exactly the 84 spanned by two spatial axes carry π flux**, double cover 258 nodes / 1056 edges. Asserted on
+the built graph: the ball sizes `9, 41, 129, 321` for `R = 1…4`; the connection sign is direction-independent
+(the twist sign is the direction); every plaquette holonomy is `−1` iff both axes are spatial; and **walking the
+graph reproduces the census** — closed walks at the origin number `8, 168, 5120` for `t = 2, 4, 6` (`W_t`), and
+with edges weighted by their signs the closed-walk sum is `−8, 120, −2144`, the signed census `Σ phase` exactly
+(the `|A_L| = 8 → 120 → 2144` of [`Perturbation_Theory_QLF.md`](Perturbation_Theory_QLF.md), now as a matrix
+power on a 129-node graph). So the graph carries both the count and the spin phase, and the signed amplitude of
+[`Born_Rule.md`](Born_Rule.md) is a walk on it. The gauge axis is drawn as a skew fourth direction; its edges are
+dashed and never carry `−1`.
 
 ## 4. The sampler
 
