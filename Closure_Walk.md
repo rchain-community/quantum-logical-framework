@@ -97,7 +97,8 @@ the parity of `x_b` (count = pos + neg, `x_b` = pos − neg); so the increment i
 > carrying no inversion sign (it commutes with everything).
 
 The phase of a history is the product of its edge signs — its **holonomy**. Verified: `connection_phase` equals
-`fold_phase` on all 195,416 closures to `L = 8`, zero mismatches (asserted on every run). The `s` factor is
+`fold_phase` on all 195,416 closures to `L = 8`, zero mismatches (asserted on every run) — and **proved** for every
+history in [`QLF_EdgeSign`](lean/QLF_EdgeSign.lean) (`holonomy_eq_invCount`, `fold_eq_connectionPhase`). The `s` factor is
 `(−1)^{L/2}` on any closure, a global gauge; the content is the inversion sign, and its flux is:
 
 | plaquette | loop | holonomy |
@@ -194,8 +195,12 @@ distribution, a binomial count.
 - The mean-returns limit `(1 + p₄)/(1 − p₄)` is conjectural (one digit short).
 - The signed count `A(x, t)` on the graph — the quantum content — is defined here but not computed at scale; the
   signed census results are in [`Born_Rule.md`](Born_Rule.md) and [`contextual_census.py`](contextual_census.py).
-- Nothing here is Lean. The natural anchors: the edge-sign rule as a restatement of `phase_rule` (it is the same
-  rule with the inversion count made node-local — a short proof), and the `ℤ²×ℤ²` count as `balanced_history_count`.
+- **The edge-sign rule is now Lean** — [`QLF_EdgeSign`](lean/QLF_EdgeSign.lean), no axioms: `holonomy_eq_invCount`
+  (the walk's ℤ₂ holonomy from the origin is the inversion parity, for *every* history, proved by carrying the
+  letter counts beside the position — they agree mod 2 — and showing the count-walk accumulates exactly the
+  inversions), `connectionPhase_eq_predictedPhase` (the product of edge signs is the certified two-factor rule),
+  `fold_eq_connectionPhase` (on a balanced history the Pauli fold *is* the holonomy), and the four plaquette
+  fluxes of §2 decided. Not yet Lean: the `ℤ²×ℤ²` count as `balanced_history_count`, and the Pólya limit.
 
 ## 6. Provenance
 
