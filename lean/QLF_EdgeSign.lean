@@ -40,6 +40,10 @@ spatial plaquette twice is `+1` — spin-½ as a holonomy (`plaquette_yx`, `plaq
 No axioms.
 -/
 
+namespace QLF.EdgeSign
+
+open QLF QLF.PhaseRule
+
 -- ==========================================
 -- The walk on ℤ⁴
 -- ==========================================
@@ -270,3 +274,5 @@ theorem plaquette_gauge :
 theorem plaquette_twice :
     connectionPhase [Twist.up, Twist.right, Twist.down, Twist.left,
                      Twist.up, Twist.right, Twist.down, Twist.left] = 1 := by decide
+
+end QLF.EdgeSign
