@@ -57,6 +57,19 @@ jobs:
         run: |
           lake build
 
+      # Uploaded so a local build (e.g. on constrained hardware) can download the
+      # compiled QLF modules instead of recompiling from source. Mathlib's own oleans
+      # are excluded (they're separately cacheable via `lake exe cache get`), keeping
+      # this artifact to just this repo's own ~215 modules.
+      - name: Upload compiled QLF modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: qlf-olean-build
+          path: |
+            .lake/build/lib/lean
+            .lake/build/ir
+          retention-days: 7
+
       # The dependency footprint of the anchor theorems: which axioms the kernel
       # actually used, printed by lean/QLF_AxiomAudit.lean. Re-elaborated on its own so
       # the report is one contiguous block in the log rather than scattered through the
