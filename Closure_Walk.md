@@ -200,7 +200,15 @@ distribution, a binomial count.
   letter counts beside the position — they agree mod 2 — and showing the count-walk accumulates exactly the
   inversions), `connectionPhase_eq_predictedPhase` (the product of edge signs is the certified two-factor rule),
   `fold_eq_connectionPhase` (on a balanced history the Pauli fold *is* the holonomy), and the four plaquette
-  fluxes of §2 decided. Not yet Lean: the `ℤ²×ℤ²` count as `balanced_history_count`, and the Pólya limit.
+  fluxes of §2 decided.
+- **Transience is now Lean** — [`QLF_PolyaTransience`](lean/QLF_PolyaTransience.lean), no axioms, elementary:
+  `C(2m,m)²(3m+1) ≤ 16^m` ⟹ `W_L(L+1)(L+2) ≤ 4·8^L` ⟹ the return weight is summable with `Σ u ≤ 4` and tail
+  `≤ 4/(N+2)`; the renewal theorem `Σ a = 1 − 1/Σ u` then gives `polya_transience`: any first-return weights in
+  renewal relation with the `ℤ⁴` return weight have mass `≤ 3/4`. **Still to do** (issue #157): the bridge from
+  twist histories to the `ℤ²×ℤ²` formula (`QLF_ProductWalk`) and the Dyson identity as a bijection
+  (`QLF_FirstReturn`) — after which "at least a quarter of possibility never closes" is a theorem about the
+  census. The exact constant `p₄` is not a target (no closed form); the rigorous interval from exact partial sums
+  + the tail bound is.
 
 ## 6. Provenance
 
