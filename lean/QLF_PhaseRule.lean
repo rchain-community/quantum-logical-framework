@@ -1,5 +1,10 @@
 import QLF_TwistAlphabet
-import Mathlib
+import Mathlib.Algebra.Ring.Parity      -- Even.neg_one_pow, Odd.neg_one_pow, Nat.even_or_odd
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.NormNum
+-- Narrow imports on purpose: `import Mathlib` maps ~6 GB of oleans per elaboration, which on a
+-- 6.5 GB machine thrashes the page cache and turns a 20 s check into 30 min. Everything below
+-- `QLF_TwistAlphabet` is already narrow (Matrix.Hermitian, Complex.Basic, ZMod.Basic).
 
 set_option linter.unusedVariables false
 

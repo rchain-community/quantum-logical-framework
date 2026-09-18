@@ -1,5 +1,6 @@
 import QLF_PhaseRule
-import Mathlib
+import Mathlib.Tactic.Ring
+-- Narrow imports, as in QLF_PhaseRule: the whole chain below stays off `import Mathlib`.
 
 set_option linter.unusedVariables false
 
