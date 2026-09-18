@@ -240,5 +240,6 @@ lean_lib QLF where
     `QLF_ShannonFromCounts,
     `QLF_PotentialGames,
     `QLF_EvolutionaryGames,
-    `QLF_NPlayerPotential
+    `QLF_NPlayerPotential,
+    `QLF_EdgeSign
   ]
