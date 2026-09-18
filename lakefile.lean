@@ -241,5 +241,6 @@ lean_lib QLF where
     `QLF_PotentialGames,
     `QLF_EvolutionaryGames,
     `QLF_NPlayerPotential,
-    `QLF_EdgeSign
+    `QLF_EdgeSign,
+    `QLF_PolyaTransience
   ]
