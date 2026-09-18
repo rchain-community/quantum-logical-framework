@@ -405,6 +405,7 @@ QLF reading: the path-integral sum gives $\cos(\theta/2)$ as the constructively-
 - [Entanglement.md](Entanglement.md) — Bell violations from the non-commutative algebra
 - [Experimental_Consistency.md](Experimental_Consistency.md) — §2.1 on the count-balance ∧ Pauli-closure ZFA conjunction
 - `path_integral.py` — QuCalc path enumeration
+- [Closure_Walk.md](Closure_Walk.md) — the possibility tree as a walk on $\mathbb{Z}^4$; the phase as a $\mathbb{Z}_2$ holonomy, so the signed sum $A$ is a walk on the signed graph (`closure_graph.py` reproduces $-8, 120, -2144$ as a matrix power); ways-proportional sampling of closures and primes (`doob_bridge.py`)
 
 ### External
 

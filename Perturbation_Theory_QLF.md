@@ -246,6 +246,7 @@ higher-order numbers are gated on the one open coupling that gates the rest of t
 - [`Alpha.md`](Alpha.md) §4a · [`g_minus_2.md`](g_minus_2.md) · [`Lamb_Shift.md`](Lamb_Shift.md) — the
   one-loop sector worked in detail.
 - [`lean/QLF_ExactRG.lean`](lean/QLF_ExactRG.lean) — the exact-RG recursion, finiteness and convergence.
+- [`Closure_Walk.md`](Closure_Walk.md) — the per-order signed sums `|A_L| = 8, 120, 2144` as closed walks on the signed graph of `ℤ⁴` (`closure_graph.py`); the prime Kraft mass `Σ_π 8^{−|π|}` identified as Pólya's `p₄ = 0.1932`, which is the absolutely convergent series' total in closed form.
 - [`lean/QLF_FractalDiagram.lean`](lean/QLF_FractalDiagram.lean) ·
   [`lean/QLF_VacuumPolarization.lean`](lean/QLF_VacuumPolarization.lean) ·
   [`lean/QLF_VacuumPolarizationTower.lean`](lean/QLF_VacuumPolarizationTower.lean) ·

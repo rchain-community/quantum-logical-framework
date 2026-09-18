@@ -70,6 +70,8 @@ that subobject is their equalizer in **Mon** (and in **Set**). Since **count bal
 (`count_balanced_pauli_closed`, [`QLF_TwistAlphabet`](lean/QLF_TwistAlphabet.lean)), this single
 equalizer *is* full ZFA — the second conjunct is entailed, not a separate condition.
 
+**Its geometry, read off** ([`Closure_Walk.md`](Closure_Walk.md)): the signed-action hom lands in `ℤ⁴`, so a history is a lattice path and the equalizer is the set of *closed walks* on `ℤ⁴`; the fibre over `x` is the set of paths ending at `x`, and `h(x, t)` = its cardinality at length `t` is what `/solve` maximises and the uniform sampler follows. The Pauli phase is not a function on the base — it is a `ℤ₂` cocycle on the Cayley graph (π flux through every mixed spatial plaquette), so the *signed* census is the equalizer lifted to the double cover.
+
 **`full_zeno_prune` as a reduction.** It rewrites a history to a normal form by cancelling adjacent
 conjugate pairs; the ZFA-closed histories are its fibre over `[]`. It is the substrate's
 **normalisation functor** onto reduced words — the analogue of free-group reduction. Whether it is
