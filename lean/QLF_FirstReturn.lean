@@ -30,7 +30,7 @@ open Finset QLF QLF.PolyaTransience QLF.ProductWalk
 /-- `h` is a **prime** (a first closure): nonempty, balanced, and no proper non-empty prefix of
     `h` is itself balanced. -/
 def IsPrime (h : List Twist) : Prop :=
-  0 < h.length ∧ countBalanced h ∧ ∀ k, 0 < k → k < h.length → ¬ countBalanced (h.take k)
+  0 < h.length ∧ countBalanced h ∧ ∀ k, k < h.length → 0 < k → ¬ countBalanced (h.take k)
 
 instance : DecidablePred IsPrime := fun h => by unfold IsPrime; infer_instance
 
@@ -65,19 +65,21 @@ theorem prime_take_of_prime_append (p q : List Twist) (hp : IsPrime p) :
 theorem prime_prefix_unique (h : List Twist) (ℓ1 ℓ2 : ℕ) (hl1 : ℓ1 ≤ h.length)
     (hl2 : ℓ2 ≤ h.length) (hp1 : IsPrime (h.take ℓ1)) (hp2 : IsPrime (h.take ℓ2)) :
     ℓ1 = ℓ2 := by
+  have hp1l : 0 < (h.take ℓ1).length := hp1.1
+  have hp2l : 0 < (h.take ℓ2).length := hp2.1
+  have htl1 : (h.take ℓ1).length = ℓ1 := by rw [List.length_take]; omega
+  have htl2 : (h.take ℓ2).length = ℓ2 := by rw [List.length_take]; omega
   by_contra hne
   rcases lt_or_gt_of_ne hne with hlt | hgt
   · have heq : (h.take ℓ2).take ℓ1 = h.take ℓ1 := by
       rw [List.take_take, min_eq_left hlt.le]
-    obtain ⟨-, hb1, -⟩ := hp1
-    obtain ⟨-, -, hu2⟩ := hp2
-    have hlen2 : (h.take ℓ2).length = ℓ2 := by rw [List.length_take]; omega
+    have hb1 := hp1.2.1
+    have hu2 := hp2.2.2
     exact hu2 ℓ1 (by omega) (by omega) (by rw [heq]; exact hb1)
   · have heq : (h.take ℓ1).take ℓ2 = h.take ℓ2 := by
-      rw [List.take_take, min_eq_right hgt.le]
-    obtain ⟨-, -, hu1⟩ := hp1
-    obtain ⟨-, hb2, -⟩ := hp2
-    have hlen1 : (h.take ℓ1).length = ℓ1 := by rw [List.length_take]; omega
+      rw [List.take_take, min_eq_left hgt.le]
+    have hb2 := hp2.2.1
+    have hu1 := hp1.2.2
     exact hu1 ℓ2 (by omega) (by omega) (by rw [heq]; exact hb2)
 
 theorem prime_prefix_exists (h : List Twist) (hb : countBalanced h) (hL : 0 < h.length) :
@@ -90,7 +92,7 @@ theorem prime_prefix_exists (h : List Twist) (hb : countBalanced h) (hL : 0 < h.
   refine ⟨Nat.find hex, hle, ?_, ?_, ?_⟩
   · rw [List.length_take, min_eq_left hle]; exact (Nat.find_spec hex).1
   · exact (Nat.find_spec hex).2
-  · intro k hk0 hklt
+  · intro k hklt hk0
     rw [List.length_take, min_eq_left hle] at hklt
     have heq : (h.take (Nat.find hex)).take k = h.take k := by
       rw [List.take_take, min_eq_left hklt.le]
@@ -235,7 +237,7 @@ theorem renewal_relation (L : ℕ) :
   · simp [returnWeight_zero, a_zero]
   · rw [if_neg (by omega), Finset.sum_range_succ']
     have hzero : a 0 * returnWeight (L - 0) = 0 := by rw [a_zero]; ring
-    rw [hzero, add_zero]
+    rw [hzero, add_zero, zero_add]
     have hstep : ∑ k ∈ Finset.range L, a (k + 1) * returnWeight (L - (k + 1)) =
         ∑ k ∈ Finset.range L, (primeCount (k + 1) * walkCount (L - (k + 1)) : ℝ) / 8 ^ L := by
       apply Finset.sum_congr rfl
