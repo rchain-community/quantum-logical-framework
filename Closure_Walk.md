@@ -204,11 +204,14 @@ distribution, a binomial count.
 - **Transience is now Lean** — [`QLF_PolyaTransience`](lean/QLF_PolyaTransience.lean), no axioms, elementary:
   `C(2m,m)²(3m+1) ≤ 16^m` ⟹ `W_L(L+1)(L+2) ≤ 4·8^L` ⟹ the return weight is summable with `Σ u ≤ 4` and tail
   `≤ 4/(N+2)`; the renewal theorem `Σ a = 1 − 1/Σ u` then gives `polya_transience`: any first-return weights in
-  renewal relation with the `ℤ⁴` return weight have mass `≤ 3/4`. **Still to do** (issue #157): the bridge from
-  twist histories to the `ℤ²×ℤ²` formula (`QLF_ProductWalk`) and the Dyson identity as a bijection
-  (`QLF_FirstReturn`) — after which "at least a quarter of possibility never closes" is a theorem about the
-  census. The exact constant `p₄` is not a target (no closed form); the rigorous interval from exact partial sums
-  + the tail bound is.
+  renewal relation with the `ℤ⁴` return weight have mass `≤ 3/4`. **The bridge from twist histories to the
+  `ℤ²×ℤ²` formula is now Lean** — [`QLF_ProductWalk`](lean/QLF_ProductWalk.lean), no axioms:
+  `card_balanced_twist` proves `card {ts : List Twist // ts.length = L ∧ countBalanced ts} = walkCount L` for
+  every `L`, via the diagonal encoding applied twice (within a plane, `Plane1 ≃ Bool × Bool`; across the two
+  planes, a marker list splits a twist history into its two plane subsequences, with `riffle` the explicit
+  inverse). **Still to do** (issue #157): the Dyson identity as a bijection (`QLF_FirstReturn`) — after which
+  "at least a quarter of possibility never closes" is a theorem about the census. The exact constant `p₄` is not
+  a target (no closed form); the rigorous interval from exact partial sums + the tail bound is.
 
 ## 6. Provenance
 
