@@ -243,5 +243,6 @@ lean_lib QLF where
     `QLF_NPlayerPotential,
     `QLF_EdgeSign,
     `QLF_PolyaTransience,
-    `QLF_ProductWalk
+    `QLF_ProductWalk,
+    `QLF_FirstReturn
   ]
