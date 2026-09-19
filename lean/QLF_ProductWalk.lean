@@ -365,21 +365,25 @@ theorem card_balanced2 (k : ℕ) :
     ((words Plane2 k).filter (fun l => decide (balanced2 l))).card = w₂ k := by
   rw [← card_balanced1 k]
   apply Finset.card_bij' (fun l _ => l.map relabel21) (fun l _ => l.map relabel12)
-  · intro l hl
+  case hi =>
+    intro l hl
     simp only [Finset.mem_filter, mem_words, decide_eq_true_eq] at hl
     obtain ⟨hlen, hbal⟩ := hl
     have hbal' : balanced1 (l.map relabel21) := (balanced2_iff l).mp hbal
     simp [Finset.mem_filter, mem_words, hlen, hbal']
-  · intro l hl
+  case hj =>
+    intro l hl
     simp only [Finset.mem_filter, mem_words, decide_eq_true_eq] at hl
     obtain ⟨hlen, hbal⟩ := hl
     have hbal' : balanced2 (l.map relabel12) := by
       rw [balanced2_iff, List.map_map, relabel21_comp_relabel12, List.map_id]
       exact hbal
     simp [Finset.mem_filter, mem_words, hlen, hbal']
-  · intro l _
+  case left_inv =>
+    intro l _
     rw [List.map_map, relabel12_comp_relabel21, List.map_id]
-  · intro l _
+  case right_inv =>
+    intro l _
     rw [List.map_map, relabel21_comp_relabel12, List.map_id]
 
 -- ------------------------------------------
@@ -434,8 +438,10 @@ theorem riffle_correct (ts : List Twist) :
   | nil => rfl
   | cons t ts ih =>
       cases t <;>
-        simp [marker, plane1Sub, plane2Sub, matchP1, matchP2, isPlane1,
-          List.filterMap_cons, riffle, fromP1, fromP2, ih]
+        simp (config := { decide := true })
+          [marker, plane1Sub, plane2Sub, matchP1, matchP2, isPlane1,
+            List.filterMap_cons, riffle, fromP1, fromP2] <;>
+        exact ih
 
 /-- `riffle` is well-formed: given a marker and matching-length subsequences, it reconstructs
     exactly the marker and the two subsequences back. -/
@@ -464,9 +470,9 @@ theorem riffle_wf (m : List Bool) (l1 : List Plane1) (l2 : List Plane2)
                 simp only [List.length_cons] at h1; omega
               obtain ⟨im, i1, i2⟩ := ih l1 l2 h1' h2
               refine ⟨?_, ?_, ?_⟩
-              · simp [riffle, marker, isPlane1, im]
-              · simp [riffle, plane1Sub, matchP1_fromP1, i1]
-              · simp [riffle, plane2Sub, matchP2_fromP1, i2]
+              · simp (config := { decide := true }) [riffle, marker, isPlane1] <;> exact im
+              · simp (config := { decide := true }) [riffle, plane1Sub, matchP1_fromP1] <;> exact i1
+              · simp (config := { decide := true }) [riffle, plane2Sub, matchP2_fromP1] <;> exact i2
       | false =>
           have hc1 : (false :: m).count true = m.count true := by simp [List.count_cons]
           have hc2 : (false :: m).count false = m.count false + 1 := by simp [List.count_cons]
@@ -479,9 +485,9 @@ theorem riffle_wf (m : List Bool) (l1 : List Plane1) (l2 : List Plane2)
                 simp only [List.length_cons] at h2; omega
               obtain ⟨im, i1, i2⟩ := ih l1 l2 h1 h2'
               refine ⟨?_, ?_, ?_⟩
-              · simp [riffle, marker, isPlane1, im]
-              · simp [riffle, plane1Sub, matchP1_fromP2, i1]
-              · simp [riffle, plane2Sub, matchP2_fromP2, i2]
+              · simp (config := { decide := true }) [riffle, marker, isPlane1] <;> exact im
+              · simp (config := { decide := true }) [riffle, plane1Sub, matchP1_fromP2] <;> exact i1
+              · simp (config := { decide := true }) [riffle, plane2Sub, matchP2_fromP2] <;> exact i2
 
 theorem length_marker (ts : List Twist) : (marker ts).length = ts.length := by simp [marker]
 
@@ -575,14 +581,16 @@ theorem card_fiber_marker (L : ℕ) (m : List Bool) (hm : m ∈ words Bool L) :
       w₂ (m.count true) * w₂ (m.count false) := by
   rw [← card_balanced1 (m.count true), ← card_balanced2 (m.count false), ← Finset.card_product]
   apply Finset.card_bij' (fun ts _ => (plane1Sub ts, plane2Sub ts)) (fun p _ => riffle m p.1 p.2)
-  · intro ts hts
+  case hi =>
+    intro ts hts
     simp only [Finset.mem_filter, mem_words, decide_eq_true_eq] at hts
     obtain ⟨hlen, hbal, hmark⟩ := hts
     have hb := (countBalanced_iff ts).mp hbal
     have hlen1 : (plane1Sub ts).length = m.count true := by rw [length_plane1Sub, hmark]
     have hlen2 : (plane2Sub ts).length = m.count false := by rw [length_plane2Sub, hmark]
     simp [Finset.mem_product, Finset.mem_filter, mem_words, hlen1, hlen2, hb.1, hb.2]
-  · intro p hp
+  case hj =>
+    intro p hp
     obtain ⟨l1, l2⟩ := p
     simp only [Finset.mem_product, Finset.mem_filter, mem_words, decide_eq_true_eq] at hp
     obtain ⟨⟨hl1len, hb1⟩, hl2len, hb2⟩ := hp
@@ -592,11 +600,13 @@ theorem card_fiber_marker (L : ℕ) (m : List Bool) (hm : m ∈ words Bool L) :
     have hbalr : countBalanced (riffle m l1 l2) := by
       rw [countBalanced_iff, i1, i2]; exact ⟨hb1, hb2⟩
     simp [Finset.mem_filter, mem_words, hlenr, hbalr, im]
-  · intro ts hts
+  case left_inv =>
+    intro ts hts
     simp only [Finset.mem_filter, mem_words, decide_eq_true_eq] at hts
     obtain ⟨_, _, hmark⟩ := hts
     rw [← hmark]; exact riffle_correct ts
-  · intro p hp
+  case right_inv =>
+    intro p hp
     obtain ⟨l1, l2⟩ := p
     simp only [Finset.mem_product, Finset.mem_filter, mem_words, decide_eq_true_eq] at hp
     obtain ⟨⟨hl1len, _⟩, hl2len, _⟩ := hp
@@ -616,7 +626,7 @@ theorem card_balanced_twist (L : ℕ) :
     simp only [Finset.mem_filter, mem_words, decide_eq_true_eq, Finset.mem_biUnion]
     constructor
     · rintro ⟨hlen, hbal⟩
-      exact ⟨marker ts, by rw [mem_words, length_marker, hlen], hlen, hbal, rfl⟩
+      exact ⟨marker ts, by rw [length_marker, hlen], hlen, hbal, rfl⟩
     · rintro ⟨m, _, hlen, hbal, _⟩
       exact ⟨hlen, hbal⟩
   rw [hpart1]
@@ -672,5 +682,6 @@ theorem card_balanced_twist (L : ℕ) :
       simp only [Finset.mem_filter, decide_eq_true_eq] at hm
       rw [hm.2]
     rw [Finset.sum_congr rfl hconst, Finset.sum_const, smul_eq_mul, card_filter_count_true]
+    ring
   rw [Finset.sum_congr rfl hstep2]
   rfl
