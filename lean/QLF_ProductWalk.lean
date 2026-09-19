@@ -422,6 +422,8 @@ theorem matchP1_fromP1 (p : Plane1) : matchP1 (fromP1 p) = some p := by cases p 
 theorem matchP2_fromP1 (p : Plane1) : matchP2 (fromP1 p) = none := by cases p <;> rfl
 theorem matchP1_fromP2 (p : Plane2) : matchP1 (fromP2 p) = none := by cases p <;> rfl
 theorem matchP2_fromP2 (p : Plane2) : matchP2 (fromP2 p) = some p := by cases p <;> rfl
+theorem isPlane1_fromP1 (p : Plane1) : isPlane1 (fromP1 p) = true := by cases p <;> rfl
+theorem isPlane1_fromP2 (p : Plane2) : isPlane1 (fromP2 p) = false := by cases p <;> rfl
 
 /-- Reassemble a twist history from a marker pattern and its two plane subsequences. -/
 def riffle : List Bool → List Plane1 → List Plane2 → List Twist
@@ -470,7 +472,8 @@ theorem riffle_wf (m : List Bool) (l1 : List Plane1) (l2 : List Plane2)
                 simp only [List.length_cons] at h1; omega
               obtain ⟨im, i1, i2⟩ := ih l1 l2 h1' h2
               refine ⟨?_, ?_, ?_⟩
-              · simp (config := { decide := true }) [riffle, marker, isPlane1] <;> exact im
+              · simp (config := { decide := true }) [riffle, marker] <;>
+                  exact ⟨isPlane1_fromP1 p, im⟩
               · simp (config := { decide := true }) [riffle, plane1Sub, matchP1_fromP1] <;> exact i1
               · simp (config := { decide := true }) [riffle, plane2Sub, matchP2_fromP1] <;> exact i2
       | false =>
@@ -485,7 +488,8 @@ theorem riffle_wf (m : List Bool) (l1 : List Plane1) (l2 : List Plane2)
                 simp only [List.length_cons] at h2; omega
               obtain ⟨im, i1, i2⟩ := ih l1 l2 h1 h2'
               refine ⟨?_, ?_, ?_⟩
-              · simp (config := { decide := true }) [riffle, marker, isPlane1] <;> exact im
+              · simp (config := { decide := true }) [riffle, marker] <;>
+                  exact ⟨isPlane1_fromP2 p, im⟩
               · simp (config := { decide := true }) [riffle, plane1Sub, matchP1_fromP2] <;> exact i1
               · simp (config := { decide := true }) [riffle, plane2Sub, matchP2_fromP2] <;> exact i2
 
