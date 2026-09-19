@@ -209,9 +209,15 @@ distribution, a binomial count.
   `card_balanced_twist` proves `card {ts : List Twist // ts.length = L ∧ countBalanced ts} = walkCount L` for
   every `L`, via the diagonal encoding applied twice (within a plane, `Plane1 ≃ Bool × Bool`; across the two
   planes, a marker list splits a twist history into its two plane subsequences, with `riffle` the explicit
-  inverse). **Still to do** (issue #157): the Dyson identity as a bijection (`QLF_FirstReturn`) — after which
-  "at least a quarter of possibility never closes" is a theorem about the census. The exact constant `p₄` is not
-  a target (no closed form); the rigorous interval from exact partial sums + the tail bound is.
+  inverse). **The Dyson identity as a bijection is now Lean** — [`QLF_FirstReturn`](lean/QLF_FirstReturn.lean),
+  no axioms, closing issue #157: a balanced history splits *uniquely* at its first closure into a **prime**
+  prefix (no proper non-empty balanced prefix of its own) and an arbitrary balanced remainder
+  (`prime_prefix_unique`/`prime_prefix_exists`), giving `walkCount L = Σ_{ℓ=1}^{L} I(ℓ)·walkCount(L−ℓ)`
+  (`walkCount_eq_sum_prime`) where `I(ℓ)` counts length-`ℓ` primes. The prime Kraft weight `a(k) = I(k)/8^k`
+  satisfies exactly the renewal relation `polya_transience` needs, so **"at least a quarter of possibility
+  never closes" (`at_least_quarter_never_closes`) is now a theorem about the twist census**, not a numerical
+  observation. The exact constant `p₄` is not a target (no closed form); the rigorous interval from exact
+  partial sums + the tail bound is.
 
 ## 6. Provenance
 
