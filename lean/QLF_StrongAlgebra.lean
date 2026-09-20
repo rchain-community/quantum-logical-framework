@@ -125,7 +125,6 @@ theorem su3_commutator_nonzero : h1 * h3 - h3 * h1 ≠ 0 := by
   have h01 : (h1 * h3 - h3 * h1) 0 1 = (0 : M3) 0 1 := by rw [h]
   simp [h1, h3, Matrix.mul_apply, Fin.sum_univ_three, Matrix.sub_apply,
         Matrix.zero_apply, Complex.I_mul_I] at h01
-  norm_num at h01
 
 /-- **The genuine `su(3)`, machine-verified**: `h1, h3` are traceless, anti-Hermitian, and
     non-commuting — real elements of the compact gauge algebra, not merely of its complexification
