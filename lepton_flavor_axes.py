@@ -9,7 +9,7 @@ engage **two** axes {x, y} (`interleaved_xlvr_folds_to_negI`). The open question
 is each generation's axis/colour **content**.
 
 This tool reads off, for any twist loop, which spatial axes it engages
-(`^v`=Y, `><`=X, `/\`=Z), its Pauli fold, and whether it closes (ZFA) — reusing
+(`^v`=Y, `><`=X, `/\\`=Z), its Pauli fold, and whether it closes (ZFA) — reusing
 `twist_core.py`. It then **enumerates** short spatial ZFA loops and classifies
 them by axis content, exhibiting the candidate space for e / μ / τ: the
 electron's {x, y} is the verified anchor, and 1-axis, other-2-axis, and 3-axis

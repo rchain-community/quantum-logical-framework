@@ -149,6 +149,19 @@ the short spatial ZFA closures and classifies them by axis content, splitting `B
 singlets** (candidate "three-colour" lepton content, `^v<>/\`) vs **576 `B≠0` baryons** (correctly confined).
 So a colour-neutral 3-axis lepton genuinely exists and is distinct from the 3-axis baryon.
 
+**Narrowing by the electron's own construction** ([`lepton_flavor_interleave.py`](lepton_flavor_interleave.py),
+toward issue #140): `^<v>` isn't just *a* two-axis singlet — it never repeats an axis on the next twist,
+cyclically (Y,X,Y,X). Exhaustively searching by that one criterion (not guessing specific loops) finds: at
+length 4 every axis pair has exactly 8 such singlets, **all folding to `−I`** (`^<v>` is one of the 8 in
+`{x,y}`); at length 6 the construction is a **dead end for both colours** — a two-axis interleaved loop needs
+3 occurrences per axis, which can never count-balance (parity), and the 768 count-balanced three-axis
+candidates exist but *none* achieve Pauli closure (an algebraic obstruction, not a parity one); at length 8
+**both families reopen** — 72 interleaved `B=0` singlets per axis pair and 288 at the full `{x,y,z}`, this
+time **all folding to `+I`**, the opposite sign from length 4. So the natural next rung after the electron in
+this family is not "one step deeper" but depth 4, where a `{x,y}` candidate (same colour as `e`) and an
+`{x,y,z}` candidate (first to reach `z`) sit at the *same* depth, distinguished by axis content rather than
+depth — with depth 3 structurally forbidden to the whole family.
+
 **This connects directly to Koide — the open piece is now *located*.** `QLF_Koide` derives `Q = 2/3` from
 `N = 3` axes ∧ `A² = 2` — the **two *transverse* axes**, the one longitudinal axis being the common "1"
 (`koide_two_thirds`, verified `Q = 0.6667` to 0.001%; `m_τ = 1776.97` MeV, 0.006%). And the electron `^<v>`
