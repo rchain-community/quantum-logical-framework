@@ -57,11 +57,14 @@ but *not* a Riemannian symmetric space (that stronger condition would force `[m,
 initially mistaken for a bug before identifying the correct classical fact).
 
 What *is* real: `[m,m]`'s projection onto `h` is **surjective** — every one of the 8 gluon generators
-is reachable as a bracket of two quark-type elements — and the gluon-fraction of `‖[m,m]‖` sits at
-`~0.50` with tight variance (std `0.054`) across 2000 random pairs in `m`, not just the raw basis
-choice — a genuine, basis-independent structural ratio. This is the real-Lie-algebra shadow of the
-physical `3⊗3̄ = 1⊕8` decomposition (quark-antiquark → singlet + gluon octet), not identical to it (`m`
-realifies the complex "3", so this is the closest analogue available in this structure, not a literal
+is reachable as a bracket of two quark-type elements — and the gluon-fraction is **exactly `1/2`**, not
+merely close to it: summed as a basis-independent energy trace (`‖h-part‖²` vs `‖m-part‖²`) over all 15
+pairs of a Killing-orthonormal basis of `m` (not a Monte Carlo estimate — an initial random-sampling
+pass gave `~0.50` with std `0.054` across 2000 pairs, consistent with but not establishing the exact
+value), both totals come out to `4.000000` on the nose — suggestively equal to `dim(h)/2`. This is the
+real-Lie-algebra shadow of the physical `3⊗3̄ = 1⊕8` decomposition (quark-antiquark → singlet + gluon
+octet), not identical to it (`m` realifies the complex "3", so this is the closest analogue available
+in this structure, not a literal
 derivation of QCD's Clebsch-Gordan decomposition).
 
 ## 4. G2's root system and a positive-geometry connection ([`octonion_g2_root_system.py`](octonion_g2_root_system.py))
@@ -114,9 +117,9 @@ exist explicitly, alongside the original Hermitian ones).
 - **The `≥5D, 3-at-a-time` hypothesis more broadly.** Octonions (7 imaginary units) are one concrete
   instantiation; whether QLF's physics actually needs or uses this structure, versus it being a
   mathematically clean but physically unmotivated generalization, is undecided.
-- **The quark/gluon bracket's `~0.50` ratio.** Observed and verified, not yet derived from a general
-  principle (e.g. the nearly-Kähler torsion normalization of `G2/SU(3)`, which plausibly fixes it
-  exactly — not checked).
+- ~~**The quark/gluon bracket's ratio.**~~ **Resolved to `1/2` exactly** (§3, an energy-trace invariant,
+  not sampling) — but *why* it's exactly `1/2` (e.g. via the nearly-Kähler torsion normalization of
+  `G2/SU(3)`, which plausibly forces it) is not derived, only observed and machine-verified.
 - **The positive-root cone's canonical form.** Its existence and vertex count are established (§4); its
   literal canonical differential form (the object positive-geometry theory actually studies) has not
   been computed.
