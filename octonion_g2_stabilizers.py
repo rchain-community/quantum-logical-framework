@@ -35,6 +35,12 @@ by citation):
     just a dimension count) and closed under the Lie bracket (residual
     ~1e-16) -- consistent with the classical embedding chain
     G2 (dim 14) > SU(3) (dim 8) > SU(2) (dim 3).
+  - the SU(3) stabilizer acts on the remaining 6 imaginary units as an
+    irreducible COMPLEX-type representation (commutant = {I, J}, J^2=-I,
+    verified) -- the realified FUNDAMENTAL "3" (quark-like), NOT the
+    ADJOINT "8" gluons live in. So this specific construction is
+    quark-adjacent, not glueball-adjacent -- see the VERDICT for what that
+    does and doesn't rule out.
 
 HONEST SCOPE: this confirms the classical G2 > SU(3) > SU(2) stabilizer chain
 independently, from a from-scratch octonion construction -- a real
@@ -237,8 +243,56 @@ def main() -> None:
     coeffs, *_ = np.linalg.lstsq(B.T, comm.flatten(), rcond=None)
     residual = np.linalg.norm(comm.flatten() - B.T @ coeffs)
     print(f"  closed under the bracket (residual, should be ~0): {residual:.2e}")
-
     print()
+
+    print("=" * 78)
+    print("What representation does SU(3) act in on the remaining 6 units?")
+    print("(quark-like 'fundamental' vs gluon-like 'adjoint' -- decides whether")
+    print(" this construction is glueball- or quark-adjacent)")
+    print("=" * 78)
+    rest_idx = [2, 3, 4, 5, 6, 7]
+    mats6 = [m[np.ix_(rest_idx, rest_idx)] for m in mats]
+
+    def commutant_basis(mats6, tol=1e-9):
+        rows = []
+        for D in mats6:
+            for a in range(6):
+                for b in range(6):
+                    row = np.zeros(36)
+                    for k in range(6):
+                        row[k * 6 + b] += D[a, k]
+                        row[a * 6 + k] -= D[k, b]
+                    rows.append(row)
+        R = np.array(rows)
+        U, S, Vt = np.linalg.svd(R)
+        rank = int(np.sum(S > tol))
+        return Vt[rank:]
+
+    null = commutant_basis(mats6)
+    print(f"  commutant dimension = {null.shape[0]}")
+    print("    (1 => real-type irrep; 2 => complex-type irrep, an invariant J with J^2=-I;")
+    print("     4 => quaternionic-type. Adjoint 'gluon' content would show as a DIFFERENT")
+    print("     dimension (8) with a different structure, not seen here since this acts")
+    print("     on a 6-dim space, not the 8-dim stabilizer itself.)")
+
+    if null.shape[0] == 2:
+        I6 = np.eye(6)
+        coeffs, *_ = np.linalg.lstsq(null.T, I6.flatten(), rcond=None)
+        I_rec = (null.T @ coeffs).reshape(6, 6)
+        i_flat = I_rec.flatten() / np.linalg.norm(I_rec.flatten())
+        j_flat = null[1] - np.dot(null[1], i_flat) * i_flat
+        j_flat /= np.linalg.norm(j_flat)
+        J = j_flat.reshape(6, 6)
+        I_norm = I_rec / (np.trace(I_rec) / 6)
+        alpha = np.sqrt(abs(-I_norm[0, 0] / (J @ J)[0, 0]))
+        J = alpha * J
+        j2_residual = np.linalg.norm(J @ J + I_norm)
+        print(f"  invariant complex structure J found; ||J^2 + I|| = {j2_residual:.2e}  (should be ~0)")
+        print("  => the 6-dim real space is an IRREDUCIBLE COMPLEX-TYPE representation:")
+        print("     the su(3) fundamental '3' (quark-like), realified to 6 real dimensions --")
+        print("     the classical nearly-Kahler structure on the 6-sphere.")
+    print()
+
     print("=" * 78)
     print("""VERDICT
 
@@ -250,6 +304,16 @@ def main() -> None:
   dimensions (consistent with su(2)). The classical chain G2 > SU(3) > SU(2)
   is real and reproducible from the same construction this session already
   used for the Fano-plane triple census.
+
+  NEW: the SU(3) stabilizer acts on the remaining 6 imaginary units as the
+  (realified) FUNDAMENTAL representation, not the adjoint -- i.e. quark-like
+  content, not gluon-like. A glueball reading needs the ADJOINT (8-dim, built
+  from the stabilizer subalgebra's own structure constants acting on itself,
+  which every Lie algebra does trivially) -- so this specific 6-unit
+  complement is the wrong place to look for glueballs. The earlier
+  glueball_candidates.py axis-pair-symmetric closures (built directly on
+  QLF's existing 3-spatial-axis construction, not this octonion stabilizer)
+  remain a SEPARATE, not obviously related, candidate route to glueballs.
 
   NOT established: whether THIS su(3)/su(2) is the same representation as
   QLF's existing strong/weak gauge algebras, or merely an abstractly
