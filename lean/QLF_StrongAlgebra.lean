@@ -18,7 +18,11 @@ as a Lie algebra (the same rigor level as the weak `weak_isospin_su2`):
 
 DIMENSION: `8 = 3² − 1` is the codimension-1 trace constraint on the
 9-dimensional space of 3×3 matrices (one linear equation `trace = 0`). The
-explicit `g1, g3` below are two of those 8 traceless generators.
+explicit `g1, g3` below are two of those 8 traceless generators — Hermitian,
+in the style of the (Hermitian) Gell-Mann matrices. `h1 := i·g1, h3 := i·g3`
+are the genuinely anti-Hermitian generators — literal elements of the compact
+`su(3)` (see `su3_anti_hermitian_summary`), matching the convention
+`BraKetRhoQuCalc.lean` already uses for the weak sector (`τᵢ = i·σᵢ`).
 
 SCOPE: this is the Lie-algebra identification only — it does NOT derive the
 strong coupling, the confinement scale, or asymptotic freedom (those stay open;
@@ -71,5 +75,73 @@ theorem gluon_commutator_nonzero : g1 * g3 - g3 * g1 ≠ 0 := by
 theorem strong_su3_summary :
     (∀ A B : M3, (A * B - B * A).trace = 0) ∧ (g1 * g3 - g3 * g1 ≠ 0) :=
   ⟨trace_commutator_zero, gluon_commutator_nonzero⟩
+
+/-! ### The genuine su(3) generators — anti-Hermitian, not Hermitian
+
+    `g1, g3` are traceless and non-commuting, but they are **Hermitian** (real symmetric) — so they
+    are not literally elements of `su(3)`, the compact real Lie algebra of *anti-Hermitian* traceless
+    matrices (the same distinction `BraKetRhoQuCalc.lean`'s weak sector is careful about: `τᵢ = i·σᵢ`,
+    explicitly anti-Hermitian, not the Hermitian Pauli matrices `σᵢ` themselves). The genuine `su(3)`
+    generators built from `g1, g3` are `i·g1, i·g3`: traceless, anti-Hermitian, and non-abelian in the
+    same way — closing within the anti-Hermitian slice specifically, not just within `sl(3,ℂ)`. -/
+
+/-- The genuine (anti-Hermitian) `su(3)` generator `i·g1`. -/
+def h1 : M3 := !![0, Complex.I, 0; Complex.I, 0, 0; 0, 0, 0]
+
+/-- The genuine (anti-Hermitian) `su(3)` generator `i·g3`. -/
+def h3 : M3 := !![Complex.I, 0, 0; 0, -Complex.I, 0; 0, 0, 0]
+
+theorem h1_eq_I_smul_g1 : h1 = Complex.I • g1 := by
+  apply Matrix.ext; intro i j
+  fin_cases i <;> fin_cases j <;> simp [h1, g1]
+
+theorem h3_eq_I_smul_g3 : h3 = Complex.I • g3 := by
+  apply Matrix.ext; intro i j
+  fin_cases i <;> fin_cases j <;> simp [h3, g3]
+
+theorem h1_traceless : h1.trace = 0 := by
+  simp [h1, Matrix.trace_fin_three]
+
+theorem h3_traceless : h3.trace = 0 := by
+  simp [h3, Matrix.trace_fin_three]
+
+/-- **`h1` is genuinely anti-Hermitian**: `h1ᴴ = -h1`, unlike `g1` itself. -/
+theorem h1_isSkewHermitian : h1ᴴ = -h1 := by
+  apply Matrix.ext; intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp [h1, Matrix.conjTranspose_apply, Matrix.neg_apply] <;>
+    apply Complex.ext <;>
+    simp [Complex.conj_re, Complex.conj_im, Complex.neg_re, Complex.neg_im,
+          Complex.I_re, Complex.I_im]
+
+/-- **`h3` is genuinely anti-Hermitian**: `h3ᴴ = -h3`, unlike `g3` itself. -/
+theorem h3_isSkewHermitian : h3ᴴ = -h3 := by
+  apply Matrix.ext; intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp [h3, Matrix.conjTranspose_apply, Matrix.neg_apply] <;>
+    apply Complex.ext <;>
+    simp [Complex.conj_re, Complex.conj_im, Complex.neg_re, Complex.neg_im,
+          Complex.I_re, Complex.I_im]
+
+/-- **Non-abelian within the anti-Hermitian slice**: `[h₁, h₃] ≠ 0`. The same underlying fact as
+    `gluon_commutator_nonzero`, but now witnessed by genuine `su(3)` elements, not merely Hermitian
+    ones. -/
+theorem su3_commutator_nonzero : h1 * h3 - h3 * h1 ≠ 0 := by
+  intro h
+  have h01 : (h1 * h3 - h3 * h1) 0 1 = (0 : M3) 0 1 := by rw [h]
+  simp only [h1, h3, Matrix.mul_apply, Fin.sum_univ_three, Matrix.sub_apply,
+        Matrix.zero_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
+        Matrix.head_fin_const, Matrix.cons_val_two, Matrix.tail_cons] at h01
+  have : (-2 : ℂ) = 0 := by
+    have hII : Complex.I * Complex.I = -1 := Complex.I_mul_I
+    linear_combination h01 - 2 * hII
+  norm_num at this
+
+/-- **The genuine `su(3)`, machine-verified**: `h1, h3` are traceless, anti-Hermitian, and
+    non-commuting — real elements of the compact gauge algebra, not merely of its complexification
+    `sl(3,ℂ)`. -/
+theorem su3_anti_hermitian_summary :
+    h1.trace = 0 ∧ h3.trace = 0 ∧ h1ᴴ = -h1 ∧ h3ᴴ = -h3 ∧ h1 * h3 - h3 * h1 ≠ 0 :=
+  ⟨h1_traceless, h3_traceless, h1_isSkewHermitian, h3_isSkewHermitian, su3_commutator_nonzero⟩
 
 end QLF
