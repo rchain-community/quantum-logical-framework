@@ -67,6 +67,17 @@ octet), not identical to it (`m` realifies the complex "3", so this is the close
 in this structure, not a literal
 derivation of QCD's Clebsch-Gordan decomposition).
 
+**Why exactly `1/2`, not just that it is.** `Λ²_ℝ(m)` (15-dim) decomposes under `su(3)` as an 8-dim
+block (`→ h`) + a 1-dim trace block (predicted to vanish — Schur's lemma: no equivariant map from a
+trivial representation into the nontrivial irreducible `m`) + a 6-dim block isomorphic to `m` itself
+(`Λ²_ℂ(ℂ³) ≅ 3̄`, matching `m`'s own representation type). Verified directly: the bracket map
+`Λ²(m) → g2` has **rank 14/15 with an exact 1-dimensional kernel**, exactly as predicted, and its
+nonzero singular values split into **exactly two distinct values** — `1/√2` with multiplicity 8 (the
+`h`-block) and `√(2/3)` with multiplicity 6 (the `m`-block) — a **pure scalar on each irreducible
+block**, exactly as Schur's lemma requires for an equivariant map. The `1/2` split follows because
+`8·(1/√2)² = 6·(√(2/3))² = 4` exactly — these two specific, now-identified scalars, not a coincidence
+of the whole 15-dimensional map.
+
 ## 4. G2's root system and a positive-geometry connection ([`octonion_g2_root_system.py`](octonion_g2_root_system.py))
 
 Asked whether this thread bears on [issue #151](https://github.com/rchain-community/quantum-logical-framework/issues/151)'s
@@ -117,9 +128,11 @@ exist explicitly, alongside the original Hermitian ones).
 - **The `≥5D, 3-at-a-time` hypothesis more broadly.** Octonions (7 imaginary units) are one concrete
   instantiation; whether QLF's physics actually needs or uses this structure, versus it being a
   mathematically clean but physically unmotivated generalization, is undecided.
-- ~~**The quark/gluon bracket's ratio.**~~ **Resolved to `1/2` exactly** (§3, an energy-trace invariant,
-  not sampling) — but *why* it's exactly `1/2` (e.g. via the nearly-Kähler torsion normalization of
-  `G2/SU(3)`, which plausibly forces it) is not derived, only observed and machine-verified.
+- ~~**The quark/gluon bracket's ratio.**~~ **Resolved to `1/2` exactly, and explained** (§3): the
+  bracket map is a pure scalar on each of two irreducible blocks (Schur's lemma), `1/√2` on the 8-dim
+  `h`-block and `√(2/3)` on the 6-dim `m`-block, with `8·(1/√2)² = 6·(√(2/3))² = 4` producing the split.
+  What's *not* derived: why those two specific scalars (`1/√2`, `√(2/3)`) — presumably the nearly-Kähler
+  torsion normalization of `G2/SU(3)` fixes them, but that connection hasn't been made.
 - **The positive-root cone's canonical form.** Its existence and vertex count are established (§4); its
   literal canonical differential form (the object positive-geometry theory actually studies) has not
   been computed.
