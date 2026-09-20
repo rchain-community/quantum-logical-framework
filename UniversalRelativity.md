@@ -180,11 +180,15 @@ kept distinct):
   matter as denser logic on the *same* Hubble horizon, `a₀ = cH₀/2π` (the `1/2π` prefactor confirmed by
   the blind SPARC fit, [`DarkMatter.md`](DarkMatter.md)); the electroweak / mass scale `v = R_stable`,
   reduced to the single self-organized-critical density `ρ*` (frontier #1).
-- **Open residuals (named, not hidden).** The absolute SI `G`'s mass-scale half (via `ρ*`); the α
-  `+0.036` running tail; the `4 log 2` horizon-entropy normalization; the full **nonlinear** Einstein *curvature* side
-  (the causal-set order→metric programme — the linearized vacuum sector above is anchored,
-  [`Einstein_Equations.md`](Einstein_Equations.md) §6a); a
-  possible small dark-energy `w` deviation.
+- **Open residuals (named, not hidden).** The absolute SI `G`'s mass-scale half, the proton's absolute
+  depth `R_p`, and a third of the α `+0.036` running tail are **the same open number** — the electroweak
+  scale `v = R_stable = 1/ρ*` — whose *mechanism* is derived but whose *value* was tested directly and
+  found to have no clean substrate count (closed as [issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121), §8); the rest of the `0.036`
+  residual is under direct attack and reaches a **stated 4-loop QED wall** (elliptic/modular periods,
+  `Alpha_Residual.md` §9f–9g); the `4 log 2` horizon-entropy normalization; the full **nonlinear**
+  Einstein *curvature* side (the causal-set order→metric programme — the linearized vacuum sector above
+  is anchored, [`Einstein_Equations.md`](Einstein_Equations.md) §6a); a possible small dark-energy `w`
+  deviation.
 
 The single most complete companion is [`Quantum_Gravity.md`](Quantum_Gravity.md) — the master synthesis
 treating this completion as one face of a unified algebraic event (gravity, holography, expansion, the
@@ -657,9 +661,32 @@ in [`Experimental_Consistency.md`](Experimental_Consistency.md) §10):
 
 **Open absolute-scale residual (labeled — not a prediction).** The one genuinely open quantitative input
 is the absolute mass / electroweak scale `v = R_stable`, reduced structurally to the single SOC density
-`ρ*` (frontier #1); through it, the absolute SI `G`'s mass-scale half and the α `+0.036` running tail
-remain open. A small dark-energy `w` deviation is a *possible* signature, not a committed prediction.
-These are tracked as residuals, never counted as confirmations.
+`ρ*` (frontier #1). **This is one number wearing several names, not several open problems** — through it,
+the absolute SI `G`'s mass-scale half, the proton's absolute depth `R_p ≈ 1.30×10¹⁹` (equivalently
+`R_e ≈ 2.389×10²²`, [`Per_Qubit_Mass_Quantum.md`](Per_Qubit_Mass_Quantum.md)), and the threshold third of
+the α `+0.036` running tail (`Alpha.md` §4a) all bottom out at the *same* `ρ*`. Mass **ratios** through
+it are already derived and need no anchor (`m_p/m_e = 6π⁵`, Koide `Q=2/3`) — it is only the absolute
+scale that is open. **This was investigated directly and closed, not left dangling**
+([issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121)): the
+*mechanism* is fully derived and machine-checked — gauge folds provably attract
+(`QLF_ClosureAttraction`), the attraction supplies the restoring force for a unique steady density
+`ρ* = √(c/k)` (`QLF_SteadyStateDensity`), closing to `R_stable = 1/ρ*` (`QLF_ElectroweakScale`) — but the
+*value* of `ρ*` was tested against the closure census directly and found to have no clean substrate
+count; the near-matches were refused as fit-traps. So `v` stands as QLF's one deliberately undecided
+low-energy input, exactly mirroring the Standard Model's own single dimensionful parameter — not a gap
+in the derivation, but the honest edge of it.
+
+The α residual's other two-thirds are independent of `ρ*` and fare differently. The non-perturbative
+hadronic piece `Δα_had` is an external Standard-Model problem QLF does not touch. The **higher-order
+census tail** (length-4+ closures, [`Alpha_Residual.md`](Alpha_Residual.md) §9f–9g) is under direct
+attack: the QED `g−2` expansion's transcendental content is representable in the closure census's own
+central-binomial vocabulary — `ζ(2), ζ(3)` at one and two loops, then `ζ(4), ζ(5), Li₄(½)` through three
+loops via *nested* census sums (central-binomial multiple zeta values), each loop order adding one level
+of closure-nesting, verified to `10⁻¹³` against the published QED coefficients. That ladder hits a
+**stated wall at four loops**: the 4-loop `g−2` master integral carries genuine elliptic/modular periods
+— a different motive, not a central-binomial MZV at any nesting depth — so the census's own reach is
+bounded at 3-loop QED, by two independent arguments. A small dark-energy `w` deviation is a *possible*
+signature, not a committed prediction. These are tracked as residuals, never counted as confirmations.
 
 ## 9. Implementation in QLF
 
