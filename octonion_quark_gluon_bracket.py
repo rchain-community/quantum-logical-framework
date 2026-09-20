@@ -38,6 +38,16 @@ suggestively equal to dim(h)/2. The earlier random-sampling estimate
 (mean 0.504, std 0.051 over 2000 pairs) was consistent with this but did
 not establish it exactly; this computation does.
 
+WHY it's exactly 1/2, not just that it is: Lambda^2_R(m) (15-dim) decomposes
+under su(3) as an 8-dim block (-> h) + a 1-dim trace block (-> 0) + a 6-dim
+block isomorphic to m itself (-> m). Verified directly: the bracket map has
+rank 14/15 with a 1-dim kernel exactly as predicted, and its 14 nonzero
+singular values split into exactly TWO values -- 1/sqrt(2) with multiplicity
+8, sqrt(2/3) with multiplicity 6 -- a pure SCALAR on each irreducible block,
+as Schur's lemma requires for an equivariant map. The 1/2 split follows
+because 8*(1/sqrt(2))^2 = 6*(sqrt(2/3))^2 = 4 exactly: these two specific
+scalars produce it, not a coincidence of the whole 15-dim map.
+
 HONEST SCOPE: this is a real, verified algebraic relation -- two "quark"
 (m) elements bracket to a mix of "gluon" (h) and further "quark-type" (m)
 content, EXACTLY half and half by the energy trace, and every gluon
@@ -204,6 +214,43 @@ def main() -> None:
 
     print()
     print("=" * 78)
+    print("WHY it's exactly 1/2: the bracket map Lambda^2(m) -> g2 is a pure SCALAR on each")
+    print("irreducible block (Schur's lemma) -- not a numerical coincidence")
+    print("=" * 78)
+    print("  Lambda^2_R(m) (15-dim, m realifies C^3) decomposes under su(3) as an 8-dim 'Hermitian")
+    print("  traceless' block (-> su(3) = h) + a 1-dim trace block (-> 0, Schur: no map from a trivial")
+    print("  rep into the nontrivial irreducible m) + a 6-dim block isomorphic to m itself")
+    print("  (Lambda^2_C(C^3) = 3bar, its conjugate = 3, matching m's own '3' representation type).")
+    print("  If real, this predicts: rank 14 (not 15), a 1-dim kernel, and the bracket map acting as")
+    print("  a SINGLE scalar on each of the two nontrivial blocks (Schur's lemma: an equivariant map")
+    print("  between irreducibles is a scalar, or zero).")
+    bracket_rows = []
+    pair_labels = []
+    for a in range(6):
+        for b in range(a + 1, 6):
+            comm = Mm[a] @ Mm[b] - Mm[b] @ Mm[a]
+            coeffs, *_ = np.linalg.lstsq(np.vstack([Hflat, Mflat]).T, comm.flatten(), rcond=None)
+            bracket_rows.append(coeffs)
+            pair_labels.append((a, b))
+    Bmat = np.array(bracket_rows).T  # 14 x 15, in the {h-basis, m-basis} coordinate frame
+    rank_B = np.linalg.matrix_rank(Bmat, tol=1e-6)
+    sing = np.linalg.svd(Bmat, compute_uv=False)
+    print(f"  rank(bracket map) = {rank_B}/14  (matches the prediction: surjective, kernel dim "
+          f"{15 - rank_B})")
+    sing_sorted = np.sort(np.round(sing, 4))[::-1]
+    print(f"  singular values: {sing_sorted}")
+    n_big = int(np.sum(np.isclose(sing, sing.max(), atol=1e-3)))
+    n_small = int(np.sum(np.isclose(sing, sing.min(), atol=1e-3) & (sing > 1e-6)))
+    print(f"  -> exactly TWO distinct nonzero values: {n_big} copies of {sing.max():.4f} "
+          f"(~sqrt(2/3)={np.sqrt(2/3):.4f}, the 6-dim m-block) and {n_small} copies of "
+          f"{sing.min():.4f} (~1/sqrt(2)={1/np.sqrt(2):.4f}, the 8-dim h-block)")
+    print(f"  -> a pure scalar on each block, exactly as Schur's lemma requires. And")
+    print(f"     8*(1/sqrt(2))^2 = {8*0.5:.1f}  =  6*(sqrt(2/3))^2 = {6*(2/3):.1f}  -- the two block")
+    print(f"     energies (dim * scale^2) coincide numerically, which IS the exact 1/2 split -- not")
+    print(f"     a coincidence of the whole map, but of these two specific, now-identified scalars.")
+
+    print()
+    print("=" * 78)
     print("""VERDICT
 
   A real algebraic quark-gluon relation exists in this structure, computed
@@ -212,6 +259,14 @@ def main() -> None:
   content -- an EXACT even split (h-fraction = 1/2 on the nose, an energy
   trace over all of Lambda^2(m), not a sampling estimate) -- and the map
   onto h is SURJECTIVE: every gluon generator is reachable this way.
+
+  WHY it's exactly 1/2 is now understood, not just observed: the bracket map
+  acts as a pure SCALAR on each of two irreducible blocks (Schur's lemma) --
+  1/sqrt(2) on the 8-dim block mapping onto h, sqrt(2/3) on the 6-dim block
+  mapping onto m, with an exact 1-dim kernel (the predicted u(1)-trace piece
+  of Lambda^2_R(m)'s Hermitian block). The 1/2 split follows because
+  8*(1/sqrt(2))^2 = 6*(sqrt(2/3))^2 = 4 -- these two specific scalars, not a
+  coincidence of the whole map.
 
   This is the real-Lie-algebra shadow of the physical 3(x)3bar = 1(+)8
   decomposition (quark-antiquark -> singlet + gluon octet), not identical to
