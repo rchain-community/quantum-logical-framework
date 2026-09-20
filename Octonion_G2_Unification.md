@@ -6,12 +6,13 @@ Tracking issue: [#162](https://github.com/rchain-community/quantum-logical-frame
 > octonions' 7 imaginary units decompose into (Fano-plane lines) — a real, independently-verified fact,
 > not a citation (`octonion_g2_stabilizers.py`). The stabilizer chain `G2 ⊃ SU(3) ⊃ SU(2)` inside the
 > octonion automorphism group reproduces textbook Lie theory exactly from this session's own
-> construction, and a genuine quark↔gluon algebraic relation and the `G2` root system (a real
-> positive-geometry object) were both computed from it. **What is NOT established:** that this
-> octonion-native `su(3)`/`su(2)` is the *same representation* as QLF's own (independently built)
-> strong/weak gauge algebras — both are abstractly isomorphic (there is only one `su(3)`, one `su(2)`
-> up to isomorphism), which guarantees nothing about a meaningful physical identification. That
-> identification is the open target this document exists to track.
+> construction, a genuine quark↔gluon algebraic relation was found and its exact `1/2` ratio *explained*
+> via Schur's lemma (§3), and the `G2` root system (a real positive-geometry object, §4) was extracted.
+> **The physical identification — checked, and it fails (§6):** the octonion construction forces
+> `su(2)` to be a literal Lie subalgebra of `su(3)`; QLF's own gauge structure (and the actual Standard
+> Model) has them as independent product factors on different-dimensional representation spaces, with no
+> such nesting claimed anywhere. So the direct "same structure" reading of the octonion picture does
+> *not* hold — a real, checked answer, not an unresolved gap.
 
 This document collects a speculative exploration thread, kept deliberately separate from the
 established physics in [`UniversalRelativity.md`](UniversalRelativity.md) and
@@ -113,29 +114,65 @@ same distinction `BraKetRhoQuCalc.lean`'s weak sector already gets right, `τᵢ
 non-abelian within the anti-Hermitian slice) purely additively — the existing `g1, g3` and everything
 downstream (`QLF_GaugeUnification.lean`) are untouched. See `su3_anti_hermitian_summary`.
 
-This does not yet answer the open identification question below — it only makes QLF's own `su(3)` a
+This does not yet answer the open identification question — it only makes QLF's own `su(3)` a
 well-posed object to eventually compare against, rather than an ambiguous one (previously, "QLF's
 su(3)" could have meant either the compact or split real form; now the genuinely compact generators
 exist explicitly, alongside the original Hermitian ones).
 
-## 6. Honest scope — what remains open
+## 6. The physical identification — a structural mismatch, not just an unproven abstract fact
 
-- **The physical identification.** Is the octonion-derived `su(3)`/`su(2)` (§2) the *same
-  representation* as QLF's own strong/weak gauge algebras, under some natural, physically-motivated
-  map — or merely two abstractly-isomorphic-but-unrelated structures? Dimension and type matching alone
-  proves nothing (there is only one `su(3)` up to isomorphism). No attempt has been made yet to
-  construct or rule out such a map.
-- **The `≥5D, 3-at-a-time` hypothesis more broadly.** Octonions (7 imaginary units) are one concrete
-  instantiation; whether QLF's physics actually needs or uses this structure, versus it being a
-  mathematically clean but physically unmotivated generalization, is undecided.
+The naive question "is the octonion-derived `su(3)`/`su(2)` the same as QLF's own?" is not actually
+answerable by checking whether an isomorphism *exists* — abstract representation theory guarantees one
+trivially (there is only one `su(3)` and one `su(2)` up to isomorphism, so any two 8- and 3-dimensional
+compact non-abelian Lie algebras with the right bracket relations are automatically isomorphic; this
+proves nothing). The real, checkable content is in *how the two algebras relate to each other* within
+each construction — and there the two pictures diverge structurally.
+
+**In the octonion/`G2` construction (§2), `su(2)` is *necessarily* a genuine Lie subalgebra of
+`su(3)`** — stabilizing a full quaternion triple `{e1,e2,e3}` is a strictly smaller condition than
+stabilizing just `e1`, so the 3-dimensional stabilizer sits *inside* the 8-dimensional one by
+construction, sharing generators, acting within the same ambient `g2`.
+
+**In QLF's own construction, this nesting does not hold, and isn't claimed to.** Grepping the whole
+repository for any stated `su(2) ⊂ su(3)` relationship finds none — `Alpha.md`'s forces section states
+the gauge group is `U(1)×SU(2)×SU(3)`, a **direct product** of three independent factors
+([`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md)), matching the real Standard Model's
+`SU(3)_c × SU(2)_L × U(1)_Y` — color and weak isospin are independent quantum numbers, not one nested
+in the other. Concretely: QLF's weak `SU(2)` (`Σ₈`, `τx,τy,τz`) acts on a **2-dimensional spinor
+space**; QLF's strong `SU(3)` (`g1,g3,h1,h3`, `QLF_StrongAlgebra.lean`) acts on a **3-dimensional axis
+space**. These are different representation spaces for a different physical quantum number, with no
+embedding of one algebra into the other stated or provable from what's in the codebase.
+
+**So the octonion picture predicts a structural relationship — literal subalgebra nesting — that
+neither QLF's own construction nor the actual Standard Model has.** This is a real argument against the
+naive identification, not a failure to find one: if the octonion `su(3)`/`su(2)` were "the same" as
+QLF's in a physically meaningful sense, the nesting would have to show up somewhere in QLF's own gauge
+structure, and a direct search finds no such claim — QLF treats them, correctly by the SM's own lights,
+as independent product factors.
+
+## 7. Honest scope — what remains open
+
+- ~~**The physical identification.**~~ **Answered, negatively, with a structural reason** (§6): the
+  octonion picture forces `su(2) ⊂ su(3)` as a literal subalgebra; QLF's own construction (and the
+  actual Standard Model) has them as independent product factors acting on different-dimensional
+  representation spaces, with no such nesting claimed or provable anywhere in the codebase. This doesn't
+  rule out a looser or differently-framed connection, but the direct "same structure" reading fails.
+- **The `≥5D, 3-at-a-time` hypothesis, revisited in light of §6.** Is the octonion
+  structure's forced nesting a hint that a *different* labeling of QLF's axes/generators (not the naive
+  "one octonion unit = one axis" reading used throughout §1–§5) might reconcile the two — or is the
+  mismatch evidence the whole approach doesn't map onto QLF's specific gauge structure? Undecided.
 - ~~**The quark/gluon bracket's ratio.**~~ **Resolved to `1/2` exactly, and explained** (§3): the
   bracket map is a pure scalar on each of two irreducible blocks (Schur's lemma), `1/√2` on the 8-dim
   `h`-block and `√(2/3)` on the 6-dim `m`-block, with `8·(1/√2)² = 6·(√(2/3))² = 4` producing the split.
   What's *not* derived: why those two specific scalars (`1/√2`, `√(2/3)`) — presumably the nearly-Kähler
   torsion normalization of `G2/SU(3)` fixes them, but that connection hasn't been made.
-- **The positive-root cone's canonical form.** Its existence and vertex count are established (§4); its
-  literal canonical differential form (the object positive-geometry theory actually studies) has not
-  been computed.
+- **The positive-root cone's canonical form.** Its existence and vertex count are established (§4). A
+  first attempt at the literal canonical differential form (naive vertex-fan triangulation, summing an
+  elementary triangle canonical form) was **tried and failed its own consistency check**: on a plain
+  square, all 4 fan-triangulations agreed (a weak test — a quadrilateral only has 2 distinct
+  triangulations, both captured trivially); on the actual pentagon, the 5 fan-triangulations gave
+  genuinely different values, so the naive formula is wrong for `n ≥ 5` and no canonical form is
+  asserted. Needs a proper positive-geometry reference, not another guess.
 
 None of this is claimed as established QLF physics — it is recorded here, separately, exactly because
 it is not yet load-bearing for the claims in `UniversalRelativity.md` or `Forces_From_Three_Axes.md`.
