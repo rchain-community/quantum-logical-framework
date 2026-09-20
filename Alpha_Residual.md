@@ -994,3 +994,19 @@ order. The rational coefficients (`28259/5184`, `17101/810`, …) stay rendered,
 **The 4-loop wall.** `A₁⁽⁸⁾` (Laporta 2017) carries genuine **elliptic / modular** periods — *not*
 central-binomial MZVs at any nesting depth, a different motive. So two independent arguments —
 this loop-order/nesting ladder and §9e's π-parity — place the census boundary at **4-loop QED**.
+
+### 9h. Stress-test — arbitrary-precision re-verification ([`alpha_census_highprecision.py`](alpha_census_highprecision.py))
+
+§9f–9g's checks were double-precision (`~1e-9` to `~1e-13`, 9–13 correct digits) — enough to catch a
+gross error but not, in principle, to rule out a formula that happens to agree that far by coincidence.
+Re-run in Python's arbitrary-precision `decimal` module at 55+ required digits: `ζ(2)` and `ζ(4)`'s
+census sums (Comtet) agree with an **independently computed** `π` (Machin's arctan formula, unrelated
+method) to **78 digits** against the exact closed forms `π²/6`, `π⁴/90` — a genuine independence test,
+not a tautology. `ζ(3)` (Apéry) and `ζ(5)` (Borwein–Bradley) have no elementary closed form to check
+against, so the available test is stability under truncation depth (`K=220` vs `K=110`) — both agree to
+71 digits, consistent with the claimed convergence rate. **Not attempted:** whether the census reaches
+*weight* 6 at all (e.g. `Σ 1/(k⁶C(2k,k))` as a small rational combination of `π⁶` and `ζ(3)²`) — the
+sharper test of whether the wall is really about *loop order* (as claimed) rather than just weight. That
+needs a real integer-relation search (PSLQ/LLL); no such library is available in this environment
+(no `mpmath`/`sympy`, no network access to install them) and a from-scratch implementation was judged
+out of scope for this pass — left as a named next step, not silently skipped.
