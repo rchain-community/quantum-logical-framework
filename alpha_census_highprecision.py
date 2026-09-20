@@ -27,9 +27,10 @@ HONEST SCOPE: this does NOT attempt to discover a NEW weight-6/7 relation
 pi^6 and zeta(3)^2, which is exactly the kind of question that would
 stress-test whether the "4-loop wall" is about loop order specifically or
 about weight generally). That requires a real integer-relation search
-(PSLQ/LLL); no such library is available in this environment and a from-
-scratch implementation was judged out of scope for this pass. Left as a
-named next step, not silently skipped.
+(PSLQ/LLL) via mpmath, deliberately not added as a dependency here to keep
+this script pure-stdlib like the rest of the repo -- see
+alpha_weight6_pslq.py (Alpha_Residual.md SS9i), which does attempt it and
+reports a negative result.
 """
 import decimal
 
@@ -157,12 +158,10 @@ def main() -> None:
     print(f"  (no elementary closed form exists to cross-check against; Apery's and")
     print(f"  Borwein-Bradley's series ARE the reference here by construction).")
     print()
-    print("  NOT attempted here (left as a named next step): whether the census's own")
+    print("  NOT attempted HERE (kept out to stay pure-stdlib): whether the census's own")
     print("  vocabulary reaches WEIGHT 6 at all (e.g. Sum 1/(k^6 C(2k,k)) as a small")
-    print("  rational combination of pi^6 and zeta(3)^2) -- this would test whether the")
-    print("  4-loop wall is really about LOOP ORDER (as claimed) or just about WEIGHT,")
-    print("  and requires a real integer-relation search (PSLQ/LLL) unavailable in this")
-    print("  environment (no mpmath/sympy, no network access to install them).")
+    print("  rational combination of pi^6 and zeta(3)^2) -- this needs a real PSLQ search.")
+    print("  See alpha_weight6_pslq.py (requires mpmath) -- result: none found (negative).")
 
 
 if __name__ == "__main__":

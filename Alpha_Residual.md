@@ -1004,9 +1004,27 @@ census sums (Comtet) agree with an **independently computed** `π` (Machin's arc
 method) to **78 digits** against the exact closed forms `π²/6`, `π⁴/90` — a genuine independence test,
 not a tautology. `ζ(3)` (Apéry) and `ζ(5)` (Borwein–Bradley) have no elementary closed form to check
 against, so the available test is stability under truncation depth (`K=220` vs `K=110`) — both agree to
-71 digits, consistent with the claimed convergence rate. **Not attempted:** whether the census reaches
-*weight* 6 at all (e.g. `Σ 1/(k⁶C(2k,k))` as a small rational combination of `π⁶` and `ζ(3)²`) — the
-sharper test of whether the wall is really about *loop order* (as claimed) rather than just weight. That
-needs a real integer-relation search (PSLQ/LLL); no such library is available in this environment
-(no `mpmath`/`sympy`, no network access to install them) and a from-scratch implementation was judged
-out of scope for this pass — left as a named next step, not silently skipped.
+71 digits, consistent with the claimed convergence rate.
+
+### 9i. Does the census reach weight 6 at all? ([`alpha_weight6_pslq.py`](alpha_weight6_pslq.py)) — genuine PSLQ, a negative result
+
+§9h flagged the sharper test — whether `Σ 1/(k⁶C(2k,k))` reduces to a small rational combination of
+weight-6 constants, the natural next step after Comtet/Apéry/Borwein–Bradley closed weights 2–5 — as
+blocked on missing tooling. That was a local-environment problem, not a real one: `python3 -m venv
+--without-pip` plus a manually bootstrapped `get-pip.py` gets a fully isolated `mpmath` with no system
+changes (the earlier failure was Debian's externally-managed-environment block on the system Python, not
+a lack of network access). Run properly with `mpmath.pslq`, validated first as a positive control against
+the *already-known* relations — it recovers Comtet's `17·S(4) = 36·ζ(4)` and Borwein–Bradley's `4·S(5) −
+5·S(3,inner=2) − 2·ζ(5) = 0` exactly, at 100-digit precision, confirming the method finds a relation of
+this size if one exists.
+
+**Result: none found.** `Σ 1/(k⁶C(2k,k))` was tested at 100 digits against three growing bases —
+`{π⁶, ζ(3)²}`; that plus `Li₆(1/2)` (the natural next term in the `Li_p(1/2)` family already used at
+weight 4); and that further extended with `ln(2)⁶, π²ln(2)⁴, π⁴ln(2)²` (the weight-6 members of the
+`ln(2)`-power family also already used at weight 4) — and PSLQ found no small-integer relation in any of
+them. **Honest reading:** this is a negative result, not a proof — it rules out relations in *these*
+bases at *this* precision, not in every conceivable weight-6 basis, and it is a **different claim** from
+the stated 4-loop elliptic-period wall (that one is about loop order; this is about weight alone, before
+loop order even enters). What it establishes plainly: the ease with which weights 2–5 fell to this
+technique was not guaranteed to continue, and weight 6 is where it first stops — worth recording rather
+than assuming "one more Comtet-style formula" was just waiting to be found.
