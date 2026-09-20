@@ -425,7 +425,12 @@ is read through ([`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md) §3, �
   (`em_gauge_abelian`, [`lean/QLF_GaugeUnification.lean`](lean/QLF_GaugeUnification.lean)) ⟹ the
   **massless, long-range photon**, the unbroken `U(1)`.
 - **Weak and strong = *non-abelian* projections** of the same three axes (`strong_nonabelian`,
-  `weak_isospin_su2`) ⟹ self-interacting, short-range, **confined / massive**.
+  `weak_isospin_su2`) ⟹ self-interacting, short-range, **confined / massive** — and "massive" here is
+  not just qualitative: the lightest non-vacuum gauge closure carries exactly one half-spin information
+  quantum, giving a machine-checked **structural Yang–Mills mass gap** `gaugeMassGap = log 2 > 0`
+  (`mass_gap_quantum_pos`, [`lean/QLF_MassGap.lean`](lean/QLF_MassGap.lean),
+  [`YangMills_MassGap_QLF.md`](YangMills_MassGap_QLF.md)) — the same reframing move as the rest of this
+  section, applied to a fourth Millennium problem.
 
 So the abelian/non-abelian split **is** the massless-photon-vs-massive-`W`/`Z` split. **Electroweak
 symmetry breaking** is the **logical-density threshold**: above it the projections are symmetric (all
@@ -468,7 +473,19 @@ substrate-grounded (the gauge algebras, the abelian/non-abelian split, the Weinb
 equation-of-state coefficient, the causal-order curvature structure are all machine-anchored); the
 quantitative *dynamics* — the gauge couplings and Higgs VEV, the discrete d'Alembertian → Ricci and the
 continuum field equations — are the named open rungs ([`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md)
-§3a–3b, [`Einstein_Equations.md`](Einstein_Equations.md) §6a).
+§3a–3b, [`Einstein_Equations.md`](Einstein_Equations.md) §6a). **The mass gap's own boundary is a
+different kind of open than `v`/`ρ*` (§8) — worth being precise about, not blending the two.** `v`/`ρ*`
+is a missing *number*: the mechanism is derived and the value was tested against the census and found
+absent (issue #121). The Yang–Mills boundary (`yang_mills_continuum_gap`,
+[`lean/QLF_MassGap.lean`](lean/QLF_MassGap.lean)) is a missing *bridge*: the substrate gap `log 2 > 0` is
+proved outright, with no boundary needed, but identifying it with the mass gap of the Osterwalder–
+Schrader/Wightman reconstruction of continuum Yang–Mills on `ℝ⁴` cannot be *stated* in Lean at all —
+Mathlib carries no continuum Yang–Mills theory to check the identification against. The file itself
+shows this precisely: the interface is inhabited by `rfl` and pins its own value uniquely
+(`continuumGap_nonempty`, `continuumGap_gap_unique`), so the axiom "does no work" in the classical
+sense — it names a claim about the physical world, not a numerical unknown Lean could in principle
+close. Same discipline as the rest of this document: the two boundaries are named, not conflated, and
+neither is filled by fiat.
 
 ## 5. Age of the Universe as Event-Synthesis Time
 
