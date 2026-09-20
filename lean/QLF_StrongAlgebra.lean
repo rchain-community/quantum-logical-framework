@@ -105,23 +105,17 @@ theorem h1_traceless : h1.trace = 0 := by
 theorem h3_traceless : h3.trace = 0 := by
   simp [h3, Matrix.trace_fin_three]
 
-/-- **`h1` is genuinely anti-Hermitian**: `h1ᴴ = -h1`, unlike `g1` itself. -/
-theorem h1_isSkewHermitian : h1ᴴ = -h1 := by
+/-- **`h1` is genuinely anti-Hermitian**: `h1.conjTranspose = -h1`, unlike `g1` itself. -/
+theorem h1_isSkewHermitian : h1.conjTranspose = -h1 := by
   apply Matrix.ext; intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [h1, Matrix.conjTranspose_apply, Matrix.neg_apply] <;>
-    apply Complex.ext <;>
-    simp [Complex.conj_re, Complex.conj_im, Complex.neg_re, Complex.neg_im,
-          Complex.I_re, Complex.I_im]
+    simp [h1, Matrix.conjTranspose_apply, Matrix.neg_apply, Complex.conj_I]
 
-/-- **`h3` is genuinely anti-Hermitian**: `h3ᴴ = -h3`, unlike `g3` itself. -/
-theorem h3_isSkewHermitian : h3ᴴ = -h3 := by
+/-- **`h3` is genuinely anti-Hermitian**: `h3.conjTranspose = -h3`, unlike `g3` itself. -/
+theorem h3_isSkewHermitian : h3.conjTranspose = -h3 := by
   apply Matrix.ext; intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [h3, Matrix.conjTranspose_apply, Matrix.neg_apply] <;>
-    apply Complex.ext <;>
-    simp [Complex.conj_re, Complex.conj_im, Complex.neg_re, Complex.neg_im,
-          Complex.I_re, Complex.I_im]
+    simp [h3, Matrix.conjTranspose_apply, Matrix.neg_apply, Complex.conj_I]
 
 /-- **Non-abelian within the anti-Hermitian slice**: `[h₁, h₃] ≠ 0`. The same underlying fact as
     `gluon_commutator_nonzero`, but now witnessed by genuine `su(3)` elements, not merely Hermitian
@@ -129,19 +123,16 @@ theorem h3_isSkewHermitian : h3ᴴ = -h3 := by
 theorem su3_commutator_nonzero : h1 * h3 - h3 * h1 ≠ 0 := by
   intro h
   have h01 : (h1 * h3 - h3 * h1) 0 1 = (0 : M3) 0 1 := by rw [h]
-  simp only [h1, h3, Matrix.mul_apply, Fin.sum_univ_three, Matrix.sub_apply,
-        Matrix.zero_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
-        Matrix.head_fin_const, Matrix.cons_val_two, Matrix.tail_cons] at h01
-  have : (-2 : ℂ) = 0 := by
-    have hII : Complex.I * Complex.I = -1 := Complex.I_mul_I
-    linear_combination h01 - 2 * hII
-  norm_num at this
+  simp [h1, h3, Matrix.mul_apply, Fin.sum_univ_three, Matrix.sub_apply,
+        Matrix.zero_apply, Complex.I_mul_I] at h01
+  norm_num at h01
 
 /-- **The genuine `su(3)`, machine-verified**: `h1, h3` are traceless, anti-Hermitian, and
     non-commuting — real elements of the compact gauge algebra, not merely of its complexification
     `sl(3,ℂ)`. -/
 theorem su3_anti_hermitian_summary :
-    h1.trace = 0 ∧ h3.trace = 0 ∧ h1ᴴ = -h1 ∧ h3ᴴ = -h3 ∧ h1 * h3 - h3 * h1 ≠ 0 :=
+    h1.trace = 0 ∧ h3.trace = 0 ∧ h1.conjTranspose = -h1 ∧ h3.conjTranspose = -h3 ∧
+      h1 * h3 - h3 * h1 ≠ 0 :=
   ⟨h1_traceless, h3_traceless, h1_isSkewHermitian, h3_isSkewHermitian, su3_commutator_nonzero⟩
 
 end QLF
