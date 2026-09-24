@@ -245,5 +245,6 @@ lean_lib QLF where
     `QLF_PolyaTransience,
     `QLF_ProductWalk,
     `QLF_FirstReturn,
-    `QLF_StationaryAction
+    `QLF_StationaryAction,
+    `QLF_StationaryPhase
   ]
