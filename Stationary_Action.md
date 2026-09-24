@@ -7,7 +7,9 @@ not a separate postulate**. The realized history is the one realized in the most
 twist has a conjugate of equal weight, the most-ways history sits at balance, and there the first
 variation of the multiplicity vanishes.
 
-Lean: [`lean/QLF_StationaryAction.lean`](lean/QLF_StationaryAction.lean). No axioms.
+Lean: [`lean/QLF_StationaryAction.lean`](lean/QLF_StationaryAction.lean) (one axis), and
+[`lean/QLF_StationaryPhase.lean`](lean/QLF_StationaryPhase.lean) for the signed phase and all four
+axes (§5a). No axioms.
 
 ---
 
@@ -92,22 +94,53 @@ So the chain is: **ZFA's conjugate pairing ⟹ the closure is the stationary mod
 variational principle, whose stationarity gives `G_μν = 8πG T_μν`. The coefficient `8πG = 2π/η` comes
 separately from the thermodynamic leg ([`Einstein_Equations.md`](Einstein_Equations.md) §§2–5).
 
-**The named gap.** The identification in the middle is open. The proof above is for the one-axis
-census `W`. That the Benincasa–Dowker count is the log of a multiplicity whose mode the substrate
+**The named gap.** The identification in the middle is open. The proofs here are for the census of
+twist histories on `ℤ⁴`. That the Benincasa–Dowker count is the log of a multiplicity whose mode the substrate
 takes, so that *its* stationarity follows the same way, has not been proved. It is the bridge between
-this module and `QLF_CausalContinuum`. No axiom is added for it
+this module and `QLF_CausalContinuum`. It is harder than the two halves proved here for a stated
+reason: those are statements about **paths** (twist histories and their endpoints on `ℤ⁴`), while the
+Benincasa–Dowker action is a functional of the **causal order**, built from its interval layers. On a
+single history that order is a chain and the BD reading is exactly `0` (`bdCurvature_chain_zero`). What
+is missing is a count of ways over causal sets whose mode can be compared with the BD stationary
+point. No axiom is added for it
 ([`Open_Problems.md`](Open_Problems.md)).
+
+## §5a The signed half — stationary phase, proved
+
+Feynman's argument uses the *signed* sum, where stationarity comes from phase cancellation. In QLF the
+phase of a history is the ℤ₂ holonomy of the edge-sign connection ([`QLF_EdgeSign`](lean/QLF_EdgeSign.lean)),
+defined for every history, open or closed. [`QLF_StationaryPhase`](lean/QLF_StationaryPhase.lean)
+proves the signed statement on all of `ℤ⁴` with no axioms:
+
+| Theorem | Statement | Reading |
+|---|---|---|
+| `amp_add` | `amp(m+n) x z = Σ_u phase(u)·amp(n) (end u) z` | a history splits; its phase factors |
+| `amp_swap` | `amp m y x = (−1)^m · amp m x y` | reversal flips every edge sign: the signed kernel is **anti-Hermitian**, the conjugate pairing at the level of phases |
+| `return_amplitude_sum_sq` | `amp(2m) x x = (−1)^m · Σ_y amp(m) x y²` | **the closure amplitude is the norm of the half-way amplitude** |
+| `amp_closed_translate` | `amp n x x = amp n 0 0` | a closed loop carries the same phase wherever it starts |
+| `signed_mode_at_balance` | `\|amp(2m) 0 x\| ≤ \|amp(2m) 0 0\|` | **stationary phase:** no endpoint beats the closure |
+| `ways_mode_at_balance` | `W(2m) 0 x ≤ W(2m) 0 0` | the unsigned (classical) half, now on all four axes |
+
+The proof is short once the pieces exist. Split a `2m`-step history at its midpoint. Reversal turns
+the second half into a first half with sign `(−1)^m`. Grouping by midpoint then gives
+`amp(2m) 0 x = (−1)^m Σ_y f(y)·g_x(y)`, and Cauchy–Schwarz bounds it by `Σ f² = |amp(2m) 0 0|`.
+The one input that is specific to QLF is the anti-Hermitian step: the connection never reads the
+coordinate being stepped (`edgeParity_stepPos_own`), so stepping back through an edge flips exactly
+its twist sign.
+
+**Pre-registered test** ([`stationary_phase_census.py`](stationary_phase_census.py), committed before
+it was run; exact integers to `L = 12`, [`data/stationary_phase.json`](data/stationary_phase.json)):
+S1 (`|A(x)| = |A(−x)|`) **PASS**; S2 (signed mode at balance) **PASS**, and the maximum is unique
+(`A₀ = −8, 120, −2144, 41896, −868608, 18816384`). S3 (*coherence* `|A|/W` largest at balance)
+**FAIL**, and it failed because it was badly posed rather than because of the physics: any endpoint
+reached by a single path has coherence exactly `1`. It is recorded as a failure and not reworded.
 
 ## §6 Honest scope
 
-* **Unsigned vs signed.** `W` is the *unsigned* census (balance, the classical count). Feynman's
-  quantum argument uses the *signed* sum, where stationarity comes from phase cancellation. In QLF the
-  phase is the ℤ₂ holonomy of [`QLF_EdgeSign`](lean/QLF_EdgeSign.lean). The result here is the
-  classical/Euclidean half. The signed stationary-phase version is the quantum half and is not
-  claimed ([`Born_Rule.md`](Born_Rule.md)).
-* **One axis.** The four-axis census `walkCount` ([`QLF_ProductWalk`](lean/QLF_ProductWalk.lean))
-  factors into per-axis `±` walks. Stating the mode result on it is a routine extension that has not
-  been done yet.
+* **Signed = quantum half, in the stationary-phase sense only.** §5a proves the signed amplitude
+  peaks at balance. It does not derive the Born weights; that remains
+  [`Born_Rule.md`](Born_Rule.md)'s question, though `return_amplitude_sum_sq` (closure amplitude =
+  norm of the half-way amplitude) bears directly on it.
 * `S ↔ −ħ log W` is an identification (Boltzmann/Jaynes: log-count is entropy; the Euclidean action
   is the log-weight). It is not derived here.
 

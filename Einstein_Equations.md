@@ -158,7 +158,8 @@ order (the curvature).
 **Why Hilbert's action is *stationary*.** Benincasa–Dowker supplies *which* functional (`∫R`).
 [`Stationary_Action.md`](Stationary_Action.md) supplies *why a functional is stationary at all*: the
 realized history is the census mode, and ZFA's conjugate pairing puts that mode at balance with zero
-first variation (`QLF_StationaryAction`, no axioms). Identifying the BD count with that multiplicity is
+first variation (`QLF_StationaryAction`, no axioms); the signed version — the phase-weighted amplitude
+peaks at balance too — is `QLF_StationaryPhase`. Identifying the BD count with that multiplicity is
 the open step between the two.
 
 **Where the curvature actually lives — the next rung points itself.** Pushing the Lean one step

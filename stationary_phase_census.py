@@ -19,6 +19,11 @@ Pre-registered (fixed before the first run, at the commit adding this file):
       cancellation on the balanced class)
 
 Each is reported PASS / FAIL. A FAIL is recorded, not tuned away. Exact integers only.
+
+Result (added after the run, L ≤ 12): S1 PASS, S2 PASS (maximum unique at the origin), S3 FAIL.
+S3 was badly posed: an endpoint reached by one path has coherence exactly 1. S2 is now a theorem
+for every m: `QLF_StationaryPhase.signed_mode_at_balance`; so is the identity behind it,
+A_{2m}(0) = (−1)^m Σ_y A_m(y)² (`return_amplitude_sum_sq`). See Stationary_Action.md §5a.
 """
 from __future__ import annotations
 
