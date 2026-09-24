@@ -63,7 +63,9 @@ folds to a Pauli scalar. Operationally, `full_zeno_prune s = []`.
 select histories that extremise action; the substrate's version is sharper and simpler — a history
 persists as an event exactly when its *free* action is zero, `S = ∫ℒ dΩ` with `ℒ = 0`
 ([`Lagrangian_Formulation.md`](Lagrangian_Formulation.md)). Least action is the evidence that
-suggested ZFA; ZFA is the discrete condition proposed to underlie it.
+suggested ZFA; ZFA is the discrete condition proposed to underlie it. The derivation now exists for the
+unsigned census: the closure is the stationary mode of the multiplicity, and a biased alphabet breaks it
+([`Stationary_Action.md`](Stationary_Action.md), `QLF_StationaryAction`).
 
 **Its epistemic status, by this document's own labels: a standing premise under continuous test —
 and it stands uncontradicted so far.** It is not an axiom held beyond question. Every invariant

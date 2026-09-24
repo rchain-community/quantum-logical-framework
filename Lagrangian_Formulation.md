@@ -12,7 +12,7 @@ The foundation of QLF is expressed through a vanishing Lagrangian density:
 
 **S = ∫ ℒ dΩ**, with **ℒ = 0**
 
-This null action principle replaces traditional stationary action (δS = 0) with an identically zero Lagrangian. Only configurations satisfying ℒ = 0 are logically persistent.
+This null action principle underlies traditional stationary action (δS = 0) rather than replacing it. Only configurations satisfying ℒ = 0 are logically persistent, and ℒ = 0 is the closed-history case of the same principle whose open-arc case is δS = 0: the realized history is the most-ways history, and ZFA's conjugate pairing puts that mode at balance, where the first variation vanishes ([Stationary_Action.md](Stationary_Action.md), `QLF_StationaryAction`).
 
 **Discrete primary form.** In QLF, the fundamental formulation is discrete. The 8-twist alphabet `{^, v, <, >, /, \, +, −}` (see [QuCalc.md](QuCalc.md) and [eight-twists-sufficiency.md](eight-twists-sufficiency.md)) generates event histories whose imbalance is tracked component-wise by `computeImbalance` ([ZFAEventDynamics.lean:90](lean/ZFAEventDynamics.lean)). ZFA closure requires all 8 counts to vanish simultaneously:
 
