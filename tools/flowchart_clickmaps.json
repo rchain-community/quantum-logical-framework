@@ -60,7 +60,8 @@
   "ME": "Mercury_Perihelion.md",
   "EE": "Einstein_Equations.md",
   "CV": "Curvature.md",
-  "GW": "Einstein_Equations.md"
+  "GW": "Einstein_Equations.md",
+  "SA": "Stationary_Action.md"
  },
  {
   "H6": "#master-map--the-substrate-and-its-ten-domains",
