@@ -37,6 +37,10 @@ and from the origin this is exactly the sum of `connectionPhase` = `predictedPha
   Cauchy–Schwarz on the split plus translation. **The signed amplitude is largest at balance:**
   stationary phase, proved for the QLF phase itself.
 
+* **`ways_mode_at_balance`** — the same argument with weight `1`: the *unsigned* census on all four
+  axes peaks at balance, `W(2m) 0 x ≤ W(2m) 0 0`, and the closure count is a sum of squares
+  (`ways_return_sum_sq`). This lifts `QLF_StationaryAction`'s one-axis result to `ℤ⁴`.
+
 Checked numerically (exact integers, `stationary_phase_census.py`) to `L = 12`:
 `amp (2m) 0 0 = −8, 120, −2144, 41896, …` and the maximum is unique at the origin. No axioms.
 -/
@@ -489,5 +493,126 @@ theorem signed_stationary_phase (m : ℕ) :
     amp (m + m) 0 0 = (-1) ^ m * ∑ y ∈ reachSet m 0, amp m 0 y ^ 2 ∧
     ∀ x : Pos, |amp (m + m) 0 x| ≤ |amp (m + m) 0 0| :=
   ⟨return_amplitude_sum_sq m 0, signed_mode_at_balance m⟩
+
+-- ==========================================
+-- The unsigned count on all four axes (the classical half, on ℤ⁴)
+-- ==========================================
+
+/-- **The census multiplicity** from `x` to `y` in `m` steps: how many histories make the walk. -/
+def ways (m : ℕ) (x y : Pos) : ℤ :=
+  ∑ u ∈ (paths m).filter (fun u => positionFrom x u = y), (1 : ℤ)
+
+theorem ways_add (m n : ℕ) (x z : Pos) :
+    ways (m + n) x z = ∑ u ∈ paths m, ways n (positionFrom x u) z := by
+  unfold ways
+  rw [Finset.sum_filter, sum_paths_append]
+  refine Finset.sum_congr rfl (fun u hu => ?_)
+  rw [Finset.sum_filter]
+  refine Finset.sum_congr rfl (fun w hw => ?_)
+  simp only [positionFrom_append]
+
+/-- Reversal is a bijection between walks `y → x` and walks `x → y`. -/
+theorem ways_swap (m : ℕ) (x y : Pos) : ways m y x = ways m x y := by
+  unfold ways
+  apply Finset.sum_nbij' revConj revConj
+  · intro u hu
+    simp only [Finset.mem_filter, paths, mem_words] at hu ⊢
+    refine ⟨by rw [length_revConj, hu.1], ?_⟩
+    rw [← hu.2, positionFrom_revConj]
+  · intro v hv
+    simp only [Finset.mem_filter, paths, mem_words] at hv ⊢
+    refine ⟨by rw [length_revConj, hv.1], ?_⟩
+    rw [← hv.2, positionFrom_revConj]
+  · intro u hu
+    exact revConj_revConj u
+  · intro v hv
+    exact revConj_revConj v
+  · intro u hu
+    rfl
+
+theorem ways_by_endpoint (m : ℕ) (x : Pos) (h : Pos → ℤ) :
+    ∑ u ∈ paths m, h (positionFrom x u) = ∑ y ∈ reachSet m x, ways m x y * h y := by
+  rw [← Finset.sum_fiberwise_of_maps_to (s := paths m) (t := reachSet m x) (g := positionFrom x)
+      (fun u hu => Finset.mem_image_of_mem _ hu)]
+  refine Finset.sum_congr rfl (fun y hy => ?_)
+  unfold ways
+  rw [Finset.sum_mul]
+  refine Finset.sum_congr rfl (fun u hu => ?_)
+  rw [(Finset.mem_filter.1 hu).2, one_mul]
+
+/-- **The closure count is a sum of squares:** `W(2m) x x = Σ_y W(m) x y ²`. -/
+theorem ways_return_sum_sq (m : ℕ) (x : Pos) :
+    ways (m + m) x x = ∑ y ∈ reachSet m x, ways m x y ^ 2 := by
+  rw [ways_add]
+  have h1 : ∀ u ∈ paths m, ways m (positionFrom x u) x = ways m x (positionFrom x u) := by
+    intro u hu
+    exact ways_swap m x (positionFrom x u)
+  rw [Finset.sum_congr rfl h1, ways_by_endpoint m x (fun y => ways m x y)]
+  refine Finset.sum_congr rfl (fun y hy => ?_)
+  show ways m x y * ways m x y = ways m x y ^ 2
+  ring
+
+theorem ways_closed_translate (n : ℕ) (x : Pos) : ways n x x = ways n 0 0 := by
+  unfold ways
+  have hiff : ∀ u ∈ paths n, (positionFrom x u = x ↔ positionFrom 0 u = 0) := by
+    intro u _
+    rw [positionFrom_shift u x]
+    constructor
+    · intro h
+      funext b
+      have hb := congrFun h b
+      simp only [Pi.add_apply, Pi.zero_apply] at hb ⊢
+      linarith
+    · intro h
+      rw [h, zero_add]
+  rw [Finset.filter_congr hiff]
+
+/-- **The classical half on ℤ⁴:** no displacement is realized in more ways than the closure,
+    `W(2m) 0 x ≤ W(2m) 0 0`, on all four axes at once. -/
+theorem ways_mode_at_balance (m : ℕ) (x : Pos) : ways (m + m) 0 x ≤ ways (m + m) 0 0 := by
+  have hA : ways (m + m) 0 x = ∑ y ∈ reachSet m 0, ways m 0 y * ways m x y := by
+    rw [ways_add]
+    have h1 : ∀ u ∈ paths m, ways m (positionFrom 0 u) x = ways m x (positionFrom 0 u) := by
+      intro u hu
+      exact ways_swap m x (positionFrom 0 u)
+    rw [Finset.sum_congr rfl h1, ways_by_endpoint m 0 (fun y => ways m x y)]
+  have hS0 : ∑ y ∈ reachSet m 0, ways m 0 y ^ 2 = ways (m + m) 0 0 :=
+    (ways_return_sum_sq m 0).symm
+  have hSx : ∑ y ∈ reachSet m x, ways m x y ^ 2 = ways (m + m) 0 0 := by
+    rw [← ways_closed_translate (m + m) x, ways_return_sum_sq m x]
+  have hsub : ∑ y ∈ reachSet m 0, ways m x y ^ 2 ≤ ∑ y ∈ reachSet m x, ways m x y ^ 2 := by
+    calc ∑ y ∈ reachSet m 0, ways m x y ^ 2
+        ≤ ∑ y ∈ reachSet m 0 ∪ reachSet m x, ways m x y ^ 2 :=
+          Finset.sum_le_sum_of_subset_of_nonneg Finset.subset_union_left
+            (fun y _ _ => sq_nonneg _)
+      _ = ∑ y ∈ reachSet m x, ways m x y ^ 2 := by
+          symm
+          apply Finset.sum_subset Finset.subset_union_right
+          intro y _ hy
+          have hz : ways m x y = 0 := by
+            unfold ways
+            apply Finset.sum_eq_zero
+            intro u hu
+            exfalso
+            apply hy
+            rw [Finset.mem_filter] at hu
+            rw [← hu.2]
+            exact Finset.mem_image_of_mem _ hu.1
+          rw [hz]
+          ring
+  have hCS := Finset.sum_mul_sq_le_sq_mul_sq (reachSet m 0) (fun y => ways m 0 y)
+    (fun y => ways m x y)
+  have hsq : ways (m + m) 0 x ^ 2 ≤ ways (m + m) 0 0 ^ 2 := by
+    calc ways (m + m) 0 x ^ 2 = (∑ y ∈ reachSet m 0, ways m 0 y * ways m x y) ^ 2 := by rw [hA]
+      _ ≤ (∑ y ∈ reachSet m 0, ways m 0 y ^ 2) * ∑ y ∈ reachSet m 0, ways m x y ^ 2 := hCS
+      _ ≤ (∑ y ∈ reachSet m 0, ways m 0 y ^ 2) * ∑ y ∈ reachSet m x, ways m x y ^ 2 :=
+          mul_le_mul_of_nonneg_left hsub (Finset.sum_nonneg (fun y _ => sq_nonneg _))
+      _ = ways (m + m) 0 0 ^ 2 := by rw [hS0, hSx]; ring
+  have h0 : 0 ≤ ways (m + m) 0 0 := by
+    unfold ways
+    exact Finset.sum_nonneg (fun _ _ => zero_le_one)
+  have habs := sq_le_sq.mp hsq
+  rw [abs_of_nonneg h0] at habs
+  exact le_trans (le_abs_self _) habs
 
 end QLF.StationaryPhase

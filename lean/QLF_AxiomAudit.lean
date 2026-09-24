@@ -72,6 +72,7 @@ import QLF_StationaryPhase
 #print axioms QLF.LawOfExceptions.law_of_exceptions
 #print axioms QLF.StationaryAction.balance_is_stationary_mode
 #print axioms QLF.StationaryPhase.signed_stationary_phase
+#print axioms QLF.StationaryPhase.ways_mode_at_balance
 
 /-! Fredkin's conservative logic identified with ZFA (Fredkin_QLF.md). `fredkin_preserves_zfa`
     runs through the `count_balanced_pauli_closed` keystone, so it must show the Lean three
