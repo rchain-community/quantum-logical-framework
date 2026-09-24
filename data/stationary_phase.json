@@ -1,0 +1,317 @@
+{
+ "max_len": 12,
+ "rows": [
+  {
+   "L": 1,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 1,
+   "argmax_abs_A": [
+    [
+     -1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ]
+   ],
+   "n_argmax": 8,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 2,
+   "W0": 8,
+   "A0": -8,
+   "max_abs_A": 8,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "1",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": true
+  },
+  {
+   "L": 3,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 21,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "n_argmax": 2,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 4,
+   "W0": 168,
+   "A0": 120,
+   "max_abs_A": 120,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "5/7",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": false
+  },
+  {
+   "L": 5,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 400,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "n_argmax": 2,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 6,
+   "W0": 5120,
+   "A0": -2144,
+   "max_abs_A": 2144,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "67/160",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": false
+  },
+  {
+   "L": 7,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 7973,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "n_argmax": 2,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 8,
+   "W0": 190120,
+   "A0": 41896,
+   "max_abs_A": 41896,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "5237/23765",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": false
+  },
+  {
+   "L": 9,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 166392,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "n_argmax": 2,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 10,
+   "W0": 7939008,
+   "A0": -868608,
+   "max_abs_A": 868608,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "1508/13783",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": false
+  },
+  {
+   "L": 11,
+   "W0": 0,
+   "A0": 0,
+   "max_abs_A": 3609408,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "n_argmax": 2,
+   "coherence_origin": "0",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": null,
+   "S3_stationary_phase": null
+  },
+  {
+   "L": 12,
+   "W0": 357713664,
+   "A0": 18816384,
+   "max_abs_A": 18816384,
+   "argmax_abs_A": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "n_argmax": 1,
+   "coherence_origin": "49001/931546",
+   "coherence_max": "1",
+   "unsigned_mode_at_origin": true,
+   "S1_symmetric": true,
+   "S2_signed_mode_at_balance": true,
+   "S3_stationary_phase": false
+  }
+ ]
+}
