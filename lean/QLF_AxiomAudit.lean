@@ -58,6 +58,7 @@ import QLF_ChargeBalance
 import QLF_CensusCurvature
 import QLF_LorentzCover
 import QLF_RiemannMRE
+import QLF_StationaryAction
 
 /-! ## The combinatorial core — expected: no QLF axiom -/
 
@@ -68,6 +69,7 @@ import QLF_RiemannMRE
 #print axioms QLF.twist_kraft
 #print axioms QLF.Realizability.no_continuum_in_finite_region
 #print axioms QLF.LawOfExceptions.law_of_exceptions
+#print axioms QLF.StationaryAction.balance_is_stationary_mode
 
 /-! Fredkin's conservative logic identified with ZFA (Fredkin_QLF.md). `fredkin_preserves_zfa`
     runs through the `count_balanced_pauli_closed` keystone, so it must show the Lean three
