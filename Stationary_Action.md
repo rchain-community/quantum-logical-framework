@@ -13,6 +13,51 @@ axes (§5a). No axioms.
 
 ---
 
+## §0 The oldest candidate for a theory of everything, now with a reason
+
+Stationary action has been put forward as *the* law of physics for nearly three centuries.
+Maupertuis (1744) called least action the universal principle of nature. Euler and Lagrange made it
+the engine of mechanics, and Hamilton (1834) extended it to optics and dynamics alike. Planck (1915)
+ranked it the most comprehensive physical law, the one that covers mechanics, electrodynamics and
+thermodynamics in a single statement. **Hilbert's 1915 paper was itself a theory-of-everything
+attempt:** *Die Grundlagen der Physik* derived the gravitational field equations *and* Mie's
+electrodynamics from one action, meaning to unify all of physics under one variational principle.
+Feynman (1948) then showed that quantum mechanics is the same principle read through phases. Today the
+whole of known physics, the Standard Model coupled to general relativity, is written as a single
+action. Every fundamental theory we have is an instance of `δS = 0`.
+
+What the principle never had was a **reason**. Why should nature extremise anything? And why should
+one principle cover both the classical world, where the stationary path is simply *taken*, and the
+quantum world, where every path contributes and the stationary one merely dominates? These two
+readings are the two halves of the quantum-gravity problem. GR is a classical variational theory of
+geometry, and QM is a sum over histories. The principle they share has never been explained, so their
+agreement has looked like a coincidence.
+
+**ZFA supplies the reason and makes the two halves one.** Both follow from a single count on a single
+substrate, and both are machine-verified:
+
+* **The classical half — the GR side.** The realized history is the one that happens in the most
+  ways. The conjugate pairing puts that mode at balance, so the first variation of the multiplicity
+  vanishes there: `δS = 0` as a theorem, not a postulate (`balance_is_stationary_mode`,
+  `ways_mode_at_balance`, §2). The classical path is the most-ways path
+  (`straight_path_most_ways`). This is the variational principle Hilbert used to derive Einstein's
+  equations.
+* **The quantum half — the QM side.** The same pairing, read on phases, makes the signed transfer
+  kernel anti-Hermitian. The closure amplitude is then the norm of the half-way amplitude, and no
+  endpoint beats it (`amp_swap`, `return_amplitude_sum_sq`, `signed_mode_at_balance`, §5a). This is
+  Feynman's stationary phase, proved for QLF's own phase.
+
+So QM and GR are not two theories that happen to share a principle. They are **the unsigned and the
+signed readings of one closure census**, and ZFA's conjugate pairing is what makes each of them
+stationary at the same place. The kill condition (§3) shows the claim has content: break the pairing
+and both stationarities leave the closure.
+
+**The one open step** is *which* functional the classical half makes stationary for gravity. That
+Hilbert's `∫R` is the census's own action rests on the Benincasa–Dowker causal-set result (cited,
+`QLF_CausalContinuum`), and identifying that functional with the multiplicity whose mode is taken is
+not yet proved (§5). The principle is unified; matching it to Hilbert's specific functional is the
+gap.
+
 ## §1 What the classical principle leaves unexplained
 
 In the classical theories `δS = 0` is an axiom. It picks out the equations of motion, but nothing in
@@ -146,8 +191,12 @@ reached by a single path has coherence exactly `1`. It is recorded as a failure 
 
 ## References
 
+* Maupertuis, P.-L. M. de (1744). *Accord de différentes loix de la nature qui avoient jusqu'ici paru incompatibles.* Mém. Acad. Sci. Paris — least action as the universal principle.
+* Lagrange, J.-L. (1788). *Mécanique analytique.*
 * Hamilton, W. R. (1834). *On a General Method in Dynamics.* Phil. Trans. R. Soc.
 * Hilbert, D. (1915). *Die Grundlagen der Physik.* Nachr. Ges. Wiss. Göttingen — `∫R√−g`.
+* Mie, G. (1912–13). *Grundlagen einer Theorie der Materie.* Ann. Phys. — the electrodynamics Hilbert folded into his action.
+* Planck, M. (1915). *Das Prinzip der kleinsten Wirkung.* In *Die Kultur der Gegenwart* III.3.1 — least action as the most comprehensive physical law.
 * Feynman, R. P. (1948). *Space-time approach to non-relativistic quantum mechanics.* Rev. Mod. Phys. 20, 367 — stationary phase.
 * Jaynes, E. T. (1957). *Information theory and statistical mechanics.* Phys. Rev. 106, 620 — the mode of the count as the realized macrostate.
 * Benincasa, D. M. T. & Dowker, F. (2010). *Scalar curvature of a causal set.* PRL 104, 181301.
