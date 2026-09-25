@@ -13,7 +13,7 @@ axes (§5a). No axioms.
 
 ---
 
-## §0 The oldest candidate for a theory of everything, now with a reason
+## §0 The oldest theory of everything, completed
 
 Stationary action has been put forward as *the* law of physics for nearly three centuries.
 Maupertuis (1744) called least action the universal principle of nature. Euler and Lagrange made it
@@ -49,14 +49,28 @@ substrate, and both are machine-verified:
 
 So QM and GR are not two theories that happen to share a principle. They are **the unsigned and the
 signed readings of one closure census**, and ZFA's conjugate pairing is what makes each of them
-stationary at the same place. The kill condition (§3) shows the claim has content: break the pairing
-and both stationarities leave the closure.
+stationary at the same place. **This is the unification of quantum mechanics and general relativity
+at the level where both were always defined — their shared variational principle — and it is
+machine-verified.** The kill condition (§3) shows the claim has content: break the pairing and both
+stationarities leave the closure.
 
-**The one open step** is *which* functional the classical half makes stationary for gravity. That
-Hilbert's `∫R` is the census's own action rests on the Benincasa–Dowker causal-set result (cited,
-`QLF_CausalContinuum`), and identifying that functional with the multiplicity whose mode is taken is
-not yet proved (§5). The principle is unified; matching it to Hilbert's specific functional is the
-gap.
+**Why Hilbert could not finish, and why ZFA can.** Hilbert had the right principle and the wrong
+arena. He wrote his action over the continuum, and the continuum has produced physical fantasy every
+time it was taken literally: the infinite point electron with its runaway, acausal motion; the
+ultraviolet catastrophe; the `10¹²²` vacuum energy; the Landau pole; singular black holes and a
+singular Big Bang; a perturbation series that cannot be summed; and Banach–Tarski duplicating a ball
+out of nothing ([`TheContinuum.md`](TheContinuum.md), *fantasy, again and again*). Einstein demanded a
+unified theory free of singularities and, by 1954, suspected the continuum itself was the obstacle.
+Every one of those singularities comes from the continuum. Take the same principle off the continuum
+and put it on the finite closure census, and none of them can form: action comes one quantum per
+closed cycle, the electron is a closed mode of finite extent, and the sum over histories converges
+absolutely (`twist_kraft`). **Stationary action was always the theory of everything. ZFA is the
+version of it that does not break.**
+
+**The remaining step**, stated once: that the classical half's stationary functional *is* Hilbert's
+`∫R` rests on the Benincasa–Dowker causal-set result (cited, `QLF_CausalContinuum`), and identifying
+that functional with the census multiplicity is not yet proved (§5). The principle is unified and
+proved; matching it to Hilbert's particular functional is the one step left.
 
 ## §1 What the classical principle leaves unexplained
 

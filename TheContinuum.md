@@ -11,7 +11,16 @@ Both assumptions are pragmatically useful for classical mechanics and general re
 
 ---
 
-## The continuum gives wrong answers
+## The continuum gives wrong answers — fantasy, again and again
+
+Einstein, who demanded that a unified theory be free of singularities, came in the end to suspect the
+continuum itself. In a 1954 letter to Michele Besso he wrote that he considered it *"quite possible
+that physics cannot be based on the field concept, that is, on continuous structures,"* in which case
+*"nothing remains of my entire castle in the air, gravitation theory included."* The record below is
+why he was right to worry. **Every singularity physics has ever met is the continuum letting a finite
+quantity be squeezed into zero volume, or an infinity of states into a finite region.** The continuum
+is not a neutral backdrop that sometimes misbehaves. It is the **source** of the singularities, and it
+has produced physical fantasy every time it was taken literally.
 
 In every case below the continuum produces an answer that is **flatly wrong** — almost always **infinite or absurd** — and the discrete substrate produces the measured value. The wrongness is not random: it appears precisely where the continuum's distinctive content (a *continuum* of degrees of freedom, an actual infinity) is invoked.
 
@@ -21,8 +30,13 @@ In every case below the continuum produces an answer that is **flatly wrong** �
 | **Vacuum energy** (the *cosmological-constant catastrophe*) | **~10¹²²×** the observed value — `½ℏω` over a continuum of modes | `Ω_Λ = log 2`, **1.2%** ([`QLF_CosmologicalConstant`](lean/QLF_CosmologicalConstant.lean), [`VacuumEnergy.md`](VacuumEnergy.md)) | Worst prediction in physics; discrete is right |
 | **Spacetime singularities** (black-hole centre, Big Bang) | **infinite** curvature/density | singularity-free by construction — discrete events + Pauli-bounded density ([`Curvature.md`](Curvature.md), [`BLACK-HOLES.md`](BLACK-HOLES.md)) | Continuum → ∞; discrete → finite |
 | **QED/QFT loop self-energies** | **infinite** (UV divergences) | finite — the discrete Planck floor cuts the running off (§3.1; [`QLF_PlanckScale`](lean/QLF_PlanckScale.lean)) | Bare continuum answer is wrong (∞) |
+| **The classical point electron** (Abraham–Lorentz 1904, Dirac 1938) | **infinite** self-energy (`∝ 1/r` as `r → 0`); the equation of motion has **runaway** solutions that accelerate forever, and physical ones must **pre-accelerate** before the force arrives | the electron is a **closed periodic mode** of finite extent; charge is the residue of non-closure, and no event is ever charged ([`QLF_ElectronClosure`](lean/QLF_ElectronClosure.lean), [`Electron.md`](Electron.md)) | Continuum electron is infinite *and* acausal — pure fantasy |
+| **The QED Landau pole** | the coupling becomes **infinite at a finite energy** | located, then cut off by the closure floor ([`QLF_RunningCouplings`](lean/QLF_RunningCouplings.lean), §3.1) | Continuum QED is not even self-consistent at high energy |
+| **The perturbation series itself** (Dyson 1952) | **zero radius of convergence** — the series is asymptotic, and summing it fails | converges absolutely in the cylinder measure (`twist_kraft`, [`Perturbation_Theory_QLF.md`](Perturbation_Theory_QLF.md)) | Continuum expansion cannot be summed; the discrete one can |
+| **Fluid blow-up** (Navier–Stokes) | vorticity may diverge in finite time — open for a century | vorticity is quantized per cell and **capped** at the Planck scale (`planck_caps_vorticity`, [`Navier_Stokes_Geometry.md`](Navier_Stokes_Geometry.md)) | Discrete fluid cannot blow up |
+| **Banach–Tarski** (1924) | one ball cut into finitely many pieces and reassembled into **two** of the same size | no free duplication: copying pays `ΔF = −log 2` per bit ([`QLF_NoFreeDuplication`](lean/QLF_NoFreeDuplication.lean), [`Banach_Tarski_QLF.md`](Banach_Tarski_QLF.md)) | The continuum (with Choice) creates matter from nothing |
 
-The pattern is exact: **integrate over a continuum and you get a divergence — a wrong, infinite answer.** Quantize (discretize) and you get the finite measured value. Planck's 1900 fix was the first instance; the vacuum catastrophe is the same disease at cosmological scale; GR singularities are the same disease in geometry. The continuum is not occasionally wrong — it is *systematically* wrong wherever it is taken literally.
+The pattern is exact, and it has held for a century and a quarter, from Rayleigh–Jeans (1900) to the cosmological constant: **integrate over a continuum and you get a divergence, an acausal runaway, or matter from nothing.** Quantize (discretize) and you get the finite measured value. Planck's 1900 fix was the first instance; the vacuum catastrophe is the same disease at cosmological scale; GR singularities are the same disease in geometry. The continuum is not occasionally wrong — it is *systematically* wrong wherever it is taken literally.
 
 ### The kicker: every continuum *success* is smuggled-in discreteness
 
