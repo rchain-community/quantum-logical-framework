@@ -22,6 +22,19 @@ quantity be squeezed into zero volume, or an infinity of states into a finite re
 is not a neutral backdrop that sometimes misbehaves. It is the **source** of the singularities, and it
 has produced physical fantasy every time it was taken literally.
 
+> **The most dramatic case: one solid ball becomes two.** Banach and Tarski (1924) proved that a solid
+> ball can be cut into finitely many pieces — five are enough (Robinson 1947) — and the pieces moved
+> rigidly, with no stretching and no gaps, reassembled into **two solid balls, each identical to the
+> original**. It is a theorem of the continuum together with the Axiom of Choice. It is not an
+> approximation, it involves no infinity of energy, and it does not come from careless modelling. It is
+> what those two assumptions *say*, and what they say is that matter can be duplicated from nothing.
+> No physical process has ever done this, and in QLF none can: copying costs `ΔF = −log 2` per bit
+> ([`QLF_NoFreeDuplication`](lean/QLF_NoFreeDuplication.lean)), and the pieces Banach–Tarski needs
+> have no well-defined volume (they are non-measurable) and cannot be built from finitely many
+> distinguishable states
+> (`no_continuum_in_finite_region`). Every other entry below is the continuum giving a wrong *number*.
+> This one is the continuum giving a wrong *world*. Full treatment: [`Banach_Tarski_QLF.md`](Banach_Tarski_QLF.md).
+
 In every case below the continuum produces an answer that is **flatly wrong** — almost always **infinite or absurd** — and the discrete substrate produces the measured value. The wrongness is not random: it appears precisely where the continuum's distinctive content (a *continuum* of degrees of freedom, an actual infinity) is invoked.
 
 | Phenomenon | Continuum answer | Discrete (QLF) answer | Verdict |

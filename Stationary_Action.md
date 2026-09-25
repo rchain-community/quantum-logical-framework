@@ -56,10 +56,11 @@ stationarities leave the closure.
 
 **Why Hilbert could not finish, and why ZFA can.** Hilbert had the right principle and the wrong
 arena. He wrote his action over the continuum, and the continuum has produced physical fantasy every
-time it was taken literally: the infinite point electron with its runaway, acausal motion; the
+time it was taken literally. Most dramatically, it proves that one solid ball can be cut into five
+pieces and reassembled into two identical balls (Banach–Tarski, with the Axiom of Choice): matter from
+nothing. And again and again in physics: the infinite point electron with its runaway, acausal motion; the
 ultraviolet catastrophe; the `10¹²²` vacuum energy; the Landau pole; singular black holes and a
-singular Big Bang; a perturbation series that cannot be summed; and Banach–Tarski duplicating a ball
-out of nothing ([`TheContinuum.md`](TheContinuum.md), *fantasy, again and again*). Einstein demanded a
+singular Big Bang; and a perturbation series that cannot be summed ([`TheContinuum.md`](TheContinuum.md), *fantasy, again and again*). Einstein demanded a
 unified theory free of singularities and, by 1954, suspected the continuum itself was the obstacle.
 Every one of those singularities comes from the continuum. Take the same principle off the continuum
 and put it on the finite closure census, and none of them can form: action comes one quantum per
