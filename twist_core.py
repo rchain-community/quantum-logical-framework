@@ -241,7 +241,12 @@ def adjoint_history(history: str) -> str:
     Return the Hermitian adjoint of a twist history.
 
     The adjoint reverses order and replaces each twist with its
-    complementary opposite.
+    complementary opposite. Because that also flips the sign of every
+    generator, `fold(adjoint_history(W)) = (-1)^|W| . fold(W)-dagger`: this is
+    the matrix adjoint exactly for even-length histories, and differs from it
+    by a global sign for odd ones. Closure tests are unaffected (ZFA is closure
+    up to overall phase); `double_helix_dna.py` computes the true adjoint where
+    the exact matrix matters.
     """
     validate_history(history)
 

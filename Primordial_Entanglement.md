@@ -186,6 +186,22 @@ The finite-capacity set is the object; the limit is its rendering ([`Continuum_C
 
 The method is [`QucalcSearch.md`](QucalcSearch.md)'s: of the ways a position can close, take the one closure the substrate takes — the least free action, the shallowest-horizon closure, the one reachable the most ways (`QLF_ClosureDepthLaw`, and `/solve`). Rather than enumerate all ways, find the simplest path; any way at all is a result that happens in finite time.
 
-Scope: one construction, not the route. Only one conjugate pair is used; the full 2D set as a purely combinatorial object needs the second axis, which remains the open edge (§6, `mandelbrot_loop_dna.py` §6). No Feigenbaum delta is computed or needed.
+Scope: one construction, not the route. Only one conjugate pair is used; the full 2D set as a purely combinatorial object needs the second axis, which §8 proposes (the complementary history) and settles exactly on the Gaussian integers. No Feigenbaum delta is computed or needed.
+
+## 8. The Second Axis Is the Complementary History: the Double Helix
+
+`mandelbrot_logical.py` leaves the full 2D set open for want of a second axis. The second axis is the **complementary history** — the Hermitian adjoint $W^\dagger$ — and it is what makes the ZFA DNA a double helix.
+
+**The rung.** The adjoint reverses a word and flips each twist, so $W$ and $W^\dagger$ are antiparallel and complementary, and $W \cdot W^\dagger$ closes: count-balanced *and* Pauli-closed, a scalar — the "ray pair" of `mandelbrot_loop_dna.py` §4. One rung is one closure; a chain of rungs is the helix; each base pair carries $\log 2$.
+
+**The identification.** On the Pauli fold the adjoint is complex conjugation, $\mathrm{fold}(W^\dagger) = (-1)^{|W|}\,\mathrm{fold}(W)^\dagger$ — the sign is global and vanishes for the even-length words that close (`double_helix_dna.py` §0 checks it; `twist_core.adjoint_history` now records it). So a history and its complement form a complex pair $(A+iB,\ A-iB)$: $A$, the self-adjoint part, is the rung (what the strands agree on); the $iB$ direction, anti-self-adjoint, is the second axis (what they disagree on). The second axis is not another space direction — it is the strand difference.
+
+**The DNA.** With two axes the map is $z \mapsto z^2 + c$ (squaring reproduces both strands, $+c$ splices a rung) on $z = x + iy$, and the bounded-orbit set is the Mandelbrot set of the helix. Exactly, on the Gaussian integers, it is finite: the escape lemma bounds every bounded $c$ by $|c| \le 2$, leaving thirteen candidates, of which
+
+$$M(\mathbb{Z}[i]) = \{\, 0,\ -1,\ -2,\ +i,\ -i \,\}$$
+
+survive. It contains the conjugate pair $\pm i$ — the two strands again — and the real parameters of the critical point, its 2-cycle, and the parabolic fixed point. Rendered on the continuum, this is the familiar set.
+
+Scope: a route, not the route — the algebra has other conjugate pairs (x, y, z axes). The exact finite set is the object; the picture is its rendering.
 
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.
