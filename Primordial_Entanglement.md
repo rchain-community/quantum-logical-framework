@@ -214,4 +214,8 @@ The objects of §6–§8 are not unrelated. `zfa_dna_network.py` measures the in
 
 Byproduct, recorded because it changes a count: the census here uses the canonical `twist_core.is_zfa` and has **168** four-twist closures. `active_inference_vfe_demo.py` had used a weaker sign-parity balance (pooling the four axes' signs) and reported 384; it is corrected to 168, and the two docs that cited 384 are updated.
 
+The operator network as a figure (the main chains; the full operator list, including free-splice → primordial DNA, is in the text report). Regenerate with `python3 zfa_dna_network.py --svg`, or the same graph as Graphviz with `--dot`:
+
+<p align="center"><img src="diagrams/zfa_dna_network.svg" alt="The ZFA DNA operator network: seeds ^ and the loop DNA W↦W·s·W, with four operators (doubler, adjoint/closure, free splice, capacity listener) generating the closure pair, primordial DNA, the cascade and its superstable centres, the M skeleton and its capacity render M_R, the ray pair and double helix, and M(Z[i])" width="100%"></p>
+
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.

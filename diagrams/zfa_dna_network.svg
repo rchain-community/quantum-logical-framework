@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 480" font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<rect width="2160" height="480" fill="#ffffff"/>
+<text x="1080" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">The ZFA DNA network - one operator set generates every object in the thread</text>
+<text x="1080" y="52" text-anchor="middle" font-size="12" fill="#6b7280">nodes are the constructions; edges are the operators. One route, not the route (zfa_dna_network.py).</text>
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker></defs>
+<line x1="290" y1="90.0" x2="490" y2="90.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="750" y1="90.0" x2="950" y2="90.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="290" y1="170.0" x2="490" y2="170.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="290" y1="170.0" x2="490" y2="250.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="750" y1="170.0" x2="950" y2="170.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="1210" y1="170.0" x2="1410" y2="170.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="1670" y1="170.0" x2="1870" y2="170.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="290" y1="340.0" x2="490" y2="340.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="750" y1="340.0" x2="950" y2="340.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="1210" y1="340.0" x2="1410" y2="340.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<line x1="290" y1="420.0" x2="490" y2="420.0" stroke="#64748b" stroke-width="1.3" marker-end="url(#ar)"/>
+<rect x="30" y="70" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="44" y="95" font-size="13" fill="#0f172a">^   (the first distinction)</text>
+<rect x="490" y="70" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="504" y="95" font-size="13" fill="#0f172a">{ ^&gt;v&lt; , ^&lt;v&gt; }    the doubler</text>
+<rect x="950" y="70" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="964" y="95" font-size="13" fill="#0f172a">primordial DNA</text>
+<rect x="30" y="150" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="44" y="175" font-size="13" fill="#0f172a">loop DNA    W |-&gt; W.s.W</text>
+<rect x="490" y="150" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="504" y="175" font-size="13" fill="#0f172a">cascade   (splice fixed)</text>
+<rect x="950" y="150" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="964" y="175" font-size="13" fill="#0f172a">real superstable centres</text>
+<rect x="1410" y="150" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="1424" y="175" font-size="13" fill="#0f172a">M skeleton</text>
+<rect x="1870" y="150" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="1884" y="175" font-size="13" fill="#0f172a">M_R   (continuum render)</text>
+<rect x="490" y="230" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="504" y="255" font-size="13" fill="#0f172a">edge of chaos   (splice free)</text>
+<rect x="30" y="320" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="44" y="345" font-size="13" fill="#0f172a">any history   W</text>
+<rect x="490" y="320" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="504" y="345" font-size="13" fill="#0f172a">ray pair   W.W-dagger</text>
+<rect x="950" y="320" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="964" y="345" font-size="13" fill="#0f172a">double helix</text>
+<rect x="1410" y="320" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="1424" y="345" font-size="13" fill="#0f172a">M(Z[i]) = { 0, -1, -2, +-i }</text>
+<rect x="30" y="400" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="44" y="425" font-size="13" fill="#0f172a">capacity   R</text>
+<rect x="490" y="400" width="260" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="504" y="425" font-size="13" fill="#0f172a">depth strata / M_R</text>
+<rect x="360.6" y="79.5" width="58.8" height="21.0" fill="#ffffff" opacity="0.96"/>
+<text x="390.0" y="89.5" text-anchor="middle" font-size="10.5" fill="#475569">doubler</text>
+<rect x="807.8" y="73.0" width="84.4" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="850.0" y="83.0" text-anchor="middle" font-size="10.5" fill="#475569">iterate at</text>
+<text x="850.0" y="96.0" text-anchor="middle" font-size="10.5" fill="#475569">every twist</text>
+<rect x="344.6" y="159.5" width="90.8" height="21.0" fill="#ffffff" opacity="0.96"/>
+<text x="390.0" y="169.5" text-anchor="middle" font-size="10.5" fill="#475569">splice fixed</text>
+<rect x="344.6" y="199.5" width="90.8" height="21.0" fill="#ffffff" opacity="0.96"/>
+<text x="390.0" y="209.5" text-anchor="middle" font-size="10.5" fill="#475569">splice freed</text>
+<rect x="811.0" y="153.0" width="78.0" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="850.0" y="163.0" text-anchor="middle" font-size="10.5" fill="#475569">solve</text>
+<text x="850.0" y="176.0" text-anchor="middle" font-size="10.5" fill="#475569">f_c^p(0)=0</text>
+<rect x="1277.4" y="153.0" width="65.2" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="1310.0" y="163.0" text-anchor="middle" font-size="10.5" fill="#475569">closure</text>
+<text x="1310.0" y="176.0" text-anchor="middle" font-size="10.5" fill="#475569">skeleton</text>
+<rect x="1731.0" y="153.0" width="78.0" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="1770.0" y="163.0" text-anchor="middle" font-size="10.5" fill="#475569">capacity</text>
+<text x="1770.0" y="176.0" text-anchor="middle" font-size="10.5" fill="#475569">truncation</text>
+<rect x="344.6" y="323.0" width="90.8" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="390.0" y="333.0" text-anchor="middle" font-size="10.5" fill="#475569">adjoint (one</text>
+<text x="390.0" y="346.0" text-anchor="middle" font-size="10.5" fill="#475569">rung)</text>
+<rect x="804.6" y="316.5" width="90.8" height="47.0" fill="#ffffff" opacity="0.96"/>
+<text x="850.0" y="326.5" text-anchor="middle" font-size="10.5" fill="#475569">chain rungs;</text>
+<text x="850.0" y="339.5" text-anchor="middle" font-size="10.5" fill="#475569">2nd axis =</text>
+<text x="850.0" y="352.5" text-anchor="middle" font-size="10.5" fill="#475569">complement</text>
+<rect x="1267.8" y="323.0" width="84.4" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="1310.0" y="333.0" text-anchor="middle" font-size="10.5" fill="#475569">two axes z</text>
+<text x="1310.0" y="346.0" text-anchor="middle" font-size="10.5" fill="#475569">|-&gt; z^2 + c</text>
+<rect x="344.6" y="403.0" width="90.8" height="34.0" fill="#ffffff" opacity="0.96"/>
+<text x="390.0" y="413.0" text-anchor="middle" font-size="10.5" fill="#475569">excursion &lt;=</text>
+<text x="390.0" y="426.0" text-anchor="middle" font-size="10.5" fill="#475569">R</text>
+</svg>
