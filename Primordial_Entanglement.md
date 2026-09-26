@@ -235,4 +235,14 @@ The operator network as a figure (the main chains; the full operator list, inclu
 
 Scope: finite capacity and a dyadic grid; exact; one route, not the route.
 
+## 11. The Word-Only Route, Taken On
+
+§10 left one route open: a generation from twist *words* alone, no arithmetic. That is the **quadratic minor lamination** (Douady–Hubbard / Thurston) — chords of the circle joining angles whose external rays land at the same point of `∂M`. `mandelbrot_lamination.py` takes it on and reports three things.
+
+**Demonstrated (exact, no float).** The dynamics is the doubling map `D(t) = 2t mod 1` — the same "the itinerary is copied" law as the loop DNA — acting on the angles `k/(2ⁿ−1)`. The known main-cardioid limb leaves are reproduced and *verified*: `(1/3,2/3)`, `(1/7,2/7)`, `(5/7,6/7)`, `(1/15,2/15)`, `(13/15,14/15)`, each a pair of consecutive fractions sharing a rotation number. And the required count is pinned: every angle of exact period `n` is the root line of exactly one hyperbolic component of period `n`, so there must be (number of exact-period-`n` angles)/2 leaves — OEIS A000740: `1, 3, 6, 15, 27, 63, 120` for `n = 2..8`.
+
+**Falsified.** The obvious algorithm — add leaves by period, pairing consecutive angles in the arcs cut out by earlier leaves — is non-crossing (the necessary condition) and correct for periods 2 and 3, but **short from period 4 on**: `5` leaves where `6` are required, `13` where `15`, `23` where `27`. So it is not the QML. (Pairing consecutively across the whole circle repairs the counts but crosses.) Non-crossing alone cannot tell you — the count can. This is exactly the kind of claim §10 said to check rather than assert, and it did not survive.
+
+**Not done.** The correct step is a gap-based renormalisation: a gap whose minor leaf has period `p` carries a rescaled copy of the whole lamination, so its children have period `p·m`. A direct face-based attempt was made and failed too (wrong counts *and* crossings), so the obstacle is the renormalisation map itself, not merely arc-versus-gap. The generation is closer — exact combinatorics, a validated low-order base, and a sharp correctness oracle (count + non-crossing) — but it is not there, and `mandelbrot_exact.py` remains the exact route.
+
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.
