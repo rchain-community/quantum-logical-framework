@@ -321,7 +321,68 @@ def scope() -> None:
      exactly; this one generates the combinatorial M from words. A route, not the route.""")
 
 
+PERIOD_COLOURS = {2: "#dc2626", 3: "#ea580c", 4: "#ca8a04", 5: "#16a34a",
+                  6: "#0891b2", 7: "#4f46e5", 8: "#7c3aed"}
+
+
+def svg(n_max: int = 8, path: str = "diagrams/zfa_mandelbrot_lamination.svg") -> None:
+    """Draw the lamination: the circle plus every leaf up to period n_max.
+
+    Floats appear ONLY here, for the picture. The generation (`refine_gaps`) stays exact.
+    """
+    import math
+    import os
+    import re
+    import xml.dom.minidom
+    r, pad, top = 380.0, 40.0, 90.0
+    w, h = 2 * r + 2 * pad, 2 * r + 2 * pad + top
+    cx, cy = pad + r, top + pad + r
+    leaves, _by = refine_gaps(n_max)
+    known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
+
+    def pt(t: Fraction):
+        a = 2 * math.pi * float(t)
+        return cx + r * math.cos(a), cy - r * math.sin(a)
+
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" '
+        f'font-family="ui-sans-serif, system-ui, sans-serif">',
+        f'<rect width="{w:.0f}" height="{h:.0f}" fill="#ffffff"/>',
+        f'<text x="{w / 2:.0f}" y="34" text-anchor="middle" font-size="19" font-weight="700" '
+        f'fill="#111827">The quadratic minor lamination - the Mandelbrot set from words</text>',
+        f'<text x="{w / 2:.0f}" y="56" text-anchor="middle" font-size="12" fill="#6b7280">'
+        f'each chord joins two angles whose rays land at one point of the boundary;</text>',
+        f'<text x="{w / 2:.0f}" y="72" text-anchor="middle" font-size="12" fill="#6b7280">'
+        f'the only dynamics is the doubling map. Periods 2..{n_max}: {len(leaves)} leaves, exact.</text>',
+        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="none" stroke="#334155" '
+        f'stroke-width="1.5"/>',
+    ]
+    for a, b in leaves:
+        k = period(a.numerator, a.denominator)
+        col = PERIOD_COLOURS.get(k, "#94a3b8")
+        x1, y1 = pt(a)
+        x2, y2 = pt(b)
+        stroke = 2.6 if tuple(sorted((a, b))) in known else 1.3
+        out.append(f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" '
+                   f'stroke="{col}" stroke-width="{stroke}"/>')
+    out.append("</svg>")
+    data = "\n".join(out) + "\n"
+    xml.dom.minidom.parseString(data)                                   # well-formed XML
+    xs = [float(v) for v in re.findall(r'x1="([-\d.]+)"', data)]
+    ys = [float(v) for v in re.findall(r'y1="([-\d.]+)"', data)]
+    assert xs and min(xs) >= 0 and max(xs) <= w and min(ys) >= 0 and max(ys) <= h
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(data)
+    print(f"wrote {path}  ({w:.0f}x{h:.0f})  xml ok, circle + {len(leaves)} leaves, "
+          f"periods 2..{n_max}")
+
+
 def main() -> None:
+    if "--svg" in sys.argv:
+        args = [a for a in sys.argv[1:] if not a.startswith("-")]
+        svg(int(args[0]) if args else 8)
+        return
     n_max = int(sys.argv[1]) if len(sys.argv) > 1 else 9
     print(__doc__)
     doubling()

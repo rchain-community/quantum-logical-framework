@@ -247,6 +247,10 @@ Scope: finite capacity and a dyadic grid; exact; one route, not the route.
 - no two leaves cross — 0 crossings among `4015` leaves at period 12, the defining property of a lamination;
 - the known low-period leaves are reproduced exactly: `(1/3,2/3)`, `(1/7,2/7)`, `(3/7,4/7)`, `(5/7,6/7)`, `(1/15,2/15)`, `(13/15,14/15)`, and all six period-4 leaves derived independently by hand — including `(2/5,3/5)`, the pair that spans two arcs and broke the arc-based version.
 
+The lamination drawn out (`python3 mandelbrot_lamination.py --svg 8`; colour is period, and the large empty region is the main cardioid gap):
+
+<p align="center"><img src="diagrams/zfa_mandelbrot_lamination.svg" alt="The quadratic minor lamination: the unit circle carrying 235 non-crossing chords, each joining two angles whose external rays land at the same point of the Mandelbrot set's boundary, generated from the doubling map alone" width="620"></p>
+
 **Falsified on the way, and kept.** The obvious algorithm — pair consecutive angles within the arcs cut out by earlier leaves — is non-crossing and right for periods 2 and 3, but **short from period 4 on** (`5` leaves where `6` are required, `13` where `15`, `23` where `27`). Non-crossing alone cannot detect it; the count can. And the *first* gap-based attempt failed too: the wrapping arc from `2/3` to `1/3` (through 0) was recorded as its endpoints and so read as `(1/3,2/3)` — the wrong side of the circle. Arcs must keep their direction; a gap is bounded by arcs on a particular side. That one bug was the whole difference between failing and working — hence the "half-written, must be checked" rule again.
 
 **Not claimed.** Individual high-period leaves were not compared against a published list: the validation is structural (count + non-crossing + known low periods). And this is the *lamination*, whose quotient is the combinatorial model of `M` — not a picture of `M`. `mandelbrot_exact.py` remains the exact numeric route. A route, not the route.
