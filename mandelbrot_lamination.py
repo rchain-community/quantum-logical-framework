@@ -16,12 +16,11 @@ rationals.
 
   sec 1  the doubling map on rational angles (exact)
   sec 2  the known main-cardioid limbs, and why "same rotation number" is not a naming
-  sec 3  the naive arc-based refinement -- non-crossing, right for periods 2-3, FALSIFIED by
-         the leaf count
-  sec 4  the gap-based pairing -- the generation, with its correctness oracle
-  sec 5  scope
+  sec 3  the generation -- gap-based pairing, with the validation table
+  sec 4  scope
 
 Run:  python3 mandelbrot_lamination.py [max_period]     (default 9; 12 takes ~30 s)
+      python3 mandelbrot_lamination.py --svg [max_period]
 """
 from __future__ import annotations
 
@@ -85,7 +84,7 @@ they force:
   Every angle of exact period n is the root line of exactly one hyperbolic component of period
   n, so there must be half as many leaves of period n as there are such angles -- the number of
   hyperbolic components of period n (OEIS A000740): 1, 3, 6, 15, 27, 63, 120, 252, 495.
-  This is the oracle sec 4 has to satisfy.""")
+  This is the oracle sec 3 has to satisfy.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -132,70 +131,11 @@ against exactly that criterion, all in `Fraction`:
 
 
 # --------------------------------------------------------------------------- #
-# sec 3 -- the naive arc-based refinement, and its falsification
+# sec 3 -- the generation: gap-based pairing
 # --------------------------------------------------------------------------- #
 def crosses(a: Fraction, b: Fraction, c: Fraction, d: Fraction) -> bool:
     a, b, c, d = min(a, b), max(a, b), min(c, d), max(c, d)
     return (a < c < b < d) or (c < a < d < b)
-
-
-def refine_arcs(n_max: int) -> list[tuple[Fraction, Fraction]]:
-    """Naive: by increasing period, pair consecutive period-n angles within each arc cut out
-    by the endpoints already placed."""
-    leaves, ends = [], []
-    for n in range(2, n_max + 1):
-        s = sorted(exact_angles(n))
-        cuts = sorted(set(ends))
-        arcs = [None] if not cuts else list(zip(cuts, cuts[1:] + cuts[:1]))
-        new = []
-        for arc in arcs:
-            if arc is None:
-                here = s
-            else:
-                lo, hi = arc
-                here = ([x for x in s if lo < x < hi] if lo < hi
-                        else [x for x in s if x > lo or x < hi])
-            here = sorted(here)
-            for i in range(0, len(here) - 1, 2):
-                new.append((here[i], here[i + 1]))
-        for a, b in new:
-            leaves.append((a, b))
-            ends += [a, b]
-    return leaves
-
-
-def arcs_falsified() -> None:
-    rule("sec 3  THE NAIVE ARC-BASED REFINEMENT -- FALSIFIED BY THE LEAF COUNT")
-    leaves = refine_arcs(8)
-    bad = sum(crosses(*leaves[i], *leaves[j])
-              for i in range(len(leaves)) for j in range(i + 1, len(leaves)))
-    known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
-    leafset = {tuple(sorted(l)) for l in leaves}
-    got: Counter[int] = Counter(period(a.numerator, a.denominator) for a, _b in leaves)
-    print(f"""
-Adding leaves by period and pairing consecutive angles within each arc is non-crossing ({bad}
-crossings in {len(leaves)} leaves) and reproduces every known leaf of period 2 and 3:
-{[k for k in sorted(known) if k in leafset]}. It looks right.
-
-It is not. Compare its leaves per period with the oracle:
-""")
-    print(f"  {'n':>3}{'arcs':>8}{'required':>10}")
-    print("  " + "-" * 21)
-    short = []
-    for n in range(2, 9):
-        req, g = len(exact_angles(n)) // 2, got[n]
-        print(f"  {n:>3}{g:>8}{req:>10}{'   MISSING ' + str(req - g) if g < req else ''}")
-        if g < req:
-            short.append(n)
-    print(f"""
-  Short from period {short[0]} on. It leaves periodic angles unpaired, and every one of them
-  must be a leaf endpoint. (Pairing across the whole circle instead repairs the counts but
-  crosses.) Non-crossing is necessary, not sufficient -- the count is what exposes the error.
-
-  Why it fails: the refinement never pairs angles lying in different arcs. At period 4 the two
-  it misses, 2/5 and 3/5, lie in the arcs (3/7, 1/3) and (2/3, 4/7) -- yet both are on the
-  boundary of ONE GAP, the region bounded by the leaves (1/3, 2/3) and (3/7, 4/7). Pairing must
-  be GAP-based, not arc-based. That is sec 4.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -262,13 +202,15 @@ def refine_gaps(n_max: int):
 
 
 def gap_generation(n_max: int) -> None:
-    rule(f"sec 4  THE GAP-BASED PAIRING -- THE GENERATION (periods 2..{n_max})")
+    rule(f"sec 3  THE GENERATION -- GAP-BASED PAIRING, WITH THE VALIDATION TABLE (periods 2..{n_max})")
     print("""
-Pairing consecutive period-n angles on the boundary of each GAP, in boundary order:
+By increasing period: for every gap of the lamination so far, take the exact-period-n angles on
+that gap's boundary, in boundary order, and pair them consecutively.
 """)
     leaves, by_period = refine_gaps(n_max)
+    print("  VALIDATION -- leaf count against the oracle (half the exact-period-n angles, A000740)")
     print(f"  {'n':>3}{'leaves':>9}{'required':>10}{'':>3}")
-    print("  " + "-" * 25)
+    print("  " + "-" * 27)
     ok_all = True
     for n in range(2, n_max + 1):
         req = len(exact_angles(n)) // 2
@@ -280,35 +222,27 @@ Pairing consecutive period-n angles on the boundary of each GAP, in boundary ord
     known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
     leafset = {tuple(sorted(l)) for l in leaves}
     print(f"""
-  Every period hits the required count: {ok_all}. Total {len(leaves)} leaves, {bad} crossings.
-  Known leaves reproduced: {sum(k in leafset for k in known)} of {len(known)}.
+  every period matches: {ok_all}       total {len(leaves)} leaves, {bad} crossings
+  known leaves reproduced: {sum(k in leafset for k in known)} of {len(known)}
 
-  The checkable facts all hold:
+  Three independent facts, all checked here:
     * the leaf count per period equals half the exact-period-n angles, at every n up to {n_max};
     * no two leaves cross ({bad} crossings is what a lamination requires);
-    * the five known leaves are reproduced.
-
-  The period-4 leaves it produces -- (1/15,2/15), (13/15,14/15), (1/5,4/15), (7/15,8/15),
-  (11/15,4/5), (2/5,3/5) -- are exactly the six derivable by hand, including (2/5,3/5), the
-  pair that spans two arcs and broke the arc-based refinement.
-
-  One bug worth recording, because it is the whole difference between failing and working: the
-  first attempt at this gave the wrong counts. The cause was the wrapping arc -- the arc from
-  2/3 to 1/3, which runs through 0. It was stored as its endpoints and so was collected as
-  (1/3, 2/3), the wrong side of the circle. Arcs have to keep their direction, and a gap is
-  bounded by arcs on a particular side. With that fixed the counts match exactly.""")
+    * the known low-period leaves are reproduced. The six period-4 leaves -- (1/15,2/15),
+      (13/15,14/15), (1/5,4/15), (7/15,8/15), (11/15,4/5), (2/5,3/5) -- are exactly the six
+      derivable by hand.""")
 
 
 # --------------------------------------------------------------------------- #
-# sec 5 -- scope
+# sec 4 -- scope
 # --------------------------------------------------------------------------- #
 def scope() -> None:
-    rule("sec 5  SCOPE")
+    rule("sec 4  SCOPE")
     print("""
   1. WHAT THIS IS. A word-only generation of the Mandelbrot set's combinatorial model: no
      arithmetic beyond integer numerator operations and comparisons of rationals -- no float,
      no complex plane, no escape test. The dynamics is the doubling map, the same word-copy
-     law as the loop DNA. It is the route §10 of Primordial_Entanglement.md left open.
+     law as the loop DNA. Written up in ZFA_DNA.md sec 8.
 
   2. CHECKED. Leaf counts match the oracle (half the exact-period-n angles, OEIS A000740) at
      every period tested; leaves do not cross; the known low-period leaves are reproduced
@@ -387,7 +321,6 @@ def main() -> None:
     print(__doc__)
     doubling()
     main_limbs()
-    arcs_falsified()
     gap_generation(n_max)
     scope()
 
