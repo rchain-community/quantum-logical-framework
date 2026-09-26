@@ -108,9 +108,11 @@ def pauli_scalar(M, tol=1e-12):
 
 
 def is_count_balanced(seq):
-    pos = sum(1 for t in seq if PARITY[t] == 0)
-    neg = sum(1 for t in seq if PARITY[t] == 1)
-    return pos == neg
+    # Canonical ZFA count balance: EVERY twist-pair count vanishes -- the four signed
+    # actions of twist_core.calculate_action. (This used to pool the +/- signs across all
+    # four axes into one parity, which is weaker: '^^\\-' passes that but is not ZFA.)
+    return (seq.count('^') == seq.count('v') and seq.count('>') == seq.count('<')
+            and seq.count('/') == seq.count('\\') and seq.count('+') == seq.count('-'))
 
 
 def is_zfa_closed(seq):

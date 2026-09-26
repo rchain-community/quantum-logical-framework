@@ -204,4 +204,14 @@ survive. It contains the conjugate pair $\pm i$ — the two strands again — an
 
 Scope: a route, not the route — the algebra has other conjugate pairs (x, y, z axes). The exact finite set is the object; the picture is its rendering.
 
+## 9. The Network of What We Discovered
+
+The objects of §6–§8 are not unrelated. `zfa_dna_network.py` measures the intersections three ways:
+
+- **Elements.** As sets of closures inside the ZFA census they form a chain, $\text{primordial} \subset \text{doubler table} \subset (\text{length-4 census})$, with the electron/positron pair $\{\texttt{^>v<}, \texttt{^<v>}\}$ the hub shared by two constructions; jointly they cover only ~5% of the length-4 census. They intersect, thinly — genuinely different objects with a small common core.
+- **Parameters.** A two-point hub $\{0, -1\}$ — the critical fixed point and the period-2 superstable centre — is shared by the cascade skeleton and the exact $M(\mathbb{Z}[i])$; $-2$ is in $M(\mathbb{Z}[i])$ but is not a superstable centre, and $\pm i$ are conjugate.
+- **Operators.** Four operators — the doubler, the adjoint/closure, the free splice, and the capacity listener — generate every object in the thread from the seeds $\texttt{^}$ and $W \mapsto W \cdot s \cdot W$. This is the dense network, and it is the sense in which the sets "intersect in a ZFA DNA network": they share operators, not elements.
+
+Byproduct, recorded because it changes a count: the census here uses the canonical `twist_core.is_zfa` and has **168** four-twist closures. `active_inference_vfe_demo.py` had used a weaker sign-parity balance (pooling the four axes' signs) and reported 384; it is corrected to 168, and the two docs that cited 384 are updated.
+
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.
