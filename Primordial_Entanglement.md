@@ -118,4 +118,51 @@ Global Action Verification : (^>v<) + (^<v>) = 0 (Void)
 
 By increasing the `--max_depth` parameter in `particles.py` to 8 or 12, the engine will automatically discover the higher-order resonant harmonics (Muons, Taus) and the fractional knots (Quarks) required to stabilize the expanding Information Ecology.
 
+## 6. The Primordial DNA: The Same Split, Iterated
+
+The split of §1, closed into the System 1 loops, is a single event. Read as a
+**replication rule** instead, and it generates the whole hierarchy: replace every twist
+by the closure headed by it, in either chirality.
+
+| twist | electron chirality | positron chirality |
+|---|---|---|
+| `^` | `^>v<` | `^<v>` |
+| `>` | `>v<^` | `>^<v` |
+| `v` | `v<^>` | `v>^<` |
+| `<` | `<^>v` | `<v>^` |
+
+Seed `^`; the choice is free at every twist of every generation (the `|` is RhoQuCalc's
+parallel bar). Every block is itself a closure, so each generation is a concatenation of
+closures and three things hold **together**, in every realization (`primordial_zfa_dna.py`,
+each one checked, not asserted):
+
+* **Closure at every depth.** ZFA at every generation, with maximum excursion 2 — heard
+  at every capacity horizon. Depth costs nothing.
+* **Exact self-similarity.** Keep every 4th twist (the block heads) and the parent
+  generation returns exactly. Every block has zero counts, so a tally of the child sees
+  nothing of the parent: the coarse scale is carried entirely in the *order* of the
+  twists, the one place ZFA does not charge for.
+* **Chaos.** Generation $k$ has length $4^k$ and $N_k = 2^{(4^k-1)/3}$ distinct
+  histories, so the entropy is $1/3$ bit per twist. Positive entropy with no metric, no
+  parameter and no noise source — possibilist chaos in the strict sense.
+
+The same free bit, three ways: the primordial split (`^` into matter / antimatter), the
+minimal doubler (`doubler.py`), and this generator. Determinism is the fixed-choice
+special case: all-electron chirality is a single self-similar fixed point, the 2-axis
+cousin of the Thue–Morse genome.
+
+**Contrast with the loop DNA.** `mandelbrot_loop_dna.py` writes the quadratic loop
+$z \mapsto z^2 + c$ on the same conjugate pair: squaring is concatenation and $+c$ is
+one splice twist, so its DNA is $W \mapsto W \cdot s \cdot W$. The free-action debt
+grows as $2^k/3$, so a capacity-$R$ listener hears it only to depth
+$K(R) = \log_2(3R)$ — the finite depth at which the Mandelbrot set exists. Freeing the
+splice buys only $O(\log n)$ bits in $n$ twists, i.e. zero per twist: that genome is
+the deterministic edge of chaos, not chaos per twist. Chaos per twist needs the free bit
+at the density of closures — one per closure rather than one per doubling — which is
+this section's DNA.
+
+Scope: no physical identification of these generations is claimed; closure is by
+construction (concatenated closures), and $1/3$ is the generation entropy, not the
+factor complexity of the full infinite language.
+
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.
