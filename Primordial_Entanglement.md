@@ -235,14 +235,20 @@ The operator network as a figure (the main chains; the full operator list, inclu
 
 Scope: finite capacity and a dyadic grid; exact; one route, not the route.
 
-## 11. The Word-Only Route, Taken On
+## 11. The Word-Only Route: Generated
 
-§10 left one route open: a generation from twist *words* alone, no arithmetic. That is the **quadratic minor lamination** (Douady–Hubbard / Thurston) — chords of the circle joining angles whose external rays land at the same point of `∂M`. `mandelbrot_lamination.py` takes it on and reports three things.
+§10 left one route open: a generation from twist *words* alone, no arithmetic. That is the **quadratic minor lamination** (Douady–Hubbard / Thurston) — chords of the circle joining angles whose external rays land at the same point of `∂M`; its gaps are the hyperbolic components of `M`, and its quotient is the combinatorial model of `M`. `mandelbrot_lamination.py` now generates it.
 
-**Demonstrated (exact, no float).** The dynamics is the doubling map `D(t) = 2t mod 1` — the same "the itinerary is copied" law as the loop DNA — acting on the angles `k/(2ⁿ−1)`. The known main-cardioid limb leaves are reproduced and *verified*: `(1/3,2/3)`, `(1/7,2/7)`, `(5/7,6/7)`, `(1/15,2/15)`, `(13/15,14/15)`, each a pair of consecutive fractions sharing a rotation number. And the required count is pinned: every angle of exact period `n` is the root line of exactly one hyperbolic component of period `n`, so there must be (number of exact-period-`n` angles)/2 leaves — OEIS A000740: `1, 3, 6, 15, 27, 63, 120` for `n = 2..8`.
+**How.** The only dynamics is the doubling map `D(t) = 2t mod 1` — the same "the itinerary is copied" law as the loop DNA — acting on the angles `k/(2ⁿ−1)`, in `Fraction`, with no float and no escape test. Leaves are added by increasing period: for every **gap** of the lamination so far, take the exact-period-`n` angles on that gap's boundary, in boundary order, and pair them consecutively.
 
-**Falsified.** The obvious algorithm — add leaves by period, pairing consecutive angles in the arcs cut out by earlier leaves — is non-crossing (the necessary condition) and correct for periods 2 and 3, but **short from period 4 on**: `5` leaves where `6` are required, `13` where `15`, `23` where `27`. So it is not the QML. (Pairing consecutively across the whole circle repairs the counts but crosses.) Non-crossing alone cannot tell you — the count can. This is exactly the kind of claim §10 said to check rather than assert, and it did not survive.
+**Checked.** Three independent facts:
 
-**Not done.** The correct step is a gap-based renormalisation: a gap whose minor leaf has period `p` carries a rescaled copy of the whole lamination, so its children have period `p·m`. A direct face-based attempt was made and failed too (wrong counts *and* crossings), so the obstacle is the renormalisation map itself, not merely arc-versus-gap. The generation is closer — exact combinatorics, a validated low-order base, and a sharp correctness oracle (count + non-crossing) — but it is not there, and `mandelbrot_exact.py` remains the exact route.
+- the leaf count at every period equals half the number of exact-period-`n` angles — which is the number of hyperbolic components of period `n` (OEIS A000740): `1, 3, 6, 15, 27, 63, 120, 252, 495, 1023, 2010` for `n = 2..12`;
+- no two leaves cross — 0 crossings among `4015` leaves at period 12, the defining property of a lamination;
+- the known low-period leaves are reproduced exactly: `(1/3,2/3)`, `(1/7,2/7)`, `(3/7,4/7)`, `(5/7,6/7)`, `(1/15,2/15)`, `(13/15,14/15)`, and all six period-4 leaves derived independently by hand — including `(2/5,3/5)`, the pair that spans two arcs and broke the arc-based version.
+
+**Falsified on the way, and kept.** The obvious algorithm — pair consecutive angles within the arcs cut out by earlier leaves — is non-crossing and right for periods 2 and 3, but **short from period 4 on** (`5` leaves where `6` are required, `13` where `15`, `23` where `27`). Non-crossing alone cannot detect it; the count can. And the *first* gap-based attempt failed too: the wrapping arc from `2/3` to `1/3` (through 0) was recorded as its endpoints and so read as `(1/3,2/3)` — the wrong side of the circle. Arcs must keep their direction; a gap is bounded by arcs on a particular side. That one bug was the whole difference between failing and working — hence the "half-written, must be checked" rule again.
+
+**Not claimed.** Individual high-period leaves were not compared against a published list: the validation is structural (count + non-crossing + known low periods). And this is the *lamination*, whose quotient is the combinatorial model of `M` — not a picture of `M`. `mandelbrot_exact.py` remains the exact numeric route. A route, not the route.
 
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.

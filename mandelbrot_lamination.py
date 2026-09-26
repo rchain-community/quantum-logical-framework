@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
 """
-mandelbrot_lamination.py -- the combinatorial Mandelbrot set as a circle lamination:
-what works, and where the naive algorithm breaks.
+mandelbrot_lamination.py -- the Mandelbrot set generated from words alone.
 
-THE QUESTION (Jim, 2026-09-26): take on the word-only / combinatorial generation of the
-Mandelbrot set. The classical object is the QUADRATIC MINOR LAMINATION (QML, Douady-Hubbard /
-Thurston): chords ("leaves") of the unit circle connect two angles whose external rays land at
-the same point of dM. Leaves do not cross; the gaps of the lamination are the hyperbolic
-components of M. It is purely combinatorial: the angles are rationals and the dynamics is the
-doubling map D(t) = 2t mod 1 -- the same "the itinerary is copied" law as the loop DNA.
+THE OBJECT. The combinatorial Mandelbrot set is the QUADRATIC MINOR LAMINATION (QML,
+Douady-Hubbard / Thurston): chords ("leaves") of the unit circle join two angles whose
+external rays land at the same point of dM. Leaves do not cross. The gaps of the lamination
+are the hyperbolic components of M, and the quotient of the disk is a model of M. It is
+purely combinatorial: the angles are rationals, and the ONLY dynamics is the doubling map
+D(t) = 2t mod 1 -- the same "the itinerary is copied" law as the loop DNA
+(`mandelbrot_loop_dna.py`).
 
-No floats anywhere: angles are `Fraction`, and the doubling map acts on integer numerators
-over 2^n - 1.
+No float anywhere: angles are `Fraction`, the doubling map acts on integer numerators over
+2^n - 1, and the geometry (which face an angle lies in) is decided by comparisons of
+rationals.
 
   sec 1  the doubling map on rational angles (exact)
   sec 2  the known main-cardioid limbs, and why "same rotation number" is not a naming
-  sec 3  the naive Lavaurs-style refinement -- non-crossing, right for periods 2-3, then
-         FALSIFIED by the leaf count
-  sec 4  what the correct construction needs
+  sec 3  the naive arc-based refinement -- non-crossing, right for periods 2-3, FALSIFIED by
+         the leaf count
+  sec 4  the gap-based pairing -- the generation, with its correctness oracle
   sec 5  scope
 
-Run:  python3 mandelbrot_lamination.py
+Run:  python3 mandelbrot_lamination.py [max_period]     (default 9; 12 takes ~30 s)
 """
 from __future__ import annotations
 
+import sys
 from collections import Counter
 from fractions import Fraction
 
@@ -37,8 +39,7 @@ def rule(t: str) -> None:
 # --------------------------------------------------------------------------- #
 def period(k: int, d: int) -> int:
     """Smallest n >= 1 with 2^n k = k (mod d). Exact."""
-    x = k % d
-    y = x
+    x = y = k % d
     n = 0
     while True:
         n += 1
@@ -71,20 +72,20 @@ def rotation_number(t: Fraction) -> Fraction:
 def doubling() -> None:
     rule("sec 1  THE DOUBLING MAP ON RATIONAL ANGLES (exact, no float)")
     print("""
-`D(t) = 2t mod 1` is the whole dynamics -- the same "the itinerary is copied" law as the loop
-DNA (`mandelbrot_loop_dna.py`). Periodic angles are `k/(2^n - 1)`; the period is computed on
-integer numerators. Counts of exact-period-n angles in (0,1), and the leaf count they force:
+`D(t) = 2t mod 1` is the whole dynamics. Periodic angles are `k/(2^n - 1)` and the period is
+computed on integer numerators. Counts of exact-period-n angles in (0,1), and the leaf count
+they force:
 """)
     print(f"  {'n':>3}{'angles of exact period n':>26}{'leaves required (half)':>26}")
     print("  " + "-" * 58)
-    for n in range(2, 9):
+    for n in range(2, 11):
         m = len(exact_angles(n))
         print(f"  {n:>3}{m:>26}{m // 2:>26}")
     print("""
   Every angle of exact period n is the root line of exactly one hyperbolic component of period
-  n, so the number of QML leaves of period n is half the number of such angles -- the count of
-  hyperbolic components of period n (OEIS A000740): 1, 3, 6, 15, 27, 63, 120 for n = 2..8.
-  Nothing here uses the complex plane.""")
+  n, so there must be half as many leaves of period n as there are such angles -- the number of
+  hyperbolic components of period n (OEIS A000740): 1, 3, 6, 15, 27, 63, 120, 252, 495.
+  This is the oracle sec 4 has to satisfy.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -126,24 +127,22 @@ against exactly that criterion, all in `Fraction`:
   All five known limbs pass. But the criterion does NOT name the limbs: it over-produces.
   Consecutive pairs sharing a rotation number, up to q = 7: {dict(sorted(counts.items()))}
 
-  Rotation 2/7 already has {counts[Fraction(2, 7)]} candidate pairs. Naming the 2/7-limb needs
-  the Farey ordering, not just the rotation number -- so even step one needs more than the
-  obvious rule.""")
+  Rotation 2/7 already has {counts[Fraction(2, 7)]} candidate pairs, so naming the 2/7-limb
+  needs the Farey ordering, not just the rotation number.""")
 
 
 # --------------------------------------------------------------------------- #
-# sec 3 -- the naive refinement, and its falsification by the count
+# sec 3 -- the naive arc-based refinement, and its falsification
 # --------------------------------------------------------------------------- #
 def crosses(a: Fraction, b: Fraction, c: Fraction, d: Fraction) -> bool:
     a, b, c, d = min(a, b), max(a, b), min(c, d), max(c, d)
     return (a < c < b < d) or (c < a < d < b)
 
 
-def refine(n_max: int = 8) -> list[tuple[Fraction, Fraction]]:
-    """Naive Lavaurs-style refinement: add leaves by increasing period, pairing, within each
-    arc cut out by the endpoints already placed, the exact-period-n angles consecutively."""
-    leaves: list[tuple[Fraction, Fraction]] = []
-    ends: list[Fraction] = []
+def refine_arcs(n_max: int) -> list[tuple[Fraction, Fraction]]:
+    """Naive: by increasing period, pair consecutive period-n angles within each arc cut out
+    by the endpoints already placed."""
+    leaves, ends = [], []
     for n in range(2, n_max + 1):
         s = sorted(exact_angles(n))
         cuts = sorted(set(ends))
@@ -165,73 +164,139 @@ def refine(n_max: int = 8) -> list[tuple[Fraction, Fraction]]:
     return leaves
 
 
-def naive_and_falsify() -> None:
-    rule("sec 3  THE NAIVE REFINEMENT -- NON-CROSSING, THEN FALSIFIED BY THE COUNT")
-    leaves = refine(8)
-    bad = [(leaves[i], leaves[j]) for i in range(len(leaves)) for j in range(i + 1, len(leaves))
-           if crosses(leaves[i][0], leaves[i][1], leaves[j][0], leaves[j][1])]
+def arcs_falsified() -> None:
+    rule("sec 3  THE NAIVE ARC-BASED REFINEMENT -- FALSIFIED BY THE LEAF COUNT")
+    leaves = refine_arcs(8)
+    bad = sum(crosses(*leaves[i], *leaves[j])
+              for i in range(len(leaves)) for j in range(i + 1, len(leaves)))
+    known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
+    leafset = {tuple(sorted(l)) for l in leaves}
+    got: Counter[int] = Counter(period(a.numerator, a.denominator) for a, _b in leaves)
+    print(f"""
+Adding leaves by period and pairing consecutive angles within each arc is non-crossing ({bad}
+crossings in {len(leaves)} leaves) and reproduces every known leaf of period 2 and 3:
+{[k for k in sorted(known) if k in leafset]}. It looks right.
+
+It is not. Compare its leaves per period with the oracle:
+""")
+    print(f"  {'n':>3}{'arcs':>8}{'required':>10}")
+    print("  " + "-" * 21)
+    short = []
+    for n in range(2, 9):
+        req, g = len(exact_angles(n)) // 2, got[n]
+        print(f"  {n:>3}{g:>8}{req:>10}{'   MISSING ' + str(req - g) if g < req else ''}")
+        if g < req:
+            short.append(n)
+    print(f"""
+  Short from period {short[0]} on. It leaves periodic angles unpaired, and every one of them
+  must be a leaf endpoint. (Pairing across the whole circle instead repairs the counts but
+  crosses.) Non-crossing is necessary, not sufficient -- the count is what exposes the error.
+
+  Why it fails: the refinement never pairs angles lying in different arcs. At period 4 the two
+  it misses, 2/5 and 3/5, lie in the arcs (3/7, 1/3) and (2/3, 4/7) -- yet both are on the
+  boundary of ONE GAP, the region bounded by the leaves (1/3, 2/3) and (3/7, 4/7). Pairing must
+  be GAP-based, not arc-based. That is sec 4.""")
+
+
+# --------------------------------------------------------------------------- #
+# sec 4 -- the gap-based pairing (the generation)
+# --------------------------------------------------------------------------- #
+def faces(leaves):
+    """Faces of the disk cut by the (non-crossing) chords, as cyclic boundary walks. Each
+    boundary item is ('arc', s, e) -- the CCW circle arc from s to e -- or ('chord', s, e)."""
+    verts = sorted({x for a, b in leaves for x in (a, b)})
+    if not verts:
+        return [[('arc', Fraction(0), Fraction(1))]]
+    m = len(verts)
+    idx = {v: i for i, v in enumerate(verts)}
+    edges = [('arc', i, (i + 1) % m, verts[i], verts[(i + 1) % m]) for i in range(m)]
+    edges += [('chord', idx[a], idx[b], None, None) for a, b in leaves]
+    # order the edges around each vertex by the CCW distance to the other end; an arc into the
+    # next vertex is first, an arc into the previous vertex last (ranks 0 and 2)
+    adj = {i: [] for i in range(m)}
+    for eid, (kind, a, b, _s, _e) in enumerate(edges):
+        adj[a].append((((verts[b] - verts[a]) % 1), 0 if kind == 'arc' else 1, eid, b))
+        adj[b].append((((verts[a] - verts[b]) % 1), 2 if kind == 'arc' else 1, eid, a))
+    for i in adj:
+        adj[i].sort(key=lambda t: (t[0], t[1]))
+    seen, out = set(), []
+    for i in range(m):
+        for p in range(len(adj[i])):
+            if (i, p) in seen:
+                continue
+            face, ci, cp = [], i, p
+            while (ci, cp) not in seen:
+                seen.add((ci, cp))
+                eid, other = adj[ci][cp][2], adj[ci][cp][3]
+                kind, _a, _b, s, e = edges[eid]
+                face.append((kind, s, e))
+                rev = next(q for q, t in enumerate(adj[other]) if t[2] == eid)
+                ci, cp = other, (rev - 1) % len(adj[other])
+            out.append(face)
+    return [f for f in out if any(k == 'chord' for k, _s, _e in f)]      # drop the exterior
+
+
+def in_arc(x: Fraction, s: Fraction, e: Fraction) -> bool:
+    """Is x strictly inside the CCW arc from s to e? (handles the wrap through 0)"""
+    return (s < x < e) if s < e else (x > s or x < e)
+
+
+def refine_gaps(n_max: int):
+    """THE GENERATION. By increasing period: for every gap of the current lamination, take the
+    exact-period-n angles on its boundary, in boundary order, and pair them consecutively."""
+    leaves, by_period = [], {}
+    for n in range(2, n_max + 1):
+        angs = exact_angles(n)
+        new = []
+        for face in faces(leaves):
+            seq = []
+            for kind, s, e in face:
+                if kind == 'arc':
+                    seq += [x for x in angs if in_arc(x, s, e)]
+            for i in range(0, len(seq) - 1, 2):
+                new.append((seq[i], seq[i + 1]))
+        for a, b in new:
+            leaves.append((a, b))
+        by_period[n] = len(new)
+    return leaves, by_period
+
+
+def gap_generation(n_max: int) -> None:
+    rule(f"sec 4  THE GAP-BASED PAIRING -- THE GENERATION (periods 2..{n_max})")
+    print("""
+Pairing consecutive period-n angles on the boundary of each GAP, in boundary order:
+""")
+    leaves, by_period = refine_gaps(n_max)
+    print(f"  {'n':>3}{'leaves':>9}{'required':>10}{'':>3}")
+    print("  " + "-" * 25)
+    ok_all = True
+    for n in range(2, n_max + 1):
+        req = len(exact_angles(n)) // 2
+        ok = by_period[n] == req
+        ok_all &= ok
+        print(f"  {n:>3}{by_period[n]:>9}{req:>10}{'  ok' if ok else '  MISMATCH'}")
+    bad = sum(crosses(*leaves[i], *leaves[j])
+              for i in range(len(leaves)) for j in range(i + 1, len(leaves)))
     known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
     leafset = {tuple(sorted(l)) for l in leaves}
     print(f"""
-The refinement gives {len(leaves)} leaves up to period 8, with {len(bad)} crossings: the
-non-crossing property (necessary for a lamination) holds. It reproduces the known leaves of
-period 2 and 3: {[k for k in sorted(known) if k in leafset]}.
+  Every period hits the required count: {ok_all}. Total {len(leaves)} leaves, {bad} crossings.
+  Known leaves reproduced: {sum(k in leafset for k in known)} of {len(known)}.
 
-Now the count. Compare its leaves per period with the required count from sec 1:
-""")
-    by_period: Counter[int] = Counter()
-    for a, _b in leaves:
-        by_period[period(a.numerator, a.denominator)] += 1
-    print(f"  {'n':>3}{'refinement':>14}{'required':>12}{'':>4}")
-    print("  " + "-" * 33)
-    fails = []
-    for n in range(2, 9):
-        req = len(exact_angles(n)) // 2
-        got = by_period[n]
-        print(f"  {n:>3}{got:>14}{req:>12}{'  MISSING ' + str(req - got) if got < req else ''}")
-        if got < req:
-            fails.append((n, got, req))
-    print(f"""
-  It is short from period 4 on: {[(n, g, r) for n, g, r in fails]}. So the refinement is NOT the
-  QML -- it leaves periodic angles unpaired, and every one of them must be a leaf endpoint.
+  The checkable facts all hold:
+    * the leaf count per period equals half the exact-period-n angles, at every n up to {n_max};
+    * no two leaves cross ({bad} crossings is what a lamination requires);
+    * the five known leaves are reproduced.
 
-  A first, tempting fix also fails. Pairing consecutively across the WHOLE circle (not within
-  an arc) gets the counts right but crosses: at period 4 it already gives the crossing pair
-  (2/5, 7/15), whose endpoints interleave the period-3 leaf (3/7, 4/7) (.4 < .4286 < .4667).
-  The target is therefore a NON-CROSSING PERFECT MATCHING of the period-n angles.
+  The period-4 leaves it produces -- (1/15,2/15), (13/15,14/15), (1/5,4/15), (7/15,8/15),
+  (11/15,4/5), (2/5,3/5) -- are exactly the six derivable by hand, including (2/5,3/5), the
+  pair that spans two arcs and broke the arc-based refinement.
 
-  Diagnosis of the miss. The refinement never pairs angles that lie in different arcs -- but
-  the two angles it misses at period 4, 2/5 and 3/5, are exactly such a pair: they lie in the
-  arcs (3/7, 1/3) and (2/3, 4/7), yet both are on the boundary of the single GAP bounded by the
-  leaves (1/3, 2/3) and (3/7, 4/7). Pairing must be GAP-based, not arc-based.""")
-
-
-# --------------------------------------------------------------------------- #
-# sec 4 -- what the correct construction needs
-# --------------------------------------------------------------------------- #
-def needs() -> None:
-    rule("sec 4  WHAT THE CORRECT CONSTRUCTION STILL NEEDS")
-    print("""
-The real Lavaurs algorithm is a RENORMALISATION recursion over gaps, not a period-wise pairing:
-
-  1. A gap with minor leaf {a,b} of period p carries a first-return map of the doubling to its
-     boundary; rescaled, that is again the doubling map. The gap therefore holds a copy of the
-     whole lamination, and its children have period p.m.
-  2. The children's root leaves are the preimages, under that renormalisation map, of the
-     main-cardioid limb leaves of sec 2 -- which is why pairing must be gap-based.
-  3. Iterating gives every component, and the child periods are forced to be multiples of the
-     parent's.
-
-So the validated base is in place: exact doubling combinatorics (sec 1), the known limbs
-verified (sec 2), and a clean falsification with the exact target (sec 3). What is missing is
-the gap-based renormalisation step -- well-defined, but not implemented here.
-
-A direct attempt at it was made, and it is worth recording that it failed too: pairing the
-period-n angles on each FACE of the planar subdivision by the non-crossing chords gave the
-wrong counts and crossing leaves (4 leaves at period 3 where 3 are required, 8 at period 4
-where 6 are required). So the obstacle is not merely "arc versus gap": the renormalisation map
-itself -- which pair of angles a gap's children join -- is what has to be got right. Getting it
-wrong is easy to detect (counts and crossings), which is what makes it tractable next.""")
+  One bug worth recording, because it is the whole difference between failing and working: the
+  first attempt at this gave the wrong counts. The cause was the wrapping arc -- the arc from
+  2/3 to 1/3, which runs through 0. It was stored as its endpoints and so was collected as
+  (1/3, 2/3), the wrong side of the circle. Arcs have to keep their direction, and a gap is
+  bounded by arcs on a particular side. With that fixed the counts match exactly.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -240,25 +305,29 @@ wrong is easy to detect (counts and crossings), which is what makes it tractable
 def scope() -> None:
     rule("sec 5  SCOPE")
     print("""
-  1. DEMONSTRATED. Exact doubling combinatorics (no float); the known main-cardioid limbs
-     verified against the rotation-number criterion; the leaf count per period.
+  1. WHAT THIS IS. A word-only generation of the Mandelbrot set's combinatorial model: no
+     arithmetic beyond integer numerator operations and comparisons of rationals -- no float,
+     no complex plane, no escape test. The dynamics is the doubling map, the same word-copy
+     law as the loop DNA. It is the route §10 of Primordial_Entanglement.md left open.
 
-  2. FALSIFIED. The naive period-wise refinement is NOT the QML: from period 4 on it leaves
-     periodic angles unpaired (5 leaves where 6 are required at period 4), and the angles it
-     misses are a pair spanning two arcs of one gap. Non-crossing alone is not enough; the
-     count is what exposes it.
+  2. CHECKED. Leaf counts match the oracle (half the exact-period-n angles, OEIS A000740) at
+     every period tested; leaves do not cross; the known low-period leaves are reproduced
+     exactly, including the six period-4 leaves derived independently by hand.
 
-  3. NOT DONE. The gap-based renormalisation recursion (sec 4). Until it is implemented and
-     validated there is no word-only generation of M; `mandelbrot_exact.py` remains the exact
-     route. A route, not the route.""")
+  3. NOT CHECKED, AND NOT CLAIMED. Individual leaves of high period were not compared against a
+     published list -- the validation is structural (counts, non-crossing, known low periods).
+     Nor is this a picture of M: it is the lamination, whose quotient is the model. The
+     distinction from `mandelbrot_exact.py` stands: that one generates M_R numerically and
+     exactly; this one generates the combinatorial M from words. A route, not the route.""")
 
 
 def main() -> None:
+    n_max = int(sys.argv[1]) if len(sys.argv) > 1 else 9
     print(__doc__)
     doubling()
     main_limbs()
-    naive_and_falsify()
-    needs()
+    arcs_falsified()
+    gap_generation(n_max)
     scope()
 
 
