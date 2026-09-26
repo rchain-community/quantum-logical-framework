@@ -218,4 +218,21 @@ The operator network as a figure (the main chains; the full operator list, inclu
 
 <p align="center"><img src="diagrams/zfa_dna_network.svg" alt="The ZFA DNA operator network: seeds ^ and the loop DNA W↦W·s·W, with four operators (doubler, adjoint/closure, free splice, capacity listener) generating the closure pair, primordial DNA, the cascade and its superstable centres, the M skeleton and its capacity render M_R, the ray pair and double helix, and M(Z[i])" width="100%"></p>
 
+## 10. Enough to Generate It — and Exactly
+
+"Do we have enough to do the Mandelbrot set generation any way?" Measured answer: **yes**, and there are now four generations on record.
+
+| generation | engine | what it gives |
+|---|---|---|
+| capacity-`R` escape (`mandelbrot_logical.py`) | float complex | `M_R → M`; the skeleton `f_c^p(0)=0` exact |
+| two-axis, Gaussian integers (`double_helix_dna.py`) | exact integer | `M(Z[i]) = {0,-1,-2,±i}` |
+| dyadic (`mandelbrot_exact.py`) | **exact integer, no float** | `M_R` on the grid `1/2^q`, certified |
+| word-only / combinatorial | — | **not ready** (below) |
+
+`mandelbrot_exact.py` runs the whole generation in `int`: the state is a Gaussian rational `(A+iB)/2^d`, squaring and the `+c` splice stay on the dyadic grid, and escape is the exact comparison `A²+B² > 4·2^{2d}`. It agrees with the float render on every cell except a handful where the orbit passes within a rounding of `|z| = 2` — and there the exact value is the truth. On a `1/2⁴` grid it renders the set and counts `M_R` falling `1386 → 473` cells as `R` grows `2 → 16`, toward `area(M)`. This honours the repo's rule *exact arithmetic before float* ([`ScientificApproach.md`](ScientificApproach.md)).
+
+**The one route that is not ready** is a generation from twist *words* alone — no arithmetic at all. That would go through kneading/lamination theory, and a naive parity-lex admissibility rule does not work: it yields `2, 3, 4, 6, 10, 17` periodic words for periods `1–6`, where the real hyperbolic-component counts are `1, 1, 1, 2, 3, 5`. So the word-only route is a genuine open problem, not a switch to flip.
+
+Scope: finite capacity and a dyadic grid; exact; one route, not the route.
+
 See also: [Entanglement.md](Entanglement.md) — unified synthesis treating this primordial pair-creation as the cosmological origin of all entanglement (§2); [Annihilation.md](Annihilation.md) — the reverse Hermitian-pair event that returns the action to the Void.
