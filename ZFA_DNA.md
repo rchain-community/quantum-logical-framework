@@ -347,6 +347,16 @@ crossings, and the known leaves reproduced. It adds no theorem to α or to the M
 What it adds is a test of the engine: if generate-and-select is the framework's claim, this is one
 place the claim was required to pay.
 
+**Run on α — and the answer is recorded as a negative result.** [`alpha_selection.py`](alpha_selection.py)
+does exactly that test ([`Alpha_Residual.md`](Alpha_Residual.md) §9j). The census series reproduces the
+two machine-verified tails to **45 digits** and brackets the measured value
+(`137.015874 < α⁻¹ < 137.048130`); the engine's own selection — no privileged scale, equal weight —
+pins the residual to `137.032002032`; and it does **not** select the measured `137.035999`. The gap is
+continuum running, and **189** distinct simple weights land within the theory's own precision of the
+measured value, so matching cannot substitute for deriving. The engine *constrains*; here it does not
+*select*. That is the honest output of applying §10's claim, and it is written down rather than left
+implied.
+
 ---
 
 ## References

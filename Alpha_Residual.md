@@ -1028,3 +1028,34 @@ the stated 4-loop elliptic-period wall (that one is about loop order; this is ab
 loop order even enters). What it establishes plainly: the ease with which weights 2–5 fell to this
 technique was not guaranteed to continue, and weight 6 is where it first stops — worth recording rather
 than assuming "one more Comtet-style formula" was just waiting to be found.
+
+---
+
+### 9j. The selection engine applied to the residual — bracketed, not selected ([`alpha_selection.py`](alpha_selection.py))
+
+§2a closed the "find the pure census truncation" door by argument. This closes it by computation, by
+running the framework's own selection rule ([`ZFA_DNA.md`](ZFA_DNA.md) §10: *generate every closure, then
+take the one the substrate takes* — least free action, shallowest horizon, most ways) against the
+residual.
+
+**The closed forms are the census, checked as series.** Both tails are `128 × Σ_{n≥2} count(n)/128ⁿ`,
+with `count(n) = C(2n,n)` (every closure) and `2·Catalan(n−1)` (irreducible only) — so the leading
+`137 = 128 + 9` is the orders-0-and-1 part of the *same* series. Summed against the Lean closed forms
+(`512√62/31 − 130` and `126 − 16√62`) they agree to **45 digits** (script §1), so the closed forms are
+the resummations and nothing is fitted.
+
+**The engine brackets, and takes the middle.** The bracket's two ends *are* the two halves of the
+criterion: "most ways" counts every closure (`w = 1` → `137.048130`), "least action" keeps only the
+irreducible ones (`w = 0` → `137.015874`). Neither is what the substrate does — its octave hierarchy is
+scale-invariant (§2a), so no scale is privileged, neither tail is favoured, and the two enter with equal
+weight: `w = 1/2` → **`137.032002032`**. What CODATA would need instead is `w = 0.623920200394`.
+
+**The crank trap, made countable.** Within the theory's own precision (0.001), **189** distinct rationals
+`p/q` with `q ≤ 100` land on CODATA — `5/8`, `9/14`, and `φ − 1` among them. So "hitting 0.036" carries
+essentially no information; §2a's guard is now a number rather than a warning.
+
+**Outcome — a negative result, recorded as one.** The engine constrains the residual to one value and
+brackets the truth; it does **not** select the measured value. The `0.004` from `137.032` to CODATA stays
+where §2a put it — continuum vacuum-polarisation running — and nothing about that running is derived
+here. What this adds is that the door §2a closed by argument is now closed by computation, with the
+competing alternatives counted.
