@@ -338,7 +338,10 @@ The same two steps run elsewhere in the repository, on other objects:
   used here; the three axes are the three of §9.
 * **The Millennium problems** ([`Millennium.md`](Millennium.md)) — the engine is stated there as
   *sum over everything, then select*: every closure, then the invariant. Step 1 plus step 2, at
-  the scale of the whole possibility space.
+  the scale of the whole possibility space. This thread's *posture* also maps onto the six there —
+  capacity in place of the bridge axiom, which is what §4 does with `M_R` — with the honest
+  verdict that it relocates the gap rather than closing it (`Millennium.md`, "The Mandelbrot
+  posture").
 
 So the honest scope of this thread is narrower than "it applies to α and the Millennium problems",
 and stronger than a curiosity: it is **another worked instance of the same selection rule**, on an

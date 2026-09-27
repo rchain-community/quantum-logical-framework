@@ -233,6 +233,57 @@ partner — in the honored Witten mode; it does not mean pretending a Class-A co
 > ZFC is flawed logic, suitable only where there are no exploding infinities. ZFA is correct
 > logic.
 
+---
+
+## The Mandelbrot posture: capacity in place of the bridge
+
+The template above has two load-bearing parts: a **verified discrete core** and **one full-strength
+bridge axiom** carrying the step to the classical statement. The Mandelbrot thread
+([`ZFA_DNA.md`](ZFA_DNA.md) §4, §7–§8) does something the six reformulations do not yet do, and it is
+worth asking whether that move transfers.
+
+**What the Mandelbrot attack actually does.** It never posits the limit. It replaces the continuum
+object `M = ∩_R M_R` by the **indexed family** `M_R`, states that *the finite-capacity member is the
+object and the limit is its rendering*, computes each member exactly (integer-only,
+[`mandelbrot_exact.py`](mandelbrot_exact.py)), and then — the part that makes it more than a
+reformulation — **generates the combinatorial model from words alone and checks the generation against
+an independent oracle** (leaf counts vs OEIS A000740, zero crossings, the known leaves;
+[`mandelbrot_lamination.py`](mandelbrot_lamination.py)). There is no bridge axiom, because no claim is
+made about the limit; the step that *would* be a bridge is replaced by a **capacity law** (here
+`K(R) = log₂ 3R`) that says how much of the object each capacity reaches.
+
+**So the transferable move is exactly one: add a capacity family, and name the capacity law.** That
+converts a full-strength bridge axiom into two weaker, checkable things — an exactly computable finite
+object, and a statement about how the finite objects approach the classical one. It does not remove the
+step; it *relocates* it, from "an axiom of full conjecture strength" to "a rendering/convergence claim
+that can be tested and can fail". Applied to the six:
+
+| problem | the capacity family (exactly computable at each `R`) | the rendering step the posture would name | already there? |
+|---|---|---|---|
+| **Yang–Mills** | the closure-order series truncated at order `R`, with the gap at each `R` | continuum-QFT existence on ℝ⁴ | **partly, and it bites.** The series *converges absolutely* by the Kraft bound (`QLF_ExactRG`), the Dyson divergence is already identified as a continuum artefact, and the gap `log 2` is capacity-independent — the strongest instance of the posture on the list |
+| **Navier–Stokes** | finite-capacity flows, each `realized_flow_is_stable` | continuum vorticity inheritance under the limit | **no** — and note the audit above: every bounded lattice has bounded fields, so a capacity bound proves too much. The posture relocates this bridge; it does not touch it |
+| **Riemann** | the first `R` zeros / the truncated Euler product | the Mellin↔ζ correspondence (`MRE_bridge`) | **no.** The audit already shows why: the census generating function is zero-free, so the capacity family here is *not* a truncation of `ζ` — the family itself is the missing piece, not just its limit |
+| **BSD** | `∏_{p≤X}` truncations, Frobenius traces `a_p` computed | analytic continuation to `s=1` | **partly** — the traces *are* computed (`EllipticCurveQLF`, `a₂=0`); the rendering step is the continuation, which the audit shows cannot be read off the products |
+| **Hodge** | cycles generated to bounded degree over ℚ | geometric realization / polarization | **partly** — the algebraic side is a graded ℚ-subalgebra already; the rendering step is exactly the named input |
+| **P vs NP** | — | — | **not applicable.** There is no continuum in the statement; the posture is about limits of finite objects, and P vs NP is finite combinatorics already. It is the one place the Mandelbrot posture has nothing to say |
+
+**Verdict.** Yes, in a precise and limited sense: *taming the continuum* is not a proof technique that
+transfers, it is a **posture** — index the object by capacity, compute each member exactly, state the
+limit as a rendering, and replace the bridge axiom with a named capacity law. Applied here it does not
+solve anything and does not strengthen a single bridge; what it does is sharpen the vocabulary of the
+honest gap from *"one full-strength axiom"* to *"one named rendering statement, plus an exactly
+computable family behind it"* — which is what `mass_gap_proven_constructively` and `hodge_proof_in_progress`
+are already, without saying so. Yang–Mills is the one problem where the posture is already doing real
+work.
+
+**Two disciplines transfer with it, and are worth more than the posture.** (1) The **oracle**: the
+lamination is only credible because its generation is checked against published counts it did not
+produce. A capacity family without an independent check is a model; with one it is evidence. (2) The
+**negative result recorded as a negative result**: the lamination attempt was falsified by the leaf
+count before it worked ([`ZFA_DNA.md`](ZFA_DNA.md) §8), and the α residual was closed the same way
+([`Alpha_Residual.md`](Alpha_Residual.md) §9j–§9k). Both belong to the posture — a capacity family that
+is never allowed to fail is a bridge axiom wearing different clothes.
+
 ## Key references
 
 - **The Millennium Prize Problems** — Clay Mathematics Institute (2000). <https://www.claymath.org/millennium-problems/>
