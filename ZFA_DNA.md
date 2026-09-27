@@ -322,6 +322,33 @@ condition deciding what may exist at all.
 
 ---
 
+## 10. The engine, and where else it runs
+
+Read this thread as an engine and it is two steps — and those two steps are the framework's method:
+
+1. **Generate every closure.** The census of admissible histories: the twist words of §1, the
+   operator network of §6, the doubling map's periodic angles in §8.
+2. **Select the invariant.** Take the closure the substrate takes — least free action, shallowest
+   horizon, reachable the most ways. That is §4's `/solve`, and it is the same `/solve` run in §0.
+
+The same two steps run elsewhere in the repository, on other objects:
+
+* **α** ([`Alpha.md`](Alpha.md)) — the bare coupling is the closure census with the directional
+  tensor, and the `N = 9 = 3²` behind it comes from the same 8-twist alphabet's **6 + 2** split
+  used here; the three axes are the three of §9.
+* **The Millennium problems** ([`Millennium.md`](Millennium.md)) — the engine is stated there as
+  *sum over everything, then select*: every closure, then the invariant. Step 1 plus step 2, at
+  the scale of the whole possibility space.
+
+So the honest scope of this thread is narrower than "it applies to α and the Millennium problems",
+and stronger than a curiosity: it is **another worked instance of the same selection rule**, on an
+object where the answer can be checked — leaf counts against OEIS A000740 at every period, zero
+crossings, and the known leaves reproduced. It adds no theorem to α or to the Millennium problems.
+What it adds is a test of the engine: if generate-and-select is the framework's claim, this is one
+place the claim was required to pay.
+
+---
+
 ## References
 
 The substrate (§0), the DNA rule (§1) and the generations (§4, §7) are this repository's. The
