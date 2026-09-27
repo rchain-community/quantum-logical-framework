@@ -1059,3 +1059,39 @@ brackets the truth; it does **not** select the measured value. The `0.004` from 
 where §2a put it — continuum vacuum-polarisation running — and nothing about that running is derived
 here. What this adds is that the door §2a closed by argument is now closed by computation, with the
 competing alternatives counted.
+
+---
+
+### 9k. The search, pre-registered — a depth cannot match, and a match is worth nothing ([`alpha_dna_search.py`](alpha_dna_search.py))
+
+§9j shows the engine brackets but does not select. This asks the sharper question directly: *if we go
+looking for a ZFA-DNA structure that reproduces the residual, and then justify it, what is that worth?*
+The search space, the tolerance (`0.001`) and the predictions are fixed in the script **before** any
+comparison, so neither prediction can be moved after the fact.
+
+**A DEPTH does not match — and that is the finding.** The census residual truncated at order `D`, for
+either counting, never lands on CODATA. The total counting is *already past* it at its first included
+order (`D = 2` gives `137.046875`, above `137.035999`) and only climbs to `137.048130`; the irreducible
+counting starts below (`137.015625`) and climbs to `137.015874` without ever reaching it. So **no order,
+no loop count, no truncation of the census has the residual as its value** — the free parameter is not a
+depth. (Registered prediction: no depth lands. Confirmed by the run.)
+
+**A WEIGHT matches — 189 of them.** With the mix `(1−w)·irred + w·total`, **189** distinct rationals
+`p/q`, `q ≤ 100`, land within `0.001` of CODATA; the closest, `58/93`, agrees to ~7 digits.
+
+**And the count is exactly chance.** The number of reduced fractions with `q ≤ Q` in a window of width
+`δ` is `(3/π²)Q²δ`; with `Q = 100` and `δ = 0.062` that is **188.5 expected** against **189 observed**
+— ratio `1.003`. The substrate's numbers are not clustering on the target at all.
+
+**The trap, demonstrated rather than warned about.** The script's §5 takes five of the fitting weights
+and writes the justification each would get if it had been found first — `5/8` = "five of the eight
+twists", `3/5` = "three spatial axes over five stages", `19/32` = "nineteen non-gauge twists over `2⁵`",
+and so on. Each fits to within the theory's own precision; each has a story; the stories are mutually
+exclusive; and nothing in the substrate ranks them. With 189 candidates there is *always* one available.
+
+**So the answer to "what if we find one and justify it?" is: we will, and the justification will be
+worthless** — not from bad faith, but from arithmetic. With a `0.032`-wide bracket and `0.001` precision,
+`(3/π²)Q²δ` candidates fit for any `Q`; asking for another digit does not narrow the field to one, it
+moves the window. What would count instead is a discrete-scale-invariance line in a **pre-registered**
+census statistic, or the continuum inputs (fermion mass thresholds, `Δα_had`). Neither is a search, and
+neither is a justification. No value is derived here; no axiom is added.

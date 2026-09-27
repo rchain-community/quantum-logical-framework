@@ -357,6 +357,15 @@ measured value, so matching cannot substitute for deriving. The engine *constrai
 *select*. That is the honest output of applying §10's claim, and it is written down rather than left
 implied.
 
+The follow-up question — *if we search for a DNA structure that matches and then justify it* — is
+answered too, and it is the cleaner result: [`alpha_dna_search.py`](alpha_dna_search.py)
+([`Alpha_Residual.md`](Alpha_Residual.md) §9k) finds that **no depth matches** (the total counting is
+already past the measured value at its first included order, the irreducible counting never reaches it)
+while **189 weights do** — and the observed count is `189` against `188.5` expected by the
+rational-counting density `(3/π²)Q²δ`, a ratio of `1.003`. A match found by search is therefore worth
+nothing, and the script demonstrates why by writing the post-hoc justification for five mutually
+exclusive candidates. The guard against numerology is arithmetic here, not a matter of discipline.
+
 ---
 
 ## References
