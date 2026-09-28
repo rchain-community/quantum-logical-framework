@@ -539,6 +539,13 @@ $ python3 natural_ratios.py          # under a second
 
 ---
 
+**Machine-verified.** The exact cores of §11–§12 and of [`Alpha_Residual.md`](Alpha_Residual.md) §9m–§9n are in
+[`QLF_GoldenSilver`](lean/QLF_GoldenSilver.lean), with no axioms: `listening_average` (every listening language
+counted once gives the census mode), `catalan_inverse` / `catalan_at_bare_coupling` / `golden_tail_eq` (the golden
+sector's algebra), and `rho_pow_four` / `silver_comm_rho` / `silver_sq` (the silver inflation, $S^2 = 2S + 1$).
+
+---
+
 ## 14. The Penrose tiling: where the golden ratio enters
 
 §12 found that the substrate's lattice makes the silver ratio and never $\varphi$. The Penrose tiling is
