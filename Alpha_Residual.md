@@ -1237,3 +1237,38 @@ capacities 2 and 3, but nothing selects that capacity. So the question the count
 whether nature's listening is **arbitrary** (every language: the mode) or **grown** (substitution languages:
 the golden sector). The continuum running (§2a) is a contributing sector whose multiplicity is not a
 census count. The proton mass is not addressed here. No value is derived; no axiom is added.
+
+---
+
+### 9o. Does the ½ transfer? A pre-registered cross-test on the proton ([`proton_census_test.py`](proton_census_test.py))
+
+§9n left a lead: the measured `α` sits almost exactly halfway between arbitrary listening (the mode) and
+grown listening (the golden sector), a grown share of `g = 0.504`. Taking `g = 1/2` for `α` alone would be
+post-hoc. It becomes evidence only if its reason predicts something else.
+
+**The candidate reason, flagged as post-hoc.** Every ZFA closure has as many generating (ket) steps as
+closing (bra) steps — that balance *is* the axiom. If the ket half hears grown languages and the bra half
+hears every language, the two enter with equal weight for every closure. The rule is then universal, not
+`α`-specific, and must transfer to any constant built from the census.
+
+**The test, fixed in advance** (`0e51b88`). `m_p/m_e = 6π⁵` ([`QLF_LenzMassRatio`](lean/QLF_LenzMassRatio.lean)).
+The census makes `π` as the integrated closure probability of the one-axis walk,
+`π/2 = Σ C(2n,n)/(4ⁿ(2n+1))`. The total sector gives `π` exactly; the irreducible and golden sectors give
+their own values. The same rule, `π_rule = ¼(π_irr + π_tot) + ½ π_gold`, gives `m_p/m_e = 6 π_rule⁵`, with no
+new parameter. Prediction: it does **not** transfer (off by more than `10⁻³`), because at the walk's natural
+coupling `4⁻ⁿ` the sectors differ at order one.
+
+**Result — the prediction held; the naive universal ½ is falsified.**
+
+| sector | census `π` |
+|---|---|
+| total | `π` (3.14159…) |
+| irreducible | `4 − π/2` (2.42920…) |
+| golden | `8/3` — a rational number: the grown sector does not make `π` at all |
+| rule (¼, ¼, ½) | 2.72603… → `m_p/m_e = 903.2`, **51 % off** (6π⁵ itself: 1.9 × 10⁻⁵) |
+
+**What this leaves.** One of three things is true, and this test does not choose: the ½ near `α` is specific
+to `α`'s weak (`1/128`) coupling; or the ket/bra reason is wrong; or census-`π` by sector is not the
+proton's construction. What stands: `6π⁵` (total-sector `π`) remains the proton result, and `g = 0.504`
+remains a lead for `α` without an independent reason. Every way contributes — but the proton says the
+ways do not mix by a universal ½. No value is derived; no axiom is added.
