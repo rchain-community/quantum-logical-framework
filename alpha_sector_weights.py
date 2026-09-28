@@ -142,8 +142,14 @@ def sturmian_languages(k: int, n_slopes: int = 6000, length: int = 1500) -> set:
     shift = math.sqrt(2) - 1                              # keeps every sampled slope irrational
     for i in range(n_slopes):
         a = (i + shift) / n_slopes
-        w = ''.join(str(math.floor((m + 1) * a) - math.floor(m * a)) for m in range(length))
-        out.add(frozenset(w[p:p + j] for j in range(2, k + 1) for p in range(length - j)))
+        n = length
+        while True:                                       # grow until every length j shows j + 1
+            w = ''.join(str(math.floor((m + 1) * a) - math.floor(m * a)) for m in range(n))
+            facs = {j: {w[p:p + j] for p in range(n - j)} for j in range(2, k + 1)}
+            if all(len(facs[j]) == j + 1 for j in facs):  # factors (Sturmian: exactly j + 1)
+                break
+            n *= 2
+        out.add(frozenset(x for j in facs for x in facs[j]))
     return out
 
 
@@ -165,12 +171,14 @@ word -- the golden word and all its siblings at other irrational slopes, j + 1 w
         langs = sturmian_languages(k)
         assert all(sum(1 for w in L if len(w) == j) == j + 1 for L in langs for j in range(2, k + 1))
         m[k] = len(langs)
+        assert m[k] == farey_count(k), "Sturmian count differs from the Farey count"
         n_words = sum(2 ** j for j in range(2, k + 1))
         print(f"  {k:>3}{m[k]:>20}{'2^' + str(n_words):>22}{float(Fraction(m[k], 2 ** n_words)):>14.3e}")
     print(f"""
-  Every sampled language has exactly j + 1 words of each length j. The Sturmian count grows like k^2
-  (compare the Farey counts {[farey_count(k) for k in range(2, kmax + 1)]}); the number of all
-  languages grows like 2^(2^k). The golden class is polynomial inside a doubly exponential whole.""")
+  Every sampled language has exactly j + 1 words of each length j, and the class size equals the
+  Farey count sum_(q<=k) phi(q) at every capacity -- one language per Farey interval of slopes, so it
+  grows like 3k^2/pi^2. The number of all languages grows like 2^(2^k). The golden class is polynomial
+  inside a doubly exponential whole.""")
     return m
 
 

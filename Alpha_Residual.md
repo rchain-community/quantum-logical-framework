@@ -1191,3 +1191,49 @@ the weights.
 the scale-invariant mode and the golden growth sector carry equal multiplicity. Whether they do is the
 count still to be made; the observation came after both values were in hand, so it is recorded as a
 lead, not a result. No value is derived; no axiom is added.
+
+---
+
+### 9n. The multiplicity of each sector, counted ([`alpha_sector_weights.py`](alpha_sector_weights.py))
+
+§9m left the weights open: every way contributes, so the measured value is a multiplicity-weighted
+combination of the sectors — but with what multiplicities? The definition and predictions were fixed in
+the commit that added the script (`4804b59`), before it ran.
+
+**The definition.** Every closure spells a sign word through its prime factors (§9m). A **listening
+language** is the set of sign words that are heard: single primes always (the bracket's irreducible
+floor), plus any subset of the composite words up to capacity `k`. A sector is a class of languages with
+the same count, and **its multiplicity is the number of languages in the class**. Each sign word of
+length `j` carries the exact weight `b_j = 128 cʲ`, with `c = (8 − √62)/16`, and the three named sectors
+rebuild from these weights to 60 digits.
+
+**The mode is every language — a theorem.** Averaged over *all* listening languages, the tail is exactly
+the midpoint of irreducible and total, at every capacity: each composite word is heard in exactly half the
+languages. So `w = 1/2` means more than "no scale is privileged" (§9j). It is *every listening language
+contributing once*. Exhaustive enumeration checks it at `k = 2, 3` (16 and 4096 languages).
+
+**The golden class is small.** The Sturmian class (the golden word and all its siblings at other slopes)
+holds exactly `Σ_{q≤k} φ(q)` languages — one per Farey interval: `2, 4, 6, 10, 12, 18, 22, 28` for
+`k = 2…9`. It grows like `k²`, inside a whole of `2^(2^(k+1)−4)` languages.
+
+**The two readings, and the three predictions — all confirmed.**
+
+| capacity `k` | (A) every language | (B) named sectors only | golden weight in B |
+|---|---|---|---|
+| 2 | 137.031748 | 137.035717 | 0.50 |
+| 5 | 137.032002 | 137.038615 | 0.83 |
+| 9 | 137.032002 | 137.039408 | 0.93 |
+| → ∞ | **137.032002** (the mode) | **137.039938** (the golden sector) | → 1 |
+
+* **P-A:** counting every language gives exactly the mode.
+* **P-B:** counting only the named sectors tends to the golden sector, as the Sturmian class outgrows the
+  single-language irreducible and total.
+* **P-C:** neither reading gives the post-hoc equal-weight mean `137.035970` of §9m. **Language
+  multiplicity does not support that mean**, and §9m's lead is closed on this definition.
+
+**What this leaves.** The measured value, `137.035999`, lies *between* the two readings: `0.0040` above
+the every-language mode, and `0.0039` below the grown (Sturmian) limit. Reading B passes it between
+capacities 2 and 3, but nothing selects that capacity. So the question the count cannot settle is
+whether nature's listening is **arbitrary** (every language: the mode) or **grown** (substitution languages:
+the golden sector). The continuum running (§2a) is a contributing sector whose multiplicity is not a
+census count. The proton mass is not addressed here. No value is derived; no axiom is added.
