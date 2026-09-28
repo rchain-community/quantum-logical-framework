@@ -438,6 +438,55 @@ $ python3 golden_zfa_dna.py --deep   # also checks the period-13 leaf against th
 
 ---
 
+## 12. The silver thread: the value the substrate's own lattice makes
+
+§11 found that counting cannot select $\varphi$, and $\varphi$ is one value among many in nature. So
+[`silver_zfa_dna.py`](silver_zfa_dna.py) asks the question the other way round: which irrational does the
+substrate's own structure produce?
+
+**The lattice.** The closure walk lives on $\mathbb{Z}^4$ ([`Closure_Walk.md`](Closure_Walk.md)): the eight
+twists are the signed unit vectors $\pm e_a$. Additively, that is exactly $\mathbb{Z}[\zeta_8]$, the ring of eighth
+roots of unity: $e_a \mapsto \zeta_8^a$, with $\zeta_8^4 = -1$ taking each twist to its conjugate. Its real
+subring is $\mathbb{Z}[\sqrt 2]$, whose fundamental unit is the **silver ratio** $1 + \sqrt 2$. The golden
+ratio lives in $\mathbb{Z}[\zeta_5]$, a different lattice.
+
+**The silver twist DNA.** Lay the twists on the octagon `^ > / + v < \ −` and replace each twist by itself
+flanked by its two neighbours: `^ ↦ −^>`, `> ↦ ^>/`, and so on. It is ZFA at every depth, because it
+respects conjugation. On counts it is multiplication by $1 + \zeta + \zeta^{-1}$, with eigenvalues exactly
+$1 \pm \sqrt 2$. Unlike the block DNAs (excursion 2 at every depth), it is heard only at growing capacity:
+its maximum excursion is exactly $3 \times \text{Pell}(k+1) = 6, 15, 36, 87, 210, 507$. The Pell numbers
+are to the silver ratio what the Fibonacci numbers are to $\varphi$. The 384 ways of laying the signed
+frame on the octagon give 48 distinct rules.
+
+**The octagonal quasicrystal, exactly.** Project $\mathbb{Z}^4$ physically ($e_a \mapsto \zeta^a$) and internally
+($e_a \mapsto \zeta^{3a}$). Keep the points whose internal image lies in the octagon the unit tesseract
+projects to. In exact $\mathbb{Q}(\sqrt 2)$ arithmetic, the result is 8-fold symmetric, mirror symmetric, and exactly
+self-similar under $1 + \sqrt 2$. It is the Ammann–Beenker tiling (Beenker 1982; Ammann, Grünbaum &
+Shephard 1992):
+
+<p align="center"><img src="diagrams/zfa_silver_octagonal.svg" alt="An octagonal Ammann–Beenker patch: 81 vertices and 144 unit edges, the projection of Z^4 = Z[zeta_8] through an octagonal window" width="420"></p>
+
+**What the lattice allows — proved.** An integer inflation of $\mathbb{Z}^4$ that respects the octagonal structure
+(it commutes with the $45°$ rotation and the reflection) and is invertible on the lattice is multiplication
+by a unit of $\mathbb{Z}[\sqrt 2]$, so its eigenvalues are $\pm(1+\sqrt 2)^k$ and nothing else. $\varphi$ never
+occurs, and neither does $2 + \sqrt 3$. The reason: the rotation's minimal polynomial $x^4 + 1$ is
+irreducible, so its commutant is $\mathbb{Q}(\zeta_8)$; the reflection cuts this to $\mathbb{Q}(\sqrt 2)$; and
+integrality plus $\det = \pm 1$ gives the units. The script checks the commutant's dimension and runs a brute-force search.
+
+**Nature.** Octagonal quasicrystals are observed, in V–Ni–Si and Cr–Ni–Si (Wang, Chen & Kuo 1987). So the
+value the substrate lattice makes natively is one nature uses — but not its most common one. The
+icosahedral and decagonal ($\varphi$) kinds are far more numerous (Steurer 2004). Where nature uses $\varphi$,
+the substrate lattice is not what supplies it. The caveat: the octagon places the gauge axis `+−` beside the
+spatial axes, which the Pauli algebra does not do. A physical reading of the octagonal projection would have
+to justify that.
+
+```bash
+$ python3 silver_zfa_dna.py          # under a second
+$ python3 silver_zfa_dna.py --svg    # redraws the figure
+```
+
+---
+
 ## References
 
 The substrate (§0), the DNA rule (§1) and the generations (§4, §7) are this repository's. The
@@ -463,6 +512,14 @@ mathematics of §8 is not — the quadratic minor lamination is standard, and th
   gives a transcendental angle (§11).
 * M. Morse & G. A. Hedlund, *Symbolic dynamics II. Sturmian trajectories*, Amer. J. Math. 62 (1940)
   1–42 — the $n+1$ complexity of the golden DNA's word (§11).
+* F. P. M. Beenker, *Algebraic theory of non-periodic tilings of the plane by two simple building blocks:
+  a square and a rhombus*, TH-Report 82-WSK04, Eindhoven University of Technology (1982) — the
+  octagonal tiling and its silver inflation (§12).
+* R. Ammann, B. Grünbaum & G. C. Shephard, *Aperiodic tiles*, Discrete Comput. Geom. 8 (1992) 1–25 (§12).
+* N. Wang, H. Chen & K. H. Kuo, *Two-dimensional quasicrystal with eightfold rotational symmetry*,
+  Phys. Rev. Lett. 59 (1987) 1010–1013 — octagonal quasicrystals observed in V–Ni–Si and Cr–Ni–Si (§12).
+* W. Steurer, *Twenty years of structure research on quasicrystals. Part I*, Z. Kristallogr. 219 (2004)
+  391–446 — the pentagonal, octagonal, decagonal and dodecagonal classes (§12–§13).
 * OEIS [A000740](https://oeis.org/A000740) — the count of hyperbolic components of period $n$ (a
   structural check in §8; the leaf-set check is against Lavaurs).
 
