@@ -398,6 +398,33 @@ Avoid framings that contradict the above:
 
 ---
 
+## Review notes for every agent (DeepSeek and Claude alike)
+
+From the 2026-09-28 review of the ZFA-DNA / Mandelbrot / α-selection thread (`816001f..817ebb0`, fixed
+in `41f9d33`, `f21a134`, `46f972b` — read those diffs). The code and arithmetic were sound; the prose
+was where it slipped. Apply these to new work:
+
+1. **Check novelty against the classical literature before claiming it.** The "word-only generation of
+   M" (`mandelbrot_lamination.py`) turned out to be Lavaurs' algorithm (1986) in another form — same
+   leaf set through period 12. It is now cited and cross-checked in the script.
+2. **An oracle must be one the construction could fail.** Leaf counts and zero crossings were nearly
+   automatic for consecutive pairing inside gaps; the leaf-set match against an independent construction
+   is the real check. Say which checks are structural.
+3. **Verify every reference.** Two citations in `ZFA_DNA.md` could not be found and were replaced. Never
+   cite a paper you have not confirmed exists.
+4. **Don't invent series identities.** "137 = 128 + 9 is orders 0–1 of the census series" was false
+   (orders 0–1 give 128 + 2 = 130; the 9 is `3²` from `Alpha.md`). Compute before asserting.
+5. **Label constants by their real source.** `137.035999206(11)` is the 2020 Rb recoil measurement,
+   not CODATA (CODATA 2022: `137.035999177(21)`).
+6. **A fit is one way, never "worthless".** In possibilism a match found in finite time exhibits a way —
+   a lower bound on multiplicity. The error is presenting one fit as *the* route, not fitting. `w = 1/2`
+   is the census mode; the measured value is another way; the open quantity is the multiplicity between
+   them (`Alpha_Residual.md` §9j–§9k).
+7. **Intro prose intrigues; technical prose is rigorous.** `Introducing_QLF.md` should open with
+   questions and hooks, not advocacy or overreach ("the unique algebra", "only in three dimensions").
+
+---
+
 ## Key files
 
 | Path | Purpose |
