@@ -102,6 +102,10 @@ def sec1():
   pi from the GOLDEN sector       {p_gold:.10f}
   (sums to n = {N:,} plus the asymptotic tail; accurate to ~1e-9, ample for a 1e-3 test)""")
     assert abs(float(p_tot) - math.pi) < 1e-7
+    assert abs(float(p_irr) - (4 - math.pi / 2)) < 1e-7 and abs(float(p_gold) - 8 / 3) < 1e-7
+    print(f"""
+  Closed forms (matched to 1e-7): the irreducible sector gives 4 - pi/2 = {4 - math.pi / 2:.10f}, and the
+  golden sector gives a RATIONAL number, 8/3 -- the grown sector does not make pi at all.""")
     return p_tot, p_irr, p_gold
 
 

@@ -219,3 +219,13 @@ Each step is concrete research, not session-scope; but each is a sharper questio
 - Lenz, F. (1951). *The ratio of proton and electron masses.* Phys. Rev. **82**, 554. [The original `m_p/m_e ≈ 6π⁵` empirical observation.]
 - Wheeler, J. A. (1990). *Information, Physics, Quantum: the Search for Links.* [The "it from bit" structural reading; per-event binary distinction.]
 - Mach, E. (1883). *The Science of Mechanics.* [Mach-style relationalism; no universal absolute time. Kitada's framework descends from this.]
+
+---
+
+## Cross-test: does α's arbitrary/grown mix transfer to `6π⁵`? No
+
+[`proton_census_test.py`](proton_census_test.py) ([`Alpha_Residual.md`](Alpha_Residual.md) §9o) builds `π` from
+the census as the integrated closure probability of the one-axis walk. The total sector gives `π` exactly,
+so `6π⁵` is the total-sector result. The pre-registered test applied `α`'s near-½ mix of arbitrary and grown
+listening to `π`, with no new parameter: `m_p/m_e` came out at `903`, 51 % off. The prediction that it would
+fail held. So `6π⁵` stands as the total-sector value, and the mix that sits near `α` is not a universal rule.
