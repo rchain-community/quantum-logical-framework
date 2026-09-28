@@ -81,7 +81,7 @@ def sec1() -> None:
 The substitution a -> a^n b, b -> a on the electron/positron closure blocks inflates by the n-th
 metallic mean lambda_n = (n + sqrt(n^2 + 4))/2: n = 1 golden, n = 2 silver, n = 3 bronze, ...
 """)
-    print(f"  {'n':>3}{'lambda_n':>14}{'ZFA depths 1-8':>16}{'complexity = m+1':>18}{'freq(a) -> 1-1/lambda':>24}")
+    print(f"  {'n':>3}{'lambda_n':>14}{'ZFA depths 1-8':>16}{'complexity = m+1':>18}{'freq(a) -> lambda/(lambda+1)':>31}")
     for n in range(1, 6):
         sub = {'a': 'a' * n + 'b', 'b': 'a'}
         w = 'a'
@@ -92,7 +92,8 @@ metallic mean lambda_n = (n + sqrt(n^2 + 4))/2: n = 1 golden, n = 2 silver, n = 
         assert comp
         lam = (n + math.sqrt(n * n + 4)) / 2
         fa = w.count('a') / len(w)
-        print(f"  {n:>3}{lam:>14.9f}{'yes':>16}{'yes':>18}{fa:>13.6f} ({1 - 1 / lam:.6f})")
+        assert abs(fa - lam / (lam + 1)) < 1e-3
+        print(f"  {n:>3}{lam:>14.9f}{'yes':>16}{'yes':>18}{fa:>20.6f} ({lam / (lam + 1):.6f})")
     print(f"""
 Q1 check: every one is ZFA at every depth and Sturmian (complexity exactly m + 1), so each gives the
 same census sector, Catalan(n+1) = {[catalan(n + 1) for n in range(1, 8)]} ... (golden_zfa_dna.py sec 4).
@@ -142,9 +143,9 @@ Quasicrystals, for comparison: the phi classes (icosahedral, decagonal) far outn
 # --------------------------------------------------------------------------- #
 # sec 3 -- the test
 # --------------------------------------------------------------------------- #
-def avoidance(alpha: float, qmax: int = 10_000) -> tuple[float, int]:
+def avoidance(alpha: float, qmax: int = 10_000, qmin: int = 1) -> tuple[float, int]:
     best, arg = float('inf'), 0
-    for q in range(1, qmax + 1):
+    for q in range(qmin, qmax + 1):
         x = q * alpha
         v = q * abs(x - round(x))
         if v < best:
@@ -157,14 +158,24 @@ def sec3(rows) -> None:
     print("""
 Q2 -- the phyllotaxis families, in order of observed frequency:
 """)
-    print(f"  {'family':<26}{'A = min q.||q alpha||':>24}{'at q':>7}")
-    As = []
+    print(f"  {'family':<26}{'A = min q.||q alpha||':>24}{'at q':>7}{'same, q >= 100':>17}")
+    As, qs = [], []
     for name, a, _ in rows:
         A, q = avoidance(a)
+        A_late, _ = avoidance(a, qmin=100)
         As.append(A)
-        print(f"  {name:<26}{A:>24.6f}{q:>7}")
+        qs.append(q)
+        print(f"  {name:<26}{A:>24.6f}{q:>7}{A_late:>17.6f}")
     q2 = all(As[i] > As[i + 1] for i in range(len(As) - 1))
-    print(f"\n  A decreases in the order of observed frequency: {q2}   Q2 {'CONFIRMED' if q2 else 'FAILED -- record it'}")
+    print(f"""
+  A decreases in the order of observed frequency: {q2}   Q2 {'CONFIRMED' if q2 else 'FAILED -- record it'}
+
+  BUT THE TEST IS WEAKER THAN IT LOOKS, and that is recorded with the result. Every minimum falls at
+  q = {sorted(set(qs))} -- the very first step -- so A is just the angle's own distance from a full turn:
+  the ordering says only that the golden angle puts the second organ farthest from the first. Past the
+  first steps (q >= 100) all four families avoid closure equally, at Hurwitz's 1/sqrt 5 = {1 / math.sqrt(5):.6f}
+  -- they share the golden tail. So long-range closure avoidance cannot tell Fibonacci from Lucas; only
+  the first return does. Q2 is confirmed, with that caveat.""")
 
     print("""
 Q3 -- the metallic means as rotations, alpha = 1/lambda_n:
@@ -180,10 +191,11 @@ Q3 -- the metallic means as rotations, alpha = 1/lambda_n:
     q3 = Am.index(max(Am)) == 0 and all(Am[i] >= Am[i + 1] for i in range(len(Am) - 1))
     print(f"""
   phi avoids closure most, and A falls with n: {q3}   Q3 {'CONFIRMED' if q3 else 'FAILED -- record it'}
+  Here the result has teeth: the finite minimum and the long-range limit 1/sqrt(n^2 + 4) agree.
 
-  Reading. The count is flat across the family (sec 1), but closure avoidance is not: it ranks the
-  observed phyllotaxis families in their observed order, and it puts phi first among the metallic
-  means, with the substrate lattice's silver second. That is Hurwitz's theorem seen from the
+  Reading. The count is flat across the family (sec 1), but closure avoidance is not: it puts phi
+  first among the metallic means at every scale, with the substrate lattice's silver second; and among
+  the noble angles, which all share phi's long-range avoidance, it orders them by their first step. That is Hurwitz's theorem seen from the
   substrate: phi is the number hardest to approximate by rationals (Hurwitz 1891), i.e. the rotation
   slowest to close. In QLF terms the census counts the ways that close, and growth that must not
   overlap itself listens for the way that closes LAST.""")

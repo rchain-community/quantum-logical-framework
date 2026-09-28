@@ -487,6 +487,58 @@ $ python3 silver_zfa_dna.py --svg    # redraws the figure
 
 ---
 
+## 13. The family of natural ratios: counted flat, selected by closure avoidance
+
+$\varphi$ is one value among many in nature. [`natural_ratios.py`](natural_ratios.py) puts the ratios the DNA
+makes side by side with those nature uses. The hypothesis and its predictions were fixed in the commit
+that added the script (`9f251e1`), before it ran.
+
+**The substrate makes the whole family, and its count is flat.** The substitution $a \mapsto a^n b,\ b \mapsto a$
+on closure blocks inflates by the $n$-th metallic mean $\lambda_n = (n + \sqrt{n^2+4})/2$ — golden, silver,
+bronze, …. Every one is a ZFA DNA and is Sturmian (complexity exactly $m+1$), so every one gives the same
+census sector, $\text{Catalan}(n+1)$. The substrate's lattice supplies silver natively (§12). Nothing in the
+count prefers $\varphi$.
+
+**Nature prefers $\varphi$ overwhelmingly.** About 92 % of spiral phyllotaxis is Fibonacci, with the golden
+angle $137.5°$ (Jean 1994); Lucas ($99.5°$) and bijugate are a few percent each; higher accessory series are
+rarer. The observed angles are all *noble* — $[0; k, 1, 1, 1, \ldots]$, in $\mathbb{Q}(\sqrt 5)$. The
+$\varphi$ quasicrystals (icosahedral, decagonal) outnumber the octagonal and dodecagonal ones (Steurer 2004).
+
+**The hypothesis: closure avoidance.** A growth rotation $\alpha$ nearly *closes* after $q$ steps when
+$q\,\|q\alpha\|$ is small: the $q$-th element lands almost on the first, so a leaf shades a leaf or a lattice
+nearly repeats. The census counts the ways that close; growth that must not overlap itself would select
+the rotation that closes *last*. The fixed statistic: $A(\alpha) = \min_{q \le 10^4} q\,\|q\alpha\|$.
+
+**Results — confirmed, with one caveat recorded.**
+
+| rotation | $A$ | long-range ($q \ge 100$) | nature |
+|---|---|---|---|
+| golden angle, $[0;2,1,1,\ldots]$ | 0.3820 | 0.4472 | ~92 % |
+| Lucas, $[0;3,1,1,\ldots]$ | 0.2764 | 0.4472 | a few % |
+| accessory, $[0;4,1,1,\ldots]$ | 0.2165 | 0.4472 | rare |
+| metallic $n = 1, 2, 3$ (golden, silver, bronze) | 0.382, 0.343, 0.275 | $1/\sqrt{5},\ 1/\sqrt{8},\ 1/\sqrt{13}$ | $\varphi$ ≫ others |
+
+* **Q1** (the count is flat across the metallic family) — confirmed.
+* **Q2** (closure avoidance ranks the phyllotaxis families in their observed order) — confirmed, **but
+  weakly**. Every minimum falls at $q = 1$, so the ordering says only that the golden angle puts the second
+  organ farthest from the first. Past the first steps, all the noble angles avoid closure equally, at Hurwitz's
+  $1/\sqrt 5$, because they share the golden tail. Long-range avoidance cannot tell Fibonacci from Lucas.
+* **Q3** (closure avoidance puts $\varphi$ first among the metallic means, silver second) — confirmed, and
+  here it has teeth: the finite minimum and the long-range limit $1/\sqrt{n^2+4}$ agree.
+
+**Reading.** This is Hurwitz's theorem seen from the substrate: $\varphi$ is the number hardest to approximate
+by rationals (Hurwitz 1891), i.e. the rotation slowest to close. So the substrate *makes* every metallic
+mean with the same count, and *closure avoidance* — the dual of the census's closure counting — ranks
+them as nature uses them. It ties back to §9n of [`Alpha_Residual.md`](Alpha_Residual.md): the census
+counts what closes, and grown structures listen for what closes last. Stated scope: an ordering is tested,
+not any percentage; the quasicrystal abundances are cited, not tested; nothing here touches α.
+
+```bash
+$ python3 natural_ratios.py          # under a second
+```
+
+---
+
 ## References
 
 The substrate (§0), the DNA rule (§1) and the generations (§4, §7) are this repository's. The
@@ -520,6 +572,10 @@ mathematics of §8 is not — the quadratic minor lamination is standard, and th
   Phys. Rev. Lett. 59 (1987) 1010–1013 — octagonal quasicrystals observed in V–Ni–Si and Cr–Ni–Si (§12).
 * W. Steurer, *Twenty years of structure research on quasicrystals. Part I*, Z. Kristallogr. 219 (2004)
   391–446 — the pentagonal, octagonal, decagonal and dodecagonal classes (§12–§13).
+* A. Hurwitz, *Ueber die angenäherte Darstellung der Irrationalzahlen durch rationale Brüche*, Math.
+  Ann. 39 (1891) 279–284 — $\varphi$ is the worst-approximable number, constant $1/\sqrt 5$ (§13).
+* R. V. Jean, *Phyllotaxis: A Systemic Study in Plant Morphogenesis*, Cambridge University Press (1994) —
+  the survey behind the ~92 % Fibonacci figure (§13).
 * OEIS [A000740](https://oeis.org/A000740) — the count of hyperbolic components of period $n$ (a
   structural check in §8; the leaf-set check is against Lavaurs).
 
