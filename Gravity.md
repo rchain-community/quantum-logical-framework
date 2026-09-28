@@ -105,6 +105,38 @@ of `g−2 = α/2π`) — so the holographic counting of this doc is the common s
   SOC observable `ρ*`). See [`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9 for the full three-tier
   scoping.
 
+## 4a. `G` reduced to one number, and that number tested ([`gravitational_constant.py`](gravitational_constant.py))
+
+The physics in `G` is `α_G = (m_p/M_Pl)²`. QLF reaches it through `ln(M_Pl/m_p) = 2π/(b₀ α_s)`, with
+`b₀ = 7` and the posit `α_s(substrate) = 1/b₀² = 1/49` ([`QLF_AlphaS`](lean/QLF_AlphaS.lean)): `14π`, so
+`α_G = e^{−28π}`, 0.068 % on the log and 6.2 % on the value. The predictions below were fixed in the commit
+that added the script (`a128472`), before the continuum check ran.
+
+**`G` is exactly one number.** Measured `G` and `m_p` fix the coupling the `14π` route needs:
+
+> **`1/α_s(substrate) = 7 ln(M_Pl/m_p)/(2π) = 49.03355`**, uncertainty `±1 × 10⁻⁵` from `G` itself.
+
+So everything open about `G` — and about `α_G`, and the proton's absolute depth — is the residual **`+0.0336`**
+on the posit `b₀² = 49`. It has the same shape as `α⁻¹ = 137 + 0.036`.
+
+**Standard running does not supply it — 63σ.** Running the measured `α_s(M_Z) = 0.1180(9)` up to the
+(non-reduced) Planck mass in MS-bar, with the top threshold, gives `1/α_s(M_Pl) = 52.48` at one loop and
+`53.02` at two and three loops, with uncertainty `±0.063`. That is `4.0` (8 %) from what `G` requires, `63σ`
+away. The posit's stated support ("the measured running gives `≈ 52 ≈ 49`, ~7 %") holds at one loop only.
+At the orders that matter, the gap is 8 %, so the physical coupling at the Planck mass is **not** what makes
+`14π` work. The prediction that it would not was fixed in advance, and it held. The `14π` match stands as a
+structural identification that standard physics does not explain.
+
+**α's census tail does not transfer.** At `α`'s bare coupling `1/128` the census tails bracket `α`'s residual.
+At `α_s`'s bare coupling `1/49` they bracket `[0.043, 0.131]`, which excludes `+0.0336`. This was computed
+while scoping and is recorded as such. It fails in the same way the ½ mix failed on the proton
+([`Alpha_Residual.md`](Alpha_Residual.md) §9o).
+
+**An observation, not a claim.** The residual `0.0336` sits near `α`'s `0.036` (ratio `0.93`). Close numbers
+are not evidence ([`Alpha_Residual.md`](Alpha_Residual.md) §9k). A shared mechanism would have to predict that
+ratio, and none is proposed. What this section establishes: `G`'s open content is **one number, known to
+`10⁻⁵`**, and **not** the Standard Model coupling at the Planck mass.
+
 ## 5. Ties to other documents
 
 - [`Gravity_From_Delay.md`](Gravity_From_Delay.md) — **the quantitative companion**: the full Newton /

@@ -180,7 +180,9 @@ kept distinct):
   matter as denser logic on the *same* Hubble horizon, `a₀ = cH₀/2π` (the `1/2π` prefactor confirmed by
   the blind SPARC fit, [`DarkMatter.md`](DarkMatter.md)); the electroweak / mass scale `v = R_stable`,
   reduced to the single self-organized-critical density `ρ*` (frontier #1).
-- **Open residuals (named, not hidden).** The absolute SI `G`'s mass-scale half, the proton's absolute
+- **Open residuals (named, not hidden).** (`G`'s dimensionless content is now reduced to one exactly known
+  number, `1/α_s(substrate) = 49.03355` — `b₀² = 49` plus `+0.0336` — and shown **not** to be the MS-bar
+  coupling at the Planck mass, which is `53.02`, 63σ away: [`Gravity.md`](Gravity.md) §4a.) The absolute SI `G`'s mass-scale half, the proton's absolute
   depth `R_p`, and a third of the α `+0.036` running tail are **the same open number** — the electroweak
   scale `v = R_stable = 1/ρ*` — whose *mechanism* is derived but whose *value* was tested directly and
   found to have no clean substrate count (closed as [issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121), §8); the rest of the `0.036`
