@@ -23,7 +23,7 @@
 
 import Mathlib.Algebra.BigOperators.Group.Finset.Powerset
 import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Data.Real.Sqrt
+import Mathlib.Analysis.Real.Sqrt
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.FinCases
 
@@ -95,21 +95,21 @@ def silver : Matrix (Fin 4) (Fin 4) ℤ :=
 /-- The eight twists are the eighth roots of unity: `ρ⁴ = −1`. -/
 theorem rho_pow_four : rho * rho * rho * rho = -1 := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [rho, Matrix.mul_apply, Fin.sum_univ_four, Matrix.one_apply, Matrix.neg_apply]
+  fin_cases i <;> fin_cases j <;> simp [rho, Matrix.mul_apply, Fin.sum_univ_four, Matrix.neg_apply]
 
 /-- `S = 1 + ρ + ρ⁻¹`, with `ρ⁻¹ = −ρ³`. -/
 theorem silver_eq : silver = 1 + rho - rho * rho * rho := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [silver, rho, Matrix.mul_apply, Fin.sum_univ_four, Matrix.one_apply]
+  fin_cases i <;> fin_cases j <;> simp [silver, rho]
 
 /-- The silver inflation respects the octagonal rotation. -/
 theorem silver_comm_rho : silver * rho = rho * silver := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [silver, rho, Matrix.mul_apply, Fin.sum_univ_four, Matrix.one_apply]
+  fin_cases i <;> fin_cases j <;> simp [silver, rho, Matrix.mul_apply, Fin.sum_univ_four]
 
 /-- **`S² = 2S + 1`**: every eigenvalue satisfies `λ² = 2λ + 1`, so `λ = 1 ± √2` — the silver ratio. -/
 theorem silver_sq : silver * silver = silver + silver + 1 := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [silver, Matrix.mul_apply, Fin.sum_univ_four, Matrix.one_apply]
+  fin_cases i <;> fin_cases j <;> simp [silver, Matrix.mul_apply, Fin.sum_univ_four]
 
 end QLF
