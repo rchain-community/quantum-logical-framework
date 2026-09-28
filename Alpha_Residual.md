@@ -1031,7 +1031,7 @@ than assuming "one more Comtet-style formula" was just waiting to be found.
 
 ---
 
-### 9j. The selection engine applied to the residual — bracketed, not selected ([`alpha_selection.py`](alpha_selection.py))
+### 9j. The selection engine applied to the residual — the mode, the measurement, and the multiplicity between them ([`alpha_selection.py`](alpha_selection.py))
 
 §2a closed the "find the pure census truncation" door by argument. This closes it by computation, by
 running the framework's own selection rule ([`ZFA_DNA.md`](ZFA_DNA.md) §10: *generate every closure, then
@@ -1051,21 +1051,31 @@ irreducible ones (`w = 0` → `137.015874`). Neither is what the substrate does 
 scale-invariant (§2a), so no scale is privileged, neither tail is favoured, and the two enter with equal
 weight: `w = 1/2` → **`137.032002032`**. What CODATA would need instead is `w = 0.623920200394`.
 
-**The crank trap, made countable.** Within the theory's own precision (0.001), **189** distinct rationals
-`p/q` with `q ≤ 100` land on CODATA — `5/8`, `9/14`, and `φ − 1` among them. So "hitting 0.036" carries
-essentially no information; §2a's guard is now a number rather than a warning.
+**Many weights reach it — each one a way, none yet counted.** Within the theory's own precision
+(`0.001`), **189** distinct rationals `p/q` with `q ≤ 100` land on the measured value — `5/8` and `9/14`
+among them, and the irrational `φ − 1` besides. In a possibilist substrate a fit found in finite time is
+not nothing: it exhibits one way the residual closes, a lower bound on its multiplicity
+([`Philosophy.md`](Philosophy.md) §3a; *construction proves possibility, not uniqueness*,
+[`Law_Of_Exceptions.md`](Law_Of_Exceptions.md)). What one fit cannot say is **how many** ways reach the
+value, and so whether it is the way that happens first. That is §2a's guard in its exact form: the error
+is not fitting, it is presenting one fit as *the* route.
 
-**Outcome — a negative result, recorded as one.** The engine constrains the residual to one value and
-brackets the truth; it does **not** select the measured value. The `0.004` from `137.032` to CODATA stays
-where §2a put it — continuum vacuum-polarisation running — and nothing about that running is derived
-here. What this adds is that the door §2a closed by argument is now closed by computation, with the
-competing alternatives counted.
+**Outcome — the mode and the measurement are both ways; the open quantity is the multiplicity between
+them.** `w = 1/2` is the mode of the scale-invariant census: with no privileged scale it is where the
+most ways lie, computed before any comparison, so `137.032002` stays the pure-ZFA prediction. The
+measured value is another way, `w ≈ 0.624`, and it sits `0.004` from the mode — four times the theory's
+own `0.001` precision — so the two are different numbers and this section does not pretend otherwise.
+They do not contradict each other: the mode is where multiplicity peaks when the census alone is
+counted, and the measurement is a way the census closes once the continuum vacuum-polarisation running
+(§2a) is included. So the open question is the **multiplicity of that running** — how many ways carry
+`137.032` to the measured value — not whether a fit means anything. Nothing about that running is
+derived here.
 
 ---
 
-### 9k. The search, pre-registered — a depth cannot match, and a match is worth nothing ([`alpha_dna_search.py`](alpha_dna_search.py))
+### 9k. The search, pre-registered — a depth cannot match; a weight does, and each match is one way ([`alpha_dna_search.py`](alpha_dna_search.py))
 
-§9j shows the engine brackets but does not select. This asks the sharper question directly: *if we go
+§9j shows the engine brackets the residual and puts its mode at `w = 1/2`. This asks the sharper question directly: *if we go
 looking for a ZFA-DNA structure that reproduces the residual, and then justify it, what is that worth?*
 The search space, the tolerance (`0.001`) and the predictions are fixed in the script **before** any
 comparison, so neither prediction can be moved after the fact.
@@ -1082,17 +1092,22 @@ depth. (Registered prediction: no depth lands. Confirmed by the run.)
 
 **And the count is exactly chance.** The number of reduced fractions with `q ≤ Q` in a window of width
 `δ` is `(3/π²)Q²δ`; with `Q = 100` and `δ = 0.062` that is **188.5 expected** against **189 observed**
-— ratio `1.003`. The substrate's numbers are not clustering on the target at all.
+— ratio `1.003`. So the rational-weight family spreads its ways evenly: none of the 189 is reached
+more often than a random rational would be. That says this family does not single out the dominant
+way. It does not say the ways are unreal.
 
-**The trap, demonstrated rather than warned about.** The script's §5 takes five of the fitting weights
-and writes the justification each would get if it had been found first — `5/8` = "five of the eight
-twists", `3/5` = "three spatial axes over five stages", `19/32` = "nineteen non-gauge twists over `2⁵`",
-and so on. Each fits to within the theory's own precision; each has a story; the stories are mutually
-exclusive; and nothing in the substrate ranks them. With 189 candidates there is *always* one available.
+**Many ways, each with a reading.** The script's §5 takes five of the fitting weights and writes the
+substrate reading each would carry — `5/8` = "five of the eight twists", `3/5` = "three spatial axes over
+five stages", `19/32` = "nineteen non-gauge twists over `2⁵`", and so on. Each fits within the theory's
+own precision, and each is a way the residual can close. Possibilism does not force a choice among them:
+everything that closes happens. What none of them has yet is a **count**. Nothing here says which reading
+is reached in the most ways, so none can be promoted to *the* derivation.
 
-**So the answer to "what if we find one and justify it?" is: we will, and the justification will be
-worthless** — not from bad faith, but from arithmetic. With a `0.032`-wide bracket and `0.001` precision,
-`(3/π²)Q²δ` candidates fit for any `Q`; asking for another digit does not narrow the field to one, it
-moves the window. What would count instead is a discrete-scale-invariance line in a **pre-registered**
-census statistic, or the continuum inputs (fermion mass thresholds, `Δα_had`). Neither is a search, and
-neither is a justification. No value is derived here; no axiom is added.
+**So the answer to "what if we find one and justify it?" is: the find is real, and the justification is
+incomplete until it is counted.** A match found in finite time exhibits a way, a lower bound on
+multiplicity, and that is worth recording (the closest, `58/93`, is kept above). What it cannot do is
+claim to be *the* way. With a `0.032`-wide bracket and `0.001` precision, `(3/π²)Q²δ` weights fit for
+any `Q`, so asking for another digit moves the window rather than singling one out. What turns a found
+way into the dominant one is a count: a discrete-scale-invariance line in a **pre-registered** census
+statistic, or the continuum inputs (fermion mass thresholds, `Δα_had`) whose multiplicity carries the
+running. No value is derived here; no axiom is added.

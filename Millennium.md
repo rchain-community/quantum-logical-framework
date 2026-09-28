@@ -283,9 +283,9 @@ lamination is credible because its leaf set is checked against an independent co
 produce (Lavaurs'); the published counts alone would not have sufficed, since consecutive pairing inside
 gaps makes them nearly automatic. A capacity family without an independent check is a model; with one it
 is evidence — and the check has to be one the construction could fail. (2) The
-**negative result recorded as a negative result**: the lamination attempt was falsified by the leaf
-count before it worked ([`ZFA_DNA.md`](ZFA_DNA.md) §8), and the α residual was closed the same way
-([`Alpha_Residual.md`](Alpha_Residual.md) §9j–§9k). Both belong to the posture — a capacity family that
+**result recorded as what it is**: the lamination attempt was falsified by the leaf count before it
+worked ([`ZFA_DNA.md`](ZFA_DNA.md) §8), and the α residual's fits were recorded as ways found, with
+their multiplicity open, rather than as a derivation ([`Alpha_Residual.md`](Alpha_Residual.md) §9j–§9k). Both belong to the posture — a capacity family that
 is never allowed to fail is a bridge axiom wearing different clothes.
 
 ## Key references

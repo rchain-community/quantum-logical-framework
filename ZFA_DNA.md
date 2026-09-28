@@ -355,14 +355,15 @@ through period 12, with the counts (OEIS A000740), zero crossings and known leav
 What it adds is a test of the engine: if generate-and-select is the framework's claim, this is one
 place the claim was required to pay.
 
-**Run on α — and the answer is recorded as a negative result.** [`alpha_selection.py`](alpha_selection.py)
+**Run on α — the mode is predicted, the measurement is another way.** [`alpha_selection.py`](alpha_selection.py)
 does exactly that test ([`Alpha_Residual.md`](Alpha_Residual.md) §9j). The census series reproduces the
 two machine-verified tails to **45 digits** and brackets the measured value
 (`137.015874 < α⁻¹ < 137.048130`); the engine's own selection — no privileged scale, equal weight —
-pins the residual to `137.032002032`; and it does **not** select the measured `137.035999`. The gap is
-continuum running, and **189** distinct simple weights land within the theory's own precision of the
-measured value, so matching cannot substitute for deriving. The engine *constrains*; here it does not
-*select*. That is the honest output of applying §10's claim, and it is written down rather than left
+puts the mode at `137.032002032`; the measured `137.035999` is a different way, `0.004` off. The gap is
+continuum running, whose multiplicity is open. **189** distinct simple weights reach the measured value
+within the theory's own precision: each is a way it closes, and none is counted, so no one of them is
+*the* derivation. The engine *constrains* and names the mode; the count that would carry the mode to the
+measurement is not yet in hand. That is the output of applying §10's claim, written down rather than left
 implied.
 
 The follow-up question — *if we search for a DNA structure that matches and then justify it* — is
@@ -370,9 +371,10 @@ answered too, and it is the cleaner result: [`alpha_dna_search.py`](alpha_dna_se
 ([`Alpha_Residual.md`](Alpha_Residual.md) §9k) finds that **no depth matches** (the total counting is
 already past the measured value at its first included order, the irreducible counting never reaches it)
 while **189 weights do** — and the observed count is `189` against `188.5` expected by the
-rational-counting density `(3/π²)Q²δ`, a ratio of `1.003`. A match found by search is therefore worth
-nothing, and the script demonstrates why by writing the post-hoc justification for five mutually
-exclusive candidates. The guard against numerology is arithmetic here, not a matter of discipline.
+rational-counting density `(3/π²)Q²δ`, a ratio of `1.003`. A match found by search is therefore one
+way — real, found in finite time — but this family spreads its ways evenly, so it cannot say which way
+dominates. The script shows this by writing the substrate reading for five candidates: each is a way,
+none is counted. What promotes a way to *the* way is its multiplicity, not its story.
 
 ---
 

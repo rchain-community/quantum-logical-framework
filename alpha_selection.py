@@ -18,8 +18,8 @@ WHAT IS COMPUTED HERE (all exact / high precision, no fitting):
   sec 2  the bracket, and that CODATA sits strictly inside it.
   sec 3  the selection rule applied: each half of the criterion picks an END of the bracket;
          the substrate's actual choice is the scale-invariant one (w = 1/2) -> 137.032002.
-  sec 4  the crank trap, quantified: how many a-priori natural weights land within 0.001 of
-         CODATA anyway. (If many do, matching cannot select a rule.)
+  sec 4  many weights reach it: how many simple weights land within 0.001 of CODATA. Each is a
+         way; if many are, a single match cannot say which way dominates.
   sec 5  verdict, and scope.
 
 Run:  python3 alpha_selection.py
@@ -159,10 +159,10 @@ with EQUAL weight:
 
 
 # --------------------------------------------------------------------------- #
-# sec 4 -- the crank trap, quantified
+# sec 4 -- many weights reach it: each a way, none yet counted
 # --------------------------------------------------------------------------- #
-def crank_trap(q_max: int = 100, window: float = 0.001) -> None:
-    rule("sec 4  THE CRANK TRAP, QUANTIFIED")
+def many_ways(q_max: int = 100, window: float = 0.001) -> None:
+    rule("sec 4  MANY WEIGHTS REACH IT -- EACH A WAY, NONE YET COUNTED")
     w_obs = float((CODATA - LEADING - IRRED) / (TOTAL - IRRED))
     span = float(TOTAL - IRRED)
     lo, hi = w_obs - window / span, w_obs + window / span
@@ -183,11 +183,11 @@ is cheap. Count the simple rationals p/q, q <= {q_max}, whose mix lands within {
                                        for h in sorted(hits)[:8]))
     print(f"""
   The measured golden-ratio weight phi - 1 = {(math.sqrt(5) - 1) / 2:.4f} is in the window too.
-  So a rule 'chosen to give 0.036' can always be found -- which is exactly why proximity cannot
-  select it. The only licensed way to move w off 1/2 is a genuine discrete-scale-invariance line
-  appearing in a census sector BEFORE the CODATA comparison; genesis.py's pre-registered probe
-  is that test, and it is null. This is the crank-trap guard made countable: {len(hits)} candidates
-  fit, so fitting carries no information.""")
+  Each of these is a way the residual closes -- found in finite time, so it happens: a lower
+  bound on multiplicity. What proximity cannot do is rank them, so no single one can be named THE
+  way. Moving the mode off w = 1/2 needs a count: a discrete-scale-invariance line appearing in a
+  census sector BEFORE the CODATA comparison (genesis.py's pre-registered probe is that test, and
+  it is null), or the multiplicity of the continuum running. {len(hits)} ways found; none counted.""")
     return len(hits)
 
 
@@ -197,22 +197,22 @@ is cheap. Count the simple rationals p/q, q <= {q_max}, whose mix lands within {
 def verdict(n_hits: int) -> None:
     rule("sec 5  VERDICT, AND SCOPE")
     print(f"""
-  1. THE ENGINE CONSTRAINS THE RESIDUAL -- YES. Two machine-verified closed forms bracket it,
-     137.015874 < alpha^-1 < 137.048130, and the census's own selection (no privileged scale)
-     fixes the value to 137.032002. That is a prediction, not a fit: it was computed before the
-     comparison, and it is the same engine ZFA_DNA.md sec 10 describes.
+  1. THE ENGINE CONSTRAINS THE RESIDUAL. Two machine-verified closed forms bracket it,
+     137.015874 < alpha^-1 < 137.048130, and the census's own mode (no privileged scale, the most
+     ways) is w = 1/2 -> 137.032002, computed before the comparison. It is the same engine
+     ZFA_DNA.md sec 10 describes.
 
-  2. THE ENGINE DOES NOT SELECT THE MEASURED VALUE -- ALSO YES. sqrt(62) landing at 4 digits is
-     exactness, not precision, and the residual needs w = 0.624, which no part of the selection
-     criterion produces: most-ways gives w = 1, least-action gives w = 0, no-privileged-scale
-     gives w = 1/2. The 0.004 from 137.032 to CODATA is continuum running.
+  2. THE MEASURED VALUE IS ANOTHER WAY, NOT THE MODE. It needs w = 0.624 and sits 0.004 from the
+     mode -- four times the theory's 0.001 precision -- so the two are different numbers. They do
+     not conflict: the mode is where multiplicity peaks for the census alone; the measurement is a
+     way the census closes once the continuum running is included.
 
-  3. SO THIS IS A NEGATIVE RESULT, RECORDED AS ONE. The concrete test of sec 10's claim, run on
-     alpha, does not deliver the measured constant. What it delivers is the engine's honest
-     output (137.032002), a verified bracket, and a countable reason why matching cannot
-     substitute for deriving: {n_hits} simple weights with q <= 100 fit within 0.001.
+  3. SO THE OPEN QUANTITY IS A MULTIPLICITY. {n_hits} simple weights with q <= 100 reach the measured
+     value within 0.001; each is a way (found in finite time, so it happens), none is counted. The
+     question left is how many ways carry 137.032 to the measured value -- not whether a fit means
+     anything.
 
-  4. WHAT WOULD MOVE IT. A discrete-scale-invariance line in a census sector, pre-registered
+  4. WHAT WOULD SUPPLY THE COUNT. A discrete-scale-invariance line in a census sector, pre-registered
      and non-null -- or the fermion mass thresholds and Delta-alpha_had that the continuum
      running needs. Neither is claimed here. Scope: no new value is derived; no axiom added.""")
 
@@ -222,7 +222,7 @@ def main() -> None:
     tails()
     bracket()
     selection()
-    n_hits = crank_trap()
+    n_hits = many_ways()
     verdict(n_hits)
 
 

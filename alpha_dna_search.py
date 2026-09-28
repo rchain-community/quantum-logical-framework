@@ -4,8 +4,9 @@ alpha_dna_search.py -- "what if we find a ZFA DNA that matches the residual, and
 
 THE WORRY, stated exactly. If we search the substrate for a structure that reproduces the measured
 alpha residual, we will find one -- there are too many substrate numbers for it to be otherwise.
-Then we will be tempted to justify it after the fact. That is numerology, and Alpha_Residual.md
-sec 2a forbids it by name.
+In a possibilist substrate that match is not nothing: it happens in finite time, so it exhibits one
+way the residual closes. What it cannot say is how many ways reach the value, so presenting it as THE
+derivation is what Alpha_Residual.md sec 2a forbids.
 
 So this script does the search under a pre-registration, and reports what a match would be worth:
 
@@ -16,8 +17,8 @@ So this script does the search under a pre-registration, and reports what a matc
   sec 2  (A) the depth test, run. Prediction: no depth lands.
   sec 3  (B) the weight search, run. Prediction: many weights land.
   sec 4  the look-elsewhere correction: are the weight hits more than chance?
-  sec 5  the trap, demonstrated: the closest candidates and the justification each would get.
-  sec 6  verdict -- what a match would and would not be worth.
+  sec 5  many ways, each with a reading: the closest candidates and the reading each carries.
+  sec 6  verdict -- what a match is (one way) and what it is not yet (a count).
 
 Everything exact or 60-digit Decimal. No value is fitted and nothing is proposed as derived.
 
@@ -179,17 +180,17 @@ agreement does not reduce the candidate set to one, it just moves the window."""
 
 
 # --------------------------------------------------------------------------- #
-# sec 5 -- the trap, demonstrated
+# sec 5 -- many ways, each with a reading
 # --------------------------------------------------------------------------- #
 def the_trap(hits) -> None:
-    rule("sec 5  THE TRAP, DEMONSTRATED: 'FIND ONE THAT MATCHES, THEN JUSTIFY IT'")
+    rule("sec 5  MANY WAYS, EACH WITH A READING: 'FIND ONE THAT MATCHES, THEN JUSTIFY IT'")
     span = float(TOTAL_LIM - IRRED_LIM)
     named = {Fraction(5, 8), Fraction(9, 14), Fraction(3, 5), Fraction(19, 32),
              Fraction(51, 86), Fraction(35, 59)}
     shown = [f for f in sorted(hits) if f in named][:5]
     print("""
-Take five of the fitting weights and write the justification each one would get if it had been
-found first. (These stories are constructed to make the point, not claimed.)
+Take five of the fitting weights and write the substrate reading each one would carry if it had
+been found first. (These readings are constructed to make the point, not claimed.)
 """)
     stories = {
         Fraction(5, 8): "5/8 = five of the eight twists -- the 'most ways' count minus the gauge pair",
@@ -203,15 +204,14 @@ found first. (These stories are constructed to make the point, not claimed.)
         print(f"  w = {str(f):>6}  ->  alpha^-1 = {d(val, 12)} (off by {d(abs(val - CODATA), 3)})")
         print(f"           justification: {stories.get(f, '...')}")
     print(f"""
-Every one of these fits the measurement to within the theory's own precision, and every one has a
-story. The stories are mutually incompatible -- 5/8 and 3/5 cannot both be 'the' counting rule -- and
-nothing in the substrate prefers one over another. That is what a post-hoc justification is worth:
-the story is chosen to fit the number that was picked, and with {len(hits)} candidates there is always
-one available.
+Every one of these fits the measurement to within the theory's own precision, and every one is a way
+the residual can close -- possibilism does not force a choice, everything that closes happens. What
+none of them has is a COUNT: 5/8 and 3/5 cannot both be 'the' counting rule, and nothing computed here
+says which is reached in the most ways. With {len(hits)} candidates there is always a reading available.
 
-THE TEST THAT FAILS, stated plainly: 'search for a ZFA-DNA structure matching the residual, then
-justify it' cannot work -- not because the search finds nothing, but because it finds ~{len(hits)} things
-and has no way to rank them. A match found that way carries no information about the substrate.""")
+WHAT THE SEARCH DOES AND DOES NOT DELIVER, stated plainly: 'search for a ZFA-DNA structure matching
+the residual, then justify it' delivers ways -- ~{len(hits)} of them, each a lower bound on multiplicity.
+It does not deliver the ranking, so it cannot name the way that happens first.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -224,18 +224,20 @@ def verdict(hits) -> None:
      included order and the irreducible counting never reaches it. So there is no order, loop count
      or truncation of the census whose value is the residual -- the depth is not the free parameter.
 
-  2. (B) {len(hits)} WEIGHTS MATCH -- at exactly the chance rate (sec 4). So a 'ZFA DNA that matches' is
-     findable by construction, and worth nothing, because the count is what random rationals give.
+  2. (B) {len(hits)} WEIGHTS MATCH -- at exactly the chance rate (sec 4). Each is a way the residual
+     closes, found in finite time. The chance rate says this family spreads its ways evenly, so it
+     does not single out the dominant one -- not that the ways are unreal.
 
-  3. THEREFORE the answer to 'what if we find one and justify it?' is: we will, and the justification
-     will be worthless. The guard is not a warning against bad faith; it is arithmetic -- with a
-     0.032-wide bracket and a 0.001 precision, roughly (3/pi^2)Q^2.delta weights fit for any Q.
+  3. THEREFORE the answer to 'what if we find one and justify it?' is: the find is real, and the
+     justification is incomplete until it is counted. A match is one way; claiming it is THE way needs
+     its multiplicity. With a 0.032-wide bracket and a 0.001 precision, roughly (3/pi^2)Q^2.delta
+     weights fit for any Q, so another digit moves the window rather than singling one out.
 
-  4. WHAT WOULD ACTUALLY COUNT, and is not done here:
+  4. WHAT WOULD SUPPLY THE COUNT, and is not done here:
        * a discrete-scale-invariance line in a pre-registered census statistic (the existing probe is
          null; a new statistic would have to be named BEFORE the comparison), or
        * the continuum inputs the running needs -- fermion mass thresholds and Delta-alpha_had.
-     Neither is a search, and neither is a justification. No value is derived here; no axiom added.""")
+     No value is derived here; no axiom added.""")
 
 
 def main() -> None:
