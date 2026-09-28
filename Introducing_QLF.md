@@ -10,6 +10,14 @@ The [**Quantum Logical Framework (QLF)**](https://github.com/rchain-community/qu
 
 This is not an interpretation of quantum mechanics layered on top of existing physics. It is an attempt at the foundation that physics *emerges from* — the way general relativity superseded Newton rather than reinterpreting him.
 
+**See it now** — live in your browser, nothing to install:
+
+- **[Spectral Spacetime](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html)** — build atoms, molecules and lattices from ZFA closures and watch space synthesized from frequency. Try [hydrogen](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0), [positronium](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) or [water](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=O%20%40%200%2C0%2C0%0AH%20%40%20-2.5%2C0%2C0%0AH%20%40%202.5%2C0%2C0). ([Spacetime_Constructor.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Spacetime_Constructor.md))
+- **[QuantumOS](https://rchain-community.github.io/quantum-os/)** — the framework as a running peer-to-peer operating system, with AI agents joining rooms as full members. ([QuantumOS.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/QuantumOS.md))
+- **[The Fredkin Machine](https://rchain-community.github.io/quantum-logical-framework/fredkin_machine.html)** — conservative logic on the QLF substrate: reversible computation runs free, and only erasure is charged. ([Fredkin_QLF.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Fredkin_QLF.md))
+- **[The Closure Walk](https://rchain-community.github.io/quantum-logical-framework/closure_graph.html)** — every ZFA closure as a closed walk on ℤ⁴, with the half-spin phase drawn as a ℤ₂ connection on the graph. ([Closure_Walk.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Closure_Walk.md))
+- **[The Flow Chart](https://rchain-community.github.io/quantum-logical-framework/FlowChart.html)** — the whole framework as one clickable map.
+
 ---
 
 ## For a reader who believes in Newton and Darwin
@@ -132,6 +140,24 @@ The reach extends well past particle constants.
 
 ---
 
+## From one rule, chaos — and the Mandelbrot set
+
+Generate-and-select is easy to say. Here is the engine running on an object anyone can check.
+
+**ZFA DNA.** Take the QuCalc twist strings and read a closure as a *replication rule*: replace every twist by the closure headed by it, in either chirality — `^` becomes `^>v<` (the electron loop) or `^<v>` (the positron loop), and likewise for every other twist. Seed a single `^` and iterate. Every generation is a string of closures, so three things hold at once, in every realization ([`primordial_zfa_dna.py`](https://github.com/rchain-community/quantum-logical-framework/blob/main/primordial_zfa_dna.py) checks each):
+
+- **Closure at every depth.** Every generation achieves ZFA, never straying more than 2 from balance. Depth costs nothing.
+- **Exact self-similarity.** Keep every fourth twist and the parent generation comes back exactly. The coarse scale is carried entirely in the *order* of the twists — the one place ZFA does not charge.
+- **Chaos.** The chirality choice is free at every closure, so generation `k` has `2^((4^k−1)/3)` distinct histories: **1/3 bit of entropy per twist**, with no metric, no parameter and no noise source. Fix the choices and the same rule is deterministic. Chaos is not noise added to order; it is *free order at positive density*.
+
+**Chaos to Mandelbrot.** Write the quadratic loop `z → z² + c` in the same language: squaring is copying a word, `+c` is one splice twist, so its DNA is `W → W·s·W`. The second, imaginary axis is the complementary history — the Hermitian adjoint `W†`, antiparallel and complementary, so `W·W†` always closes. A history and its adjoint are a **double helix**, and each rung carries `log 2`. An agent of finite capacity `R` holds only the orbits that have not escaped in `R` steps, so the set it sees is `M_R`, and the familiar Mandelbrot set is the rendering of that finite object — not the other way round. Computed exactly, with no floating point: on the Gaussian integers the set is five points, `{0, −1, −2, +i, −i}`. And from the doubling map alone — words, no arithmetic, no escape test — the substrate generates the **quadratic minor lamination** of Douady, Hubbard and Thurston, the combinatorial skeleton of the set: the leaf count at every period through 12 matches the independent count of hyperbolic components (OEIS A000740), with zero crossings among 4,015 leaves.
+
+<p align="center"><img src="https://raw.githubusercontent.com/rchain-community/quantum-logical-framework/main/diagrams/zfa_mandelbrot_lamination.svg" alt="The quadratic minor lamination: 235 non-crossing chords on the unit circle, generated from the doubling map alone" width="420"></p>
+
+**What this does and does not show.** No physical identification of the DNA generations is claimed; it is a worked instance of the selection rule on an object where the answer is known in advance and the engine was required to pay. The same engine was then run on α, and the result is recorded as it came out: it brackets the measured value but does not *select* `137.036` — and 189 different simple weights land within the theory's own precision of it, about what the density of rationals predicts. Read possibilistically, each match means something real: one way found proves the value is reached in finite time — it happens. What one way cannot say is *how often*, and it is multiplicity that decides what happens first. So a match is an existence result, a lower bound on the ways; selection needs the count, and here the count does not single out one weight. The repository makes that distinction in arithmetic, not just in principle. The full thread — the DNA rule, the operator network that links these objects, and the exact renders — is [ZFA_DNA.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/ZFA_DNA.md).
+
+---
+
 ## From physics to an operating system
 
 There is a striking corollary. If ZFA closure is the single invariant that makes a computation physically real, then it is also the single invariant a *quantum computer* needs to enforce. In **QuantumOS**, the security model, error correction, scheduling, garbage collection, and even the AI layer are not five subsystems — they are one operation: ZFA enforcement. Capability-secure by construction (an unforgeable name *is* a proof of authorization), formally grounded in linear logic and the no-cloning theorem. It targets **real quantum hardware, not only simulators** — the concrete device is a quiet-frequency crystal QPU ([Crystal_QuantumOS.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Crystal_QuantumOS.md)) — and what runs on it is a **quantum AI in the strong sense**: an agent whose atomic act of abstraction *is* a quantum event (every synthesis a ZFA closure), not a classical model with a QPU bolted on.
@@ -160,6 +186,7 @@ From there:
 
 - **The big picture** — [Philosophy.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Philosophy.md) (the possibilist foundation) and the formal [White Paper](https://github.com/rchain-community/quantum-logical-framework/blob/main/WHITE_PAPER.md).
 - **The flagship derivation** — [Alpha.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Alpha.md): the fine-structure constant from counting.
+- **Chaos and the Mandelbrot set from one rule** — [ZFA_DNA.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/ZFA_DNA.md): QuCalc strings as DNA, generating the set exactly.
 - **The proofs themselves** — [the Lean module index](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/README.md): every theorem name and proof chain, the whole tree.
 - **The application** — [QuantumOS](https://rchain-community.github.io/quantum-os/), live in your browser.
 
