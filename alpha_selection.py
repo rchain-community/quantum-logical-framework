@@ -39,7 +39,9 @@ S62 = Decimal(62).sqrt()
 IRRED = Decimal(126) - 16 * S62                 # 126 - 16.sqrt(62)   [LEAN] irreducible cap
 TOTAL = 512 * S62 / 31 - 130                    # 512.sqrt(62)/31 - 130  [LEAN] census cap
 LEADING = Decimal(137)                          # 128 + 9, exact
-CODATA = Decimal("137.035999206")               # CODATA q^2->0 Thomson
+CODATA = Decimal("137.035999206")               # q^2->0 value: Rb recoil 2020 (Morel et al.,
+                                                # Nature 588, 61). Not CODATA proper: CODATA 2022
+                                                # is 137.035999177(21); same 189 fits, same 58/93.
 CODATA_SD = Decimal("0.000000011")
 
 
@@ -68,8 +70,9 @@ def irreducible_closures(n: int) -> int:
 def census_tail(count, terms: int = 400) -> Decimal:
     """128 x sum_{n>=2} count(n) / 128^n  -- the residual, one bare coupling 1/128 per order.
 
-    The n = 0 and n = 1 terms are the leading 137 (128 + 9) already derived; the residual is
-    what the census adds from order 2 on.
+    The n = 0 and n = 1 terms (128 and 2 -- the `- 130` in the closed form) are subtracted; the
+    residual is what the census adds from order 2 on. The leading 137 = 2^7 + 3^2 is a separate
+    derivation (Alpha.md), not a partial sum of this series.
     """
     s = Decimal(0)
     for n in range(2, terms + 1):
@@ -93,8 +96,9 @@ the higher orders gives the residual. Two closed forms carry it, both machine-ve
     assert abs(t_all - TOTAL) < Decimal("1e-45"), "census series != closed form"
     assert abs(t_irr - IRRED) < Decimal("1e-45"), "irreducible series != closed form"
     print(f"""
-  Both agree to 45 digits, so the closed forms ARE the resummations of the census -- and the
-  leading 137 = 128 + 9 is the orders-0-and-1 part of the same series. Nothing here is fitted.
+  Both agree to 45 digits, so the closed forms ARE the resummations of the census from order 2
+  up. (Orders 0 and 1 give 128 + 2 = 130, the subtracted part; the leading 137 = 2^7 + 3^2 is
+  Alpha.md's separate derivation, not a partial sum of this series.) Nothing here is fitted.
 
   Counts (integers, exact):  every closure   {all_closures(2)}, {all_closures(3)}, {all_closures(4)}, {all_closures(5)}, ...
                             irreducible     {irreducible_closures(2)}, {irreducible_closures(3)}, {irreducible_closures(4)}, {irreducible_closures(5)}, ...""")

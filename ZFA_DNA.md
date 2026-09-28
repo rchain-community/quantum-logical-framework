@@ -279,14 +279,19 @@ hits it at every period:
 | 11 | 1023 | 1023 |
 | 12 | 2010 | 2010 |
 
-Three independent facts hold:
+What each check is worth:
 
-* the leaf count per period is exactly the required count, at every period tested (through 12);
-* no two leaves cross — 0 crossings among `4015` leaves at period 12, the defining property of a
-  lamination;
+* the leaf count per period is exactly the required count, and no two of the `4015` leaves cross.
+  Both are **structural**: pairing consecutive boundary angles inside one gap cannot produce a
+  crossing, and gives half the angles whenever each gap holds an even number. They show the
+  construction is well formed, not that it is *the* lamination;
 * the known low-period leaves are reproduced exactly: `(1/3,2/3)`, `(1/7,2/7)`, `(3/7,4/7)`,
   `(5/7,6/7)`, `(1/15,2/15)`, `(13/15,14/15)`, and all six period-4 leaves derived independently by
-  hand — including `(2/5,3/5)`, the pair that spans two arcs.
+  hand — including `(2/5,3/5)`, the pair that spans two arcs;
+* **the decisive check: the leaf set is identical to the one Lavaurs' algorithm (1986) draws**, leaf
+  for leaf, at every period through 12 (the script runs Lavaurs' rule alongside). So the gap pairing
+  is Lavaurs' classical construction in another form — found independently here, agreement checked
+  rather than proved — and not a new generation of $M$.
 
 ```bash
 $ python3 mandelbrot_lamination.py 12       # the table above, in ~30 s
@@ -297,8 +302,8 @@ The lamination drawn out (colour is period; the large empty region is the main c
 
 <p align="center"><img src="diagrams/zfa_mandelbrot_lamination.svg" alt="The quadratic minor lamination: the unit circle carrying 235 non-crossing chords, each joining two angles whose external rays land at the same point of the Mandelbrot set's boundary, generated from the doubling map alone" width="620"></p>
 
-**Not claimed.** Individual high-period leaves were not compared against a published list: the
-validation is structural (count + non-crossing + known low periods). And this is the *lamination*,
+**Not claimed.** Novelty: the generation agrees with Lavaurs' algorithm, so what is this thread's is
+the reading (the doubling map as the loop DNA's word-copy law), not the algorithm. And this is the *lamination*,
 whose quotient is the combinatorial model of $M$ — not a picture of $M$.
 [`mandelbrot_exact.py`](mandelbrot_exact.py) remains the exact numeric route.
 
@@ -345,8 +350,8 @@ The same two steps run elsewhere in the repository, on other objects:
 
 So the honest scope of this thread is narrower than "it applies to α and the Millennium problems",
 and stronger than a curiosity: it is **another worked instance of the same selection rule**, on an
-object where the answer can be checked — leaf counts against OEIS A000740 at every period, zero
-crossings, and the known leaves reproduced. It adds no theorem to α or to the Millennium problems.
+object where the answer can be checked — the leaf set identical to Lavaurs' classical algorithm
+through period 12, with the counts (OEIS A000740), zero crossings and known leaves as structural checks. It adds no theorem to α or to the Millennium problems.
 What it adds is a test of the engine: if generate-and-select is the framework's claim, this is one
 place the claim was required to pay.
 
@@ -384,12 +389,13 @@ mathematics of §8 is not — the quadratic minor lamination is standard, and th
   Dynamics*, A K Peters, 2009) — the lamination as a model of $M$.
 * J. Milnor, *Periodic orbits, external rays and the Mandelbrot set* — hyperbolic components and
   the rays landing at their roots.
-* D. Schleicher, *The quadratic minor lamination* (in *Complex Dynamics: Families and Friends*,
-  A K Peters, 2009) — the lamination and the renormalisation structure.
-* J. C. Mayer & L. G. Oversteegen, *A quadratic minor lamination algorithm*, Topology Proceedings
-  20 (1995) — generating the lamination from the doubling map.
-* OEIS [A000740](https://oeis.org/A000740) — the count of hyperbolic components of period $n$ used
-  as the validation oracle in §8.
+* D. Schleicher, appendix to Thurston's chapter above (in *Complex Dynamics: Families and Friends*,
+  A K Peters, 2009) — how the quadratic laminations determine the dynamics on the Julia set.
+* P. Lavaurs, *Une description combinatoire de l'involution définie par M sur les rationnels à
+  dénominateur impair*, C. R. Acad. Sci. Paris Sér. I 303 (1986) 143–146 — the classical word-only
+  algorithm for the lamination; §8's gap pairing reproduces its leaf set exactly through period 12.
+* OEIS [A000740](https://oeis.org/A000740) — the count of hyperbolic components of period $n$ (a
+  structural check in §8; the leaf-set check is against Lavaurs).
 
 The correspondence this repository adds is the reading of that dynamics as the twist algebra's
 own word-copy rule (§0, §3) — the reason a Mandelbrot object belongs in a QLF document at all.

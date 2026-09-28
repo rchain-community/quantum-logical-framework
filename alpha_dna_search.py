@@ -36,7 +36,8 @@ S62 = Decimal(62).sqrt()
 IRRED_LIM = Decimal(126) - 16 * S62            # irreducible tail  [Lean]
 TOTAL_LIM = 512 * S62 / 31 - 130               # total census tail [Lean]
 LEADING = Decimal(137)                         # 128 + 9, exact
-CODATA = Decimal("137.035999206")
+CODATA = Decimal("137.035999206")              # Rb recoil 2020 (Morel et al.); CODATA 2022 is
+                                               # 137.035999177(21) -- same 189 fits, same 58/93
 CODATA_SD = Decimal("0.000000011")
 TOL = Decimal("0.001")                         # the theory's OWN precision, ~0.03 bracket -> 0.001
 

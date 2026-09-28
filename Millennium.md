@@ -247,8 +247,10 @@ object `M = ∩_R M_R` by the **indexed family** `M_R`, states that *the finite-
 object and the limit is its rendering*, computes each member exactly (integer-only,
 [`mandelbrot_exact.py`](mandelbrot_exact.py)), and then — the part that makes it more than a
 reformulation — **generates the combinatorial model from words alone and checks the generation against
-an independent oracle** (leaf counts vs OEIS A000740, zero crossings, the known leaves;
-[`mandelbrot_lamination.py`](mandelbrot_lamination.py)). There is no bridge axiom, because no claim is
+an independent construction** — the leaf set equals Lavaurs' classical algorithm (1986) through
+period 12, with leaf counts vs OEIS A000740, zero crossings and the known leaves as structural checks
+([`mandelbrot_lamination.py`](mandelbrot_lamination.py)). The generation turns out to *be* Lavaurs'
+rule in another form, so the check is of this thread's reading, not a new result about `M`. There is no bridge axiom, because no claim is
 made about the limit; the step that *would* be a bridge is replaced by a **capacity law** (here
 `K(R) = log₂ 3R`) that says how much of the object each capacity reaches.
 
@@ -277,8 +279,10 @@ are already, without saying so. Yang–Mills is the one problem where the postur
 work.
 
 **Two disciplines transfer with it, and are worth more than the posture.** (1) The **oracle**: the
-lamination is only credible because its generation is checked against published counts it did not
-produce. A capacity family without an independent check is a model; with one it is evidence. (2) The
+lamination is credible because its leaf set is checked against an independent construction it did not
+produce (Lavaurs'); the published counts alone would not have sufficed, since consecutive pairing inside
+gaps makes them nearly automatic. A capacity family without an independent check is a model; with one it
+is evidence — and the check has to be one the construction could fail. (2) The
 **negative result recorded as a negative result**: the lamination attempt was falsified by the leaf
 count before it worked ([`ZFA_DNA.md`](ZFA_DNA.md) §8), and the α residual was closed the same way
 ([`Alpha_Residual.md`](Alpha_Residual.md) §9j–§9k). Both belong to the posture — a capacity family that

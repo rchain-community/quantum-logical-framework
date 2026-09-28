@@ -1039,8 +1039,9 @@ take the one the substrate takes* — least free action, shallowest horizon, mos
 residual.
 
 **The closed forms are the census, checked as series.** Both tails are `128 × Σ_{n≥2} count(n)/128ⁿ`,
-with `count(n) = C(2n,n)` (every closure) and `2·Catalan(n−1)` (irreducible only) — so the leading
-`137 = 128 + 9` is the orders-0-and-1 part of the *same* series. Summed against the Lean closed forms
+with `count(n) = C(2n,n)` (every closure) and `2·Catalan(n−1)` (irreducible only). Orders 0 and 1
+contribute `128 + 2 = 130` — the subtracted `−130` in the closed form — so the leading `137 = 2⁷ + 3²`
+is *not* a partial sum of this series; it is [`Alpha.md`](Alpha.md)'s separate derivation. Summed against the Lean closed forms
 (`512√62/31 − 130` and `126 − 16√62`) they agree to **45 digits** (script §1), so the closed forms are
 the resummations and nothing is fitted.
 

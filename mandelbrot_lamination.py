@@ -201,6 +201,23 @@ def refine_gaps(n_max: int):
     return leaves, by_period
 
 
+def lavaurs(n_max: int):
+    """Lavaurs' algorithm (C. R. Acad. Sci. Paris 303, 1986), the classical word-only construction
+    of the QML: by increasing period, join the smallest unjoined exact-period-n angle to the
+    smallest larger unjoined one whose chord crosses no leaf drawn so far. Independent of the gap
+    walk above -- no faces, no boundary order -- so agreement is a check on the LEAVES, not only
+    on their number."""
+    leaves = []
+    for n in range(2, n_max + 1):
+        free = exact_angles(n)
+        while free:
+            a = free.pop(0)
+            b = next(x for x in free if not any(crosses(a, x, *l) for l in leaves))
+            free.remove(b)
+            leaves.append((a, b))
+    return leaves
+
+
 def gap_generation(n_max: int) -> None:
     rule(f"sec 3  THE GENERATION -- GAP-BASED PAIRING, WITH THE VALIDATION TABLE (periods 2..{n_max})")
     print("""
@@ -221,16 +238,24 @@ that gap's boundary, in boundary order, and pair them consecutively.
               for i in range(len(leaves)) for j in range(i + 1, len(leaves)))
     known = {tuple(sorted((a, b))) for _r, a, b in KNOWN_LIMBS}
     leafset = {tuple(sorted(l)) for l in leaves}
+    same_as_lavaurs = leafset == {tuple(sorted(l)) for l in lavaurs(n_max)}
     print(f"""
   every period matches: {ok_all}       total {len(leaves)} leaves, {bad} crossings
   known leaves reproduced: {sum(k in leafset for k in known)} of {len(known)}
+  leaf set identical to Lavaurs' algorithm: {same_as_lavaurs}
 
-  Three independent facts, all checked here:
-    * the leaf count per period equals half the exact-period-n angles, at every n up to {n_max};
-    * no two leaves cross ({bad} crossings is what a lamination requires);
+  What each check is worth:
+    * the leaf count and the zero crossings are STRUCTURAL. Pairing consecutive boundary angles
+      inside one gap cannot make chords cross, and it yields half the angles whenever every gap
+      holds an even number of them. So these confirm the construction is well formed, not that
+      it is the Mandelbrot lamination;
     * the known low-period leaves are reproduced. The six period-4 leaves -- (1/15,2/15),
       (13/15,14/15), (1/5,4/15), (7/15,8/15), (11/15,4/5), (2/5,3/5) -- are exactly the six
-      derivable by hand.""")
+      derivable by hand;
+    * the decisive check: the whole leaf set equals the one Lavaurs' algorithm (1986) draws, at
+      every period up to {n_max}. So the gap pairing agrees with Lavaurs' rule wherever tested --
+      read it as that rule in another form (found independently here; equivalence is checked,
+      not proved), not as a new generation of M.""")
 
 
 # --------------------------------------------------------------------------- #
@@ -244,12 +269,12 @@ def scope() -> None:
      no complex plane, no escape test. The dynamics is the doubling map, the same word-copy
      law as the loop DNA. Written up in ZFA_DNA.md sec 8.
 
-  2. CHECKED. Leaf counts match the oracle (half the exact-period-n angles, OEIS A000740) at
-     every period tested; leaves do not cross; the known low-period leaves are reproduced
-     exactly, including the six period-4 leaves derived independently by hand.
+  2. CHECKED. The leaf set equals Lavaurs' (1986) leaf for leaf at every period tested --
+     the check that carries the weight. Leaf counts (OEIS A000740) and zero crossings hold too,
+     but those are structural to consecutive pairing inside gaps. The known low-period leaves,
+     including the six period-4 leaves derived by hand, are reproduced exactly.
 
-  3. NOT CHECKED, AND NOT CLAIMED. Individual leaves of high period were not compared against a
-     published list -- the validation is structural (counts, non-crossing, known low periods).
+  3. NOT CLAIMED. Novelty: this agrees with Lavaurs' algorithm, so it is not a new generation.
      Nor is this a picture of M: it is the lamination, whose quotient is the model. The
      distinction from `mandelbrot_exact.py` stands: that one generates M_R numerically and
      exactly; this one generates the combinatorial M from words. A route, not the route.""")
