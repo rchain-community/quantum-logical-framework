@@ -424,6 +424,13 @@ measured $w = 0.6239$ follows that sequence to $5/8$ and then leaves it. A pre-r
 power-series Stirling expansions — so the golden way is recorded, not selected. Its multiplicity is
 open.
 
+**The golden census sector, counted.** Keep the census closures whose prime factors' signs spell a
+Fibonacci-word factor. The count at order $n$ is exactly $\text{Catalan}(n+1)$ (brute-force checked),
+and its α tail has the closed form $1032062 - 131072\sqrt{62}$, giving $\alpha^{-1} = 137.039938$ —
+$0.0039$ above the measured value, mirroring the mode's $0.0040$ below. The count is shared by every
+Sturmian language, so it does not single out $\varphi$
+([`Alpha_Residual.md`](Alpha_Residual.md) §9m).
+
 ```bash
 $ python3 golden_zfa_dna.py          # seconds
 $ python3 golden_zfa_dna.py --deep   # also checks the period-13 leaf against the lamination

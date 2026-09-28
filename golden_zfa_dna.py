@@ -19,7 +19,12 @@ ratio and fibonacci numbers?" Three places it could live, each checked here rath
   sec 3  THE GOLDEN ALPHA WAY -- PRE-REGISTERED. Is there a phi-scale (log-periodic, ratio phi)
          line in the census that could move the residual weight off the mode w = 1/2
          (Alpha_Residual.md sec 9j)? Predictions are fixed below before the probe is run.
-  sec 4  scope.
+  sec 4  THE GOLDEN CENSUS SECTOR, COUNTED. Every closure factors uniquely into prime (first-
+         return) closures; on one axis each prime is a + or - excursion, so a closure spells a sign
+         word. The golden sector keeps the closures whose sign word is a factor of the Fibonacci
+         word -- what golden growth produces locally. Its count at order n is exactly Catalan(n+1),
+         and its alpha tail has a closed form.
+  sec 5  scope.
 
 Exact arithmetic throughout (int, Fraction); floats only for display and for the sec 3 regression.
 
@@ -33,9 +38,11 @@ Alpha_Residual.md sec 9j-9l (the alpha weight), genesis.py sec 5c (the ratio-2 p
 from __future__ import annotations
 
 import io
+import itertools
 import math
 import sys
 from contextlib import redirect_stdout
+from decimal import Decimal, getcontext
 from fractions import Fraction
 
 from qucalc_search import max_excursion
@@ -320,8 +327,105 @@ def sec3(golden_word: str) -> None:
 # --------------------------------------------------------------------------- #
 # sec 4 -- scope
 # --------------------------------------------------------------------------- #
+# --------------------------------------------------------------------------- #
+# sec 4 -- the golden census sector, counted
+# --------------------------------------------------------------------------- #
+def catalan(m: int) -> int:
+    return math.comb(2 * m, m) // (m + 1)
+
+
+def prime_sign_word(steps: list[int]) -> str:
+    """Factor a closed +-1 walk into its prime (first-return) closures and read each prime's
+    sign: '0' for a + excursion, '1' for a - excursion."""
+    out, h, start = [], 0, 0
+    for i, x in enumerate(steps):
+        h += x
+        if h == 0:
+            out.append('0' if steps[start] > 0 else '1')
+            start = i + 1
+    return ''.join(out)
+
+
+def sec4() -> None:
+    rule("sec 4  THE GOLDEN CENSUS SECTOR, COUNTED")
+    print("""
+WHY THIS SECTOR. The golden pattern recurs in nature -- phyllotaxis, shells, branching -- wherever
+growth places each new element by the same local rule (Jim, 2026-09-28: "this is justified by the
+recurrence of the pattern in nature"). That recurrence is the reason to count the sector; it is a
+reason to look, not a derivation.
+
+THE DEFINITION, fixed before the sum was computed. The census already factors every closure into
+prime (first-return) closures: IRREDUCIBLE counts one prime, TOTAL counts any sequence of primes
+(G = 1/(1 - I)). On one axis a prime is a + or a - excursion (Catalan(n-1) of each), so every
+closure spells a sign word. The GOLDEN sector keeps the closures whose sign word is a factor of the
+Fibonacci word -- a word the golden substitution produces somewhere. It sits between the two ends:
+irreducible allows words of length 1, total allows all 2^k words, golden allows the k + 1 golden
+words of length k (sec 1: the language is Sturmian).
+
+Brute force (every closed walk of length 2n, factored and filtered) against the closed form:
+""")
+    fw = substitute('0', {'0': '01', '1': '0'}, 25)
+    facs: dict[int, set] = {}
+    print(f"  {'n':>3}{'total C(2n,n)':>15}{'irreducible':>13}{'golden':>9}{'Catalan(n+1)':>14}")
+    print("  " + "-" * 54)
+    for n in range(1, 10):
+        tot = irr = gold = 0
+        for ups in itertools.combinations(range(2 * n), n):
+            st = [-1] * (2 * n)
+            for i in ups:
+                st[i] = 1
+            wd = prime_sign_word(st)
+            k = len(wd)
+            if k not in facs:
+                facs[k] = {fw[i:i + k] for i in range(len(fw) - k + 1)}
+            tot += 1
+            irr += k == 1
+            gold += wd in facs[k]
+        assert tot == math.comb(2 * n, n) and irr == 2 * catalan(n - 1) and gold == catalan(n + 1)
+        print(f"  {n:>3}{tot:>15}{irr:>13}{gold:>9}{catalan(n + 1):>14}")
+
+    getcontext().prec = 70                                     # the closed form cancels ~7 digits
+    s62 = Decimal(62).sqrt()
+    irr_t, tot_t = 126 - 16 * s62, 512 * s62 / 31 - 130
+    gold_t = 1032062 - 131072 * s62
+    series = 128 * sum(Decimal(catalan(n + 1)) / Decimal(128) ** n for n in range(2, 300))
+    assert abs(series - gold_t) < Decimal("1e-45")
+    measured = Decimal("137.035999177")                        # CODATA 2022
+    a_gold = 137 + gold_t
+    w_gold = (gold_t - irr_t) / (tot_t - irr_t)
+    a_mode = 137 + irr_t + (tot_t - irr_t) / 2
+    mid = (a_mode + a_gold) / 2
+    print(f"""
+WHY CATALAN(n+1), exactly. With c(x) = sum Catalan(n-1) x^n the prime series of one sign, the
+golden sector's series is sum_k (k + 1) c^k = 1/(1 - c)^2 - 1. The Catalan series C satisfies
+C = 1 + x C^2, so 1 - c = 1 - xC = 1/C, and 1/(1 - c)^2 = C^2 = (C - 1)/x = sum Catalan(n+1) x^n.
+The count depends only on there being k + 1 golden words of length k -- so EVERY Sturmian language,
+at any irrational slope, gives the same sector. Counting does not single out phi; the golden word
+is the simplest member of the family, and nature's choice of it is the reason given above.
+
+THE ALPHA TAIL, closed form (one bare coupling 1/128 per order, orders 0 and 1 subtracted as before):
+
+  golden tail   = 128 x sum_(n>=2) Catalan(n+1)/128^n = 1032062 - 131072.sqrt(62)
+                = 8192 x (irreducible tail) - 130
+                = {gold_t:.15f}     (series agrees to 45 digits)
+
+  alpha^-1 (golden sector) = 1032199 - 131072.sqrt(62) = {a_gold:.12f}
+  measured (CODATA 2022)                               = {measured:.12f}
+  difference                                           = {a_gold - measured:+.3e}
+  effective weight w_golden                            = {w_gold:.12f}
+
+  So the golden sector lands 0.0039 ABOVE the measured value, as far above as the census mode
+  w = 1/2 ({a_mode:.9f}) lands below it. It is a way the residual closes, counted exactly; it is
+  not the measured value.
+
+  NOTICED AFTER THE FACT, recorded as that: the plain mean of the mode and the golden sector is
+  {mid:.12f}, off by {mid - measured:+.2e}. Nothing here justifies averaging the two sectors,
+  and the observation came after both values were in hand. It is one more way, uncounted -- and a
+  prompt to look for a reason two sectors would enter with equal weight, not a result.""")
+
+
 def scope() -> None:
-    rule("sec 4  SCOPE")
+    rule("sec 5  SCOPE")
     print("""
   1. KNOWN MATHEMATICS, USED AND CITED. Sturmian words and their n + 1 complexity (Morse & Hedlund
      1940); the Fibonacci limbs on the Farey path to the golden mean (Devaney 1999); rotation orbits
@@ -334,7 +438,9 @@ def scope() -> None:
      checked; the limit point is cited, not re-proved.
 
   3. ALPHA. Nothing is derived. Sec 3 records the pre-registered outcomes and the golden weight as
-     one way among the 189 of Alpha_Residual.md sec 9k, uncounted.""")
+     one way among the 189 of Alpha_Residual.md sec 9k, uncounted. Sec 4 counts the golden census
+     sector exactly (Catalan(n+1), a closed-form tail): it lands 0.0039 above the measured value.
+     The count is the same for every Sturmian language, so it does not select phi.""")
 
 
 def main() -> None:
@@ -343,6 +449,7 @@ def main() -> None:
     w = sec1()
     sec2(deep)
     sec3(w)
+    sec4()
     scope()
 
 

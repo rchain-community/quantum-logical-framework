@@ -1140,3 +1140,47 @@ value. The first letter picks the total count at order 2, which dominates the ta
 `w = 0.6239` lies between `8/13` and `5/8` but outside `(8/13, 13/21)`, so it follows the golden
 sequence as far as `5/8` and then leaves it. The golden way happens; how many ways reach it is not
 counted, and nothing here selects it. No value is derived; no axiom is added.
+
+---
+
+### 9m. The golden census sector, counted — `Catalan(n+1)`, and a closed form ([`golden_zfa_dna.py`](golden_zfa_dna.py) §4)
+
+§9l found that a `φ`-scale line can come only from a sector the golden substitution itself generates.
+This section counts that sector. The reason to count it is that the golden pattern recurs in nature
+(phyllotaxis, shells, branching), wherever growth places each new element by the same local rule.
+That recurrence is a reason to look, not a derivation.
+
+**The sector.** The census already factors every closure uniquely into prime (first-return)
+closures. **Irreducible** counts one prime (`2·Catalan(n−1)`); **total** counts any sequence of primes
+(`C(2n,n)`, `G = 1/(1−I)`). On one axis each prime is a `+` or a `−` excursion, so every closure spells
+a sign word. The **golden** sector keeps the closures whose sign word is a factor of the Fibonacci word,
+i.e. a word the golden substitution produces somewhere. It sits between the two ends: irreducible
+allows one letter, total allows all `2ᵏ` words of length `k`, golden allows the `k + 1` golden words
+(the language is Sturmian). The definition was fixed before the sum was computed. The first two orders
+were estimated by hand while it was chosen, and no alternative definition was tried against the
+measured value.
+
+**The count is exactly `Catalan(n+1)`** — `2, 5, 14, 42, 132, 429, …`, confirmed by brute force
+(every closed walk factored and filtered) through `n = 9`. Why: with `c(x) = Σ Catalan(n−1)xⁿ` for
+one sign, the sector's series is `Σ_k (k+1)cᵏ = 1/(1−c)² − 1`. The Catalan series satisfies
+`C = 1 + xC²`, so `1 − c = 1/C` and `1/(1−c)² = C² = Σ Catalan(n+1)xⁿ`.
+
+**The tail has a closed form**, with the same coupling and the same subtraction of orders 0–1 as §1:
+
+> `golden tail = 1032062 − 131072√62 = 8192 × (irreducible tail) − 130 = 0.0399375…`
+> **`α⁻¹ (golden sector) = 1032199 − 131072√62 = 137.039938`**, effective weight `w = 0.7460`.
+
+**It lands `0.0039` above the measured value** — as far above as the census mode `w = 1/2`
+(`137.032002`) lands below it. It is a way the residual closes, counted exactly. It is not the measured
+value.
+
+**What the count does not do: it does not select `φ`.** The count depends only on there being `k + 1`
+admissible words of length `k`, so every Sturmian language, at any irrational slope, gives the same
+sector. The golden word is the simplest member of that family, and nature's recurrent choice of it is
+the reason for counting it. Counting cannot distinguish it from its siblings.
+
+**Noticed after the fact, and recorded as that.** The plain mean of the mode and the golden sector is
+`137.035970`, `2.9 × 10⁻⁵` from the measured value. Nothing here justifies giving the two sectors
+equal weight, and the observation came after both values were in hand. Under this file's rule (§9k)
+it is one more way, uncounted. It prompts a question — is there a reason the scale-invariant mode and
+the growth sector would enter equally? — and is not an answer. No value is derived; no axiom is added.
