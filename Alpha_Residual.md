@@ -1111,3 +1111,32 @@ any `Q`, so asking for another digit moves the window rather than singling one o
 way into the dominant one is a count: a discrete-scale-invariance line in a **pre-registered** census
 statistic, or the continuum inputs (fermion mass thresholds, `Δα_had`) whose multiplicity carries the
 running. No value is derived here; no axiom is added.
+
+---
+
+### 9l. The golden way — pre-registered, and recorded as a way ([`golden_zfa_dna.py`](golden_zfa_dna.py))
+
+§9j named what would move the mode off `w = 1/2`: a discrete-scale-invariance line in a census sector.
+[`genesis.py`](genesis.py)'s probe tested only ratio 2. The golden ratio is the other natural scale —
+the Fibonacci substitution is the canonical discrete scale invariance, with ratio `φ` — so this asks
+whether any census sector carries a `φ`-scale line. Both predictions were fixed in the commit that
+added the script (`cb3fa7e`), before the probe was run.
+
+**P1 — no census sector carries a `φ`-scale line. Confirmed.** For the four `genesis.py` sectors, the
+Stirling-detrended residual was fitted with a smooth model and then with a log-periodic term, at
+period `log φ` and at the control `log 2`. The periodic term never cut the residual by more than 5 %
+(the line criterion was 50 %), and its amplitude was unstable between the two halves of each range.
+That was expected: these counts are products of binomials, whose Stirling expansions are power series
+in `1/n`, and no log-periodic term can come from such a series. Only a substitution-generated sector
+has discrete scale invariance.
+
+**P2 — the golden DNA as a per-order counting rule does not land. Confirmed.** Counting order `n` in
+full or irreducibly as the golden DNA's word dictates gives `137.047153`, `0.011` above the measured
+value. The first letter picks the total count at order 2, which dominates the tail.
+
+**Recorded as a way: the golden weight.** In the linear mix, `w = φ − 1` gives `137.035809`, which is
+`1.9 × 10⁻⁴` below the measured value and one of §9k's 189 ways. The convergents of `φ − 1` are
+`1/2, 2/3, 3/5, 5/8, 8/13, …`, and the census mode `w = 1/2` is the first of them. The measured
+`w = 0.6239` lies between `8/13` and `5/8` but outside `(8/13, 13/21)`, so it follows the golden
+sequence as far as `5/8` and then leaves it. The golden way happens; how many ways reach it is not
+counted, and nothing here selects it. No value is derived; no axiom is added.
