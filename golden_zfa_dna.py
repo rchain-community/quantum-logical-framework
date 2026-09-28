@@ -418,10 +418,15 @@ THE ALPHA TAIL, closed form (one bare coupling 1/128 per order, orders 0 and 1 s
   w = 1/2 ({a_mode:.9f}) lands below it. It is a way the residual closes, counted exactly; it is
   not the measured value.
 
+  EVERY WAY CONTRIBUTES. The measured value is not one way picked out of many: every way that
+  closes contributes, as the census tail is already a sum over every closure. So sectors combine,
+  weighted by their multiplicities; the mode is where multiplicity peaks (what happens first), not
+  the whole of what is measured. What is uncounted is the weights.
+
   NOTICED AFTER THE FACT, recorded as that: the plain mean of the mode and the golden sector is
-  {mid:.12f}, off by {mid - measured:+.2e}. Nothing here justifies averaging the two sectors,
-  and the observation came after both values were in hand. It is one more way, uncounted -- and a
-  prompt to look for a reason two sectors would enter with equal weight, not a result.""")
+  {mid:.12f}, off by {mid - measured:+.2e} -- the combination in which the two sectors carry
+  equal multiplicity. Whether they do is the count still to be made; the observation came after
+  both values were in hand, so it is a lead, not a result.""")
 
 
 def scope() -> None:

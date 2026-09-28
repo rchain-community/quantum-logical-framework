@@ -1066,8 +1066,8 @@ most ways lie, computed before any comparison, so `137.032002` stays the pure-ZF
 measured value is another way, `w ≈ 0.624`, and it sits `0.004` from the mode — four times the theory's
 own `0.001` precision — so the two are different numbers and this section does not pretend otherwise.
 They do not contradict each other: the mode is where multiplicity peaks when the census alone is
-counted, and the measurement is a way the census closes once the continuum vacuum-polarisation running
-(§2a) is included. So the open question is the **multiplicity of that running** — how many ways carry
+counted, and the measurement is what all the contributing ways add up to — including the continuum
+vacuum-polarisation running (§2a) — each weighted by its multiplicity (§9m). So the open question is the **multiplicity of that running** — how many ways carry
 `137.032` to the measured value — not whether a fit means anything. Nothing about that running is
 derived here.
 
@@ -1179,8 +1179,15 @@ admissible words of length `k`, so every Sturmian language, at any irrational sl
 sector. The golden word is the simplest member of that family, and nature's recurrent choice of it is
 the reason for counting it. Counting cannot distinguish it from its siblings.
 
+**Every way contributes — so the sectors combine, and the open quantity is their weights.** A value
+like `α` is not one way picked out of many. Every way that closes contributes to it, as the census tail
+is already a sum over every closure. So combining sectors is not the error: the measured value is a
+multiplicity-weighted combination of all the ways that reach it. The mode (§9j) is where that
+multiplicity peaks — what happens *first* — not the whole of what is measured. What stays uncounted is
+the weights.
+
 **Noticed after the fact, and recorded as that.** The plain mean of the mode and the golden sector is
-`137.035970`, `2.9 × 10⁻⁵` from the measured value. Nothing here justifies giving the two sectors
-equal weight, and the observation came after both values were in hand. Under this file's rule (§9k)
-it is one more way, uncounted. It prompts a question — is there a reason the scale-invariant mode and
-the growth sector would enter equally? — and is not an answer. No value is derived; no axiom is added.
+`137.035970`, `2.9 × 10⁻⁵` from the measured value. In the terms above, it is the combination in which
+the scale-invariant mode and the golden growth sector carry equal multiplicity. Whether they do is the
+count still to be made; the observation came after both values were in hand, so it is recorded as a
+lead, not a result. No value is derived; no axiom is added.
