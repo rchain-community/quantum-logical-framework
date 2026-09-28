@@ -539,6 +539,47 @@ $ python3 natural_ratios.py          # under a second
 
 ---
 
+## 14. The Penrose tiling: where the golden ratio enters
+
+§12 found that the substrate's lattice makes the silver ratio and never $\varphi$. The Penrose tiling is
+$\varphi$'s own tiling, with 5-fold symmetry. [`penrose_zfa.py`](penrose_zfa.py) asks where it can come from.
+
+**Not from the lattice.** The twist frame's full symmetry group — the 384 signed permutations of the four
+axes — has elements of orders 1, 2, 3, 4, 6 and 8, and none of order 5, because 5 does not divide 384.
+Nothing in the frame rotates by $72°$. The standard construction points the same way from the other side:
+de Bruijn's Penrose tiling is a projection of $\mathbb{Z}^5$, with ten signed directions, and a ten-twist
+alphabet is excluded by `alphabetSize_trichotomy` ([`QLF_AlphabetNecessity`](lean/QLF_AlphabetNecessity.lean)):
+a closed axis frame has 2, 4 or 8 twists.
+
+**From the spin.** The weak-isospin quaternions $\tau = i\sigma$ form $Q_8$
+([`BraKetRhoQuCalc.md`](BraKetRhoQuCalc.md)), and $Q_8$ sits inside the binary icosahedral group $2I$ — the
+closure-symmetry group of [`Geometry_Of_Space.md`](Geometry_Of_Space.md) (`mckay_2I_E8_anchor`). Built
+exactly over $\mathbb{Q}(\sqrt 5)$, $2I$ has 120 elements, is closed, contains $Q_8$, and has 24 elements
+each of order 5 and 10, whose traces are $\pm\varphi$ and $\pm(\varphi - 1)$. So extending the spin group from
+$Q_8$ to $2I$ forces coordinates in $\mathbb{Z}[\varphi]$. Over $\mathbb{Z}[\varphi]$, the 120 elements span the
+icosian ring, a model of the $E_8$ lattice (Conway & Sloane). **$\varphi$ enters through rotations of the
+spinor, not through the twist lattice.**
+
+**The tiling, exactly.** The rhomb tiling by Robinson-triangle substitution, computed in $\mathbb{Z}[\zeta_5]$
+with no float. Every generation is invariant under $72°$ rotation, checked exactly. At generation $g$ there
+are $10F_{2g-1}$ thin and $10F_{2g}$ thick half-rhombs, so the ratio tends to $\varphi$. The substitution
+matrix $[[1,1],[1,2]]$ is the square of the golden DNA's $[[1,1],[1,0]]$ (§11), up to relabelling: **the golden
+block genome is the one-dimensional shadow of the Penrose inflation.**
+
+<p align="center"><img src="diagrams/zfa_penrose.svg" alt="A Penrose rhomb tiling (P3) generated exactly in Z[zeta_5] by six rounds of Robinson-triangle substitution from a ten-triangle sun: thin rhombs amber, thick rhombs indigo, 5-fold symmetric" width="420"></p>
+
+**Two sources of irrationals.** The lattice gives silver (§12); the spin gives golden (§14). Nature's
+$\varphi$ quasicrystals are the icosahedral and decagonal ones, built by three-dimensional rotations — the spin
+side — and they are the most common (Steurer 2004). Silver, the lattice's own, is rarer. That fits the
+two-source reading. It is a reading, not a derivation.
+
+```bash
+$ python3 penrose_zfa.py             # about 2 s
+$ python3 penrose_zfa.py --svg       # redraws the figure
+```
+
+---
+
 ## References
 
 The substrate (§0), the DNA rule (§1) and the generations (§4, §7) are this repository's. The
@@ -576,6 +617,12 @@ mathematics of §8 is not — the quadratic minor lamination is standard, and th
   Ann. 39 (1891) 279–284 — $\varphi$ is the worst-approximable number, constant $1/\sqrt 5$ (§13).
 * R. V. Jean, *Phyllotaxis: A Systemic Study in Plant Morphogenesis*, Cambridge University Press (1994) —
   the survey behind the ~92 % Fibonacci figure (§13).
+* R. Penrose, *The role of aesthetics in pure and applied mathematical research*, Bull. Inst. Math. Appl.
+  10 (1974) 266–271 — the Penrose tiling (§14).
+* N. G. de Bruijn, *Algebraic theory of Penrose's non-periodic tilings of the plane, I, II*, Indag. Math.
+  43 (1981) 39–66 — the $\mathbb{Z}^5$ projection (§14).
+* J. H. Conway & N. J. A. Sloane, *Sphere Packings, Lattices and Groups*, Springer (1988) — $2I$, the icosians
+  and $E_8$ (§14).
 * OEIS [A000740](https://oeis.org/A000740) — the count of hyperbolic components of period $n$ (a
   structural check in §8; the leaf-set check is against Lavaurs).
 
