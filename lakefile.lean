@@ -247,5 +247,6 @@ lean_lib QLF where
     `QLF_FirstReturn,
     `QLF_StationaryAction,
     `QLF_StationaryPhase,
-    `QLF_GoldenSilver
+    `QLF_GoldenSilver,
+    `QLF_InflationObserver
   ]
