@@ -226,6 +226,43 @@ $$\frac{F_\text{grav}}{F_\text{EM}}\bigg|_{pp} \;=\; \frac{G\,m_p^2}{e^2/4\pi\va
 - Predict numerical G from first principles independently of L_Planck (would reduce to the hierarchy problem, [`HadronicDepth.md`](HadronicDepth.md)).
 - Strong-field corrections: derive the full Einstein equations from this substrate framework (the `8π` factor is Lean-anchored; the curvature-side derivation is open).
 
+### §9a The first law fixes the normalization — *pre-registered 2026-09-29*
+
+§4 and §9 leave the `4 log 2` residual as a choice between two branches: (a) a genuine discrete-floor
+deviation from Bekenstein–Hawking, or (b) an area-element reading. This section tests a route the repo has
+not used: the **first law** `dE = T dS` at a horizon.
+
+QLF already proves the Hawking temperature, `T_H = ħc³/(8πGMk_B)` (`hawking_temperature_eq`,
+[`lean/QLF_HorizonTemperature.lean`](lean/QLF_HorizonTemperature.lean), as the Unruh relation at the
+surface gravity). With `E = Mc²`, the first law gives `dS/dM = c²/T_H = 8πGk_B M/(ħc)`. Up to an additive
+constant, that forces `S = 4πGk_B M²/(ħc) = k_B A/(4L_P²)` on `R = 2GM/c²`. This is Hawking's 1975 route to
+the `1/4`, not new. What is new is applying it inside QLF: with QLF's own temperature, the naive count
+`N log 2 = 4 log 2 · S_BH` breaks the first law by exactly the residual.
+
+**Pre-registered statements** (to be proved in `lean/QLF_HorizonFirstLaw.lean`, no new axioms):
+
+| | Statement |
+|---|---|
+| F1 | `S_BH(M) = 4πGk_B M²/(ħc)` satisfies `dS/dM = c²/T_H` with QLF's `T_H` (a `HasDerivAt` statement) |
+| F2 | `S_BH(M) = k_B A/(4L_P²)` with `A = 4π(2GM/c²)²` and `L_P² = ħG/c³` |
+| F3 | the naive count `4 log 2 · S_BH` has `dS/dM · T_H = 4 log 2 · c² ≠ c²` |
+| F4 | `1/2 < log 2 < 1`, so `4 log 2 ≠ 1` and `log 2 ≠ 1` |
+
+**What the result would mean, and its conditions.** If F1–F4 hold, branch (a) is closed *given*
+(i) QLF's Hawking temperature, which is proved; (ii) `E = Mc²` with `R = 2GM/c²`, which is the GR input;
+and (iii) the first law holding at the horizon. In QLF, (iii) holds only in the mean, because energy
+conservation is statistical ([`Conservation.md`](Conservation.md) §2a). Branch (b) would then be forced:
+one bit occupies `4 log 2 · L_P²` of horizon, not `L_P²`. QLF's own Einstein coefficient already uses
+`η = 1/4G` (`einstein_coupling_from_thermodynamics`), which points the same way.
+
+**Consequence registered in advance for dark energy.** If branch (b) holds, §3 of
+[`Cosmological_Constant.md`](Cosmological_Constant.md) overcounts its horizon entropy by `4 log 2`.
+Counting with `S_BH` gives `Ω_Λ = 1/4` (keeping `f_gauge`) or `1` (dropping it, the §5.8 de Sitter value).
+Neither is `log 2`, so the derivation of `Ω_Λ = log 2` would not survive.
+
+**Failure:** any of F1–F4 fails to prove. Or QLF's horizon temperature turns out to differ from Hawking's,
+which would reopen branch (a).
+
 ---
 
 ## §10 What this is NOT

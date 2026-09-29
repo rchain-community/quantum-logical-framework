@@ -275,6 +275,38 @@ way of fitting the present, not an every-epoch law. That reverses P5 of
 not evolve (for example the asymptotic de Sitter radius), and it is open whether §3's count can be
 redone on one while keeping `log 2`.
 
+### §5.8 A horizon that does not evolve: the de Sitter no-go — *pre-registered 2026-09-29*
+
+§5.7 leaves one way to keep `log 2` with a constant `Λ`: count on a horizon that does not evolve. The
+natural choice is the final de Sitter radius `R∞ = c/H∞`. That fails on self-consistency. On `R∞`, §3
+gives `ρ = log 2 · 3c²H∞²/(8πG)`. A universe that ends as pure de Sitter has, by Friedmann,
+`ρ = 3c²H∞²/(8πG)`. The two agree only if `log 2 = 1`. Counting on the de Sitter horizon forces the prefactor
+to be exactly 1. This matches Li (2004): holographic dark energy reaches de Sitter only at `c = 1`, and
+`c < 1` runs phantom, as reading C did.
+
+**Two refinements.**
+
+1. *The no-go is about the de Sitter radius, not every fixed radius.* A fixed `R = √(log 2)·c/H∞` would
+   be self-consistent. But nothing motivates counting on a radius that is not the horizon. And for
+   **any** fixed radius, today's `Ω_Λ = (H∞/H₀)²` depends on the epoch: the coincidence problem.
+2. *The dark-energy `log 2` is the per-event quantum sitting on top of the Bekenstein–Hawking count.*
+   §3's horizon energy is `f_gauge · N log 2 · k_B T_dS`. With `f_gauge = 1/4` and `S_BH = N/4`, that is
+   `log 2 × S_BH · k_B T_dS`. And `S_BH · T_dS` is exactly the energy `ρV` of a self-consistent de Sitter
+   horizon. So §3's `log 2` is the same `log 2` as the `4 log 2` entropy residual of
+   [`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9. Whatever settles that residual decides this one
+   (§9a there).
+
+**Pre-registered statements** (to be proved in `lean/QLF_DeSitterCount.lean`, no new axioms):
+
+| | Statement |
+|---|---|
+| D1 | on `R = c/H`, §3's density is `log 2 × ρ_crit(H)` |
+| D2 | a counted density `p · ρ_crit` is self-consistent de Sitter iff `p = 1` (algebra: bookkeeping by rule 4, stated as the anchor) |
+| D3 | QLF's count is not self-consistent on the de Sitter horizon (`log 2 ≠ 1`) |
+| D4 | in Planck units, §3's energy is `log 2 × S_BH · T_dS`, and `S_BH · T_dS = ρ_dS · V = R/2` on `R = 1/H` |
+
+**Failure:** any of D1–D4 fails to prove.
+
 ---
 
 ## §6 Honest scoping (three-tier)
