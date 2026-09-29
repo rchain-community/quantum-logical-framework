@@ -202,6 +202,26 @@ are tighter). Read as the early fraction itself, `Ω_early ≈ 0.036` would give
 which is marginal, but nothing in QLF produces it. Close numbers are not evidence
 ([`Alpha_Residual.md`](Alpha_Residual.md) §9k).
 
+**Physical motivation for C, and the step it rests on.** Jim's reading (2026-09-29): *every event
+creates information/energy; about half is conserved locally, and the other half is lost to space and
+realized in the distant future. Looking back, that is inflation; in the present, it is gravity and
+entropy.* This picks C over A and B. The half "lost to space" is booked on the **future** horizon, where
+it is realized, and not as vacuum density at the epoch that made it. Booking it at its creation epoch is
+a constant fraction (½ or `log 2`), which is readings A/B again. It also has a standard-physics
+counterpart: in GR, `∇^μ T_μν = 0` holds exactly while total energy in an expanding universe is not
+conserved (a redshifting photon loses energy to expansion). In C, the dark-energy equation of state
+`w = −1/3 − 2√Ω/(3C)` is *that* local conservation law applied to `ρ ∝ 1/L²`.
+
+The step this rests on is **not proved in QLF**. The per-event split is `event_duality_balanced`
+([`QLF_CosmicInflation`](lean/QLF_CosmicInflation.lean)), which is `rfl` on two defined constants
+(`+1`, `−1`): bookkeeping, not a conservation result. Energy is the one current QLF does not conserve
+per event ([`Conservation.md`](Conservation.md) §2a: it is a multiplicity, not a signed count). And
+[`QLF_BianchiClosure`](lean/QLF_BianchiClosure.lean) takes `∇^a T_ab = 0` as a hypothesis. So the open
+target is a substrate **continuity equation**: the change in closure multiplicity inside a region
+equals the flux through its blanket, with the non-local half accounted for at the future horizon. Two
+related numbers are also open: whether the local share is exactly `½` or `1 − log 2 ≈ 0.31` (the
+matter share today in C), and what fixes it.
+
 **Falsifier for C.** A full CMB + BAO + SN fit of event-horizon HDE with `C` **fixed** at `√log 2 ≈ 0.833`
 (no free `C`). If it is excluded, no horizon choice rescues `ρ_Λ ∝ log 2 / L²` with this prefactor.
 
