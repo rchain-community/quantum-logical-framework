@@ -99,8 +99,9 @@ theorem bh_energy_eq_desitter_energy {R : ℝ} (hR : R ≠ 0) :
   have hπ : Real.pi ≠ 0 := Real.pi_ne_zero
   constructor
   · unfold bekensteinHawkingEntropy holographic_event_count planckDeSitterTemperature
-    field_simp <;> ring
-  · field_simp <;> ring
+    field_simp
+  · field_simp
+    ring
 
 /-- **Established:** D1–D4 of `Cosmological_Constant.md` §5.8. Counting on the de Sitter horizon forces
     the prefactor to 1 (`selfconsistent_iff_unit_prefactor`), so QLF's `log 2` count is not
