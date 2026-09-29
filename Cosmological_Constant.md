@@ -2,6 +2,16 @@
 
 **Scoping doc — the famous "vacuum catastrophe" closed by 122 orders of magnitude, with the substrate predicting Ω_Λ = log 2 ≈ 0.693 to 1.2% of the observed 0.685.** The standard quantum field theory estimate of the vacuum energy density gives `ρ_QFT ≈ ρ_Planck ≈ 5 × 10¹¹³ J/m³` (volume-counted Planck-scale zero-point modes). The observed dark-energy density is `ρ_Λ ≈ 5.83 × 10⁻¹⁰ J/m³` (Planck mission 2018). **The discrepancy of 10¹²² is the largest mismatch in physics** (Weinberg 1989, Carroll 2001).
 
+> **Status (2026-09-29): the `log 2` prefactor does not survive.** Three results, each pre-registered and
+> proved, change what this doc supports. With `L = c/H`, `ρ_Λ ∝ H²` puts `Ω_Λ = log 2` at recombination and
+> BBN, which the data exclude (§5.7). The event-horizon alternative is excluded by full CMB + DESI + SN fits
+> (§5.7). Counting on the de Sitter horizon forces the prefactor to 1 (§5.8). And the first law with QLF's
+> own Hawking temperature fixes the horizon entropy at `A/4`, so §3's count overcounts by `4 log 2`;
+> recounted, it gives `Ω_Λ = 1/4` or `1`, not `log 2` ([`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9a).
+> **What stands:** the `(R_H/L_P)²` reduction of the `10¹²²` catastrophe, which does not depend on the O(1)
+> prefactor. The observed `Ω_Λ = 0.685 ± 0.007` is still within 1.2σ of `log 2`. That is one way of fitting
+> today's value, not a derivation. The sections below are kept as written, for the record.
+
 QLF substrate primitives give:
 
 $$\rho_\Lambda^{\text{QLF}} \;=\; \frac{3 \log 2}{8 \pi} \cdot \frac{c^4}{G \, R_H^2}$$

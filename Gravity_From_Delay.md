@@ -219,7 +219,7 @@ $$\frac{F_\text{grav}}{F_\text{EM}}\bigg|_{pp} \;=\; \frac{G\,m_p^2}{e^2/4\pi\va
 
 **Tier 3 (open).**
 
-- Substrate-event-counting prescription on the holographic boundary needs matching to continuous Bekenstein-Hawking `S = A/(4 L_Planck²)`. The residual is **exactly `4·log 2 ≈ 2.7726`** (`holographic_bh_ratio`), and the classification of *why* is **now two-way, not three**: the **packing branch is closed** — a correlation factor making a fraction `p/q` of patches independent would force `log 2 = q/(4p)`, i.e. rational (`no_rational_packing_factor`), and the required `1/(4 log 2) ≈ 0.360674` is irrational. Numerically the near misses bracket without touching: `C(2n,n)/4ⁿ` gives `0.375` at `n=2` (+4.0%) and `0.3125` at `n=3` (−13.4%); `1/e` is +2.0% off. Remaining: a genuine discrete-floor deviation from Bekenstein–Hawking, or an **area-element / what-counts-as-a-patch** redefinition — and `suppression_cancels_the_quantum` weights the latter, since `(N log 2)·(1/(4 log 2)) = N/4` contains **no `log 2` at all**, so the realized horizon entropy is not (a count) × (the per-event bit quantum).
+- Substrate-event-counting prescription on the holographic boundary needs matching to continuous Bekenstein-Hawking `S = A/(4 L_Planck²)`. The residual is **exactly `4·log 2 ≈ 2.7726`** (`holographic_bh_ratio`), and the classification of *why* is **now two-way, not three**: the **packing branch is closed** — a correlation factor making a fraction `p/q` of patches independent would force `log 2 = q/(4p)`, i.e. rational (`no_rational_packing_factor`), and the required `1/(4 log 2) ≈ 0.360674` is irrational. Numerically the near misses bracket without touching: `C(2n,n)/4ⁿ` gives `0.375` at `n=2` (+4.0%) and `0.3125` at `n=3` (−13.4%); `1/e` is +2.0% off. Remaining: a genuine discrete-floor deviation from Bekenstein–Hawking, or an **area-element / what-counts-as-a-patch** redefinition — and `suppression_cancels_the_quantum` weights the latter, since `(N log 2)·(1/(4 log 2)) = N/4` contains **no `log 2` at all**, so the realized horizon entropy is not (a count) × (the per-event bit quantum). **Update (§9a):** the first law with QLF's own Hawking temperature closes branch (a), conditional on the first law holding in the mean at the horizon. Branch (b) is forced: one bit occupies `4 log 2 · L_P²`.
 - Lean-anchor the holographic event count `N = 4π R²` from substrate Markov-blanket boundary topology.
 - Lean-anchor the Bekenstein bound `dS = (2π m c k_B / ℏ) dx` substrate-derivation.
 - GR-quantitative extensions: Mercury perihelion shift, gravitational lensing, GPS time dilation. The structural framing is in [`Kitada_Local_Time_GR.md`](Kitada_Local_Time_GR.md); quantitative substrate derivation Tier-3 open.
@@ -263,6 +263,23 @@ Neither is `log 2`, so the derivation of `Ω_Λ = log 2` would not survive.
 **Failure:** any of F1–F4 fails to prove. Or QLF's horizon temperature turns out to differ from Hawking's,
 which would reopen branch (a).
 
+**Result (2026-09-29): all four proved**, no new axioms, in
+[`lean/QLF_HorizonFirstLaw.lean`](lean/QLF_HorizonFirstLaw.lean): F1 `bh_entropy_first_law`, F2
+`bhEntropyOfMass_eq_area`, F3 `naive_count_breaks_first_law`, F4 `half_lt_log_two` / `log_two_lt_one`. The
+consequence is `firstlaw_count_omega`. The statements are the ones frozen above.
+
+**What this settles.** Given the three conditions, branch (a) is closed: a horizon entropy of `N log 2`
+would break the first law with QLF's own temperature by exactly `4 log 2`. Branch (b) is what remains:
+the realized entropy is `A/(4L_P²)`, and a bit occupies `4 log 2 · L_P²` of horizon, not one Planck area.
+The per-event `log 2` survives as the content of a bit. What changes is the count of bits, which is
+`A/(4 log 2 · L_P²)`. The proof is for a Schwarzschild horizon. Applying it to the de Sitter horizon uses
+the same area-per-bit rule, and Gibbons & Hawking (1977) give `A/4` there too.
+
+**What it costs.** §3 of [`Cosmological_Constant.md`](Cosmological_Constant.md) derives `Ω_Λ = log 2` from
+the uncorrected count. Recounted with the first-law entropy it gives `1/4` or `1` (§5.8 there), so that
+derivation does not survive. The `(R/L_P)²` reduction of the `10¹²²` catastrophe is untouched, since it
+does not depend on the O(1) prefactor. The `1/r²` law and structural `G` are untouched as well (§4).
+
 ---
 
 ## §10 What this is NOT
@@ -300,7 +317,8 @@ which would reopen branch (a).
 - Verlinde, E. (2011). *On the Origin of Gravity and the Laws of Newton*. JHEP 04:029. [arXiv:1001.0785](https://arxiv.org/abs/1001.0785) — entropic gravity derivation this doc translates into substrate language.
 - Jacobson, T. (1995). *Thermodynamics of Spacetime: The Einstein Equation of State*. Phys. Rev. Lett. 75, 1260 — earlier thermodynamic-gravity derivation.
 - Bekenstein, J. D. (1973). *Black Holes and Entropy*. Phys. Rev. D 7, 2333 — original Bekenstein bound `dS = 2π m c k_B dx / ℏ`.
-- Hawking, S. W. (1975). *Particle Creation by Black Holes*. Comm. Math. Phys. 43, 199 — Hawking temperature, related substrate identification.
+- Hawking, S. W. (1975). *Particle Creation by Black Holes*. Comm. Math. Phys. 43, 199 — Hawking temperature, related substrate identification. Also the first-law route to the `1/4` used in §9a.
+- Gibbons, G. W., & Hawking, S. W. (1977). *Cosmological event horizons, thermodynamics, and particle creation*. Phys. Rev. D 15, 2738 — `A/4` for the de Sitter horizon (§9a).
 - Padmanabhan, T. (2010). *Thermodynamical Aspects of Gravity*. Rep. Prog. Phys. 73, 046901 — review of thermodynamic-gravity derivations.
 - Newton, I. (1687). *Philosophiae Naturalis Principia Mathematica*. — original gravitational inverse-square law.
 - CODATA 2022 — `G = 6.67430 × 10⁻¹¹ m³ kg⁻¹ s⁻²`.

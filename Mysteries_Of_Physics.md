@@ -41,7 +41,7 @@ This doc is the physics-facing companion to [`Open_Problems.md`](Open_Problems.m
 
 | Mystery | QLF's account | Status | Where |
 |---|---|---|---|
-| **The cosmological constant problem (the 10¹²²)** | `Ω_Λ = log 2` (1.2%) — the vacuum energy is one bit per closure, not a continuum of zero-point modes; the 10¹²² catastrophe is the continuum's wrong answer | ✅ | `QLF_CosmologicalConstant.lean`, [`Cosmological_Constant.md`](Cosmological_Constant.md) |
+| **The cosmological constant problem (the 10¹²²)** | **The `10¹²²` is closed; the `log 2` is not derived.** Holographic counting on the horizon at the de Sitter temperature replaces the continuum's zero-point sum, and gives the `(R_H/L_P)²` scaling, which removes the 122 orders. The O(1) prefactor `log 2` came from a one-bit-per-Planck-area horizon entropy. The first law with QLF's own Hawking temperature fixes that entropy at `A/4` (`QLF_HorizonFirstLaw`), and recounted the prefactor is `1/4` or `1`. Every horizon reading of `log 2` also fails the data or self-consistency (`Cosmological_Constant.md` §5.7–§5.8). `Ω_Λ ≈ log 2` today (within 1.2σ) is one way, not a derivation | ✅ the `10¹²²` scaling / ❌ `Ω_Λ = log 2` as derived | `QLF_CosmologicalConstant.lean`, `QLF_DeSitterCount.lean`, `QLF_HorizonFirstLaw.lean`, [`Cosmological_Constant.md`](Cosmological_Constant.md) |
 | **The nature of dark matter** | Denser logic near masses, not a particle; the RAR `g_obs²=g_bar(g_obs+a₀)` is derived, `a₀ = cH₀/2π` (the `2π` = the ZFA closure-loop period), the interpolation `ν` *unique* — blind-tested on 147 SPARC galaxies, parameter-free, at the `0.133 dex` floor | 🟢 derived + benchmarked | [`DarkMatter.md`](DarkMatter.md), [`SPARC.md`](SPARC.md), `QLF_MondScale/MondNu/RarBalance.lean` |
 | **The nature of dark energy** | The same `w=−1` event-synthesis field as inflation; each event creates energy, half lent to the future = dark energy; DM/DE = contract/expand on one Hubble horizon | ✅ structural | [`Curvature.md`](Curvature.md), `QLF_CosmicInflation.lean` |
 | **The age & finiteness of the universe** | The cosmic age is the proper time of the cosmic Markov-blanket clock — a finite integer `n ≈ 10⁶⁰` of Planck events, not a continuum of instants | ✅ | `AgeOfUniverse.lean`, [`SpaceTime.md`](SpaceTime.md) |
@@ -63,7 +63,7 @@ Yes — with the **observational core** of ΛCDM (the accepted concordance model
 | Accepted result | QLF |
 |---|---|
 | Hot dense early universe; CMB; expansion history; 6-parameter fit | **intact** — the synthesized / nested origin sits *underneath* it and rewrites nothing above ([`BLACK-HOLES.md`](BLACK-HOLES.md) §4a) |
-| Dark-energy fraction `Ω_Λ ≈ 0.69` | **`Ω_Λ = log 2 ≈ 0.693`**, ~1.2% (`QLF_CosmologicalConstant`) |
+| Dark-energy fraction `Ω_Λ ≈ 0.69` | `log 2 ≈ 0.693` is within 1.2σ, but it is **no longer derived**: the first law fixes the horizon entropy at `A/4`, and recounted the prefactor is `1/4` or `1` ([`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9a) |
 | Age ≈ 13.8 Gyr | **≈ 13.8 Gyr** from the ZFA event rate (`AgeOfUniverse`) |
 | Accelerating expansion, `w ≈ −1` | de Sitter horizon, `w = −1` event-synthesis field (`QLF_CosmicInflation`) |
 | BBN helium `Y_p ≈ 0.247` | **`Y_p = 1/4`** at freeze-out `n/p = 1/7` (`QLF_Nucleosynthesis`) |
