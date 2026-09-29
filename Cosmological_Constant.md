@@ -183,7 +183,7 @@ QLF input):
 |---|---|---|---|
 | **A.** `L = c/H`, matter conserved (the literal §3) | `Ω_Λ = log 2`, but `ρ_Λ` redshifts like matter: `w_eff = 0`, `q₀ = +0.5` | `Ω_Λ = 0.693` at both | **Rejected by data.** No acceleration (Hsu 2004), and at BBN `H` is `×1.81`, equivalent to `ΔN_eff ≈ 14` against a bound near `0.3` |
 | **B.** `L = c/H`, vacuum keeps `w = −1` and exchanges energy to hold `log 2` | `q₀ = −0.54` (observed ≈ −0.55) | `Ω_Λ = 0.693` at both; `H² ∝ a^−0.92` at every epoch, so no matter era (`q = −0.54` at `z = 2`, ΛCDM `+0.39`) | **Rejected by data.** Same BBN and early-dark-energy failure as A (`Ω_early < 0.06`, Doran & Robbers 2006) |
-| **C.** `L` = future event horizon, same `C² = log 2`, `Ω_de(0) = log 2` | `w₀ = −1` exactly (because `√Ω₀ = C` when `Ω₀ = C²`); acceleration begins at `z ≈ 0.56` | `Ω_de ≈ 9 × 10⁻⁵` at recombination, `≈ 10⁻¹⁷` at BBN | **Open candidate.** Passes the early-epoch test with no extra ingredient. Screen: CMB shift parameter `R = 1.717` vs measured `1.7502 ± 0.0046` (ΛCDM at the same `Ω_m`: `1.745`), so it needs a real likelihood fit before any claim |
+| **C.** `L` = future event horizon, same `C² = log 2`, `Ω_de(0) = log 2` | `w₀ = −1` exactly (because `√Ω₀ = C` when `Ω₀ = C²`); acceleration begins at `z ≈ 0.56` | `Ω_de ≈ 9 × 10⁻⁵` at recombination, `≈ 10⁻¹⁷` at BBN | **Open candidate.** Passes the early-epoch test with no extra ingredient. Screen: CMB shift parameter `R = 1.717` vs measured `1.7502 ± 0.0046` (Chen, Huang & Wang 2019; ΛCDM at the same `Ω_m`: `1.745`), **7.2σ low** at fixed `Ω_m h²`. A refit may move it; until one is done this is a live failure, not a pass |
 
 **What this changes.** The tension named in [`Curvature.md`](Curvature.md) §8a is a property of `L = c/H`,
 not of the `log 2` prefactor. Readings A and B are ruled out on more than early dark energy: A also fails
@@ -212,15 +212,31 @@ counterpart: in GR, `∇^μ T_μν = 0` holds exactly while total energy in an e
 conserved (a redshifting photon loses energy to expansion). In C, the dark-energy equation of state
 `w = −1/3 − 2√Ω/(3C)` is *that* local conservation law applied to `ρ ∝ 1/L²`.
 
-The step this rests on is **not proved in QLF**. The per-event split is `event_duality_balanced`
+**Local conservation does not select C by itself.** Total `∇^μ T_μν = 0` holds in all three readings.
+B's vacuum trades energy with matter, but the total is conserved, as the Bianchi identity requires.
+Separate conservation of the dark-energy component holds in A as well as C: in A it is exactly what
+forces `w_eff = 0`. So a continuity equation can at most exclude B. What selects C is the horizon: `L` is
+the **future event horizon**, not `c/H`. Jim's "the other half is booked at the future horizon" motivates
+that choice, but it is a second premise, not a consequence of conservation. It also carries the standard
+objection to Li's cutoff: today's dark energy depends on the universe's future, and QLF would have to
+explain what a future horizon means when the future is not yet synthesized.
+
+Neither step is **proved in QLF**. For conservation: The per-event split is `event_duality_balanced`
 ([`QLF_CosmicInflation`](lean/QLF_CosmicInflation.lean)), which is `rfl` on two defined constants
 (`+1`, `−1`): bookkeeping, not a conservation result. Energy is the one current QLF does not conserve
 per event ([`Conservation.md`](Conservation.md) §2a: it is a multiplicity, not a signed count). And
-[`QLF_BianchiClosure`](lean/QLF_BianchiClosure.lean) takes `∇^a T_ab = 0` as a hypothesis. So the open
-target is a substrate **continuity equation**: the change in closure multiplicity inside a region
-equals the flux through its blanket, with the non-local half accounted for at the future horizon. Two
-related numbers are also open: whether the local share is exactly `½` or `1 − log 2 ≈ 0.31` (the
-matter share today in C), and what fixes it.
+[`QLF_BianchiClosure`](lean/QLF_BianchiClosure.lean) takes `∇^a T_ab = 0` as a hypothesis. So C rests on
+**two unproved steps**:
+
+1. **A substrate continuity equation:** the change in closure multiplicity inside a region equals the
+   flux through its blanket. Any of A–C needs it to have dynamics at all.
+2. **The horizon selection:** the non-local share is booked on the future event horizon rather than on
+   `c/H`. This is the step that picks C.
+
+**The `½` vs `1 − log 2` comparison is not a mismatch yet.** `½` would be a per-event split. `1 − log 2 ≈
+0.31` is today's cumulative matter fraction, which in C changes with epoch (`≈ 0.86` at `z = 2`, `→ 1`
+early). The two need not be equal. The open question is which per-event split, run over C's history,
+produces `Ω_m(0) = 1 − log 2`, or whether `Ω_de(0) = log 2` stays an initial condition.
 
 **Falsifier for C.** A full CMB + BAO + SN fit of event-horizon HDE with `C` **fixed** at `√log 2 ≈ 0.833`
 (no free `C`). If it is excluded, no horizon choice rescues `ρ_Λ ∝ log 2 / L²` with this prefactor.
@@ -308,3 +324,4 @@ matter share today in C), and what fixes it.
 - Hsu, S. D. H. (2004). *Entropy bounds and dark energy*. Phys. Lett. B 594, 13 — Hubble-radius holographic dark energy gives no acceleration (§5.7 reading A).
 - Li, M. (2004). *A model of holographic dark energy*. Phys. Lett. B 603, 1 — future-event-horizon cutoff (§5.7 reading C).
 - Doran, M., & Robbers, G. (2006). *Early dark energy cosmologies*. JCAP 0606:026.
+- Chen, L., Huang, Q.-G., & Wang, K. (2019). *Distance priors from Planck final release*. JCAP 02, 028 — the shift parameter `R = 1.7502 ± 0.0046` used in §5.7.
