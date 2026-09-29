@@ -171,6 +171,110 @@ The same counterfactual chain as Λ:
 
 Only the substrate with 2 gauge axes (the empirical 6+2 split that gives α and the 3D substrate) gives the observed Ω_Λ. This is the **fourth** structural counterfactual tying observation to the 8-twist 6+2 alphabet split, joining α, magic-numbers, and Newton's 1/r².
 
+### §5.7 Which horizon? The early-epoch test (2026-09-29)
+
+§3 counts events on a horizon of radius `L` and sets `L = R_H = c/H`. In holographic-dark-energy notation
+(Li 2004) the result is `ρ_Λ = 3C²M_p²/L²` with **`C² = log 2`**. The prefactor does not decide the
+history; the choice of `L`, and whether the vacuum exchanges energy with matter, does.
+[`omega_lambda_epochs.py`](omega_lambda_epochs.py) runs the three readings (pure Python, `log 2` the only
+QLF input):
+
+| Reading | Today | Recombination / BBN | Status |
+|---|---|---|---|
+| **A.** `L = c/H`, matter conserved (the literal §3) | `Ω_Λ = log 2`, but `ρ_Λ` redshifts like matter: `w_eff = 0`, `q₀ = +0.5` | `Ω_Λ = 0.693` at both | **Rejected by data.** No acceleration (Hsu 2004), and at BBN `H` is `×1.81`, equivalent to `ΔN_eff ≈ 14` against a bound near `0.3` |
+| **B.** `L = c/H`, vacuum keeps `w = −1` and exchanges energy to hold `log 2` | `q₀ = −0.54` (observed ≈ −0.55) | `Ω_Λ = 0.693` at both; `H² ∝ a^−0.92` at every epoch, so no matter era (`q = −0.54` at `z = 2`, ΛCDM `+0.39`) | **Rejected by data.** Same BBN and early-dark-energy failure as A (`Ω_early < 0.06`, Doran & Robbers 2006) |
+| **C.** `L` = future event horizon, same `C² = log 2`, `Ω_de(0) = log 2` | `w₀ = −1` exactly (because `√Ω₀ = C` when `Ω₀ = C²`); acceleration begins at `z ≈ 0.56` | `Ω_de ≈ 9 × 10⁻⁵` at recombination, `≈ 10⁻¹⁷` at BBN | **Open candidate.** Passes the early-epoch test with no extra ingredient. Screen: CMB shift parameter `R = 1.717` vs measured `1.7502 ± 0.0046` (Chen, Huang & Wang 2019; ΛCDM at the same `Ω_m`: `1.745`), **7.2σ low** at fixed `Ω_m h²`. A refit may move it; until one is done this is a live failure, not a pass |
+
+**What this changes.** The tension named in [`Curvature.md`](Curvature.md) §8a is a property of `L = c/H`,
+not of the `log 2` prefactor. Readings A and B are ruled out on more than early dark energy: A also fails
+the observed acceleration. Reading C keeps `C² = log 2` and gives `w₀ = −1` for free, but gives up P5
+(`Ω_Λ = log 2` at every epoch): the fraction grows from near zero, and today's `log 2` becomes an
+initial condition, not a theorem. It also makes the dark energy mildly phantom in the future
+(`w → −1/3 − 2/(3C) ≈ −1.13`). The §6 early-dark-energy argument for the Hubble tension does not survive
+in C: the early fraction is far too small to move the sound horizon.
+
+**Not involved: a `0.035–0.04` correction.** The numbers near there in this repo (the α residual
+`+0.036`, `G`'s `+0.0336` in [`Gravity.md`](Gravity.md) §4a, Koide `ε = 0.0396`) are dimensionless
+residuals on unrelated integers, with no proposed link to horizon counting. Read as a correction to
+`log 2`, a few-percent shift moves `Ω_Λ` by about `0.025` (`0.693 → 0.668` pulls it 2.3σ below Planck).
+Readings A and B need the early fraction cut by more than 10× (by the Doran–Robbers bound; later bounds
+are tighter). Read as the early fraction itself, `Ω_early ≈ 0.036` would give `ΔN_eff ≈ 0.23–0.26` at BBN,
+which is marginal, but nothing in QLF produces it. Close numbers are not evidence
+([`Alpha_Residual.md`](Alpha_Residual.md) §9k).
+
+**Physical motivation for C, and the step it rests on.** Jim's reading (2026-09-29): *every event
+creates information/energy; about half is conserved locally, and the other half is lost to space and
+realized in the distant future. Looking back, that is inflation; in the present, it is gravity and
+entropy.* This picks C over A and B. The half "lost to space" is booked on the **future** horizon, where
+it is realized, and not as vacuum density at the epoch that made it. Booking it at its creation epoch is
+a constant fraction (½ or `log 2`), which is readings A/B again. It also has a standard-physics
+counterpart: in GR, `∇^μ T_μν = 0` holds exactly while total energy in an expanding universe is not
+conserved (a redshifting photon loses energy to expansion). In C, the dark-energy equation of state
+`w = −1/3 − 2√Ω/(3C)` is *that* local conservation law applied to `ρ ∝ 1/L²`.
+
+**Local conservation does not select C by itself.** Total `∇^μ T_μν = 0` holds in all three readings.
+B's vacuum trades energy with matter, but the total is conserved, as the Bianchi identity requires.
+Separate conservation of the dark-energy component holds in A as well as C: in A it is exactly what
+forces `w_eff = 0`. So a continuity equation can at most exclude B. What selects C is the horizon: `L` is
+the **future event horizon**, not `c/H`. Jim's "the other half is booked at the future horizon" motivates
+that choice, but it is a second premise, not a consequence of conservation. It also carries the standard
+objection to Li's cutoff: today's dark energy depends on the universe's future, and QLF would have to
+explain what a future horizon means when the future is not yet synthesized.
+
+Neither step is **proved in QLF**. For conservation: The per-event split is `event_duality_balanced`
+([`QLF_CosmicInflation`](lean/QLF_CosmicInflation.lean)), which is `rfl` on two defined constants
+(`+1`, `−1`): bookkeeping, not a conservation result. Energy is the one current QLF does not conserve
+per event ([`Conservation.md`](Conservation.md) §2a: it is a multiplicity, not a signed count). And
+[`QLF_BianchiClosure`](lean/QLF_BianchiClosure.lean) takes `∇^a T_ab = 0` as a hypothesis. So C rests on
+**two unproved steps**:
+
+1. **A substrate continuity equation:** the change in closure multiplicity inside a region equals the
+   flux through its blanket. Any of A–C needs it to have dynamics at all.
+2. **The horizon selection:** the non-local share is booked on the future event horizon rather than on
+   `c/H`. This is the step that picks C.
+
+**The `½` vs `1 − log 2` comparison is not a mismatch yet.** `½` would be a per-event split. `1 − log 2 ≈
+0.31` is today's cumulative matter fraction, which in C changes with epoch (`≈ 0.86` at `z = 2`, `→ 1`
+early). The two need not be equal. The open question is which per-event split, run over C's history,
+produces `Ω_m(0) = 1 − log 2`, or whether `Ω_de(0) = log 2` stays an initial condition.
+
+**Falsifier for C.** A full CMB + BAO + SN fit of event-horizon HDE with `C` **fixed** at `√log 2 ≈ 0.833`
+(no free `C`). If it is excluded, none of the readings tested here rescues `ρ_Λ ∝ log 2 / L²` with this
+prefactor.
+
+**Verdict from published fits (checked 2026-09-29): C is excluded.** Li, Li, Du, Wu, Feng, Zhang & Zhang
+(*Revisiting holographic dark energy after DESI 2024*, arXiv:2411.08639, EPJC) fit event-horizon HDE with
+free `c` in the same convention (`ρ_de = 3c²M_p²L⁻²`, so `c` is our `C`):
+
+| Data | `c` (68%) | `C = 0.833` is | `ln B` (HDE vs ΛCDM) |
+|---|---|---|---|
+| CMB + DESI + PantheonPlus | `0.673 ± 0.023` | 7.0σ high | `−28.6` |
+| CMB + DESI + Union3 | `0.642 ± 0.028` | 6.8σ high | `−26.9` |
+| CMB + DESI + DESY5 | `0.701 ± 0.024` | 5.5σ high | `−29.5` |
+| CMB + DESI | `0.462 (+0.027, −0.036)` | ≈ 14σ high | — |
+
+`|ln B| > 5` is *decisive* on the Jeffreys scale, so even HDE's best-fit `c` loses to ΛCDM decisively once
+CMB is included, and `C = 0.833` sits 5.5–7σ further from that best fit. This is read off free-`c`
+posteriors, not our own fixed-`C` refit, and uses DESI DR1. Neither caveat can plausibly turn 5σ+ into
+a pass.
+
+**The interacting variant, and why it doesn't rescue C.** The same paper fits interacting HDE with
+`Q = βHρ_de`, where `β > 0` means energy flows *into* dark energy. That is the direction of the "half lost to
+space" picture. There `c = 1.12 ± 0.17` (CMB + DESI + PantheonPlus), so `0.833` is within 2σ, and
+`β = 0.55 (+0.19, −0.11)`. But it needs `Ω_m = 0.147 (+0.047, −0.068)` and a free coupling, and it too is
+decisively disfavored against ΛCDM (`ln B = −24.8, −23.2, −24.1`). A version with both `C² = log 2` and
+`β = ½` fixed would be a sharp zero-parameter test, but its parent model is already decisively
+disfavored, so it is not worth pursuing ahead of the next point.
+
+**Where this leaves `log 2`.** All three horizon readings of `ρ_Λ = 3 log 2 · M_p²/L²` are now out:
+A and B on the early-epoch test, C (and its interacting extension) on the full fits. What the data favor
+is a constant `Λ`. In that reading `log 2` can only be *today's* `Ω_Λ` (Planck `0.685 ± 0.007`, 1.2σ): one
+way of fitting the present, not an every-epoch law. That reverses P5 of
+`QLF_InflationObserver` (PR #164), and the coincidence problem
+("why `log 2` now?") returns. The substrate derivation of `ρ_Λ` in §3 then needs a horizon that does
+not evolve (for example the asymptotic de Sitter radius), and it is open whether §3's count can be
+redone on one while keeping `log 2`.
+
 ---
 
 ## §6 Honest scoping (three-tier)
@@ -252,3 +356,8 @@ Only the substrate with 2 gauge axes (the empirical 6+2 split that gives α and 
 - Banks, T. (2000). *Cosmological breaking of supersymmetry?*. Int. J. Mod. Phys. A 16, 910 — holographic Λ predecessor.
 - Gibbons, G. W., & Hawking, S. W. (1977). *Cosmological event horizons, thermodynamics, and particle creation*. Phys. Rev. D 15, 2738 — de Sitter horizon temperature.
 - Bekenstein, J. D. (1973). *Black holes and entropy*. Phys. Rev. D 7, 2333.
+- Hsu, S. D. H. (2004). *Entropy bounds and dark energy*. Phys. Lett. B 594, 13 — Hubble-radius holographic dark energy gives no acceleration (§5.7 reading A).
+- Li, M. (2004). *A model of holographic dark energy*. Phys. Lett. B 603, 1 — future-event-horizon cutoff (§5.7 reading C).
+- Doran, M., & Robbers, G. (2006). *Early dark energy cosmologies*. JCAP 0606:026.
+- Li, T.-N., Li, Y.-H., Du, G.-H., Wu, P.-J., Feng, L., Zhang, J.-F., & Zhang, X. (2024). *Revisiting holographic dark energy after DESI 2024*. arXiv:2411.08639 (EPJC) — the fits that exclude reading C (§5.7).
+- Chen, L., Huang, Q.-G., & Wang, K. (2019). *Distance priors from Planck final release*. JCAP 02, 028 — the shift parameter `R = 1.7502 ± 0.0046` used in §5.7.
