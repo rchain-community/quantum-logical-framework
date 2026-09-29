@@ -271,6 +271,45 @@ unification. It does **not** derive the quantitative inflation observables — t
 e-folds (~60), the spectral index `n_s ≈ 0.965`, the tensor ratio `r`, reheating — nor the
 vacuum-frequency evolution law `f(t)`; those remain open (`cosmic_inflation_in_progress`).
 
+### 8a. Every observer's vantage: inflation behind, expansion ahead — *pre-registered 2026-09-29*
+
+§8 reads the history from **our** epoch. The stronger claim is that the reading holds for **every** observer:
+*whenever you stand, you see inflation in your past and expansion in your future.* No epoch is the special
+one that happens to catch the universe between its inflation and its dark energy. The claim is not free.
+In a cosmology with a built-in time scale, it fails for some observers. An observer in the middle of
+standard inflation has no inflation behind it.
+
+**The definition (fixed before the proof).** "See" means *measured in the observer's own clock*.
+In QLF each closure makes its own time. The vacuum event rate is `f(t) = 1/t` (`ZFAEventDynamics`),
+and an observer at epoch `t₀` ticks at its own rate `f(t₀)`. The rate at another epoch `s`, as that
+observer measures it, is
+
+$$r(t_0, s) \;=\; \frac{f(s)}{f(t_0)} \;=\; \frac{t_0}{s}.$$
+
+"Inflation" here means **more than one e-fold per own tick** (`r > 1`). "Expansion" means **positive
+but less than one** (`0 < r < 1`). This is an observer-relative quantity (a *listening*, not a count).
+It is **not** the standard `ä > 0`: `H ∝ 1/t` is a power law, which decelerates in the usual sense.
+The `ä > 0` version is a separate, conditional question and is not claimed here.
+
+**Pre-registered statements** (to be proved in `lean/QLF_InflationObserver.lean`, no new axioms):
+
+| | Statement | Meaning |
+|---|---|---|
+| P1 | `0 < s < t₀ ⟹ r(t₀, s) > 1` | the past inflates, for every observer |
+| P2 | `0 < t₀ < s ⟹ 0 < r(t₀, s) < 1` | the future expands and never stops |
+| P3 | `r(k·t₀, k·s) = r(t₀, s)` for all `k > 0` | no privileged epoch: every observer sees the identical profile |
+| P4 | for the rate law `1/t + c`, P3 holds at `(t₀, s, k) = (1, 2, 2)` **iff `c = 0`** | the falsifier: any constant floor (ΛCDM's constant `Λ`) breaks it |
+| P5 | `Ω_Λ(H) = log 2` for every `H > 0` | because `ρ_Λ ∝ H²` (`rhoLambda_prop_Hsq`), every observer measures the same dark-energy fraction |
+
+**What would count as failure.** Any of P1–P5 fails to prove. Or P3 turns out to hold for the constant-floor
+law as well. That would make the claim bookkeeping: true of every rate law, and so evidence of nothing
+(`CLAUDE.md` rule 4). P4 is there to rule that out. The arithmetic of P1–P3 is short. The physics is in the
+premise that the cosmic rate has no built-in scale, and P4 is what shows that premise carries the weight.
+
+**Open, and not claimed:** the `ä > 0` version; the observer's own first tick, which has no past inside
+its domain (the nested origin, [`BLACK-HOLES.md`](BLACK-HOLES.md) §4a, is an interpretation there, not a
+proof); whether `ρ_Λ ∝ H²` survives the data; and the inflation observables of §8.
+
 ---
 
 ## References
