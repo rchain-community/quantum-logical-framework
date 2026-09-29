@@ -270,7 +270,7 @@ disfavored, so it is not worth pursuing ahead of the next point.
 A and B on the early-epoch test, C (and its interacting extension) on the full fits. What the data favor
 is a constant `Λ`. In that reading `log 2` can only be *today's* `Ω_Λ` (Planck `0.685 ± 0.007`, 1.2σ): one
 way of fitting the present, not an every-epoch law. That reverses P5 of
-[`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean), and the coincidence problem
+`QLF_InflationObserver` (PR #164), and the coincidence problem
 ("why `log 2` now?") returns. The substrate derivation of `ρ_Λ` in §3 then needs a horizon that does
 not evolve (for example the asymptotic de Sitter radius), and it is open whether §3's count can be
 redone on one while keeping `log 2`.
