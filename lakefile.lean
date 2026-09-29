@@ -249,5 +249,6 @@ lean_lib QLF where
     `QLF_StationaryPhase,
     `QLF_GoldenSilver,
     `QLF_InflationObserver,
-    `QLF_DeSitterCount
+    `QLF_DeSitterCount,
+    `QLF_HorizonFirstLaw
   ]
