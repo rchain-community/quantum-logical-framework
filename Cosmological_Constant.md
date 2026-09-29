@@ -239,7 +239,41 @@ early). The two need not be equal. The open question is which per-event split, r
 produces `Ω_m(0) = 1 − log 2`, or whether `Ω_de(0) = log 2` stays an initial condition.
 
 **Falsifier for C.** A full CMB + BAO + SN fit of event-horizon HDE with `C` **fixed** at `√log 2 ≈ 0.833`
-(no free `C`). If it is excluded, no horizon choice rescues `ρ_Λ ∝ log 2 / L²` with this prefactor.
+(no free `C`). If it is excluded, none of the readings tested here rescues `ρ_Λ ∝ log 2 / L²` with this
+prefactor.
+
+**Verdict from published fits (checked 2026-09-29): C is excluded.** Li, Li, Du, Wu, Feng, Zhang & Zhang
+(*Revisiting holographic dark energy after DESI 2024*, arXiv:2411.08639, EPJC) fit event-horizon HDE with
+free `c` in the same convention (`ρ_de = 3c²M_p²L⁻²`, so `c` is our `C`):
+
+| Data | `c` (68%) | `C = 0.833` is | `ln B` (HDE vs ΛCDM) |
+|---|---|---|---|
+| CMB + DESI + PantheonPlus | `0.673 ± 0.023` | 7.0σ high | `−28.6` |
+| CMB + DESI + Union3 | `0.642 ± 0.028` | 6.8σ high | `−26.9` |
+| CMB + DESI + DESY5 | `0.701 ± 0.024` | 5.5σ high | `−29.5` |
+| CMB + DESI | `0.462 (+0.027, −0.036)` | ≈ 14σ high | — |
+
+`|ln B| > 5` is *decisive* on the Jeffreys scale, so even HDE's best-fit `c` loses to ΛCDM decisively once
+CMB is included, and `C = 0.833` sits 5.5–7σ further from that best fit. This is read off free-`c`
+posteriors, not our own fixed-`C` refit, and uses DESI DR1. Neither caveat can plausibly turn 5σ+ into
+a pass.
+
+**The interacting variant, and why it doesn't rescue C.** The same paper fits interacting HDE with
+`Q = βHρ_de`, where `β > 0` means energy flows *into* dark energy. That is the direction of the "half lost to
+space" picture. There `c = 1.12 ± 0.17` (CMB + DESI + PantheonPlus), so `0.833` is within 2σ, and
+`β = 0.55 (+0.19, −0.11)`. But it needs `Ω_m = 0.147 (+0.047, −0.068)` and a free coupling, and it too is
+decisively disfavored against ΛCDM (`ln B = −24.8, −23.2, −24.1`). A version with both `C² = log 2` and
+`β = ½` fixed would be a sharp zero-parameter test, but its parent model is already decisively
+disfavored, so it is not worth pursuing ahead of the next point.
+
+**Where this leaves `log 2`.** All three horizon readings of `ρ_Λ = 3 log 2 · M_p²/L²` are now out:
+A and B on the early-epoch test, C (and its interacting extension) on the full fits. What the data favor
+is a constant `Λ`. In that reading `log 2` can only be *today's* `Ω_Λ` (Planck `0.685 ± 0.007`, 1.2σ): one
+way of fitting the present, not an every-epoch law. That reverses P5 of
+[`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean), and the coincidence problem
+("why `log 2` now?") returns. The substrate derivation of `ρ_Λ` in §3 then needs a horizon that does
+not evolve (for example the asymptotic de Sitter radius), and it is open whether §3's count can be
+redone on one while keeping `log 2`.
 
 ---
 
@@ -324,4 +358,5 @@ produces `Ω_m(0) = 1 − log 2`, or whether `Ω_de(0) = log 2` stays an initial
 - Hsu, S. D. H. (2004). *Entropy bounds and dark energy*. Phys. Lett. B 594, 13 — Hubble-radius holographic dark energy gives no acceleration (§5.7 reading A).
 - Li, M. (2004). *A model of holographic dark energy*. Phys. Lett. B 603, 1 — future-event-horizon cutoff (§5.7 reading C).
 - Doran, M., & Robbers, G. (2006). *Early dark energy cosmologies*. JCAP 0606:026.
+- Li, T.-N., Li, Y.-H., Du, G.-H., Wu, P.-J., Feng, L., Zhang, J.-F., & Zhang, X. (2024). *Revisiting holographic dark energy after DESI 2024*. arXiv:2411.08639 (EPJC) — the fits that exclude reading C (§5.7).
 - Chen, L., Huang, Q.-G., & Wang, K. (2019). *Distance priors from Planck final release*. JCAP 02, 028 — the shift parameter `R = 1.7502 ± 0.0046` used in §5.7.
