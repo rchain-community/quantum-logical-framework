@@ -306,6 +306,12 @@ law as well. That would make the claim bookkeeping: true of every rate law, and 
 (`CLAUDE.md` rule 4). P4 is there to rule that out. The arithmetic of P1–P3 is short. The physics is in the
 premise that the cosmic rate has no built-in scale, and P4 is what shows that premise carries the weight.
 
+**Result (2026-09-29): all five proved**, no new axioms, in
+[`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean): P1 `past_inflates`, P2
+`future_expands`, P3 `no_privileged_epoch`, P4 `floor_breaks_self_similarity`, P5 `omegaLambda_eq_log_two`,
+packaged as `every_observer_inflation_behind_expansion_ahead`. The statements are the ones frozen above.
+None were adjusted to fit the proof.
+
 **Open, and not claimed:** the `ä > 0` version; the observer's own first tick, which has no past inside
 its domain (the nested origin, [`BLACK-HOLES.md`](BLACK-HOLES.md) §4a, is an interpretation there, not a
 proof); whether `ρ_Λ ∝ H²` survives the data; and the inflation observables of §8.
