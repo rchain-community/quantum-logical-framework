@@ -53,7 +53,7 @@ noncomputable def observedRate (t₀ s : ℝ) : ℝ := vacuumRate s / vacuumRate
 theorem observedRate_eq {t₀ s : ℝ} (ht : t₀ ≠ 0) (hs : s ≠ 0) :
     observedRate t₀ s = t₀ / s := by
   unfold observedRate vacuumRate
-  field_simp <;> ring
+  field_simp
 
 /-! ### 2. P1 and P2: inflation behind, expansion ahead -/
 
@@ -141,7 +141,7 @@ theorem omegaLambda_eq_log_two {G c H : ℝ} (hG : 0 < G) (hc : 0 < c) (hH : 0 <
   have hc' : c ≠ 0 := hc.ne'
   have hH' : H ≠ 0 := hH.ne'
   unfold omegaLambda rhoLambdaCoeff vacuum_energy_prefactor
-  field_simp <;> ring
+  field_simp
 
 /-! ### Summary -/
 
