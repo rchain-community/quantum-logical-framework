@@ -171,6 +171,40 @@ The same counterfactual chain as Λ:
 
 Only the substrate with 2 gauge axes (the empirical 6+2 split that gives α and the 3D substrate) gives the observed Ω_Λ. This is the **fourth** structural counterfactual tying observation to the 8-twist 6+2 alphabet split, joining α, magic-numbers, and Newton's 1/r².
 
+### §5.7 Which horizon? The early-epoch test (2026-09-29)
+
+§3 counts events on a horizon of radius `L` and sets `L = R_H = c/H`. In holographic-dark-energy notation
+(Li 2004) the result is `ρ_Λ = 3C²M_p²/L²` with **`C² = log 2`**. The prefactor does not decide the
+history; the choice of `L`, and whether the vacuum exchanges energy with matter, does.
+[`omega_lambda_epochs.py`](omega_lambda_epochs.py) runs the three readings (pure Python, `log 2` the only
+QLF input):
+
+| Reading | Today | Recombination / BBN | Status |
+|---|---|---|---|
+| **A.** `L = c/H`, matter conserved (the literal §3) | `Ω_Λ = log 2`, but `ρ_Λ` redshifts like matter: `w_eff = 0`, `q₀ = +0.5` | `Ω_Λ = 0.693` at both | **Rejected by data.** No acceleration (Hsu 2004), and at BBN `H` is `×1.81`, equivalent to `ΔN_eff ≈ 14` against a bound near `0.3` |
+| **B.** `L = c/H`, vacuum keeps `w = −1` and exchanges energy to hold `log 2` | `q₀ = −0.54` (observed ≈ −0.55) | `Ω_Λ = 0.693` at both; `H² ∝ a^−0.92` at every epoch, so no matter era (`q = −0.54` at `z = 2`, ΛCDM `+0.39`) | **Rejected by data.** Same BBN and early-dark-energy failure as A (`Ω_early < 0.06`, Doran & Robbers 2006) |
+| **C.** `L` = future event horizon, same `C² = log 2`, `Ω_de(0) = log 2` | `w₀ = −1` exactly (because `√Ω₀ = C` when `Ω₀ = C²`); acceleration begins at `z ≈ 0.56` | `Ω_de ≈ 9 × 10⁻⁵` at recombination, `≈ 10⁻¹⁷` at BBN | **Open candidate.** Passes the early-epoch test with no extra ingredient. Screen: CMB shift parameter `R = 1.717` vs measured `1.7502 ± 0.0046` (ΛCDM at the same `Ω_m`: `1.745`), so it needs a real likelihood fit before any claim |
+
+**What this changes.** The tension named in [`Curvature.md`](Curvature.md) §8a is a property of `L = c/H`,
+not of the `log 2` prefactor. Readings A and B are ruled out on more than early dark energy: A also fails
+the observed acceleration. Reading C keeps `C² = log 2` and gives `w₀ = −1` for free, but gives up P5
+(`Ω_Λ = log 2` at every epoch): the fraction grows from near zero, and today's `log 2` becomes an
+initial condition, not a theorem. It also makes the dark energy mildly phantom in the future
+(`w → −1/3 − 2/(3C) ≈ −1.13`). The §6 early-dark-energy argument for the Hubble tension does not survive
+in C: the early fraction is far too small to move the sound horizon.
+
+**Not involved: a `0.035–0.04` correction.** The numbers near there in this repo (the α residual
+`+0.036`, `G`'s `+0.0336` in [`Gravity.md`](Gravity.md) §4a, Koide `ε = 0.0396`) are dimensionless
+residuals on unrelated integers, with no proposed link to horizon counting. Read as a correction to
+`log 2`, a few-percent shift moves `Ω_Λ` by about `0.025` (`0.693 → 0.668` pulls it 2.3σ below Planck).
+Readings A and B need the early fraction cut by more than 10× (by the Doran–Robbers bound; later bounds
+are tighter). Read as the early fraction itself, `Ω_early ≈ 0.036` would give `ΔN_eff ≈ 0.23–0.26` at BBN,
+which is marginal, but nothing in QLF produces it. Close numbers are not evidence
+([`Alpha_Residual.md`](Alpha_Residual.md) §9k).
+
+**Falsifier for C.** A full CMB + BAO + SN fit of event-horizon HDE with `C` **fixed** at `√log 2 ≈ 0.833`
+(no free `C`). If it is excluded, no horizon choice rescues `ρ_Λ ∝ log 2 / L²` with this prefactor.
+
 ---
 
 ## §6 Honest scoping (three-tier)
@@ -251,3 +285,6 @@ Only the substrate with 2 gauge axes (the empirical 6+2 split that gives α and 
 - Banks, T. (2000). *Cosmological breaking of supersymmetry?*. Int. J. Mod. Phys. A 16, 910 — holographic Λ predecessor.
 - Gibbons, G. W., & Hawking, S. W. (1977). *Cosmological event horizons, thermodynamics, and particle creation*. Phys. Rev. D 15, 2738 — de Sitter horizon temperature.
 - Bekenstein, J. D. (1973). *Black holes and entropy*. Phys. Rev. D 7, 2333.
+- Hsu, S. D. H. (2004). *Entropy bounds and dark energy*. Phys. Lett. B 594, 13 — Hubble-radius holographic dark energy gives no acceleration (§5.7 reading A).
+- Li, M. (2004). *A model of holographic dark energy*. Phys. Lett. B 603, 1 — future-event-horizon cutoff (§5.7 reading C).
+- Doran, M., & Robbers, G. (2006). *Early dark energy cosmologies*. JCAP 0606:026.
