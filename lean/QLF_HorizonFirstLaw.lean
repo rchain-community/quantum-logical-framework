@@ -52,7 +52,8 @@ theorem bh_entropy_first_law {hbar G c kB M : ℝ}
   have hv : c ^ 2 / hawking_temperature hbar G M c kB
       = 4 * Real.pi * G * kB / (hbar * c) * (1 * M + M * 1) := by
     rw [hawking_temperature_eq hbar G M c kB hG hM hc hkB]
-    field_simp <;> ring
+    field_simp
+    ring
   rw [hv]
   exact h.const_mul (4 * Real.pi * G * kB / (hbar * c))
 
@@ -62,7 +63,8 @@ theorem bhEntropyOfMass_eq_area {hbar G c kB M : ℝ} (hh : hbar ≠ 0) (hG : G 
     bhEntropyOfMass hbar G c kB M
       = kB * (4 * Real.pi * (2 * G * M / c ^ 2) ^ 2) / (4 * (hbar * G / c ^ 3)) := by
   unfold bhEntropyOfMass
-  field_simp <;> ring
+  field_simp
+  ring
 
 /-- **F3 — the naive count breaks the first law by exactly the residual.** QLF's one-bit-per-patch
     entropy is `4 log 2 · S_BH` (`holographic_bh_ratio`). Its mass gradient is `4 log 2 · c²/T_H`, and
