@@ -309,8 +309,25 @@ premise that the cosmic rate has no built-in scale, and P4 is what shows that pr
 **Result (2026-09-29): all five proved**, no new axioms, in
 [`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean): P1 `past_inflates`, P2
 `future_expands`, P3 `no_privileged_epoch`, P4 `floor_breaks_self_similarity`, P5 `omegaLambda_eq_log_two`,
-packaged as `every_observer_inflation_behind_expansion_ahead`. The statements are the ones frozen above.
-None were adjusted to fit the proof.
+with P1–P3 bundled as `every_observer_inflation_behind_expansion_ahead`. The statements are the ones
+frozen above. None were adjusted to fit the proof.
+
+**Amendment after review (2026-09-29, PR #164).** The proofs stand. The pre-registered text above
+overstates what they show in four places, corrected here rather than edited in place:
+
+1. **`r` is a ratio of rates**, not "e-folds per own tick". The two agree only if `H = f` exactly.
+2. **P1 and P2 are not evidence.** They follow from any falling rate, the floored law `1/t + c`
+   included (`floored_past_also_inflates`). "P4 is there to rule that out" is true of P3 only.
+3. **P3 does not single out `1/t`.** Every power law `t⁻ⁿ` satisfies it
+   (`power_law_no_privileged_epoch`). P3 with P4 shows the rate has *no built-in scale*, not that it is `1/t`.
+   The per-event `f = 1/t` is machine-linked (`vacuumRate_is_event_rate`). Using it as the cosmic
+   rate as a function of epoch is a premise.
+4. **P5 is a named tension, not an open question.** If `ρ_Λ ∝ H²` holds at every epoch, as
+   `QLF_DynamicalDarkEnergy` states it, then `Ω_Λ = log 2 ≈ 0.69` at recombination and at BBN. CMB data
+   bound a constant early dark-energy fraction to `Ω_early < 0.06` at 95% (Doran & Robbers, *Early dark energy cosmologies*, JCAP 0606:026 (2006)), and
+   later data are tighter. At BBN that fraction would raise `H` by `(1 − log 2)^(−1/2) ≈ 1.8`. **Falsifier:**
+   either `ρ_Λ ∝ H²` fails before late times, or this reading of QLF's dark energy is ruled out. The
+   value `log 2` itself is the input prefactor; P5's content is the `H`-independence.
 
 **Open, and not claimed:** the `ä > 0` version; the observer's own first tick, which has no past inside
 its domain (the nested origin, [`BLACK-HOLES.md`](BLACK-HOLES.md) §4a, is an interpretation there, not a
