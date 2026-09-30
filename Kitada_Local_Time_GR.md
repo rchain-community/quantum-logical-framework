@@ -56,7 +56,7 @@ This is a structural commitment, not a new derivation — but naming it explicit
 
 ## §4 Gap 2 — Cosmic time as the proper time of the cosmic Markov blanket
 
-**Current state.** [`AgeOfUniverse.md`](AgeOfUniverse.md) derives the cosmic age (≈ 13.8 Gyr) from the ZFA event-synthesis frequency distribution: the cosmic age is `R = ∫ n(ω) dω`, the total event count over the spectrum. The derivation is anchored at the proton mass scale (via [`HadronicDepth.md`](HadronicDepth.md)) and recovers the observed value without tuning. **What is missing**: the cosmic age is not framed as the *proper time* of any specific Markov blanket — it is a frequency-integrated quantity. Under the Gap-1 identity, the natural framing is "the proper time of the cosmic-horizon Markov blanket."
+**Current state.** [`AgeOfUniverse.md`](AgeOfUniverse.md) models the cosmic age from the ZFA event-synthesis frequency distribution, `R = ∫ n(ω) dω`. The model gives a finite, positive age (machine-checked) but contains no dimensional scale, so it does not by itself produce 13.8 Gyr; the count is, for now, calibrated by `H₀`, and the proton-mass route of [`HadronicDepth.md`](HadronicDepth.md) falls short by a factor of about 3,900. **What is missing**: the cosmic age is not framed as the *proper time* of any specific Markov blanket — it is a frequency-integrated quantity. Under the Gap-1 identity, the natural framing is "the proper time of the cosmic-horizon Markov blanket."
 
 **Kitada enhancement.** The cosmic horizon is itself a Markov blanket: it screens the observable universe (interior) from the unobservable beyond (exterior). Under Kitada's interior/exterior synchronization-rate integration:
 

@@ -1,9 +1,12 @@
 /-
 AgeOfUniverse.lean
-Quantum Logical Framework — Effective Age Derived from Observed ZFA Frequency Distribution
+Quantum Logical Framework — a frequency-spectrum model of the effective cosmic age
 
-We show the effective cosmic age t0 emerges from the ZPE photon frequency spectrum
-(n(ω) ∝ 1/ω) without tuning to H0 or dark-energy density.
+A toy model (`AgeOfUniverse.md` §2): the effective Hubble rate is set by an event rate over a frequency
+band, and the age is its inverse. What is proved: for any band `0 < ω_min < ω_max` the effective age is
+finite and positive (`age_is_finite_and_positive`). The quantities are unitless and the model carries no
+dimensional scale, so it computes no age in years; `totalEventRate` integrates a flat band
+(`ω_max − ω_min`), not the `1/ω` spectrum `zpePhotonNumberDensity` describes.
 -/
 
 import SpacetimeDynamics
@@ -17,7 +20,7 @@ open Real
 noncomputable def zpePhotonNumberDensity (omega : ℝ) : ℝ :=
   if omega > 0 then 1 / omega else 0
 
-/-- Total event synthesis rate over the observed frequency band -/
+/-- Event rate over the band, as a flat-band integral `ω_max − ω_min` (not the `1/ω` spectrum) -/
 noncomputable def totalEventRate (omega_min omega_max : ℝ) : ℝ :=
   omega_max - omega_min
 
