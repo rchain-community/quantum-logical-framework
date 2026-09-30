@@ -82,3 +82,70 @@ and its own second prediction:
 Conditions outside G, which involve the elapsed time linearly (like the two-clock agreement `H·t = 1`,
 reached at `Ω_Λ = 0.737`), are a separate route. At `Ω_Λ = log 2` the two clocks read `H·t = 0.958`, which
 is not a natural value, so that route also needs a new idea rather than a known marker.
+
+---
+
+## Route 2: the half-life route — *pre-registered 2026-09-30*
+
+**The idea.** "Each event creates energy; about half is kept locally, and half is lent to the future and
+realized later" ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7). For any memoryless decay,
+half-life over mean lifetime is `T½/τ = log 2`. Can the lent share, as a density fraction, come out as
+`log 2`?
+
+**The model** (checked by [`omega_lambda_halflife.py`](omega_lambda_halflife.py)). Flat universe, two
+ledgers: matter (`w = 0`) and a lent ledger (`w = −1`). Energy is created at rate `Q = γ H ρ_c`, with
+`ρ_c` the critical density. That is self-similar, and `γ` is its strength. Half goes to matter, half to
+the lent ledger. The lent ledger is realized into matter with hazard `k/t`: `k = 1` is "half per octave"
+measured in the observer's own clock, and `k = log 2` is "half per e-fold of age". In own-clock time
+`τ = ln t`, with `h = Ht`:
+
+    dΩ/dτ = (γ/2)·h − k·Ω + 3h·Ω(1 − Ω)
+    dh/dτ = h − (3/2)·h²·(1 − Ω)
+
+**Pre-registered forecasts** (worked out while framing; the script integrates the equations to check them):
+
+| | Statement | Forecast |
+|---|---|---|
+| H1 | `k = 1` (half per octave), any `γ > 0` | no steady share: `Ω_Λ → 1` and `h → ∞`, the de Sitter attractor |
+| H2 | `k = log 2` (half per e-fold) | same as H1: `Ω_Λ → 1` |
+| H3 | steady shares need `k > 2`, and then `Ω` solves `γ/(3(1 − Ω)) = (k − 2)Ω` | depends on the free `γ`, so it is not a derivation of any number |
+| H4 | any steady share is the same at every epoch | excluded by the early-epoch data whatever its value (§5.7), like P5 of `QLF_InflationObserver` |
+
+**Why `log 2` does not appear as the share.** In this model `log 2` can only enter as a rate (`k`). The
+share it produces is set by `k` and `γ` through an algebraic fixed-point condition, not by `T½/τ`.
+
+**Also recorded.** Creating energy at rate `Q` violates total `∇^μ T_μν = 0`, which the Einstein
+equations require (`QLF_BianchiClosure` takes it as a hypothesis). So this model is outside GR as it
+stands, the same unproved step as the continuity equation of §5.7.
+
+**Kill condition.** The route counts only if some version yields a density share of exactly `log 2`
+that (a) selects our epoch rather than holding at every epoch, (b) has no free rate chosen to fit, and
+(c) makes a prediction beyond `q₀` and `H₀t₀`.
+
+---
+
+## Route 3: a drifting Planck tick — *pre-registered 2026-09-30*
+
+**The idea.** If Planck's constant changes with time, then the tick `τ_P = √(ħG/c⁵)` drifts. Age counted
+in ticks then differs from cosmic time, and your two ages, `1/H₀` (own clock) and 13.8 Gyr (cosmic),
+might both be right.
+
+**What "`ħ` changes" can mean.** Only dimensionless variation is observable (Duff 2002). The tick measured
+against an atomic clock is `τ_P/τ_atomic = α²·√(Gm_e²/ħc)`. So a drift of the tick shows up as a drift
+of `α`, of the gravitational coupling, or both.
+
+**Pre-registered statements** (checked by [`tick_drift.py`](tick_drift.py)):
+
+| | Statement |
+|---|---|
+| T1 | with `τ_P ∝ t^β`, the age in ticks times today's tick is `t₀/(1 − β)` |
+| T2 | making that equal `1/H₀` requires `β = 1 − H₀t₀`: `0.049` for Planck ΛCDM, `0.042` if `Ω_Λ = log 2` |
+| T3 | the drift today is `β/t₀ ≈ 3.5 × 10⁻¹²/yr`. Through `α` alone that is `α̇/α ≈ 1.8 × 10⁻¹²/yr`, against the optical-clock bound `1.0(1.1) × 10⁻¹⁸/yr` (Lange et al. 2021). Through gravity alone it is `≈ 7 × 10⁻¹²/yr`, against the lunar-ranging bound `Ġ/G = (7.1 ± 7.6) × 10⁻¹⁴/yr` (Hofmann & Müller 2018) |
+| T4 | a drift of either size cannot turn a count into an O(1) share like `log 2`; at most it shifts which epoch is "now" |
+
+**Forecast.** Excluded, by about `10⁶` through `α` and about `100×` through gravity. QLF also claims
+`α_G = exp(−28π)` as a derived constant (`Gravity.md` §4a), which would itself forbid a drift through the
+gravitational sector.
+
+**Kill condition.** The route survives only if a drift within the bounds reconciles the two ages or
+yields `log 2`. The forecast is that neither happens.
