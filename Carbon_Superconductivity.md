@@ -582,6 +582,37 @@ whose `T_c` is set by coherence has the same `α`-corrected slope `T_c/ρ_s0 = 2
 et al. decomposition, every member's flat bands are twisted-bilayer-like, on the same Wannier honeycomb. The bilayer
 in §7a (`r ≤ 0.8`) is not coherence-limited on this reading.
 
+## 12. Interlayer closures: where the moiré lattices come from (extension point 1)
+
+[`moire_interlayer.py`](moire_interlayer.py). An interlayer closure is: hop up, walk in layer 2, hop down, walk
+back. It closes where a layer-2 site sits over the layer-1 site. At finite capacity, a residual below the resolution
+ε counts as closed. Every closing hop is one of two kinds:
+* **EVEN**: it joins equal sublattices (A over A). The two layers' sign alternations agree. This is **AA**
+  stacking.
+* **ODD**: it joins opposite sublattices (A over B). The alternations are out of step. This is **AB** or **BA**
+  stacking, the two mirror orientations.
+
+Counted over exact commensurate cells (3.15°, and the 1.05° cell with 5,954 sites per layer):
+* Only hops near the region centres close at fine resolution. As capacity widens, the three kinds fill the cell.
+* EVEN hops are a third of all closures at every resolution, and ODD hops two thirds.
+* Solving for the region centres gives the two lattices exactly:
+
+| hop kind | region | lattice | nearest spacing |
+|---|---|---|---|
+| EVEN (sign kept) | AA | **triangular** | moiré period `|z| a` |
+| ODD (sign flipped) | AB + BA | **honeycomb**, 3 BA per AB | `|z| a / √3` |
+
+So both candidate lattices of §11 are the substrate's own closure lattices, and each AA sits at the centre of a
+hexagon of AB/BA. The flat-band Wannier orbitals sit on the ODD honeycomb. On this reading, "one bit per Wannier
+centre" is one bit per region where the two layers' sign alternations are out of step. That is a reading, not a
+derivation of the Wannier centres. Choosing ODD over EVEN for the bit, and so `r = 2.63` over 2.10, still rests on
+the Wannier result.
+
+**The value of `J` is still missing.** Nothing counted here has units. The bonds of `J` run across the domain walls
+between AB and BA. An energy per crossing needs either one calibration (`D_s(0) = J/√3`, which is what §11's ratio
+already does) or step 2: the flat band as a signed count, whose bandwidth sets the energy scale near the magic
+angle. With step 2 the prediction becomes an angle dependence `J(θ)`, testable against `T_c(θ)`.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
