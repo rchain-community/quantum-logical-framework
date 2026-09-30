@@ -362,6 +362,7 @@ to be exactly 1. This matches Li (2004): holographic dark energy reaches de Sitt
 
 ### Internal
 
+- [`Log2_Search.md`](Log2_Search.md) — the pre-registered search for another route to `Ω_Λ = log 2`, now that §3's is gone.
 - [`Curvature.md`](Curvature.md) — global geometry as de Sitter: the cosmic Markov blanket's replication-dominant (expanding) phase, AdS as the contraction phase; Ω_Λ = log 2 as residual curvature, with magnetism as the local spin-axis analog.
 - [`VacuumEnergy.md`](VacuumEnergy.md) §6 — vacuum-alignment principle, residual-curvature reading of Λ.
 - [`Gravity_From_Delay.md`](Gravity_From_Delay.md) — holographic event count + substrate G + Verlinde gravity.
