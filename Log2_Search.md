@@ -220,6 +220,7 @@ It does not derive the dark-energy fraction, and the "why now" remains: the two 
 | 5. Half kept, half lent, on a vacuum clock | no natural rate gives `log 2` (`0.718`, `0.794`); **the bridge `Ω_Λ = (H_Λ/H)²` survives** |
 | 5 (fit). Interacting vacuum vs CMB + BAO + SN | `λ = 0.18 ± 0.14`, no significant preference over ΛCDM; `λ = 1` and `λ = 1.106` (attractor `log 2`) excluded at >5σ and >6σ |
 | 6. A QLF reason for `√log 2` | none yet; **attractor theorem `Ω* = T/(3ρ_m)`**: the target is a derived transfer law whose stable attractor replaces `log 2` of matter's dilution loss |
+| 7. Binary-closure clock + epoch selection | `√log 2` as the tick rate of a binary closure (identity); horizon-count peaks select `Ω_Λ = 0.586` and `1/3`, not ours |
 | Remaining | `Σ 2⁻ᵏ/k` with a derived `1/k`; a mechanism that turns the octave/e-fold duration ratio into an energy share |
 
 The common thread: every route that gives the *same* share at every epoch is excluded by the early
@@ -473,3 +474,18 @@ Checked by [`log2_epoch_selection.py`](log2_epoch_selection.py). **Decision rule
 "now"* if its peak `Ω_Λ` lies within 2σ of Planck (`0.685 ± 0.007`). It *derives `log 2`* only if the peak
 is exactly `log 2` (a closed form). No forecast. Two versions are tested; a single match among them would
 carry a look-elsewhere factor of two.
+
+**Result (2026-09-30).** Running [`log2_epoch_selection.py`](log2_epoch_selection.py) after `bde65a4`:
+
+- **S1 holds** as an identity: `E[1/K] = 0.693147180560 = log 2`, so a binary-closure clock runs at
+  `√log 2 = 0.832555` of the substrate clock once `H ∝ √ρ` is applied. This is a QLF reason for the
+  *square root* and for *`log 2` as a rate*.
+- **S2a fails:** new horizon closures per own-clock e-fold peak at `Ω_Λ = 0.586`, 13.5σ from Planck.
+- **S2b fails:** new horizon closures per unit cosmic time peak at `Ω_Λ = 1/3` exactly, the onset of
+  acceleration (`q = 0`), 48σ from Planck.
+
+**Verdict on Route 7.** QLF has a clean reason for the *form* of the clock ratio: a binary closure's mean
+tick rate is `log 2`, and the Friedmann square root makes it `√log 2`. What it still lacks is a reason
+for the *epoch*. Neither horizon count selects ours. The two ingredients are now separated: `log 2` as a
+closure rate (derived, every-epoch), and a selection of "now" (open).
+
