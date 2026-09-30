@@ -105,19 +105,18 @@ python particles.py --seed "^<v>^^<<" --max-depth 8 --enable-gauge True --enviro
 The qualitative picture above ("denser logic near masses → emergent vacuum mass") needs **one
 number** to become predictive: the *acceleration* at which the local logical density stops
 dominating and the cosmological background takes over. That scale is not free — it is the de
-Sitter horizon acceleration on the **same Hubble radius** `R_H = c/H₀` that already fixes
-`Ω_Λ = log 2` ([`QLF_CosmologicalConstant`](lean/QLF_CosmologicalConstant.lean)), reduced by
-the substrate loop phase `2π`:
+Sitter horizon acceleration on the **Hubble radius** `R_H = c/H₀`, reduced by the substrate loop
+phase `2π`:
 
 $$a_0 \;=\; \frac{c H_0}{2\pi} \;=\; \frac{c^2}{2\pi R_H} \;\approx\; 1.05\times10^{-10}\ \text{m/s}^2$$
 
 versus Milgrom's empirical scale `a₀ ≈ 1.2×10⁻¹⁰ m/s²` — a **~13% match** with **zero new
-inputs** (the same `H₀` as the cosmological constant). Lean: `mond_acceleration_horizon_form`
-proves `a₀ = c²/(2π R_H)`. This is the QLF substrate version of the Verlinde / Milgrom
-acceleration scale: the dark sector closes on a **single horizon**, with `Ω_Λ = log 2`
-governing the sparse exterior (dark energy) and `a₀ = cH₀/2π` governing the crossover into the
-denser-logic interior (dark matter) — the **expand / contract duality** of
-[Curvature.md §6](Curvature.md).
+inputs** beyond `H₀`. Lean: `mond_acceleration_horizon_form` proves `a₀ = c²/(2π R_H)`. This is the
+QLF substrate version of the Verlinde / Milgrom acceleration scale, and it does not depend on the
+dark-energy fraction: `Ω_Λ = log 2` is no longer derived ([`Cosmological_Constant.md`](Cosmological_Constant.md)
+status note), while `a₀ = cH₀/2π` and the SPARC result below are untouched by that. **`a₀` is constant
+locally and different relatively:** every observer measures `a₀/(cH) = 1/2π`, while across redshift we
+see `a₀` scale with `H(z)` (§5c).
 
 ### The `1/2π` prefactor is confirmed by SPARC at the local `H₀` (the "13%" was a form artifact)
 
@@ -130,7 +129,10 @@ $$a_0^{\rm SPARC} \;=\; 1.127\times10^{-10}\ \text{m/s}^2 \quad(\text{zero mean 
 which is **exactly `cH₀/2π` at `H₀ = 72.9` km/s/Mpc** — the *local* distance-ladder Hubble constant
 (SH0ES `73.0 ± 1.0`; SPARC's own distance scale). So the `1/2π` prefactor is **right to `< 1%`** at the
 local `H₀`; the apparent 13% was the wrong-form comparison, and what remains is the **Hubble tension**
-(CMB `67.4` vs local `73`) — and the galaxy data picks the *local* value. (Caveat: the data constrains
+(CMB `67.4` vs local `73`) — and on the expansion clock the galaxy data picks the *local* value. That
+reading depends on which clock sets `a₀`: on the age clock, `a₀ = c/(2π t₀)`, the same fit gives
+`t₀ = 13.41 Gyr` against Planck's 13.80, well within the few-% systematic, and no vote at all. §5c tests
+which clock the data prefer across redshift, and it is the expansion clock. (Caveat: the data constrains
 `a₀` to a few %, so `H₀ ≈ 73 ± 3`; and the `a₀↔H₀` link carries the canonical-`M/L` systematic.)
 
 ### The `2π`, from first principles: the ZFA closure-loop period
@@ -165,40 +167,28 @@ in counting — the *same* loop behind `g−2 = α/2π`, the horizon temperature
 ### 5a. QLF and the Hubble tension
 
 Can QLF say anything significant about the Hubble tension (early/CMB `H₀ ≈ 67.4` vs late/local
-`H₀ ≈ 73`)? **Yes — a reframing and a vote, though not a numeric resolution.** Three QLF facts, connected:
+`H₀ ≈ 73`)? **A conditional vote, not a resolution.**
 
-1. **QLF is not ΛCDM — its dark energy is *dynamical*.** The vacuum density
-   `ρ_Λ = (3 log 2 / 8π)·c⁴/(G R_H²)` with `R_H = c/H₀` (`vacuum_energy_prefactor`,
-   [`QLF_CosmologicalConstant`](lean/QLF_CosmologicalConstant.lean)) gives **`ρ_Λ ∝ H²`** — now
-   **Lean-anchored** ([`QLF_DynamicalDarkEnergy`](lean/QLF_DynamicalDarkEnergy.lean): `rhoLambda_prop_Hsq`
-   proves `ρ_Λ = (prefactor·c²/G)·H²`, `rhoLambda_past_denser` its strict increase in `H`,
-   `rhoLambda_not_constant` that it is not a static `Λ`), and dark
-   energy is *energy created per event, lent forward* ([`Conservation.md`](Conservation.md) §2b;
-   `event_duality_balanced`, `QLF_CosmicInflation`), not a static `Λ`. Because `ρ_Λ ∝ H²`, **dark energy
-   was denser in the past — early-dark-energy character**, which is precisely the *leading class of
-   proposed Hubble-tension resolutions* (more early dark energy → higher early expansion → a smaller
-   sound horizon → the CMB-inferred `H₀` shifts *up* toward the local value). And QLF's dark matter is
-   emergent (denser logic, **no particle CDM**), gravity is emergent. So the CMB `H₀ ≈ 67` is a **ΛCDM
-   *inference*** — constant `Λ` + particle CDM + a fixed sound horizon — assumptions QLF shares *none* of;
-   QLF therefore does not inherit that value.
-2. **QLF's late-time dark sector independently votes *local*.** The blind, parameter-free SPARC RAR fit
-   (`a₀ = cH₀/2π`, the `2π` *derived* as the ZFA closure-loop period) lands at **`H₀ = 72.9 ± 3`** ≈ the
-   SH0ES local value (§5, [`SPARC.md`](SPARC.md)) — an independent, non-supernova, late-time `H₀`
-   estimator agreeing with the distance ladder. QLF ties `a₀`, `Ω_Λ = log 2`, and the de Sitter
-   temperature `T = ℏH₀/(2πk_B)` (`desitter_temperature_eq`, [`QLF_HorizonTemperature`](lean/QLF_HorizonTemperature.lean))
-   to **one** Hubble horizon at **one** `H₀`, so its whole dark sector is internally self-consistent at
-   the *local* value.
-3. **The sign is right (qualitative).** Energy-created-forward / early-DE-denser ⟹ the late expansion is
-   enhanced ⟹ local `>` CMB — the observed direction of the tension.
+1. **The early-dark-energy argument no longer applies.** QLF used to read its vacuum density as
+   `ρ_Λ ∝ H²` (`rhoLambda_prop_Hsq`, [`QLF_DynamicalDarkEnergy`](lean/QLF_DynamicalDarkEnergy.lean)), which
+   made its dark energy denser in the past, the class of models proposed to ease the tension. That
+   reading is excluded: it keeps `Ω_Λ = log 2` at recombination and BBN, far above the early-dark-energy
+   bound, and the event-horizon alternative is excluded by full CMB + DESI + SN fits
+   ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7). The early-dark-energy models that ease
+   the tension carry a few percent for a short window, not a permanent share.
+2. **The late-time dark sector votes *local*, on the expansion clock.** The blind, parameter-free SPARC
+   RAR fit (`a₀ = cH₀/2π`, the `2π` *derived* as the ZFA closure-loop period) lands at
+   **`H₀ = 72.9 ± 3`**, the SH0ES local value (§5, [`SPARC.md`](SPARC.md)): an independent, non-supernova,
+   late-time estimator. The vote holds if `a₀` is set by the expansion clock `H`. If it were set by the
+   age clock `1/t`, the same fit would give `t₀ = 13.41 Gyr`, consistent with Planck and no vote. The
+   redshift test of §5c prefers the expansion clock (`Δχ² = 11` over the age clock), which supports
+   reading the vote as a statement about `H₀`.
 
-**Honest scope (binding).** QLF does **not** derive the absolute `H₀` — it is the one cosmological
-calibration (like the absolute mass scale) — and does **not** compute the early-universe expansion
-history, so it does **not** numerically resolve the tension or predict `67`/`73`. The defensible claims
-are exactly: QLF is a **dynamical-dark-energy, non-ΛCDM cosmology in the resolution-favorable class**,
-whose dark sector **votes local**, reframing the tension as a *model-dependence of the ΛCDM early
-inference* rather than a crisis. Anything stronger ("QLF resolves the Hubble tension") is overreach.
-**Defeater:** if the tension resolves toward the CMB value (i.e. the local measurements carried a
-systematic), QLF's local vote and this framing are stressed.
+**Honest scope (binding).** QLF does **not** derive the absolute `H₀` and does **not** compute the
+early-universe expansion history, so it does **not** resolve the tension. The defensible claim is: QLF's
+dark matter, read on the expansion clock (which the redshift data prefer), is an independent late-time
+estimator that agrees with the local `H₀`. QLF is no longer in the early-dark-energy class.
+**Defeater:** if the tension resolves toward the CMB value, the local vote is stressed.
 
 ### 5b. Conformal (Weyl / Mannheim) gravity — the nearest alternative-gravity neighbor, declined
 
@@ -278,6 +268,27 @@ relative to the best, and inconsistent if its `p < 0.05`. The statistic, the mod
 normalization are fixed here, before fitting. The data are published and have been seen, so this
 guards against choosing the test after the fact, not against knowing the data.
 
+**Result (2026-09-30).** Running [`a0_redshift_test.py`](a0_redshift_test.py) after the
+pre-registration commit (`af01825`):
+
+| Model | S: `A` (D1 / D2) | S: `χ²` (3 dof) | S: verdict | N: `χ²` D1 / D2 (4 dof) |
+|---|---|---|---|---|
+| **M_E** expansion clock | 1.39 / 1.28 | **6.1** (`p = 0.10`) | **preferred, consistent** | 44.5 / 14.2 |
+| **M_T** age clock | 1.07 / 0.99 | 17.1 (`p = 7×10⁻⁴`) | disfavored (`Δχ² = 11.0`) | 45.4 / 110 |
+| **M_C** constant `a₀` | 2.26 / 2.08 | 30.0 (`p = 10⁻⁶`) | disfavored (`Δχ² = 23.9`) | 469 / 387 |
+
+**What it shows.** On the pre-registered primary test, the shape of `a₀(z)`, the data prefer QLF's
+expansion clock, `a₀ = cH(z)/2π`, and it is consistent with them. The age clock and a constant `a₀` are
+disfavored. The shape verdict is the same for both datasets, as it must be, since S is scale-free. The
+secondary normalization test is weaker. With the local value fixed at SPARC's `1.20`, the expansion clock
+fails on D1 and is marginal on D2 (`p = 0.007`, fitted `A = 1.28`, 7% above SPARC). That test used
+statistical errors only, while the SPARC normalization carries a `±0.24` systematic.
+
+**Caveats.** Four bins, digitized from a figure. The binned values assume a DC14 halo, and D2 is a single
+scaling to the paper's MOND framework, not a refit. The fitting form is McGaugh's, not QLF's own
+(§7.5). The like-for-like test is a refit of the MUSE-DARK rotation curves in QLF's form, which needs the
+per-galaxy data.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
@@ -292,7 +303,7 @@ This splits cleanly into the two regimes you already see elsewhere in QLF
 | regime | condition | logic density | physics |
 |---|---|---|---|
 | **dense (interior)** | `r < σ`, `a ≫ a₀` | high | pure Newton + GR — **Mercury perihelion** (`a ≈ 0.04 m/s²`, ~10⁹×`a₀`), and at the extreme a hadron's **Planck-blanket quantum black hole** ([Hadron_BlackHoles.md](Hadron_BlackHoles.md)) |
-| **sparse (exterior)** | `r > σ`, `a ≲ a₀` | thins to floor | the `log 2` cosmological background is no longer negligible → **apparent extra mass** (dark matter) |
+| **sparse (exterior)** | `r > σ`, `a ≲ a₀` | thins to floor | the cosmological background (`a₀`) is no longer negligible → **apparent extra mass** (dark matter) |
 
 So "denser logic near masses" and "the Mercury/black-hole regime" are the *same* statement —
 both live at `a ≫ a₀`, deep inside `σ`. Dark matter is what the *complement* (`a ≲ a₀`) looks
@@ -309,8 +320,8 @@ $$v^4 \;=\; G M\, a_0 \qquad(\text{independent of } r — \text{flat rotation cu
 
 What is the *profile* of the excess logical density around the mass? The natural QLF answer is
 a **Gaussian** — and not by fiat: for a fixed spatial scale, the Gaussian is the
-**maximum-relative-entropy (MRE)** distribution, and MRE is the *same* selection principle that
-fixes `Ω_Λ = log 2` (the `binary_kl` machinery of [`QLF_FreeEnergy`](lean/QLF_FreeEnergy.lean)).
+**maximum-relative-entropy (MRE)** distribution, and MRE is the *same* selection principle behind the
+per-event `log 2` quantum (the `binary_kl` machinery of [`QLF_FreeEnergy`](lean/QLF_FreeEnergy.lean)).
 The displaced logic relaxes to the least-committed profile consistent with its scale:
 
 $$\rho_{\rm logic}(r) \;=\; \rho_0\, e^{-r^2/2\sigma^2}$$
@@ -416,18 +427,19 @@ and the radial gradient of [BLACK-HOLES.md §4](BLACK-HOLES.md)):
 
 - **Interior, dense (contract):** excess logic folds into the gauge/time axes → emergent rest
   mass → extra attraction → **dark matter** (`a ≲ a₀` is where it becomes visible).
-- **Exterior, sparse (expand):** the thin background carries the `Ω_Λ = log 2` gauge-axis
-  fraction → outward expansion bias → **dark energy**.
+- **Exterior, sparse (expand):** the thin background → outward expansion bias → **dark energy**.
+  (Its share was once derived as `Ω_Λ = log 2`; that derivation does not survive the first law, and the
+  search for another route is [`Log2_Search.md`](Log2_Search.md).)
 
 **Honest scope (issue [#69](https://github.com/jimscarver/quantum-logical-framework/issues/69)).**
 This is a *thesis, not yet a closure*: the two sides share the same Hubble horizon and the same `2π`
-loop phase (`a₀ = cH₀/2π`, `Ω_Λ = log 2`), but **the exact operator tying enhancement and screening
+loop phase (`a₀ = cH₀/2π`), but **the exact operator tying enhancement and screening
 into one derived field remains open** — as does the generator of `ρ_logic(r)` itself (§5, the open
 dark-matter front). The single-horizon coincidence is real and falsifiable; calling it *one
 mechanism* would outrun the formal substrate until that bridging operator is written.
 
-One horizon scale (`R_H`), one per-event quantum (`log 2`), one crossover acceleration
-(`a₀ = cH₀/2π`). No WIMP, no quintessence field — both are how a single substrate distributes
+One horizon scale (`R_H`), one crossover acceleration (`a₀ = cH₀/2π`), locally constant as
+`a₀/(cH) = 1/2π` and scaling with `H(z)` across redshift (§5c). No WIMP, no quintessence field — both are how a single substrate distributes
 logical density around mass.
 
 ---
