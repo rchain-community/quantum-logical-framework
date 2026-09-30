@@ -286,6 +286,41 @@ at `T₀ ≈ T_c/3` in the trilayer, which stays superconducting above `T₀`. U
 * A second check the one-bit reading makes without new data: its transition is Ising-class, so the specific heat
   and the critical current near `T_c` should carry Ising exponents, not BKT's essential singularity.
 
+## 8. Pre-registered: the Ising exponent check
+
+*Fixed in the commit that adds this section. Disclosure: Tanaka et al.'s `D_s(T)` curves (their Fig. 16) were
+looked at, but not fitted, while doing §7a. Banerjee et al.'s `ρ_s(T)` curves (their Fig. 2c) have not been
+looked at.*
+
+**What an exponent means for a one-bit phase.** A phase in `{0, π}` cannot be twisted smoothly. The cost of
+imposing a twist on a one-bit condensate is the cost of a domain wall between the two values, so under H_1bit the
+measured stiffness is the Ising **interface tension**. In two dimensions that tension vanishes linearly at `T_c`:
+the exponent is `μ = (d−1)ν = 1`, exactly, and Onsager gives the whole curve. Under H_BKT the stiffness does not
+reach zero continuously. It falls to `(2/π) k_B T_BKT` and then jumps to zero.
+
+**The statistic.** Near the end of each `ρ_s(T)` curve, fit `ρ_s = A (T* − T)^x` with `A`, `T*` and `x` free. Use
+the points with `ρ_s ≤ 0.5 ρ_s(0)`, and require at least 5 of them.
+
+**Predictions.**
+* H_1bit (Ising): `x = 1`, and the curve reaches zero continuously.
+* H_BKT: a finite drop at the crossing with `(2/π) k_B T`. A power-law fit then returns `x < 1`, often much less.
+* For reference, 3D XY gives `x ≈ 0.67`.
+* **Stated limitation.** BCS mean-field theory also gives `x = 1`, because `ρ_s ∝ Δ² ∝ (T_c − T)`. So `x = 1`
+  cannot confirm H_1bit over mean-field. The test can only make H_1bit fail.
+
+**Verdict rules, per curve.**
+* **Ising FAILS** if `x + 2σ_x < 1`.
+* **Ising SURVIVES** if `|x − 1| ≤ 2σ_x`.
+* **No verdict** if `x − 2σ_x > 1`. Inhomogeneous `T_c` rounds the end of a curve and inflates `x`, so a large `x`
+  does not decide anything.
+
+**Data.** Every `ρ_s(T)` curve that reaches its end, in Tanaka et al. Fig. 16 (bilayer, hole and electron side) and
+Banerjee et al. Fig. 2c (trilayer, every filling plotted). Values are extracted from the figures' vector data where
+available, and otherwise by pixel calibration.
+
+**Stated prior.** I expect Ising to survive, but only because mean-field theory gives the same exponent. What
+makes this worth running is that a clear `x < 1` would retire the one-bit reading for that sample.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
