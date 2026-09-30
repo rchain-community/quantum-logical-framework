@@ -218,6 +218,7 @@ It does not derive the dark-energy fraction, and the "why now" remains: the two 
 | 3. Drifting Planck tick | excluded by atomic clocks and lunar ranging |
 | 4. Log-uniform one e-fold, local clock | `log 2` holds at every epoch as a *duration* ratio (identity); does not reach the *density* ratio |
 | 5. Half kept, half lent, on a vacuum clock | no natural rate gives `log 2` (`0.718`, `0.794`); **the bridge `Ω_Λ = (H_Λ/H)²` survives** |
+| 5 (fit). Interacting vacuum vs CMB + BAO + SN | `λ = 0.18 ± 0.14`, no significant preference over ΛCDM; `λ = 1` and `λ = 1.106` (attractor `log 2`) excluded at >5σ and >6σ |
 | 6. A QLF reason for `√log 2` | none yet; **attractor theorem `Ω* = T/(3ρ_m)`**: the target is a derived transfer law whose stable attractor replaces `log 2` of matter's dilution loss |
 | Remaining | `Σ 2⁻ᵏ/k` with a derived `1/k`; a mechanism that turns the octave/e-fold duration ratio into an energy share |
 
@@ -362,6 +363,33 @@ values, `Δχ² = χ²_ΛCDM − χ²_IV`, and the profile `Δχ²(λ)` with its
 **Forecast.** No numerical forecast. Recent analyses find DESI BAO mildly favoring dark energy that
 weakens over time. A vacuum decaying into matter (`λ > 0`) has that character, so a mild preference for
 `λ > 0` would not be surprising; whether it reaches `λ ≈ 1` is the question.
+
+**Result (2026-09-30).** Running [`fit_interacting_vacuum.py`](fit_interacting_vacuum.py) after the
+pre-registration commit (`0ce3cb9`):
+
+*Pipeline checks passed.* (A) DESI BAO-only flat ΛCDM: `Ω_m = 0.2973 ± 0.0084`, `h·r_d = 101.55 Mpc`
+(published `0.2975 ± 0.0086`, `101.54`). (B) Pantheon+ alone: `Ω_m = 0.3314 ± 0.018` (published
+`0.334 ± 0.018`), from 1,590 supernovae with `z_HD > 0.01`.
+
+| | CMB + BAO + SN (primary) | CMB + BAO |
+|---|---|---|
+| ΛCDM `χ²`, best fit | 1418.69; `Ω_m = 0.304`, `h = 0.685` | 13.30; `Ω_m = 0.303`, `h = 0.686` |
+| interacting `χ²`, best fit | 1417.06; `Ω_m = 0.336`, `h = 0.678`, `λ = +0.18` | 13.23; `λ = −0.07` |
+| `Δχ²` (ΛCDM − interacting) | 1.62: **no preference** | 0.07: **no preference** |
+| `λ` | `+0.18 ± 0.14` (parabolic, from the profile); 95% grid range `[−0.07, +0.43]` | 95% grid range `[−0.57, +0.43]` |
+| `λ = 0` (ΛCDM) | `Δχ² = 1.62`, allowed | `0.07`, allowed |
+| `λ = 1` (attractor `0.718`) | `Δχ² = 31.3`, **excluded** | `17.6`, **excluded** |
+| `λ = 1.106` (attractor `log 2`) | `Δχ² = 39.4`, **excluded** | `21.3`, **excluded** |
+
+(At `λ ≥ 1.18` the profile fit did not converge; that is beyond every value the decision rule tests.)
+
+**What it shows.** The data allow a vacuum slowly decaying into matter, with a mild, not significant
+preference for it once supernovae are included (`λ ≈ 0.18`, about 1.3σ from ΛCDM). This is the same
+direction as DESI's hints of weakening dark energy. At that `λ` the late-time attractor would be
+`Ω* ≈ 0.94`, not pure de Sitter. The QLF-natural rates are **excluded**: `λ = 1` at more than 5σ and
+`λ = 1.106`, the rate that would put the attractor at `log 2`, at more than 6σ. So this route to `log 2`
+is closed by data, not only by naturalness. What survives from Route 5 is the vacuum-clock bridge
+`Ω_Λ = (H_Λ/H)²`, and a slow interacting vacuum as one way the data allow.
 
 ---
 
