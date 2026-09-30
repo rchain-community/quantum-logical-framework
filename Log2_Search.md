@@ -197,3 +197,27 @@ by atomic clocks and lunar ranging by large factors. So the two ages stay differ
 The common thread: every route that gives the *same* share at every epoch is excluded by the early
 universe. Every route that selects an epoch needs a time scale that QLF does not yet supply without
 putting in the age itself.
+
+---
+
+## Route 4: log-uniform over one e-fold, by a local clock — *pre-registered 2026-09-30*
+
+**The idea** (Jim, 2026-09-30): `log 2` may hold at *any* time when read by a local clock. The natural
+local clock is log-time `τ = ln t`, the observer's own clock of #164, in which every epoch looks the same.
+A quantity spread evenly in `τ` over one e-fold has the fraction `log 2` in its top octave.
+
+**Pre-registered statements** (checked by [`omega_lambda_local_clock.py`](omega_lambda_local_clock.py)):
+
+| | Statement | Status before running |
+|---|---|---|
+| L1 | in any observer's last e-fold of own-clock time (`t/e` to `t`), its last doubling of age (`t/2` to `t`) takes up exactly `log 2`, at every epoch | an identity: bookkeeping by rule 4, stated as the anchor |
+| L1′ | L1 is the same number as Route 2's `T½/τ`: half per octave means a mean lifetime of one e-fold | an identity |
+| L2 | a ratio of energy densities at one event, including `Ω_Λ = ρ_Λ/ρ_total`, is unchanged by relabelling time | so no local clock makes `Ω_Λ` itself `log 2` at every epoch; L1's `log 2` is a ratio of *durations* |
+| L2′ | the naive own-clock substitute `Ω_τ = ρ_Λ/(3H_τ²/8πG)` with `H_τ = d ln a/dτ = H·t` is `Ω_Λ/(Ht)²` | forecast: it varies with epoch, so it is not `log 2` at every epoch either, and it is not a density fraction (the shares no longer sum to 1) |
+| L3 | the measured `0.685` is a density ratio, inferred from `H(z)` | forecast: linking it to L1 needs the two to coincide, and with a constant `Λ` they coincide at one epoch only (`q = −0.540`). So the route does not remove the "why now" |
+| L4 | two observable duration fractions of the last e-fold of our own clock, in Planck ΛCDM: (a) the share spent accelerating (`q < 0`); (b) the share with `ρ_Λ > ρ_m` | no forecast. A match to `log 2` would be one way, not a derivation, because these fractions change with epoch |
+
+**Kill condition.** The route derives the measured `Ω_Λ` only if it gives a *density* share of `log 2`
+that holds at our epoch without being tuned, and that survives the early-epoch test. L2 says no local
+clock can do that for `Ω_Λ` itself. So the forecast is that Route 4 yields a true every-epoch clock identity
+(L1) but not the measured dark-energy fraction.
