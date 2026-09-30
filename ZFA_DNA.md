@@ -587,6 +587,17 @@ $ python3 penrose_zfa.py --svg       # redraws the figure
 
 ---
 
+## 15. Carbon: the DNA of graphene
+
+The alphabet's sign alternation, `+ − + − …`, confines a walk to a two-layer slab, and the slabs on two, three
+and four axes project to carbyne, graphene and diamond. Graphene uses exactly the three spatial axes, and its
+closed walks are exactly the alternating ZFA words. `t ↦ t u′ t w′ t` is a graphene DNA with inflation 4 and
+one free order bit per twist, `h = 1/4`. The superconducting magic-angle graphene multilayers sit at the chain
+ratios `1, √2, φ, √3`, the family of §13. See [`Carbon_Superconductivity.md`](Carbon_Superconductivity.md) and
+[`carbon_zfa_dna.py`](carbon_zfa_dna.py).
+
+---
+
 ## References
 
 The substrate (§0), the DNA rule (§1) and the generations (§4, §7) are this repository's. The

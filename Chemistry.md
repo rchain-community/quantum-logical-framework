@@ -62,6 +62,8 @@ The constructor builds each as a distinct form:
 - **Ring / loop** (cyclocarbon) — 2 bonds per C, carbons in a closed ring.
   [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=ring%20%40%200%2C0%2C0)
 - **Graphene** — sp², **3 bonds per C** in a flat honeycomb sheet.
+  The three hybridisations are the twist alphabet's sign-alternating slabs on 2, 3 and 4 axes, and graphene's
+  closed walks are ZFA words ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md) §1).
   [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphene%20%40%200%2C0%2C0)
 - **Graphite** — stacked graphene sheets.
   [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphite%20%40%200%2C0%2C0)
