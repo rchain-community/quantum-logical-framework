@@ -11,6 +11,7 @@ Pure Python (small matrices; Gauss-Jordan inverse).
 """
 import math
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, "data", "kids_rar")
@@ -125,6 +126,9 @@ def main():
 
     c2m = chi2(d7, iso_cov, MODELS["M  MOND baseline, a0 = 1.2   "], last7)
     print(f"Pipeline check: MOND on D7, chi2_red = {c2m / 7:.2f}  (B21: 4.0)")
+    if "--relative" in sys.argv:
+        relative(iso, iso_cov, c2m)
+        return
     if abs(c2m / 7 - 4.0) > 0.3:
         print("  -> does not reproduce B21; stopping before the QLF test (pre-registered rule).")
         return
@@ -145,6 +149,53 @@ def main():
             full = read_esd(f"Fig-8_RAR-KiDS-isolated_{kind}bin_{b}.txt")
             run(f"DT  {kind} bin {b} (observable >= {key}), 7 highest bins", full[-7:], read_cov(covf, key),
                 list(range(len(full) - 7, len(full))))
+
+
+def relative(iso, iso_cov, c2m_d7):
+    """The pre-registered amendment: scale-free ratios, then the calibrated check."""
+    mond = MODELS["M  MOND baseline, a0 = 1.2   "]
+    qs = {k: f for k, f in MODELS.items() if not k.startswith("M")}
+    n = len(iso)
+    sets = [("D7 ", iso[-7:], iso_cov, list(range(n - 7, n))),
+            ("D15", iso, iso_cov, list(range(n)))]
+    hot = read_esd("Fig-4_RAR-KiDS-isolated_hotgas_Nobins.txt")
+    sets.append(("DH ", hot[-7:], read_cov("Fig-4_RAR-KiDS-isolated_hotgas_covmatrix.txt"),
+                 list(range(len(hot) - 7, len(hot)))))
+    for kind, fname, keys in (("Sersic", "Sersicbins", (0.0, 2.0)), ("Color", "Colorbins", None)):
+        covf = f"Fig-8_RAR-KiDS-isolated_{fname}_covmatrix.txt"
+        ks = keys or sorted({float(l.split()[0]) for l in open(os.path.join(D, covf)) if not l.startswith("#")})
+        for b, key in enumerate(ks, start=1):
+            full = read_esd(f"Fig-8_RAR-KiDS-isolated_{kind}bin_{b}.txt")
+            sets.append((f"{kind[0]}{b} ", full[-7:], read_cov(covf, key), list(range(len(full) - 7, len(full)))))
+
+    s = (c2m_d7 / 7) / 4.0
+    print(f"\nAmendment — calibration s = {s:.3f} (from MOND on D7 vs B21's 4.0)")
+    gama = read_esd("Fig-4-C1_RAR-GAMA-isolated_Nobins.txt")
+    gc = read_cov("Fig-4-C1_RAR-GAMA-isolated_covmatrix.txt")
+    p15 = chi2(iso, iso_cov, mond, list(range(n))) / n / s
+    pg = chi2(gama, gc, mond, list(range(len(gama)))) / len(gama) / s
+    ok15, okg = abs(p15 / 4.6 - 1) <= 0.15, abs(pg / 0.8 - 1) <= 0.15
+    print(f"  predicted B21 MOND D15 = {p15:.2f} (B21 4.6) -> {'pass' if ok15 else 'fail'}")
+    print(f"  predicted B21 MOND GAMA = {pg:.2f} (B21 0.8) -> {'pass' if okg else 'fail'}")
+    calibrated = ok15 and okg
+
+    print("\nPrimary: R = chi2_QLF / chi2_MOND (scale-free)")
+    for label, rows, cov, idx in sets:
+        cm = chi2(rows, cov, mond, idx)
+        line = f"  {label} N={len(rows)}  MOND chi2 = {cm:7.2f}"
+        for qn, qf in qs.items():
+            cq = chi2(rows, cov, qf, idx)
+            tag = "better" if (cq < cm and (cq - cm) / s < -4) else ("no worse" if cq <= cm else "worse")
+            line += f" | {qn.split(',')[0]}: R = {cq / cm:.3f} ({tag})"
+        print(line)
+        if calibrated:
+            cal = "      calibrated chi2_red (/s): MOND %.2f" % (cm / len(rows) / s)
+            for qn, qf in qs.items():
+                cq = chi2(rows, cov, qf, idx) / s
+                cal += f", {qn.split(',')[0]} {cq / len(rows):.2f} (p = {pval(cq, len(rows)):.3g})"
+            print(cal)
+    if not calibrated:
+        print("  calibration check failed: calibrated absolute values not reported (pre-registered rule)")
 
 
 if __name__ == "__main__":

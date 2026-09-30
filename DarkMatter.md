@@ -346,6 +346,20 @@ until the pipeline reproduces B21. Two ways forward: (1) ask B21's corresponding
 comparison, QLF against MOND in the same pipeline, which a common covariance scale cannot bias, recorded
 as an amendment before running it.
 
+**Amendment (2026-09-30, pre-registered before any QLF number was computed): a relative test.** If the
+released covariance differs from B21's by a common scale `s`, every `χ²` in this pipeline is `s` times
+B21's.
+
+- **Primary (scale-free):** `R = χ²_QLF/χ²_MOND` in the same pipeline, for Q0 and Q1 on D7, D15, DH and
+  each type split. `R` does not depend on `s`, and neither does the sign of `Δχ² = χ²_QLF − χ²_MOND`. QLF
+  is **no worse than MOND** on a dataset if `R ≤ 1`, and **better** if `R < 1` with `Δχ²/s < −4`.
+- **Secondary (calibrated):** fix `s` from B21's one number on the primary dataset (MOND on D7:
+  `s = 6.15/4.0 = 1.54`). That `s` must then *predict* B21's other two published values within 15%:
+  MOND on D15 (B21 `4.6`) and on GAMA (B21 `0.8`). Only if both pass are the calibrated QLF values
+  `χ²_red/s` reported as absolute fits (consistent if `p > 0.05`).
+- The original absolute test stays as registered and stays unrun until the pipeline gap is resolved with
+  B21's authors.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
