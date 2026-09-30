@@ -352,6 +352,48 @@ both curves. The hole side is then also well below 1 (0.58 ± 0.12 at 0.7).
 * The trilayer's exponent cannot be checked from the published curves, because they stop before the stiffness
   vanishes. The next data needed is a trilayer `ρ_s(T)` taken through to zero.
 
+### 8b. Two bits: one per electron (post hoc)
+
+*Proposed after §8a's result was seen (Jim, 2026-09-30), so this is a reading of that result, not a test of it.*
+
+**The proposal.** Each electron of a pair interacts on its own, so the pair carries two bits, one per electron.
+Four phase states is exactly `μ₄ = {±I, ±iI}` (`QLF_Pauli`). A single electron is an open strand relative to its
+pair, and open strands do reach `±iI` (`unbalanced_can_be_imaginary`, `QLF_BalancedPhaseReal`). So the two-bit
+phase is one QLF already carries.
+
+**What two bits count as.** Two bits per patch with neighbour couplings is the Ashkin–Teller model:
+`−K₂(s₁s₁′ + s₂s₂′) − K₄ s₁s₂s₁′s₂′`. The four-spin term `K₄` couples the pair's two bits. On the critical line
+`cos(πy/2) = (e^{4K₄} − 1)/2` and `ν = (2−y)/(3−2y)`, and the stiffness exponent is `x = ν`:
+
+| coupling of the two bits | model | `x = ν` |
+|---|---|---|
+| fully independent, `K₄ = 0` | two decoupled Ising models (also the μ₄ clock) | 1 (fails, as §8a) |
+| opposed, `K₄ < 0` | Ashkin–Teller | 1 → 2 |
+| joined, `K₄ > 0` | Ashkin–Teller | 1 → 2/3 |
+| fully symmetric, `K₄ = K₂` (all four states equivalent) | 4-state Potts | **2/3**, the minimum |
+
+So strictly independent bits do not rescue the reading, because they give `x = 1` again. What fits is the pair's
+bits being coupled, and the measured bilayer value sits at the symmetric end of the family:
+
+| bilayer curve, cutoff | `x` | `rss(x = 2/3) / rss(free)` | `rss(x = 1) / rss(free)` |
+|---|---|---|---|
+| electron, 0.5 (frozen) | 0.62 ± 0.07 | 1.15 | 4.87 |
+| electron, 0.8 | 0.58 ± 0.04 | 1.23 | 2.57 |
+| hole, 0.8 | 0.65 ± 0.11 | 1.00 | 1.38 |
+
+At the frozen cutoff, `x = 2/3` fits as well as the free exponent. At wider cutoffs the electron side sits about 2σ
+below 2/3, which is below the lowest value the family allows, so there is tension there.
+
+**Why this is not yet evidence:**
+* The match is post hoc. The Potts end was picked after the data were seen.
+* 3D XY gives nearly the same number, 0.67.
+* Two measurements separate the Potts end from 3D XY:
+  * Specific heat. 4-state Potts has a strong divergence, `α = 2/3`; 3D XY has almost none, `α ≈ −0.01`.
+  * Order-parameter exponent. `β = 1/12` for Potts, against `β ≈ 0.35` for 3D XY.
+
+**Pre-registered for new data.** A trilayer (or any moiré) stiffness curve taken to zero must give `x ≥ 2/3`
+within 2σ. A value clearly below 2/3 retires the two-bit reading outright, since no coupling of two bits gets there.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
