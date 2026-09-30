@@ -613,6 +613,52 @@ between AB and BA. An energy per crossing needs either one calibration (`D_s(0) 
 already does) or step 2: the flat band as a signed count, whose bandwidth sets the energy scale near the magic
 angle. With step 2 the prediction becomes an angle dependence `J(θ)`, testable against `T_c(θ)`.
 
+## 13. The flat band as a signed count (extension point 2)
+
+[`moire_flat_band.py`](moire_flat_band.py). In the continuum model of twisted bilayer graphene, a Dirac state of
+layer 1 at momentum `p` hops to layer 2 at `p + q_j` and back by `−q_j`, where the three `q_j` are at 120°. Every hop
+alternates layer, so the momentum states form **the alternating three-axis slab of §1**: the moiré's momentum
+lattice is the honeycomb of sign-alternating twists, and every closed hopping path is an alternating ZFA word.
+Each hop carries `T_j = w₁(σ_x cos φ_j + σ_y sin φ_j)` with `φ_j = 2π(j−1)/3`. This is the chiral limit
+(Tarnopolsky, Kruchkov & Vishwanath 2019).
+
+The Dirac velocity at the moiré K point is a signed sum over closed words:
+`v*/v = 1 − 3α² + …`, where `α = w₁/(v k_θ)`. The `1` is the empty word and `−3α²` comes from the three
+up-and-back words. **The magic angle is where the sum cancels**: `v* = 0`, and the band goes flat.
+
+The script computes `v*(α)` exactly inside capacity `R`, which keeps the momentum states within `R` alternating
+steps:
+
+| `R` | states | first zero `α₁(R)` | second zero `α₂(R)` |
+|---|---|---|---|
+| 1 | 4 | 0.5774 = 1/√3 | – |
+| 2 | 10 | **0.618034 = 1/φ** | – |
+| 3 | 19 | 0.5846 | – |
+| 4 | 31 | 0.5857 | 1.92 |
+| 8 | 109 | 0.5857 | 2.218 |
+| 18 | 514 | **0.5857** | **2.2212** |
+| known | | 0.586 | 2.221 |
+
+**Checks:**
+* At `R = 1` the script reproduces `(1−3α²)/(1+3α²)` exactly.
+* It converges to both known magic values.
+* The zero at `R = 2` is `1/φ` to 16 digits, and `R = 1` gives `1/√3`. These are exact numbers of the finite
+  truncated graphs, not of the physical value 0.5857.
+
+**What the phases do.** With the phases switched off (all `φ_j = 0`), `R = 1` gives `v* = 1/(1+3α²)`: the
+up-and-back words add and never cancel. Longer words do cancel without phases, but at `α = 0.7808`, not 0.5857.
+So the cube-root phases turn the leading correction negative, and they set where the full sum cancels.
+
+**The twist angle.** `α₁` is dimensionless. The angle it corresponds to depends on `w₁` and `v`, which the count
+does not supply: for `w₁ = 110 meV` it is 1.20° at `v = 0.8×10⁶ m/s` and 0.96° at `1.0×10⁶ m/s`. For the
+multilayers, `α_eff = 2cos(jπ/(n+1)) α` (Khalaf et al. 2019), so every member is flat at the same zero of the same
+signed sum, reached at an angle `√2, φ, √3` times larger (§3).
+
+**Still no absolute `J`.** In a flat band the superfluid stiffness is not set by the band velocity, which vanishes.
+It is set by the band's quantum geometry times the pairing energy (Peotta & Törmä 2015; Hazra, Verma & Randeria
+2019). The count gives *where* the band is flat. The one-bit coupling needs the geometry of its wavefunctions (their
+spread over the ODD honeycomb of §12) and an interaction energy.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -660,3 +706,9 @@ angle. With step 2 the prediction becomes an angle dependence `J(θ)`, testable 
   bilayer graphene narrow bands. *Phys. Rev. X* 8, 031088.
 - Po, H. C., Zou, L., Vishwanath, A. & Senthil, T. (2018). Origin of Mott insulating behavior and superconductivity
   in twisted bilayer graphene. *Phys. Rev. X* 8, 031089.
+- Tarnopolsky, G., Kruchkov, A. J. & Vishwanath, A. (2019). Origin of magic angles in twisted bilayer graphene.
+  *Phys. Rev. Lett.* 122, 106405. doi:10.1103/PhysRevLett.122.106405
+- Peotta, S. & Törmä, P. (2015). Superfluidity in topologically nontrivial flat bands. *Nature Communications* 6,
+  8944. doi:10.1038/ncomms9944
+- Hazra, T., Verma, N. & Randeria, M. (2019). Bounds on the superconducting transition temperature: applications to
+  twisted bilayer graphene and cold atoms. *Phys. Rev. X* 9, 031049. doi:10.1103/PhysRevX.9.031049
