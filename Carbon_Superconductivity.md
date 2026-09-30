@@ -198,6 +198,52 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    Kolmogorov range. A pre-registered test of whether that range carries the substrate's `log 2` per octave is the
    natural second route.
 3. The fulleride lead of §4, if a count can be framed that could fail.
+4. Phase coherence, the second step of superconductivity after pairing: pre-registered in §7.
+
+## 7. Pre-registered: phase coherence to one bit
+
+*Fixed in the commit that adds this section, before any stiffness or `T_c` value below was gathered.*
+
+Pairing makes bosons, and `cooper_pair_boson` proves it. Superconductivity needs a second step: every pair locks
+to one shared phase, so that the condensate is one joint closure. The temperature at which that lock fails is set by
+the **phase stiffness** `D_s`, the cost of twisting the phase between neighbouring patches of condensate. This
+section counts the ways that step can fail.
+
+**What the substrate allows.** A closed history folds to `±I` and never to `±iI` (`QLF_BalancedPhaseReal`), and a pair
+folds to `+I`. So a closure carries at most one bit of phase. **Hypothesis H_1bit (Jim, 2026-09-30): the stiffness
+holds the phase to one-bit precision.** Each coherence patch carries a phase in `{0, π}`, and the ways of the
+condensate are the configurations of those bits. That count is the Ising model on the lattice of patches. The rival
+**H_BKT** is the standard picture: a continuous phase, and a count of vortices (fluxoids, each one ZFA loop,
+[`Collective_Electrodynamics.md`](Collective_Electrodynamics.md)). Free vortices appear when their placements
+outnumber their cost, which gives the Kosterlitz–Thouless condition `k_B T_c = (π/2) D_s(T_c)`.
+
+**The derived prediction.** Take neighbouring patches with coupling `−J cos(Δθ)`. The zero-temperature stiffness is
+`D_s(0) = J`, `√3 J` and `J/√3` on the square, triangular and honeycomb lattices. Restricting the phase to one bit
+gives the Ising critical points `T_c/J = 2/ln(1+√2)`, `4/ln 3` and `2/ln(2+√3)`. So
+
+$$r \equiv \frac{k_B T_c}{D_s(0)} = 2.27,\ 2.10,\ 2.63 \quad (\text{H\_1bit, coherence-limited}), \qquad r \le \frac{\pi}{2} = 1.571 \quad (\text{H\_BKT, always}).$$
+
+The BKT ceiling holds because `D_s` falls with temperature and `D_s(T_c) = (2/π) k_B T_c`. `D_s` is in the
+convention where that BKT relation reads as written; a paper in another convention is converted to it. The two
+hypotheses are separated by a factor of about 1.5 in `r`, and by universality class. H_1bit is Ising, so it has no
+universal jump in the stiffness. H_BKT has a jump, from `(2/π) k_B T_c` to zero.
+
+**Data, fixed now.** Every sample in these three papers that reports `D_s(0)` and `T_c`, or the stiffness near `T_c`:
+1. Hebard & Fiory, *PRL* 44, 291 (1980): thin aluminium films, a conventional superconductor.
+2. Tanaka et al., *Nature* 638, 99 (2025): magic-angle twisted bilayer graphene.
+3. Banerjee et al., *Nature* 638, 93 (2025): magic-angle twisted trilayer graphene.
+
+**Tests and verdict rules.**
+* **U (universality).** Does any sample show a stiffness jump consistent with `(2/π) k_B T_c`, as the authors report
+  it? If yes, H_1bit fails for that material. No jump is **not** support for H_1bit, because twist-angle
+  inhomogeneity smears the jump in moiré samples.
+* **R (ratio).** Compute `r` per sample with its uncertainty. If any sample has `r > π/2` by more than 2σ, that
+  supports H_1bit and excludes H_BKT for that sample. If every sample has `r ≤ π/2`, H_1bit is not supported. That
+  outcome cannot tell "the phase is continuous" from "`T_c` is set by pairing, below the coherence temperature",
+  so R alone cannot make H_1bit fail.
+
+**Stated prior.** A BKT jump is well established in thin superconducting films, so I expect U to go against H_1bit
+for aluminium. I do not know the moiré values, and those are where the question is open.
 
 ## References
 
@@ -220,3 +266,9 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
 - Ganin, A. Y. et al. (2008). Bulk superconductivity at 38 K in a molecular system. *Nature Materials* 7, 367–371.
   doi:10.1038/nmat2179
 - OEIS A002898 (honeycomb returns), A002899 (diamond returns).
+- Hebard, A. F. & Fiory, A. T. (1980). Evidence for the Kosterlitz-Thouless transition in thin superconducting
+  aluminum films. *Phys. Rev. Lett.* 44, 291–294. doi:10.1103/PhysRevLett.44.291
+- Tanaka, M. et al. (2025). Superfluid stiffness of magic-angle twisted bilayer graphene. *Nature* 638, 99–105.
+  doi:10.1038/s41586-024-08494-7
+- Banerjee, A. et al. (2025). Superfluid stiffness of twisted trilayer graphene superconductors. *Nature* 638,
+  93–98. doi:10.1038/s41586-024-08444-3
