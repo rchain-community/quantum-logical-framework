@@ -66,7 +66,9 @@ Near a massive body, the number of intersecting histories is immense. The "compu
 
 Because the QuCalc engine must resolve every interaction to Zero Free Action (ZFA), it takes more "processing cycles" (or vacuum frequency ticks, $f$) for a standard photon's pure spatial history string (`^>`) to propagate through that region. 
 
-To an outside observer, **time slows down** near a mass, and the coordinate **speed of light is slower**. This correctly replicates the Shapiro time delay of General Relativity, but models it as an increase in computational latency within the discrete 8-twist algebra.
+To an outside observer, **time slows down** near a mass, and the coordinate **speed of light is slower**. This models the Shapiro time delay of General Relativity as an increase in computational latency within the discrete 8-twist algebra.
+
+That latency is the **time path**. There is also a **space path**: each event makes one Planck length and one Planck tick together (the event quantum), so near mass each tick's step is also shorter. Light is slowed along both, twice as much as clocks, and that gives the observed light bending, `1.75″` at the Sun's limb. The time path alone gives half ([`GR_Schwarzschild.md`](GR_Schwarzschild.md) §4a, `QLF_LightBending`). Locally light always moves at `c`; only relative to the distant vacuum is it slower, and that relative slowing is the rest frame that exhibits gravity.
 
 ---
 
