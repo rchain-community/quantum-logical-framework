@@ -122,6 +122,22 @@ stands, the same unproved step as the continuity equation of §5.7.
 that (a) selects our epoch rather than holding at every epoch, (b) has no free rate chosen to fit, and
 (c) makes a prediction beyond `q₀` and `H₀t₀`.
 
+**Result (2026-09-30): the forecasts held.** Running [`omega_lambda_halflife.py`](omega_lambda_halflife.py)
+after the pre-registration commit (`f46394a`):
+
+- **H1 and H2:** for `k = 1` and `k = log 2`, at `γ = 0.01, 0.1, 1`, the lent share runs to `Ω = 1` and `H·t`
+  diverges within 15–24 own-clock e-folds: the de Sitter attractor, as §5.8 found by another route.
+- **H3:** steady shares exist only for `k > 2` and small `γ`. Examples: `k = 3, γ = 0.1 → Ω = 0.0345`;
+  `k = 4, γ = 1 → Ω = 0.2113`; for larger `γ` there is no steady share and `Ω → 1`. The integrated runs
+  land on the fixed points. The share moves with the free `γ`.
+- **H4** is structural: a steady share is epoch-independent, so it fails the early-epoch test whatever
+  its value.
+
+**Verdict on Route 2: closed in this form.** "Half kept, half lent" with memoryless realization either
+runs to pure de Sitter (half per octave, or per e-fold) or gives a share set by a free creation rate.
+`log 2` enters only as a rate. A version that works would need a lent ledger that dilutes (`w > −1`) or a
+realization rate tied to something other than the age, and it would still have to fix our epoch.
+
 ---
 
 ## Route 3: a drifting Planck tick — *pre-registered 2026-09-30*
@@ -149,3 +165,35 @@ gravitational sector.
 
 **Kill condition.** The route survives only if a drift within the bounds reconciles the two ages or
 yields `log 2`. The forecast is that neither happens.
+
+**Result (2026-09-30): the forecasts held.** Running [`tick_drift.py`](tick_drift.py) after `f46394a`:
+
+- **T1:** direct integration matches `t₀/(1 − β)`: `β = 0.049` turns 13.80 Gyr of cosmic time into
+  14.51 Gyr of ticks × today's tick, which is `1/H₀`.
+- **T2:** `β = 0.0493` (Planck ΛCDM) or `0.0420` (`Ω_Λ = log 2`).
+- **T3:** the required drift today is `3.6 × 10⁻¹²/yr` (ΛCDM) or `3.0 × 10⁻¹²/yr` (`log 2`). Through `α`
+  alone that is `α̇/α ≈ 1.5–1.8 × 10⁻¹²/yr`, about `7–8 × 10⁵` times the optical-clock limit. Through
+  gravity alone it is `≈ 6–7 × 10⁻¹²/yr`, `79–93σ` from the lunar-ranging value.
+- **T4:** a drift of this size shifts which epoch is "now"; it does not create an O(1) share.
+
+**Verdict on Route 3: excluded.** A drifting Planck tick could in principle make both ages true, with the
+age in ticks equal to `1/H₀` and the cosmic age equal to 13.8 Gyr. The drift that would take is ruled out
+by atomic clocks and lunar ranging by large factors. So the two ages stay different quantities, and
+`H₀t₀ ≠ 1` stands as a measured fact about the expansion history, not a clock artefact. Allowed drifts
+(below `~10⁻¹³/yr` through gravity) change the tick-count age by less than `0.2%` over a Hubble time.
+
+---
+
+## Where the search stands
+
+| Route | Status |
+|---|---|
+| 1. Octave, as an epoch condition | closed (no algebraic octave condition can give `log 2`) |
+| 1. Octave, as an identification (O4) | a restatement until derived |
+| 2. Half-life (memoryless lent share) | closed in its natural form (de Sitter attractor, or a free rate) |
+| 3. Drifting Planck tick | excluded by atomic clocks and lunar ranging |
+| Remaining | log-uniform over one e-fold; `Σ 2⁻ᵏ/k` with a derived `1/k`; conditions linear in time |
+
+The common thread: every route that gives the *same* share at every epoch is excluded by the early
+universe. Every route that selects an epoch needs a time scale that QLF does not yet supply without
+putting in the age itself.
