@@ -182,6 +182,30 @@ by atomic clocks and lunar ranging by large factors. So the two ages stay differ
 `H₀t₀ ≠ 1` stands as a measured fact about the expansion history, not a clock artefact. Allowed drifts
 (below `~10⁻¹³/yr` through gravity) change the tick-count age by less than `0.2%` over a Hubble time.
 
+**Result (2026-09-30).** Running [`omega_lambda_local_clock.py`](omega_lambda_local_clock.py) after the
+pre-registration commit (`fb9cddf`):
+
+- **L1, L1′ hold**, as identities: last octave / last e-fold `= 0.693147180560` at `t = 10⁻⁴⁰` through
+  `10¹⁰`, and it equals `T½/τ` for half-per-octave decay. This is the one sense in which `log 2` holds at
+  every time by a local clock. It is a ratio of durations.
+- **L2 holds:** `ρ_Λ/ρ_total` at today's event is `0.6847` whichever clock labels the event.
+- **L2′ as forecast:** `Ω_τ = Ω_Λ/(Ht)²` varies, from `0.210` at `Ω_Λ = 0.1` to `0.758` today and `0.428`
+  at `Ω_Λ = 0.95`, and it is not a density fraction.
+- **L3 as forecast:** `Ω_Λ = log 2` happens once, at `q = −0.540`, `H·t = 0.958`.
+- **L4:** of our last own-clock e-fold, `0.583` was spent accelerating (acceleration began at 7.70 Gyr) and
+  `0.292` with `ρ_Λ > ρ_m` (from 10.31 Gyr). Neither is `log 2`.
+
+**Exploratory, not pre-registered.** L2′'s `Ω_τ` peaks near today. The peak is where `sinh 2x = 4x`, at
+`Ω_Λ = 0.634` (`q = −0.451`, `Ω_τ = 0.764`), about 7σ from Planck. So "now is when the own-clock
+dark-energy share peaks" is also ruled out. It is recorded so that nobody rediscovers it as a hit.
+
+**Verdict on Route 4.** Your reading is right in one precise sense: in log-time, `log 2` is the share of
+an observer's last e-fold taken by its last doubling of age, at every epoch. It is also exactly the
+half-life-to-mean-life ratio of half-per-octave decay, so Routes 1, 2 and 4 meet at one identity:
+**octave / e-fold `= T½/τ = log 2`**. But that is a ratio of durations. The measured `0.685` is a ratio of
+densities, which no clock can change (L2). So the route explains why `log 2` is natural on a local clock.
+It does not derive the dark-energy fraction, and the "why now" remains: the two coincide at one epoch only.
+
 ---
 
 ## Where the search stands
@@ -192,7 +216,8 @@ by atomic clocks and lunar ranging by large factors. So the two ages stay differ
 | 1. Octave, as an identification (O4) | a restatement until derived |
 | 2. Half-life (memoryless lent share) | closed in its natural form (de Sitter attractor, or a free rate) |
 | 3. Drifting Planck tick | excluded by atomic clocks and lunar ranging |
-| Remaining | log-uniform over one e-fold; `Σ 2⁻ᵏ/k` with a derived `1/k`; conditions linear in time |
+| 4. Log-uniform one e-fold, local clock | `log 2` holds at every epoch as a *duration* ratio (identity); does not reach the *density* ratio |
+| Remaining | `Σ 2⁻ᵏ/k` with a derived `1/k`; a mechanism that turns the octave/e-fold duration ratio into an energy share |
 
 The common thread: every route that gives the *same* share at every epoch is excluded by the early
 universe. Every route that selects an epoch needs a time scale that QLF does not yet supply without
@@ -221,3 +246,8 @@ A quantity spread evenly in `τ` over one e-fold has the fraction `log 2` in its
 that holds at our epoch without being tuned, and that survives the early-epoch test. L2 says no local
 clock can do that for `Ω_Λ` itself. So the forecast is that Route 4 yields a true every-epoch clock identity
 (L1) but not the measured dark-energy fraction.
+
+**After Route 4.** The four routes share a single `log 2`: the octave/e-fold ratio, which is also
+half-life over mean life. The open problem is now sharper. Is there a mechanism that turns that
+*duration* ratio into an *energy* share, and makes it hold at our epoch? For example, energy realized in
+proportion to own-clock time spent. Any such mechanism must still pass the early-epoch test.
