@@ -473,6 +473,53 @@ steep curve, not the plateau a Gorter–Mellink tangle would give.
 * The QLF turbulence bridge, the `log 2`-per-octave cascade of [`Turbulence.md`](Turbulence.md), would need a
   spectral observable there, such as vortex noise spectra. That is a different measurement from V–I.
 
+## 10. The ZFA DNA of magic-angle graphene: a candidate to extend
+
+The candidate structure is **magic-angle twisted trilayer graphene**. It is the one sample where the one-bit
+phase reading survived §7a–§8a. [`moire_zfa_dna.py`](moire_zfa_dna.py) builds its DNA from the sheet DNA of §2.
+
+**Every Eisenstein integer is a sheet DNA.** A twist step projects to `1, ω, ω²` (`ω = e^{2πi/3}`). Take
+`z = p + qω + rω²` with `p + q + r = 1`, which means `z ≡ 1 mod (1−ω)`, so that A sites map to A sites. Then the
+rule "`+e_a` becomes an alternating word with counts `(p, q, r)` rotated to axis `a`" is a ZFA DNA of graphene:
+* It scales the sheet by `|z|` and rotates it by `arg z`.
+* Closure is kept at every depth, and every generation stays on the sheet.
+* Keeping the block heads returns the parent.
+* Block boundaries land exactly on `z` times the parent's corners.
+
+§2's rule is the case `z = 4`, and `x ↦ x ȳ x` is `z = 2 − ω`.
+
+**A chiral pair makes the twist.** The mirror `z̄` has the same counts in mirror order. Grow layer 1 with `z` and
+layer 2 with `z̄`, and the two sheets are rotated relative to each other by `2 arg z` (mod 60°). These are the
+commensurate angles of twisted graphene. The script checks the standard family `m = 1, 2, 3, 10, 30, 31`
+(21.79°, 13.17°, 9.43°, 3.15°, 1.085°, 1.050°) exactly. The magic cell at 1.050° is `z` with norm 2977 and counts
+`(32, −31, 0)`.
+
+**The ways.** Every alternating order of a DNA's counts is the same step taken a different way:
+* The smallest cells of the standard family use two axes, so their word is **forced**, a single zigzag
+  `(> v)^m >`. The magic bilayer cell has exactly one way.
+* Larger cells at nearby angles use three axes and do carry free order.
+* The trilayer cell nearest `√2 × 1.050° = 1.485°` is 1.492°, norm 4423, counts `(23, −44, 22)`. It has
+  `2.1 × 10¹²` ways, 0.46 bits per twist.
+* So one-way versus many-way belongs to the chosen cell, not to the material.
+
+**The trilayer DNA.** Three layers carry `z, z̄, z`. The stacking word `+ − +` is the sign alternation of the
+sublattice again, now between layers. Generation 1 of each layer from the hexagon is ZFA, on the sheet, and of
+equal length (534 twists).
+
+**Not claimed:** that this lattice makes the bands flat or causes pairing. The flat bands at the magic angle are
+the continuum model's result (Bistritzer & MacDonald 2011).
+
+**Extension points, in order of reach:**
+1. **Interlayer closures.** Count where the two layers' sites coincide, which gives the AA/AB moiré pattern.
+2. **The flat band as a count.** Hopping around a moiré cell is a closed word. The magic angle would be where the
+   signed sum over those closures cancels.
+3. **The one-bit / two-bit phase of §7–§8 on the moiré lattice.** One bit per moiré cell, with the coupling given
+   by the step-1 closures. This could give a predicted `T_c/ρ_s0` for the trilayer, to set against the measured
+   2.2–4.2.
+4. **The fullerides**, which have the highest carbon `T_c`. Their pentagons are odd rings, outside every DNA here.
+   C₆₀ is icosahedral, so its natural ratio is φ ([`ZFA_DNA.md`](ZFA_DNA.md) §11), not an Eisenstein one. This is
+   the candidate for a different DNA.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -512,3 +559,5 @@ steep curve, not the plateau a Gorter–Mellink tangle would give.
   doi:10.1016/0031-8914(49)90105-6
 - Halperin, B. I. & Nelson, D. R. (1979). Resistive transition in superconducting films. *J. Low Temp. Phys.* 36,
   599–616. doi:10.1007/BF00116988
+- Bistritzer, R. & MacDonald, A. H. (2011). Moiré bands in twisted double-layer graphene. *PNAS* 108, 12233–12237.
+  doi:10.1073/pnas.1108174108
