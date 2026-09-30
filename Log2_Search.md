@@ -330,6 +330,41 @@ energy flowing from vacuum into matter today. Whether data prefer it is a separa
 
 ---
 
+## Route 5 fit: the interacting vacuum against CMB + BAO + SN — *pre-registered 2026-09-30*
+
+**The model.** Route 5's V1: vacuum energy (`w = −1`) decays into matter at `Q = λ·H_Λ·ρ_Λ`, with
+`H_Λ/H = √Ω_Λ`. At `λ = 0` it is flat ΛCDM exactly, so the fit asks a nested question: do the data
+prefer `λ ≠ 0`? Two values carry QLF meaning: `λ = 1` (mean realization time one vacuum-clock unit,
+attractor `Ω* = 0.718`) and `λ = 1.106` (the attractor at `log 2`).
+
+**Data** (checked by [`fit_interacting_vacuum.py`](fit_interacting_vacuum.py)):
+
+- **CMB:** Chen, Huang & Wang 2019 distance priors, the wCDM set (`R = 1.7493`, `l_A = 301.462`,
+  `ω_b = 0.02239`, with correlations), `z*` from their Hu–Sugiyama fit. `R` uses the early-time matter
+  density, since the vacuum's transfer is negligible there (`Ω_Λ ∝ a³` early).
+- **BAO:** DESI DR2 (arXiv:2503.14738) Table IV: BGS `D_V/r_d`, and `D_M/r_d`, `D_H/r_d` with correlations
+  for LRG1, LRG2, LRG3+ELG1, ELG2, QSO and Lyα. `r_d` from DESI's eq. (2) (Brieden, Gil-Marín & Verde 2023).
+- **SN:** Pantheon+ (Brout et al. 2022), `m_b_corr` for `z_HD > 0.01`, full STAT+SYS covariance, the
+  absolute magnitude marginalized analytically.
+
+**Pipeline checks, run first.** (A) DESI BAO alone in flat ΛCDM must give `Ω_m = 0.2975 ± 0.0086` and
+`h·r_d = 101.54 ± 0.73 Mpc`. (B) Pantheon+ alone must give `Ω_m = 0.334 ± 0.018`. Each within its 1σ. If
+either fails, the model fit is not run until the pipeline is fixed.
+
+**Fits.** ΛCDM (`Ω_m, h, ω_b`) and the interacting vacuum (`+ λ`, free in `[−5, 5]`; `λ < 0` would move
+energy from matter into the vacuum), on CMB + BAO + SN (primary) and CMB + BAO. Reported: best-fit
+values, `Δχ² = χ²_ΛCDM − χ²_IV`, and the profile `Δχ²(λ)` with its 68% and 95% ranges.
+
+**Decision rule.** The interacting vacuum is **preferred** if `Δχ² > 4` for its one extra parameter
+(about 2σ), and otherwise **no preference**. A value of `λ` is **excluded at 95%** if its profile
+`Δχ² > 3.84`. Applied to `λ = 0`, `λ = 1` and `λ = 1.106`.
+
+**Forecast.** No numerical forecast. Recent analyses find DESI BAO mildly favoring dark energy that
+weakens over time. A vacuum decaying into matter (`λ > 0`) has that character, so a mild preference for
+`λ > 0` would not be surprising; whether it reaches `λ ≈ 1` is the question.
+
+---
+
 ## Route 6: a QLF reason for the `√log 2` clock ratio (2026-09-30)
 
 **First, what the clock ratio is.** `H_Λ/H = √Ω_Λ` is an identity (V0). So a reason for the vacuum clock

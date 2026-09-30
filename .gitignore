@@ -16,3 +16,6 @@ __pycache__/
 # Claude Code scheduled-tasks lock — per-session runtime state, churns every
 # session and was accidentally committed once (bb7b40a); never track it.
 .claude/*.lock
+
+# Pantheon+ release, downloaded by fit_interacting_vacuum.py (33 MB covariance)
+data/pantheonplus/
