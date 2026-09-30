@@ -50,3 +50,35 @@ both, O4 is recorded as a restatement of the fit.
 functions. A condition that involves the elapsed time or the e-fold count *linearly* (for example
 `H·t = 1`) is outside G and can give transcendental values. Such conditions are not octave conditions and
 belong to a later route.
+
+**Result (2026-09-30): the forecasts held.** Running [`omega_lambda_octave.py`](omega_lambda_octave.py)
+after the pre-registration commit (`ef02335`):
+
+| | Result |
+|---|---|
+| O1 | `Ω_Λ = 0.888889 = 8/9` exactly (`q = −0.833`, `H·t = 1.247`), 28σ from Planck |
+| O2 | `H(t/2)/H(t)` falls from `2` at `x → 0` to `1.648` at `Ω_Λ = 0.58` and `1.013` at `Ω_Λ ≈ 1`. It is below 2 at every sampled epoch with `Λ` present |
+| G | the `u = tanh(x/2)` identities hold to `2 × 10⁻¹⁵`, so the algebraicity argument stands |
+| O4 | `log 2` by construction, at `q₀ = −0.540`, `H₀t₀ = 0.958`, 1.2σ from Planck |
+
+**Verdict on Route 1.** The epoch-condition form of the octave route is **closed**: no octave condition
+on a flat constant-`Λ` history can select `log 2`, and the two natural ones select `8/9` and nothing.
+O4 is **recorded as a restatement of the fit**. It has no derivation yet, and its only predictions are the
+shared `q₀` and `H₀t₀`.
+
+**What an O4 derivation would have to supply.** `∫_ω^{2ω} dω/ω = log 2` is a measure in e-folds, not a
+fraction of a whole, so O4 needs a normalization that turns it into one. Three standard ways `log 2`
+appears as a genuine *fraction* are candidates for later routes. Each would need its own physical mapping
+and its own second prediction:
+
+1. **A log-uniform quantity spanning one e-fold** puts the fraction `log 2` in its lowest octave. This
+   needs a reason for the one-e-fold span.
+2. **Half-life over mean lifetime**: `T½/τ = log 2` for any memoryless decay. This is the closest to the
+   "half kept locally, half lent to the future" picture (`Cosmological_Constant.md` §5.7), if the lent
+   share decays with a constant hazard.
+3. **Geometric halving with harmonic weight**: `Σ 2⁻ᵏ/k = log 2` is the expected `1/k` when each step
+   passes on half (the census's Kraft weighting). This needs a derived reason for the `1/k`.
+
+Conditions outside G, which involve the elapsed time linearly (like the two-clock agreement `H·t = 1`,
+reached at `Ω_Λ = 0.737`), are a separate route. At `Ω_Λ = log 2` the two clocks read `H·t = 0.958`, which
+is not a natural value, so that route also needs a new idea rather than a known marker.
