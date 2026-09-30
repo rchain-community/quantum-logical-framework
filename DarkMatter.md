@@ -289,6 +289,51 @@ scaling to the paper's MOND framework, not a refit. The fitting form is McGaugh'
 (§7.5). The like-for-like test is a refit of the MUSE-DARK rotation curves in QLF's form, which needs the
 per-galaxy data.
 
+### 5d. Lensing sees the same `a₀`: the KiDS-1000 weak-lensing test — *pre-registered 2026-09-30*
+
+**Why lensing tests the picture.** A denser vacuum near mass slows light along two paths, time and space,
+and the same vacuum density bends orbits ([`GR_Schwarzschild.md`](GR_Schwarzschild.md) §4a,
+`QLF_LightBending`). So there is no second field: **lensing must follow the same law as dynamics**. QLF's
+law, fitted to SPARC rotation curves, must predict weak-lensing accelerations around isolated galaxies with
+no free parameter. Relativistic MOND theories often need extra fields to arrange this; here it is
+automatic, so it can fail.
+
+**Data.** Brouwer et al. 2021 (A&A 650, A113; "B21"): the lensing radial acceleration relation of about
+350,000 isolated KiDS-bright galaxies, mean lens redshift `⟨z⟩ ≈ 0.2`, with 15 bins in `g_bar` from
+`1.4 × 10⁻¹⁵` to `3.9 × 10⁻¹² m/s²`. Data release: ESD profiles with full covariance matrices
+(`kids.strw.leidenuniv.nl/sciencedata.php`, stored in [`data/kids_rar/`](data/kids_rar/README.txt)).
+`g_obs = 4G·ESD/(1 + K)` (B21 Eq. 7, the SIS conversion B21 use for their main results).
+
+**Models, all with zero free parameters** (checked by [`kids_lensing_test.py`](kids_lensing_test.py)):
+
+| | Model | `a₀` [10⁻¹⁰ m/s²] |
+|---|---|---|
+| Q0 | QLF law `g_obs = ½(g_bar + √(g_bar² + 4g_bar·a₀))`, local `a₀` | 1.127 (SPARC, QLF form, §5) |
+| Q1 | the same, with `a₀` scaled to the lens redshift by the expansion clock (§5c): `a₀·H(0.2)/H₀` | 1.250 |
+| M | reference: MOND baseline as in B21, McGaugh's form `g_bar/(1 − e^{−√(g_bar/a₀)})` | 1.2 |
+
+**Datasets.**
+- **D7 (primary):** the 7 highest-`g_bar` bins, the points B21 treat as inside the isolation limit for
+  KiDS-bright's photometric redshifts. (B21's text prints the limit as `R < 3 h₇₀⁻¹ Mpc` and a figure
+  caption shades `R > 0.3`; seven of the fifteen bins matches `0.3` for a typical lens mass.)
+- **D15:** all 15 bins.
+- **DH:** the hot-gas version of B21's `g_bar` (their Fig. 4), 7 highest bins.
+- **DT (universality):** early and late types separately, split by Sérsic index (`n > 2` / `n < 2`) and by
+  `u − r` colour, 7 highest bins each. QLF's law is universal, so it must fit both with one curve. B21 found
+  the types differ.
+
+**Statistic.** `χ² = (g_obs − g_mod)ᵀ C⁻¹ (g_obs − g_mod)` with the bias-corrected covariance; with no free
+parameters, `χ²_red = χ²/N`. A model is consistent if `p > 0.05`.
+
+**Pipeline check, run first.** Before any QLF number counts, the script must reproduce B21's published
+MOND result on D7, `χ²_red = 4.0`. If it does not (within `±0.3`), the test stops and the pipeline is fixed
+first. This is a check the construction could fail.
+
+**Forecast.** No numerical forecast. In the deep regime both laws approach `√(a₀·g_bar)`, so QLF behaves
+like MOND there, with `g_obs` shifted by `√(a₀/1.2)`: `−3%` for Q0 and `+2%` for Q1. B21 report the data
+rising above MOND at higher stellar mass, so Q1 is expected to do slightly better than Q0. The type split
+is expected to be in tension for any universal law, unless early types carry more (hot) gas.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
