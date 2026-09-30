@@ -2,9 +2,9 @@
 
 # Carbon Superconductivity: the ZFA DNA of Graphene
 
-*Where the superconductivity thread starts: the carbon lattices written in the twist alphabet, the substitution rule
-that grows graphene, and the magic-angle family of superconducting graphene stacks. A log 2 test was pre-registered
-in §5 before it was run, and §5a has the result.*
+*The superconductivity thread: the carbon lattices written in the twist alphabet, the substitution rules that grow
+graphene and its twisted stacks, and a series of tests on superconducting graphene, each pre-registered before its
+data was read.*
 
 Graphene only superconducts when two sheets are twisted by about 1.1°. Stack three sheets and the angle moves up by
 √2; stack four and it moves up by φ. Why should the ratios the ZFA DNA produces (ZFA_DNA.md §11–13) turn up
@@ -12,6 +12,28 @@ in a stack of carbon sheets? And does the log 2 that runs through QLF appear in 
 conduct? This document takes the first question as far as it goes and sets up the second as a test.
 
 Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in §1–§3 is asserted by it).
+
+---
+
+## At a glance
+
+| § | question | result | status |
+|---|---|---|---|
+| 1–2 | carbon from the twist alphabet | sign-alternating walks give carbyne / graphene / diamond; graphene's closed walks are the alternating ZFA words; DNA `t ↦ t u′ t w′ t`, `h = 1/4` | proved by construction |
+| 3 | magic-angle family | multilayer magic angles at `1, √2, φ, √3` (Khalaf et al.) | published physics, placed |
+| 5 | strange-metal rate = `log 2`? | PASS by the rule, but two populations (`χ²` 25/8) | **not supported** |
+| 7 | phase held to one bit? | trilayer `T_c/ρ_s0` = 2.2–4.2, above the BKT ceiling 1.57 | lead, conditional on the stiffness |
+| 8 | Ising exponent | bilayer stiffness vanishes with `x = 0.62 ± 0.07` | **one bit fails in the bilayer**; also fails in Al |
+| 8b | two bits per pair | coupled bits reach `x = 2/3` (4-state Potts) | post hoc |
+| 9 | turbulent vortex tangle? | `a(T)` climbs through 3; no plateau in 4 samples | **not supported** (V–I) |
+| 10 | DNA of twisted graphene | Eisenstein DNAs; chiral pair `z, z̄` gives the commensurate angles exactly | proved by construction |
+| 11 | one bit on the moiré | Wannier honeycomb gives `r = 2.63`, matching the trilayer if the stiffness is as measured | pre-registered: measure `α` |
+| 12 | interlayer closures | EVEN hops on AA (triangular), ODD on AB/BA (honeycomb) | computed |
+| 13 | flat band as a signed count | zero at `α₁ = 0.5857`, `α₂ = 2.2212` (known 0.586, 2.221); `R = 2` gives `1/φ` exactly | computed |
+| 14 | flat-band geometry | `C = 1`, `G = 1.0000` only at `α₁`: the band is ideal where the count cancels | computed |
+
+**Open:** the pairing energy, the one number needed for an absolute `T_c`. Also open: the trilayer stiffness taken
+through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
 
 ---
 
@@ -190,17 +212,13 @@ The filling dependence is the lead worth following next, rather than the Plancki
 electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electricity.md) §6 (bath decoupling) and
 [`Chemistry.md`](Chemistry.md) §8 (`cooper_pair_boson`).
 
-**Next:**
-1. The filling dependence of magic-angle graphene's `C` (§5a): two branches either side of `ν = −2`.
-2. **The turbulence bridge.** [`Turbulence.md`](Turbulence.md) gets Kolmogorov's `−5/3` from a constant `log 2` flux
-   per octave. The same identity, octave per e-fold = `log 2`, is where the [`Log2_Search.md`](Log2_Search.md) routes
-   converged. Superfluids and superconductors carry quantised vortices, and quantum turbulence in a condensate has a
-   Kolmogorov range. A pre-registered test of whether that range carries the substrate's `log 2` per octave is the
-   natural second route.
-3. The fulleride lead of §4, if a count can be framed that could fail.
-4. Phase coherence, the second step after pairing (§7, §7a): the trilayer breaks the BKT ceiling and sits near the
-   one-bit value. It needs a stiffness measurement that does not assume BKT. The Ising-exponent check (§8a)
-   retires one-bit in the bilayer (x ≈ 0.6); the trilayer needs a stiffness curve taken through to zero.
+**Next** (as first listed; the later sections took them up):
+1. The filling dependence of magic-angle graphene's `C` (§5a): two branches either side of `ν = −2`. Still open.
+2. **The turbulence bridge** ([`Turbulence.md`](Turbulence.md), [`Log2_Search.md`](Log2_Search.md)). §9 tested a
+   driven vortex tangle in V–I data and found none. The `log 2`-per-octave cascade needs a spectral observable,
+   such as vortex noise, and is still open.
+3. The fulleride lead of §4: C₆₀ is icosahedral (φ), outside the Eisenstein DNAs of §10. Still open.
+4. Phase coherence, the second step after pairing: §7–§8 and §11–§14.
 
 ## 7. Pre-registered: phase coherence to one bit
 
