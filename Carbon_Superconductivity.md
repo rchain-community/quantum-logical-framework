@@ -441,6 +441,38 @@ failure here is support for turbulence only once they are ruled out:
 
 **Stated prior.** None. I do not know which of these papers report `a` at more than one temperature.
 
+### 9a. Result
+
+Run by [`vortex_turbulence_test.py`](vortex_turbulence_test.py) on [`data/moire_vi_curves.json`](data/moire_vi_curves.json).
+The pre-registration was frozen in commit `f29b8ab`. The V–I curves were taken from the vector data of the
+published figures. Hao 2021 cannot be used: its log–log inset labels only the two end temperatures. Tanaka and
+Banerjee show no V–I curves at several temperatures.
+
+**How `a` is measured.** `a` is the log–log slope over `5σ_floor ≤ V ≤ V_N(I)/3`, where `σ_floor` is the noise
+floor and `V_N` the normal-state curve. This window was fixed after the Park 2021 curves had been tabulated, so it
+is disclosed rather than pre-registered. Its sensitivity is printed per curve.
+
+| sample | `a` just above → at → below `T₃` | `T₃` | verdict |
+|---|---|---|---|
+| MATBG, Cao 2018 | 1.07 (1.26 K) → 2.4 (0.99 K) → 11 (0.69 K) → 30–36 | 0.69 K | **consistent with BKT** |
+| MAT4G, Park 2022 | 2.3 (2.2 K) → 2.9 (2.0 K) → 6.9 (1.8 K) → 20–36 | 1.80 K | **consistent with BKT** |
+| MATTG, Park 2021 | 1.1 (2.45 K) → 1.7 (2.1 K) → 4.7 (1.85 K) → 19 (1.55 K) | 1.85 K | undecided* |
+| MAT5G, Park 2022 | 1.8 (1.03 K) → 2.4 (0.93 K) → 3.9 (0.74 K) → 7.0 (0.20 K) | 0.74 K | undecided* |
+
+\*In both undecided samples the only miss is at the lowest temperature. There the curve is a sharp switch, and its
+fitted slope (7–14) comes from the rounding of the edge, not from a power law. It is also far from 3.
+
+**The turbulence reading is not supported.** In no sample does `a` sit at `3 ± 0.5` at any temperature below `T₃`,
+let alone at two. Everywhere, `a(T)` climbs smoothly and steeply: from about 1 above `T₃`, through 3, to 4–12 within
+a few tenths of a kelvin. That is the BKT pattern. The `V ∝ I³` in these moiré superconductors marks a point on a
+steep curve, not the plateau a Gorter–Mellink tangle would give.
+
+**What this does not rule out:**
+* It rules out a driven tangle in the transport regime. It says nothing about turbulence in equilibrium vortex
+  fluctuations above `T_c`, or at currents far above critical.
+* The QLF turbulence bridge, the `log 2`-per-octave cascade of [`Turbulence.md`](Turbulence.md), would need a
+  spectral observable there, such as vortex noise spectra. That is a different measurement from V–I.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
