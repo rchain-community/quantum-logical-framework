@@ -307,6 +307,13 @@ to be exactly 1. This matches Li (2004): holographic dark energy reaches de Sitt
 
 **Failure:** any of D1–D4 fails to prove.
 
+**Result (2026-09-29): all four proved**, no new axioms, in
+[`lean/QLF_DeSitterCount.lean`](lean/QLF_DeSitterCount.lean): D1 `desitter_count_ratio`, D2
+`selfconsistent_iff_unit_prefactor`, D3 `qlf_count_not_selfconsistent` (via `log_two_lt_one`), D4
+`section3_energy_eq_log_two_mul_bh` and `bh_energy_eq_desitter_energy`. The statements are the ones frozen
+above. So a constant `Λ` cannot get `log 2` from counting on its own horizon, and whether §3's `log 2` means
+anything now rests on the entropy residual ([`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9a).
+
 ---
 
 ## §6 Honest scoping (three-tier)
