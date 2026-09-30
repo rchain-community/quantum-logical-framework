@@ -250,5 +250,6 @@ lean_lib QLF where
     `QLF_GoldenSilver,
     `QLF_InflationObserver,
     `QLF_DeSitterCount,
-    `QLF_HorizonFirstLaw
+    `QLF_HorizonFirstLaw,
+    `QLF_LightBending
   ]
