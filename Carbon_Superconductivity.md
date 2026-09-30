@@ -394,6 +394,53 @@ below 2/3, which is below the lowest value the family allows, so there is tensio
 **Pre-registered for new data.** A trilayer (or any moiré) stiffness curve taken to zero must give `x ≥ 2/3`
 within 2σ. A value clearly below 2/3 retires the two-bit reading outright, since no coupling of two bits gets there.
 
+## 9. Pre-registered: is the vortex state near `T_c` turbulent?
+
+*Fixed in the commit that adds this section, before any V–I data below was looked at. Proposed by Jim: "and there
+must be turbulence".*
+
+**Why turbulence has an observable.** What destroys 2D superconductivity is free vortices, which QLF treats as
+quantised closures ([`Turbulence.md`](Turbulence.md)). In equilibrium the vortices unbind pair by pair (BKT). Under a
+driving current they can instead form a **turbulent tangle**. In superfluid helium such a tangle obeys the
+Gorter–Mellink law: Vinen's steady state has line density `L ∝ v²`, and the dissipation is `F ∝ L v ∝ v³`. For a
+film this means the density of free vortices grows as `I²` and their speed as `I`, so `V ∝ I³`.
+
+`V ∝ I³` is also what is conventionally used to *define* `T_BKT`. The two pictures differ in how the V–I exponent
+`a` depends on temperature:
+* **H_BKT.** `a(T) = 1 + π ρ_s(T)/k_B T`, which equals 3 only at `T_BKT`. Below `T_BKT`, because `ρ_s(T) ≥ ρ_s(T_BKT) =
+  (2/π) k_B T_BKT`, there is a lower bound that needs no stiffness data:
+  $$a(T) \ \ge\ 1 + 2\,T_{BKT}/T \qquad (T < T_{BKT}),$$
+  for example `a ≥ 3.5` at `0.8 T_BKT` and `a ≥ 5` at `0.5 T_BKT`.
+* **H_turb.** A Gorter–Mellink tangle gives `a ≈ 3` across a window of temperature below the point where `a` first
+  reaches 3, not at a single temperature.
+
+**The statistic.** For each sample with `a` reported at two or more temperatures:
+1. Let `T₃` be the highest temperature at which `a ≥ 3`. BKT identifies `T₃` with `T_BKT`.
+2. At every reported `T ≤ 0.9 T₃`, compare the measured `a` with the bound `1 + 2T₃/T`.
+
+**Verdict rules, per sample.**
+* **BKT FAILS, and the turbulence reading is supported**, if at two or more such temperatures `a` sits below the bound
+  by more than its uncertainty (or by more than 0.5 if no uncertainty is given), with `a` within `3 ± 0.5` there.
+* **Consistent with BKT**, if `a` meets the bound at every such temperature.
+* **Undecided** otherwise, including when fewer than two usable temperatures exist.
+
+**Data, fixed now.** V–I exponents, or V–I curves on log–log axes, at two or more temperatures, in:
+* Cao et al., *Nature* 556, 43 (2018), MATBG
+* Park et al., *Nature* 590, 249 (2021), MATTG
+* Hao et al., *Science* 371, 1133 (2021), MATTG
+* Park et al., *Nature Materials* 21, 877 (2022), the 4- and 5-layer stacks
+* the supplements of Tanaka 2025 and Banerjee 2025
+
+The arXiv versions are used.
+
+**Known confounders, stated now.** Each of these also flattens `a(T)` below `T₃` without any turbulence, so a BKT
+failure here is support for turbulence only once they are ruled out:
+* finite size, where free vortices are set by the sample edge
+* inhomogeneous `T_c`
+* Joule heating at large current
+
+**Stated prior.** None. I do not know which of these papers report `a` at more than one temperature.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -421,3 +468,15 @@ within 2σ. A value clearly below 2/3 retires the two-bit reading outright, sinc
   doi:10.1038/s41586-024-08494-7
 - Banerjee, A. et al. (2025). Superfluid stiffness of twisted trilayer graphene superconductors. *Nature* 638,
   93–98. doi:10.1038/s41586-024-08444-3
+- Cao, Y. et al. (2018). Unconventional superconductivity in magic-angle graphene superlattices. *Nature* 556, 43–50.
+  doi:10.1038/nature26160
+- Park, J. M. et al. (2021). Tunable strongly coupled superconductivity in magic-angle twisted trilayer graphene.
+  *Nature* 590, 249–255. doi:10.1038/s41586-021-03192-0
+- Hao, Z. et al. (2021). Electric field–tunable superconductivity in alternating-twist magic-angle trilayer graphene.
+  *Science* 371, 1133–1138. doi:10.1126/science.abg0399
+- Vinen, W. F. (1957). Mutual friction in a heat current in liquid helium II. III. Theory of the mutual friction.
+  *Proc. R. Soc. Lond. A* 242, 493–515. doi:10.1098/rspa.1957.0191
+- Gorter, C. J. & Mellink, J. H. (1949). On the irreversible processes in liquid helium II. *Physica* 15, 285–304.
+  doi:10.1016/0031-8914(49)90105-6
+- Halperin, B. I. & Nelson, D. R. (1979). Resistive transition in superconducting films. *J. Low Temp. Phys.* 36,
+  599–616. doi:10.1007/BF00116988
