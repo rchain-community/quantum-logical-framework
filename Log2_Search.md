@@ -218,6 +218,7 @@ It does not derive the dark-energy fraction, and the "why now" remains: the two 
 | 3. Drifting Planck tick | excluded by atomic clocks and lunar ranging |
 | 4. Log-uniform one e-fold, local clock | `log 2` holds at every epoch as a *duration* ratio (identity); does not reach the *density* ratio |
 | 5. Half kept, half lent, on a vacuum clock | no natural rate gives `log 2` (`0.718`, `0.794`); **the bridge `Ω_Λ = (H_Λ/H)²` survives** |
+| 6. A QLF reason for `√log 2` | none yet; **attractor theorem `Ω* = T/(3ρ_m)`**: the target is a derived transfer law whose stable attractor replaces `log 2` of matter's dilution loss |
 | Remaining | `Σ 2⁻ᵏ/k` with a derived `1/k`; a mechanism that turns the octave/e-fold duration ratio into an energy share |
 
 The common thread: every route that gives the *same* share at every epoch is excluded by the early
@@ -326,3 +327,58 @@ ratio, a different claim.
 into matter at `Q = λH_Λρ_Λ ∝ ρ_Λ^{3/2}`) with a late attractor instead of a de Sitter end state. With
 `λ` fitted, it has as many parameters as ΛCDM, and different predictions: `w_tot → −Ω*` in the future and
 energy flowing from vacuum into matter today. Whether data prefer it is a separate, testable question.
+
+---
+
+## Route 6: a QLF reason for the `√log 2` clock ratio (2026-09-30)
+
+**First, what the clock ratio is.** `H_Λ/H = √Ω_Λ` is an identity (V0). So a reason for the vacuum clock
+running at `√log 2` of the expansion clock *is* a reason for `Ω_Λ = log 2`. The clock language is a
+useful reframing, but by itself it supplies no mechanism.
+
+**Three classes of mechanism.** Everything tried so far falls into one of three classes:
+
+1. **Fixed at every instant** (a horizon count, a per-event ratio). The share is the same at every epoch,
+   so it fails the early-epoch test whatever its value (§5.7; `QLF_InflationObserver` P5).
+2. **Tied to an epoch** (octave conditions, a fixed half-life). This needs a time scale, and QLF has none
+   to supply without putting in the age or `H₀`.
+3. **A late-time attractor** (an interacting vacuum, Route 5). The share starts small (`Ω ∝ a³` early, as
+   in ΛCDM) and settles to `Ω*`. Every late observer sees about `Ω*`, so "why now" becomes "why late",
+   which observers existing only after structure forms answers. **This is the only class that passes
+   both constraints without an input.** The target is therefore a law whose attractor is `log 2`.
+
+**A general result for class 3.** Take any interacting vacuum: energy moves from the vacuum into matter
+at rate `T` per e-fold, so `ρ_Λ′ = −T` and `ρ_m′ = −3ρ_m + T`. Then `Ω′ = −T/ρ_total + 3Ω(1 − Ω)`, and at
+any fixed point
+
+    Ω* = T / (3ρ_m)
+
+**The late-time dark-energy share equals the fraction of matter's dilution loss that the vacuum
+replaces.** This holds for every transfer law. Checked numerically for three repayment clocks (expansion
+`T = λρ_Λ`, vacuum `T = λ√Ω·ρ_Λ`, vacuum²/expansion `T = λΩ·ρ_Λ`): each settles to a share equal to its
+replaced fraction, to six digits.
+
+**What that does to "half kept, half lent".** Read at the attractor, "the vacuum hands back half of
+what dilution takes" gives `Ω* = 1/2`, not `log 2`. `log 2` is the replaced fraction when "half" is meant
+*continuously*: `log 2` per unit is the continuous rate that halves over one unit (`e^{−log 2} = 1/2`),
+the same octave/e-fold identity as Routes 1, 2 and 4. So `Ω* = log 2` would say: *at the attractor, the
+vacuum refills matter at the continuous rate that halves per unit of dilution*. That is a precise
+candidate. It is not yet a derivation, for two reasons:
+
+- **It needs a derived transfer law `T(Ω)`**, not a stated fraction. A law that refills a fixed fraction
+  `r` of the dilution loss makes `Ω = r` an *unstable* fixed point (`Ω′ = 3(1 − Ω)(Ω − r)`), so it cannot
+  be the attractor. The natural stable laws above need `λ = 0.921, 1.106, 1.328` to put the attractor at
+  `log 2`, and none of those is a natural value.
+- **It needs a reason why the continuous form is the right reading of "half".**
+
+**The Landauer reading, and why it fails.** One more QLF-native source: each QLF event realizes one bit,
+at free energy `k_B T log 2` (`QLF_FreeEnergy`), while the continuum first law counts entropy in nats (`k_B T`
+per unit). A vacuum clock ticking once per bit against an expansion clock ticking once per nat would run
+at exactly `√log 2`. But this counts one bit per nat of horizon entropy, which is the overcount the first
+law excludes (`QLF_HorizonFirstLaw`), and it is class 1, so it fails the early-epoch test as well.
+
+**Where this leaves the search.** QLF has no reason yet for the `√log 2` clock ratio. The problem is
+narrower than before, though: find a transfer law, derived from the substrate, whose stable late-time
+attractor replaces `log 2` of matter's dilution loss. If one exists, its own predictions follow: no de
+Sitter end state (`w_tot → −log 2`, `q → −0.540` in the future), and energy flowing from the vacuum into
+matter today at `T = 3 log 2 · ρ_m` per e-fold. Both can be tested against interacting-dark-energy fits.
