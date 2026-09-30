@@ -3,8 +3,8 @@
 # Carbon Superconductivity: the ZFA DNA of Graphene
 
 *Where the superconductivity thread starts: the carbon lattices written in the twist alphabet, the substitution rule
-that grows graphene, and the magic-angle family of superconducting graphene stacks. A log 2 test is pre-registered
-in §5 before it is run.*
+that grows graphene, and the magic-angle family of superconducting graphene stacks. A log 2 test was pre-registered
+in §5 before it was run, and §5a has the result.*
 
 Graphene only superconducts when two sheets are twisted by about 1.1°. Stack three sheets and the angle moves up by
 √2; stack four and it moves up by φ. Why should the ratios the ZFA DNA produces (ZFA_DNA.md §11–13) turn up
@@ -149,6 +149,35 @@ reported. Where a paper gives a range without an uncertainty, half the range is 
 down so that the test cannot be tuned to it. A FAIL would be recorded as such: the Planckian rate is then not the
 closure receipt, and the log 2 question for superconductivity moves to the turbulence bridge (§6).
 
+### 5a. Result
+
+Run by [`planckian_log2_test.py`](planckian_log2_test.py). The pre-registration above was frozen in commit `ad8e36f`.
+
+| source | sample | `C` |
+|---|---|---|
+| Legros 2019 | PCCO + LCCO (electron-doped; one value in the text) | 1.0 ± 0.3 |
+| Legros 2019 | Bi2212 · LSCO · Nd-LSCO · Bi2201 | 1.1 ± 0.3 · 0.9 ± 0.3 · 0.7 ± 0.4 · 1.0 ± 0.4 |
+| Legros 2019 | (TMTSF)₂PF₆, organic | 1.0 ± 0.3 |
+| Cao 2020 | MATBG, `ν = −2 − δ` ("0.2–0.4") | 0.3 ± 0.1 |
+| Cao 2020 | MATBG, `ν = −2 + δ` ("1.0–1.6") | 1.3 ± 0.3 |
+| Grissonnanche 2021 | Nd-LSCO, angle-dependent magnetoresistance | 1.2 ± 0.4 |
+
+**By the frozen rule the verdict is PASS:** `C̄ = 0.614 ± 0.076`, which is 1.0σ from `log 2` and 5.1σ from 1.
+
+**It is not evidence for `C = log 2`.** The spread statistic registered with the mean says the nine values do not
+share one `C`: `χ² = 25.1/8`, `p = 0.0015`. They fall into groups:
+* The cuprates and the organic metal sit at `0.99 ± 0.13` (`χ² = 1.0/6`). This group puts `log 2` 2.4σ away.
+* Magic-angle graphene sits on two filling branches, 0.2–0.4 and 1.0–1.6.
+
+The mean lands between the groups because the one tightly bounded value, `0.3 ± 0.1`, carries 57 % of the weight.
+Three single measurements lie within 1σ of `log 2`, and each of those error bars also covers 1. The hypothesis was
+a per-event value that every material shares. No group sits at `log 2`.
+
+So the PASS stands as the rule's output, and the hypothesis is not supported. A weighted mean assumes one
+population, and these data contain at least two. What the data do show is that magic-angle graphene's `C` depends
+on which side of half filling the sheet is doped. A single universal `C`, `log 2` or 1, cannot produce that.
+The filling dependence is the lead worth following next, rather than the Planckian constant.
+
 ## 6. Scope, and what comes next
 
 **Established here, by construction and brute force:**
@@ -162,7 +191,7 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
 [`Chemistry.md`](Chemistry.md) §8 (`cooper_pair_boson`).
 
 **Next:**
-1. Run the §5 test.
+1. The filling dependence of magic-angle graphene's `C` (§5a): two branches either side of `ν = −2`.
 2. **The turbulence bridge.** [`Turbulence.md`](Turbulence.md) gets Kolmogorov's `−5/3` from a constant `log 2` flux
    per octave. The same identity, octave per e-fold = `log 2`, is where the [`Log2_Search.md`](Log2_Search.md) routes
    converged. Superfluids and superconductors carry quantised vortices, and quantum turbulence in a condensate has a
