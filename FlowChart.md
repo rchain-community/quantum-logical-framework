@@ -83,7 +83,7 @@ everywhere below ([`SpaceTime.md`](SpaceTime.md) §3a).
 The `6 spatial + 2 gauge` split (the `3` axes) fixes a family of constants. **α is the flagship.**
 
 
-**Connectors:** *N = 3^2* &rarr; alpha = 1/137 &middot; *spatial 3/8* &rarr; sin^2theta_W = 3/8 &middot; *gauge 2/8* &rarr; Omega_Lambda = log 2 &middot; *surface ~ r^2* &rarr; Newton 1/r^2 &middot; *l = 3* &rarr; nuclear magic numbers &middot; *6pi^5* &rarr; m_p/m_e = 6pi^5 &middot; *2/alpha* &rarr; m_pi/m_e = 274
+**Connectors:** *N = 3^2* &rarr; alpha = 1/137 &middot; *spatial 3/8* &rarr; sin^2theta_W = 3/8 &middot; *gauge 2/8* &rarr; Omega_Lambda ~ log 2 (observed match) &middot; *surface ~ r^2* &rarr; Newton 1/r^2 &middot; *l = 3* &rarr; nuclear magic numbers &middot; *6pi^5* &rarr; m_p/m_e = 6pi^5 &middot; *2/alpha* &rarr; m_pi/m_e = 274
 
 **Open:** [`SpaceTime.md`](SpaceTime.md) · [`Alpha.md`](Alpha.md) · [`Weak_Force.md`](Weak_Force.md) · [`Cosmological_Constant.md`](Cosmological_Constant.md) · [`Gravity_From_Delay.md`](Gravity_From_Delay.md) · [`Magic_numbers.md`](Magic_numbers.md) · [`Proton_Resonance_R_e.md`](Proton_Resonance_R_e.md) · [`Pion_QLF.md`](Pion_QLF.md) · [`Genesis.md`](Genesis.md)
 
@@ -134,7 +134,7 @@ Everything here is **downstream of the derived α** ([`Alpha.md`](Alpha.md) §10
 ## 6. Cosmology and the dark sector
 
 
-**Connectors:** *gauge 2/8* &rarr; Omega_Lambda = log 2 closes the 10^122 catas… &middot; *high-V epoch* &rarr; Inflation (same field) &middot; *denser logic* &rarr; Dark matter (no particle) &middot; *residual w = -1* &rarr; Dark energy &middot; *event rate* &rarr; Age ~ 13.8 Gyr &middot; *freeze-out n/p* &rarr; ^4He fraction Y_p ~ 1/4 &middot; *measured values* &rarr; Concordant with LCDM data &middot; *interpretive pillars* &rarr; Divergent on LCDM interpretation &middot; *equation of state* &rarr; Thermodynamic gravity
+**Connectors:** *gauge 2/8* &rarr; Horizon count closes the 10^122 catastrophe; Omega_Lambda ~ log 2 matched &middot; *high-V epoch* &rarr; Inflation (same field) &middot; *denser logic* &rarr; Dark matter (no particle) &middot; *residual w = -1* &rarr; Dark energy &middot; *event rate* &rarr; Age ~ 13.8 Gyr &middot; *freeze-out n/p* &rarr; ^4He fraction Y_p ~ 1/4 &middot; *measured values* &rarr; Concordant with LCDM data &middot; *interpretive pillars* &rarr; Divergent on LCDM interpretation &middot; *equation of state* &rarr; Thermodynamic gravity
 
 **Open:** [`Cosmological_Constant.md`](Cosmological_Constant.md) · [`Curvature.md`](Curvature.md) · [`DarkMatter.md`](DarkMatter.md) · [`SPARC.md`](SPARC.md) · [`AgeOfUniverse.md`](AgeOfUniverse.md) · [`Fusion.md`](Fusion.md) · [`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §3a
 

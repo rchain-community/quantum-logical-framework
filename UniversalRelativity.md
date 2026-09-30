@@ -161,7 +161,7 @@ kept distinct):
   ([`lean/QLF_SubstrateLightSpeed.lean`](lean/QLF_SubstrateLightSpeed.lean)); Newton `1/r²` + the form
   `G = L_P²c³/ℏ` ([`lean/QLF_GravityFromDelay.lean`](lean/QLF_GravityFromDelay.lean)); the *strength* of
   gravity `α_G = exp(−28π)` ([`lean/QLF_GravitationalCoupling.lean`](lean/QLF_GravitationalCoupling.lean));
-  `Ω_Λ = log 2`, closing the 10¹²² vacuum catastrophe
+  the holographic horizon count closing the 10¹²² vacuum catastrophe (with `Ω_Λ ≈ log 2` a 1.2% match, not derived)
   ([`lean/QLF_CosmologicalConstant.lean`](lean/QLF_CosmologicalConstant.lean)); Mercury's 42.99″/century
   perihelion advance ([`lean/QLF_MercuryPerihelion.lean`](lean/QLF_MercuryPerihelion.lean)); the Born
   measure axioms from integer path-counts
@@ -449,7 +449,7 @@ emergent geometry of the *aggregate* of closures: the **causal order** is a caus
 ([`lean/QLF_ReachableEvent.lean`](lean/QLF_ReachableEvent.lean)) whose number↔volume and layer growth
 give the metric and curvature (Sorkin / Benincasa–Dowker, [`lean/QLF_CausalInterval.lean`](lean/QLF_CausalInterval.lean),
 [`lean/QLF_CausalDimension.lean`](lean/QLF_CausalDimension.lean)), and the **thermodynamics** of each
-local horizon fixes `8πG = 2π/η`, `Λ = log 2` (Jacobson, `einstein_coupling_from_thermodynamics`,
+local horizon fixes `8πG = 2π/η`, with `Λ` the integration constant (Jacobson, `einstein_coupling_from_thermodynamics`,
 [`lean/QLF_EinsteinEquations.lean`](lean/QLF_EinsteinEquations.lean), [`Einstein_Equations.md`](Einstein_Equations.md)).
 The gauge forces are how closures *interact*; gravity is how closures *arrange*.
 
@@ -500,9 +500,10 @@ universe_age = "~13.8 Gyr effective cosmic age from ZFA event-synthesis history"
 In standard cosmology, the age of the observable universe is *inferred* from the expansion history of
 the scale factor — an empirical fit. Universal Relativity does **not** retain it as an empirical scale:
 the age is a **count of Planck ticks**, `t₀ = N · τ_Planck`. Planck's constant fixes the tick
-`τ_Planck = √(ℏG/c⁵)` with no empirical input; the substrate fixes the count `N` (the cosmic depth, via
-hadronic depth and the `Ω_Λ = log 2` crossover), so `t₀ ≈ 13.8 Gyr` is *derived* with no `H₀` tuning
-([`AgeOfUniverse.md`](AgeOfUniverse.md)), up to a single calibration.
+`τ_Planck = √(ℏG/c⁵)` with no empirical input; the substrate is meant to fix the count `N` (the cosmic
+depth). Deriving `N` is open: the hadronic-depth relation falls short by a factor of about 3,900
+([`HadronicDepth.md`](HadronicDepth.md)), and the `Ω_Λ ≈ log 2` crossover is an observed match, not derived.
+So for now `N`, and with it `t₀ ≈ 13.8 Gyr`, is calibrated by `H₀` ([`AgeOfUniverse.md`](AgeOfUniverse.md)).
 
 The age of the universe is not the age of possibility itself, and it is not a free empirical input. It
 is the effective accumulated proper time synthesized by the realized ZFA event history of our
@@ -550,12 +551,12 @@ $$
 **tick** `τ_Planck = √(ℏG/c⁵)` is the substrate event quantum, fixed by `ℏ` (with `G`, `c` themselves
 substrate-derived) — *Planck's constant alone sets the size of one tick of the cosmic clock, with no
 empirical input*. What remains is the **count** `N` (the cosmic Markov-blanket depth, `~6.7×10⁶⁰`), and
-`N` is **not free** either: the substrate fixes it through the **hadronic-depth** relation
-`N ~ (m_P/m_p)³` and the **dark-energy crossover** (we observe at the era where `Ω_Λ = log 2`, which
-fixes the Hubble horizon `R_H` and hence `N`). [`AgeOfUniverse.md`](AgeOfUniverse.md) derives `t₀ ≈ 13.8
-Gyr` from the ZFA event-frequency spectrum *with no tuning to `H₀` or the dark-energy density*. So the
-`~13.8 Gyr` is a **derived count of ℏ-sized ticks**, not an empirical boundary condition; the one
-residual is a single calibration (effectively `H₀`/the overall scale), which "reduces to deriving `N`"
+`N` is meant to be fixed by the substrate, through the **hadronic-depth** relation `N ~ (m_P/m_p)³` and
+the **dark-energy crossover** (we observe at the era where `Ω_Λ ≈ log 2`). Neither is derived yet: the
+hadronic-depth relation falls short by a factor of about 3,900 ([`HadronicDepth.md`](HadronicDepth.md)), and
+the crossover is an observed match ([`Log2_Search.md`](Log2_Search.md)). So the `~13.8 Gyr` is a **count of
+ℏ-sized ticks** whose count is, for now, calibrated by `H₀` (see [`AgeOfUniverse.md`](AgeOfUniverse.md));
+the one residual calibration "reduces to deriving `N`"
 ([`Open_Problems.md`](Open_Problems.md)). The only genuinely state-like fact is that "now" is a clock
 reading — *how far the construction has got* — but the characteristic age (the dark-energy-onset epoch)
 is substrate-determined.
@@ -660,7 +661,7 @@ These three tiers are kept distinct.
 - general relativity in the weak-field / large-scale limit — the weak-field metric and Mercury's
   42.99″/century (§4);
 - the observed cosmic age near 13.8 Gyr as a derived Planck-tick count (§5);
-- dark-energy-like acceleration from event synthesis, `Ω_Λ = log 2` (1.2%);
+- dark-energy-like acceleration from event synthesis, with `Ω_Λ ≈ log 2` (1.2%) an observed match whose derivation is open;
 - finite black-hole interiors without information loss;
 - the galactic radial-acceleration relation from `a₀ = cH₀/2π` (parameter-free blind SPARC fit).
 
@@ -741,9 +742,9 @@ Universal Relativity recasts Einstein’s geometric vision at a deeper quantum-l
 
 The age of the universe, approximately **13.8 billion years**, is **not** an empirical boundary
 condition — it is a *count of Planck ticks*, `t₀ = N · τ_Planck`. Planck's constant fixes the tick
-`τ_Planck = √(ℏG/c⁵)` with no empirical input; the substrate fixes the count `N` (hadronic depth,
-`Ω_Λ = log 2` crossover), so `t₀` is derived (no `H₀` tuning, [`AgeOfUniverse.md`](AgeOfUniverse.md)) up
-to one calibration. It is the effective proper time accumulated by the realized event-synthesis history
+`τ_Planck = √(ℏG/c⁵)` with no empirical input; the count `N` is meant to come from the substrate
+(hadronic depth and the `Ω_Λ ≈ log 2` crossover, both still open), so for now `t₀` is calibrated by `H₀`
+([`AgeOfUniverse.md`](AgeOfUniverse.md)). It is the effective proper time accumulated by the realized event-synthesis history
 of our observable universe — *what time the cosmic clock reads*, whose tick is `ℏ`.
 
 The universe does not have to begin as a singular object in pre-existing time. It is an ongoing quantum-logical synthesis of time, space, matter, and relation.

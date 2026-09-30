@@ -173,7 +173,7 @@ parameters ([`Standard_Model.md`](Standard_Model.md)):
 - **The Einstein field equations as the substrate's equation of state** (Jacobson 1995): from
   `δQ = T δS` on every local horizon, with both inputs (the area law and the Unruh temperature)
   supplied by the substrate, fixing `8πG = 2π/η`. The local Rindler horizon **is** the Markov-blanket
-  / Kitada local clock, and the integration constant is `Λ = Ω_Λ = log 2` — the local clock's tick
+  / Kitada local clock, and `Λ` enters as the integration constant; its observed fraction `Ω_Λ ≈ log 2` is a 1.2σ match whose derivation is open ([`Log2_Search.md`](Log2_Search.md))
   ([`Einstein_Equations.md`](Einstein_Equations.md), [`Kitada_Local_Time_GR.md`](Kitada_Local_Time_GR.md)).
 - **The curvature side from the causal order** (Sorkin / Benincasa–Dowker): the closure graph is a
   causal set (`QLF_ReachableEvent`) whose number↔volume, BD layers, and dimension-from-combining
@@ -184,7 +184,8 @@ parameters ([`Standard_Model.md`](Standard_Model.md)):
   the gauge-fold delay that gives mass is the delay the geometry reads as gravity; [`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md) §3b).
 - **Unruh, Hawking, and de Sitter temperatures** from one relation (the loop-phase `2π`).
 - **Dark matter and dark energy** as one expand/contract event-duality on a single Hubble horizon,
-  with `Ω_Λ = log 2` closing the 10¹²² vacuum catastrophe to 1.2% ([`DarkMatter.md`](DarkMatter.md)).
+  with the holographic horizon count closing the 10¹²² vacuum catastrophe, and `Ω_Λ ≈ log 2` matched to 1.2% but not
+  derived ([`DarkMatter.md`](DarkMatter.md), [`Cosmological_Constant.md`](Cosmological_Constant.md)).
 - **Inflation without an inflaton** (the high-energy limit of the verified `w = −1` event-synthesis
   field); gravitational waves at `c`; the universe **singularity-free by construction**
   (discrete events + Pauli-bounded density).
@@ -226,7 +227,7 @@ of distinguishable states (the Bekenstein bound), so there is **no injection fro
 space into a finite-information region** — machine-checked ([`lean/QLF_Realizability.lean`](lean/QLF_Realizability.lean),
 `no_continuum_in_finite_region`). Forced onto reality it therefore gives **demonstrably wrong answers** —
 the ultraviolet catastrophe (continuum → *infinite* blackbody energy; Planck's quantization founded QM),
-the `~10¹²²` vacuum catastrophe (continuum QFT vs the substrate's `Ω_Λ = log 2`), singularities
+the `~10¹²²` vacuum catastrophe (continuum QFT vs the substrate's holographic horizon count), singularities
 (*infinite* curvature vs singularity-free by construction) — and is right only where a cutoff (=
 discreteness) is quietly restored (renormalization). The full ledger + the constructive alternative are
 in [`TheContinuum.md`](TheContinuum.md). *Consistency ≠ realizability* is the spine.

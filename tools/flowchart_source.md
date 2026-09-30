@@ -115,14 +115,14 @@ flowchart TD
   SP["6+2 split -> 3 spatial axes"]
   SP --> AL["alpha = 1/137"]
   SP --> WK["sin^2theta_W = 3/8"]
-  SP --> OL["Omega_Lambda = log 2"]
+  SP --> OL["Omega_Lambda ~ log 2 (observed match)"]
   SP --> NW["Newton 1/r^2"]
   SP --> MG["nuclear magic numbers"]
   S2["3-quark Borromean closure"] --> MP["m_p/m_e = 6pi^5"]
   AL --> MPI["m_pi/m_e = 274"]
 ```
 
-**Connectors:** *N = 3^2* &rarr; alpha = 1/137 &middot; *spatial 3/8* &rarr; sin^2theta_W = 3/8 &middot; *gauge 2/8* &rarr; Omega_Lambda = log 2 &middot; *surface ~ r^2* &rarr; Newton 1/r^2 &middot; *l = 3* &rarr; nuclear magic numbers &middot; *6pi^5* &rarr; m_p/m_e = 6pi^5 &middot; *2/alpha* &rarr; m_pi/m_e = 274
+**Connectors:** *N = 3^2* &rarr; alpha = 1/137 &middot; *spatial 3/8* &rarr; sin^2theta_W = 3/8 &middot; *gauge 2/8* &rarr; Omega_Lambda ~ log 2 (observed match) &middot; *surface ~ r^2* &rarr; Newton 1/r^2 &middot; *l = 3* &rarr; nuclear magic numbers &middot; *6pi^5* &rarr; m_p/m_e = 6pi^5 &middot; *2/alpha* &rarr; m_pi/m_e = 274
 
 **Open:** [`SpaceTime.md`](SpaceTime.md) · [`Alpha.md`](Alpha.md) · [`Weak_Force.md`](Weak_Force.md) · [`Cosmological_Constant.md`](Cosmological_Constant.md) · [`Gravity_From_Delay.md`](Gravity_From_Delay.md) · [`Magic_numbers.md`](Magic_numbers.md) · [`Proton_Resonance_R_e.md`](Proton_Resonance_R_e.md) · [`Pion_QLF.md`](Pion_QLF.md) · [`Genesis.md`](Genesis.md)
 
@@ -207,7 +207,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   EV["ZFA event synthesis w = -1"]
-  EV --> OL["Omega_Lambda = log 2 closes the 10^122 catastrophe"]
+  EV --> OL["Horizon count closes the 10^122 catastrophe; Omega_Lambda ~ log 2 matched"]
   EV --> IN["Inflation same field"]
   EV --> DM["Dark matter no particle"]
   OL --> DE["Dark energy"]
@@ -218,10 +218,10 @@ flowchart TD
   NS --> CORE
   DM --> DIV["Divergent on LCDM interpretation particle CDM and static Lambda"]
   DE --> DIV
-  EV --> TG["Thermodynamic gravity Jacobson Bekenstein derives 8piG and Lambda = log 2"]
+  EV --> TG["Thermodynamic gravity Jacobson Bekenstein derives 8piG"]
 ```
 
-**Connectors:** *gauge 2/8* &rarr; Omega_Lambda = log 2 closes the 10^122 catas… &middot; *high-V epoch* &rarr; Inflation (same field) &middot; *denser logic* &rarr; Dark matter (no particle) &middot; *residual w = -1* &rarr; Dark energy &middot; *event rate* &rarr; Age ~ 13.8 Gyr &middot; *freeze-out n/p* &rarr; ^4He fraction Y_p ~ 1/4 &middot; *measured values* &rarr; Concordant with LCDM data &middot; *interpretive pillars* &rarr; Divergent on LCDM interpretation &middot; *equation of state* &rarr; Thermodynamic gravity
+**Connectors:** *gauge 2/8* &rarr; Horizon count closes the 10^122 catastrophe; Omega_Lambda ~ log 2 matched &middot; *high-V epoch* &rarr; Inflation (same field) &middot; *denser logic* &rarr; Dark matter (no particle) &middot; *residual w = -1* &rarr; Dark energy &middot; *event rate* &rarr; Age ~ 13.8 Gyr &middot; *freeze-out n/p* &rarr; ^4He fraction Y_p ~ 1/4 &middot; *measured values* &rarr; Concordant with LCDM data &middot; *interpretive pillars* &rarr; Divergent on LCDM interpretation &middot; *equation of state* &rarr; Thermodynamic gravity
 
 **Open:** [`Cosmological_Constant.md`](Cosmological_Constant.md) · [`Curvature.md`](Curvature.md) · [`DarkMatter.md`](DarkMatter.md) · [`SPARC.md`](SPARC.md) · [`AgeOfUniverse.md`](AgeOfUniverse.md) · [`Fusion.md`](Fusion.md) · [`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §3a
 
@@ -304,7 +304,7 @@ What QLF derives that the SM treats as free input, and the falsifiable predictio
 ```mermaid
 flowchart TD
   B["Beyond the Standard Model"]
-  B --> D1["derived: alpha, Koide, theta-bar=0, Omega_Lambda"]
+  B --> D1["derived: alpha, Koide, theta-bar=0"]
   B --> P1["Majorana neutrino -> 0nubetabeta"]
   B --> P2["no cosmological drift of alpha0"]
   B --> P3["dark matter is not a particle"]
