@@ -69,7 +69,7 @@ Yes — with the **observational core** of ΛCDM (the accepted concordance model
 | BBN helium `Y_p ≈ 0.247` | **`Y_p = 1/4`** at freeze-out `n/p = 1/7` (`QLF_Nucleosynthesis`) |
 | Inflationary near-scale-invariant epoch | the high-`V` epoch of the *same* `w=−1` field — *no separate inflaton* (`QLF_CosmicInflation`) |
 
-So on the *data*, QLF is concordant, not rival. **One exception, named:** QLF's `ρ_Λ ∝ H²` keeps `Ω_Λ = log 2` at every epoch, which conflicts with CMB and BBN bounds on early dark energy ([`Curvature.md`](Curvature.md) §8a amendment). The rows above hold only if `ρ_Λ ∝ H²` fails before late times; the future-event-horizon reading was the candidate, and full fits exclude it ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7 (PR #165)). The consistent position left is a constant `Λ`, with `log 2` as today's value only.
+So on the *data*, QLF is concordant, not rival. **One exception, named:** QLF's `ρ_Λ ∝ H²` keeps `Ω_Λ = log 2` at every epoch, which conflicts with CMB and BBN bounds on early dark energy ([`Curvature.md`](Curvature.md) §8a). The rows above hold only if `ρ_Λ ∝ H²` fails before late times; the future-event-horizon reading was the candidate, and full fits exclude it ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7 (PR #165)). The consistent position left is a constant `Λ`, with `log 2` as today's value only.
 
 **Divergent — only where ΛCDM stops being observation and becomes model-choice**, i.e. its two interpretive pillars:
 

@@ -271,67 +271,47 @@ unification. It does **not** derive the quantitative inflation observables — t
 e-folds (~60), the spectral index `n_s ≈ 0.965`, the tensor ratio `r`, reheating — nor the
 vacuum-frequency evolution law `f(t)`; those remain open (`cosmic_inflation_in_progress`).
 
-### 8a. Every observer's vantage: inflation behind, expansion ahead — *pre-registered 2026-09-29*
+### 8a. Every observer's vantage: faster behind, slower ahead
 
 §8 reads the history from **our** epoch. The stronger claim is that the reading holds for **every** observer:
-*whenever you stand, you see inflation in your past and expansion in your future.* No epoch is the special
-one that happens to catch the universe between its inflation and its dark energy. The claim is not free.
-In a cosmology with a built-in time scale, it fails for some observers. An observer in the middle of
-standard inflation has no inflation behind it.
+*whenever you stand, the past runs faster and the future slower, and no epoch is special.* The claim is not
+free. In a cosmology with a built-in time scale, early and late observers see different histories.
 
-**The definition (fixed before the proof).** "See" means *measured in the observer's own clock*.
-In QLF each closure makes its own time. The vacuum event rate is `f(t) = 1/t` (`ZFAEventDynamics`),
-and an observer at epoch `t₀` ticks at its own rate `f(t₀)`. The rate at another epoch `s`, as that
-observer measures it, is
+**The definition.** "See" means *relative to the observer's own clock*. Each closure makes its own time,
+with the per-event relation `f = 1/t` (`ZFAEventDynamics`, linked by `vacuumRate_is_event_rate`). Reading
+it as the cosmic rate as a function of epoch is a premise. The rate at epoch `s`, relative to the clock of
+an observer at `t₀`, is the ratio of rates
 
 $$r(t_0, s) \;=\; \frac{f(s)}{f(t_0)} \;=\; \frac{t_0}{s}.$$
 
-"Inflation" here means **more than one e-fold per own tick** (`r > 1`). "Expansion" means **positive
-but less than one** (`0 < r < 1`). This is an observer-relative quantity (a *listening*, not a count).
-It is **not** the standard `ä > 0`: `H ∝ 1/t` is a power law, which decelerates in the usual sense.
-The `ä > 0` version is a separate, conditional question and is not claimed here.
+"Faster than one's own clock" means `r > 1`; "slower but still expanding" means `0 < r < 1`. This is an
+observer-relative quantity (a *listening*). It is **not** the standard `ä > 0`: `H ∝ 1/t` decelerates in the
+usual sense.
 
-**Pre-registered statements** (to be proved in `lean/QLF_InflationObserver.lean`, no new axioms):
+**Proved** in [`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean), no new axioms (statements
+pre-registered in commit `c2d795e`):
 
-| | Statement | Meaning |
-|---|---|---|
-| P1 | `0 < s < t₀ ⟹ r(t₀, s) > 1` | the past inflates, for every observer |
-| P2 | `0 < t₀ < s ⟹ 0 < r(t₀, s) < 1` | the future expands and never stops |
-| P3 | `r(k·t₀, k·s) = r(t₀, s)` for all `k > 0` | no privileged epoch: every observer sees the identical profile |
-| P4 | for the rate law `1/t + c`, P3 holds at `(t₀, s, k) = (1, 2, 2)` **iff `c = 0`** | the falsifier: any constant floor (ΛCDM's constant `Λ`) breaks it |
-| P5 | `Ω_Λ(H) = log 2` for every `H > 0` | because `ρ_Λ ∝ H²` (`rhoLambda_prop_Hsq`), every observer measures the same dark-energy fraction |
+| | Theorem | Statement | What it carries |
+|---|---|---|---|
+| P1 | `past_inflates` | `0 < s < t₀ ⟹ r > 1` | follows from any falling rate (`floored_past_also_inflates`), so not evidence on its own |
+| P2 | `future_expands` | `t₀ < s ⟹ 0 < r < 1` | the same |
+| P3 | `no_privileged_epoch` | `r(k·t₀, k·s) = r(t₀, s)` | the substantive statement; every power law `t⁻ⁿ` satisfies it too (`power_law_no_privileged_epoch`) |
+| P4 | `floor_breaks_self_similarity` | for `1/t + c`, P3 at `(1, 2, 2)` holds iff `c = 0` | with P3: the rate has **no built-in scale** (not specifically `1/t`) |
+| P5 | `omegaLambda_eq_log_two` | `ρ_Λ/ρ_crit = log 2` at every `H`, given `ρ_Λ ∝ H²` | a true theorem whose premise the data reject (below) |
 
-**What would count as failure.** Any of P1–P5 fails to prove. Or P3 turns out to hold for the constant-floor
-law as well. That would make the claim bookkeeping: true of every rate law, and so evidence of nothing
-(`CLAUDE.md` rule 4). P4 is there to rule that out. The arithmetic of P1–P3 is short. The physics is in the
-premise that the cosmic rate has no built-in scale, and P4 is what shows that premise carries the weight.
+P1–P3 are bundled as `every_observer_inflation_behind_expansion_ahead`.
 
-**Result (2026-09-29): all five proved**, no new axioms, in
-[`lean/QLF_InflationObserver.lean`](lean/QLF_InflationObserver.lean): P1 `past_inflates`, P2
-`future_expands`, P3 `no_privileged_epoch`, P4 `floor_breaks_self_similarity`, P5 `omegaLambda_eq_log_two`,
-with P1–P3 bundled as `every_observer_inflation_behind_expansion_ahead`. The statements are the ones
-frozen above. None were adjusted to fit the proof.
+**P5 as physics is ruled out.** If `ρ_Λ ∝ H²` held at every epoch, `Ω_Λ = log 2` would hold at
+recombination and BBN. CMB data bound a constant early dark-energy fraction to `Ω_early < 0.06` at 95%
+(Doran & Robbers, *Early dark energy cosmologies*, JCAP 0606:026 (2006)), and at BBN that fraction would
+raise `H` by `(1 − log 2)^(−1/2) ≈ 1.8`. The event-horizon alternative escapes the early problem but is
+excluded by full CMB + DESI + SN fits at 5.5–7σ ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7).
+So `log 2` survives only as *today's* `Ω_Λ` under a constant `Λ`; the search for another route to it is
+[`Log2_Search.md`](Log2_Search.md).
 
-**Amendment after review (2026-09-29, PR #164).** The proofs stand. The pre-registered text above
-overstates what they show in four places, corrected here rather than edited in place:
-
-1. **`r` is a ratio of rates**, not "e-folds per own tick". The two agree only if `H = f` exactly.
-2. **P1 and P2 are not evidence.** They follow from any falling rate, the floored law `1/t + c`
-   included (`floored_past_also_inflates`). "P4 is there to rule that out" is true of P3 only.
-3. **P3 does not single out `1/t`.** Every power law `t⁻ⁿ` satisfies it
-   (`power_law_no_privileged_epoch`). P3 with P4 shows the rate has *no built-in scale*, not that it is `1/t`.
-   The per-event `f = 1/t` is machine-linked (`vacuumRate_is_event_rate`). Using it as the cosmic
-   rate as a function of epoch is a premise.
-4. **P5 is a named tension, not an open question.** If `ρ_Λ ∝ H²` holds at every epoch, as
-   `QLF_DynamicalDarkEnergy` states it, then `Ω_Λ = log 2 ≈ 0.69` at recombination and at BBN. CMB data
-   bound a constant early dark-energy fraction to `Ω_early < 0.06` at 95% (Doran & Robbers, *Early dark energy cosmologies*, JCAP 0606:026 (2006)), and
-   later data are tighter. At BBN that fraction would raise `H` by `(1 − log 2)^(−1/2) ≈ 1.8`. **Falsifier:**
-   either `ρ_Λ ∝ H²` fails before late times, or this reading of QLF's dark energy is ruled out. **The way out is the counted horizon** ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.7 (PR #165)): with `L = c/H` both readings fail, while the future-event-horizon reading C keeps the `log 2` prefactor, gives `Ω_de ≈ 10⁻⁴` at recombination, and passes the early-epoch test. It gives up P5: `Ω_Λ = log 2` becomes today's value, not every epoch's. **But C is excluded by published full fits:** with CMB + DESI + supernovae, `C = √log 2 ≈ 0.833` sits 5.5–7σ above the fitted value, and event-horizon dark energy is decisively disfavored against ΛCDM (`ln B ≈ −27` to `−30`; Li et al. 2024, arXiv:2411.08639). All three horizon readings fail. What survives is a constant `Λ` with `log 2` as *today's* `Ω_Λ` only. **So P5 is ruled out as physics:** it stays a true theorem about `ρ_Λ ∝ H²`, but the data reject that premise. The
-   value `log 2` itself is the input prefactor; P5's content is the `H`-independence.
-
-**Open, and not claimed:** the `ä > 0` version; the observer's own first tick, which has no past inside
-its domain (the nested origin, [`BLACK-HOLES.md`](BLACK-HOLES.md) §4a, is an interpretation there, not a
-proof); whether `ρ_Λ ∝ H²` survives the data; and the inflation observables of §8.
+**Open:** the `ä > 0` version; the observer's own first tick, which has no past inside its domain (the
+nested origin, [`BLACK-HOLES.md`](BLACK-HOLES.md) §4a, is an interpretation there, not a proof); and the
+inflation observables of §8.
 
 ---
 
