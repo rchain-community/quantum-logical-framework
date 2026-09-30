@@ -17,7 +17,7 @@ Both components are determined by the dimensionless ratio `R_s / r = 2GM/(rc²)`
 
 $$g_{tt} \;\approx\; -\left(1 + \frac{2 \varphi}{c^2}\right), \qquad g_{rr} \;\approx\; \left(1 + \frac{2 \varphi}{c^2}\right)^{-1}.$$
 
-This is the weak-field Schwarzschild metric in isotropic form, ready to compose with orbital mechanics for the Mercury perihelion derivation ([`Mercury_Perihelion.md`](Mercury_Perihelion.md)).
+This is the weak-field Schwarzschild metric in Schwarzschild coordinates, ready to compose with orbital mechanics for the Mercury perihelion derivation ([`Mercury_Perihelion.md`](Mercury_Perihelion.md)).
 
 ---
 
@@ -125,17 +125,18 @@ i.e., **`R_s` is `2 L_Planck / R_M`** where `R_M = E_Planck / (M c²)` is the ma
 relative slowing is the rest frame that exhibits gravity. Locally light always moves at `c`; only
 measured against the distant vacuum is it slower. Paths bend toward the slower region, as in a lens.
 
-**What decides the bending.** In a weak field write the metric in isotropic form,
+**Two paths, each giving half.** In a weak field write the metric in isotropic form,
 `ds² = −A c²dt² + B (dx² + dy² + dz²)`, with `φ = Φ/c²` (negative near mass) and `A = 1 + 2φ`. Clocks run at
 `√A ≈ 1 + φ`. The coordinate speed of light is `c√(A/B)`, so the effective refractive index is
-`n = √(B/A)`. Two readings of "the vacuum slows things":
+`n = √(B/A)`. The denser vacuum slows light along two paths:
 
-- **Latency only** (time slowed, space untouched: `B = 1`). This is how
-  [`DarkMatter.md`](DarkMatter.md) §2 phrases it ("more processing cycles"). Light is slowed exactly as
-  much as clocks: `n ≈ 1 − φ`. This is Einstein's 1911 value.
-- **The event quantum** (§3: each event makes one Planck length *and* one Planck tick together, so the
-  proper length and time scales multiply to a constant, `√B·√A = 1`, i.e. `B = 1/A`). Light is slowed by
-  `n = 1/A = 1/(1 + 2φ)` exactly: **twice** the clock slowing, `n ≈ 1 − 2φ`. In PPN language, `γ = 1`.
+- **The time path** (latency): more ticks per step, as [`DarkMatter.md`](DarkMatter.md) §2 describes.
+  Alone (`B = 1`) it slows light exactly as much as clocks, `n ≈ 1 − φ`, and gives half the bending,
+  Einstein's 1911 value.
+- **The space path** (the event quantum, §3): each event makes one Planck length *and* one Planck tick
+  together, so the proper length and time scales multiply to a constant, `√B·√A = 1`, i.e. `B = 1/A`.
+  Each tick's step is also shorter, which supplies the other half. Together, `n = 1/A = 1/(1 + 2φ)`
+  exactly: **twice** the clock slowing, `n ≈ 1 − 2φ`. In PPN language, `γ = 1`.
 
 **Pre-registered statements** (to be proved in `lean/QLF_LightBending.lean`, no new axioms; numbers
 checked by [`light_bending.py`](light_bending.py)):
@@ -145,14 +146,21 @@ checked by [`light_bending.py`](light_bending.py)):
 | B1 | event quantum (`B = 1/A`): the coordinate light speed squared is exactly `A² = (1 + 2φ)²`, so the light speed is exactly `1 + 2φ` (for `1 + 2φ > 0`), while the clock rate `√(1 + 2φ)` has first-order slope 1. Light is slowed twice as much as clocks |
 | B2 | latency only (`B = 1`): the coordinate light speed squared is `1 + 2φ`, the same as the clock rate squared. Light is slowed exactly as much as clocks |
 | B3 | a ray past a point mass at impact parameter `b`, through `n = 1 − kφ` with `φ = −GM/(rc²)`, is deflected by `α = k·2GM/(bc²)`, from `∫_{−L}^{L} b dz/(b² + z²)^{3/2} = 2L/(b√(b² + L²)) → 2/b` |
-| B4 | at the Sun's limb: `k = 2` gives `1.7516″`, `k = 1` gives `0.8758″`. Cassini measured `γ − 1 = (2.1 ± 2.3) × 10⁻⁵` (Bertotti, Iess & Tortora 2003), so `k = 1 + γ = 2` to `10⁻⁵`, and latency-only is excluded |
+| B4 | at the Sun's limb (`R☉ = 6.957 × 10⁸ m`): `k = 2` gives `1.7512″`, `k = 1` gives `0.8756″`. Cassini measured `γ − 1 = (2.1 ± 2.3) × 10⁻⁵` (Bertotti, Iess & Tortora 2003), so `k = 1 + γ = 2` to `10⁻⁵`, and latency-only is excluded |
 
-**Forecast.** B1–B4 prove. The consequence would be: QLF's "slower light near mass" gives the observed
-bending **if and only if** the vacuum density acts on space and time together, as the event quantum of §3
-says. `DarkMatter.md` §2's latency-only wording gives half the bending and needs the spatial part added.
-The factor 2 rests on the event-quantum principle (`Kitada_Local_Time_GR.md` §5.3), which is QLF's premise,
-not something derived here. The same `k = 2` then applies to dark matter's lensing: the vacuum density that
-bends orbits also bends light, with no second field (next: the KiDS weak-lensing test).
+**Result (2026-09-30): proved and checked.** [`lean/QLF_LightBending.lean`](lean/QLF_LightBending.lean),
+no new axioms: B1 `event_quantum_light_speed` (light speed exactly `1 + 2φ`) with
+`light_slowed_twice_clock` (slope 2 against the clock's 1); B2 `latency_only_light_speed_sq`; B3
+`deflection_integral` (`2L/(b√(b² + L²))`, the limit `2/b` elementary). [`light_bending.py`](light_bending.py)
+integrates the ray numerically: `1.7512″` with both paths and `0.8756″` with the time path alone, each
+matching `k·2GM/(bc²)`. Cassini fixes `k = 1 + γ = 2` to `10⁻⁵`.
+
+**What it means.** QLF's picture, a denser vacuum near mass with relatively slower light, gives the
+observed bending when the slowing runs along both paths, time and space, as the event quantum says. The
+two paths are not in conflict; each supplies half. The factor 2 rests on the event-quantum premise
+(`Kitada_Local_Time_GR.md` §5.3), not derived here. The same two paths apply to dark matter: the vacuum
+density that bends orbits bends light by the same rule, with no second field. That makes lensing mass
+equal dynamical mass, the prediction the KiDS weak-lensing radial acceleration relation can test next.
 
 ## §5 What this delivers
 
