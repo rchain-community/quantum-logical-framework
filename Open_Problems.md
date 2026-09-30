@@ -548,7 +548,7 @@ closes many at once. The three genuinely-distinct open quantities are:
 3. **The holographic-density resolution** — *why* the realized horizon entropy is `N/4` not `N log 2`
    (the residual is **exactly `4 log 2 = 4 × log 2`**, quantified + decomposed into derived constants,
    `QLF_HolographicDensity`; the *classification* — floor deviation vs. `1/(4 log 2)` packing vs.
-   area-element — is open). This is the entropy-normalization half of the absolute `G`.
+   area-element — is open). This is the entropy-normalization half of the absolute `G`. **Update 2026-09-29:** packing was closed earlier (`no_rational_packing_factor`). The floor branch is now closed by the first law with QLF's own Hawking temperature (`QLF_HorizonFirstLaw`, [`Gravity_From_Delay.md`](Gravity_From_Delay.md) §9a), conditional on the first law holding in the mean. What remains is the area-element reading: one bit per `4 log 2 · L_P²`. Its cost: §3's `Ω_Λ = log 2` derivation does not survive ([`Cosmological_Constant.md`](Cosmological_Constant.md) §5.8).
 
 So "nailing" the frontier is really **two hard problems + one classification**: the interacting-substrate
 coupling `g` (1), the census running coefficient (2), and the entropy packing (3). **Update — (2)'s
