@@ -360,6 +360,34 @@ B21's.
 - The original absolute test stays as registered and stays unrun until the pipeline gap is resolved with
   B21's authors.
 
+**Result of the amendment (2026-09-30).** `kids_lensing_test.py --relative`, run after `a8d2ad6`:
+
+*Calibration passed.* `s = 1.537` from MOND on D7 predicts B21's other two published values: D15 `5.04`
+(B21 `4.6`, within 15%) and GAMA `0.79` (B21 `0.8`). So the pipeline gap is a common covariance scale.
+
+| Dataset | MOND `χ²_red` (cal.) | Q0 local `a₀`: `R`, `χ²_red` | Q1 `a₀` at `z = 0.2`: `R`, `χ²_red` |
+|---|---|---|---|
+| D7 (primary) | 4.00 | 1.16 (worse), 4.62 | **0.91 (no worse), 3.65** |
+| D15 | 5.04 | 1.15 (worse), 5.82 | **0.91 (better), 4.58** |
+| DH, hot gas | 1.80 | 1.28 (worse), 2.30 (`p = 0.024`) | **0.85 (no worse), 1.53 (`p = 0.15`, consistent)** |
+| late types (Sérsic `n < 2`) | 0.63 | 0.82, 0.52 (`p = 0.82`) | 1.16, 0.72 (`p = 0.65`) |
+| late types (blue) | 1.55 | 0.91, 1.40 (`p = 0.20`) | 1.08, 1.68 (`p = 0.11`) |
+| early types (Sérsic `n > 2`) | 2.71 | 1.15, 3.11 | 0.91, 2.45 (`p = 0.016`) |
+| early types (red) | 2.54 | 1.18, 3.00 | 0.89, 2.25 (`p = 0.027`) |
+
+**What it shows.** With `a₀` scaled to the lens redshift by the expansion clock (Q1), QLF's law, fitted to
+rotation curves and unchanged, does at least as well as the MOND baseline on every main dataset, and better
+on D15. With hot gas included it is consistent with the lensing data (`p = 0.15`). Without hot gas, every
+universal law fails in absolute terms, as B21 found. Local `a₀` (Q0) does worse than MOND. So the lensing
+data, like the redshift test of §5c, want `a₀` higher than SPARC's local value.
+
+**What it cannot separate.** All the lenses sit near `z ≈ 0.2`, so KiDS alone cannot tell the
+expansion-clock scaling (`×H(0.2)/H₀ = ×1.11`) from a simply higher `a₀`. The two agree here by
+construction of the test, not by independent evidence. **The type difference persists:** late types fit
+every law well (`p > 0.1`), and prefer the local `a₀`. Early types fail every law without extra baryons.
+That is B21's finding, and it stays a challenge for any universal law unless early types carry the hot
+gas halos that DH adds.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
