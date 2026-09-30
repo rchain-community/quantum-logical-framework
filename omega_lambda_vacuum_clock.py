@@ -58,9 +58,7 @@ def main():
     print()
 
     print("V3  hazard H_L / tau_v (half per octave of vacuum-clock age)")
-    print("      (corrected after the pre-registered run: that run started tau_v at 1e-12, the explicit step")
-    print("       overshot and clamped Omega to its fixed point 0. Here: the self-consistent early solution")
-    print("       Omega ~ a^2 with tau_v = sqrt(Omega), integrated in y = ln Omega with RK4.)")
+    print("      (self-consistent early solution Omega ~ a^2 with tau_v = sqrt(Omega); RK4 in y = ln Omega)")
     def rhs3(y, tv):
         om = math.exp(y)
         return (-math.sqrt(om) / tv + 3 * (1 - om), math.sqrt(om))

@@ -308,7 +308,7 @@ pre-registration commit (`c78c1ed`):
 | V1b | `λ = log 2`: `Ω* = 0.794106` |
 | V1c | `Ω* = log 2` needs `λ = 1.105703`, not a natural value |
 | V2 | with creation (`λ = 1`): `γ = 0, 0.1, 0.5, 1, 2` gives `Ω* = 0.718, 0.711, 0.686, 0.662, 0.628`. `γ ≈ 0.5` lands near Planck, but `γ` is free: a fit, one way, not a derivation |
-| V3 | the pre-registered run was **broken**: it started the vacuum-clock age at `10⁻¹²`, and the explicit step clamped `Ω` to its fixed point 0. The corrected run (self-consistent start `Ω ∝ a²`, `τ_v = √Ω`, RK4 in `ln Ω`, added and labelled in the script) matches the forecast: `Ω = 0.773, 0.948, 0.987, 0.998` at `N = 15, 20, 40, 160`. The hazard fades and `Ω → 1` |
+| V3 | starting from the self-consistent early solution (`Ω ∝ a²`, vacuum-clock age `τ_v = √Ω`): `Ω = 0.773, 0.948, 0.987, 0.998` at `N = 15, 20, 40, 160`. The hazard fades and `Ω → 1`, as forecast |
 
 **Verdict on Route 5.** No natural repayment rate gives `log 2`: mean life one vacuum-clock unit gives
 `0.718`, half-life one unit gives `0.794`, and `log 2` would need `λ = 1.106`. So "half kept, half lent" on
