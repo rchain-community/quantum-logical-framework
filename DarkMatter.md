@@ -334,6 +334,18 @@ like MOND there, with `g_obs` shifted by `√(a₀/1.2)`: `−3%` for Q0 and `+2
 rising above MOND at higher stellar mass, so Q1 is expected to do slightly better than Q0. The type split
 is expected to be in tension for any universal law, unless early types carry more (hot) gas.
 
+**Status (2026-09-30): the pipeline check did not pass, so the QLF test has not been run.** From
+B21's released data (ESD profiles and covariances), [`kids_lensing_test.py`](kids_lensing_test.py) gives
+MOND `χ²_red = 6.15` on D7 against B21's `4.0`. The same pipeline gives `7.75` on all 15 KiDS bins
+(B21: `4.6`) and `1.21` on GAMA (B21: `0.8`). The factor, about 1.5–1.7, is uniform across the three and
+nearly the same with the covariance's diagonal alone. So it does not come from the choice of the 7 bins or
+from correlations. B21 compare the models directly as `g_obs(g_bar)` with the same conversion and
+covariance, and their text does not account for the gap. The pre-registered rule applies: no QLF numbers
+until the pipeline reproduces B21. Two ways forward: (1) ask B21's corresponding author how the published
+`χ²` was computed (the data release names margot.brouwer@gmail.com), or (2) amend the test to a relative
+comparison, QLF against MOND in the same pipeline, which a common covariance scale cannot bias, recorded
+as an amendment before running it.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
