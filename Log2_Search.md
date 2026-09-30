@@ -445,3 +445,31 @@ narrower than before, though: find a transfer law, derived from the substrate, w
 attractor replaces `log 2` of matter's dilution loss. If one exists, its own predictions follow: no de
 Sitter end state (`w_tot → −log 2`, `q → −0.540` in the future), and energy flowing from the vacuum into
 matter today at `T = 3 log 2 · ρ_m` per e-fold. Both can be tested against interacting-dark-energy fits.
+
+---
+
+## Route 7: a binary-closure clock, and choosing the epoch by the most ways — *pre-registered 2026-09-30*
+
+**Where the square root could come from (S1).** Take a clock that ticks when a binary closure completes,
+each substrate step closing with probability ½. The number of steps to closure `K` is geometric, and the
+clock's mean rate relative to the substrate clock is `E[1/K] = Σ_{k≥1} 2⁻ᵏ/k = log 2`. If energy is rate
+(`E = hf`), that is an energy ratio of `log 2`, and Friedmann's `H ∝ √ρ` turns it into the clock ratio
+`H_Λ/H = √log 2` (Route 5, V0). This is an identity. It is also the Route 1/2/4 octave/e-fold ratio, now
+as a closure *rate*. As a per-event statistic it holds at every epoch, which the early-universe data
+exclude (§5.7). So S1 can explain `log 2` only as the value at a *selected* epoch.
+
+**Selecting the epoch by the most ways (S2).** QLF's rule is "what happens in the most ways happens first;
+report the mode". QLF counts closures on horizons (the holographic count, `S ∝ A`). So the observed epoch
+would be where the horizon's count of new closures peaks. Two versions, fixed here before computing, in
+flat matter + constant `Λ` (`Ω_Λ = tanh²x`, `H = H∞ coth x`, `x = (3/2)H∞ t`), with Hubble-horizon
+entropy `S ∝ H⁻²`:
+
+| | Count | Peak condition |
+|---|---|---|
+| S2a | new horizon closures per own-clock e-fold, `dS/d ln t` | argmax over `x` |
+| S2b | new horizon closures per unit cosmic time, `dS/dt` | argmax over `x` |
+
+Checked by [`log2_epoch_selection.py`](log2_epoch_selection.py). **Decision rule.** A version *explains
+"now"* if its peak `Ω_Λ` lies within 2σ of Planck (`0.685 ± 0.007`). It *derives `log 2`* only if the peak
+is exactly `log 2` (a closed form). No forecast. Two versions are tested; a single match among them would
+carry a look-elsewhere factor of two.
