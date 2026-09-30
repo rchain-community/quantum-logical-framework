@@ -251,3 +251,49 @@ clock can do that for `Ω_Λ` itself. So the forecast is that Route 4 yields a t
 half-life over mean life. The open problem is now sharper. Is there a mechanism that turns that
 *duration* ratio into an *energy* share, and makes it hold at our epoch? For example, energy realized in
 proportion to own-clock time spent. Any such mechanism must still pass the early-epoch test.
+
+---
+
+## Route 5: half kept, half lent, on a vacuum clock — *pre-registered 2026-09-30*
+
+**The idea** (Jim, 2026-09-30): the vacuum energy determines the relative clock rate. Route 4's no-go
+(L2) says a density ratio cannot be changed by relabelling time. That no-go is escaped if the clock
+itself is set by the vacuum energy.
+
+**The bridge (V0).** A clock set by the vacuum energy alone can tick only at a rate built from `G` and
+`ρ_Λ`. The only such combination with units of 1/time is `√(Gρ_Λ)`, which is `H_Λ = √(8πGρ_Λ/3)`: the
+expansion rate the vacuum alone would drive. In a flat universe, relative to the expansion clock `H`,
+
+    Ω_Λ = (H_Λ / H)²
+
+So once the clock is the vacuum's own, `Ω_Λ` *is* a clock statement: the square of the vacuum clock's
+rate relative to the expansion clock. (A rate linear in `ρ_Λ` would need an extra scale with units, so
+dimensional analysis rules it out.) Consequence: `Ω_Λ = log 2` means the vacuum clock runs at `√log 2 =
+0.8326` of the expansion clock, the same number as reading C's `C` (`Cosmological_Constant.md` §5.7).
+
+**The model** (checked by [`omega_lambda_vacuum_clock.py`](omega_lambda_vacuum_clock.py)). Matter
+(`w = 0`) and a vacuum ledger (`w = −1`, the lent half). The lent energy is realized into matter with hazard
+`λ·H_Λ`: at rate `λ` per unit of vacuum-clock time. Total `∇T = 0` holds (an interacting vacuum, energy
+moving from the vacuum into matter), unlike Route 2. In e-folds of expansion `N = ln a`:
+
+    dΩ/dN = −λ·Ω^{3/2} + 3Ω(1 − Ω)
+
+**Pre-registered statements and forecasts** (fixed points worked out while framing; the script integrates):
+
+| | Statement | Forecast |
+|---|---|---|
+| V1 | the attractor `Ω*` solves `λ√Ω* = 3(1 − Ω*)`; early on `Ω ∝ a³` as in ΛCDM | late-time attractor, so the early-epoch test is passed |
+| V1a | `λ = 1`: mean realization time one unit of vacuum-clock time | `Ω* = (19 − √37)/18 = 0.7176` |
+| V1b | `λ = log 2`: half realized per unit of vacuum-clock time | `Ω* = 0.794` |
+| V1c | the `λ` that would give `Ω* = log 2` | `λ = 3(1 − log 2)/√log 2 = 1.106`, which is not a natural value |
+| V2 | half kept locally, half lent: creation `Q = γ·H_Λ·ρ_c` split evenly | the attractor moves with the free `γ`, so it is not a derivation |
+| V3 | "half per octave" of vacuum-clock *age* (hazard `H_Λ/τ_v`) | the hazard fades as `τ_v` grows, so `Ω → 1` (de Sitter) |
+
+**What a pass would look like, and what it would predict.** A natural `λ` (no fitting) with `Ω* = log 2`.
+Its own predictions would then be: no de Sitter end state (the future settles at `w_tot = −Ω*`); vacuum
+energy decaying into matter today at rate `λ·H_Λ·ρ_Λ`, testable with interacting-dark-energy fits; and a
+`Ω(z)` history that differs from ΛCDM near `z ~ 1`.
+
+**Kill condition.** It is a derivation only if a natural `λ` gives `Ω* = log 2` exactly with no free
+parameter. The forecast is that it does not (V1a–V1c). If so, what survives is V0: the bridge from a
+density ratio to a clock-rate ratio.
