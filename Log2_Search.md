@@ -217,6 +217,7 @@ It does not derive the dark-energy fraction, and the "why now" remains: the two 
 | 2. Half-life (memoryless lent share) | closed in its natural form (de Sitter attractor, or a free rate) |
 | 3. Drifting Planck tick | excluded by atomic clocks and lunar ranging |
 | 4. Log-uniform one e-fold, local clock | `log 2` holds at every epoch as a *duration* ratio (identity); does not reach the *density* ratio |
+| 5. Half kept, half lent, on a vacuum clock | no natural rate gives `log 2` (`0.718`, `0.794`); **the bridge `Ω_Λ = (H_Λ/H)²` survives** |
 | Remaining | `Σ 2⁻ᵏ/k` with a derived `1/k`; a mechanism that turns the octave/e-fold duration ratio into an energy share |
 
 The common thread: every route that gives the *same* share at every epoch is excluded by the early
@@ -297,3 +298,31 @@ energy decaying into matter today at rate `λ·H_Λ·ρ_Λ`, testable with inter
 **Kill condition.** It is a derivation only if a natural `λ` gives `Ω* = log 2` exactly with no free
 parameter. The forecast is that it does not (V1a–V1c). If so, what survives is V0: the bridge from a
 density ratio to a clock-rate ratio.
+
+**Result (2026-09-30).** Running [`omega_lambda_vacuum_clock.py`](omega_lambda_vacuum_clock.py) after the
+pre-registration commit (`c78c1ed`):
+
+| | Result |
+|---|---|
+| V1a | `λ = 1`: integrated from `Ω = 10⁻⁹` to `0.717624`, the closed form `(19 − √37)/18`. Early growth ×400 per 2 e-folds, the ΛCDM `a³` rate |
+| V1b | `λ = log 2`: `Ω* = 0.794106` |
+| V1c | `Ω* = log 2` needs `λ = 1.105703`, not a natural value |
+| V2 | with creation (`λ = 1`): `γ = 0, 0.1, 0.5, 1, 2` gives `Ω* = 0.718, 0.711, 0.686, 0.662, 0.628`. `γ ≈ 0.5` lands near Planck, but `γ` is free: a fit, one way, not a derivation |
+| V3 | the pre-registered run was **broken**: it started the vacuum-clock age at `10⁻¹²`, and the explicit step clamped `Ω` to its fixed point 0. The corrected run (self-consistent start `Ω ∝ a²`, `τ_v = √Ω`, RK4 in `ln Ω`, added and labelled in the script) matches the forecast: `Ω = 0.773, 0.948, 0.987, 0.998` at `N = 15, 20, 40, 160`. The hazard fades and `Ω → 1` |
+
+**Verdict on Route 5.** No natural repayment rate gives `log 2`: mean life one vacuum-clock unit gives
+`0.718`, half-life one unit gives `0.794`, and `log 2` would need `λ = 1.106`. So "half kept, half lent" on
+a vacuum clock does not derive the number either.
+
+**What survives, and it is new: V0.** If the clock is set by the vacuum energy, then
+`Ω_Λ = (H_Λ/H)²` exactly: the dark-energy fraction *is* the squared rate of the vacuum clock relative
+to the expansion clock. That is the bridge Route 4 lacked, from a density ratio to a clock ratio, and it
+comes from dimensional analysis alone. It turns the search into a clock question: **why would the vacuum
+clock run at `√log 2 = 0.8326` of the expansion clock now?** The same number appeared as reading C's `C`,
+where it was excluded as a *fixed* holographic constant (§5.7). Here it would be a present-day rate
+ratio, a different claim.
+
+**A model worth keeping, as one way.** V1 is a one-parameter interacting-vacuum model (vacuum decaying
+into matter at `Q = λH_Λρ_Λ ∝ ρ_Λ^{3/2}`) with a late attractor instead of a de Sitter end state. With
+`λ` fitted, it has as many parameters as ΛCDM, and different predictions: `w_tot → −Ω*` in the future and
+energy flowing from vacuum into matter today. Whether data prefer it is a separate, testable question.

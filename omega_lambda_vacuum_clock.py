@@ -58,19 +58,26 @@ def main():
     print()
 
     print("V3  hazard H_L / tau_v (half per octave of vacuum-clock age)")
-    om, tau_v, n, dn = 1e-9, 1e-12, 0.0, 1e-4
-    checkpoints = {10.0: None, 20.0: None, 40.0: None, 80.0: None}
-    while n < 80.0:
-        s = math.sqrt(om)
-        om = min(max(om + dn * (-(1 / tau_v) * om * s / 1.0 * 1.0 + 3 * om * (1 - om)), 0.0), 1.0)
-        tau_v += dn * s
-        n += dn
-        for c in checkpoints:
-            if checkpoints[c] is None and n >= c:
-                checkpoints[c] = (om, tau_v)
-    for c, (o, tv) in checkpoints.items():
-        print(f"      N = {c:<5}: Omega = {o:.6f}, tau_v = {tv:.3f}")
-
+    print("      (corrected after the pre-registered run: that run started tau_v at 1e-12, the explicit step")
+    print("       overshot and clamped Omega to its fixed point 0. Here: the self-consistent early solution")
+    print("       Omega ~ a^2 with tau_v = sqrt(Omega), integrated in y = ln Omega with RK4.)")
+    def rhs3(y, tv):
+        om = math.exp(y)
+        return (-math.sqrt(om) / tv + 3 * (1 - om), math.sqrt(om))
+    y, n, dn = math.log(1e-12), 0.0, 1e-3
+    tv = math.sqrt(math.exp(y))
+    for target in (5.0, 10.0, 15.0, 20.0, 40.0, 80.0, 160.0):
+        while n < target - 1e-12:
+            k1 = rhs3(y, tv)
+            k2 = rhs3(y + dn / 2 * k1[0], tv + dn / 2 * k1[1])
+            k3 = rhs3(y + dn / 2 * k2[0], tv + dn / 2 * k2[1])
+            k4 = rhs3(y + dn * k3[0], tv + dn * k3[1])
+            y += dn / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0])
+            tv += dn / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])
+            y = min(y, 0.0)
+            n += dn
+        om = math.exp(y)
+        print(f"      N = {target:<6}: Omega = {om:.6f}, tau_v = {tv:.4f}, hazard/e-fold = {math.sqrt(om) / tv:.4f}")
 
 if __name__ == "__main__":
     main()
