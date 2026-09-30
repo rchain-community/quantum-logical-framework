@@ -520,6 +520,68 @@ the continuum model's result (Bistritzer & MacDonald 2011).
    C₆₀ is icosahedral, so its natural ratio is φ ([`ZFA_DNA.md`](ZFA_DNA.md) §11), not an Eisenstein one. This is
    the candidate for a different DNA.
 
+## 11. The one-bit phase on the moiré (extension point 3)
+
+[`moire_one_bit.py`](moire_one_bit.py). Under H_1bit, the ways of the condensate are an Ising model on the lattice
+of coherence patches. The moiré fixes that lattice:
+* The flat-band Wannier orbitals sit on the AB/BA stacking regions, a **honeycomb** (Koshino et al. 2018; Kang &
+  Vafek 2018; Po et al. 2018).
+* The alternative, one patch per AA region where the charge peaks, is **triangular**.
+
+The coupling `J` between patches needs extension point 1, the interlayer closures. The ratio
+`r = k_B T_c / D_s(0)` does not, because `T_c` and `D_s(0)` are both proportional to `J`.
+
+**The cell from the DNA.** For the commensurate family, the supercell vector is the DNA's inflation, `|z|` lattice
+constants long. A cell holds `4|z|²` atoms. The script checks this against the moiré formula `a/(2 sin(θ/2))`,
+and the 1.05° cell comes out at the familiar 11,908 atoms.
+
+| phase on the moiré | lattice | `r` |
+|---|---|---|
+| **one bit per Wannier centre** | honeycomb (AB/BA) | **2.63** |
+| one bit per AA region | triangular | 2.10 |
+| two independent bits (μ₄ clock) | honeycomb · triangular | 1.32 · 1.05 |
+| continuous phase (BKT) | any | ≤ 1.571 |
+
+The ratio does not depend on the twist angle or on the number of layers.
+
+**A check against data already seen (not a test).** The trilayer's measured slope is 3.04, and its dome-top points
+give 2.23. Each hypothesis matches only if the sheet stiffness has been underestimated by a factor
+`α = r_measured / r_model`:
+
+| hypothesis | `α` needed |
+|---|---|
+| **one bit, honeycomb** | **0.85 – 1.16** |
+| one bit, triangular | 1.06 – 1.45 |
+| continuous phase | ≥ 1.42 – 1.94 (3.4 for the square XY lattice) |
+| two independent bits | 1.70 – 2.89 |
+
+**So if the measured stiffness is the sheet stiffness, only one bit per Wannier centre matches.** Banerjee et al.'s
+own estimate, `α ≈ 3`, was obtained by assuming BKT.
+
+### 11a. Pre-registered for new data
+
+*Fixed in the commit that adds this section. No measurement of `α` is known to me.*
+
+`α` is the ratio of the true sheet stiffness to the one inferred from the device's full width. It can be measured
+without assuming any hypothesis:
+* local superfluid-density maps (scanning SQUID or scanning-probe susceptometry)
+* devices of different widths
+* devices of uniform twist angle
+
+A verdict needs the 2σ interval of the measured `α` to lie inside one band:
+
+| measured `α` | verdict |
+|---|---|
+| `≤ 1.30` | **one bit per Wannier centre**, `r = 2.63` |
+| `1.30 – 1.70` | one bit per AA region, `r = 2.10` |
+| `≥ 1.90` | continuous phase or two independent bits, separated by the stiffness exponent near `T_c` (§8: BKT jump or Ising `x = 1`) |
+| `1.70 – 1.90`, or spanning two bands | undecided |
+
+**A second prediction, independent of `α`.** If one bit per Wannier centre is right, every magic-angle multilayer
+whose `T_c` is set by coherence has the same `α`-corrected slope `T_c/ρ_s0 = 2.63`. The reason is that in the Khalaf
+et al. decomposition, every member's flat bands are twisted-bilayer-like, on the same Wannier honeycomb. The bilayer
+in §7a (`r ≤ 0.8`) is not coherence-limited on this reading.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -561,3 +623,9 @@ the continuum model's result (Bistritzer & MacDonald 2011).
   599–616. doi:10.1007/BF00116988
 - Bistritzer, R. & MacDonald, A. H. (2011). Moiré bands in twisted double-layer graphene. *PNAS* 108, 12233–12237.
   doi:10.1073/pnas.1108174108
+- Koshino, M., Yuan, N. F. Q., Koretsune, T., Ochi, M., Kuroki, K. & Fu, L. (2018). Maximally localized Wannier
+  orbitals and the extended Hubbard model for twisted bilayer graphene. *Phys. Rev. X* 8, 031087.
+- Kang, J. & Vafek, O. (2018). Symmetry, maximally localized Wannier states, and a low-energy model for twisted
+  bilayer graphene narrow bands. *Phys. Rev. X* 8, 031088.
+- Po, H. C., Zou, L., Vishwanath, A. & Senthil, T. (2018). Origin of Mott insulating behavior and superconductivity
+  in twisted bilayer graphene. *Phys. Rev. X* 8, 031089.
