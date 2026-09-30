@@ -199,7 +199,8 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    natural second route.
 3. The fulleride lead of §4, if a count can be framed that could fail.
 4. Phase coherence, the second step after pairing (§7, §7a): the trilayer breaks the BKT ceiling and sits near the
-   one-bit value. It needs a stiffness measurement that does not assume BKT, and an Ising-exponent check.
+   one-bit value. It needs a stiffness measurement that does not assume BKT. The Ising-exponent check (§8a)
+   retires one-bit in the bilayer (x ≈ 0.6); the trilayer needs a stiffness curve taken through to zero.
 
 ## 7. Pre-registered: phase coherence to one bit
 
@@ -320,6 +321,36 @@ available, and otherwise by pixel calibration.
 
 **Stated prior.** I expect Ising to survive, but only because mean-field theory gives the same exponent. What
 makes this worth running is that a clear `x < 1` would retire the one-bit reading for that sample.
+
+### 8a. Result
+
+Run by [`ising_exponent_test.py`](ising_exponent_test.py). The pre-registration above was frozen in commit `a8b31f0`.
+The markers of Tanaka's Fig. 16 were located automatically and calibrated to the axis box; they fall on the 0.02 K
+measurement grid. None of Banerjee's Fig. 2c curves reaches its end, so the trilayer contributes nothing here.
+
+| curve (bilayer) | points | `x` | `rss(x free) / rss(x = 1)` | verdict |
+|---|---|---|---|---|
+| electron side, reaches `D_s = 0` | 6 | **0.62 ± 0.07** | 0.21 | **Ising FAILS** |
+| hole side | 5 | 0.64 ± 1.17 | 0.94 | survives (uninformative) |
+
+As a robustness diagnostic, not part of the verdict, other cutoffs (0.6–0.8 of `D_s(0)`) give `x = 0.56–0.67` on
+both curves. The hole side is then also well below 1 (0.58 ± 0.12 at 0.7).
+
+**What it means:**
+* **In the magic-angle bilayer, the one-bit reading fails.** The stiffness vanishes with `x ≈ 0.6`, not as an
+  Ising interface tension.
+* The same number retires BCS mean-field (`x = 1`) for this sample.
+* There is no BKT jump either. The electron-side stiffness passes through the `(2/π) k_B T` line and falls
+  continuously to zero, with four points below the line.
+* `x ≈ 0.6` is close to the 3D-XY value, 0.67. With one disordered 2D sample, that is noted and not claimed.
+
+**Where the one-bit hypothesis now stands:**
+* It **fails** in aluminium films (KT unbinding, §7a).
+* It **fails** in the magic-angle bilayer (exponent, here).
+* It **survives only in the magic-angle trilayer**, where `T_c/ρ_s0` breaks the BKT ceiling and sits near the one-bit
+  value (§7a), conditional on the stiffness being measured correctly.
+* The trilayer's exponent cannot be checked from the published curves, because they stop before the stiffness
+  vanishes. The next data needed is a trilayer `ρ_s(T)` taken through to zero.
 
 ## References
 
