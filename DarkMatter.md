@@ -231,6 +231,53 @@ package and rests on a scale-freedom premise QLF's discreteness specifically bre
 
 ---
 
+### 5c. `a₀` across redshift: which clock sets it — *pre-registered 2026-09-30*
+
+**Locally constant, relatively different.** Every local observer measures the same dimensionless
+constant: `a₀/(cH) = 1/2π` on the expansion clock, or `a₀·t = c/2π` on the age clock. Like `c`, it is
+constant locally. What differs is the *relative* comparison. We, in today's atomic units, see a galaxy at
+redshift `z` with its own local `a₀`, scaled relative to ours. Atomic units are the same across epochs to
+high precision (optical clocks bound `α̇/α` at `10⁻¹⁸/yr`; [`Log2_Search.md`](Log2_Search.md) Route 3), so
+that scaling is physical and measurable. The two clocks predict different scalings:
+
+| Model | `a₀(z)/a₀(0)` | Locally constant invariant |
+|---|---|---|
+| **M_E** expansion clock (QLF's `a₀ = cH/2π` at each epoch) | `H(z)/H₀` | `a₀/(cH) = 1/2π` |
+| **M_T** age clock | `t₀/t(z)` | `a₀·t = c/2π` |
+| **M_C** constant `a₀` (standard MOND) | `1` | `a₀` itself |
+
+`H(z)` and `t(z)` are from flat ΛCDM with Planck `Ω_m = 0.315`. At `z = 1`, the predicted ratios are
+M_E ×1.79, M_T ×2.36, M_C ×1.
+
+**Data.** MUSE-DARK III (Ciocan et al. 2026, arXiv:2604.22613): 79 star-forming galaxies, `0.33 < z < 1.44`,
+with the RAR refit in four equal-population redshift bins (their Fig. 3, McGaugh's exponential form, DC14
+halo profile). Digitized by eye from the figure, so good to about `±0.01–0.02`:
+
+| bin | `z` | `a₀` [10⁻¹⁰ m/s²] |
+|---|---|---|
+| 1 | 0.50 | 1.99 ± 0.08 |
+| 2 | 0.83 | 2.20 ± 0.10 |
+| 3 | 1.05 | 2.57 ± 0.11 |
+| 4 | 1.28 | 2.71 ± 0.14 |
+
+**Systematic bracket.** QLF's law has no dark-matter halo, and the paper's MOND-framework analysis gives
+`a₀(z≈1) = 2.19` against the DC14 value of `2.38` (their Fig. 2). So the test runs on **D1**, the values
+as published, and on **D2**, the same values scaled by `2.19/2.38 = 0.920`.
+
+**Tests** (checked by [`a0_redshift_test.py`](a0_redshift_test.py)):
+
+- **S (primary, shape):** each model has one free normalization `A`, fitted to the four bins by weighted
+  least squares. Compare `χ²` (3 degrees of freedom). This is independent of the fitting form's overall
+  scale.
+- **N (secondary, normalization):** `A` fixed at SPARC's local `1.20` in the same (McGaugh) form. `χ²` has
+  4 degrees of freedom. This is weak, because the SPARC normalization carries a `±0.24` systematic
+  (McGaugh et al. 2016).
+
+**Decision rule.** In S, the preferred model has the lowest `χ²`. A model is disfavored if its `Δχ² > 4`
+relative to the best, and inconsistent if its `p < 0.05`. The statistic, the models, both datasets and the
+normalization are fixed here, before fitting. The data are published and have been seen, so this
+guards against choosing the test after the fact, not against knowing the data.
+
 ## 6. Two regimes: dense logic (Newton/GR) vs. sparse floor (apparent dark matter)
 
 For a baryonic mass `M`, the Newtonian acceleration `GM/r²` crosses the floor `a₀` at the
