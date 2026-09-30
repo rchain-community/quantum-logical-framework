@@ -659,6 +659,37 @@ It is set by the band's quantum geometry times the pairing energy (Peotta & Tör
 2019). The count gives *where* the band is flat. The one-bit coupling needs the geometry of its wavefunctions (their
 spread over the ODD honeycomb of §12) and an interaction energy.
 
+## 14. The geometry of the flat band
+
+[`moire_quantum_geometry.py`](moire_quantum_geometry.py). In a flat band the stiffness is set by the geometry of the
+wavefunctions, not by the band velocity, which is zero. It is proportional to the pairing gap, to `√(ν(1−ν))` at
+filling `ν`, and to the integrated quantum metric `G = ∫ tr g d²k / 2π` (Peotta & Törmä 2015). The metric is
+bounded below by the Chern number: `G ≥ |C|`. On the same alternating momentum slab and the same capacity as §13,
+the script computes both for the sublattice-A flat band at the magic value:
+
+| capacity | `α₁(R)` | Chern number `C` | `G` |
+|---|---|---|---|
+| R = 4 | 0.58569 | +0.988 | 1.042 |
+| R = 6 | 0.58566 | +0.9999 | 1.0002 |
+| R = 8, 10 | 0.58566 | **+1.0000** | **1.0000** |
+
+C is from the Fukui–Hatsugai–Suzuki link method. `G` comes from Fubini–Study finite differences. Grids of 8×8 and
+12×12 agree.
+
+**The control.** The same lowest mode of `D` away from the magic value (R = 8):
+
+| α | 0.45 | 0.56 | **0.58566** | 0.61 | 0.70 |
+|---|---|---|---|---|---|
+| `G` | 1.058 | 1.002 | **1.00000** | 1.002 | 1.043 |
+
+`C = 1` at every `α`, because the topology is robust. But `G` touches the floor `G = |C|` only at `α₁`, with a
+quadratic minimum. **The band is ideal exactly where the signed count of §13 cancels.** This is the known property
+of the chiral magic band (Ledwith et al. 2020), here reproduced on the substrate's own momentum slab.
+
+**For the coupling `J`,** this is the geometric factor. In `J = √3 D_s(0)` on the ODD honeycomb, `D_s(0)` carries
+`G = 1` per flat band. One energy is still missing, the pairing gap. With it, the one-bit reading gives an absolute
+`T_c = 2.63 D_s(0)`, where `D_s(0) ∝ Δ √(ν(1−ν)) G`.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -712,3 +743,7 @@ spread over the ODD honeycomb of §12) and an interaction energy.
   8944. doi:10.1038/ncomms9944
 - Hazra, T., Verma, N. & Randeria, M. (2019). Bounds on the superconducting transition temperature: applications to
   twisted bilayer graphene and cold atoms. *Phys. Rev. X* 9, 031049. doi:10.1103/PhysRevX.9.031049
+- Ledwith, P. J., Tarnopolsky, G., Khalaf, E. & Vishwanath, A. (2020). Fractional Chern insulator states in twisted
+  bilayer graphene: an analytical approach. *Phys. Rev. Research* 2, 023237. doi:10.1103/PhysRevResearch.2.023237
+- Fukui, T., Hatsugai, Y. & Suzuki, H. (2005). Chern numbers in discretized Brillouin zone: efficient method of computing (spin) Hall conductances. *J. Phys. Soc. Jpn.* 74,
+  1674–1677. doi:10.1143/JPSJ.74.1674
