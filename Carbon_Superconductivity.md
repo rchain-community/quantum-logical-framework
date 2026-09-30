@@ -198,7 +198,8 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    Kolmogorov range. A pre-registered test of whether that range carries the substrate's `log 2` per octave is the
    natural second route.
 3. The fulleride lead of §4, if a count can be framed that could fail.
-4. Phase coherence, the second step of superconductivity after pairing: pre-registered in §7.
+4. Phase coherence, the second step after pairing (§7, §7a): the trilayer breaks the BKT ceiling and sits near the
+   one-bit value. It needs a stiffness measurement that does not assume BKT, and an Ising-exponent check.
 
 ## 7. Pre-registered: phase coherence to one bit
 
@@ -244,6 +245,46 @@ universal jump in the stiffness. H_BKT has a jump, from `(2/π) k_B T_c` to zero
 
 **Stated prior.** A BKT jump is well established in thin superconducting films, so I expect U to go against H_1bit
 for aluminium. I do not know the moiré values, and those are where the question is open.
+
+### 7a. Result
+
+Run by [`phase_coherence_test.py`](phase_coherence_test.py). The pre-registration above was frozen in commit `8c7b2ee`.
+Figure values were read by pixel calibration of the published figures.
+
+| sample | `T_c` definition | `r = k_B T_c / D_s(0)` | vs BKT ceiling 1.571 |
+|---|---|---|---|
+| MATBG (Tanaka), hole side | zero resistance · half resistance | 0.52 · 0.79 | below |
+| MATBG (Tanaka), hole side | resistive onset | 1.86 | 18 % above, onset only |
+| **TTG (Banerjee)**, all points | zero resistance | **2.2 – 4.2** | above, every point by ≥ 2.3σ |
+| TTG, the authors' fitted line | zero resistance | **3.04 ± 0.10** | 14σ above |
+| **H_1bit prediction** | coherence-limited | **2.10 – 2.63** | |
+
+**Test R.**
+* **Magic-angle trilayer.** The raw data break the BKT ceiling on every point. The points at the top of the dome
+  (`r` = 2.2–2.9) overlap the one-bit band, and the fitted slope, 3.0, is 15–45 % above it. By the frozen rule this
+  **supports H_1bit and excludes H_BKT for this sample.**
+* **Magic-angle bilayer.** It does not discriminate. Its zero-resistance `T_c` sits well below the ceiling, which is
+  allowed under either hypothesis if pairing, not coherence, sets `T_c`.
+
+**The caveat the rule did not price.** Banerjee et al. explain the excess by inhomogeneity. If supercurrent flows
+in filaments narrower than the device, the microwave measurement underestimates the sheet stiffness. They put the
+factor at about 3, but they obtain it by assuming `T_BKT ≈ T_c`, which is the conclusion under test, so it cannot
+serve as a correction here. It cannot be excluded either. The trilayer support is therefore conditional: it holds if
+the measured `ρ_s0` is the sheet stiffness.
+
+**Test U.** Hebard & Fiory report Kosterlitz–Thouless vortex unbinding in aluminium films, so **H_1bit fails
+for aluminium**, as the stated prior expected. This was read from the abstract; the full text was not accessible.
+In the moiré samples the stiffness falls through the BKT line without a jump: steeply to zero in the bilayer, and
+at `T₀ ≈ T_c/3` in the trilayer, which stays superconducting above `T₀`. Under the frozen rule, no jump is no verdict.
+
+**Where this leaves the one-bit hypothesis:**
+* It is **not universal**. A conventional aluminium film behaves as a continuous phase.
+* In the **magic-angle trilayer** the measured `T_c/ρ_s0` is about twice what a continuous phase allows, at or
+  just above the value a one-bit phase gives.
+* That makes the trilayer the lead. What would settle it is an independent measure of the sheet stiffness, one
+  that does not assume BKT, for example local (scanning) stiffness or a device of uniform twist angle.
+* A second check the one-bit reading makes without new data: its transition is Ising-class, so the specific heat
+  and the critical current near `T_c` should carry Ising exponents, not BKT's essential singularity.
 
 ## References
 
