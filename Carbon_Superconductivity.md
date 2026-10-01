@@ -31,8 +31,9 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 12 | interlayer closures | EVEN hops on AA (triangular), ODD on AB/BA (honeycomb) | computed |
 | 13 | flat band as a signed count | zero at `α₁ = 0.5857`, `α₂ = 2.2212` (known 0.586, 2.221); `R = 2` gives `1/φ` exactly | computed |
 | 14 | flat-band geometry | `C = 1`, `G = 1.0000` only at `α₁`: the band is ideal where the count cancels | computed |
+| 15 | pairing energy | stiffness `Δ√(ν(1−ν))G/2π` derived and checked; `log 2` as the gap fails; one bit fails with the trilayer's STM gap, passes with the bilayer's Andreev gap | pre-registered: trilayer Andreev gap 0.23–0.70 meV |
 
-**Open:** the pairing energy, the one number needed for an absolute `T_c`. Also open: the trilayer stiffness taken
+**Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a); the trilayer's Andreev gap. Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
 
 ---
@@ -772,6 +773,44 @@ a range, the range is used.
 
 **Stated prior.** From memory, the STM gaps of magic-angle graphene are about 1–2 meV with `T_c` about 1–2 K, which
 would put `2Δ/k_BT_c` near 10–25. That would fail A, and both B candidates. I have not looked at the numbers.
+
+### 15a. Result
+
+Run by [`pairing_energy_test.py`](pairing_energy_test.py). The pre-registration above was frozen in commit `961bd07`.
+
+| measurement | `2Δ/k_BT_c` | route A, band [2.39, 7.22] | H_L1 (1.39) | H_L2 (2.89) |
+|---|---|---|---|---|
+| trilayer, Kim 2022, STM coherence peaks | 15–19 | **FAILS** (coherence-limited) | fail | fail |
+| bilayer, Oh 2021, tunneling gap (a pseudogap, per the authors) | 25–27 | outside (rule n/a: not coherence-limited) | fail | fail |
+| bilayer, Oh 2021, Andreev gap (tied to phase coherence) | 5.8 | consistent | fail | fail |
+
+**Route B fails outright.** No measured value is near 1.39 or 2.89. The `log 2` closure quantum at `T_c` is not
+the pairing energy.
+
+**Route A fails for the trilayer by the letter.** Its STM gap gives 15–19, above the one-bit band, in a material
+whose `T_c` is coherence-limited. **Route A′** points the same way: that gap predicts a stiffness about 10 times the
+measured one (measured/predicted = 0.09–0.19, below the 0.3 flag).
+
+**What the bilayer adds.** Oh et al. measured two gaps in the same device:
+* The tunneling gap survives above `T_c` and `B_c`, so it is a pseudogap. It gives 27, and a stiffness ratio of
+  0.30–0.59.
+* The Andreev gap vanishes with phase coherence. It gives 5.8, inside the band, and a stiffness ratio of 1.4–2.8.
+
+So every value that fails comes from a tunneling gap, and the one coherence-tied gap passes. That passing value does
+not discriminate between the hypotheses: 5.8 is also above the BKT floor of 4.62, and the bilayer is not
+coherence-limited (§7a).
+
+**Pre-registered for new data.** The trilayer's Andreev (phase-coherent) gap should give `2Δ_AR/k_BT_c` in
+[2.39, 7.22]. At `T_c = 2.25 K` that is `Δ_AR = 0.23–0.70 meV`, which is 2 to 7 times smaller than the STM
+coherence-peak gap, as in the bilayer. An Andreev gap near the STM value (about 1.6 meV) would retire the one-bit,
+coherence-limited reading for the trilayer.
+
+**Where the pairing energy stands:**
+* It is not the `log 2` quantum.
+* It is not supplied by the substrate count yet.
+* With the measured Andreev gap as calibration, the chain of §11–§15 (one bit on the ODD honeycomb, an ideal flat
+  band with `G = 1`, and the derived stiffness) closes with no free constant, and passes in the one sample where the
+  coherence-tied gap is known.
 
 ## References
 
