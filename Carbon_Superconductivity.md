@@ -1137,6 +1137,49 @@ range `w = 0.05–1`:
 * **The same numbers recur.** The thresholds `1/(1+√2)` and `1/(1+√3)` carry the `√2` and `√3` of the magic-angle
   multilayer family (§3). That is noted, not claimed: both come from the duality of `N`-state models.
 
+## 21. Pre-registered: the cost of a colour step (the Borromean candidate)
+
+*Fixed in the commit that adds this section. Disclosure: Pólya's 3D return probability `p₃ = 0.340537` (Watson's
+integral) is a classical constant, known before this was written. So F3 below is not blind; F1 and F2 are the parts
+that can fail.*
+
+§20 left a tension. Equal weight per way puts the colour centre ℤ₃ in the deconfined phase, while `QLF_Confinement`
+says colour is confined. This section tests one candidate for the effective colour weight.
+
+**Assumption A (the step that may be wrong).** A gauge line runs along `k` of the substrate's axes. Each unit of its
+flux must eventually be closed by the substrate's walk on those axes. The per-step weight is the probability that the
+walk ever returns, the Pólya probability `p_k`.
+* `p₁ = p₂ = 1`, because walks on 1 or 2 axes are recurrent.
+* `p₃ = 0.340537`.
+* `p₄ = 0.19320` ([`Closure_Walk.md`](Closure_Walk.md)).
+
+A is the questionable step. It uses a per-loop return probability as a per-edge weight, and it treats the steps as
+independent.
+
+**Criterion.** A line is confined iff `p_k < 1/(1+√N)`, where `N` is the order of the centre (§19, §20). For U(1),
+`N → ∞`, so the threshold goes to 0 and the line is never confined while `p_k > 0`.
+
+**F1. QLF's own count reproduces `p₃`.** Compute the cylinder mass of first closures on the three-axis alphabet
+(6 twists), `Σ_π 6^{−|π|}`. Use exact first-return counts, then a tail fit, as `Closure_Walk.md` does for `p₄`.
+* **Prediction:** `0.3405 ± 0.001`.
+
+**F2. The ℤ₃ flow gas at `w = p₃` is confined.** Take the exact transfer matrices of §20, `L = 3–6`.
+* **Prediction:** `R₃(w = p₃)` falls with `L`.
+* The margin below `w* = 0.366` is only 7 %, so this can fail at accessible sizes.
+
+**F3. The classification (not blind):**
+* Electromagnetism: charge is the gauge component, `k = 1`, U(1). Deconfined: a long-range Coulomb force.
+* Colour: three spatial axes, ℤ₃. **Confined.**
+* Weak isospin: three spatial axes (the τ triple), ℤ₂. Confined or screened. With fundamental Higgs matter,
+  confinement and Higgs are continuously connected (Fradkin & Shenker 1979), which is consistent with a short-range
+  force.
+
+**Verdict rules.**
+* **F1 fails** if the count misses `p₃` by more than 0.001.
+* **F2 fails** if `R₃(p₃)` does not fall with `L`.
+* If both pass, Assumption A resolves the §20 tension in the way nature does: one-axis forces long-range, three-axis
+  forces confined or short-range. That is still one way, not a derivation of A.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
