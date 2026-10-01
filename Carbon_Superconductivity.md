@@ -33,6 +33,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 14 | flat-band geometry | `C = 1`, `G = 1.0000` only at `α₁`: the band is ideal where the count cancels | computed |
 | 15 | pairing energy | stiffness `Δ√(ν(1−ν))G/2π` derived and checked; `log 2` as the gap fails; one bit fails with the trilayer's STM gap, passes with the bilayer's Andreev gap | trilayer Andreev gap 0.29–0.47 meV found (§15b): **inside** the pre-registered window |
 | 16 | fullerenes | the same Eisenstein DNA folded onto the icosahedron (two constructions agree); sign alternation broken on exactly `6(h+k)` bonds | constructed; `6(h+k)` computed for 7 cages |
+| 17 | fulleride `T_c` vs broken alternation | no higher fullerene superconducts (null, second-hand); Schön C₇₀ retracted; no C₃₆ data | consistent, little weight |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -913,6 +914,29 @@ explanation of its superconductivity. Any ordering by cage size is therefore con
 cannot tell H_frust from that explanation; only a failure would be informative. **Stated prior:** I expect
 consistency, with mostly null results for the higher fullerenes, and so little weight either way.
 
+### 17a. Result
+
+The pre-registration above was frozen in commit `89f68ab`.
+
+| fullerene | evidence found | status |
+|---|---|---|
+| C₇₀, alkali-doped (A₃C₇₀) | no superconducting transition. Stated by Provasi et al. (2000) with a computed coupling `λ ≈ 0.1`, an order of magnitude below C₆₀'s. Search summaries put the absence of a transition down to about 1 K; the primary reports (e.g. Haddon et al. 1991) were not accessible here | null result, second-hand |
+| C₇₀, field-effect "doped", 7 K (Schön et al., *Nature* 413, 831, 2001) | **retracted**, *Nature* 422, 92 (2003), as part of the Schön misconduct case | **excluded** |
+| C₇₆, C₈₄, up to C₉₀ | "no superconductivity even when alkali-metals are doped", from search summaries of preliminary investigations; no primary source verified | null result, unverified |
+| Rb/Tl-codoped "C₆₀ and C₆₀/C₇₀ mixtures", 45 K (Iqbal et al., *Science* 254, 826, 1991) | a C₆₀ compound in a mixture, not a C₇₀ one; never confirmed | not counted |
+| C₃₆ | the solid has been made (Piskoti, Yarger & Zettl 1998), but no experimental superconductivity was found | no data |
+
+**Verdict: consistent, with little weight, as the stated prior expected.**
+* **P1 holds.** No higher fullerene has a confirmed `T_c` at all, let alone one above its C₆₀ analogue.
+* **P2 cannot be tested.** There is no doped small fullerene in experiment.
+* Null results were declared to carry little weight, and the symmetry confound stands. C₇₀'s small coupling is the
+  standard reason it does not superconduct, and that reason is about its lower symmetry, not its lower frustration.
+
+So the fullerenes cannot yet separate the broken-alternation reading from symmetry. The test that could is C₃₆,
+whose larger broken fraction (`f > 0.133`, adjacent pentagons) predicts a higher `T_c`. Theory has predicted strong
+electron–phonon coupling in solid C₃₆ (Côté, Grossman, Cohen & Louie 1998). An experimental `T_c` of doped C₃₆ above its same-dopant C₆₀ analogue would
+support H_frust; one below would fail P2.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -984,3 +1008,13 @@ consistency, with mostly null results for the higher fullerenes, and so little w
   doi:10.1137/0204019
 - Došlić, T. & Vukičević, D. (2007). Computing the bipartite edge frustration of fullerene graphs. *Discrete Appl.
   Math.* 155, 1294–1301. doi:10.1016/j.dam.2006.12.003
+- Provasi, D., Breda, N., Broglia, R. A. & Colò, G. (2000). Electron-phonon interaction in C70. arXiv:cond-mat/0001047.
+- Schön, J. H. et al. (2001). Superconductivity in single crystals of the fullerene C70. *Nature* 413, 831–833.
+  **Retracted**: *Nature* 422, 92 (2003).
+- Iqbal, Z. et al. (1991). Superconductivity at 45 K in Rb/Tl codoped C60 and C60/C70 mixtures. *Science* 254,
+  826–829.
+- Haddon, R. C. et al. (1991). Conducting films of C60 and C70 by alkali-metal doping. *Nature* 350, 320–322.
+  doi:10.1038/350320a0
+- Piskoti, C., Yarger, J. & Zettl, A. (1998). C36, a new carbon solid. *Nature* 393, 771–774. doi:10.1038/31668
+- Côté, M., Grossman, J. C., Cohen, M. L. & Louie, S. G. (1998). Electron-phonon interactions in solid C36.
+  *Phys. Rev. Lett.* 81, 697–700. doi:10.1103/PhysRevLett.81.697
