@@ -38,7 +38,8 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 19 | topological `log 2` of the ℤ₂ substrate | toric code on the closure graph: `γ = log 2` exactly; deconfined for equal weight per way, confined under the Kraft measure, boundary at `w* = √2−1` (found 0.41472) | both pre-registered predictions pass |
 | 20 | quark centre ℤ₃ and transient pairs | `γ = log 3`; ℤ₃ deconfines at `w* = 0.3683` (predicted `1/(1+√3)`); pairs turn the transition into a crossover | all three pre-registered predictions pass; tension with colour confinement at equal weight |
 | 21 | cost of a colour step | Pólya `p₃ = 0.340544` from QLF's own first-closure count (Watson 0.340537); ℤ₃ gas at `w = p₃` confined; EM deconfined, colour confined, weak screened | F1, F2 pass; rests on Assumption A |
-| 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | pre-registered prediction passes; replaces Assumption A in the ℤ₂ sector |
+| 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | passes (w ≤ 0.5 directly; 0.7–0.9 by the positive-weight check, §23b) |
+| 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1265,13 +1266,14 @@ Run by [`signed_census.py`](signed_census.py). The pre-registration above was fr
 | 0.300 | 0.075 → 0.003 (confined) | 0.024 → 0.00003 (confined) |
 | 0.414 | 0.380 → 0.372 (critical) | 0.071 → 0.0005 (**confined**) |
 | 0.500 | 0.726 → 0.964 (deconfined) | 0.128 → 0.003 (**confined**) |
-| 0.700 | 0.989 → 1.000 (deconfined) | 0.310 → 0.052 (**confined**) |
-| 0.900 | 1.000 → 1.000 (deconfined) | 0.452 → 0.321 (**confined**) |
+| 0.700 | 0.989 → 1.000 (deconfined) | below the precision floor at L ≥ 8 (§23a); positive-weight check: **confined** (§23b) |
+| 0.900 | 1.000 → 1.000 (deconfined) | below the precision floor at L ≥ 6 (§23a); positive-weight check: **confined** (§23b) |
 | 1 (equal weight per way) | 1 (deconfined) | **every sector exactly 0** |
 
-**The prediction passes.** With the histories' phases restored, `|R_s|` falls with `L` at every `w ≤ 0.9`. That includes
-0.5, 0.7 and 0.9, where the unsigned gas is deconfined. The threshold has moved from `√2 − 1` to 1, as the fully
-frustrated Ising model requires.
+**The prediction passes.** As computed here, `|R_s|` falls with `L` at `w ≤ 0.5`, including 0.5, where the unsigned gas
+is deconfined. At `w = 0.7` and `0.9` the signed sums fall below double-precision accuracy (§23a). There the
+positive-weight check of §23b, the fully frustrated Ising model itself, gives confinement too. The threshold has
+moved from `√2 − 1` to 1, as the fully frustrated Ising model requires.
 
 **At equal weight per way, the signed census vanishes exactly.** This is a theorem, not a numerical result. Flipping
 one plaquette, `C → C ⊕ ∂p`, is a bijection of each winding sector. At `w = 1` it keeps the weight and flips the sign,
@@ -1365,6 +1367,51 @@ within 10 % of `√2 − 1` and `1/(1+√3)`. If they do not, the statistic is r
 **Predictions (unchanged in substance).** For the frustrated models, `ρ` does not fall with `L` at any `w ≤ 0.9`: the
 loop gas is confined (§22 for ℤ₂, T2 for ℤ₃). **FAILS** if `ρ` falls with `L`, from the smallest to the largest
 size, at any `w ≤ 0.9`.
+
+### 23b. Result
+
+Run by [`positive_twist_check.py`](positive_twist_check.py) (statistic fixed in `878a862`) and
+[`z3_colour_phase.py`](z3_colour_phase.py) (D1, D2, T1).
+
+**D1, D2 confirmed.**
+* The axis-cycling element `U` maps `σ_x → σ_y → σ_z → σ_x`, with `U³ = −I`. Its eigenphases are ±60°, so `U²` carries
+  `ω^{±1}`. Its entries are `(±1±i)/2`, which makes it Clifford, not a fold.
+* The qutrit clock and shift satisfy `ZX = ωXZ`. A plaquette carries flux 2π/3.
+
+**T1 confirmed.** At `w = 1` the signed ℤ₃ sector sums are about `10⁻³⁸` (zero), as the `1 + ω + ω² = 0` theorem requires.
+
+**Validation passes.** The positive-weight ratios cross at **0.4137** for the ℤ₂ ferromagnet (`√2 − 1 = 0.4142`) and at
+**0.3631** for the ℤ₃ Potts model (`1/(1+√3) = 0.3660`).
+
+**ℤ₂ with the half-spin phase (fully frustrated Ising, the signed census of §22).** `ρ` for `L = 4 → 10`:
+
+| `w` | 0.300 | 0.414 | 0.500 | 0.700 | 0.900 |
+|---|---|---|---|---|---|
+| `ρ` | 0.954 → 1.000 | 0.872 → 0.999 | 0.787 → 0.994 | 0.588 → 0.892 | 0.482 → 0.511 |
+
+It does not fall anywhere. It rises toward 1 at `w ≤ 0.7`, so the gas is **confined**. At 0.9 it holds near 0.5,
+consistent with the long correlation length near the `w = 1` critical point.
+
+**ℤ₃ with flux 2π/3 (colour, the signed census of §23).** `ρ` for `L = 3 → 6`:
+
+| `x` | 0.300 | 0.414 | 0.500 | 0.700 | 0.900 |
+|---|---|---|---|---|---|
+| signed (flux 2π/3) | 1.000 → 1.000 | 1.000 → 1.000 | 0.999 → 1.000 | 0.998 → 1.000 | 0.997 → 1.000 |
+| unsigned (no flux) | 0.983 → 1.000 | 0.586 → 0.260 | 0.228 → 0.023 | 0.020 → 0.0001 | 0.0004 → 0 |
+
+**T2 passes.** With the 2π/3 flux, colour is **confined at every `x ≤ 0.9`**, and more strongly than ℤ₂ with π flux.
+Without the flux, it deconfines above 0.366.
+
+**What this gives the quark formulation.** If colour carries the qutrit analogue of the half-spin phase, a 2π/3 flux
+per mixed plaquette, then colour lines are confined at every weight below equal weight per way, with no need for
+Assumption A (§21). Equal weight per way is the exact boundary, where every signed sum vanishes. So:
+* lines on the spatial axes (weak, colour) are confined by their own phases;
+* charge, on one axis, encloses no plaquettes and stays long-range.
+
+**The open step.** The definition is motivated, not derived. The twist folds are the Pauli group, and the ℤ₃ structure
+appears one level up, in the Clifford group (D1), the same level as the anyonic half-exchange of §18. Deriving that
+colour lines carry the qutrit clock–shift phase, from `QLF_StrongAlgebra` or `QLF_BaryonWinding`, is the target that
+would make this a QLF result rather than a QLF-compatible one.
 
 ## References
 
