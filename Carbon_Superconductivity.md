@@ -31,9 +31,9 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 12 | interlayer closures | EVEN hops on AA (triangular), ODD on AB/BA (honeycomb) | computed |
 | 13 | flat band as a signed count | zero at `α₁ = 0.5857`, `α₂ = 2.2212` (known 0.586, 2.221); `R = 2` gives `1/φ` exactly | computed |
 | 14 | flat-band geometry | `C = 1`, `G = 1.0000` only at `α₁`: the band is ideal where the count cancels | computed |
-| 15 | pairing energy | stiffness `Δ√(ν(1−ν))G/2π` derived and checked; `log 2` as the gap fails; one bit fails with the trilayer's STM gap, passes with the bilayer's Andreev gap | pre-registered: trilayer Andreev gap 0.23–0.70 meV |
+| 15 | pairing energy | stiffness `Δ√(ν(1−ν))G/2π` derived and checked; `log 2` as the gap fails; one bit fails with the trilayer's STM gap, passes with the bilayer's Andreev gap | trilayer Andreev gap 0.29–0.47 meV found (§15b): **inside** the pre-registered window |
 
-**Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a); the trilayer's Andreev gap. Also open: the trilayer stiffness taken
+**Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
 
 ---
@@ -812,6 +812,34 @@ coherence-limited reading for the trilayer.
   band with `G = 1`, and the derived stiffness) closes with no free constant, and passes in the one sample where the
   coherence-tied gap is known.
 
+### 15b. The trilayer prediction, tested
+
+The §15a prediction was frozen in commit `17281aa`. Data turned up afterwards in Kim, Rai, Crippa et al.,
+arXiv:2505.17200 (2025), trilayer device #1 at θ = 1.61°. It has Andreev (point-contact, BTK) gaps measured
+alongside the STM gap at the same spot. The authors resolve an inner gap that vanishes with superconductivity and
+an outer pseudogap. Park et al., *Science* 391, 79 (2026) report the same two-gap structure from tunneling plus
+transport; its numbers were not accessible here.
+
+| `V_gate` | tunneling `Δ_T` | Andreev `Δ_A` (s / d fit) | in [0.23, 0.70] meV? | `2Δ_A/k_BT_c` at 1.5 K | at 1.0 K |
+|---|---|---|---|---|---|
+| −8.4 V | 0.89 meV | 0.38 / 0.47 meV | **yes** | 5.9 – 7.3 | 8.8 – 10.9 |
+| −8.7 V | 0.70 meV | 0.29 / 0.38 meV | **yes** | 4.5 – 5.9 | 6.7 – 8.8 |
+
+**The test passed.** All four Andreev gaps lie inside the pre-registered window. Against the 1.6 meV STM gap of Kim
+2022 they are 3.4–5.5 times smaller, inside the predicted 2–7. This device's own tunneling gap is only 1.8–2.4 times
+larger. An Andreev gap near the STM value would have failed the test, and none did.
+
+**Which `T_c`.** The paper gives the inner-gap onset as 1.5 K at `ν = −2.3` (`V_gate ≈ −8.6 V`), "matching the Andreev
+signal". It also says the Andreev signal disappears "around 1K" at `V_gate = −10 V`. Using 1.5 K, the filling
+nearest these gaps, the ratio is 4.5–7.3. That is inside the band except the d-wave fit at −8.4 V, which sits on
+its edge (7.27 against 7.22). With 1 K it would be 6.7–10.9. The authors' own ratio from the inner gap is about 8.3.
+
+**What it does not do.** It does not discriminate one bit from the continuous phase, because 4.5–7.3 is also above
+the BKT floor (4.62 at the centre). What it supports is the consistency of the chain in the trilayer, the sample
+where the one-bit reading is still open: flat-band geometry with `G = 1`, the derived stiffness, and a
+coherence-tied gap. Route A's failure in §15a came from using the pseudogap. With the coherence-tied gap, the
+trilayer passes.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -873,3 +901,7 @@ coherence-limited reading for the trilayer.
   494–500. doi:10.1038/s41586-022-04715-z
 - Oh, M. et al. (2021). Evidence for unconventional superconductivity in twisted bilayer graphene. *Nature* 600,
   240–245. doi:10.1038/s41586-021-04121-x
+- Kim, H., Rai, G., Crippa, L. et al. (2025). Resolving intervalley gaps and many-body resonances in moiré
+  superconductor. arXiv:2505.17200.
+- Park, J. M., Sun, S., Watanabe, K., Taniguchi, T. & Jarillo-Herrero, P. (2026). Experimental evidence for nodal
+  superconducting gap in moiré graphene. *Science* 391, 79–83. doi:10.1126/science.adv8376

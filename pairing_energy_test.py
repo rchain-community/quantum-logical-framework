@@ -91,5 +91,43 @@ Reading.
   2 to 7 times smaller than the STM coherence-peak gap, as in the bilayer.""")
 
 
+# The pre-registered trilayer prediction (sec 15a), tested against data found afterwards:
+# Kim, Rai, Crippa et al., arXiv:2505.17200 (2025), MATTG device #1 (theta = 1.61 deg), Fig. 4e,f: Andreev
+# (point-contact, BTK) gaps alongside the STM tunneling gap at the same location. Inner-gap onset 1.5 K at
+# nu = -2.3 (V_gate ~ -8.6 V), "matching the Andreev signal" (Extended Data Fig. 6); at V_gate = -10 V the Andreev
+# signal disappears "around 1K".
+KIM2025 = [  # (V_gate, tunneling Delta_T meV, Andreev Delta_A s-wave, d-wave)
+    (-8.4, 0.89, 0.38, 0.47),
+    (-8.7, 0.70, 0.29, 0.38),
+]
+
+
+def trilayer_andreev() -> None:
+    lo_a = min(a_ratio(N, nu) for N in (2, 4) for nu in (1 / 8, 1 / 4, 1 / 2))
+    hi_a = max(a_ratio(N, nu) for N in (2, 4) for nu in (1 / 8, 1 / 4, 1 / 2))
+    print("\n" + "=" * 78 + "\nThe pre-registered trilayer prediction, tested (Kim et al. 2025, arXiv:2505.17200)\n" + "-" * 78)
+    print(f"  prediction: Delta_AR in [0.23, 0.70] meV (at T_c = 2.25 K); 2 Delta_AR / k_B T_c in [{lo_a:.2f}, {hi_a:.2f}];"
+          f"\n  2 to 7 times smaller than the tunneling gap.\n")
+    print(f"  {'V_gate':>7}{'Delta_T':>9}{'Delta_A (s / d)':>18}{'in window':>11}{'Delta_T/Delta_A':>17}"
+          f"{'2D/kTc @1.5K':>15}{'@1.0K':>13}")
+    for vg, dt, ds, dd in KIM2025:
+        inwin = all(0.23 <= x <= 0.70 for x in (ds, dd))
+        r15 = [2 * x / (KB_MEV * 1.5) for x in (ds, dd)]
+        r10 = [2 * x / (KB_MEV * 1.0) for x in (ds, dd)]
+        print(f"  {vg:>7.1f}{dt:>9.2f}{ds:>10.2f} / {dd:.2f}{('yes' if inwin else 'no'):>11}"
+              f"{dt / dd:>9.1f} - {dt / ds:.1f}{r15[0]:>9.1f} - {r15[1]:.1f}{r10[0]:>7.1f} - {r10[1]:.1f}")
+    print(f"""
+  Absolute window: all four Andreev gaps (0.29-0.47 meV) lie inside [0.23, 0.70] meV. The pre-registered "2 to 7
+  times smaller" was against the 1.6 meV STM gap of Kim 2022: here 3.4-5.5 times. This device's own tunneling gap
+  is only 1.8-2.4 times the Andreev gap. The ratio with the onset T_c at the nearest filling
+  (1.5 K) is 4.5-7.3, inside the band except the d-wave fit at -8.4 V, which sits on its edge (7.27 vs 7.22).
+  With the 1 K disappearance quoted for V_gate = -10 V it would be 6.7-10.9. An Andreev gap near the STM value
+  (1.6 meV in Kim 2022) would have failed this test; it did not.
+  It does not discriminate one bit from the continuous phase: 4.5-7.3 is also above the BKT floor (4.62 at
+  the centre). What it supports is the chain's consistency -- flat-band geometry, the derived stiffness and a
+  coherence-tied gap -- in the trilayer, the sample where the one-bit reading is still open.""")
+
+
 if __name__ == "__main__":
     main()
+    trilayer_andreev()
