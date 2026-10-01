@@ -49,8 +49,9 @@ def toric_code(L: int, pi_flux: bool):
             signs.append(-1 if pi_flux else 1)
     consistent = math.prod(signs) == 1       # prod of all B_p is the identity on the torus
     # logical Z loops (fix one of the four degenerate ground states; does not affect gamma for local regions)
-    gens.append((0, sum(1 << E[('h', i, 0)] for i in range(L))))
-    gens.append((0, sum(1 << E[('v', 0, j)] for j in range(L))))
+    # the loops cut ACROSS edges (dual paths), so they commute with every plaquette
+    gens.append((0, sum(1 << E[('v', i, 0)] for i in range(L))))
+    gens.append((0, sum(1 << E[('h', 0, j)] for j in range(L))))
     return gens, mids, consistent
 
 
@@ -105,6 +106,9 @@ def part_a():
     for L in (6, 8, 10, 12):
         for pi in (True, False):
             gens, mids, ok = toric_code(L, pi)
+            anticomm = lambda a, b: (bin(a[0] & b[1]).count("1") + bin(a[1] & b[0]).count("1")) % 2
+            assert not any(anticomm(a, b) for a in gens for b in gens), "generators must commute"
+            assert gf2_rank([(x << (2 * L * L)) | z for x, z in gens]) == 2 * L * L, "pure state"
             if not ok:
                 print(f"  {L:>3}{'pi':>8}{'NO':>14}")
                 continue
