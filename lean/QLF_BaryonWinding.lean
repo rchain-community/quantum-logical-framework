@@ -211,7 +211,7 @@ def cycAx : Ax → Ax
   | Ax.z => Ax.x
 
 /-- The transposition `x ↔ y` of the spatial axes (`z` fixed). -/
-def swapXY : Ax → Ax
+def axSwapXY : Ax → Ax
   | Ax.x => Ax.y
   | Ax.y => Ax.x
   | Ax.z => Ax.z
@@ -241,7 +241,7 @@ def swapTwist : Twist → Twist
 
 theorem axOf_cyc (t : Twist) : axOf (cycTwist t) = (axOf t).map cycAx := by cases t <;> rfl
 
-theorem axOf_swap (t : Twist) : axOf (swapTwist t) = (axOf t).map swapXY := by cases t <;> rfl
+theorem axOf_swap (t : Twist) : axOf (swapTwist t) = (axOf t).map axSwapXY := by cases t <;> rfl
 
 /-- A cyclic relabeling keeps every oriented triple's sign. -/
 theorem signTriple_cyc : ∀ a b c : Option Ax,
@@ -250,7 +250,7 @@ theorem signTriple_cyc : ∀ a b c : Option Ax,
 
 /-- A transposition reverses every oriented triple's sign. -/
 theorem signTriple_swap : ∀ a b c : Option Ax,
-    signTriple (a.map swapXY) (b.map swapXY) (c.map swapXY) = - signTriple a b c := by
+    signTriple (a.map axSwapXY) (b.map axSwapXY) (c.map axSwapXY) = - signTriple a b c := by
   decide
 
 /-- **Baryon number is invariant under cyclic relabeling of the axes.** -/
