@@ -1341,6 +1341,31 @@ known exact solution to lean on, so T2 can genuinely fail.
 * Colour joins the ℤ₂ sector: lines on the spatial axes are confined by their own phases, and electromagnetism, on
   one axis, is not.
 
+### 23a. Amendment, fixed before computing: the precision floor, and a positive-weight statistic
+
+The signed sector sums cancel to far below the unsigned ones, by up to `10⁻⁸⁴`. Rounding error in a transfer-matrix
+product is about `10⁻¹⁶` of the unsigned size, so a signed sum below that is numerical noise. Checked:
+* **ℤ₂ (§22).** `|Z_s|/Z_u` is above `10⁻⁸` at `w ≤ 0.5` for every `L`. It is below the floor at `w = 0.7` for `L ≥ 8`
+  (`2 × 10⁻¹⁵`, `7 × 10⁻²⁴`) and at `w = 0.9` for `L ≥ 6`. **So §22a's entries at `w = 0.7` (L = 8, 10) and `w = 0.9`
+  (L = 6–10) are not established**; its verdict holds as computed only for `w ≤ 0.5`.
+* **ℤ₃ (§23).** The floor is crossed already at `w = 0.5` for `L ≥ 5`.
+
+**Replacement statistic, fixed now.** The signed loop gas is exactly the high-temperature expansion of a spin model
+with *positive* weights:
+* ℤ₂: the fully frustrated Ising model, bonds `K η_e` with `η` from `QLF_EdgeSign`, `tanh K = w`;
+* ℤ₃: the 3-state Potts model with a gauge field of flux 2π/3 per plaquette, `x = (e^K − 1)/(e^K + 2)`.
+
+Nothing cancels in these. The confinement test becomes the twisted-boundary ratio `ρ = Z_twisted/Z_periodic`, from
+positive transfer matrices. It tends to 1 when the spin model is disordered (the loop gas is confined) and to 0 when
+ordered (deconfined).
+
+**Validation required first.** On the *unsigned* models (ferromagnetic Ising and Potts), the `ρ` curves must cross
+within 10 % of `√2 − 1` and `1/(1+√3)`. If they do not, the statistic is rejected.
+
+**Predictions (unchanged in substance).** For the frustrated models, `ρ` does not fall with `L` at any `w ≤ 0.9`: the
+loop gas is confined (§22 for ℤ₂, T2 for ℤ₃). **FAILS** if `ρ` falls with `L`, from the smallest to the largest
+size, at any `w ≤ 0.9`.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
