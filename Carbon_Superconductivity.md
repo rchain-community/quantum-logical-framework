@@ -40,7 +40,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 21 | cost of a colour step | Pólya `p₃ = 0.340544` from QLF's own first-closure count (Watson 0.340537); ℤ₃ gas at `w = p₃` confined; EM deconfined, colour confined, weak screened | F1, F2 pass; rests on Assumption A |
 | 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | passes (w ≤ 0.5 directly; 0.7–0.9 by the positive-weight check, §23b) |
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
-| 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry; the flux is still not derived |
+| 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -229,6 +229,30 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    such as vortex noise, and is still open.
 3. The fulleride lead of §4: C₆₀ is icosahedral (φ), outside the Eisenstein DNAs of §10. Still open.
 4. Phase coherence, the second step after pairing: §7–§8 and §11–§14.
+
+**Open, as of §24** (none pre-registered yet):
+5. **Carbon isotope effect.** In the §11–§15 chain `T_c = 2.63 D_s` with `D_s ∝ Δ`, so `T_c` inherits the gap's
+   isotope exponent.
+   * Phonon (Kekulé) glue predicts about −4 % for ¹²C → ¹³C, the BCS exponent of 0.5.
+   * Electronic glue predicts about 0. Kim et al. 2025's mode-to-gap bound, `Ω/2Δ ≤ 1`, points that way.
+   * No measurement in magic-angle graphene has been found.
+6. **The Kekulé mode is the `z = 1 − ω` DNA.** Graphene's most strongly coupled phonon distorts the sheet into the √3×√3
+   Kekulé pattern, which is the leapfrog operation that builds C₆₀ from C₂₀ (§16). Kim et al. 2025 see Kekulé order
+   in the trilayer. That data has already been seen, so it is not a blind test.
+7. **Phonons in QLF play two roles.** Electricity.md §6 treats phonons as the bath, the thing `T_c` must be decoupled
+   from. Standard superconductivity also uses them as glue (CaC₆: Calandra & Mauri 2005). A QLF reading would
+   distinguish a phonon that closes jointly with the pair, inside its Markov blanket, from one that prunes its paths
+   from outside. This is not formalised.
+8. **Phonon-limited resistivity for the §5a lead.** Magic-angle graphene's linear-in-`T` resistivity has been
+   attributed to electron–phonon scattering (Polshyn et al. 2019). A phonon-limited `C` could be compared with the two
+   measured filling branches.
+9. **The colour flux (§24).** Should a colour step relabel axes, taking the Clifford `U` as a transport primitive? That
+   is a framework extension and the user's decision.
+10. **Data the tests are waiting on:**
+    * an independent stiffness measurement `α` (§11a);
+    * a trilayer `ρ_s(T)` taken through to zero (§8, §8b);
+    * doped C₃₆ (§17);
+    * a vortex-noise spectrum (§9).
 
 ## 7. Pre-registered: phase coherence to one bit
 
@@ -1439,8 +1463,10 @@ still not derived: the **flux**, the statement that a colour line carried around
 once and so picks up `U²`, which is `ω`. N2 shows fold transport cannot supply that. It would need a transport rule
 in which a colour step relabels axes, the Clifford-level primitive that QLF does not yet have.
 
-**A small Lean target.** "The baryon number is invariant under cyclic axis relabeling and odd under transpositions" is
-decidable on the finite axis type, and would anchor B in `QLF_BaryonWinding`.
+**B is now Lean-verified** (PR #170). `baryon_cyc_invariant` and `baryon_swap_odd` in
+[`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean) prove, for every history, that baryon number is unchanged under the
+cyclic relabeling `x → y → z` and negated under a transposition. So the colour ℤ₃, as the baryon-preserving
+cyclic symmetry of the axes, is machine-checked. No new axioms.
 
 ## References
 
@@ -1537,3 +1563,7 @@ decidable on the finite axis type, and would anchor B in `QLF_BaryonWinding`.
   doi:10.1088/0022-3719/10/10/014
 - Forgacs, G. (1980). Ground-state correlations and universality in two-dimensional fully frustrated systems.
   *Phys. Rev. B* 22, 4473–4480. doi:10.1103/PhysRevB.22.4473
+- Polshyn, H. et al. (2019). Large linear-in-temperature resistivity in twisted bilayer graphene. *Nature Physics* 15,
+  1011–1016. doi:10.1038/s41567-019-0596-3
+- Calandra, M. & Mauri, F. (2005). Theoretical explanation of superconductivity in C6Ca. *Phys. Rev. Lett.* 95, 237002.
+  doi:10.1103/PhysRevLett.95.237002

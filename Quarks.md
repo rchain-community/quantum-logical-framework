@@ -67,6 +67,16 @@ Borromean triple is the integrable island (the prime-3 lock, [`QLF_PrimeResonanc
 closure cost grows with separation); its *value* and the asymptotic-freedom→confinement RG flow stay open
 (`confinement_in_progress`).
 
+**Confinement as a phase of the weighted census** ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md)
+§19–§24). Weighting closed colour lines by `w` per step turns confinement into a computable phase.
+* Without phases, ℤ_N lines deconfine above `w* = 1/(1+√N)`: computed at 0.4147 for ℤ₂ and 0.3683 for ℤ₃.
+* Transient q q̄ pairs turn that transition into a crossover, as in QCD.
+* With the histories' phases, the half-spin π flux for ℤ₂ and a defined 2π/3 flux for colour, every line weighted
+  below equal weight per way is confined.
+* QLF's own baryon winding fixes the colour ℤ₃ as the cyclic relabelings of the three axes. That is Lean-verified:
+  `baryon_cyc_invariant` and `baryon_swap_odd` in [`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean).
+* The colour *flux* is defined, not derived.
+
 ## 3. Charge — conservation, neutrality, quantisation
 
 - **Proven ✓:** electric charge = signed gauge-phase count (`chargeWeight`,
