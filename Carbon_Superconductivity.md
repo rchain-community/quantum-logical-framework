@@ -881,6 +881,38 @@ signs everywhere, and it has the highest `T_c`. That stays a lead, as in §4: fi
 natural check would be a family, the doped fullerenes' `T_c` against their frustration fraction (C₆₀ against
 doped C₇₀, C₇₆, C₈₄).
 
+## 17. Pre-registered: fulleride `T_c` against the broken alternation
+
+*Fixed in the commit that adds this section, before any `T_c` of a doped fullerene other than C₆₀ was looked up.*
+
+**Hypothesis H_frust.** Among fullerides, `T_c` rises with the fraction `f = F/E` of bonds on which the sign
+alternation must break (§16). The values:
+* C₆₀ has `F = 12`, `E = 90`, so `f = 0.133`.
+* Every larger cage with isolated pentagons (C₇₀, C₇₆, C₈₄, …) needs at least 12 broken bonds, because its 12
+  pentagons are pairwise at least 2 apart. Its bonds grow as `3n/2`, so `f` is about `12/(3n/2)`, smaller than
+  C₆₀'s. For C₇₀, `f = 0.114` if its pentagons pair at gap 2.
+* Smaller cages with adjacent pentagons have a larger `f`. C₃₆ is the example.
+
+**Predictions.**
+* **P1.** No doped higher fullerene (`n > 60`) has `T_c` above the C₆₀ compound with the same dopant.
+* **P2.** A superconducting doped smaller fullerene, C₃₆ or below, if one exists experimentally, has `T_c` above
+  the C₆₀ compound with the same dopant.
+
+**Data.** Every experimental `T_c` report, or explicit null result with its temperature floor, for alkali- or
+alkaline-earth-doped C₇₀, C₇₆, C₇₈, C₈₂, C₈₄ and C₃₆, found by literature search. The comparison is with the
+C₆₀ compound of the same dopant: K₃C₆₀ 18 K, Rb₃C₆₀ about 29 K, and Cs₃C₆₀ 38 K under pressure.
+
+**Verdict rules.**
+* **FAIL** if any higher fullerene has a confirmed `T_c` above its same-dopant C₆₀ analogue, or if a confirmed
+  doped smaller fullerene has a lower one.
+* Otherwise **consistent**.
+* Null results (no superconductivity down to some temperature) are consistent with P1 but carry little weight.
+
+**Stated limitation.** C₆₀ is also the most symmetric cage, and its three-fold degenerate LUMO is the standard
+explanation of its superconductivity. Any ordering by cage size is therefore confounded with symmetry. A pass
+cannot tell H_frust from that explanation; only a failure would be informative. **Stated prior:** I expect
+consistency, with mostly null results for the higher fullerenes, and so little weight either way.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
