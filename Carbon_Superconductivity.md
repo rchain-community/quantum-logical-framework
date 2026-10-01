@@ -970,6 +970,37 @@ connection than the bulk's ℤ₂.
   Chern insulators (Ledwith et al. 2020): at fractional filling the band that superconducts hosts anyons, made by
   flux attachment, the route QLF already has.
 
+## 19. Pre-registered: does the substrate's ℤ₂ structure carry a topological `log 2`?
+
+*Fixed in the commit that adds this section, before either computation below was run.*
+
+A 2D topological phase has entanglement entropy `S = αL − γ`, with `γ = log D` (Kitaev & Preskill 2006; Levin & Wen
+2006). For ℤ₂ gauge theory (the toric code), `D = 2`, so `γ = log 2`. §18 found that the substrate's own connection
+is ℤ₂, with π flux per plaquette (`QLF_EdgeSign`). Two questions follow.
+
+**A. If deconfined, is `γ` exactly `log 2`?** Build the toric code on the planar closure graph (an L×L torus): spins on
+edges, vertex terms (closure = even degree), and plaquette terms with the signs of the `QLF_EdgeSign` holonomy. Its
+ground state is a stabilizer state, so `S_A = (|A| − rank of stabilizers inside A) · log 2` exactly. Compute `γ` by the
+Levin–Wen and Kitaev–Preskill combinations, for the π-flux signs and for zero flux.
+* **Prediction:** `γ = log 2` exactly (1 bit), for both flux patterns, at every size large enough to hold the
+  regions.
+
+**B. Is the substrate's closure superposition deconfined?** The toric code ground state is the equal-weight
+superposition of every closed-loop configuration, the census's "every way that closes". Weight each configuration by
+`x^{|C|}`; its norm is a classical loop gas with weight `w = x²` per occupied edge. It is topological (deconfined) when
+large loops condense, which shows as the four winding sectors of the torus becoming equally weighted. Compute
+`R = Z(odd x-winding)/Z(even)` exactly by transfer matrix, for `L = 4–10`.
+* **Prediction:** `R → 1` for `w > w*` and `R → 0` for `w < w*`, with `w* = √2 − 1 ≈ 0.414`. That is where the loop
+  gas maps onto the critical 2D Ising model, `tanh K_c = √2 − 1`, the silver number again.
+* **QLF reading, fixed now.**
+  * Equal weight per way (`w = 1`, "a closure's frequency is its multiplicity") is **deconfined: `γ = log 2`**.
+  * The Kraft cylinder measure (`8^{−L}` per history, `twist_kraft`; `w ≤ 1/8`) is **confined: `γ = 0`**.
+  * So the census's own weighting decides whether the substrate carries a topological `log 2`.
+
+**Verdict rules.**
+* **A fails** if `γ ≠ log 2` at the largest size for either flux pattern.
+* **B fails** if the sector ratio does not separate, or separates at a `w*` more than 10 % from `√2 − 1`.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1051,3 +1082,7 @@ connection than the bulk's ℤ₂.
 - Piskoti, C., Yarger, J. & Zettl, A. (1998). C36, a new carbon solid. *Nature* 393, 771–774. doi:10.1038/31668
 - Côté, M., Grossman, J. C., Cohen, M. L. & Louie, S. G. (1998). Electron-phonon interactions in solid C36.
   *Phys. Rev. Lett.* 81, 697–700. doi:10.1103/PhysRevLett.81.697
+- Kitaev, A. & Preskill, J. (2006). Topological entanglement entropy. *Phys. Rev. Lett.* 96, 110404.
+  doi:10.1103/PhysRevLett.96.110404
+- Levin, M. & Wen, X.-G. (2006). Detecting topological order in a ground state wave function. *Phys. Rev. Lett.* 96,
+  110405. doi:10.1103/PhysRevLett.96.110405
