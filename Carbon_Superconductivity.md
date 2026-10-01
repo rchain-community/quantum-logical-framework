@@ -38,6 +38,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 19 | topological `log 2` of the ℤ₂ substrate | toric code on the closure graph: `γ = log 2` exactly; deconfined for equal weight per way, confined under the Kraft measure, boundary at `w* = √2−1` (found 0.41472) | both pre-registered predictions pass |
 | 20 | quark centre ℤ₃ and transient pairs | `γ = log 3`; ℤ₃ deconfines at `w* = 0.3683` (predicted `1/(1+√3)`); pairs turn the transition into a crossover | all three pre-registered predictions pass; tension with colour confinement at equal weight |
 | 21 | cost of a colour step | Pólya `p₃ = 0.340544` from QLF's own first-closure count (Watson 0.340537); ℤ₃ gas at `w = p₃` confined; EM deconfined, colour confined, weak screened | F1, F2 pass; rests on Assumption A |
+| 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | pre-registered prediction passes; replaces Assumption A in the ℤ₂ sector |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1254,6 +1255,46 @@ limit, so it is not computed here.
   sector.
 * Equal weight per way would sit exactly at the critical point.
 * The ℤ₃ (colour) analogue would need the substrate's ℤ₃ flux, which is not computed here.
+
+### 22a. Result
+
+Run by [`signed_census.py`](signed_census.py). The pre-registration above was frozen in `f093c18`.
+
+| `w` | unsigned gas (§19), L = 4 → 10 | **signed census**, L = 4 → 10 |
+|---|---|---|
+| 0.300 | 0.075 → 0.003 (confined) | 0.024 → 0.00003 (confined) |
+| 0.414 | 0.380 → 0.372 (critical) | 0.071 → 0.0005 (**confined**) |
+| 0.500 | 0.726 → 0.964 (deconfined) | 0.128 → 0.003 (**confined**) |
+| 0.700 | 0.989 → 1.000 (deconfined) | 0.310 → 0.052 (**confined**) |
+| 0.900 | 1.000 → 1.000 (deconfined) | 0.452 → 0.321 (**confined**) |
+| 1 (equal weight per way) | 1 (deconfined) | **every sector exactly 0** |
+
+**The prediction passes.** With the histories' phases restored, `|R_s|` falls with `L` at every `w ≤ 0.9`. That includes
+0.5, 0.7 and 0.9, where the unsigned gas is deconfined. The threshold has moved from `√2 − 1` to 1, as the fully
+frustrated Ising model requires.
+
+**At equal weight per way, the signed census vanishes exactly.** This is a theorem, not a numerical result. Flipping
+one plaquette, `C → C ⊕ ∂p`, is a bijection of each winding sector. At `w = 1` it keeps the weight and flips the sign,
+because the plaquette's holonomy is −1, so each sector's sum equals minus itself. Just below `w = 1` the cancellations
+are near-total and floating point cannot resolve them, which is why the frozen statistic stopped at 0.9.
+
+**What it means:**
+* **"History is significant" changes the answer.** Counting configurations without their phases gave deconfinement
+  at any weight above 0.414. Counting histories with the phases the substrate gives them confines every ℤ₂ line at
+  every weight below equal weight.
+* **Assumption A is not needed in the ℤ₂ sector.** The π flux of the closure walk, which is QLF's half-spin phase,
+  does what §21 needed Assumption A for.
+* **Equal weight per way is the exact boundary.** There the signed sum of all closures is exactly zero: every way is
+  cancelled by another. The substrate's equal-weight census sits at the critical point of its own phase rule.
+* **Electromagnetism is still unaffected.** A line on one axis encloses no plaquettes.
+
+**What it does not establish:**
+* The ℤ₃ (colour) analogue needs the substrate's ℤ₃ flux, which QLF does not yet define. The ℤ₂ result does not
+  transfer automatically.
+* `|R_s|` of a signed sum is the frustrated Ising model's twisted-boundary ratio. Reading it as confinement of a
+  history-weighted census is the same identification §19–§21 used, now applied to a sum that is not positive.
+* The exact zero at `w = 1` means the signed census there has no normalisation. What equal weight per way means
+  physically under the phases is left open.
 
 ## References
 
