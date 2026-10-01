@@ -1296,6 +1296,51 @@ are near-total and floating point cannot resolve them, which is why the frozen s
 * The exact zero at `w = 1` means the signed census there has no normalisation. What equal weight per way means
   physically under the phases is left open.
 
+## 23. Pre-registered: a ℤ₃ phase for colour
+
+*Fixed in the commit that adds this section, before the computations below were run. Prompted by Jim, relaying the
+same next step from Claude on the web.*
+
+**What QLF has now.** No ℤ₃ phase.
+* [`QLF_StrongAlgebra`](lean/QLF_StrongAlgebra.lean) has two Gell-Mann generators and no centre element.
+* [`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean) uses the Levi-Civita orientation of three axes, which is `±1`: a ℤ₂
+  object.
+* The twist folds form the Pauli group (§18), whose phases are `μ₄`.
+
+So a ℤ₃ phase must be **defined**. This section states where it could come from and tests the consequence.
+
+**Two structural facts, checked by the script:**
+* **D1. Inside the twist algebra, ℤ₃ appears only one level up.** The element that cycles the three spatial axes is a
+  rotation by 2π/3 about `(1,1,1)`, the direction graphene's sublattice height runs along (§1). It is
+  `U = (1 − i(σ_x+σ_y+σ_z))/2`, with `Uσ_xU† = σ_y`, `Uσ_yU† = σ_z`, `Uσ_zU† = σ_x`, and `U³ = −I`. Its eigenphases are
+  `e^{±iπ/3}`, so `U²` carries `ω^{±1}`. `U` is a Clifford element, not a fold, just like the anyonic half-exchange of §18.
+* **D2. The qutrit analogue of the half-spin phase gives flux 2π/3.** Take colour as a three-state variable, the three
+  axes as the three states, with clock `Z = diag(1, ω, ω²)` and shift `X` (cycling the axes). Then `ZX = ωXZ`, and a
+  plaquette `X Z X⁻¹ Z⁻¹` has holonomy `ω^{±1}`, a flux of 2π/3. This is the exact analogue of the qubit fact behind
+  `QLF_EdgeSign`: `σ_zσ_x = −σ_xσ_z` gives π.
+
+**Definition (the new claim).** A colour line carries the qutrit analogue of the half-spin phase: flux 2π/3 through
+every mixed spatial plaquette. This is a definition, motivated by D1–D2, not a theorem of QLF.
+
+**The test.** Take the signed ℤ₃ census: ℤ₃ flows with amplitude `ω^{(flux enclosed)} · w^{|C|}`, in the gauge
+`ω^{n·x}` on vertical edges. Use exact transfer matrices on `L × 3L` tori (`L = 3–6`), computing
+`|R₃| = |Z(x-flux 1)/Z(x-flux 0)|`, with the unsigned gas of §20 alongside for comparison.
+
+**Predictions.**
+* **T1.** At `w = 1` every sector's signed sum is exactly 0. Adding `n·∂p` to a configuration multiplies its amplitude
+  by `ω^n`, and `1 + ω + ω² = 0`; this is a theorem, checked numerically.
+* **T2.** For every `w ≤ 0.9`, `|R₃|` falls with `L`: confined. The ℤ₃ threshold moves from `1/(1+√3)` to 1, as the ℤ₂
+  threshold did in §22.
+
+**Verdict rule.** **T2 FAILS** if `|R₃|` grows with `L`, from 3 to 6, at any `w ≤ 0.9`. Unlike §22, this case has no
+known exact solution to lean on, so T2 can genuinely fail.
+
+**If it passes:**
+* The definition confines colour without Assumption A.
+* Equal weight per way is again the exact boundary.
+* Colour joins the ℤ₂ sector: lines on the spatial axes are confined by their own phases, and electromagnetism, on
+  one axis, is not.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
