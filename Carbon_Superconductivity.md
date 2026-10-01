@@ -708,6 +708,71 @@ of the chiral magic band (Ledwith et al. 2020), here reproduced on the substrate
 `G = 1` per flat band. One energy is still missing, the pairing gap. With it, the one-bit reading gives an absolute
 `T_c = 2.63 D_s(0)`, where `D_s(0) ∝ Δ √(ν(1−ν)) G`.
 
+## 15. Pre-registered: the pairing energy, two routes
+
+*Fixed in the commit that adds this section, before any gap value from the papers below was read.*
+
+### The stiffness of a flat band, derived and checked
+
+Take projected BCS pairing in a flat band, with uniform pairing `Δ` and filling `ν` per band. A pair-phase twist
+`∇θ` shifts each electron by `q = ∇θ/2`, and the paired states' overlap drops to
+`|⟨u(k−q)|u(k+q)⟩|² ≈ 1 − 4 q·g(k)·q`. Here `g` is the quantum metric. Each pair's energy
+`E_k = √(μ̃² + Δ²|⟨…⟩|²)` falls, and with `Δ/E = 2√(ν(1−ν))` the energy cost is `(D_s/2)(∇θ)²` with
+
+$$D_s = \frac{\Delta\,\sqrt{\nu(1-\nu)}\;G}{2\pi}\quad\text{per Kramers pair of flat bands,}\qquad G = \int \operatorname{tr} g\, d^2k/2\pi .$$
+
+This is the Peotta–Törmä form, derived here rather than recalled. **Checked numerically** on the flat-band states of
+§14 (R = 8, grid 12): the finite-twist energy gives `D_s = 0.06890` at `ν = 1/4` and `0.07957` at `ν = 1/2`, against
+the formula's `0.06892` and `0.07958`, with `Δ = 1` and `G = 1`.
+
+### Route A: calibrate through the one-bit ratio
+
+If `T_c` is set by coherence and the bit sits one per Wannier centre, then `T_c = 2.63 D_s` with `N` Kramers pairs
+contributing. That gives a ratio with no calibration constant:
+
+$$\frac{2\Delta}{k_B T_c} = \frac{4\pi}{2.63\, N \sqrt{\nu(1-\nu)}\; G}.$$
+
+| `N` | `ν = 1/8` | `ν = 1/4` | `ν = 1/2` |
+|---|---|---|---|
+| 4 (all four flavour pairs) | 3.61 | **2.76** | 2.39 |
+| 2 (flavour-polarised) | 7.22 | 5.52 | 4.78 |
+
+* `G ≥ |C| = 1`, so a realistic `G` only lowers these values.
+* **One bit, coherence-limited, therefore predicts `2Δ/k_BT_c` between 2.4 and 7.2**, with central value 2.76 for
+  four unpolarised flavour pairs at `ν = 1/4` (`|ν_total| = 2`).
+* The continuous phase at the BKT ceiling gives a lower bound instead, `2Δ/k_BT_c ≥ 8/(N√(ν(1−ν))G)`. That is
+  4.0 to 12.1 over the same choices, and 4.62 at the centre.
+
+**Route A′, the stiffness from the gap.** With a measured `Δ`, the same formula predicts `ρ_s0 = N Δ √(ν(1−ν)) G/2π`.
+Report `ρ_s0(measured) / ρ_s0(predicted)` against Banerjee 2025 (trilayer) and Tanaka 2025 (bilayer). There is no
+verdict rule for this one. A ratio below 0.3 would put the measured stiffness far below flat-band geometry, which
+is in tension with §11's `α ≈ 1`.
+
+### Route B: the QLF-native candidates
+
+The closure quantum is `ΔF = k_B T log 2` per binary closure (`QLF_FreeEnergy`). As the pairing energy at the
+coherence temperature, it gives two candidates, as in §5:
+* **H_L1:** `Δ = k_B T_c log 2`, so `2Δ/k_BT_c = 2 log 2 = 1.386`.
+* **H_L2:** `Δ = k_B T_c / log 2`, so `2Δ/k_BT_c = 2/log 2 = 2.885`.
+
+Each predicts one universal number for every superconductor.
+
+### Data and verdict rules
+
+**Data.** The gap `Δ` and `T_c`, or `2Δ/k_BT_c` if stated, as reported for the superconducting state in Kim et al.,
+*Nature* 606, 494 (2022) (trilayer, STM) and Oh et al., *Nature* 600, 240 (2021) (bilayer, STM). If a paper gives
+a range, the range is used.
+
+**Verdicts.**
+* **A:** consistent if the measured `2Δ/k_BT_c` lies in [2.39, 7.22] within its uncertainty. **FAILS** if it is
+  above 7.22 by more than its uncertainty, in a material whose `T_c` is coherence-limited. The trilayer is that, by
+  §7a's linear `T_c ∝ ρ_s0`.
+* **B:** each candidate **FAILS** if the measured value differs from it by more than its uncertainty, or by more
+  than 30 % if no uncertainty is given.
+
+**Stated prior.** From memory, the STM gaps of magic-angle graphene are about 1–2 meV with `T_c` about 1–2 K, which
+would put `2Δ/k_BT_c` near 10–25. That would fail A, and both B candidates. I have not looked at the numbers.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -765,3 +830,7 @@ of the chiral magic band (Ledwith et al. 2020), here reproduced on the substrate
   bilayer graphene: an analytical approach. *Phys. Rev. Research* 2, 023237. doi:10.1103/PhysRevResearch.2.023237
 - Fukui, T., Hatsugai, Y. & Suzuki, H. (2005). Chern numbers in discretized Brillouin zone: efficient method of computing (spin) Hall conductances. *J. Phys. Soc. Jpn.* 74,
   1674–1677. doi:10.1143/JPSJ.74.1674
+- Kim, H. et al. (2022). Evidence for unconventional superconductivity in twisted trilayer graphene. *Nature* 606,
+  494–500. doi:10.1038/s41586-022-04715-z
+- Oh, M. et al. (2021). Evidence for unconventional superconductivity in twisted bilayer graphene. *Nature* 600,
+  240–245. doi:10.1038/s41586-021-04121-x
