@@ -143,9 +143,10 @@ theorem yang_mills_mass_gap_in_qlf : 0 < YangMillsMassGap := by
     verified, the lightest closure realises exactly that quantum, and the
     gauge algebras exist (SU(2)/SU(3) elsewhere). The only remaining step
     is the continuum-QFT reconstruction on ℝ⁴, carried by the explicit
-    `yang_mills_continuum_gap` boundary axiom — the crossing into the
-    continuum sector where ZFC is *proven* to fail (Gödel, Turing, Busy
-    Beaver). That is ZFC's defect, not a gap in this proof. -/
+    `yang_mills_continuum_gap` boundary axiom — an ordinary open problem,
+    not a known independence result. The substrate gap is a quantum of
+    action per closure; whether it is a gap in energy needs a cap on
+    closure time (YangMills_MassGap_QLF.md §7). -/
 theorem mass_gap_proven_constructively : True := trivial
 
 end QLF
