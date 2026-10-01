@@ -1216,6 +1216,45 @@ closes, so it stays long-range. Confinement then follows from the dimension the 
 * "Borromean" here amounts only to "lives on three axes". Weak isospin gets the same `p₃`, and colour and weak differ
   only by centre order. The specific three-colour knot structure (`QLF_BaryonWinding`) has not entered the count.
 
+## 22. Pre-registered: with the histories' phases
+
+*Fixed in the commit that adds this section, before the computation below was run. Asked by Jim: "i thought anyon
+history is significant".*
+
+§19–§21 weighted **configurations**, sets of occupied edges, and used only `|Ψ|²`, without signs. QLF weights **histories**,
+and every history carries a phase: the holonomy of the `QLF_EdgeSign` connection, with π flux through every mixed
+spatial plaquette. [`Closure_Walk.md`](Closure_Walk.md) calls the signed sum "the quantum content". This section
+puts the phases back.
+
+**The signed census.** Each closed-loop configuration gets amplitude `η(C) · w^{|C|}`. Here `η(C)` is its holonomy,
+`(−1)` per enclosed plaquette for contractible loops, with the gauge-fixed edge signs carried around winding loops.
+This is exactly the high-temperature expansion of the **fully frustrated** Ising model, with bonds `±K`, `tanh K = w`, and an
+odd number of negative bonds on every plaquette. The 2D fully frustrated Ising model has no finite-temperature
+transition; it is critical only at `T = 0` (Villain 1977; Forgacs 1980).
+
+**Prediction.**
+* With the histories' phases, the ℤ₂ deconfinement threshold moves from `√2 − 1` to **`w* = 1`**. For every `w < 1` the
+  winding sectors separate (confined): `|R_s| = |Z_s(odd)/Z_s(even)|` falls with `L`.
+* No prediction is made at `w = 1` itself, where the signed sums may cancel.
+* Electromagnetism is unaffected. A line on one axis encloses no plaquettes, so it has no frustration and stays long-range.
+
+**Statistic.** Exact transfer matrices with edge signs `η_e` in a fixed gauge (one negative vertical edge per
+plaquette column), `L = 4, 6, 8, 10`, `w ∈ {0.3, 0.414, 0.5, 0.7, 0.9}`.
+
+**Verdict rules.**
+* **FAILS** if `|R_s|` grows with `L` (from 6 to 10) at any `w ≤ 0.9`.
+* **Passes** if it falls at all five.
+
+**The unsigned history count is set aside, with a reason stated now.** Tracing a loop of length `ℓ` in `2ℓ` ways
+multiplies its weight by a factor polynomial in `ℓ`. That should not move an exponential threshold in the large-size
+limit, so it is not computed here.
+
+**If it passes:**
+* The history phases confine every ℤ₂ line weighted below equal weight, with no need for Assumption A in the ℤ₂
+  sector.
+* Equal weight per way would sit exactly at the critical point.
+* The ℤ₃ (colour) analogue would need the substrate's ℤ₃ flux, which is not computed here.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1307,3 +1346,7 @@ closes, so it stays long-range. Confinement then follows from the dimension the 
   3682–3697. doi:10.1103/PhysRevD.19.3682
 - Aoki, Y., Endrődi, G., Fodor, Z., Katz, S. D. & Szabó, K. K. (2006). The order of the quantum chromodynamics
   transition predicted by the standard model of particle physics. *Nature* 443, 675–678. doi:10.1038/nature05120
+- Villain, J. (1977). Spin glass with non-random interactions. *J. Phys. C* 10, 1717–1734.
+  doi:10.1088/0022-3719/10/10/014
+- Forgacs, G. (1980). Ground-state correlations and universality in two-dimensional fully frustrated systems.
+  *Phys. Rev. B* 22, 4473–4480. doi:10.1103/PhysRevB.22.4473
