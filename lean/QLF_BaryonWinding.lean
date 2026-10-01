@@ -29,6 +29,11 @@ Borromean triple)=1` is an assignment (quark twist strings remain open). The
 exhaustively-checked properties (dagger-oddness `B(†ts)=−B(ts)`; no-z ⟹ 0) are in
 [`baryon_winding_demo.py`](../baryon_winding_demo.py); `baryon_zero_of_noZ` anchors
 the second here. The general dagger-oddness theorem is the remaining Lean target.
+
+* `baryon_cyc_invariant` / `baryon_swap_odd` — baryon number is unchanged under the cyclic
+  relabeling `x → y → z` of the axes and negated under a transposition, so the relabelings that
+  preserve every baryon number are exactly the cyclic ones: A₃ ≅ ℤ₃, the colour centre as a
+  symmetry of the three axes (`Carbon_Superconductivity.md` §24).
 -/
 
 namespace QLF.BaryonWinding
@@ -196,5 +201,85 @@ theorem baryon_dagger_odd (ts : List Twist) :
   rw [baryon_eq_bnA, baryon_eq_bnA, List.map_reverse, List.map_map]
   have h : (axOf ∘ Twist.conj) = axOf := by funext t; exact axOf_conj t
   rw [h, bnA_reverse]
+
+-- ===== Colour ℤ₃: the baryon-preserving relabelings of the axes are the cyclic ones =====
+
+/-- Cyclic relabeling of the spatial axes, `x → y → z → x`. -/
+def cycAx : Ax → Ax
+  | Ax.x => Ax.y
+  | Ax.y => Ax.z
+  | Ax.z => Ax.x
+
+/-- The transposition `x ↔ y` of the spatial axes (`z` fixed). -/
+def swapXY : Ax → Ax
+  | Ax.x => Ax.y
+  | Ax.y => Ax.x
+  | Ax.z => Ax.z
+
+/-- Cyclic relabeling of twists: each spatial twist moves to the next axis, sign kept;
+    gauge twists are fixed. -/
+def cycTwist : Twist → Twist
+  | Twist.right     => Twist.up
+  | Twist.left      => Twist.down
+  | Twist.up        => Twist.slash
+  | Twist.down      => Twist.backslash
+  | Twist.slash     => Twist.right
+  | Twist.backslash => Twist.left
+  | Twist.plus      => Twist.plus
+  | Twist.minus     => Twist.minus
+
+/-- The `x ↔ y` relabeling of twists, sign kept; `z` and gauge twists are fixed. -/
+def swapTwist : Twist → Twist
+  | Twist.right     => Twist.up
+  | Twist.left      => Twist.down
+  | Twist.up        => Twist.right
+  | Twist.down      => Twist.left
+  | Twist.slash     => Twist.slash
+  | Twist.backslash => Twist.backslash
+  | Twist.plus      => Twist.plus
+  | Twist.minus     => Twist.minus
+
+theorem axOf_cyc (t : Twist) : axOf (cycTwist t) = (axOf t).map cycAx := by cases t <;> rfl
+
+theorem axOf_swap (t : Twist) : axOf (swapTwist t) = (axOf t).map swapXY := by cases t <;> rfl
+
+/-- A cyclic relabeling keeps every oriented triple's sign. -/
+theorem signTriple_cyc : ∀ a b c : Option Ax,
+    signTriple (a.map cycAx) (b.map cycAx) (c.map cycAx) = signTriple a b c := by
+  decide
+
+/-- A transposition reverses every oriented triple's sign. -/
+theorem signTriple_swap : ∀ a b c : Option Ax,
+    signTriple (a.map swapXY) (b.map swapXY) (c.map swapXY) = - signTriple a b c := by
+  decide
+
+/-- **Baryon number is invariant under cyclic relabeling of the axes.** -/
+theorem baryon_cyc_invariant :
+    ∀ ts : List Twist, baryonNumber (ts.map cycTwist) = baryonNumber ts
+  | a :: b :: c :: rest => by
+      have ih := baryon_cyc_invariant (b :: c :: rest)
+      simp only [List.map_cons] at ih ⊢
+      simp only [baryonNumber]
+      rw [ih, axOf_cyc, axOf_cyc, axOf_cyc, signTriple_cyc]
+  | [] => rfl
+  | [_] => rfl
+  | [_, _] => rfl
+
+/-- **Baryon number is odd under a transposition of the axes.** With
+    `baryon_cyc_invariant` this pins the baryon-preserving relabelings: the cyclic
+    ones (A₃ ≅ ℤ₃) preserve every baryon number, every odd permutation (a
+    transposition composed with a cycle) reverses it. This is the colour ℤ₃ of
+    `Carbon_Superconductivity.md` §24, as a symmetry of the three axes. -/
+theorem baryon_swap_odd :
+    ∀ ts : List Twist, baryonNumber (ts.map swapTwist) = - baryonNumber ts
+  | a :: b :: c :: rest => by
+      have ih := baryon_swap_odd (b :: c :: rest)
+      simp only [List.map_cons] at ih ⊢
+      simp only [baryonNumber]
+      rw [ih, axOf_swap, axOf_swap, axOf_swap, signTriple_swap]
+      ring
+  | [] => by simp [baryonNumber]
+  | [_] => by simp [baryonNumber]
+  | [_, _] => by simp [baryonNumber]
 
 end QLF.BaryonWinding
