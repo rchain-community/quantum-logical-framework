@@ -1042,6 +1042,43 @@ The L = 6 and L = 10 curves cross at **`w* = 0.41472`**. `√2 − 1 = 0.41421`,
   identification. The census counts twist histories, not edge sets.
 * This `log 2` is an entropy offset. The Log2_Search `log 2`s are rates, and no link between them is claimed.
 
+## 20. Pre-registered: the quark centre ℤ₃, and transient pairs
+
+*Fixed in the commit that adds this section, before either computation below was run. Asked by Jim: does §19 enhance
+the quark formulation, and "transient quark pairs must have some effect".*
+
+QLF's confinement (`QLF_Confinement`) is the singlet-closure obstruction: only colour singlets close, and a lone quark is
+an open colour line. The dynamics are left open (`confinement_in_progress`). §19's machinery turns confinement into
+a phase of the weighted closure census, as in Wegner (1971). Quarks have centre ℤ₃, not ℤ₂.
+
+**C1. ℤ₃ topological entropy.** Take the qutrit toric code on the closure graph, with oriented vertex and plaquette
+operators. Its entropy is `S_A = (rank_GF(3) − |A|) log 3`.
+* **Prediction:** Kitaev–Preskill `γ = log 3` exactly. A product-state control gives 0.
+
+**C2. ℤ₃ deconfinement.** Use divergence-free ℤ₃ flows on the edges, with weight `w` per nonzero edge. This is the
+high-temperature expansion of the 3-state Potts model. Compute the sector ratio `R₃ = Z(x-flux 1)/Z(x-flux 0)` exactly
+by transfer matrix, for `L = 3–6`.
+* **Prediction:** the `L = 4` and `L = 6` curves cross at `w* = 1/(1+√3) = 0.3660`, within 10 %. This is the Potts
+  self-dual point; the general pattern is `w*_N = 1/(1+√N)`.
+
+**Tension stated now.** Equal weight per way (`w = 1`) lies above `0.366`, on the deconfined side, while QLF says colour
+is confined. If C2 passes, the quark formulation must supply an effective colour weight below 0.366, or show the 2D
+spatial loop gas is the wrong arena for 3+1D confinement.
+
+**P. Transient pairs.** Let loops end, with fugacity `t` per odd-degree vertex. Exactly, this is the high-temperature
+expansion of the Ising model in a field, with `tanh h = t`. Compute the pair susceptibility
+`χ(w, t) = (∂² ln Z/∂t²)/N`, maximised over `w`, for `L = 4, 6, 8`.
+* **Prediction:** at `t = 0`, the peak grows with size, with `χ_max(8)/χ_max(4) ≥ 2` (2D Ising, about `L^{7/4}`): a true
+  transition.
+* At `t ≥ 0.1` it saturates, with the ratio ≤ 1.3: a crossover.
+* This is the QCD pattern: a sharp transition in the pure gauge theory, a crossover with light quarks (Aoki et al.
+  2006), and confinement and Higgs regimes continuously connected (Fradkin & Shenker 1979).
+
+**Verdict rules.**
+* **C1 fails** if `γ ≠ log 3`.
+* **C2 fails** if the crossing is more than 10 % from 0.3660.
+* **P fails** if `t = 0` does not grow by ×2, or if `t ≥ 0.1` grows by more than ×1.3.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1127,3 +1164,9 @@ The L = 6 and L = 10 curves cross at **`w* = 0.41472`**. `√2 − 1 = 0.41421`,
   doi:10.1103/PhysRevLett.96.110404
 - Levin, M. & Wen, X.-G. (2006). Detecting topological order in a ground state wave function. *Phys. Rev. Lett.* 96,
   110405. doi:10.1103/PhysRevLett.96.110405
+- Wegner, F. J. (1971). Duality in generalized Ising models and phase transitions without local order parameters.
+  *J. Math. Phys.* 12, 2259–2272. doi:10.1063/1.1665530
+- Fradkin, E. & Shenker, S. H. (1979). Phase diagrams of lattice gauge theories with Higgs fields. *Phys. Rev. D* 19,
+  3682–3697. doi:10.1103/PhysRevD.19.3682
+- Aoki, Y., Endrődi, G., Fodor, Z., Katz, S. D. & Szabó, K. K. (2006). The order of the quantum chromodynamics
+  transition predicted by the standard model of particle physics. *Nature* 443, 675–678. doi:10.1038/nature05120
