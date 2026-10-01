@@ -32,6 +32,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 13 | flat band as a signed count | zero at `α₁ = 0.5857`, `α₂ = 2.2212` (known 0.586, 2.221); `R = 2` gives `1/φ` exactly | computed |
 | 14 | flat-band geometry | `C = 1`, `G = 1.0000` only at `α₁`: the band is ideal where the count cancels | computed |
 | 15 | pairing energy | stiffness `Δ√(ν(1−ν))G/2π` derived and checked; `log 2` as the gap fails; one bit fails with the trilayer's STM gap, passes with the bilayer's Andreev gap | trilayer Andreev gap 0.29–0.47 meV found (§15b): **inside** the pre-registered window |
+| 16 | fullerenes | the same Eisenstein DNA folded onto the icosahedron (two constructions agree); sign alternation broken on exactly `6(h+k)` bonds | constructed; `6(h+k)` computed for 7 cages |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -840,6 +841,46 @@ where the one-bit reading is still open: flat-band geometry with `G = 1`, the de
 coherence-tied gap. Route A's failure in §15a came from using the pseudogap. With the coherence-tied gap, the
 trilayer passes.
 
+## 16. The ZFA DNA of the fullerenes
+
+[`fullerene_zfa_dna.py`](fullerene_zfa_dna.py). The fullerides are the highest-`T_c` carbon superconductors
+(K₃C₆₀ 18 K, Cs₃C₆₀ 38 K; §4). Every icosahedral fullerene is built from an Eisenstein integer `z = h + kω`. It is
+`C₂₀ₜ` with `T = |z|² = h² + hk + k²`, the triangulation number of Caspar & Klug (1962). That is the same index as
+the sheet DNAs and the moiré cells of §10: a patch of the sheet scaled by `|z|`, folded onto the 20 faces of an
+icosahedron. Its dual is the geodesic icosa-sphere of [`Geometry_Of_Space.md`](Geometry_Of_Space.md) §1, the
+Fuller blanket, and the blanket's 12 five-fold vertices (`pentamons_invariant`) are the fullerene's 12 pentagons.
+
+**Built two independent ways, and the DNA check.** The script builds the fullerenes as the dual of the class-I
+geodesic sphere (`z = v`), and also by leapfrog (`z ↦ (1−ω) z`, multiplying `T` by 3):
+
+| fullerene | `z` | `T` | atoms / bonds | pentagons / hexagons | frustrated bonds | fraction |
+|---|---|---|---|---|---|---|
+| C₂₀ | 1 | 1 | 20 / 30 | 12 / 0 | 6 | 0.200 |
+| **C₆₀** | 1 − ω | 3 | 60 / 90 | 12 / 20 | **12** | 0.133 |
+| C₈₀ | 2 | 4 | 80 / 120 | 12 / 30 | 12 | 0.100 |
+| C₁₈₀ (two ways) | (1−ω)² ~ 3 | 9 | 180 / 270 | 12 / 80 | 18 | 0.067 |
+| C₂₄₀ | 2(1−ω) | 12 | 240 / 360 | 12 / 110 | 24 | 0.067 |
+| C₃₂₀ | 4 | 16 | 320 / 480 | 12 / 150 | 24 | 0.050 |
+
+Each is a fullerene: 20T atoms, all 3-bonded, exactly 12 pentagons, `V − E + F = 2`. Leapfrogging twice and
+subdividing three times as finely give **the same C₁₈₀**: the same counts, the same frustration and the same
+pentagon spacing. That is what `(1−ω)² = −3ω` requires, so composing DNAs multiplies their Eisenstein integers.
+
+**The sign alternation on a cage.** On the flat sheet every bond joins a `+` site to a `−` site. A pentagon is an odd
+ring, so on a cage some bonds must join equal signs. The fewest such bonds is the bipartite edge frustration
+(Došlić & Vukičević 2007). It is a minimum T-join pairing the 12 pentagons in the dual (Hadlock 1975), and the
+script computes it exactly:
+* For all seven cages it is **`6(h + k)`**: six strings of broken bonds, one per pair of pentagons, each `h + k` steps long.
+* The bonds number `30T`, so the broken fraction falls as `1/√T`, and the flat sheet alternates everywhere.
+* C₆₀ is the smallest cage whose pentagons are isolated, with gap 2.
+
+**Not claimed:** anything about `T_c`. The fullerides superconduct by electrons doped into C₆₀'s three-fold LUMO,
+with phonon and Jahn–Teller coupling near a Mott state, and none of that is in this count. What the substrate does
+see is the broken alternation. C₆₀ is the only superconducting carbon in §4 whose lattice cannot carry the two
+signs everywhere, and it has the highest `T_c`. That stays a lead, as in §4: five materials are not a count. The
+natural check would be a family, the doped fullerenes' `T_c` against their frustration fraction (C₆₀ against
+doped C₇₀, C₇₆, C₈₄).
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -905,3 +946,9 @@ trilayer passes.
   superconductor. arXiv:2505.17200.
 - Park, J. M., Sun, S., Watanabe, K., Taniguchi, T. & Jarillo-Herrero, P. (2026). Experimental evidence for nodal
   superconducting gap in moiré graphene. *Science* 391, 79–83. doi:10.1126/science.adv8376
+- Caspar, D. L. D. & Klug, A. (1962). Physical principles in the construction of regular viruses. *Cold Spring Harb.
+  Symp. Quant. Biol.* 27, 1–24. doi:10.1101/SQB.1962.027.001.005
+- Hadlock, F. (1975). Finding a maximum cut of a planar graph in polynomial time. *SIAM J. Comput.* 4, 221–225.
+  doi:10.1137/0204019
+- Došlić, T. & Vukičević, D. (2007). Computing the bipartite edge frustration of fullerene graphs. *Discrete Appl.
+  Math.* 155, 1294–1301. doi:10.1016/j.dam.2006.12.003
