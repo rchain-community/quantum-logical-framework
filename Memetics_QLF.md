@@ -1,7 +1,7 @@
 # Memetics from closure: is every closure a meme?
 
-**Status:** one proved statement (the renewal lemma, §2, a short paper proof from existing Lean
-theorems, not yet its own Lean module), one exact computation (§3, [`meme_closure_bits.py`](meme_closure_bits.py)),
+**Status:** one proved statement (the renewal lemma, §2, Lean: [`QLF_ClosureRenewal`](lean/QLF_ClosureRenewal.lean),
+no axioms), one exact computation (§3, [`meme_closure_bits.py`](meme_closure_bits.py)),
 and one conjecture (the multi-party record, §4). The memetic reading in §5 is an interpretation and is
 labelled as one. This note answers the proposal posed in the project thread on 2026-10-02 and feeds
 issue #173 (phoneme as meme precursor).
@@ -71,9 +71,10 @@ could fail, P4 is a renaming (CLAUDE.md rule 4).
 `fold h = σ(h)·I` by P1, which is central. (3) The walk of `h·c` is back at the origin when `c` starts,
 so the excursions of `c` are measured from zero. ∎
 
-The script checks all three on 20,000 sampled pairs with no mismatch. (That is a regression check; the
-proof is what carries the lemma.) A Lean version is a few lines on top of `count_balanced_pauli_closed`
-and is listed under next steps.
+Lean: [`QLF_ClosureRenewal`](lean/QLF_ClosureRenewal.lean) proves (1) as `countBalanced_append_iff`, (2) as
+`closure_renewal` with `connectionPhase_sign`, and (3) as `maxExcursion_append_of_balanced` on the phase
+walk. `renewal_relative` adds that two closures with equal signs have identical futures. The script also
+checks all three on 20,000 sampled pairs with no mismatch, as a regression check.
 
 **What the lemma says.** A closure is a renewal event. The set of futures that close is the same after
 every closure, whichever way it closed and however deep it went. The signed amplitude of each future is
@@ -211,7 +212,6 @@ In memetic terms: a meme spreads by redundancy and changes by complementary bind
 
 ## 8. Next steps
 
-- Lean: `closure_renewal`, the three parts of §2, on top of `count_balanced_pauli_closed`.
 - A two-history census with an explicit recorder strand, to settle the §4 conjecture and to measure `R`.
 - Item 4 of §6 as the first quantitative test in #173.
 
