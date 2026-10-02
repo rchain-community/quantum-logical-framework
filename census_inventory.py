@@ -31,7 +31,9 @@ breaks one shows up immediately:
   * unbalanced histories DO reach ±iI     (QLF_BalancedPhaseReal.unbalanced_can_be_imaginary)
   * closure depth = max phase excursion   (QLF_ClosureDepthLaw.closedAtHorizon_iff_maxExcursion_le)
   * one-pass closures number 2^n          (QLF_ClosureDepth.onePass_ways_iff)
-  * the deepest stratum holds exactly 2   (QLF_ClosureDepth.nested_closed_at_d)
+  * the deepest stratum holds exactly 2   (QLF_ClosureMultiplicity.W_self)
+  * the second stratum is 2*3^(n-1) - 2^n  (QLF_ClosureMultiplicity.W_two)
+  * depth 1 is never modal for n >= 3     (QLF_ClosureMultiplicity.depth_one_not_modal)
   * phase = (-1)^(#neg) x sign(axis perm)  (QLF_PhaseRule.phase_rule)
   * first closures are prefix-free, so sum W/8^d <= 1  (QLF_KraftMeasure.twist_kraft)
   * the normalized-event weight stays under that mass  (QLF_KraftMeasure.normalized_event_mass_le_one)
@@ -581,7 +583,10 @@ def build(twist_len: int, phase_len: int, keep: dict | None = None) -> dict:
             "unbalanced histories do reach +-iI (unbalanced_can_be_imaginary)",
             "closure depth = max phase excursion (closedAtHorizon_iff_maxExcursion_le)",
             "one-pass closures number 2^n (onePass_ways_iff)",
-            "the deepest stratum holds exactly 2 (nested_closed_at_d)",
+            "the deepest stratum holds exactly 2 (QLF_ClosureMultiplicity.W_self)",
+            "the second stratum is 2*3^(n-1) - 2^n (QLF_ClosureMultiplicity.W_two)",
+            "depth 1 is never the modal depth for n >= 3 "
+            "(QLF_ClosureMultiplicity.depth_one_not_modal)",
             "phase factorizes over independent factors (QLF_IndexedFactors.phase_factorizes)",
             "a joint closure of independent factors needs each factor closed (kron is scalar "
             "iff both are)",
@@ -653,7 +658,12 @@ def check(db: dict) -> list[str]:
                         f"(contradicts onePass_ways_iff)")
         if rec["deepest_stratum"] != 2:
             fail.append(f"length {L}: deepest stratum {rec['deepest_stratum']} != 2 "
-                        f"(contradicts nested_closed_at_d)")
+                        f"(contradicts W_self)")
+        if n >= 2 and rec["strata"].get("2", 0) != 2 * 3 ** (n - 1) - 2 ** n:
+            fail.append(f"length {L}: second stratum {rec['strata'].get('2', 0)} != "
+                        f"2*3^{n - 1} - 2^{n} (contradicts W_two)")
+        if n >= 3 and rec["modal_depth"] == 1:
+            fail.append(f"length {L}: modal depth is 1 (contradicts depth_one_not_modal)")
         if not rec["depth_equals_max_excursion"]:
             fail.append(f"length {L}: depth != max excursion (contradicts the depth law)")
     return fail

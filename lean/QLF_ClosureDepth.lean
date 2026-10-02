@@ -40,8 +40,11 @@ The other end of the grading is the nested singlet `[+^d −^d]`, generalizing `
   (`nested_not_closed_before`). The `d = 2` case is `horizon_relative`.
 
 Since only `[+^d −^d]` and its mirror reach depth `d` at length `2d`, the deepest stratum holds two
-ways — versus `2ⁿ` at depth 1. **The shallow closures overwhelmingly dominate**, and by
-[`Philosophy.md`](../Philosophy.md) §3a rule 2 the modal depth, not the mean, is what happens first.
+ways — versus `2ⁿ` at depth 1. The two endpoints alone do **not** locate the mode: counting every
+stratum ([`QLF_ClosureMultiplicity`](QLF_ClosureMultiplicity.lean)) puts it at depth `2` for
+`3 ≤ n ≤ 7` and near `√n` beyond, so depth 1 is the modal depth only for `n ≤ 2`
+(`depth_one_not_modal`). By [`Philosophy.md`](../Philosophy.md) §3a it is the modal depth, not the
+mean and not the shallowest, that is reached the most ways.
 
 ## The depth law — **now proven** (`QLF_ClosureDepthLaw`)
 

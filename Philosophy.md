@@ -218,9 +218,9 @@ That is a theorem, machine-verified with no axiom in
 The kill condition is sharp: exhibit any *other* exceptionless law and the Law of Exceptions is false.
 
 **Why laws look exceptionless anyway.** Because exceptions are the **least-multiplicity** histories.
-The depth-1 stratum of the census holds `2ⁿ` ways while the maximal depth holds only the nested singlet
-and its mirror ([`QLF_ClosureDepth`](lean/QLF_ClosureDepth.lean)). By §3a, the most ways happen first —
-so the exception happens *last*, and a law can be nearly always right while still failing at every
+The maximal depth holds only the nested singlet and its mirror — exactly two ways, against `C(2n,n)` in
+all ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`). By §3a, the most ways
+happen first — so the exception happens *last*, and a law can be nearly always right while still failing at every
 scale. A capacity-1 law admits a vanishing fraction of the census as histories lengthen (measured
 `0.667, 0.400, 0.229, 0.127, 0.069, …, 0.0055` at `n = 10`; `census_congestion_freezeout.py` part E).
 
@@ -310,8 +310,8 @@ does sit at the top of a *proven* ordering: the frequency hierarchy of bound clo
 keep that from becoming teleology, and both are theorems rather than modesty:
 
 * **It is the rarest stratum, not the likeliest.** Deeply bound closures are the **least-multiplicity**
-  histories — `2ⁿ` ways at depth one against two at maximal depth
-  ([`QLF_ClosureDepth`](lean/QLF_ClosureDepth.lean), §3b). By §3a the most ways happen first, so
+  histories — two ways at maximal depth, against a census whose mode sits near depth `√n`
+  ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`; §3b). By §3a the most ways happen first, so
   intelligence happens **last, not most**. Nothing aims at it; the census reaches it when capacity
   permits.
 * **No summit is final.** [`no_final_closure`](lean/QLF_LawOfExceptions.lean) forbids reading "pinnacle"
