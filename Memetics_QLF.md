@@ -326,6 +326,39 @@ records apart for a closure to count.
 - Records follow priority (T4).
 - Content-blind copying favours memes that carry nothing (T6).
 
+## 10. Memetics with words: the closure naming game (pre-registered)
+
+Jim's proposal, 2026-10-02: words are closures, and different closures with the same frequency add bits
+to the end result of meme-frequency competition. This section was committed before
+`meme_naming_game.py` was written. Results go in §11.
+
+**Words as closures.** A word is a first closure (a prime) of the 8-twist walk. The substrate produces a
+given prime of length `L` with probability `8^{−L}`, so all primes of one length are exactly tied in
+frequency: 8 words at `L = 2`, 104 at `L = 4`, 2,944 at `L = 6`. If `k` tied words compete and nothing
+but frequency acts, which one wins is a free choice worth `log₂ k` bits. Fitness picks the class and the
+tie supplies the information. That is the answer this test puts to T6's negative result.
+
+**The game.** This is the minimal naming game (Steels 1995; Baronchelli et al. 2006). There are `N = 200`
+agents with empty inventories. Each step a random speaker and hearer are drawn. A speaker with an empty
+inventory invents a word by running the substrate: a uniform twist walk until its first return to balance,
+retried if it has not returned by length 6. The speaker utters a uniformly chosen word from its inventory.
+If the hearer already holds it, the two record the same closure (a joint closure) and both inventories
+collapse to that word. Otherwise the hearer adds it. A run ends at consensus. 400 runs.
+
+**Predictions.**
+- **T7a.** Every run reaches consensus on a single word.
+- **T7b (priority).** The winner has length 2 in at least 77% of runs. 77% is the length-2 share of
+  inventions, `0.125 / (0.125 + 104/8⁴ + 2944/8⁶)`.
+- **T7c (the tie supplies bits).** Among runs won by a length-2 word, the winner is uniform over the 8
+  words: a chi-square test does not reject uniformity at `p = 0.01`, and the observed entropy is at least
+  2.9 bits.
+- **T7d (control).** Give the 8 length-2 words invention weights in the ratio `1.25^{−i}`, `i = 0…7`,
+  everything else unchanged. The winner entropy falls below 2.9 bits. Further, competition **amplifies**
+  frequency differences, so the winner entropy is below the entropy of the invention weights themselves.
+
+**Kill.** T7c fails (a clearly non-uniform winner inside a tied class). The proposal that ties are where
+the bits come from would then be wrong for this game.
+
 ## References
 
 ### Internal
