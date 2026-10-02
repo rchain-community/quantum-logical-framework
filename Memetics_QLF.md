@@ -395,6 +395,41 @@ population adopts is free. That free choice is the population's information: a c
 *Interpretation:* in this model, a language's information sits in its arbitrary, equally available
 conventions, not in what fitness selects.
 
+## 12. QuCalc as the tie-break (pre-registered)
+
+Jim's proposal, 2026-10-02: the QuCalc of each meme may suggest a rule for breaking ties. `/solve`
+([`QucalcSearch.md`](QucalcSearch.md)) already ranks closures in a fixed order: least peak excursion,
+then shortest, then phase `+1`, then alphabetical order of the twists. This section was committed before the
+test code was written. Results go in §13.
+
+**What the cascade can do here.** All 8 length-2 words have excursion 1, length 2 and phase `−1`, so only
+the alphabetical step separates them. All 104 length-4 primes have excursion 2, and the phase step splits
+them 80 (`+1`) to 24 (`−1`). So the test uses length 4.
+
+**The game.** As in §10, but every invented word is a uniform length-4 prime (the substrate conditioned on
+first return at 4), so all 104 words are tied in frequency. Three ways to choose what a speaker utters
+from its inventory:
+
+- **Baseline:** uniformly, as in §10.
+- **Reading 1 (full cascade):** the word the whole `/solve` order ranks first, alphabetical step included.
+- **Reading 2 (physical cascade):** uniformly among the inventory words that are best by excursion,
+  length and phase. The alphabetical step is left out.
+
+400 runs each, `N = 200`.
+
+**Predictions.**
+- **T8a (baseline).** Phase `+1` winners make up 70% to 84% of runs (80/104 = 77%), and the winner entropy
+  is at least 6.3 bits (log₂ 104 = 6.70; finite sampling lowers the estimate by about 0.19).
+- **T8b (reading 1).** The winner is the cascade's best among the words invented in that run in at least
+  95% of runs, one single word wins at least 90% of runs, and the winner entropy is below 0.5 bit. The
+  convention is set by the substrate's order, not by the population.
+- **T8c (reading 2).** Phase `+1` wins at least 95% of runs, and among those wins the winner is uniform
+  over the 80 phase `+1` words: chi-square does not reject uniformity at `p = 0.01`, and the entropy is
+  at least 6.0 bits (log₂ 80 = 6.32, minus about 0.14 for sampling).
+
+**Kill.** T8c fails: the physical cascade either does not select phase `+1`, or it breaks the tie further
+than the phase alone does.
+
 ## References
 
 ### Internal
