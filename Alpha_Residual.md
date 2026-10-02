@@ -1035,7 +1035,7 @@ than assuming "one more Comtet-style formula" was just waiting to be found.
 
 §2a closed the "find the pure census truncation" door by argument. This closes it by computation, by
 running the framework's own selection rule ([`ZFA_DNA.md`](ZFA_DNA.md) §10: *generate every closure, then
-take the one the substrate takes* — least free action, shallowest horizon, most ways) against the
+take the one the substrate takes* — least free action, shallowest horizon, reached first) against the
 residual.
 
 **The closed forms are the census, checked as series.** Both tails are `128 × Σ_{n≥2} count(n)/128ⁿ`,

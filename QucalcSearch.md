@@ -36,8 +36,12 @@ different reach.
 closure receipt, not a standing proposition ([`Philosophy.md`](Philosophy.md) §9); the future
 is *un-rendered possibility* ([`Reversibility.md`](Reversibility.md) §8). Of the ways a
 position can close, the substrate takes **one** — the least free action, the shallowest-horizon
-closure, the one reachable the most ways ("what happens in the most ways happens first"). That
-one is the *truth of the position*, and `/solve` names it. Because the cascade is
+closure, the one a widening horizon reaches **first** (`QLF_ClosureDepthLaw`). That one is the
+*truth of the position*, and `/solve` names it. It is **not** the depth reached the most ways:
+[`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean) counts the strata and finds the
+second outnumbering the first for every history length `2n ≥ 6` (`depth_one_not_modal`), with the
+modal depth growing like `√n` (issue #171). "First" and "most ways" are different orderings, and
+`/solve` uses the first. Because the cascade is
 deterministic, it is a reading, not an opinion — every caller divines the same answer.
 
 **In [quantum-os](https://github.com/rchain-community/quantum-os), solve is the meeting of
@@ -179,9 +183,13 @@ The selection cascade — deterministic, so independent callers agree without co
 
 > **least peak excursion → shortest depth → phase `+1` → lexicographic history**
 
-Least peak excursion *is* least free action: the shallowest-horizon closure is the one
-reachable the most ways (`QLF_ClosureDepthLaw`), so this is ZFA selection ("what happens in
-the most ways happens first") applied to name a representative — the **truth of the position**
+Least peak excursion *is* least free action: the shallowest-horizon closure is the one a
+capacity-`R` horizon closes first (`QLF_ClosureDepthLaw`), and that ordering is what the
+cascade applies to name a representative — the **truth of the position**. It is not the
+"most ways" ordering: across the balanced census the modal depth is `2` for lengths `6 … 14`
+and grows like `√n`, so depth 1 is never the most numerous stratum past length 4
+([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `depth_one_not_modal`). The
+cascade is unchanged; only its justification is corrected
 (see *What search and solve are* above). Determinism is the point: it makes `/solve` a
 reading every caller shares, which is what turns it into a consensus mechanism in a room.
 `mode=events` is implied. Depth strategy: the natural closure depths are `floor` and
