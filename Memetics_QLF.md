@@ -44,6 +44,8 @@ What the substrate says about each:
    - In a population with content-blind copying, the meme that carries no information wins.
    - With words as closures (§10, §11), equally frequent words add `log₂ k` bits to the outcome of
      competition, and any frequency difference is amplified until those bits collapse.
+   - QuCalc's `/solve` order as a tie-break (§12, §13) selects by phase and nothing else physical; the
+     rest of the tie stays free.
 
 ## 1. The four premises in QLF terms
 
@@ -429,6 +431,41 @@ from its inventory:
 
 **Kill.** T8c fails: the physical cascade either does not select phase `+1`, or it breaks the tie further
 than the phase alone does.
+
+## 13. Results of the QuCalc tie-break test
+
+Run: `python3 meme_naming_game.py --t8` (400 runs per reading, `N = 200`, seed 7, about a minute). The
+script confirms the setup: 104 length-4 primes, 80 of phase `+1`, every one at excursion 2, and `/solve`'s
+overall first choice is `++--`.
+
+| | baseline | reading 1: full `/solve` order | reading 2: physical order |
+|---|---|---|---|
+| phase `+1` winners | 308 / 400 (0.770) | 400 / 400 | 400 / 400 |
+| winner entropy | 6.48 bits | **1.57 bits** | 6.16 bits |
+| chi-square, phase `+1` winners vs uniform over 80 | `p = 0.19` | `p ≈ 0` | `p = 0.14` |
+| most frequent winner | 10 / 400 | `++--`, 239 / 400 | 14 / 400 |
+| winner is `/solve`'s best of the words invented | 5 / 400 | 392 / 400 | 3 / 400 |
+
+**T8a passes.** With no tie-break, phase `+1` wins in proportion to its share (77%), and the outcome
+carries 6.48 bits, near the 6.70 of a 104-way tie.
+
+**T8c passes.** The physical part of the cascade (excursion, length, phase) selects phase `+1` in every
+run and nothing more: inside the 80 phase `+1` words the winner is uniform, with 6.16 bits. So QuCalc
+breaks the tie by exactly the phase, which removes `log₂(104/80) = 0.38` bits. The phase is the one
+substrate-given distinction between the tied words, and the population adopts it every time. The rest of
+the tie stays a free convention.
+
+**T8b fails in part.** The full order does fix the winner given what was invented (392 of 400 runs), but
+`/solve`'s overall first choice `++--` wins only 239 of 400 runs, and 1.57 bits remain, against a
+registered `≥ 90%` and `< 0.5` bit. The reason is that a run invents only a sample of the 104 words, and
+`++--` is often not among them. With the full cascade, the remaining bits no longer come from a free
+choice among tied words. They come from which words the population happened to invent. A deterministic
+rule turns convention into contingency on history; it does not remove all the bits.
+
+**Net.** QuCalc supplies a tie-break rule, and it does select. The physical part selects exactly the
+phase, which is a real property of each closure. The alphabetical step is a convention of the code. When it
+is used, everyone agrees on the outcome given the history, but the history itself still carries
+information.
 
 ## References
 

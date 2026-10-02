@@ -27,6 +27,9 @@ import math
 import random
 from collections import Counter
 
+from census_inventory import fold_phase
+from qucalc_search import _PHASE_RANK, max_excursion
+
 STEPS = {"^": (0, 1), "v": (0, -1), ">": (1, 1), "<": (1, -1),
          "/": (2, 1), "\\": (2, -1), "+": (3, 1), "-": (3, -1)}
 TWISTS = list(STEPS)
@@ -51,13 +54,17 @@ def invent(rng: random.Random, weights2=None) -> str:
                 return word
 
 
-def play(rng: random.Random, n: int, weights2=None, max_steps: int = 10 ** 7) -> tuple:
+def play(rng: random.Random, n: int, weights2=None, max_steps: int = 10 ** 7,
+         inventor=None, choose=None, invented=None) -> tuple:
     inv = [[] for _ in range(n)]
     for step in range(1, max_steps + 1):
         s, h = rng.sample(range(n), 2)
         if not inv[s]:
-            inv[s].append(invent(rng, weights2))
-        w = rng.choice(inv[s])
+            word = inventor(rng) if inventor else invent(rng, weights2)
+            inv[s].append(word)
+            if invented is not None:
+                invented.add(word)
+        w = choose(rng, inv[s]) if choose else rng.choice(inv[s])
         if w in inv[h]:
             inv[s] = [w]
             inv[h] = [w]
@@ -105,12 +112,97 @@ def report(label: str, winners: list, steps: list, weights2=None) -> None:
         print(f"  chi-square vs the invention weights: {chi:.2f}  p = {chi2_sf(chi, 7):.4f}")
 
 
+# --------------------------------------------------------------------------- #
+# T8: QuCalc's /solve order as the tie-break (Memetics_QLF.md §12-§13)
+# --------------------------------------------------------------------------- #
+
+def invent_len4(rng: random.Random) -> str:
+    """A uniform length-4 prime: the substrate conditioned on first return at 4."""
+    while True:
+        x = [0, 0, 0, 0]
+        w = []
+        for k in range(4):
+            t = rng.choice(TWISTS)
+            a, s = STEPS[t]
+            x[a] += s
+            w.append(t)
+            if not any(x):
+                break
+        if len(w) == 4 and not any(x):
+            return "".join(w)
+
+
+def phys_key(w: str) -> tuple:
+    """/solve's order without its last, alphabetical step."""
+    return (max_excursion(w), len(w), _PHASE_RANK[fold_phase(w)])
+
+
+def full_key(w: str) -> tuple:
+    """/solve's full order (qucalc_search.solve)."""
+    return phys_key(w) + (w,)
+
+
+def choose_full(rng: random.Random, inv: list) -> str:
+    return min(inv, key=full_key)
+
+
+def choose_phys(rng: random.Random, inv: list) -> str:
+    best = min(phys_key(w) for w in inv)
+    return rng.choice([w for w in inv if phys_key(w) == best])
+
+
+def t8(runs: int, n: int, seed: int) -> None:
+    import itertools
+    def first_return_at_4(p):
+        x = [0, 0, 0, 0]
+        for k, t in enumerate(p, 1):
+            a, sg = STEPS[t]
+            x[a] += sg
+            if not any(x):
+                return k == 4
+        return False
+
+    primes4 = sorted("".join(p) for p in itertools.product(TWISTS, repeat=4) if first_return_at_4(p))
+    plus = [w for w in primes4 if fold_phase(w) == "+1"]
+    print(f"\nT8: {len(primes4)} length-4 primes, {len(plus)} with phase +1;"
+          f" excursions {sorted({max_excursion(w) for w in primes4})};"
+          f" /solve's best overall: {min(primes4, key=full_key)!r}")
+    for label, choose in (("T8a baseline: uniform utterance", None),
+                          ("T8b reading 1: full /solve order", choose_full),
+                          ("T8c reading 2: physical order only", choose_phys)):
+        rng = random.Random(seed)
+        winners, best_of_invented = [], 0
+        for _ in range(runs):
+            invented = set()
+            w, _k = play(rng, n, inventor=invent_len4, choose=choose, invented=invented)
+            winners.append(w)
+            if w == min(invented, key=full_key):
+                best_of_invented += 1
+        c = Counter(winners)
+        pc = Counter(w for w in winners if fold_phase(w) == "+1")
+        m = sum(pc.values())
+        chi = sum((pc.get(p, 0) - m / len(plus)) ** 2 / (m / len(plus)) for p in plus) if m else 0.0
+        top, topn = c.most_common(1)[0]
+        print(f"\n[{label}] runs {runs}, consensus in {sum(w is not None for w in winners)}")
+        print(f"  phase +1 winners: {m}/{runs} ({m / runs:.3f})")
+        print(f"  winner entropy: {entropy(c):.3f} bits; among phase +1 winners {entropy(pc):.3f} bits"
+              f" (log2 80 = {math.log2(80):.3f}, log2 104 = {math.log2(104):.3f})")
+        print(f"  chi-square, phase +1 winners vs uniform over {len(plus)}: {chi:.1f}"
+              f"  p = {chi2_sf(chi, len(plus) - 1):.4f}")
+        print(f"  most frequent winner {top!r}: {topn}/{runs};"
+              f" winner = /solve's best of the words invented: {best_of_invented}/{runs}")
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--runs", type=int, default=400)
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--t8", action="store_true", help="run only the QuCalc tie-break test (§12)")
     args = ap.parse_args(argv)
+    if args.t8:
+        t8(args.runs, args.n, args.seed)
+        return 0
 
     for label, weights2 in (("tied: substrate frequencies", None),
                             ("control: length-2 weights 1.25^-i", [1.25 ** -i for i in range(8)])):
