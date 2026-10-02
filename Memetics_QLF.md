@@ -42,6 +42,8 @@ What the substrate says about each:
    - When the third party interacts decides most of the sign.
    - Records follow priority, not multiplicity.
    - In a population with content-blind copying, the meme that carries no information wins.
+   - With words as closures (§10, §11), equally frequent words add `log₂ k` bits to the outcome of
+     competition, and any frequency difference is amplified until those bits collapse.
 
 ## 1. The four premises in QLF terms
 
@@ -330,7 +332,7 @@ records apart for a closure to count.
 
 Jim's proposal, 2026-10-02: words are closures, and different closures with the same frequency add bits
 to the end result of meme-frequency competition. This section was committed before
-`meme_naming_game.py` was written. Results go in §11.
+[`meme_naming_game.py`](meme_naming_game.py) was written. Results go in §11.
 
 **Words as closures.** A word is a first closure (a prime) of the 8-twist walk. The substrate produces a
 given prime of length `L` with probability `8^{−L}`, so all primes of one length are exactly tied in
@@ -358,6 +360,40 @@ collapse to that word. Otherwise the hearer adds it. A run ends at consensus. 40
 
 **Kill.** T7c fails (a clearly non-uniform winner inside a tied class). The proposal that ties are where
 the bits come from would then be wrong for this game.
+
+## 11. Results of the closure naming game
+
+Run: `python3 meme_naming_game.py` (400 runs per condition, `N = 200`, seed 7, about ten seconds).
+
+| | tied (substrate frequencies) | control (weights `1.25^{−i}`) |
+|---|---|---|
+| runs reaching consensus | 400 / 400 | 400 / 400 |
+| winner of length 2 | 400 / 400 | 400 / 400 |
+| length-2 winners by word | 54, 51, 35, 64, 45, 55, 44, 52 | 209, 108, 46, 20, 12, 3, 2, 0 |
+| winner entropy | **2.981 bits** (uniform 3.000) | **1.817 bits** |
+| chi-square against uniform | 10.56, `p = 0.16` | 760, `p ≈ 0` |
+| entropy of the invention weights | — | 2.826 bits |
+
+**T7a passes.** Every run reaches consensus on one word.
+
+**T7b passes, more strongly than registered.** Length-2 words win every run, against a 77% share of
+inventions. Competition amplifies the priority of the most frequent class.
+
+**T7c passes.** Inside the tied class the winner is uniform: 2.98 of a possible 3 bits, and uniformity is
+not rejected. So Jim's proposal holds in this game. Different closures with the same frequency add
+`log₂ k` bits to the outcome. Fitness picks the class, and the tie is where the information comes from.
+
+**T7d passes, including amplification.** A 1.25-fold frequency step between neighbouring words becomes
+roughly a two-fold step between winners. The winner entropy (1.82 bits) is a full bit below the
+entropy of the weights (2.83 bits). So the bits survive only while the tie is exact. Any frequency
+difference is amplified, and the information the tie carried collapses toward the favoured word.
+
+**What this adds to T6.** Content-blind copying selects the class that closes most readily, and that
+class carries no sign bit. But a class can hold many words of equal frequency, and which of them the
+population adopts is free. That free choice is the population's information: a convention worth
+`log₂ k` bits. It is fragile in the same proportion that frequency competition is strong.
+*Interpretation:* in this model, a language's information sits in its arbitrary, equally available
+conventions, not in what fitness selects.
 
 ## References
 
