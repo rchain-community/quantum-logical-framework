@@ -36,6 +36,13 @@ What the substrate says about each:
    party holds it. The version that can fail is **every closure is a meme candidate, and it becomes a meme
    to the degree its record is copied into independent third parties** (§5).
 
+5. **The pre-registered tests (§8, §9)** found the following:
+   - A shared closure of intersecting light cones leaves each partner holding 5 to 6 bits about the other.
+   - Its sign becomes bi-local only for longer strands.
+   - When the third party interacts decides most of the sign.
+   - Records follow priority, not multiplicity.
+   - In a population with content-blind copying, the meme that carries no information wins.
+
 ## 1. The four premises in QLF terms
 
 **P1, complementary qubits.** A distinction `D = (d, d̄)` is a conjugate twist pair `(t, t†)`, one axis
@@ -148,10 +155,10 @@ pointer bit can be redundant (Ollivier, Poulin & Zurek 2004; Zurek 2009). It has
 experiment (Unden et al. 2019). QLF adds a count: each closure has at most one internal bit, and it has
 none when the closure is minimal or the frame has fewer than two spatial axes.
 
-**Conjecture (multi-party).** When the pair and the third party interleave in one joint history, edge
-signs depend on the *total* position, so the pair's sign is not separable from the recorder's. The
-proposition above treats the recorder as an additive outside strand. The joint case is not done; it
-needs the two-history machinery of [`MultiParticle.md`](MultiParticle.md).
+**Conjecture (multi-party), now tested.** When the pair and the third party interleave in one joint
+history, edge signs depend on the *total* position, so the pair's sign may not separate from the
+recorder's. The proposition above treats the recorder as an additive outside strand. T3 (§9) finds the
+sign does **not** separate under interleaving: the interaction schedule decides most of it.
 
 ## 5. Is every closure a meme?
 
@@ -205,8 +212,7 @@ In memetic terms: a meme spreads by redundancy and changes by complementary bind
   event with no observer needed. That is consistent with §4 only if the third party is itself just
   another closure inventory with no observer potency ([`ScientificApproach.md`](ScientificApproach.md) §2).
   The event happens either way; the bit is available to a perspective only through a record.
-- **The multi-party conjecture (§4) may fail.** Interleaving couples signs through the total position,
-  so the clean split between the pair and the recorder may not hold.
+- **The multi-party conjecture (§4) fails under interleaving** (§9, T3): the schedule decides the sign.
 - **The memetic reading is an analogy until #173 supplies a census** of cultural distinctions with an
   alphabet stated in advance.
 
@@ -261,6 +267,64 @@ although `k ≤ 1` spatial axis carries zero sign bits (§3).
 *Kill:* no monotone ordering in `k` across 20 seeds.
 *Phoneme comparison:* made only if T2 passes. Then the regularity checked is the textbook one that phoneme
 systems are built from a few binary contrasts (distinctive features), against the variant that wins.
+
+## 9. Results of the pre-registered tests
+
+Scripts: [`meme_recorder_census.py`](meme_recorder_census.py) (T2, T2b, T3, T4; exact, `ℓ ≤ 5`, about a
+minute) and [`meme_population.py`](meme_population.py) (T6; seconds). The shuffle-parity rule used for T3
+was checked against direct Pauli folds of every interleaving on 300 random pairs, with no mismatch.
+
+| `ℓ` | coupled pairs | `H(x_A)` | `H(σ)` | `I(σ; A)` | `I(σ; A)/H(σ)` | mean `H(σ \| A, B)` over shuffles |
+|---|---|---|---|---|---|---|
+| 1 | 8 | 3.000 | 0 | 0 | — | 0 |
+| 2 | 104 | 4.854 | 0.779 | 0.318 | 0.41 | 0.424 |
+| 3 | 5,120 | 4.838 | 0.870 | 0.243 | 0.28 | 0.709 |
+| 4 | 161,896 | 5.799 | 0.979 | 0.115 | 0.117 | 0.880 |
+| 5 | 7,939,008 | 6.118 | 0.991 | 0.075 | 0.075 | 0.940 |
+
+(`I(σ; B)` equals `I(σ; A)` at every `ℓ`.)
+
+**T2 passes.** Each partner of a shared closure holds 4.8 to 6.1 bits about the other, against at most one
+bit kept by a lone closure. The irrelevance criterion is not met, so the light-cone reading of a phoneme
+stays in.
+
+**T2b fails as registered, and the trend supports it.** The threshold `I(σ; A) ≤ 0.1·H(σ)` holds only at
+`ℓ = 5`. At `ℓ = 2…4` each strand alone predicts a real part of the sign (41%, 28%, 12%). The kill
+condition (`> 50%`) is never met. So the sign of a shared closure is bi-local in the limit of long
+strands, and short shared closures leak it to each side.
+
+**T3 fails at `ℓ = 2` and passes from `ℓ = 3`.** The interaction schedule decides most of the sign:
+0.71, 0.88 and 0.94 bits at `ℓ = 3, 4, 5`. So the §4 conjecture is **false** for interleaved histories:
+the pair's sign does not split from the recorder's, and when the recorder interacts matters as much as
+what it records. The §4 proposition stands only for a recorder that acts after the closure.
+
+**T4 passes (priority).** Weighted by probability, records made at first closure on the two-letter phase
+walk have depth-`d` mass `1/(d(d+1))`: 1/2 at depth 1 and 1/6 at depth 2 (the classical gambler's-ruin
+result, reproduced exactly by the script). On the 8-twist walk the masses are 0.125 and 0.032. Depth 1
+dominates the records, although depth 2 is the mode of the census at every fixed length `2n ≥ 6`. This
+was close to forced: the shortest first closures carry most of the probability. What it adds is that the
+renewal lemma makes a record an absorbing event, so priority, not multiplicity, is the ordering that
+governs records. Multiplicity governs the census of possibilities.
+
+**T6 passes.** With copying blind to content, the one-axis variant takes over in 20 of 20 seeds, and the
+variants die out in the order `k = 4, 3, 2` in 18 of 20 seeds at `R = 6` (20 of 20 at `R = 10`). The
+winner is the variant whose closures carry **zero** sign bits (§3). In this model fecundity selects
+against information: the meme that spreads is the one that makes the fewest distinctions.
+
+**Phoneme comparison (made because T2 passed): negative.** Phoneme systems are built from several binary
+contrasts. The simulation collapses to a single one. So persistence through closure plus content-blind
+copying does not produce a phoneme system. Something has to select for distinctness, which this model
+does not have. The next model needs a pressure for information, for example a listener that must tell
+records apart for a closure to count.
+
+**Net, against the proposal.**
+
+- *Discovery is bi-local* holds for the sign of long shared closures and fails for short ones.
+- *Extraction needs a third party* holds (§2, §4).
+- The third party's *timing* selects the sign (T3), which is a sharper form of "selecting future
+  possibilities" than the record alone.
+- Records follow priority (T4).
+- Content-blind copying favours memes that carry nothing (T6).
 
 ## References
 
