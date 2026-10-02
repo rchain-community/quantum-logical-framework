@@ -41,7 +41,9 @@ closure, the one a widening horizon reaches **first** (`QLF_ClosureDepthLaw`). T
 [`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean) counts the strata and finds the
 second outnumbering the first for every history length `2n ≥ 6` (`depth_one_not_modal`), with the
 modal depth growing like `√n` (issue #171). "First" and "most ways" are different orderings, and
-`/solve` uses the first. Because the cascade is
+`/solve` uses the first — because what is reached first can never be contradicted: once a history
+closes at a horizon it stays closed at every wider one (`closedAtHorizon_mono`,
+[`QLF_HorizonClosure`](lean/QLF_HorizonClosure.lean)), so no deeper closure can undo it. Because the cascade is
 deterministic, it is a reading, not an opinion — every caller divines the same answer.
 
 **In [quantum-os](https://github.com/rchain-community/quantum-os), solve is the meeting of
