@@ -134,11 +134,12 @@ expansion.
 Within QLF's frame — where the substrate-constructive part of mathematics has its own
 foundational adequacy, and the continuum is the coarse-grained statistical limit of a
 dense-but-discrete ZFA event stream ([TheContinuum.md](TheContinuum.md)) — the mass gap is
-*structurally necessary*: a discrete substrate with all-or-nothing closure cannot have a
-massless non-vacuum gauge spectrum. What QLF does **not** do is construct the continuum
-QFT and prove the Wightman axioms; that is what `yang_mills_continuum_gap` carries, and it
-is the continuum-sector boundary `yang_mills_continuum_gap` carries — ZFC's defect, not
-ours. The one-line summary, machine-checked as `mass_gap_proven_constructively`: *QLF
+*structurally necessary* as a quantum of **action** per closure: all-or-nothing closure
+leaves no fraction of a closure. Whether that is a gap in **energy** is a separate question,
+and §7 shows it is not one without a cap on closure time. What QLF does **not** do is construct the continuum
+QFT and prove the Wightman axioms; that is what `yang_mills_continuum_gap` carries. It is an
+ordinary open problem, not a known independence or uncomputability boundary, so it is not
+"ZFC's defect" in the sense CLAUDE.md reserves for halting and Busy Beaver. The one-line summary, machine-checked as `mass_gap_proven_constructively`: *QLF
 proves the Yang–Mills mass gap on the substrate — the gap value is the `log 2` quantum —
 and reduces the rest to the existence of the continuum limit.*
 
@@ -149,6 +150,62 @@ continuum limit of the ZFA event field whose reconstructed two-point function ha
 spectral gap — the QLF analogue of the MRE-bridge refinement proposed for Riemann
 ([ReverseMathematics.md](ReverseMathematics.md) §4). That is the real open work; this
 document and module make the target precise and the boundary explicit.
+
+## 7. What the census says about the gap (2026-10-01)
+
+Four results, each checked rather than argued. Computations: [`yang_mills_census.py`](yang_mills_census.py).
+
+**7a. The Axiom of Choice plays no part.** The proved content, `log 2 > 0`, uses nothing beyond
+what Mathlib uses everywhere. On the classical side, a mass gap for explicit lattice approximants
+is an arithmetic statement, and ZF and ZFC prove the same arithmetic and Σ¹₂ sentences
+(Shoenfield absoluteness). Denying Choice cannot prove or refute it.
+
+**7b. `log 2` is a quantum of action, not of energy.** Every closure carries the same `ΔF = log 2`
+(in units of ħ), whatever its length. Its energy is ħ over its closure time, `E ≈ ħ/t`, and the
+[Law of Exceptions](Law_Of_Exceptions.md) says closure time has no upper bound. Its witness
+`[+^(R+1) −^(R+1)]` is a real closure of length `2R+2` at every capacity `R`
+([`law_of_exceptions`](lean/QLF_LawOfExceptions.lean)), so closure frequencies reach `1/(2R+2) → 0`.
+A claimed lowest closure frequency would be a restrictive law, and it has an exception one shell
+deeper. The cosmic horizon is the only universal cap, and it gives a floor near `ħH ≈ 10⁻³³ eV`.
+
+**7c. The census itself is gapless.** A Euclidean gap shows up as exponential decay of a return
+amplitude in path length. Exact counts to `L = 24`:
+
+| census | growth | reading |
+|---|---|---|
+| unsigned `W_L` | `→ (8/π²) · 8^L / L²` | the massless 4-D propagator (Pólya, [`QLF_PolyaTransience`](lean/QLF_PolyaTransience.lean)) |
+| half-spin signed `A_L` ([`QLF_EdgeSign`](lean/QLF_EdgeSign.lean)) | `≈ 3.9 · (2+2√3)^L / L²` | continuous band edge |
+| colour `C_L = Σ ω^B` (7d) | `∝ 7.088^L` × power | continuous band edge |
+
+Each phase suppresses its sector relative to the unsigned one, at `ln(8/ρ)` per step: `0.381`
+(half-spin) and `0.121` (colour). Neither is `log 2`, and neither is a gap inside its own sector.
+
+**7d. Colour as the three-axis cycle, three dimensions at a time.** [Carbon_Superconductivity.md](Carbon_Superconductivity.md)
+§24 derived colour's ℤ₃ as the cyclic axis relabelings that preserve the baryon winding of
+[`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean), and left the transport rule open. The winding
+reads three consecutive axes at a time, so `ω^B` is the colour phase that cycle defines along a
+path. It is not trivial on closures: `C_L/W_L` falls from 1 to `0.078` by `L = 24`. It is
+real-valued on every closure set, since mirror images carry `ω^B` and `ω^{−B}`. This is a
+candidate rule only. It is not yet tested against §23's twisted-boundary confinement statistic,
+which needs a 3-D lattice because `B` vanishes on any plaquette.
+
+**7e. Where a gap could come from.** A cap on colour closure time, derived rather than chosen.
+QLF already has one: dimensional transmutation `ln(M_Planck/m_p) = 2π·b₀ = 14π`
+([`QLF_AlphaS`](lean/QLF_AlphaS.lean), 0.07% on the log). That puts the cap at `e^{14π}` Planck
+times and a gap near 1 GeV, the order of the lightest lattice glueball (about 1.7 GeV). Two of its
+inputs are not derived:
+* **The 11 in `b₀ = 11N_c/3 − 2n_f/3`.** It is taken from standard group theory
+  ([`QLF_BetaFunction`](lean/QLF_BetaFunction.lean), `beta_function_in_progress`), so the sign of
+  asymptotic freedom is assumed. The QED tower does not count its sign either: `towerRunning`
+  subtracts by definition, and the `1/6` split count is spin-blind. The route to the 11 is the
+  Nielsen–Hughes form, where each charged mode of spin `s` contributes `−(−1)^{2s}[(2s)² − 1/3]`
+  (`+2/3` for spin ½, `−11/3` for spin 1): spin paramagnetism beating orbital diamagnetism. QLF has
+  each ingredient (spin as twists, `−1` per 2π turn from [`QLF_Spin`](lean/QLF_Spin.lean), `1/3`
+  from three axes) but no gluon as a colour-charged spin-1 closure to count with.
+* **`α_s(M_Planck) = 1/b₀²`.** A posit.
+
+So the honest status of §3 is: a positive quantum of action per closure is proved; a positive
+energy gap is not, and the census points to gaplessness unless a colour cap is derived.
 
 ## References
 
