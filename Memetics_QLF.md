@@ -210,10 +210,57 @@ In memetic terms: a meme spreads by redundancy and changes by complementary bind
 - **The memetic reading is an analogy until #173 supplies a census** of cultural distinctions with an
   alphabet stated in advance.
 
-## 8. Next steps
+## 8. Pre-registered tests (written before any of them was run)
 
-- A two-history census with an explicit recorder strand, to settle the §4 conjecture and to measure `R`.
-- Item 4 of §6 as the first quantitative test in #173.
+Jim asked for these as plan steps 2 to 6 on 2026-10-02. Everything in this section was committed before
+the scripts that answer it were written. Results go in §9 and do not edit this section.
+
+**Setting: intersecting light cones.** Two open strands `A`, `B` of length `ℓ` meet when their causal
+diamonds intersect ([`MultiParticle.md`](MultiParticle.md)). They make a **shared closure** when `A ++ B`
+is count-balanced. The **coupled sector** is the shared closures where `A` alone is not balanced; there
+neither strand closes alone (`shared_closure_not_factorizable`). This is the candidate for a phoneme: a
+contrast that exists only between a speaker and a listener. Every count below is uniform over the coupled
+sector at fixed `ℓ`, exact, for `ℓ = 1…4`.
+
+**T2, the record (plan step 2).** In a coupled shared closure `B`'s displacement is `−x_A`, so `B` holds
+`I(x_A; x_B) = H(x_A)` bits about `A`.
+*Prediction:* `H(x_A) > 1` bit for every `ℓ ≥ 2`, so a shared closure leaves each partner holding more
+than the one sign bit a lone closure keeps (§2).
+*Irrelevance criterion for the phoneme reading (plan step 5):* if `H(x_A) ≤ 1` bit, a shared closure is no
+richer than a lone one, and the light-cone phoneme reading is dropped.
+
+**T2b, bi-locality of the sign.** For a shared closure `fold(A ++ B) = σ·I`. Each strand alone carries
+only its own fold.
+*Prediction:* the sign is bi-local: `I(σ; A) ≤ 0.1·H(σ)` and `I(σ; B) ≤ 0.1·H(σ)` for `ℓ ≥ 2`, where
+`I(σ; A)` is the information about `σ` in the whole word `A`.
+*Kill:* `I(σ; A) > 0.5·H(σ)` means the sign is mostly local and P2 fails here.
+
+**T3, interleaving (plan step 3).** Replace `A ++ B` by a uniformly random shuffle of the two words (each
+keeps its own order: the interaction schedule).
+*Prediction:* the schedule decides the sign. The mean over pairs of `H(σ | A, B)` across shuffles is
+`≥ 0.5` bit for `ℓ ≥ 2`, so the pair's sign does **not** split cleanly from the recorder's, and the §4
+proposition holds only for concatenation.
+*Opposite outcome:* `≈ 0` means the sign splits cleanly and the §4 conjecture holds.
+
+**T4, multiplicity against priority (plan step 4).** On the phase walk of
+[`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), a record is made when a strand first closes
+(the renewal lemma makes a record an absorbing event). Compare the share of records at depth 1 and depth 2,
+weighting each first closure by its probability `2^{−L}`.
+*Prediction:* priority. Depth-1 records outnumber depth-2 records, although depth 2 is the mode of the
+census at every fixed length `2n ≥ 6` (`depth_one_not_modal`).
+*Kill:* depth-2 records outnumber depth-1 records.
+
+**T6, a population of memes (plan step 6).** `N` agents, each with a variant `k ∈ {1,2,3,4}`: the number
+of axes its twists use (`k = 4` is the full alphabet). Each tick every agent appends a uniform twist from
+its alphabet. A strand that closes alone, or jointly with a randomly met partner, resets: that is a record.
+A strand whose `ℓ¹` excursion passes a horizon `R` is lost, and the agent is replaced by a copy of a
+uniformly chosen agent (variant inherited, fresh strand). So persistence needs closure, and copying is
+blind to content.
+*Prediction:* variants spread in the order `k = 1 > 2 > 3 > 4` (fewer distinctions close faster, Pólya),
+although `k ≤ 1` spatial axis carries zero sign bits (§3).
+*Kill:* no monotone ordering in `k` across 20 seeds.
+*Phoneme comparison:* made only if T2 passes. Then the regularity checked is the textbook one that phoneme
+systems are built from a few binary contrasts (distinctive features), against the variant that wins.
 
 ## References
 
