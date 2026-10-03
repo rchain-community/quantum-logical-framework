@@ -21,6 +21,11 @@ gauge count. In units of `1/3`, that is `charge3`:
 * `beta_decay_charge` — charge balances in `n → p e⁻ ν̄`.
 * `lock_word` — the §29 lock `3Q + N ≡ 0 (mod 3)` holds for every word.
 
+**§32b, the commutator rule (adopted 2026-10-03).** Carriers are commutators because carriers are curvature,
+and curvature lives on plaquettes. `bracket_iff_distinct_axes`: a pair has a nonzero bracket iff its twists
+span a plaquette. `same_axis_no_curvature`: a one-axis pair, including an identical pair, has trivial
+holonomy.
+
 No axioms.
 -/
 
@@ -107,5 +112,25 @@ theorem lock_word : ∀ ts : List Twist, charge3W ts + nW ts = 3 * kW ts
       have ih := lock_word ts
       simp only [charge3W, nW, kW, List.map_cons, List.sum_cons] at ih ⊢
       cases t <;> simp only [charge3, nSign, kTw] <;> omega
+
+-- ===== §32b: carriers are commutators, because carriers are curvature =====
+
+/-- **A twist pair has a nonzero colour bracket exactly when it spans a plaquette.** The Lie bracket
+    `[D(u), D(v)]` is a multiple of `ω^{⟨u,v⟩} − ω^{⟨v,u⟩}`, which is nonzero iff `⟨u,v⟩ ≠ 0`; this is
+    nonzero iff the two twists lie on different axes. -/
+theorem bracket_iff_distinct_axes (t u : Twist) :
+    symp (colVec t) (colVec u) ≠ 0 ↔ axisLine t ≠ axisLine u := by
+  cases t <;> cases u <;> decide
+
+/-- **A pair on one axis encloses no plaquette and carries no curvature.** Its group commutator, the
+    holonomy of the degenerate loop `t u t̄ ū`, is trivial. In particular `[t, t] = 0`: an identical
+    pair is not a carrier. -/
+theorem same_axis_no_curvature (t u : Twist) (h : axisLine t = axisLine u) :
+    (((disp (colVec t)).mul (disp (colVec u))).mul (disp (-colVec t))).mul (disp (-colVec u)) =
+      ⟨(0, 0), 0⟩ := by
+  have h0 : symp (colVec t) (colVec u) = 0 := by
+    revert h; cases t <;> cases u <;> decide
+  rw [heis_comm, h0]
+  rfl
 
 end QLF.QuarkSignature

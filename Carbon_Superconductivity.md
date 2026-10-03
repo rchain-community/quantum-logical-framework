@@ -2434,8 +2434,7 @@ pre-registration.
 algebra, and the non-abelian part of a Lie algebra is spanned by commutators. Under that rule, identical-twist pairs
 vanish (`[t, t] = 0`) rather than being excluded by hand. The rule recovers su(3) and QCD's `β₀`. It fits QLF's
 existing bosons, which are built from `t t̄`, and it leaves the closure census, which counts `tt` as a walk step,
-untouched. **What the data do not yet do is choose it over R_prod.** Whether to adopt R_comm on principle is Jim's
-decision.
+untouched. **What the data do not yet do is choose it over R_prod.** Jim adopted R_comm on principle (§32b).
 
 **Perfect numbers (exploratory).**
 * **Where a Mersenne prime does structural work.** On the qubit phase space `F₂²` (the three spatial axes), the
@@ -2449,6 +2448,39 @@ decision.
   changes no count found here. The numbers are perfect because QLF's alphabet sizes are powers of 2 whose
   predecessors happen to be prime. **So the Mersenne prime 3 plays a role (`F₄*` = colour), and perfectness as such
   does not.** By method rule 4 it stays exploratory until a count depends on it.
+
+### 32b. The commutator rule, adopted, and QLF's own justification for it
+
+*Adopted by Jim on 2026-10-03. The §32 test of the rule against data was inconclusive, so the rule is adopted on
+principle. This section states that principle in QLF's terms, beyond "gauge theory says so".*
+
+**1. Carriers are curvature, and curvature lives on plaquettes. This is the main reason, and it is Lean-anchored.**
+In QLF, what a line feels from its surroundings is the holonomy of the closure connection around a plaquette:
+* the π flux of spin (`QLF_EdgeSign`, `plaquette_yx`);
+* the 2π/3 flux of colour (`QLF_ColourFlux`, `colour_plaquette`).
+
+A plaquette needs two distinct axes. A pair of twists on one axis, and in particular an identical pair `tt`, walks
+out and straight back along a line, encloses no area, and has trivial holonomy. The Lie bracket is that holonomy in
+infinitesimal form. In `QLF_QuarkSignature`:
+* `bracket_iff_distinct_axes`: a pair has a nonzero bracket exactly when it spans a plaquette;
+* `same_axis_no_curvature`: a one-axis pair has trivial holonomy.
+
+So "carriers are commutators" is the same statement as "carriers are curvature". It is the discrete form of
+`F_μμ = 0`: field strength is antisymmetric because area is oriented.
+
+**2. QLF already builds its weak SU(2) this way.** `BraKetRhoQuCalc` obtains weak isospin from twist commutators
+(`tau_comm_xy`, `tau_comm_yz`, `tau_comm_zx`, giving `weak_isospin_su2`). It does not use products. Building colour's
+carriers from products while weak isospin comes from commutators would treat two gauge sectors of one alphabet by
+two different rules.
+
+**3. Possibilism.** Both orders, `tu` and `ut`, happen ("it happens every way"). Their order-symmetric part,
+`{σ_a, σ_b}/2 = δ_ab I`, is a scalar. It is the same for every way and transfers nothing between lines. Only the
+order-antisymmetric part tells the ways apart, and only it can pass from one line to another. An identical pair has
+no antisymmetric part.
+
+**What this does not do.** Reason 1 identifies carriers with curvature. That is QLF's own reading of its plaquette
+fluxes, applied to carriers, and it is an identification, not a theorem. The closure census is unaffected: a
+history is a product of twists, `tt` is a valid walk step, and the Pólya and Kraft results stand.
 
 ## References
 
