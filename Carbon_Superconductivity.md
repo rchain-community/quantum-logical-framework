@@ -49,7 +49,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
-| 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | pre-registered, not yet run |
+| 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2517,6 +2517,35 @@ unbroken generator is.
 prediction is about `10³⁵`–`10³⁷`, so the singlet should be excluded by more than 40 orders of magnitude. That is the
 textbook reason the colour group is SU(3) and not U(3). The test confirms the §32b adoption empirically, and it
 could fail only if the published bound were somehow weaker than the prediction.
+
+### 33a. Result
+
+Run by [`singlet_gluon.py`](singlet_gluon.py).
+
+**Where the bound came from.** Wagner et al. (2012) give the infinite-range baryon bound only as a curve
+(Fig. 6), so the data rule fell back to Schlamminger et al. (2008). That paper also plots the bound (Fig. 3) without
+stating it in the text. It does state the inputs:
+* the Eötvös parameter `η(Be − Ti) = (0.3 ± 1.8) × 10⁻¹³`;
+* `B/µ = 0.99868` for Be and `1.001077` for Ti.
+
+For an infinite-range force sourced by the Earth (`B/µ ≈ 1`), these give the 95 % bound
+`|α̃| ≤ (0.3 + 1.96 × 1.8) × 10⁻¹³ / 0.002397 = 1.6 × 10⁻¹⁰`. This is derived from the stated numbers, not read off
+the figure. The verdict does not depend on its precision.
+
+| `α₁` | predicted `α̃` (relative to gravity) | bound | excluded by |
+|---|---|---|---|
+| `α_s(M_Z) = 0.118` | 3.0 × 10³⁷ | 1.6 × 10⁻¹⁰ | 47 orders |
+| `10⁻³` | 2.6 × 10³⁵ | 1.6 × 10⁻¹⁰ | 45 orders |
+
+**R_prod's singlet gluon is excluded.** A massless colour-singlet gluon would add a baryon-number repulsion about
+`10³⁵`–`10³⁷` times stronger than gravity. Torsion balances bound such a force at `10⁻¹⁰` of gravity. Ordinary matter
+would not hold together under gravity at all. Only a singlet gluon with a mass above roughly the nuclear scale could
+escape, and QLF has no mechanism to give it one.
+
+**So the data confirm the §32b adoption.** The product rule implies a ninth gluon that nature excludes by more than
+40 orders of magnitude. The commutator rule implies exactly SU(3)'s eight. The colour-factor test of §32a could not
+tell the two rules apart; this test does. In short, the reason QCD's group is SU(3) and not U(3) is now also the
+reason QLF's carriers are commutators and not products.
 
 ## References
 
