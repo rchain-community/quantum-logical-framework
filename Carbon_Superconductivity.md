@@ -48,7 +48,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
 | 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
-| 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | pre-registered, not yet run |
+| 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2402,6 +2402,54 @@ unless a count needs it.
 **Stated prior on the test.** From memory, LEP gives `C_F ≈ 1.3` with an uncertainty near 0.1, so R_prod would be
 disfavoured, perhaps not at 2σ. Inconclusive is a real possibility.
 
+### 32a. Result
+
+Run by [`carrier_commutators.py`](carrier_commutators.py), using exact arithmetic in `ℚ(ω)`.
+
+**The structure, as predicted.**
+* **R_prod.** The 36 products `D(t)D(u)` span 9 dimensions, all of `gl(3)`, including the identity. That is
+  `u(3)`, with a colour-singlet ninth gluon.
+* **R_comm.** The 24 nonzero commutators span 8 dimensions, which is `sl(3)`, and the identity is not among them.
+  Every nonzero commutator comes from a cross-axis pair, and every one of them folds to a vector (spin 1). The
+  identical pairs and same-axis pairs all give 0.
+* So R_comm's carriers are exactly the spin-1 words of §31, and its `β₀` is QCD's. That follows by construction and
+  is not counted.
+* The colour factors follow: `C_F = 4/3` (su(3)) or `3/2` (u(3)), with `C_A = 3` for both.
+
+**The data** (Kluth, hep-ex/0410064, which is the first source under the rule; it gives ALEPH and OPAL separately
+and no combination):
+
+| | `C_F` (stat ⊕ sys) | pull from 4/3 (R_comm) | pull from 3/2 (R_prod) | `C_A` |
+|---|---|---|---|---|
+| ALEPH | 1.35 ± 0.27 | +0.06σ | −0.56σ | 2.93 ± 0.60 |
+| OPAL | 1.34 ± 0.26 | +0.03σ | −0.63σ | 3.02 ± 0.55 |
+
+**Verdict: inconclusive.** Both measurements sit right on SU(3), but their systematic errors (about 0.25) are too
+large to exclude U(3)'s 3/2 at 2σ. The LEP colour factors cannot separate the rules. This was the expected
+possibility, so the test ran and did not bite. A sharper discriminator is the colour-singlet gluon that R_prod
+predicts, which would act as a long-range force between colour-neutral hadrons. It would need its own
+pre-registration.
+
+**The answer to the question asked: yes, there is a principled reason.** Gauge carriers take values in a Lie
+algebra, and the non-abelian part of a Lie algebra is spanned by commutators. Under that rule, identical-twist pairs
+vanish (`[t, t] = 0`) rather than being excluded by hand. The rule recovers su(3) and QCD's `β₀`. It fits QLF's
+existing bosons, which are built from `t t̄`, and it leaves the closure census, which counts `tt` as a walk step,
+untouched. **What the data do not yet do is choose it over R_prod.** Whether to adopt R_comm on principle is Jim's
+decision.
+
+**Perfect numbers (exploratory).**
+* **Where a Mersenne prime does structural work.** On the qubit phase space `F₂²` (the three spatial axes), the
+  colour cycle is the matrix `[[1,1],[1,0]]`, with characteristic polynomial `x² + x + 1`. That is the minimal
+  polynomial of a primitive element of `F₄`, so **the colour ℤ₃ is `F₄*`, the Singer cycle**, of order
+  `2² − 1 = 3`. Because 3 is prime, every non-identity power of the cycle moves all three axes. This ties the colour
+  ℤ₃ (§24) to the qubit structure: the three axes are the nonzero elements of `F₄`.
+* **Where perfect numbers appear, and why it is a coincidence.** With identical pairs excluded, an alphabet of size
+  `2^p` has `C(2^p, 2) = 2^{p−1}(2^p − 1)` distinct pairs. QLF's sizes give `C(4, 2) = 6` (the axis planes) and
+  `C(8, 2) = 28` (twist pairs), and these are perfect because 3 and 7 are prime. But perfectness, `σ(n) = 2n`,
+  changes no count found here. The numbers are perfect because QLF's alphabet sizes are powers of 2 whose
+  predecessors happen to be prime. **So the Mersenne prime 3 plays a role (`F₄*` = colour), and perfectness as such
+  does not.** By method rule 4 it stays exploratory until a count depends on it.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -2542,3 +2590,5 @@ disfavoured, perhaps not at 2σ. Inconclusive is a real possibility.
 - Nielsen, N. K. (1981). Asymptotic freedom as a spin effect. *Am. J. Phys.* 49, 1171–1178. doi:10.1119/1.12565
 - Hughes, R. J. (1980). Some comments on asymptotic freedom. *Phys. Lett. B* 97, 246–248.
   doi:10.1016/0370-2693(80)90593-6
+- Kluth, S. (2004). Final QCD results from LEP. arXiv:hep-ex/0410064. (Quotes ALEPH, *Eur. Phys. J. C* 27, 1 (2003)
+  and OPAL, *Eur. Phys. J. C* 20, 501 (2001).)
