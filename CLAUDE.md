@@ -6,7 +6,7 @@ Project context for Claude Code sessions. Read this before making any changes.
 
 ## Project overview
 
-**Quantum Logical Framework (QLF)** is a formal proof system machine-verified in Lean 4 across **231 modules with zero `sorry` blocks**. It encodes quantum mechanics and spacetime dynamics using phase-string combinatorics (ZFA — Zero-phase Flux Algebra).
+**Quantum Logical Framework (QLF)** is a formal proof system machine-verified in Lean 4 across **232 modules with zero `sorry` blocks**. It encodes quantum mechanics and spacetime dynamics using phase-string combinatorics (ZFA — Zero-phase Flux Algebra).
 
 Core claim: *ZFA balance is the selection principle for physical reality.* Every terminating computation is a ZFA string; every ZFA string is symmetric (lies on the critical line). The Church-Turing universe filtered to ZFA-balanced strings is our physical universe.
 
@@ -28,9 +28,9 @@ setup notes are in the session memory (`local-lean-impractical`).
 
 ---
 
-## Modules — 231, machine-verified, zero `sorry`
+## Modules — 232, machine-verified, zero `sorry`
 
-Registered in `lakefile.lean` roots array (build order); sources in `lean/`. **The full per-module table — descriptions + key-theorem lists for all 231 — lives in [`lean/README.md`](lean/README.md); consult it when working on any specific module.** Thematic families and every individual result are also mapped in [`FlowChart.md`](FlowChart.md). The core anchors a session references most often:
+Registered in `lakefile.lean` roots array (build order); sources in `lean/`. **The full per-module table — descriptions + key-theorem lists for all 232 — lives in [`lean/README.md`](lean/README.md); consult it when working on any specific module.** Thematic families and every individual result are also mapped in [`FlowChart.md`](FlowChart.md). The core anchors a session references most often:
 
 | Module | What it proves |
 |---|---|
@@ -430,7 +430,7 @@ was where it slipped. Apply these to new work:
 | Path | Purpose |
 |---|---|
 | `lean/` | All Lean source files |
-| `lakefile.lean` | Build config; `roots` array lists all 231 modules |
+| `lakefile.lean` | Build config; `roots` array lists all 232 modules |
 | `lean/README.md` | Module table and proof chain documentation |
 | `README.md` | Project overview with citations and convergence themes |
 | `CLAUDE.md` | This file — project context for new Claude sessions |
@@ -463,7 +463,7 @@ Gauge side:
 - with the axis cycle `U` as a transport primitive (an extension Jim approved), `⟨Q₈, U⟩ ≅ SL(2,3)`, the eight twists are the eight nonzero vectors of `F₃²`, and the 2π/3 colour flux follows canonically, on gauge–spatial planes too (§27, `colour_flux.py`, `QLF_ColourFlux`).
 - the eight twists are an orthogonal Weyl basis of sl(3), and the four axes are its four orthogonal Cartan subalgebras. `QLF_StrongAlgebra`'s reading (colour states = axes) holds only in a colour frame where the cycle carries phases (§28, `weyl_sl3.py`).
 - colour triality is the net spatial twist count mod 3. The "spin × colour = the Standard Model's ℤ₆" reading is retired, because the plaquette −1 is fermion parity, not the doublet bit. The Standard Model's charge lock demands `N ≡ 1 (mod 3)` of quark words (§29, `z6_spin_colour.py`).
-- quark signature (§30, `quark_signature.py`): `u =` positive twist, `d = u + [+]`, `Q = (2/3)N − n_g`, and the W is one gauge twist. §27's colour action of the gauge twist breaks colour-blind weak interactions, so P2 is in question; the amendment (gauge twists colour-trivial) is Jim's decision.
+- quark signature (§30, `quark_signature.py`): `u =` positive twist, `d = u + [+]`, `Q = (2/3)N − n_g`, and the W is one gauge twist. §27's colour action of the gauge twist breaks colour-blind weak interactions, so P2 is in question; the amendment, adopted by Jim, makes gauge twists colour-trivial (§27b; Lean `QLF_QuarkSignature`: `colour_blind_W`, `lock_word`).
 
 **Gotchas:**
 - signed transfer-matrix sums cancel below double precision: check `|Z_signed|/Z_unsigned` against `10⁻¹⁶`, and use the positive-weight spin model (§23a);
