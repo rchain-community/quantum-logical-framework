@@ -274,6 +274,17 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
     * doped C₃₆ (§17);
     * a vortex-noise spectrum (§9).
 
+    **Sweep of 2026-10-03 (arXiv, sorted by date): nothing qualifies.**
+    * **Stiffness.** The only measurements are still Tanaka 2025 and Banerjee 2025 (arXiv:2406.13740,
+      2406.13742), which were already used.
+      * Liu et al. (arXiv:2501.06460, alternating quadralayer) estimate stiffness from critical currents. That is
+        model-dependent and does not reach zero.
+      * Theory by arXiv:2606.17191 models twist-angle inhomogeneity smearing the BKT transition into a percolative
+        one. This supports §11's caveat that stiffness is underestimated, but it is not a measurement of `α`.
+    * **C₃₆.** No doped-C₃₆ superconductivity experiment exists; the only recent paper is theory (arXiv:2601.02041).
+    * **Vortex noise.** No noise spectrum. Vortices have been detected through telegraph switching in a
+      magic-angle junction (arXiv:2410.03508), but that is not a spectrum.
+
 ## 7. Pre-registered: phase coherence to one bit
 
 *Fixed in the commit that adds this section, before any stiffness or `T_c` value below was gathered.*
