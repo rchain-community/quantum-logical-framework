@@ -41,6 +41,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | passes (w ≤ 0.5 directly; 0.7–0.9 by the positive-weight check, §23b) |
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
+| 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -230,8 +231,8 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
 3. The fulleride lead of §4: C₆₀ is icosahedral (φ), outside the Eisenstein DNAs of §10. Still open.
 4. Phase coherence, the second step after pairing: §7–§8 and §11–§14.
 
-**Open, as of §24** (none pre-registered yet):
-5. **Carbon isotope effect.** In the §11–§15 chain `T_c = 2.63 D_s` with `D_s ∝ Δ`, so `T_c` inherits the gap's
+**Open, as of §24** (item 5 now pre-registered, §25):
+5. **Carbon isotope effect** (pre-registered in §25). In the §11–§15 chain `T_c = 2.63 D_s` with `D_s ∝ Δ`, so `T_c` inherits the gap's
    isotope exponent.
    * Phonon (Kekulé) glue predicts about −4 % for ¹²C → ¹³C, the BCS exponent of 0.5.
    * Electronic glue predicts about 0. Kim et al. 2025's mode-to-gap bound, `Ω/2Δ ≤ 1`, points that way.
@@ -1467,6 +1468,81 @@ in which a colour step relabels axes, the Clifford-level primitive that QLF does
 [`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean) prove, for every history, that baryon number is unchanged under the
 cyclic relabeling `x → y → z` and negated under a transposition. So the colour ℤ₃, as the baryon-preserving
 cyclic symmetry of the axes, is machine-checked. No new axioms.
+
+## 25. Pre-registered: the carbon isotope effect
+
+*Fixed in the commit that adds this section. I have not searched for an isotope measurement in magic-angle graphene,
+and none is cited anywhere in this document. The search comes after this commit.*
+
+**The question.** What pairs the electrons in magic-angle graphene? Swapping ¹²C for ¹³C changes the nuclear mass by
+8.4 % and leaves the electrons alone. So a phonon-paired `T_c` should move, and an electronically paired one should
+not. Define the isotope exponent `α = −Δ ln T_c / Δ ln M`. For full substitution, `Δ ln M = ln(13.00336/12) = 0.0803`.
+
+| `α` | `T_c` shift, ¹²C → ¹³C | from natural carbon (12.011) |
+|---|---|---|
+| 0.5 (BCS) | −3.94 % | −3.89 % |
+| 0.3 | −2.38 % | −2.35 % |
+| 0.2 | −1.59 % | −1.58 % |
+| 0.05 | −0.40 % | −0.40 % |
+
+**Why `T_c` carries the gap's exponent here.** In the §11–§15 chain, `T_c = 2.63 D_s` and
+`D_s = N Δ √(ν(1−ν)) G/2π`. Here `N`, `ν` and `G` are electronic: they come from the band's flavours, filling and
+geometry. So `T_c ∝ Δ`, and `α_Tc = α_Δ`. That holds even though `T_c` is set by phase coherence and not by pairing.
+
+### The hypotheses
+
+* **H_R, retarded phonon glue.** The glue phonon's frequency sets the pairing cutoff, as in BCS. Then
+  `α` lies between 0.2 and 0.5. The BCS value is 0.5, and the Coulomb pseudopotential lowers it. The floor of 0.2 is a
+  chosen bound, not a derived one.
+* **H_E, electronic glue.** The nuclear mass enters only through the zero-point lattice contraction. That is of
+  order 10⁻⁴ in the bond length, and it moves the hoppings by a few parts in 10⁴. Then `|α| ≤ 0.05`.
+
+**A caveat, stated before any data: "phonons pair ⇒ −4 %" holds only for H_R.** The Kekulé optical phonon
+(§6 item 6) sits near 150–200 meV, more than ten times the flat bandwidth. In that anti-adiabatic regime the
+phonon-mediated attraction is instantaneous. Its strength is `(∂ε/∂u)²/K`, where `K = Mω²` is the spring constant,
+which does not depend on the mass. The cutoff is the bandwidth, not the phonon frequency. So to leading order, phonon
+glue from a fast mode **also gives `α ≈ 0`**. The polaron narrowing `exp(−E_p/ħω)` adds a mass dependence, which is
+small while `E_p ≪ ħω`. A null `T_c` shift therefore cannot tell electronic glue from fast-phonon glue. P2 is the
+observable that can.
+
+### Predictions
+
+* **P1, the `T_c` shift.** H_R predicts `α ∈ [0.2, 0.5]`, a shift of −1.6 % to −3.9 %. H_E, and fast-phonon glue,
+  predict `|α| ≤ 0.05`, a shift within ±0.4 %.
+* **P2, the bosonic mode.** If the gap-scale mode of Kim et al. 2025 (§6 item 5, `Ω/2Δ ≤ 1`) is the glue and is a
+  phonon, then `Ω ∝ M^{−1/2}` whatever the regime, so `Ω₁₃/Ω₁₂ = 0.9606` (0.9611 from natural carbon). If it is
+  electronic, `Ω₁₃/Ω₁₂ = 1`.
+* **P3, the QLF chain.** `α_Tc = α_Δ`, with `Δ` the coherence-tied (Andreev) gap of §15a–b. Suppose instead the
+  stiffness came from band dispersion (`D_s ∼ n/m*`, independent of `Δ`) and limited `T_c`. Then `α_Tc ≈ 0` even
+  with `α_Δ ≠ 0`. If both exponents are near 0, P3 could not have failed, and it is reported that way.
+
+### Data and verdict rules
+
+**Data.** Magic-angle bilayer or trilayer graphene built from ¹³C-enriched sheets, compared with ¹²C or natural
+sheets.
+* Angles matched within 0.02°, at the same filling `ν`.
+* `T_c` taken by the same criterion on both sides.
+* `α` computed from the actual isotopic masses. With partial enrichment, the shift is scaled by `Δ ln M`.
+
+Device-to-device `T_c` scatter in magic-angle graphene is comparable to the 4 % being sought. So a result counts only
+if it gives `σ_α ≤ 0.15`, either stated or from the scatter of at least three devices per isotope. With a larger
+`σ_α` the result is recorded as **inconclusive**. Other carbon superconductors (intercalated graphite, fullerides,
+boron-doped diamond) do not stand in for this test. Their glue is not the question here.
+
+**Verdicts** (2σ throughout):
+* **P1.** H_R is **retired** if `α + 2σ < 0.2`. H_E is **retired** if `α − 2σ > 0.05`. A value between the two leaves
+  both standing.
+* **P2.** Each reading is **retired** if the measured `Ω₁₃/Ω₁₂` is more than 2σ from its prediction (0.961 or 1).
+* **P3.** **Fails** if `|α_Tc − α_Δ| > 2σ` (combined) while `α_Δ ≥ 0.1` is resolved. If not, it passes only as a
+  pass that could not have failed.
+
+**Not tested here.** The identification of the Kekulé pattern with the `z = 1 − ω` DNA (§6 item 6). The √3×√3
+pattern is the same geometry under both hypotheses, so no isotope result bears on it.
+
+**Stated prior.** I expect `α ≈ 0`. The `Ω/2Δ ≤ 1` bound puts the mode near a meV, far below graphene's optical
+phonons. And the caveat above means that even phonon glue from the Kekulé mode would not give −4 %. A shift of
+−2 % to −4 % would point to a slow phonon (a moiré acoustic mode or phason) acting as retarded glue. That would
+change the picture.
 
 ## References
 
