@@ -43,6 +43,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
+| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1776,6 +1777,62 @@ by the §5a `C` values before any `T_c` was read, so it carries little weight on
 **For a decisive P1:** a magic-angle bilayer series with numeric `T_c` on both sides of `ν = −2` in at least three
 devices, ideally with per-branch linear-in-`T` slopes measured in the same devices. A single new device with a higher
 `−2 + δ` dome would also be informative, because so far no device shows one.
+
+## 27. The colour flux, from the axis cycle as a transport primitive
+
+*Fixed in the commit that adds this section, before any of the computations below were run. This section extends
+the framework. Jim made the decision to extend it on 2026-10-03 (§24 left it as his call).*
+
+**The extension.** §24 derived the colour ℤ₃ as a symmetry: the cyclic relabeling of the axes that preserves every
+baryon number, Lean-verified as `baryon_cyc_invariant`. It also showed that fold transport can never supply the
+2π/3 flux (N1, N2). The extension adds the axis cycle `U = (1 − i(σ_x+σ_y+σ_z))/2` to the folds **as a transport
+primitive**. The question is whether the flux then follows, and whether it follows without further choices.
+
+**The construction, fixed now.**
+* **K1. The transport group.** Map each twist to its unit-determinant fold: `± ↦ ±I`, and spatial `s·σ_a ↦ s·iσ_a`.
+  These eight elements form the quaternion group Q₈, one per twist. Adjoining `U` gives the group `T = ⟨Q₈, U⟩`.
+* **K2. Its phase space.** If `T` is isomorphic to `SL(2, F₃)`, then `T` acts on the plane `F₃²` and preserves its
+  symplectic form `⟨u, v⟩ = u₁v₂ − u₂v₁`. The expectation is the binary tetrahedral group, which is classically
+  isomorphic to `SL(2, 3)`.
+* **K3. Twists as vectors.** Take `v₀` on a line of `F₃²` that the image of `U` fixes, and send twist `t` to
+  `v_t = φ(q_t) v₀`.
+* **K4. The colour rule (the content of the extension).** A colour line is a qutrit, which is the Weyl representation
+  over `F₃²`. Twist `t` acts on it by the displacement `D(v_t)`. This is what spin already does over `F₂`: `σ_x`,
+  `σ_z` and `σ_y` are the displacements by the three nonzero vectors of `F₂²`. The construction only changes the
+  field, from 2 to 3, and that change is forced by K2.
+* **K5. The flux.** A plaquette on axes `a, b` is the word `t_a t_b t̄_a t̄_b`, with `t̄` the reversed twist. Its
+  colour holonomy is `D(v_a) D(v_b) D(v_a)⁻¹ D(v_b)⁻¹ = ω^{⟨v_a, v_b⟩}`.
+
+### What can fail
+
+* **F1, the group.** `|T| = 24` with `T ≅ SL(2, 3)`, checked through an explicit isomorphism tested on every product.
+  If no isomorphism exists, the route fails at K2.
+* **F2, the alphabet.** `t ↦ v_t` is a bijection from the eight twists onto the eight nonzero vectors of `F₃²`, with
+  reversal mapping to `−v`. The gauge pair should go to the line fixed by `U`, and `U` should cycle the `x, y, z`
+  lines in the order of `cycTwist`. If any of this fails, colour cannot be read off the alphabet this way.
+* **F3, canonicity.** The isomorphism is not unique, and neither is `v₀`. Every isomorphism and every allowed `v₀`
+  is enumerated. The derivation counts as **canonical** only if all of them give the same flux table, up to one
+  global `ω ↔ ω̄`, which is the colour/anticolour convention. If the tables differ in anything else, the flux
+  depends on a choice and is **not derived**.
+* **F4, the spatial flux.** §23's definition holds if every mixed spatial plaquette has `|flux| = 2π/3` with one
+  orientation for `(x,y)`, `(y,z)` and `(z,x)`. If a pair gives 0, or the orientations alternate, the result differs
+  from §23. Then §23b's confinement does not transfer as it stands.
+
+### Predictions
+
+* **P1.** F1–F4 all hold, so §23's definition becomes a consequence of the extension. §23b's confinement result then
+  applies to the derived flux.
+* **P2 (new, not in §23).** The gauge twists sit on the fourth line of `F₃²`, and any two distinct lines have a
+  nonzero symplectic product. So **gauge–spatial plaquettes also carry 2π/3 for colour lines**. For spin they carry
+  none, because `±I` commutes with everything. This is a structural prediction, reported whichever way it comes out.
+* **P3.** A count-balanced word displaces by `Σ v_t = 0`, so every ZFA closure picks up a **scalar** colour phase in
+  ℤ₃. The closures are counted by colour phase for lengths 2–8. Mirror symmetry (`baryon_swap_odd`'s transposition)
+  reverses the form, so the phases `ω` and `ω̄` must occur equally often; that is the check. The neutral fraction is
+  exploratory, and no value is predicted for it.
+
+**Stated prior.** F1 is the classical isomorphism `2T ≅ SL(2, 3)`, and F2 follows because Q₈ acts freely on the
+eight nonzero vectors. Both are expected to pass. F3 is the real question. F4 and P2 are expected to follow from F3,
+because `U` preserves the form and distinct lines in `F₃²` never pair to zero.
 
 ## References
 
