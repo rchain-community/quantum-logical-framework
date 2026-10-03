@@ -43,10 +43,10 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
-| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
+| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too (withdrawn by the §27b amendment: gauge twists are colour-trivial); Lean `QLF_ColourFlux` |
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
-| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment (gauge twists colour-trivial) proposed, Jim's decision |
+| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -261,7 +261,7 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    measured filling branches. **§26a did this:** `λ_tr = C/2π` is 0.05 and 0.21 on the two branches, and `T_c` runs
    the opposite way. So the split is not a phonon-coupling split.
 9. **The colour flux (§24, §27).** Jim decided on 2026-10-03 to take `U` as a transport primitive. §27a derives
-   the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. The gauge planes carry the flux too.
+   the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. Since the §27b amendment, the gauge planes carry no colour flux.
    Still open: why colour is a Weyl qutrit (the extension itself). §28a settles the relation to
    `QLF_StrongAlgebra`: the eight twists are the Weyl basis of sl(3), with the four axes as its orthogonal Cartans.
    The axis-permutation reading holds only in a colour frame where the cycle carries phases.
@@ -1872,7 +1872,7 @@ assumed.
 | `xy`, `yz`, `zx` | `ω̄` (−120°) | −1 |
 | `gx`, `gy`, `gz` | `ω̄` (−120°) | +1 |
 
-**P2 holds: colour flux also threads the gauge–spatial planes.** *(§30a: this conflicts with colour-blind weak and electromagnetic interactions. An amendment that makes gauge twists colour-trivial is proposed, pending Jim's decision.)* Spin does not see those plaquettes, because `±I`
+**P2 holds: colour flux also threads the gauge–spatial planes.** *(**Withdrawn by the §27b amendment.** This conflicts with colour-blind weak and electromagnetic interactions, §30a.)* Spin does not see those plaquettes, because `±I`
 commutes with everything. Colour does, because the gauge pair is one of the four lines of `F₃²`, and distinct lines
 never pair to zero. A charge line carries no colour qutrit, so electromagnetism is untouched. A *coloured* line is
 confined in every plane it can turn in, gauge planes included.
@@ -1914,6 +1914,24 @@ the count-balanced words of length `L` by that phase.
 * **A coloured spin-½ line sees six phases.** A spatial plaquette carries spin `−1` and colour `ω̄`, a combined phase
   of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. **§29a retires this as a link:** the
   `−1` is fermion parity, and the Standard Model's ℤ₆ uses the doublet bit.
+
+### 27b. Amendment (2026-10-03): gauge twists are colour-trivial
+
+Adopted by Jim after §30a. That test showed that §27's rule moves a quark's colour when it emits a W, and the
+Standard Model's photon and W are colour-blind. **The rule now reads: a colour line is moved by `D(v_t)` for a
+spatial twist and by the identity for a gauge twist.**
+* **What stands:**
+  * K1–K3: `⟨Q₈, U⟩ ≅ SL(2, 3)`, and the twists as the nonzero vectors of `F₃²`;
+  * the 2π/3 flux on every spatial plaquette, uniform and canonical;
+  * triality = `N mod 3` (§29).
+* **Withdrawn:**
+  * P2, the colour flux on the gauge–spatial planes;
+  * the physical reading of the gauge rows of `flux_uniform`. They remain true statements about `F₃²`.
+* **§28 changes.** The six spatial twists are the three Cartans `h_x, h_y, h_z`. The fourth Cartan `h_g` is no
+  longer a twist; brackets of spatial twists generate it (`[h_x, h_y] ⊆ h_g ⊕ h_z`). The eight gluon directions are
+  the six spatial twists plus the two that the brackets generate.
+* **The W is now colour-blind.** `d = u + [+]` has the same colour displacement as `u`. This is checked in Lean
+  (`QLF_QuarkSignature`).
 
 ## 28. Pre-registered: the eight twists as the Weyl basis of sl(3)
 
@@ -1970,7 +1988,7 @@ an orthogonal basis of sl(3).**
 * The trace form vanishes between different axes and is nondegenerate within each axis.
 * A generic element of an axis has that axis, and nothing else, as its centraliser among the twists.
 
-So `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`, the orthogonal decomposition into four Cartan subalgebras that
+*(After the §27b amendment, `h_g` is generated by brackets rather than being a twist.)* So `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`, the orthogonal decomposition into four Cartan subalgebras that
 Patera–Zassenhaus and Kostrikin–Tiep describe for sl(3). **In QLF's alphabet, each axis is one maximal set of
 commuting colour charges, and the alphabet's four axes are exactly the four of them.** The cycle `cycTwist` permutes
 `h_x → h_y → h_z` and fixes `h_g`.
@@ -2215,7 +2233,7 @@ colours precisely because the photon does not touch them. **So §27's P2 (colour
 planes) conflicts with established physics.** That conflict comes from §27's construction (K1–K4), not from the
 quark signature.
 
-**The proposed amendment, which is Jim's decision.** Gauge twists act trivially on a colour line: `D(0)` instead of
+**The amendment, adopted by Jim on 2026-10-03.** Gauge twists act trivially on a colour line: `D(0)` instead of
 `D(v_g)`. Everything else in §27 stands:
 * the spatial flux (2π/3, uniform, canonical over all 48 choices);
 * the six spatial twists as three orthogonal Cartans (§28);
