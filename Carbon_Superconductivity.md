@@ -43,7 +43,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
-| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | pre-registered, not yet run |
+| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -257,8 +257,10 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    attributed to electron–phonon scattering (Polshyn et al. 2019). A phonon-limited `C` could be compared with the two
    measured filling branches. **§26a did this:** `λ_tr = C/2π` is 0.05 and 0.21 on the two branches, and `T_c` runs
    the opposite way. So the split is not a phonon-coupling split.
-9. **The colour flux (§24).** Should a colour step relabel axes, taking the Clifford `U` as a transport primitive? That
-   is a framework extension and the user's decision.
+9. **The colour flux (§24, §27).** Jim decided on 2026-10-03 to take `U` as a transport primitive. §27a derives
+   the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. The gauge planes carry the flux too.
+   Still open: why colour is a Weyl qutrit (the extension itself), and the relation of the eight twists, as the
+   Weyl basis of sl(3), to `QLF_StrongAlgebra`.
 10. **Data the tests are waiting on:**
     * an independent stiffness measurement `α` (§11a);
     * a trilayer `ρ_s(T)` taken through to zero (§8, §8b);
@@ -1479,6 +1481,9 @@ in which a colour step relabels axes, the Clifford-level primitive that QLF does
 cyclic relabeling `x → y → z` and negated under a transposition. So the colour ℤ₃, as the baryon-preserving
 cyclic symmetry of the axes, is machine-checked. No new axioms.
 
+**The flux is derived in §27**, after Jim approved taking `U` as a transport primitive. It is canonical, and the
+derivation is Lean-verified in [`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
 ## 25. Pre-registered: the carbon isotope effect
 
 *Fixed in the commit that adds this section. I have not searched for an isotope measurement in magic-angle graphene,
@@ -1833,6 +1838,78 @@ primitive**. The question is whether the flux then follows, and whether it follo
 **Stated prior.** F1 is the classical isomorphism `2T ≅ SL(2, 3)`, and F2 follows because Q₈ acts freely on the
 eight nonzero vectors. Both are expected to pass. F3 is the real question. F4 and P2 are expected to follow from F3,
 because `U` preserves the form and distinct lines in `F₃²` never pair to zero.
+
+### 27a. Result
+
+Run by [`colour_flux.py`](colour_flux.py), which uses exact arithmetic throughout and takes under a second. The
+`F₃` side is machine-checked, with no axioms, in [`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
+**F1 passes.** The eight twist folds are exactly Q₈. Adjoining `U` gives a group of order 24. `U` conjugates each
+twist's fold into the fold of `cycTwist t`. There are 24 isomorphisms onto `SL(2, F₃)`, and each was checked on all
+576 products.
+
+**F2 passes, in every case.** For each isomorphism and each `v₀` on the line `U` fixes (48 cases), the map
+`t ↦ v_t` is a bijection from the eight twists onto the eight nonzero vectors of `F₃²`, and reversal maps to `−v`.
+The gauge pair lands on the `U`-fixed line, and `U` cycles the `x, y, z` lines as `cycTwist` does. **The twist
+alphabet is the nonzero colour phase space.** QLF's eight letters (`QLF_AlphabetNecessity`) are `3² − 1`.
+
+**F3 passes: the flux is canonical.** All 48 cases give one of two tables. The products `⟨v_a, v_b⟩` for
+`(xy, yz, zx, gx, gy, gz)` are either all 1 or all 2, and the two tables are complex conjugates of each other. The
+only freedom left is the colour/anticolour convention.
+
+**F4 passes, so P1 holds.** Every mixed spatial plaquette has `|flux| = 2π/3`, with one orientation. With the
+symmetric Weyl displacements (`D(−v) = D(v)⁻¹`, checked), the commutator is exactly `ω^{−⟨u,v⟩}` for all 64
+pairs. **§23's definition is now a consequence of the extension.** §23b showed that a uniform 2π/3 flux confines
+the ℤ₃ loop gas at every weight below equal weight per way. That result now holds for a flux that was derived, not
+assumed.
+
+| plaquette | colour | spin (`pauli_fold`) |
+|---|---|---|
+| `xy`, `yz`, `zx` | `ω̄` (−120°) | −1 |
+| `gx`, `gy`, `gz` | `ω̄` (−120°) | +1 |
+
+**P2 holds: colour flux also threads the gauge–spatial planes.** Spin does not see those plaquettes, because `±I`
+commutes with everything. Colour does, because the gauge pair is one of the four lines of `F₃²`, and distinct lines
+never pair to zero. A charge line carries no colour qutrit, so electromagnetism is untouched. A *coloured* line is
+confined in every plane it can turn in, gauge planes included.
+
+**P3: colour census of the closures.** By count balance, every closure has a scalar colour phase. The table counts
+the count-balanced words of length `L` by that phase.
+
+| `L` | closures | `ω⁰` | `ω¹` | `ω²` | neutral fraction |
+|---|---|---|---|---|---|
+| 2 | 8 | 8 | 0 | 0 | 1.000 |
+| 4 | 168 | 120 | 24 | 24 | 0.714 |
+| 6 | 5 120 | 2 528 | 1 296 | 1 296 | 0.494 |
+| 8 | 190 120 | 74 296 | 57 912 | 57 912 | 0.391 |
+| 10 | 7 939 008 | 2 795 328 | 2 571 840 | 2 571 840 | 0.352 |
+| 12 | 357 713 664 | 121 310 304 | 118 201 680 | 118 201 680 | 0.339 |
+
+* The mirror check passes at every length: `ω` and `ω̄` occur equally often.
+* The neutral fraction falls from 1 toward 1/3. Short closures are mostly colour-neutral; long ones are spread evenly
+  over the three phases.
+* The phase is canonical. Any rephasing of the displacements that keeps `D(−v) = D(v)⁻¹` cancels in pairs over a
+  balanced word.
+* No value was predicted for this table; it is exploratory.
+
+**What is derived, and what is assumed.**
+* **Assumed: one rule (K4).** A colour line is the Weyl qutrit over the phase space on which the extended transport
+  group acts. This is the extension Jim approved. It is the `F₃` version of what spin already is over `F₂`.
+* **Derived from that rule, with no further choice:**
+  * the phase space, `F₃²`, from `⟨Q₈, U⟩ ≅ SL(2, 3)`;
+  * the placement of each twist;
+  * the flux magnitude, 2π/3;
+  * one orientation for every plaquette;
+  * the gauge–spatial flux.
+* **Not derived:** why colour should be a Weyl qutrit at all. That is the content of the extension.
+
+**Two structural facts, noted here and not interpreted.**
+* **The Weyl basis has eight directions.** The eight displacements `D(v)`, `v ≠ 0`, are a basis of the traceless 3×3
+  matrices, the complexification of su(3). Under this construction the eight twists map one-to-one onto them. How
+  that relates to the two Gell-Mann generators of `QLF_StrongAlgebra` is open.
+* **A coloured spin-½ line sees six phases.** A spatial plaquette carries spin `−1` and colour `ω̄`, a combined phase
+  of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. Whether that is more than a
+  coincidence has not been tested.
 
 ## References
 
