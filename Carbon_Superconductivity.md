@@ -47,7 +47,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
 | 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
-| 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | pre-registered, not yet run |
+| 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2302,6 +2302,52 @@ and `β₀ = −Σ b_s`, with asymptotic freedom exactly when `β₀ > 0`.
 * If the census does what the prior says, the fault is in the spin-0 coloured pairs, which QCD does not have. A
   failure would point to a rule that excludes them, and any such rule would have to be justified on its own terms,
   not chosen to recover 11.
+
+### 31a. Result
+
+Run by [`asymptotic_freedom.py`](asymptotic_freedom.py), using exact fractions. The script reproduces QCD exactly
+when only the vector words count as gluons, as a check (`β₀ = 7` at `n_f = 6`, and `23/3` at `n_f = 5`).
+
+**The colour carriers.** There are 30 shortest coloured bosonic words:
+* 24 are cross-axis pairs, which fold to a single Pauli matrix: spin 1. Exactly the cross-axis pairs are vectors.
+* 6 are same-sign, same-axis pairs (`>>`, `<<`, `^^`, `vv`, `//`, `\\`), which fold to `I`: spin 0.
+
+So `f₁ = 4/5` and `f₀ = 1/5`.
+
+| | `β₀(6)` | `β₀(5)` | largest `n_f` keeping asymptotic freedom |
+|---|---|---|---|
+| QLF, weighted by ways | 23/5 = 4.60 | 79/15 = 5.27 | 12.9 |
+| QCD | 7 | 23/3 = 7.67 | 16.5 |
+
+**A1 passes: QLF's colour carriers are asymptotically free.** Most of them are spin-1 vectors, and their spin
+paramagnetism beats the orbital term. The pass does not hinge on the exact fraction:
+* the gluon term anti-screens for any `f₁ > 1/12`;
+* `β₀(6) > 0` needs only `f₁ > 5/12`.
+
+This is the part QLF derives rather than imports. The colour carriers built from twist pairs are mostly vectors,
+because cross-axis pairs outnumber same-axis ones 24 to 6. If they had been spin-0 or spin-½, asymptotic freedom
+would fail.
+
+**A2 FAILS: β₀ is 31 % too small.** The whole shortfall is the six spin-0 coloured pairs. QCD has no coloured
+scalars, and these screen instead of anti-screening. A 31 % smaller `β₀` is inconsistent with the measured
+running of `α_s`. **So the ways-weighted carrier census, as registered, does not reproduce QCD's size.**
+
+**A candidate fix, post hoc and not adopted.** The six scalar words are two *identical* twists: the same spin-½
+quantum, in the same state, with the same colour. The Pauli principle forbids such a pair, and QLF already uses it
+elsewhere (`pp`/`nn` blocking, the Pauli-bound crystals). Excluding them gives `f₁ = 1` and QCD's `β₀` exactly.
+It is recorded and not adopted, for three reasons.
+1. It was found after the failure.
+2. With it, the result reproduces QCD by construction, so it is no longer a test.
+3. It cannot be applied across the board. The closure census counts repeated twists as ways (walks on `ℤ⁴`), and
+   results such as the Pólya return probability depend on that. So the exclusion would have to apply to bound
+   two-quantum carriers and not to walks. That distinction needs its own derivation.
+
+**What would make it a test.** A consequence of "identical-twist pairs are Pauli-excluded as carriers" that does
+not involve `β₀`. One example is the spin content of the other bosonic bound pairs in QLF: the photon's even
+pairs, and Cooper pairs. That consequence would have to be pre-registered and checked first.
+
+**Standing.** QLF now *derives* the sign of asymptotic freedom from its colour carriers' spins. It does not yet
+derive the size. The weights in `QLF_BetaFunction`'s `b₀ = 7` remain imported.
 
 ## References
 
