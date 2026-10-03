@@ -48,6 +48,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
 | 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
+| 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2348,6 +2349,58 @@ pairs, and Cooper pairs. That consequence would have to be pre-registered and ch
 
 **Standing.** QLF now *derives* the sign of asymptotic freedom from its colour carriers' spins. It does not yet
 derive the size. The weights in `QLF_BetaFunction`'s `b₀ = 7` remain imported.
+
+## 32. Pre-registered: carriers as commutators, tested by the colour factors
+
+*Fixed in the commit that adds this section, before any colour-factor value was read. Prompted by Jim: is there a
+principled reason to exclude identical-twist pairs, and do the primes of perfect numbers play a role?*
+
+**The principled reason under test.** §31 counted the colour carriers as **products** of two twists (words). But
+gauge carriers are elements of a Lie algebra, and the non-abelian part of a Lie algebra is spanned by
+**commutators** `[t, u] = tu − ut`. Taking carriers to be commutators (rule **R_comm**) excludes identical pairs
+automatically, because `[t, t] = 0`. It does not exclude them by fiat. Three statements are the same fact:
+* In the Pauli algebra, `σ_aσ_b` splits into a symmetric scalar part `δ_ab I` and an antisymmetric vector part
+  `iε_abc σ_c`.
+* The antisymmetric part is also what Fermi antisymmetry of two spin-½ quanta keeps.
+* So "carriers are commutators", "carriers are the antisymmetric part" and "identical pairs are excluded" coincide.
+
+The motivation, that gauge fields take values in a Lie algebra, does not depend on `β₀`. R_comm does not conflict
+with QLF's existing bosons either: the photon and the Cooper pair are built from Hermitian pairs `t t̄` (distinct
+twists, `concatPairsMatrixFold`), and the closure census keeps counting `tt` as a step of a walk. Products of
+histories and commutators of carriers are different objects.
+
+**The consequence tested, which does not involve `β₀`.** The two rules give different colour algebras.
+* **R_prod** (§31's rule, extended to every two-twist product). The span of `D(t)D(u)` includes `D(v)D(−v) = I`,
+  so the colour algebra is `u(3)`. It has a ninth, colour-singlet gluon. With the normalisation `T_F = 1/2`, that
+  gives `C_F = 3/2`, `C_A = 3`, and `C_A/C_F = 2`.
+* **R_comm.** The span of `[D(t), D(u)]` is `su(3)`, so `C_F = 4/3`, `C_A = 3`, and `C_A/C_F = 9/4`.
+
+The script computes both spans, and the spin (vector or scalar) of every commutator.
+
+**Data rule.**
+* The colour factors as measured at LEP: the combined or final values given in Kluth, "Final QCD results from LEP"
+  (hep-ex/0410064), if that paper states `C_A` and `C_F` (or their ratio) with uncertainties.
+* Otherwise, the simultaneous fit of Kluth et al., "A simultaneous measurement of the QCD colour factors and the
+  strong coupling" (hep-ex/0012044).
+* Values are taken as reported, with statistical and systematic errors combined in quadrature.
+
+**Verdicts (2σ).**
+* A rule is **retired** if the measured `C_F` (or `C_A/C_F`) excludes its prediction at 2σ.
+* If the measurement excludes neither rule, or both, the result is **inconclusive**.
+* `β₀` under R_comm equals QCD's by construction. It is reported and not counted.
+
+**Perfect numbers (exploratory; no prediction).** Perfect numbers are `2^{p−1}(2^p − 1)` with `2^p − 1` a Mersenne
+prime, and `2^{p−1}(2^p − 1) = C(2^p, 2)`. That is the number of *distinct* unordered pairs from an alphabet of size
+`2^p`. QLF's alphabet sizes are powers of 2 (`|Σ| ∈ {2, 4, 8}`, `QLF_AlphabetNecessity`). So once identical pairs
+are excluded, the pair counts of the axis set (4 axes give 6 planes) and the twist alphabet (8 twists give 28
+pairs) are perfect numbers, because 3 and 7 are prime. The script checks one place where a Mersenne prime might do
+structural work: whether the colour cycle on the qubit phase space `F₂²` (the three spatial axes) is the Singer
+cycle of `F₄`, multiplication by a primitive element, of order `2² − 1 = 3`. **Stated prior:** the cycle is the
+Singer cycle, and perfectness itself (the sum of divisors) changes no count found so far, so it is numerology
+unless a count needs it.
+
+**Stated prior on the test.** From memory, LEP gives `C_F ≈ 1.3` with an uncertainty near 0.1, so R_prod would be
+disfavoured, perhaps not at 2σ. Inconclusive is a real possibility.
 
 ## References
 
