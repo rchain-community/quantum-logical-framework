@@ -46,6 +46,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
+| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2115,6 +2116,55 @@ electron's and positron's were not, because those words had not been looked at.
 
   The minimal baryon, one twist per axis, meets this with three quarks of `N = 1`. Any future quark signature with
   `N ≢ 1 (mod 3)` would break the lock.
+
+## 30. Pre-registered: the quark twist signature
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+`QLF_QuarkStructure` and Quarks.md leave the per-flavour (u/d) twist signature open. §29a added a constraint: the
+Standard Model's charge lock needs `N ≡ 1 (mod 3)` for quark words. This section derives the signature from four
+facts QLF already has, and tests it.
+
+**The four facts used.**
+1. **Charge is a conserved signed count.** It is a weight `w` on twists with `w(t̄) = −w(t)`, so it is conserved and
+   zero on every ZFA closure (`QLF_BMinusL`, `signed_count_conserved`).
+2. **It is colour-blind.** It is invariant under the colour cycle `cycTwist`.
+3. **The charged electron is `^<v>+`** (`QLF_ElectronClosure.electronCharged`, gauge count `+1`), with electric
+   charge `−1`.
+4. **The §29 lock.** `3Q + N ≡ 0 (mod 3)` for every word. A quark is a single spatial twist (`minimal_baryon_one_per_axis`,
+   with the positive twists giving `B = +1`), and its charge is `2/3` or `−1/3`.
+
+### Derivation steps (structural; each is computed)
+
+* **S1.** Facts 1 and 2 leave a two-parameter family, `Q = a·N + b·n_g`. Here `N` is the net spatial count and `n_g`
+  the net gauge count, `#+ − #−`. This is checked by solving the linear constraints over all eight twists.
+* **S2.** Fact 3 gives `b = −1`. Fact 4 gives `a ≡ −1/3 (mod 1)`, and the quark charges then allow only `a = −1/3`
+  or `a = 2/3`. **There are two signatures:**
+  * **d-bare:** `d = >` (one positive twist) and `u = d` plus a `−`.
+  * **u-bare:** `u = >` and `d = u` plus a `+`.
+
+  Colour comes from the axis, and antiquarks are conjugates. The two differ by `N`, so both satisfy the lock.
+* **S3 (consistency, cannot fail).** Hadron charges are computed from each signature: `p, n, Δ⁺⁺, Δ⁻, π±`, the
+  `ud` diquark, hydrogen, a generation's total, and charge conservation in `n → p e⁻ ν̄`. Charge is additive, so
+  these follow from the quark charges. They are recorded, not counted as evidence.
+
+### Tests
+
+* **T1, choosing between the two signatures (decision rule fixed now).**
+  * **(a) Beta decay.** Under one signature, `d → u + W⁻` *transfers* a twist: the W takes the `+` that becomes the
+    charged electron's `+` (fact 3). Under the other, it must create a gauge pair. Prefer the transfer.
+  * **(b) Mass ordering.** Under the reading "more twists, more mass", is `m_n > m_p`, and is `m_d > m_u`? This
+    reading is a heuristic, not a QLF theorem, and is labelled as one.
+
+  The signature that passes both is adopted. If (a) and (b) disagree, neither is adopted and the choice stays open.
+  **Prior:** u-bare passes both.
+* **T2, weak colour-blindness (expected to FAIL; this is the real finding).** In the Standard Model the W and the
+  photon commute with SU(3), so a flavour change leaves colour alone. In §27, the gauge twist acts on a colour line
+  by `D(v_g)`, a shift, not the identity (§27 P2). Under either signature, `u` and `d` differ by one gauge twist.
+  * **The test.** Is `D(v_d) = (phase)·D(v_u)`? This asks whether the W changes a quark's colour operator.
+  * **Verdict.** If it does, then §27's colour action of the gauge twist conflicts with colour-blind weak
+    interactions. That puts §27's P2 in question, not just this signature.
+  * Triality is unaffected either way, since gauge twists add 0 to `N`.
 
 ## References
 
