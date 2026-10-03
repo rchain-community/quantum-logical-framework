@@ -44,7 +44,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
-| 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | pre-registered, not yet run |
+| 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -260,8 +260,9 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    the opposite way. So the split is not a phonon-coupling split.
 9. **The colour flux (§24, §27).** Jim decided on 2026-10-03 to take `U` as a transport primitive. §27a derives
    the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. The gauge planes carry the flux too.
-   Still open: why colour is a Weyl qutrit (the extension itself), and the relation of the eight twists, as the
-   Weyl basis of sl(3), to `QLF_StrongAlgebra`.
+   Still open: why colour is a Weyl qutrit (the extension itself). §28a settles the relation to
+   `QLF_StrongAlgebra`: the eight twists are the Weyl basis of sl(3), with the four axes as its orthogonal Cartans.
+   The axis-permutation reading holds only in a colour frame where the cycle carries phases.
 10. **Data the tests are waiting on:**
     * an independent stiffness measurement `α` (§11a);
     * a trilayer `ρ_s(T)` taken through to zero (§8, §8b);
@@ -1953,6 +1954,69 @@ and whether the two readings agree.
   `κ = n_gx n_yz + n_gy n_zx + n_gz n_xy (mod 3)`. Four vectors in a 2-dimensional space make `κ ≡ 0`
   automatically, so this **cannot fail**. It is computed only to record that the twist is orthogonal, with no
   fractional instanton charge.
+
+### 28a. Result
+
+Run by [`weyl_sl3.py`](weyl_sl3.py), using exact arithmetic in `ℚ(ω)` and the twist vectors of
+[`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
+**W1 holds.** The eight `D(v_t)` are traceless, and their Hilbert–Schmidt Gram matrix is `3I`. **The eight twists are
+an orthogonal basis of sl(3).**
+
+**W2 holds. Each axis is a Cartan subalgebra, and the four are orthogonal.**
+* A twist and its reverse commute.
+* The trace form vanishes between different axes and is nondegenerate within each axis.
+* A generic element of an axis has that axis, and nothing else, as its centraliser among the twists.
+
+So `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`, the orthogonal decomposition into four Cartan subalgebras that
+Patera–Zassenhaus and Kostrikin–Tiep describe for sl(3). **In QLF's alphabet, each axis is one maximal set of
+commuting colour charges, and the alphabet's four axes are exactly the four of them.** The cycle `cycTwist` permutes
+`h_x → h_y → h_z` and fixes `h_g`.
+
+**W3 holds. Every bracket of two axes lands on the other two.** `[D(u), D(v)] = ±(1 + 2ω) D(u + v)`, and
+`1 + 2ω = i√3`, so every nonzero bracket has the same magnitude, `√3`. The landing pattern:
+
+| bracket | lands in |
+|---|---|
+| `[h_x, h_y]` | `h_g ⊕ h_z` |
+| `[h_y, h_z]` | `h_g ⊕ h_x` |
+| `[h_z, h_x]` | `h_g ⊕ h_y` |
+| `[h_g, h_x]` | `h_y ⊕ h_z` |
+| `[h_g, h_y]` | `h_x ⊕ h_z` |
+| `[h_g, h_z]` | `h_x ⊕ h_y` |
+
+For example, `[>, v] ∝ +`: two spatial twists bracket to the gauge twist. In this algebra the gauge axis is not
+separate from colour. It is the fourth Cartan, symmetric with the other three.
+
+**W4: the readings reconcile, but only through colour phases.**
+* The exact cycle `V` relabels every twist with no phase (`V D(v_t) V⁻¹ = D(v_cycTwist t)`, unique up to scalar),
+  which is what `colVec_cyc` encodes. It is **not** the axis permutation `P`. Its trace is 3, so it has a repeated
+  eigenvalue, and it fixes a 4-dimensional subspace of sl(3). `P` fixes a 2-dimensional one. This matches the prior.
+* Of the nine phase choices `D(w)V`, **six are conjugate to `P`** up to an overall phase: trace 0, three distinct
+  eigenvalues, and a fixed subspace of dimension 2. These are exactly the six `w` that lie off the gauge line. The
+  other three behave like `V`.
+* In each of the six, the cycle multiplies twist `t` by `ω^{−⟨w, v_cycTwist t⟩}`. The gauge pair always picks up
+  `ω^{±1}`. One spatial axis, the one on `w`'s line, stays phase-free. The other two pick up phases.
+
+**So `QLF_StrongAlgebra`'s reading (colour states = the three axes, colour cycle = `P`) is available, at a price.**
+The colour cycle has to put a colour phase on the gauge twist and single out one spatial axis. The phase-free cycle
+derived in §27 is the other realisation, and in it the axes are Cartan subalgebras rather than colour states. Both
+are consistent. They differ only by a displacement `D(w)`, a colour-frame choice. `QLF_StrongAlgebra`'s theorems
+(closure, non-abelian) hold in both. Its gloss, "gluons couple pairs of axes", holds only in the phased frame.
+
+**W5 (could not fail).** The 't Hooft twist on `(g, x, y, z)` has rows `g: (0,1,1,1)`, `x: (2,0,1,2)`,
+`y: (2,2,0,1)`, `z: (2,1,2,0)`, and its Pfaffian is `κ ≡ 0 (mod 3)`. The twist is orthogonal, with no fractional
+instanton charge, as a rank-2 form must be. In lattice-gauge language, the §27 colour flux is a twist-eater
+configuration in the sense of González-Arroyo & Okawa. The `D(v)` are the twist eaters, and the flux is 't Hooft's
+`ℤ₃` centre flux.
+
+**What this adds.**
+* The eight twists, all eight letters including the two gauge twists, are the Weyl basis of the colour algebra.
+* The four axes are its four orthogonal Cartan subalgebras.
+* A Lie bracket of two axes always lands on the other two.
+
+This is structure, not a count of ways, so by method rule 4 it carries no physical claim of its own. Open: whether any count of ways distinguishes the phase-free colour frame
+from the phased one.
 
 ## References
 
