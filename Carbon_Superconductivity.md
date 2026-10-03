@@ -41,7 +41,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | passes (w ≤ 0.5 directly; 0.7–0.9 by the positive-weight check, §23b) |
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
-| 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered, not yet run |
+| 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -236,7 +236,10 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    isotope exponent.
    * Phonon (Kekulé) glue predicts about −4 % for ¹²C → ¹³C, the BCS exponent of 0.5.
    * Electronic glue predicts about 0. Kim et al. 2025's mode-to-gap bound, `Ω/2Δ ≤ 1`, points that way.
-   * No measurement in magic-angle graphene has been found.
+   * §25 adds a caveat: fast (Kekulé) phonon glue is anti-adiabatic and also gives about 0. Only a slow, retarded
+     phonon gives −4 %.
+   * §25a: no ¹³C magic-angle measurement exists. ¹³C devices of natural-graphene quality do (Iwakiri et al. 2023).
+     The mode shift (P2) is the practical test.
 6. **The Kekulé mode is the `z = 1 − ω` DNA.** Graphene's most strongly coupled phonon distorts the sheet into the √3×√3
    Kekulé pattern, which is the leapfrog operation that builds C₆₀ from C₂₀ (§16). Kim et al. 2025 see Kekulé order
    in the trilayer. That data has already been seen, so it is not a blind test.
@@ -1544,6 +1547,58 @@ phonons. And the caveat above means that even phonon glue from the Kekulé mode 
 −2 % to −4 % would point to a slow phonon (a moiré acoustic mode or phason) acting as retarded glue. That would
 change the picture.
 
+### 25a. The data search: no measurement exists
+
+*Run on 2026-10-03, after the §25 commit (6dcd626).*
+
+**Result: there are no data, so P1, P2 and P3 are all untested.** No ¹³C-enriched magic-angle device (bilayer,
+trilayer or larger) has a reported `T_c`, gap or bosonic-mode energy. This is not even an **inconclusive** result in the
+§25 sense, which needs a measurement with `σ_α > 0.15`. There is no measurement at all. Both hypotheses stand, and so
+does the stated prior.
+
+**What was searched.**
+* The arXiv API, over abstracts and full records:
+  * `isotope` / `isotopic` / `isotopically` / `13C` / `"isotope effect"`, each combined with `twisted bilayer graphene`,
+    `magic-angle`, `moiré`, `flat band`, `rhombohedral`, and `superconduct*`;
+  * the author record of the one group known to make ¹³C exfoliated devices (below).
+* Web search over journals and news, 2018 to October 2026.
+
+The only magic-angle paper the arXiv queries return is Liu et al. 2020 (arXiv:2003.11072). It mentions the isotope
+effect as background and has no isotope data.
+
+**The nearest data, neither of which answers the question.**
+* **¹³C/¹²C twisted bilayers exist, but only for Raman.** del Corro et al. (2013) stacked a natural-carbon layer on a
+  ¹³C layer and used the isotope shift to tell the layers' Raman lines apart. Their twist angles are large, there
+  is no flat band, and they did no transport.
+* **High-quality ¹³C devices exist.** Iwakiri et al. (2023, ETH Zürich) exfoliated isotopically enriched ¹²C and ¹³C
+  graphite (HPHT-grown) and measured mobilities above 10⁵ cm²/Vs, the same as natural graphene. They were aiming at
+  spin qubits. The same group builds superconducting magic-angle devices (Zheng et al. 2024). So the P1 experiment is
+  within reach of an existing lab. It just has not been done.
+
+**What the frozen rule demands, worked out now.** The §25 bar is `σ_α ≤ 0.15`. With `Δ ln M = 0.0803`, that means
+the mean `ln T_c` of each isotope must be known to `σ ≈ 0.012`. Take `s` as the device-to-device scatter of `T_c`, at
+matched angle and filling, and `n` as the number of devices per isotope. Then the bar needs
+`n ≥ 2 (s / 0.012)²`:
+
+| scatter `s` | full ¹³C | one layer ¹³C (`Δ ln M` halved) |
+|---|---|---|
+| 3 % | 13 | 50 |
+| 5 % | 35 | 138 |
+| 10 % | 138 | 552 |
+
+So the "at least three devices per isotope" clause of §25 meets the bar only if the scatter is below about 1.5 %.
+Magic-angle devices are not that uniform. A credible P1 result therefore needs either
+* a much larger device series than any group has published, or
+* a stated per-device `σ_α` from a control that removes angle disorder. One example is the `T_c` at the dome maximum,
+  in angle-mapped devices.
+
+P2 has the same cross-device problem, but its shift (−3.9 % in `Ω`) is a spectroscopic line position. That is read
+more precisely than a resistive `T_c`. **P2 is the more practical of the two tests**, and it is also the one that
+separates electronic glue from fast-phonon glue (§25, caveat).
+
+**Status.** The test stays pre-registered, with its predictions and verdict rules unchanged. It runs when a ¹³C
+magic-angle measurement appears. The design points above are consequences of the frozen rule, not changes to it.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1643,3 +1698,11 @@ change the picture.
   1011–1016. doi:10.1038/s41567-019-0596-3
 - Calandra, M. & Mauri, F. (2005). Theoretical explanation of superconductivity in C6Ca. *Phys. Rev. Lett.* 95, 237002.
   doi:10.1103/PhysRevLett.95.237002
+- del Corro, E., Kalbac, M., Fantini, C., Frank, O. & Pimenta, M. A. (2013). Isotopic ¹³C/¹²C effect on the resonant
+  Raman spectrum of twisted bilayer graphene. *Phys. Rev. B* 88, 155436. doi:10.1103/PhysRevB.88.155436
+- Iwakiri, S. et al. (2023). High-mobility transport in isotopically enriched ¹²C and ¹³C exfoliated graphene.
+  *Phys. Rev. Research* 5, 043212. doi:10.1103/PhysRevResearch.5.043212
+- Zheng, G. et al. (2024). Gate-defined superconducting channel in magic-angle twisted bilayer graphene. *Phys. Rev.
+  Research* 6, L012051. doi:10.1103/PhysRevResearch.6.L012051
+- Liu, X. et al. (2020). Tuning electron correlation in magic-angle twisted bilayer graphene using Coulomb screening.
+  arXiv:2003.11072.
