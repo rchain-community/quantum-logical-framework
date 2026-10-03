@@ -44,6 +44,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
+| 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1911,6 +1912,48 @@ the count-balanced words of length `L` by that phase.
   of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. Whether that is more than a
   coincidence has not been tested.
 
+## 28. Pre-registered: the eight twists as the Weyl basis of sl(3)
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+§27a found that the eight Weyl displacements `D(v_t)`, one per twist, are a basis of the traceless 3×3 matrices,
+the complexified su(3). `QLF_StrongAlgebra` reads su(3) differently, as "the traceless 3-axis directional tensor".
+In that reading the three colour states are the three spatial axes, a gluon couples two axes, and the colour cycle
+permutes the axes (the permutation matrix `P`). This section asks what the twist basis looks like as a Lie algebra,
+and whether the two readings agree.
+
+### Questions and expectations
+
+* **W1, basis.** The `D(v_t)` are traceless and orthogonal in the Hilbert–Schmidt inner product, so they are a basis
+  of sl(3). Expected: yes. This is standard.
+* **W2, the axes as Cartan subalgebras.** The two twists of one axis commute, and both are diagonalisable, so each
+  axis should span a Cartan subalgebra. The four axes (`g, x, y, z`) should be mutually orthogonal under the trace
+  form, giving `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`. Expected: yes. This is the Pauli grading of Patera & Zassenhaus
+  (1988) and an orthogonal decomposition in the sense of Kostrikin & Tiep (1994).
+* **W3, brackets.** `[D(u), D(v)]` should be a multiple of `D(u+v)`, nonzero exactly when `u` and `v` lie on
+  different axes. So a bracket of two axes lands on the remaining two, and the gauge axis appears in brackets of
+  spatial twists. The full bracket table is computed.
+* **W4, the open question: are the two readings the same colour?** The §27 cycle is a Clifford unitary `V` with
+  `V D(v) V⁻¹ = D(Mv)`. Allowing colour phases (`D(w)V`, nine choices) gives every unitary that relabels the twist
+  axes as `cycTwist` does. Two invariants are computed, each checked against `P`:
+  * whether the eigenvalues, up to an overall phase, are `{1, ω, ω²}` as for `P`;
+  * the dimension of the subspace of sl(3) that conjugation fixes, which is 2 for `P`.
+
+  **Prior:** the exact `V` does not match `P`. The Weil representation of `SL(2, 3)` on `ℂ³` splits as `2 ⊕ 1`, so
+  `V` should have a repeated eigenvalue. Whether some phase choice `D(w)V` matches is unknown.
+
+  **Readings of the outcome.**
+  * **If some `D(w)V` matches `P`,** the readings reconcile. The colour states can be taken to be the axes, at the
+    cost of colour phases on the relabeled twists.
+  * **If none does,** the two are inequivalent realisations of the colour ℤ₃. The one derived in §27 has the four
+    axes as Cartan subalgebras, not the three axes as colour states. `QLF_StrongAlgebra`'s theorems (closure,
+    non-abelian) are untouched either way; only its gloss would be.
+* **W5, 't Hooft's twist.** The §27 commutation phases `n_μν = ⟨v_μ, v_ν⟩` are a 't Hooft twist tensor ('t Hooft
+  1979), and the `D(v)` are its twist-eaters (González-Arroyo & Okawa 1983). Its Pfaffian is
+  `κ = n_gx n_yz + n_gy n_zx + n_gz n_xy (mod 3)`. Four vectors in a 2-dimensional space make `κ ≡ 0`
+  automatically, so this **cannot fail**. It is computed only to record that the twist is orthogonal, with no
+  fractional instanton charge.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -2037,3 +2080,11 @@ the count-balanced words of length `L` by that phase.
   insulators in twisted bilayer graphene. *Nature Physics* 16, 926–930. doi:10.1038/s41567-020-0928-3
 - Stepanov, P. et al. (2020). Untying the insulating and superconducting orders in magic-angle graphene. *Nature*
   583, 375–378. doi:10.1038/s41586-020-2459-6
+- Patera, J. & Zassenhaus, H. (1988). The Pauli matrices in n dimensions and finest gradings of simple Lie algebras
+  of type A_{n−1}. *J. Math. Phys.* 29, 665–673. doi:10.1063/1.528006
+- Kostrikin, A. I. & Tiep, P. H. (1994). *Orthogonal Decompositions and Integral Lattices.* De Gruyter.
+  doi:10.1515/9783110901757
+- 't Hooft, G. (1979). A property of electric and magnetic flux in non-Abelian gauge theories. *Nucl. Phys. B* 153,
+  141–160. doi:10.1016/0550-3213(79)90595-9
+- González-Arroyo, A. & Okawa, M. (1983). Twisted-Eguchi-Kawai model: a reduced model for large-N lattice gauge
+  theory. *Phys. Rev. D* 27, 2397–2411. doi:10.1103/PhysRevD.27.2397
