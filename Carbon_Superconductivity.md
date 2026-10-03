@@ -42,6 +42,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
+| 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -246,7 +247,8 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
 7. **Phonons in QLF play two roles.** Electricity.md §6 treats phonons as the bath, the thing `T_c` must be decoupled
    from. Standard superconductivity also uses them as glue (CaC₆: Calandra & Mauri 2005). A QLF reading would
    distinguish a phonon that closes jointly with the pair, inside its Markov blanket, from one that prunes its paths
-   from outside. This is not formalised.
+   from outside. **§26** gives the reading (inside = the vacuum exchange reabsorbed by the partner; outside = the
+   thermal `n_B` channels) and pre-registers a test of whether magic-angle graphene's scatterers are its glue.
 8. **Phonon-limited resistivity for the §5a lead.** Magic-angle graphene's linear-in-`T` resistivity has been
    attributed to electron–phonon scattering (Polshyn et al. 2019). A phonon-limited `C` could be compared with the two
    measured filling branches.
@@ -1599,6 +1601,119 @@ separates electronic glue from fast-phonon glue (§25, caveat).
 **Status.** The test stays pre-registered, with its predictions and verdict rules unchanged. It runs when a ¹³C
 magic-angle measurement appears. The design points above are consequences of the frozen rule, not changes to it.
 
+## 26. Phonons' double role: inside and outside the pair's blanket
+
+*The reading in this section is theory. The test at the end was fixed in the commit that adds it, before any `T_c`
+value was gathered for it. Script: [`phonon_double_role.py`](phonon_double_role.py).*
+
+Electricity.md §6 treats phonons as the bath: superconductivity is a channel the bath cannot scatter, and `T_c` is
+where that isolation is lost. In CaC₆, and in BCS generally, phonons are also the glue that pairs the electrons
+(Calandra & Mauri 2005). §6 item 7 asked how one population can be both.
+
+### The reading
+
+Each electron–phonon vertex `g` acts through three channels. The rates of the channels for mode `ω` are:
+
+| channel | rate | what it does to the lattice |
+|---|---|---|
+| spontaneous emission | `∝ g²` | adds a phonon, unless that phonon is reabsorbed |
+| stimulated emission | `∝ g² n_B(ω)` | adds a phonon to an occupied mode |
+| absorption | `∝ g² n_B(ω)` | takes a thermal phonon out of the bath |
+
+**Inside the blanket.** Electron `k` emits phonon `q`, and its partner `−k` reabsorbs it. The pair goes from
+`(k, −k)` to `(k−q, −k+q)`, so its total momentum is still zero. The lattice ends where it started. As a word on the
+pair, the exchange is `+q` followed by `−q`, which is closed. It leaves no record in the bath, and the bath cannot
+resolve the pair into its parts. This is the glue. It runs on the spontaneous channel, so it survives at `T = 0`.
+
+**Outside the blanket.** A thermal phonon absorbed from the bath, or a phonon emitted and left to thermalise,
+changes the bath's state. That is a record, which prunes the pair's paths, and it shows up as resistance. These are
+the `n_B` channels.
+
+**So each mode is weighted 1 inside and `n_B` (or `2n_B`) outside.** The crossover is at `ħω ≈ k_BT`:
+* Spontaneous equals stimulated emission (`n_B = 1`) at `ħω = k_BT log 2`.
+* Spontaneous equals both thermal channels together (`2n_B = 1`) at `ħω = k_BT log 3`.
+
+The constant depends on which channels are counted, so **no `log 2` claim is made here**. The crossover is order
+`k_BT`, and that is all the reading uses.
+
+**What follows from the reading.**
+1. **There is no conflict with Electricity.md §6.** "Decoupled from the bath" refers to the `n_B` channels. A mode
+   with `ħω ≫ k_BT_c` is glue at `T_c` and has almost no bath weight there. The same mode can be bath at 10 K.
+   The two roles are separated by temperature, not by kind.
+2. **Modes far below `k_BT_c` give no glue.** This agrees with the known result of Bergmann & Rainer (1973): the
+   sensitivity `δT_c/δα²F(ω)` goes to zero as `ω → 0` and peaks near `ħω ≈ 7k_BT_c`. That is consistency with
+   established physics, not a test.
+3. **The Kekulé mode is entirely inside.** At 150–200 meV and `T` of a few K, its `n_B` is about `e^{−170}`. It cannot
+   produce linear-in-`T` resistivity. So if the Kekulé mode is the glue (§25), the phonons that scatter and the
+   phonons that pair are different populations.
+
+### The test: are the scatterers the glue in magic-angle graphene?
+
+**H_D, one population in both roles.** The acoustic phonons that give magic-angle graphene its large linear-in-`T`
+resistivity (Polshyn et al. 2019; Wu, Hwang & Das Sarma 2019) also pair its electrons (Wu, MacDonald & Martin 2018).
+Above the Bloch–Grüneisen temperature, phonon-limited scattering gives `ħ/τ = 2πλ_tr k_BT` (Allen 1971). So the
+Planckian `C` of §5 gives `λ_tr = C/2π`. Under H_D the pairing coupling is the same coupling: `λ ≈ λ_tr`, up to the
+transport weighting.
+
+**H_S, separate roles.** The glue is electronic, or a different phonon population. Then `C` and `T_c` are not tied.
+
+The two filling branches of §5a carry `C = 0.3 ± 0.1` on `ν = −2 − δ` and `1.3 ± 0.3` on `ν = −2 + δ` (Cao et al.
+2020). So H_D gives `λ_tr = 0.048` and `0.207`, or at most `0.080` and `0.302` at +2σ.
+
+* **P1, ordering.** The coupling is larger on `−2 + δ`, so H_D predicts that the superconducting dome there has the
+  higher `T_c`. H_S predicts no particular order.
+* **P2, magnitude.** McMillan's formula (Allen–Dynes form), inverted, gives the `λ` needed for the measured `T_c`. It
+  is taken in the form most favourable to phonons:
+  * `μ* = 0`;
+  * `ω_log` at the top of the acoustic branch inside the moiré zone, `ħ v_LA |K_M|`, which is 4.3–4.8 meV for 1.05–1.16°
+    with `v_LA = 21 km/s`.
+
+  H_D is retired on a branch if `λ_tr(C + 2σ) < λ_req/2`. The factor 2 allows for the difference between `α²F` and
+  `α²_tr F`.
+
+**P2 is nearly decided already, because the `C` values were seen in §5a.** It retires H_D on `−2 − δ` if that dome's
+`T_c` is above 0.02 K. On `−2 + δ` it passes unless `T_c` is above 2.6–2.9 K. Both thresholds are fixed by data
+already read, so **P2 is reported but carries little weight. P1 is the blind part of the test.**
+
+| `T_c` (1.10°) | `λ_req` (`μ* = 0`) | H_D needs `λ_tr ≥` |
+|---|---|---|
+| 0.5 K | 0.303 | 0.152 |
+| 1.0 K | 0.380 | 0.190 |
+| 1.5 K | 0.446 | 0.223 |
+| 2.0 K | 0.509 | 0.254 |
+| 3.0 K | 0.635 | 0.317 |
+
+### Data and verdict rules
+
+**Data.** Use magic-angle bilayer devices (1.0–1.2°) that report a superconducting `T_c` on **both** sides of
+`ν = −2` in the same device.
+* `T_c` is taken by the source's own criterion. If the source gives only curves, use 50 % of the normal-state
+  resistance.
+* If a source reports `C`, or the linear-in-`T` slope, per branch in the same device, those values replace the
+  §5a values for that device.
+* The sources are checked in this order: Cao 2018 and Cao 2020, Polshyn 2019, then any other published magic-angle
+  bilayer transport that shows both domes.
+
+**Verdicts** (2σ):
+* **P1.** H_D is **retired** in magic-angle graphene if at least three devices qualify and, in at least two-thirds
+  of them, the `−2 − δ` dome is higher by more than the combined uncertainty. With fewer than three devices the
+  result is **inconclusive**.
+* **P2.** As above, branch by branch, with the weight caveat.
+
+Neither verdict tests the reading itself, which organises the question but does not count anything. The test asks
+whether, in magic-angle graphene, the two roles fall on one population.
+
+**Caveats, stated now.**
+* Magic-angle graphene breaks Migdal's condition: acoustic `ħω` is comparable to the Fermi energy. So McMillan's
+  formula is a model there, and P2 is weaker than P1.
+* `C` comes from a Drude conversion using the measured `m*` and `n`, so it carries Cao 2020's assumptions.
+* Under H_D, a difference in density of states between the branches moves `λ` and `T_c` in the same direction, so it
+  does not spoil P1.
+
+**Stated prior.** From memory, the higher dome in Cao 2018 is on `−2 − δ`, the low-`C` branch. That would retire H_D
+under P1. It would agree with §25's prior (electronic glue, `Ω/2Δ ≤ 1`) and with reading item 3 (the Kekulé mode, if
+it is the glue, does not scatter).
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1706,3 +1821,16 @@ magic-angle measurement appears. The design points above are consequences of the
   Research* 6, L012051. doi:10.1103/PhysRevResearch.6.L012051
 - Liu, X. et al. (2020). Tuning electron correlation in magic-angle twisted bilayer graphene using Coulomb screening.
   arXiv:2003.11072.
+- Wu, F., MacDonald, A. H. & Martin, I. (2018). Theory of phonon-mediated superconductivity in twisted bilayer
+  graphene. *Phys. Rev. Lett.* 121, 257001. doi:10.1103/PhysRevLett.121.257001
+- Wu, F., Hwang, E. & Das Sarma, S. (2019). Phonon-induced giant linear-in-T resistivity in magic angle twisted
+  bilayer graphene: ordinary strangeness and exotic superconductivity. *Phys. Rev. B* 99, 165112.
+  doi:10.1103/PhysRevB.99.165112
+- Allen, P. B. (1971). Electron-phonon effects in the infrared properties of metals. *Phys. Rev. B* 3, 305–320.
+  doi:10.1103/PhysRevB.3.305
+- McMillan, W. L. (1968). Transition temperature of strong-coupled superconductors. *Phys. Rev.* 167, 331–344.
+  doi:10.1103/PhysRev.167.331
+- Allen, P. B. & Dynes, R. C. (1975). Transition temperature of strong-coupled superconductors reanalyzed.
+  *Phys. Rev. B* 12, 905–922. doi:10.1103/PhysRevB.12.905
+- Bergmann, G. & Rainer, D. (1973). The sensitivity of the transition temperature to changes in α²F(ω).
+  *Z. Phys.* 263, 59–68. doi:10.1007/BF02351862
