@@ -49,6 +49,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
+| 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2482,6 +2483,41 @@ no antisymmetric part.
 fluxes, applied to carriers, and it is an identification, not a theorem. The closure census is unaffected: a
 history is a product of twists, `tt` is a valid walk step, and the Pólya and Kraft results stand.
 
+## 33. Pre-registered: the singlet gluon
+
+*Fixed in the commit that adds this section, before any bound was read.*
+
+§32 found that the two carrier rules differ in one carrier. The product rule R_prod has a ninth, colour-singlet
+gluon: the generator `T⁰ = I/√6`, normalised so that `tr T⁰T⁰ = 1/2`. The commutator rule R_comm, adopted in
+§32b, has none. A singlet gluon is not confined, because it carries no colour. It is the gauge boson of an unbroken
+`U(1)`, so it is massless. It couples to quark number with strength `g_s/√6` per quark, which is `3g_s/√6` per
+nucleon.
+
+**The prediction under R_prod.** Two nucleons would feel a long-range repulsion `V = (3/2)·α₁·ħc/r`, where `α₁` is
+the singlet coupling at long distance. Compared with gravity between the same two nucleons, the strength is
+`α̃ = (3/2)·α₁·ħc/(G m_N²) ≈ 2.5 × 10³⁸ · α₁`. Two values of `α₁` are taken, fixed now:
+* `α₁ = α_s` at the Z mass;
+* a deliberately small `α₁ = 10⁻³`, to allow for an abelian coupling that weakens at long range.
+
+**Data rule.**
+* The torsion-balance bound on an infinite-range vector force coupled to baryon number, expressed as the strength
+  `|α̃|` relative to gravity, from Wagner, Schlamminger, Gundlach & Adelberger, *Class. Quantum Grav.* 29, 184002
+  (2012).
+* If that paper does not state such a bound, Schlamminger et al., *Phys. Rev. Lett.* 100, 041101 (2008) is used.
+* The bound is taken as reported.
+
+**Verdict.** R_prod's singlet gluon is **excluded** if the predicted `α̃` exceeds the bound for both values of `α₁`.
+It **survives** if the predicted value lies below the bound for either.
+
+**The escape, stated now.** A singlet gluon with a mass above roughly the pion mass would have nuclear range and
+would evade torsion balances. QLF supplies no Higgs mechanism for it, so the test assumes it is massless, as an
+unbroken generator is.
+
+**Stated prior.** Torsion balances bound baryon-coupled forces at somewhere around `10⁻⁹` of gravity or below. The
+prediction is about `10³⁵`–`10³⁷`, so the singlet should be excluded by more than 40 orders of magnitude. That is the
+textbook reason the colour group is SU(3) and not U(3). The test confirms the §32b adoption empirically, and it
+could fail only if the published bound were somehow weaker than the prediction.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -2624,3 +2660,7 @@ history is a product of twists, `tt` is a valid walk step, and the Pólya and Kr
   doi:10.1016/0370-2693(80)90593-6
 - Stenzel, H. (2004). Final QCD results from LEP. arXiv:hep-ex/0410064. (Quotes ALEPH, *Eur. Phys. J. C* 27, 1 (2003)
   and OPAL, *Eur. Phys. J. C* 20, 501 (2001).)
+- Wagner, T. A., Schlamminger, S., Gundlach, J. H. & Adelberger, E. G. (2012). Torsion-balance tests of the weak
+  equivalence principle. *Class. Quantum Grav.* 29, 184002. doi:10.1088/0264-9381/29/18/184002
+- Schlamminger, S., Choi, K.-Y., Wagner, T. A., Gundlach, J. H. & Adelberger, E. G. (2008). Test of the equivalence
+  principle using a rotating torsion balance. *Phys. Rev. Lett.* 100, 041101. doi:10.1103/PhysRevLett.100.041101
