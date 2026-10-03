@@ -60,7 +60,13 @@ C_BRANCH = {"-2-d": (0.3, 0.1), "-2+d": (1.3, 0.3)}
 
 # Filled in §26a: one row per device reporting a T_c on BOTH sides of nu = -2.
 # (source, device, theta_deg, Tc(-2-d) K, sigma, Tc(-2+d) K, sigma)
-DATA = []
+# Read from Cao et al. 2018 (arXiv:1803.02342) Fig. 2b-c, 50 % normal-state contours, with the caption's maxima.
+# The sigmas are reading uncertainties. These are the only devices found with numeric T_c on both sides
+# of nu = -2 (§26a lists the directional sources that do not qualify).
+DATA = [
+    ("Cao2018", "M1", 1.16, 0.40, 0.10, 0.37, 0.10),
+    ("Cao2018", "M2", 1.05, 1.70, 0.20, 0.20, 0.10),
+]
 
 
 def p1(rows):

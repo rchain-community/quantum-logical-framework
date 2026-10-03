@@ -42,7 +42,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
 | 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
-| 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | pre-registered, not yet run |
+| 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -249,9 +249,13 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    distinguish a phonon that closes jointly with the pair, inside its Markov blanket, from one that prunes its paths
    from outside. **§26** gives the reading (inside = the vacuum exchange reabsorbed by the partner; outside = the
    thermal `n_B` channels) and pre-registers a test of whether magic-angle graphene's scatterers are its glue.
+   §26a: the highest-`T_c` dome sits on the branch where the electrons scatter least, in every device that reports
+   an ordering. So the glue and the bath are different populations. Whether the glue is Kekulé or electronic waits
+   on §25 P2.
 8. **Phonon-limited resistivity for the §5a lead.** Magic-angle graphene's linear-in-`T` resistivity has been
    attributed to electron–phonon scattering (Polshyn et al. 2019). A phonon-limited `C` could be compared with the two
-   measured filling branches.
+   measured filling branches. **§26a did this:** `λ_tr = C/2π` is 0.05 and 0.21 on the two branches, and `T_c` runs
+   the opposite way. So the split is not a phonon-coupling split.
 9. **The colour flux (§24).** Should a colour step relabel axes, taking the Clifford `U` as a transport primitive? That
    is a framework extension and the user's decision.
 10. **Data the tests are waiting on:**
@@ -1714,6 +1718,65 @@ whether, in magic-angle graphene, the two roles fall on one population.
 under P1. It would agree with §25's prior (electronic glue, `Ω/2Δ ≤ 1`) and with reading item 3 (the Kekulé mode, if
 it is the glue, does not scatter).
 
+### 26a. Result
+
+*Run on 2026-10-03, after the §26 commit (cb7ea13). The data is in `DATA` in
+[`phonon_double_role.py`](phonon_double_role.py).*
+
+**Devices that qualify.** These are devices with a numeric `T_c` on both sides of `ν = −2`. Values are read from
+Cao et al. 2018, Fig. 2b–c, using the authors' 50 %-resistance contours and the caption's maxima.
+
+| device | θ | `T_c` on `−2 − δ` (low `C`) | `T_c` on `−2 + δ` (high `C`) | P1 | P2, `−2 − δ` | P2, `−2 + δ` |
+|---|---|---|---|---|---|---|
+| Cao 2018 M1 | 1.16° | 0.40 ± 0.10 K | 0.37 ± 0.10 K | tie | retired (`λ_req` 0.28) | stands (0.28) |
+| Cao 2018 M2 | 1.05° | 1.70 ± 0.20 K | 0.20 ± 0.10 K | **against** H_D | retired (0.48) | stands (0.24) |
+
+**P1 is inconclusive under the frozen rule**: only two devices qualify, and the rule needs three. The sources were
+checked in the registered order:
+* Cao 2020 states no per-dome `T_c`, in either the main text or the supplement.
+* Polshyn 2019 reports one `T_c` (≈ 0.9 K) with no side-by-side domes.
+* Lu 2019, Saito 2020 and Stepanov 2020 do not give a numeric `T_c` on both sides of `−2`.
+
+**Every ordering the literature does report runs against H_D. None runs for it.** These sources do not qualify under
+the rule, but they all point the same way:
+* **Cao 2020, device MA2.** This is the device the `C` values themselves come from. The authors write that "the
+  superconducting `T_c` is lower for the fillings where `Γ` is larger", which is the `−2 + δ` branch. They add that
+  electron–phonon scattering "is likely insufficient" to explain the linear-in-`T` resistivity near `−2 − δ`.
+* **Cao 2020, device MA3.** The `T_c` maximum is on `−2 − δ`.
+* **Lu 2019.** The `−2 − δ` dome reaches `T_c > 3 K`. A `−2 + δ` dome is only "likely developing", obscured by
+  inhomogeneity.
+* **Saito 2020, devices 1–5 (1.04–1.18°).** Each has its main dome on `−2 − δ`, with `T_c` of about 0.5–3 K. No
+  `−2 + δ` dome is resolved in the published maps.
+* **Stepanov 2020.** Its two-dome devices flank `ν = +2`, not `−2`, so they bear only indirectly. Where both sides
+  are given, the `T_c` values are comparable.
+
+So the blind part of the test did not reach its device count. The direction it would have measured is uniform across
+about ten devices from four groups: **the higher-`T_c` dome sits on the branch where the electrons scatter least.**
+
+**P2 retires H_D on the `−2 − δ` branch in both qualifying devices.** That branch holds the highest dome in every
+device that reports one. There the transport coupling is `λ_tr ≤ 0.08`, while the phonon-favourable McMillan
+inversion needs `λ ≥ 0.28–0.48`. On `−2 + δ`, `λ_tr ≤ 0.30` is enough, and H_D stands. As registered, P2 was decided
+by the §5a `C` values before any `T_c` was read, so it carries little weight on its own.
+
+**What this says, and what it does not.**
+* **The highest-`T_c` superconductivity in magic-angle graphene is not glued by the phonons that scatter its
+  electrons.** Those phonons couple too weakly on that branch (P2). The ordering across fillings goes the wrong way
+  for a single population (P1's direction, short of its count). In the reading's terms, the glue and the bath are
+  different populations. That is what §26 item 3 expects if the glue is a high-frequency mode such as the Kekulé
+  phonon, or electronic, which is the prior in §25.
+* **It does not decide between those two.** A Kekulé glue gives no scattering, and neither does an electronic glue.
+  The §25 P2 mode-shift test separates them, and its data does not yet exist.
+* **The reading itself is not tested.** It organised the question: inside means the vacuum exchange the partner
+  reabsorbs, and outside means the thermal `n_B` channels. It counted nothing that could fail.
+* **For the §5a lead (§6 item 8):** a phonon-limited `C` would tie `T_c` to `C` positively. The observed ordering is
+  the reverse, so the filling split in `C` is not a phonon-coupling split. Within §5a this points to Cao 2020's own
+  candidate, scattering that grows near the `−2 + δ` side, and away from phonons as the source of both the strange
+  metal and the pairing.
+
+**For a decisive P1:** a magic-angle bilayer series with numeric `T_c` on both sides of `ν = −2` in at least three
+devices, ideally with per-branch linear-in-`T` slopes measured in the same devices. A single new device with a higher
+`−2 + δ` dome would also be informative, because so far no device shows one.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1834,3 +1897,9 @@ it is the glue, does not scatter).
   *Phys. Rev. B* 12, 905–922. doi:10.1103/PhysRevB.12.905
 - Bergmann, G. & Rainer, D. (1973). The sensitivity of the transition temperature to changes in α²F(ω).
   *Z. Phys.* 263, 59–68. doi:10.1007/BF02351862
+- Lu, X. et al. (2019). Superconductors, orbital magnets and correlated states in magic-angle bilayer graphene.
+  *Nature* 574, 653–657. doi:10.1038/s41586-019-1695-0
+- Saito, Y., Ge, J., Watanabe, K., Taniguchi, T. & Young, A. F. (2020). Independent superconductors and correlated
+  insulators in twisted bilayer graphene. *Nature Physics* 16, 926–930. doi:10.1038/s41567-020-0928-3
+- Stepanov, P. et al. (2020). Untying the insulating and superconducting orders in magic-angle graphene. *Nature*
+  583, 375–378. doi:10.1038/s41586-020-2459-6
