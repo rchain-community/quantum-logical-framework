@@ -45,7 +45,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
-| 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | pre-registered, not yet run |
+| 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1911,8 +1911,8 @@ the count-balanced words of length `L` by that phase.
   matrices, the complexification of su(3). Under this construction the eight twists map one-to-one onto them. How
   that relates to the two Gell-Mann generators of `QLF_StrongAlgebra` is open.
 * **A coloured spin-½ line sees six phases.** A spatial plaquette carries spin `−1` and colour `ω̄`, a combined phase
-  of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. Whether that is more than a
-  coincidence has not been tested.
+  of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. **§29a retires this as a link:** the
+  `−1` is fermion parity, and the Standard Model's ℤ₆ uses the doublet bit.
 
 ## 28. Pre-registered: the eight twists as the Weyl basis of sl(3)
 
@@ -2064,6 +2064,57 @@ neutrino `^v` (`N = 0`) and a meson `^<v>` (`N = 0`). These pass Z2 trivially. T
 **Stated prior.** Z1 holds. Every positive spatial vector in `QLF_ColourFlux` has second component 1, which I saw
 when writing it. Z2 likely passes, because named words with integer charge tend to have `N ≡ 0`. The informative
 case is any named word with `N ≢ 0 (mod 3)`. Z3 fails at least for the neutrino.
+
+### 29a. Result
+
+Run by [`z6_spin_colour.py`](z6_spin_colour.py), using exact integers.
+
+**The Standard Model sanity check passes, and it shows what the §27a coincidence got wrong.** With `d` taken as the
+SU(2) doublet bit, `Y ≡ d/2 − t/3` and `Q ≡ −t/3 (mod 1)` hold for every field. With `d` taken as fermion parity,
+the lock fails for `u_R`, `d_R`, `e_R` and the Higgs. The `−1` on a spatial plaquette is the Pauli sign of the spin-½
+quanta, so it is fermion parity, not the doublet bit. **So "spin −1 times colour ω̄ has order 6" is not the Standard
+Model's ℤ₆.** That reading in §27a is retired. Z3 used the same fermion-parity definition, so it inherits the same
+mismatch.
+
+**Z1 holds, and it is the part that survives.** With the §27 vectors, every twist pairs with the gauge vector
+`v_g` as follows: `+1` for `> ^ /`, `−1` for `< v \`, and 0 for the gauge twists. So a word's colour triality is its
+net spatial count, `t = N (mod 3)`. Its spin-½ parity is `N (mod 2)`. Both were checked on all 299,593 words of
+length up to 6. A single spatial twist carries `(d, t) = (1, 1)`, the quantum numbers of a left-handed quark
+doublet. This follows from the definitions and is not a test.
+
+**Z2 passes, but on this dictionary it could not have failed.** The Standard Model lock `Q ≡ −t/3` becomes
+`3Q + N ≡ 0 (mod 3)` on twist words, and every particle word named in Lean satisfies it:
+
+| particle | word | `N` | `Q` | Z2 | spin-½ parity | Z3 |
+|---|---|---|---|---|---|---|
+| proton | `>^/` | 3 | +1 | pass | 1 | pass |
+| antiproton | `\v<` | −3 | −1 | pass | 1 | pass |
+| meson | `>^/\v<` | 0 | 0 | pass | 0 | pass |
+| electron (± charged form) | `^<v>`, `^<v>+` | 0 | −1 | pass | 0 | fail |
+| positron (± charged form) | `v>^<`, `v>^<-` | 0 | +1 | pass | 0 | fail |
+| neutrino | `^v` | 0 | 0 | pass | 0 | fail |
+
+Every named particle has `N ≡ 0`, so Z2 had nothing to bite on. The one named word with `N ≢ 0` is
+`electronPrefix` `^<v` (`N = −1`, `t = 2`). It is the electron's open prefix, not a particle. The lock would give
+it an antiquark-like charge, `Q ≡ 1/3`.
+
+**Z3 fails for every lepton word.** QLF's lepton words are closed cycles with an even spin-½ count. So in the
+current dictionary, fermion parity is not twist-count parity. The neutrino's failure was recorded in advance; the
+electron's and positron's were not, because those words had not been looked at.
+
+**What this leaves.**
+* **Retired:** the §27a ℤ₆ coincidence as a link to the Standard Model's ℤ₆. The plaquette's ℤ₂ is fermion parity,
+  and the Standard Model's ℤ₆ uses the doublet bit.
+* **Derived:** in the §27 colour structure, colour triality is the net spatial twist count mod 3.
+* **A constraint for the open quark-signature problem** (`QLF_QuarkStructure`: the per-flavour u/d twist signature
+  is open). If QLF is to reproduce the Standard Model's charge lock, a word with charge `Q` must have
+  `N ≡ −3Q (mod 3)`:
+  * quarks (2/3 or −1/3) need `N ≡ 1`;
+  * antiquarks need `N ≡ 2`;
+  * every integer-charged particle needs `N ≡ 0`.
+
+  The minimal baryon, one twist per axis, meets this with three quarks of `N = 1`. Any future quark signature with
+  `N ≢ 1 (mod 3)` would break the lock.
 
 ## References
 
