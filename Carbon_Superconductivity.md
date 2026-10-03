@@ -45,6 +45,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
+| 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2018,6 +2019,52 @@ configuration in the sense of González-Arroyo & Okawa. The `D(v)` are the twist
 This is structure, not a count of ways, so by method rule 4 it carries no physical claim of its own. Open: whether any count of ways distinguishes the phase-free colour frame
 from the phased one.
 
+## 29. Pre-registered: the ℤ₆ of spin × colour
+
+*Fixed in the commit that adds this section, before the particle words were collected and before anything below
+was computed.*
+
+§27a noted that a spatial plaquette carries spin `−1` times colour `ω̄`, a phase of order 6, and that the Standard
+Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. On its own that says nothing, because `ℤ₂ × ℤ₃ ≅ ℤ₆` for any
+pair of charges. The Standard Model content is a **lock**: every field satisfies
+
+$$Y \equiv \tfrac{d}{2} - \tfrac{t}{3} \pmod 1, \qquad\text{equivalently}\qquad Q \equiv -\tfrac{t}{3} \pmod 1,$$
+
+where `d ∈ {0, 1}` says whether the field is an SU(2) doublet, `t ∈ ℤ₃` is its colour triality, and `Q = T₃ + Y`.
+The lock is what lets the ℤ₆ act trivially (Baez & Huerta 2010; Tong 2017). The script checks it on the
+Standard Model fields as a sanity check, not a test.
+
+### The two centre charges of a twist word, defined from QLF's own structure
+
+* **Colour triality.** `t(w) = ⟨v_g, Σ_{s∈w} v_s⟩ (mod 3)`. This is the colour phase a word picks up when it is
+  carried around the gauge twist (§27, P2). `v_g` spans the line the colour cycle fixes, so `t` is cycle-invariant
+  and canonical up to sign (colour/anticolour).
+* **Doublet bit.** `d(w)` is the number of spatial twists in `w`, mod 2: the number of spin-½ (Pauli) quanta, the
+  parity the SU(2) centre `−I` sees. This is a modelling choice. It reads QLF's Pauli algebra as weak isospin
+  (`τ = iσ`, `BraKetRhoQuCalc`), and it is labelled as a choice.
+
+### Questions
+
+* **Z1, the lock (structural; it follows from the definitions).** With the §27 vectors, is `t` the net spatial
+  count `N = n_x + n_y + n_z` mod 3? Then `(d, t) = N mod 6`, so one spatial twist generates the whole ℤ₆, and the two
+  centre charges are residues of one integer. This is computed and reported as a consequence of the definitions,
+  not as a test.
+* **Z2, what the lock demands of charge (the test).** Substituting `t = N mod 3` into `Q ≡ −t/3` gives
+  `3Q + N ≡ 0 (mod 3)`. **The data** is every particle word named in a Lean theorem: any theorem whose name contains
+  a particle name and which states a concrete twist list. Each word takes the Standard Model charge of the particle
+  it names.
+  * **Verdict.** The lock **fails** for the QLF dictionary if any named word violates `3Q + N ≡ 0 (mod 3)`, and
+    passes otherwise.
+* **Z3, the doublet bit as fermion parity (secondary).** For every named fermion, is `d = 1`?
+
+**Seen before this commit.** The `QLF_BaryonWinding` docstring names the proton `>^/` (`N = 3`, `Q = 1`), the
+neutrino `^v` (`N = 0`) and a meson `^<v>` (`N = 0`). These pass Z2 trivially. The neutrino word has `d = 0`, so it
+**fails Z3**, which is recorded in advance. The electron word and any others have not been looked at.
+
+**Stated prior.** Z1 holds. Every positive spatial vector in `QLF_ColourFlux` has second component 1, which I saw
+when writing it. Z2 likely passes, because named words with integer charge tend to have `N ≡ 0`. The informative
+case is any named word with `N ≢ 0 (mod 3)`. Z3 fails at least for the neutrino.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -2152,3 +2199,6 @@ from the phased one.
   141–160. doi:10.1016/0550-3213(79)90595-9
 - González-Arroyo, A. & Okawa, M. (1983). Twisted-Eguchi-Kawai model: a reduced model for large-N lattice gauge
   theory. *Phys. Rev. D* 27, 2397–2411. doi:10.1103/PhysRevD.27.2397
+- Baez, J. & Huerta, J. (2010). The algebra of grand unified theories. *Bull. Amer. Math. Soc.* 47, 483–552.
+  doi:10.1090/S0273-0979-10-01294-2
+- Tong, D. (2017). Line operators in the Standard Model. *JHEP* 2017(07), 104. doi:10.1007/JHEP07(2017)104
