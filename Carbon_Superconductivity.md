@@ -2378,10 +2378,10 @@ histories and commutators of carriers are different objects.
 The script computes both spans, and the spin (vector or scalar) of every commutator.
 
 **Data rule.**
-* The colour factors as measured at LEP: the combined or final values given in Kluth, "Final QCD results from LEP"
+* The colour factors as measured at LEP: the combined or final values given in Stenzel, "Final QCD results from LEP"
   (hep-ex/0410064), if that paper states `C_A` and `C_F` (or their ratio) with uncertainties.
-* Otherwise, the simultaneous fit of Kluth et al., "A simultaneous measurement of the QCD colour factors and the
-  strong coupling" (hep-ex/0012044).
+* Otherwise, the colour-factor fit of Kluth et al., "A measurement of the QCD colour factors using event shape
+  distributions at √s = 14 GeV to 189 GeV" (hep-ex/0012044).
 * Values are taken as reported, with statistical and systematic errors combined in quadrature.
 
 **Verdicts (2σ).**
@@ -2416,7 +2416,7 @@ Run by [`carrier_commutators.py`](carrier_commutators.py), using exact arithmeti
   is not counted.
 * The colour factors follow: `C_F = 4/3` (su(3)) or `3/2` (u(3)), with `C_A = 3` for both.
 
-**The data** (Kluth, hep-ex/0410064, which is the first source under the rule; it gives ALEPH and OPAL separately
+**The data** (Stenzel, hep-ex/0410064, which is the first source under the rule; it gives ALEPH and OPAL separately
 and no combination):
 
 | | `C_F` (stat ⊕ sys) | pull from 4/3 (R_comm) | pull from 3/2 (R_prod) | `C_A` |
@@ -2590,5 +2590,5 @@ decision.
 - Nielsen, N. K. (1981). Asymptotic freedom as a spin effect. *Am. J. Phys.* 49, 1171–1178. doi:10.1119/1.12565
 - Hughes, R. J. (1980). Some comments on asymptotic freedom. *Phys. Lett. B* 97, 246–248.
   doi:10.1016/0370-2693(80)90593-6
-- Kluth, S. (2004). Final QCD results from LEP. arXiv:hep-ex/0410064. (Quotes ALEPH, *Eur. Phys. J. C* 27, 1 (2003)
+- Stenzel, H. (2004). Final QCD results from LEP. arXiv:hep-ex/0410064. (Quotes ALEPH, *Eur. Phys. J. C* 27, 1 (2003)
   and OPAL, *Eur. Phys. J. C* 20, 501 (2001).)
