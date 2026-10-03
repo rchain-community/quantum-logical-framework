@@ -295,7 +295,8 @@ relevance). **3** and the `1/3`-from-three-colours of **4** are proven; the dime
 - ⚠ **Structural reading:** the integrability/chaos cause of confinement (the bridge *chaotic ⇒
   non-terminating ⇒ pruned* is QLF-native; 3-body chaos itself is cited Poincaré); the flux-tube linear
   potential; the quark-as-junction picture; the `1/d`-in-`d`-dimensions counterfactual.
-- ✗ **Open:** the per-flavour (u/d) twist signature and quark masses; the string-tension value and the
+- ⚠ **Proposed:** the per-flavour twist signature. The up quark is the positive twist on its colour axis, the down quark is that twist followed by `+`, so `Q = (2/3)N − n_g`, and the W is a single gauge twist ([Carbon_Superconductivity.md](Carbon_Superconductivity.md) §30). It is derived from the electron's charge twist and the ℤ₆ lock, and picked by beta decay as a twist transfer.
+- ✗ **Open:** quark masses; the string-tension value and the
   asymptotic-freedom→confinement RG flow.
 
 ## References
