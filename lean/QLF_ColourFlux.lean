@@ -115,9 +115,10 @@ theorem q_sq :
     (qMat Twist.up).mul (qMat Twist.up) = qMat Twist.minus ∧
     (qMat Twist.slash).mul (qMat Twist.slash) = qMat Twist.minus := by decide
 
-/-- `ijk = −1`: with `q_sq`, the quaternion presentation of Q₈. -/
+/-- `ijk = +1` for `i, j, k = iσ_x, iσ_y, iσ_z` (so `ij = −k`): with `q_sq`, the quaternion presentation of Q₈
+    in the orientation `(iσ_x)(iσ_y) = −iσ_z`. -/
 theorem q_ijk :
-    ((qMat Twist.right).mul (qMat Twist.up)).mul (qMat Twist.slash) = qMat Twist.minus := by decide
+    ((qMat Twist.right).mul (qMat Twist.up)).mul (qMat Twist.slash) = qMat Twist.plus := by decide
 
 theorem qMat_injective (t u : Twist) (h : qMat t = qMat u) : t = u := by
   cases t <;> cases u <;> first | rfl | exact absurd h (by decide)

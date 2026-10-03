@@ -11,7 +11,7 @@ colour_flux.py -- the colour flux from the axis cycle as a transport primitive
   F3     canonicity: every (phi, v0) must give the same flux table up to one global omega <-> omega-bar.
   K5/F4  the flux: explicit 3x3 Weyl displacements over Z[omega]; the plaquette commutator is a scalar omega^k.
   P2     gauge-spatial plaquettes for colour (versus spin, where +-I commutes).
-  P3     colour census of ZFA closures (count-balanced words) at lengths 2..8, by scalar colour phase.
+  P3     colour census of ZFA closures (count-balanced words) at lengths 2..12, by scalar colour phase.
 
 Exact arithmetic throughout (Gaussian rationals, F3, Z[omega]). Stdlib only.
 Run:  python3 colour_flux.py
@@ -271,13 +271,14 @@ def main():
     # State: (Z^4 position, F3^2 displacement, phase exponent).
     state = {((0, 0, 0, 0), (0, 0), 0): 1}
     print("  L   closures   omega^0   omega^1   omega^2   neutral fraction")
-    for L in range(1, 9):
+    LMAX = 12
+    for L in range(1, LMAX + 1):
         new = defaultdict(int)
         for (x, u, k), n in state.items():
             for t in order:
                 v = vec[t]
                 x2 = tuple(a + b for a, b in zip(x, disp[t]))
-                if sum(abs(c) for c in x2) > 8 - L:
+                if sum(abs(c) for c in x2) > LMAX - L:
                     continue
                 u2 = ((u[0] + v[0]) % 3, (u[1] + v[1]) % 3)
                 k2 = (k + C[(u, v)]) % 3
