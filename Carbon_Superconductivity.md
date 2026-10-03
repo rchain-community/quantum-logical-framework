@@ -46,7 +46,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too; Lean `QLF_ColourFlux` |
 | 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
 | 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
-| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | pre-registered, not yet run |
+| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment (gauge twists colour-trivial) proposed, Jim's decision |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -1872,7 +1872,7 @@ assumed.
 | `xy`, `yz`, `zx` | `ω̄` (−120°) | −1 |
 | `gx`, `gy`, `gz` | `ω̄` (−120°) | +1 |
 
-**P2 holds: colour flux also threads the gauge–spatial planes.** Spin does not see those plaquettes, because `±I`
+**P2 holds: colour flux also threads the gauge–spatial planes.** *(§30a: this conflicts with colour-blind weak and electromagnetic interactions. An amendment that makes gauge twists colour-trivial is proposed, pending Jim's decision.)* Spin does not see those plaquettes, because `±I`
 commutes with everything. Colour does, because the gauge pair is one of the four lines of `F₃²`, and distinct lines
 never pair to zero. A charge line carries no colour qutrit, so electromagnetism is untouched. A *coloured* line is
 confined in every plane it can turn in, gauge planes included.
@@ -2165,6 +2165,73 @@ facts QLF already has, and tests it.
   * **Verdict.** If it does, then §27's colour action of the gauge twist conflicts with colour-blind weak
     interactions. That puts §27's P2 in question, not just this signature.
   * Triality is unaffected either way, since gauge twists add 0 to `N`.
+
+### 30a. Result
+
+Run by [`quark_signature.py`](quark_signature.py), using exact arithmetic.
+
+**S1.** Conjugation and the colour cycle split the eight twists into two orbits: the six spatial twists and the
+gauge pair. So a conserved, colour-blind charge has exactly two parameters, `Q = a·N + b·n_g`.
+
+**S2.** The charged electron `^<v>+` (`N = 0`, `n_g = +1`, `Q = −1`) fixes `b = −1`. The lock and the quark charges
+leave `a = −1/3` (d-bare) or `a = 2/3` (u-bare). Both satisfy `3Q + N ≡ 0 (mod 3)`.
+
+**S3 (cannot fail).** Both signatures give:
+* `p = +1`, `n = 0`, `Δ⁺⁺ = +2`, `Δ⁻ = −1`, `π± = ±1`;
+* the `ud` diquark `+1/3`;
+* hydrogen 0;
+* a full generation 0;
+* charge, `N` and `n_g` each conserved in `n → p e⁻ ν̄`.
+
+**T1 adopts u-bare: `u = >`, `d = >+`, so `Q = (2/3)N − n_g`.**
+* **(a) Beta decay.** Under u-bare, `d → u + W⁻` hands the `+` from the down quark to the W, and that `+` is the
+  charged electron's `+` (`electronCharged = ^<v> ++ [+]`). Beta decay is a single-twist transfer. Under d-bare the
+  W's `+` has to come from a created gauge pair.
+* **(b) Mass ordering.** Under "more twists, more mass", u-bare gives `m_n > m_p` (5 twists against 4) and
+  `m_d > m_u`, and d-bare gives both the wrong way round.
+* **The caveat.** The same heuristic gets the Δ⁺⁺ wrong under u-bare: 3 twists against the proton's 4, yet the Δ is
+  heavier. The heuristic is unreliable as a mass rule, so (b) carries little weight. **The reason to adopt u-bare
+  is (a).**
+
+So the signature is:
+
+| | word | `Q` |
+|---|---|---|
+| up quark, colour axis `c` | the positive twist on `c` (`>`, `^`, `/`) | +2/3 |
+| down quark | `u` followed by `+` | −1/3 |
+| antiquarks | conjugates (`ū = <`, `d̄ = −<`) | −2/3, +1/3 |
+| W⁻, W⁺ | `+`, `−` | −1, +1 |
+
+The W is a single gauge twist. That matches Quarks.md's "`u↔d` is one gauge-fold step, charge changes by 1", and
+the gauge twist that dresses the electron.
+
+**T2 FAILS, as expected: the §27 colour structure is not colour-blind to the W.** Under either signature, `u` and
+`d` differ by one gauge twist, and §27 transports a colour line along a gauge twist by `D(v_g)`, which is a shift.
+Under u-bare, the up quark's colour displacement lies on the `x` line and the down quark's on the `z` line, so the
+W changes the quark's colour. Triality (`N mod 3`) is unchanged.
+
+In the Standard Model the photon and the W commute with SU(3); the e⁺e⁻ → hadrons ratio `R = N_c Σ Q²` counts
+colours precisely because the photon does not touch them. **So §27's P2 (colour flux through the gauge–spatial
+planes) conflicts with established physics.** That conflict comes from §27's construction (K1–K4), not from the
+quark signature.
+
+**The proposed amendment, which is Jim's decision.** Gauge twists act trivially on a colour line: `D(0)` instead of
+`D(v_g)`. Everything else in §27 stands:
+* the spatial flux (2π/3, uniform, canonical over all 48 choices);
+* the six spatial twists as three orthogonal Cartans (§28);
+* triality = `N mod 3` (§29).
+
+What changes:
+* P2 is withdrawn;
+* the gauge row of `flux_uniform` stays true as mathematics but loses its physical reading;
+* in §28 the gauge Cartan `h_g` is no longer a twist. It is generated by brackets of spatial twists
+  (`[h_x, h_y]` lands in `h_g ⊕ h_z`).
+
+The eight gluon directions are then the six spatial twists plus two directions that the brackets generate. With
+the amendment, `d = u + [+]` keeps its colour, and the W is colour-blind.
+
+**Not settled.** Masses. The heuristic in (b) is not a mass rule. The `R`- and `axis`-dependence of masses stays the
+open target, as in Quarks.md §4.
 
 ## References
 
