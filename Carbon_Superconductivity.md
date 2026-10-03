@@ -2351,6 +2351,12 @@ pairs, and Cooper pairs. That consequence would have to be pre-registered and ch
 **Standing.** QLF now *derives* the sign of asymptotic freedom from its colour carriers' spins. It does not yet
 derive the size. The weights in `QLF_BetaFunction`'s `b₀ = 7` remain imported.
 
+*Note added after §32b–§33.* The commutator rule, adopted on principle (§32b) and confirmed when the singlet gluon
+was excluded (§33a), removes the six scalar words: `[t, t] = 0`. The carriers are then all spin-1, so `β₀` equals
+QCD's. That closes A2's diagnosis. It is not new evidence for the size, because the rule reproduces QCD by
+construction. What QLF derives is the sign, together with the rule that removes the scalars. What remains imported
+is the normalisation of the spin term, `(2s)²`.
+
 ## 32. Pre-registered: carriers as commutators, tested by the colour factors
 
 *Fixed in the commit that adds this section, before any colour-factor value was read. Prompted by Jim: is there a
