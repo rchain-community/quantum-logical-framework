@@ -2051,8 +2051,7 @@ configuration in the sense of González-Arroyo & Okawa. The `D(v)` are the twist
 * The four axes are its four orthogonal Cartan subalgebras.
 * A Lie bracket of two axes always lands on the other two.
 
-This is structure, not a count of ways, so by method rule 4 it carries no physical claim of its own. Open: whether any count of ways distinguishes the phase-free colour frame
-from the phased one.
+This is structure, not a count of ways, so by method rule 4 it carries no physical claim of its own. Whether any count of ways distinguishes the phase-free colour frame from the phased one was open here; §35a answers no, because the frame is a gauge choice.
 
 ## 29. Pre-registered: the ℤ₆ of spin × colour
 
