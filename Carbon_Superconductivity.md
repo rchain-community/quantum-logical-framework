@@ -51,7 +51,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
-| 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | pre-registered, not yet run |
+| 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2694,6 +2694,38 @@ phase-free frame and in each of the six phased frames. The census by phase must 
 
 **Stated prior.** It holds. The character argument is short. The computation guards against a slip in how the
 phases compose.
+
+### 35a. Result
+
+Run by [`colour_frames.py`](colour_frames.py), using exact integers.
+
+**Part 1 (by construction, so not evidence).** On the transverse commutator carrier `σ₊`, the coupling `ad(σ_z)`
+has eigenvalue 2 and the spin `ad(σ_z/2)` has eigenvalue 1. So `g = 2`, and the Nielsen–Hughes spin term is
+`(g·s)² = 4`. This follows from QLF's existing rule that fields couple to the twist and spin is half a twist. It is
+not tested by any count.
+
+**The status of `β₀`, stated plainly.**
+* Derived from the census:
+  * the sign of asymptotic freedom (§31a);
+  * the carriers (the commutator rule, §32b, confirmed in §33a);
+  * the orbital `1/3` (`census_split`).
+* Supplied by QLF's `g = 2` rule, by construction: the spin term `4`.
+* Still imported: the one-loop structure itself, that `β₀` is spin paramagnetism minus orbital diamagnetism with a
+  statistics sign.
+
+**Part 2 HOLDS: no closure count distinguishes the colour frames.**
+* The check covered every count-balanced word up to length 8 (190 120 closures at `L = 8`) in each of the six
+  phased frames.
+* The product of the frame phases is 1 on every closure, so the phased and phase-free frames give identical
+  colour phases.
+* This holds with gauge twists colour-trivial (§27b) and without.
+* The reason is the one predicted: the frame phase is a character of the net colour displacement, and every closure
+  has zero net displacement.
+
+**So the open question of §28 is closed.** The phase-free frame (colour states as Cartans) and the phased frames
+(colour states as axes, `QLF_StrongAlgebra`'s reading) are the same physics, differing by a gauge choice. They
+differ only on open words, which are not closure observables. Both readings of su(3) are correct, and neither is
+preferred by any count of ways.
 
 ## References
 
