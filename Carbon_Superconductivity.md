@@ -50,7 +50,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
-| 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | pre-registered, not yet run |
+| 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -266,7 +266,7 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
    the opposite way. So the split is not a phonon-coupling split.
 9. **The colour flux (§24, §27).** Jim decided on 2026-10-03 to take `U` as a transport primitive. §27a derives
    the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. Since the §27b amendment, the gauge planes carry no colour flux.
-   Still open: why colour is a Weyl qutrit (the extension itself). §28a settles the relation to
+   Why colour is a Weyl qutrit: §34a derives it from steps adding, `SL(2,3)` covariance and non-zero flux, the last adopted post hoc. §28a settles the relation to
    `QLF_StrongAlgebra`: the eight twists are the Weyl basis of sl(3), with the four axes as its orthogonal Cartans.
    The axis-permutation reading holds only in a colour frame where the cycle carries phases.
 10. **Data the tests are waiting on:**
@@ -2610,6 +2610,50 @@ premises.
 representation. So this is a derivation more than a test, and it is labelled that way. What it changes is the
 status of K4: from a rule to a consequence of (A), (B) and (C). (A) and (B) are QLF-native: steps compose, and the
 derived transport group acts. (C) is the empirical input.
+
+### 34a. Result
+
+Run by [`weyl_qutrit_derivation.py`](weyl_qutrit_derivation.py), using exact arithmetic in `ℚ(ω)` and `ℚ(i)`.
+
+**K4.1 passes.** For `F₃²`, the class `k = 0` has a 9-dimensional centre, which gives nine characters. The classes
+`k = 1` and `k = 2` have a 1-dimensional centre. A twisted group algebra is semisimple, so a 1-dimensional centre
+makes it simple: it is `M₃(ℂ)`, with exactly one irreducible representation, of dimension 3. The spin control over
+`F₂²` gives four characters, or `M₂(ℂ)`, which is the Pauli qubit. That `k = 0, 1, 2` exhaust the classes is the
+standard result `H²(ℤ_p², ℂ*) ≅ ℤ_p`. It is cited, not computed.
+
+**K4.3 passes.** All 24 elements of `SL(2, 3)` have a covariant `V_g` on the qutrit, each unique up to scalar, with
+no phases needed. All 6 elements of `SL(2, 2)` have one on the qubit, but only once phases are allowed.
+
+**K4.2 FAILS as pre-registered.**
+* With covariance required exactly, without phases, `−I` alone forces every character to be trivial, as the prior
+  said.
+* But spin does not meet that standard: without phases, only 2 of the 6 elements of `SL(2, 2)` can be implemented
+  on the qubit. So consistency requires that (B) allow phases, `V D(v) V⁻¹ = λ_v D(gv)`.
+* With phases allowed, every character is covariant, because `λ = χ/(χ∘g)` is itself a character.
+* So premises (A), (B) and (C) **do not exclude the abelian case.** A colour line that is a single character, such
+  as the triality character `ω^{N}` of §29, is non-trivial and covariant, and it is not a qutrit.
+
+**The repair, post hoc and labelled as such.** Strengthen (C) to **(C\*): colour lines feel non-zero plaquette
+flux**, which means colour transport does not commute. The script confirms that `k = 0` has zero flux everywhere
+and `k ≠ 0` does not. With (C\*), the only class left is the one whose irreducible line is the Weyl qutrit. **So
+(A), (B) and (C\*) give K4, with `3 = √9` colours**, and the same premises over `F₂` give the spin qubit.
+
+(C\*) is not tailored to this result. It is what QLF already needed elsewhere:
+* §23b found that the ℤ₃ loop gas confines only with the flux;
+* §32b's carriers are curvature, and zero flux means no carriers;
+* empirically, LEP measures `C_A ≠ 0` (§32a), and an abelian colour would give `C_A = 0`.
+
+But it replaced the pre-registered (C) after (C) failed, so the derivation is recorded as **K4 derived from
+(A) + (B) + (C\*), with (C\*) adopted post hoc.**
+
+**What this leaves.** K4 is no longer a free rule. It follows from three things:
+* steps compose (A);
+* the derived transport group acts on colour lines (B);
+* colour is confining and non-abelian (C\*).
+
+The number of colours, 3, is then fixed by the size of the phase space, `|F₃²| = 9`. That phase space was itself
+derived from adjoining the axis cycle to the twist folds (§27). The other branch, the abelian character, is
+exactly the triality charge of §29. It survives as a charge, not as a colour line.
 
 ## References
 
