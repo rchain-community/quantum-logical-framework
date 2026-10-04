@@ -50,6 +50,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
+| 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2563,6 +2564,52 @@ escape, and QLF has no mechanism to give it one.
 40 orders of magnitude. The commutator rule implies exactly SU(3)'s eight. The colour-factor test of §32a could not
 tell the two rules apart; this test does. In short, the reason QCD's group is SU(3) and not U(3) is now also the
 reason QLF's carriers are commutators and not products.
+
+## 34. Pre-registered: why colour is a Weyl qutrit
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+§27's rule K4, that a colour line is the Weyl qutrit over `F₃²`, was the one assumption left in the colour
+derivation. §§27–33 derived and tested everything after it. This section tries to derive K4 from three plainer
+premises.
+
+**The premises.**
+* **(A) Steps add.** A colour line's transport along a word depends only on the word's net colour displacement,
+  up to a phase. So the twists act through a *projective* representation `D` of the step group `F₃²`, with
+  `D(u)D(v) = c(u,v) D(u+v)`. `F₃²` itself is not assumed: §27 derived it from `⟨Q₈, U⟩ ≅ SL(2, 3)`. Spin satisfies
+  the same premise over `F₂²`.
+* **(B) Covariance.** The transport group `SL(2, 3)` maps colour lines to colour lines. For every `g` there is an
+  operator `V_g` with `V_g D(v) V_g⁻¹ ∝ D(gv)`.
+* **(C) Non-triviality.** Some twist acts non-trivially on a colour line. Empirically, colour is non-abelian: LEP
+  measures `C_A ≠ 0` (§32a, ALEPH `2.93 ± 0.60`).
+
+### The claimed derivation, checked step by step
+
+* **K4.1.** Up to equivalence, the projective representations of `F₃²` fall into three classes, `c ~ ω^{k⟨u,v⟩}`
+  for `k = 0, 1, 2`. This is checked by computing the centre of the twisted group algebra for each `k`.
+  * `k = 0`: the centre has dimension 9, giving nine 1-dimensional representations, which are characters.
+  * `k ≠ 0`: the centre has dimension 1, so the algebra is the full 3×3 matrix algebra, with exactly one
+    irreducible representation, of dimension 3.
+* **K4.2.** Covariance (B) kills `k = 0` with (C). A character `χ` that is covariant must satisfy `χ(gv) = χ(v)`.
+  The gauge twist `−` maps to `−I`, so `χ(v) = χ(−v) = χ(v)⁻¹`, which forces `χ = 1` on `F₃²`. That contradicts
+  (C). This is checked exhaustively, and in Lean (over `F₃`).
+* **K4.3.** For `k ≠ 0`, (B) can be met: for every one of the 24 elements `g` of `SL(2, 3)`, a `V_g` is solved for
+  explicitly. This is the Weil representation.
+* **K4.4.** So the irreducible colour line is **3-dimensional and unique up to equivalence**. That is K4, and it
+  makes **the number of colours `3 = √|F₃²|`** a consequence. `k = 1` and `k = 2` are colour and anticolour.
+* **Control.** The same three premises over `F₂²`, with `SL(2, 2)`, must give the Pauli qubit (dimension 2). This
+  checks that spin and colour come out of one construction.
+
+**What can fail.**
+* K4.1 if the classes or dimensions differ.
+* K4.2 if some nontrivial character survives covariance.
+* K4.3 if some `g` has no `V_g`.
+* The control, if `F₂²` does not give the qubit.
+
+**Stated prior.** All pass. These are standard finite-field results: the Stone–von Neumann theorem and the Weil
+representation. So this is a derivation more than a test, and it is labelled that way. What it changes is the
+status of K4: from a rule to a consequence of (A), (B) and (C). (A) and (B) are QLF-native: steps compose, and the
+derived transport group acts. (C) is the empirical input.
 
 ## References
 
