@@ -51,6 +51,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
+| 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2655,6 +2656,45 @@ The number of colours, 3, is then fixed by the size of the phase space, `|F₃²
 derived from adjoining the axis cycle to the twist folds (§27). The other branch, the abelian character, is
 exactly the triality charge of §29. It survives as a charge, not as a colour line.
 
+## 35. Pre-registered: the spin-term normalisation, and whether any count sees the colour frame
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+### Part 1: the `(2s)²` in asymptotic freedom (a derivation, not a test)
+
+The Nielsen–Hughes spin term is `(g·s)²`, with the gyromagnetic ratio `g = 2` for Dirac fermions and for Yang–Mills
+vectors. If gluons had `g = 1`, the spin term would be `1`. The gluon factor would then be `1 − 1/3 = 2/3` in place
+of `11/3`, and asymptotic freedom would fail at `n_f = 6`. So the import is `g = 2` for spin-1 carriers.
+
+QLF already has `g = 2` for a twist: the field couples to the twist operator `σ`, and spin is `σ/2`
+(`g_minus_2.md`, `QLF_GMinusTwo`). The carriers of §32b are commutators, and they couple to a background through
+the commutator, the adjoint action. The script computes the ratio of the eigenvalues of `ad(σ_z)` (the coupling) to
+those of `ad(σ_z/2)` (the spin) on the carriers. It is 2 by construction. **This cannot fail.** It records that
+QLF's own `g = 2` rule, applied to commutator carriers, supplies the `4`. Ferrara, Porrati & Telegdi (1992) find
+`g = 2` the natural tree-level value for every spin, which is consistent with this.
+
+### Part 2: does any count of ways distinguish the colour frames? (the test)
+
+§28a found two realisations of the colour cycle: the phase-free one, and six phased ones `D(w)V`. The phased ones
+multiply each relabeled twist by a colour phase `c_t = ω^{−⟨w, v_cycTwist t⟩}`. After §27b, gauge twists are
+colour-trivial, so only spatial twists carry phases.
+
+**The prediction.** `c_t` is a character of the colour displacement. So over a word the phases multiply to
+`ω^{−⟨w, M·Σv⟩}`, and that equals 1 whenever the net colour displacement `Σv` is 0. Every ZFA closure has `Σv = 0`.
+**So no count of closures distinguishes the frames.** The frames differ only on open words, which are not closure
+observables. The choice of frame is then a gauge choice.
+
+**The check.** For every count-balanced word up to length 8, compute the colour phase of its relabeled image in the
+phase-free frame and in each of the six phased frames. The census by phase must be identical in all seven.
+
+**Verdict.**
+* The prediction **fails** if any closure's phase differs between frames.
+* It **holds** if none does. In that case the open question of §28 is closed: no count of ways tells the frames
+  apart.
+
+**Stated prior.** It holds. The character argument is short. The computation guards against a slip in how the
+phases compose.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -2801,3 +2841,5 @@ exactly the triality charge of §29. It survives as a charge, not as a colour li
   equivalence principle. *Class. Quantum Grav.* 29, 184002. doi:10.1088/0264-9381/29/18/184002
 - Schlamminger, S., Choi, K.-Y., Wagner, T. A., Gundlach, J. H. & Adelberger, E. G. (2008). Test of the equivalence
   principle using a rotating torsion balance. *Phys. Rev. Lett.* 100, 041101. doi:10.1103/PhysRevLett.100.041101
+- Ferrara, S., Porrati, M. & Telegdi, V. L. (1992). g = 2 as the natural value of the tree-level gyromagnetic ratio
+  of elementary particles. *Phys. Rev. D* 46, 3529–3537. doi:10.1103/PhysRevD.46.3529
