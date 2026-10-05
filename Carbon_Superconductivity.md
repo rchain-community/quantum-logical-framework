@@ -52,6 +52,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
+| 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2725,6 +2726,87 @@ not tested by any count.
 (colour states as axes, `QLF_StrongAlgebra`'s reading) are the same physics, differing by a gauge choice. They
 differ only on open words, which are not closure observables. Both readings of su(3) are correct, and neither is
 preferred by any count of ways.
+
+## 36. Pre-registered: the para−dia structure of `β₀`, and how many states a colour carrier has
+
+*Fixed in the commit that adds this section, before the computations and the data reads below.*
+
+§35a left one import standing: the one-loop structure of `β₀`. Here it is, stated per state so that the census can
+supply each piece.
+
+**The structure.** Put a massless carrier in a weak uniform background field `F` along `z`. Its one-loop response
+is a sum over closed loops of proper time `T`, with `T` defined by the loop's own spread, `⟨Δx²⟩ = 2T` per axis.
+Each real state contributes
+* an **orbital** term, from the phase `e^{iFA}` picked up by the loop's enclosed area `A`. For a closed loop the area
+  variance is `⟨A²⟩ = T²/3`, so this term is `−(FT)²/6`. It is diamagnetic and the same for every state.
+* a **spin** term, from `Tr exp(g s_z F T)`, which is `+(g s_z)²(FT)²/2`. It is paramagnetic.
+
+Per real state, then, `c(s_z) = −1/6 + (g s_z)²/2`, times the statistics sign `(−1)^{2s}`. Summed over a species'
+states this is Nielsen–Hughes: a Weyl fermion (two states, `g s_z = ±1`) gives `2/3`, a gluon (two helicities,
+`g s_z = ±2`) gives `11/3`, and a complex scalar gives `−1/3`.
+
+Three pieces are needed:
+* the orbital `−1/6`, which QLF claims through `census_split` (§35a);
+* the spin `(g s_z)²` with `g = 2`, which QLF's twist rule supplies by construction (§35a);
+* **which states a carrier has.** §35a took the transverse carrier by hand. This section lets the census decide.
+
+### Part 1: is the orbital term the census's `1/6`? (B1)
+
+`census_split` counts two-vertex insertions on a loop, `Σ k(n−k)`, with `census_split(n)/n³ = 1/6 − 1/(6n²)`. The
+orbital term comes from a different count, the area enclosed by closed walks. Are these the same object?
+
+**The computation.** Take every count-balanced word of the eight-twist alphabet up to length `L = 12` (or as far as
+exact enumeration runs in minutes). For each, project the walk onto one spatial plane and take its algebraic area
+`A`. Report `r(L) = ⟨A²⟩/(σ²L)²`, where `σ² = 1/4` is the per-axis step variance.
+* **The limit, `r → 1/12`, cannot fail.** It is the Lévy area of a Brownian bridge, guaranteed by the central limit
+  theorem. It is reported and is not evidence.
+* **The test is the finite-`L` form.** B1 **passes** if `2r(L)` equals `census_split(n)/n³` exactly at every
+  computed `L`, for `n = L` or for `n` = the number of in-plane steps. These are the only two identifications
+  allowed. B1 **fails** if neither matches. The orbital `1/3` is then the Lévy area, and `census_split` agrees with
+  it only in the limit.
+* **Stated prior: B1 fails.** Steps off the plane are mixed in binomially, so an exact rational match at every `L`
+  would be surprising. A failure does not touch `β₀`. It only corrects which count the orbital term is.
+
+### Part 2: how many states a colour carrier has (the test)
+
+**The carriers' states, from the fold.** The colour carriers are the 24 cross-axis spatial commutator words (§32b).
+Each folds to a single Pauli matrix on the third axis. **Prior count:** 8 words fold to each of `σ_x`, `σ_y` and
+`σ_z`; the script verifies this. With the field along `z`, the two transverse combinations have `s_z = ±1` and the
+`σ_z` carrier has `s_z = 0`. Weighted equally per way (method rule 1), the carrier has **three** states.
+
+**The rules, fixed now.**
+* **R3 (primary, by rule 1):** three states. The gluon factor is `3·(−1/6) + (4 + 4 + 0)/2 = 7/2`, in place of
+  QCD's `11/3`. Then `β₀^QLF(n_f) = (7/2)·C_A − (2/3)·n_f = 21/2 − 2n_f/3`, which gives `β₀(5) = 43/6 = 7.17`
+  (−6.5 % from `23/3`) and `β₀(6) = 13/2`.
+* **R2 (QCD, not a test):** two transverse states, and only two orbital terms. In QCD the longitudinal and timelike
+  modes are cancelled by the ghosts. R2 gives `11/3` by construction. Adopting it would need a QLF principle that
+  removes the `s_z = 0` carrier and its orbital term, derived independently of `β₀`. It is reported only.
+* The quark term stays at `−2/3` per flavour (§31).
+
+**Verdicts.**
+* **V1, the §31 bar** (within 10 % of `23/3` at `n_f = 5`). R3 passes at −6.5 %. That figure is already computed
+  above, so **V1 is not a blind pass** and carries no weight.
+* **V2, the running of `α_s` (the test).**
+  * Take the PDG 2024 τ-decay sub-average of `α_s(M_Z)`. Run it down to `m_τ` with QCD's four-loop running, which
+    recovers the measured `α_s(m_τ)`.
+  * Run it back up to `M_Z` with `b₀` replaced by R3's value at each `n_f`, keeping QCD's `b₁…b₃`, with flavour
+    thresholds at `m_b(m_b)` (and `m_c(m_c)` if needed). Keeping QCD's higher coefficients is a stated limitation.
+  * Compare with the PDG 2024 lattice sub-average of `α_s(M_Z)`, which does not use τ data. The pull is
+    `(α_QLF − α_lat)/√(σ_τ² + σ_lat²)`, with `σ_τ` the τ uncertainty carried through the running.
+  * R3 **passes** if `|pull| ≤ 2`, **fails** if `|pull| > 3`, and is **undecided** in between.
+  * **Control:** QCD itself (R2) must pass the same check, or the test is void.
+* **Data not yet read.** The PDG values are read only after this commit.
+
+**Stated prior, from one-loop arithmetic before running anything.** R3 lowers `b₀` by `1/2` at `n_f = 4` and `5`.
+Between `m_τ` and `M_Z` that shifts `1/α_s(M_Z)` by about `−(1/2)(1/2π) ln(M_Z/m_τ) ≈ −0.31`. With `α_s(M_Z)`
+near 0.118 (from memory), that raises it by about 0.004. Against a τ uncertainty of about 0.002, the pull is near 2:
+**borderline, possibly undecided or a fail.**
+
+**If R3 fails.** The repair "a massless carrier has no longitudinal state" gives QCD. It would be post hoc unless
+it is first derived on its own terms. One example would be a consequence of the carrier moving at `c` that does not
+involve `β₀`, checked first.
+
+Script: `beta0_para_dia.py` (to be written after this commit).
 
 ## References
 
