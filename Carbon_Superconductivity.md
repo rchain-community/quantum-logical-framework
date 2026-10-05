@@ -41,6 +41,17 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 22 | with the histories' phases | signed census (π flux) confines every ℤ₂ line at `w < 1`, so the threshold moves from `√2−1` to 1; at equal weight per way the signed sum is exactly 0 | passes (w ≤ 0.5 directly; 0.7–0.9 by the positive-weight check, §23b) |
 | 23 | a ℤ₃ phase for colour | defined as the qutrit analogue of the half-spin phase (flux 2π/3, a Clifford-level structure); confines colour at every `x ≤ 0.9` | passes; the definition is motivated, not derived |
 | 24 | where colour's ℤ₃ lives | no fold carries `ω` and fold transport never cycles axes; the baryon winding is invariant under exactly the cyclic relabelings (A₃ = ℤ₃), realised by the Clifford `U` | ℤ₃ derived as a symmetry, Lean-verified (`baryon_cyc_invariant`, `baryon_swap_odd`); the flux is still not derived |
+| 25 | carbon isotope effect | retarded phonon glue: `α` 0.2–0.5 (`T_c` −1.6 to −3.9 %); electronic or fast-phonon glue: `α` within ±0.05; mode `Ω` shifts −3.9 % only if a phonon; QLF chain: `α_Tc = α_Δ` | pre-registered; §25a: no ¹³C magic-angle data exist, so **untested** |
+| 26 | phonons' double role | reading: glue = vacuum exchange closed inside the pair, bath = the `n_B` channels, crossover at `ħω ≈ k_BT`; test: if the scatterers are the glue, the high-`C` branch (`−2+δ`) has the higher `T_c` | §26a: P1 **inconclusive** (2 of 3 devices), but every reported ordering runs against; P2 retires the scatterers as glue on the highest-`T_c` branch (low weight) |
+| 27 | colour flux from the axis cycle (framework extension) | with `U` as a transport primitive, the transport group should be `SL(2,3)` and colour the Weyl qutrit over `F₃²`, giving flux 2π/3 on every mixed plaquette, including gauge–spatial ones | §27a: **derived**, canonical up to `ω ↔ ω̄` (48 of 48 choices); the eight twists are the eight nonzero vectors of `F₃²`; gauge planes carry colour flux too (withdrawn by the §27b amendment: gauge twists are colour-trivial); Lean `QLF_ColourFlux` |
+| 28 | twists as the Weyl basis of sl(3) | axes = four orthogonal Cartan subalgebras; brackets land on the other two axes; open: is §27's colour cycle the same as `QLF_StrongAlgebra`'s axis permutation? | §28a: the eight twists are an orthogonal Weyl basis of sl(3); the four axes are orthogonal Cartans; brackets land on the other two axes, all with magnitude √3; `QLF_StrongAlgebra`'s axis-permutation reading reconciles only with colour phases (6 of 9 frames) |
+| 29 | the ℤ₆ of spin × colour | triality and doublet bit as residues of one count `N`; the Standard Model lock then demands `3Q + N ≡ 0 (mod 3)` of every named particle word | §29a: the §27a ℤ₆ coincidence is **retired** (the plaquette's −1 is fermion parity, not the doublet bit); triality = net spatial count mod 3 (derived); Z2 passes but could not fail; constraint for quark words: `N ≡ 1 (mod 3)` |
+| 30 | the quark twist signature | conserved, colour-blind charge `Q = aN − n_g`; the electron and the ℤ₆ lock leave u-bare or d-bare; tie-break by beta decay and mass order; test of weak colour-blindness against §27 | §30a: **u-bare adopted**, `u = >`, `d = >+`, `Q = (2/3)N − n_g`, W = one gauge twist (beta decay = a twist transfer); **T2 fails**: §27's colour action of the gauge twist breaks colour-blind weak interactions; amendment **adopted** (§27b): gauge twists colour-trivial |
+| 31 | asymptotic freedom from the colour carriers' spins | Nielsen–Hughes with QLF's carriers: shortest coloured bosonic words, spin from the Pauli fold, weighted by ways; A1 sign, A2 size within 10 % | §31a: **A1 passes**: the carriers are 24 spin-1 and 6 spin-0 words, so the sign of asymptotic freedom is derived; **A2 fails**: `β₀(5) = 5.27` against 7.67 (−31 %), from the 6 coloured scalars; Pauli exclusion of identical pairs is a post-hoc fix, not adopted |
+| 32 | carriers as commutators (excludes identical pairs) | R_comm gives su(3), `C_A/C_F = 9/4`; R_prod gives u(3) with a singlet gluon, `C_A/C_F = 2`; tested against the LEP colour factors; perfect numbers exploratory | §32a: commutators span su(3), all spin-1, and identical pairs vanish (a principled rule); LEP `C_F` 1.35 ± 0.27 and 1.34 ± 0.26 cannot exclude u(3)'s 3/2: **inconclusive**; colour ℤ₃ = `F₄*` (Singer cycle, Mersenne 3); perfectness itself does no work |
+| 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
+| 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
+| 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -230,29 +241,51 @@ electrons pair. The existing QLF account of pairing is [`Electricity.md`](Electr
 3. The fulleride lead of §4: C₆₀ is icosahedral (φ), outside the Eisenstein DNAs of §10. Still open.
 4. Phase coherence, the second step after pairing: §7–§8 and §11–§14.
 
-**Open, as of §24** (none pre-registered yet):
-5. **Carbon isotope effect.** In the §11–§15 chain `T_c = 2.63 D_s` with `D_s ∝ Δ`, so `T_c` inherits the gap's
+**Open, as of §24** (item 5 now pre-registered, §25):
+5. **Carbon isotope effect** (pre-registered in §25). In the §11–§15 chain `T_c = 2.63 D_s` with `D_s ∝ Δ`, so `T_c` inherits the gap's
    isotope exponent.
    * Phonon (Kekulé) glue predicts about −4 % for ¹²C → ¹³C, the BCS exponent of 0.5.
    * Electronic glue predicts about 0. Kim et al. 2025's mode-to-gap bound, `Ω/2Δ ≤ 1`, points that way.
-   * No measurement in magic-angle graphene has been found.
+   * §25 adds a caveat: fast (Kekulé) phonon glue is anti-adiabatic and also gives about 0. Only a slow, retarded
+     phonon gives −4 %.
+   * §25a: no ¹³C magic-angle measurement exists. ¹³C devices of natural-graphene quality do (Iwakiri et al. 2023).
+     The mode shift (P2) is the practical test.
 6. **The Kekulé mode is the `z = 1 − ω` DNA.** Graphene's most strongly coupled phonon distorts the sheet into the √3×√3
    Kekulé pattern, which is the leapfrog operation that builds C₆₀ from C₂₀ (§16). Kim et al. 2025 see Kekulé order
    in the trilayer. That data has already been seen, so it is not a blind test.
 7. **Phonons in QLF play two roles.** Electricity.md §6 treats phonons as the bath, the thing `T_c` must be decoupled
    from. Standard superconductivity also uses them as glue (CaC₆: Calandra & Mauri 2005). A QLF reading would
    distinguish a phonon that closes jointly with the pair, inside its Markov blanket, from one that prunes its paths
-   from outside. This is not formalised.
+   from outside. **§26** gives the reading (inside = the vacuum exchange reabsorbed by the partner; outside = the
+   thermal `n_B` channels) and pre-registers a test of whether magic-angle graphene's scatterers are its glue.
+   §26a: the highest-`T_c` dome sits on the branch where the electrons scatter least, in every device that reports
+   an ordering. So the glue and the bath are different populations. Whether the glue is Kekulé or electronic waits
+   on §25 P2.
 8. **Phonon-limited resistivity for the §5a lead.** Magic-angle graphene's linear-in-`T` resistivity has been
    attributed to electron–phonon scattering (Polshyn et al. 2019). A phonon-limited `C` could be compared with the two
-   measured filling branches.
-9. **The colour flux (§24).** Should a colour step relabel axes, taking the Clifford `U` as a transport primitive? That
-   is a framework extension and the user's decision.
+   measured filling branches. **§26a did this:** `λ_tr = C/2π` is 0.05 and 0.21 on the two branches, and `T_c` runs
+   the opposite way. So the split is not a phonon-coupling split.
+9. **The colour flux (§24, §27).** Jim decided on 2026-10-03 to take `U` as a transport primitive. §27a derives
+   the 2π/3 flux from that, canonically, Lean-verified in `QLF_ColourFlux`. Since the §27b amendment, the gauge planes carry no colour flux.
+   Why colour is a Weyl qutrit: §34a derives it from steps adding, `SL(2,3)` covariance and non-zero flux, the last adopted post hoc. §28a settles the relation to
+   `QLF_StrongAlgebra`: the eight twists are the Weyl basis of sl(3), with the four axes as its orthogonal Cartans.
+   The axis-permutation reading holds only in a colour frame where the cycle carries phases.
 10. **Data the tests are waiting on:**
     * an independent stiffness measurement `α` (§11a);
     * a trilayer `ρ_s(T)` taken through to zero (§8, §8b);
     * doped C₃₆ (§17);
     * a vortex-noise spectrum (§9).
+
+    **Sweep of 2026-10-03 (arXiv, sorted by date): nothing qualifies.**
+    * **Stiffness.** The only measurements are still Tanaka 2025 and Banerjee 2025 (arXiv:2406.13740,
+      2406.13742), which were already used.
+      * Liu et al. (arXiv:2501.06460, alternating quadralayer) estimate stiffness from critical currents. That is
+        model-dependent and does not reach zero.
+      * Theory by arXiv:2606.17191 models twist-angle inhomogeneity smearing the BKT transition into a percolative
+        one. This supports §11's caveat that stiffness is underestimated, but it is not a measurement of `α`.
+    * **C₃₆.** No doped-C₃₆ superconductivity experiment exists; the only recent paper is theory (arXiv:2601.02041).
+    * **Vortex noise.** No noise spectrum. Vortices have been detected through telegraph switching in a
+      magic-angle junction (arXiv:2410.03508), but that is not a spectrum.
 
 ## 7. Pre-registered: phase coherence to one bit
 
@@ -1468,6 +1501,1231 @@ in which a colour step relabels axes, the Clifford-level primitive that QLF does
 cyclic relabeling `x → y → z` and negated under a transposition. So the colour ℤ₃, as the baryon-preserving
 cyclic symmetry of the axes, is machine-checked. No new axioms.
 
+**The flux is derived in §27**, after Jim approved taking `U` as a transport primitive. It is canonical, and the
+derivation is Lean-verified in [`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
+## 25. Pre-registered: the carbon isotope effect
+
+*Fixed in the commit that adds this section. I have not searched for an isotope measurement in magic-angle graphene,
+and none is cited anywhere in this document. The search comes after this commit.*
+
+**The question.** What pairs the electrons in magic-angle graphene? Swapping ¹²C for ¹³C changes the nuclear mass by
+8.4 % and leaves the electrons alone. So a phonon-paired `T_c` should move, and an electronically paired one should
+not. Define the isotope exponent `α = −Δ ln T_c / Δ ln M`. For full substitution, `Δ ln M = ln(13.00336/12) = 0.0803`.
+
+| `α` | `T_c` shift, ¹²C → ¹³C | from natural carbon (12.011) |
+|---|---|---|
+| 0.5 (BCS) | −3.94 % | −3.89 % |
+| 0.3 | −2.38 % | −2.35 % |
+| 0.2 | −1.59 % | −1.58 % |
+| 0.05 | −0.40 % | −0.40 % |
+
+**Why `T_c` carries the gap's exponent here.** In the §11–§15 chain, `T_c = 2.63 D_s` and
+`D_s = N Δ √(ν(1−ν)) G/2π`. Here `N`, `ν` and `G` are electronic: they come from the band's flavours, filling and
+geometry. So `T_c ∝ Δ`, and `α_Tc = α_Δ`. That holds even though `T_c` is set by phase coherence and not by pairing.
+
+### The hypotheses
+
+* **H_R, retarded phonon glue.** The glue phonon's frequency sets the pairing cutoff, as in BCS. Then
+  `α` lies between 0.2 and 0.5. The BCS value is 0.5, and the Coulomb pseudopotential lowers it. The floor of 0.2 is a
+  chosen bound, not a derived one.
+* **H_E, electronic glue.** The nuclear mass enters only through the zero-point lattice contraction. That is of
+  order 10⁻⁴ in the bond length, and it moves the hoppings by a few parts in 10⁴. Then `|α| ≤ 0.05`.
+
+**A caveat, stated before any data: "phonons pair ⇒ −4 %" holds only for H_R.** The Kekulé optical phonon
+(§6 item 6) sits near 150–200 meV, more than ten times the flat bandwidth. In that anti-adiabatic regime the
+phonon-mediated attraction is instantaneous. Its strength is `(∂ε/∂u)²/K`, where `K = Mω²` is the spring constant,
+which does not depend on the mass. The cutoff is the bandwidth, not the phonon frequency. So to leading order, phonon
+glue from a fast mode **also gives `α ≈ 0`**. The polaron narrowing `exp(−E_p/ħω)` adds a mass dependence, which is
+small while `E_p ≪ ħω`. A null `T_c` shift therefore cannot tell electronic glue from fast-phonon glue. P2 is the
+observable that can.
+
+### Predictions
+
+* **P1, the `T_c` shift.** H_R predicts `α ∈ [0.2, 0.5]`, a shift of −1.6 % to −3.9 %. H_E, and fast-phonon glue,
+  predict `|α| ≤ 0.05`, a shift within ±0.4 %.
+* **P2, the bosonic mode.** If the gap-scale mode of Kim et al. 2025 (§6 item 5, `Ω/2Δ ≤ 1`) is the glue and is a
+  phonon, then `Ω ∝ M^{−1/2}` whatever the regime, so `Ω₁₃/Ω₁₂ = 0.9606` (0.9611 from natural carbon). If it is
+  electronic, `Ω₁₃/Ω₁₂ = 1`.
+* **P3, the QLF chain.** `α_Tc = α_Δ`, with `Δ` the coherence-tied (Andreev) gap of §15a–b. Suppose instead the
+  stiffness came from band dispersion (`D_s ∼ n/m*`, independent of `Δ`) and limited `T_c`. Then `α_Tc ≈ 0` even
+  with `α_Δ ≠ 0`. If both exponents are near 0, P3 could not have failed, and it is reported that way.
+
+### Data and verdict rules
+
+**Data.** Magic-angle bilayer or trilayer graphene built from ¹³C-enriched sheets, compared with ¹²C or natural
+sheets.
+* Angles matched within 0.02°, at the same filling `ν`.
+* `T_c` taken by the same criterion on both sides.
+* `α` computed from the actual isotopic masses. With partial enrichment, the shift is scaled by `Δ ln M`.
+
+Device-to-device `T_c` scatter in magic-angle graphene is comparable to the 4 % being sought. So a result counts only
+if it gives `σ_α ≤ 0.15`, either stated or from the scatter of at least three devices per isotope. With a larger
+`σ_α` the result is recorded as **inconclusive**. Other carbon superconductors (intercalated graphite, fullerides,
+boron-doped diamond) do not stand in for this test. Their glue is not the question here.
+
+**Verdicts** (2σ throughout):
+* **P1.** H_R is **retired** if `α + 2σ < 0.2`. H_E is **retired** if `α − 2σ > 0.05`. A value between the two leaves
+  both standing.
+* **P2.** Each reading is **retired** if the measured `Ω₁₃/Ω₁₂` is more than 2σ from its prediction (0.961 or 1).
+* **P3.** **Fails** if `|α_Tc − α_Δ| > 2σ` (combined) while `α_Δ ≥ 0.1` is resolved. If not, it passes only as a
+  pass that could not have failed.
+
+**Not tested here.** The identification of the Kekulé pattern with the `z = 1 − ω` DNA (§6 item 6). The √3×√3
+pattern is the same geometry under both hypotheses, so no isotope result bears on it.
+
+**Stated prior.** I expect `α ≈ 0`. The `Ω/2Δ ≤ 1` bound puts the mode near a meV, far below graphene's optical
+phonons. And the caveat above means that even phonon glue from the Kekulé mode would not give −4 %. A shift of
+−2 % to −4 % would point to a slow phonon (a moiré acoustic mode or phason) acting as retarded glue. That would
+change the picture.
+
+### 25a. The data search: no measurement exists
+
+*Run on 2026-10-03, after the §25 commit (6dcd626).*
+
+**Result: there are no data, so P1, P2 and P3 are all untested.** No ¹³C-enriched magic-angle device (bilayer,
+trilayer or larger) has a reported `T_c`, gap or bosonic-mode energy. This is not even an **inconclusive** result in the
+§25 sense, which needs a measurement with `σ_α > 0.15`. There is no measurement at all. Both hypotheses stand, and so
+does the stated prior.
+
+**What was searched.**
+* The arXiv API, over abstracts and full records:
+  * `isotope` / `isotopic` / `isotopically` / `13C` / `"isotope effect"`, each combined with `twisted bilayer graphene`,
+    `magic-angle`, `moiré`, `flat band`, `rhombohedral`, and `superconduct*`;
+  * the author record of the one group known to make ¹³C exfoliated devices (below).
+* Web search over journals and news, 2018 to October 2026.
+
+The only magic-angle paper the arXiv queries return is Liu et al. 2020 (arXiv:2003.11072). It mentions the isotope
+effect as background and has no isotope data.
+
+**The nearest data, neither of which answers the question.**
+* **¹³C/¹²C twisted bilayers exist, but only for Raman.** del Corro et al. (2013) stacked a natural-carbon layer on a
+  ¹³C layer and used the isotope shift to tell the layers' Raman lines apart. Their twist angles are large, there
+  is no flat band, and they did no transport.
+* **High-quality ¹³C devices exist.** Iwakiri et al. (2023, ETH Zürich) exfoliated isotopically enriched ¹²C and ¹³C
+  graphite (HPHT-grown) and measured mobilities above 10⁵ cm²/Vs, the same as natural graphene. They were aiming at
+  spin qubits. The same group builds superconducting magic-angle devices (Zheng et al. 2024). So the P1 experiment is
+  within reach of an existing lab. It just has not been done.
+
+**What the frozen rule demands, worked out now.** The §25 bar is `σ_α ≤ 0.15`. With `Δ ln M = 0.0803`, that means
+the mean `ln T_c` of each isotope must be known to `σ ≈ 0.012`. Take `s` as the device-to-device scatter of `T_c`, at
+matched angle and filling, and `n` as the number of devices per isotope. Then the bar needs
+`n ≥ 2 (s / 0.012)²`:
+
+| scatter `s` | full ¹³C | one layer ¹³C (`Δ ln M` halved) |
+|---|---|---|
+| 3 % | 13 | 50 |
+| 5 % | 35 | 138 |
+| 10 % | 138 | 552 |
+
+So the "at least three devices per isotope" clause of §25 meets the bar only if the scatter is below about 1.5 %.
+Magic-angle devices are not that uniform. A credible P1 result therefore needs either
+* a much larger device series than any group has published, or
+* a stated per-device `σ_α` from a control that removes angle disorder. One example is the `T_c` at the dome maximum,
+  in angle-mapped devices.
+
+P2 has the same cross-device problem, but its shift (−3.9 % in `Ω`) is a spectroscopic line position. That is read
+more precisely than a resistive `T_c`. **P2 is the more practical of the two tests**, and it is also the one that
+separates electronic glue from fast-phonon glue (§25, caveat).
+
+**Status.** The test stays pre-registered, with its predictions and verdict rules unchanged. It runs when a ¹³C
+magic-angle measurement appears. The design points above are consequences of the frozen rule, not changes to it.
+
+## 26. Phonons' double role: inside and outside the pair's blanket
+
+*The reading in this section is theory. The test at the end was fixed in the commit that adds it, before any `T_c`
+value was gathered for it. Script: [`phonon_double_role.py`](phonon_double_role.py).*
+
+Electricity.md §6 treats phonons as the bath: superconductivity is a channel the bath cannot scatter, and `T_c` is
+where that isolation is lost. In CaC₆, and in BCS generally, phonons are also the glue that pairs the electrons
+(Calandra & Mauri 2005). §6 item 7 asked how one population can be both.
+
+### The reading
+
+Each electron–phonon vertex `g` acts through three channels. The rates of the channels for mode `ω` are:
+
+| channel | rate | what it does to the lattice |
+|---|---|---|
+| spontaneous emission | `∝ g²` | adds a phonon, unless that phonon is reabsorbed |
+| stimulated emission | `∝ g² n_B(ω)` | adds a phonon to an occupied mode |
+| absorption | `∝ g² n_B(ω)` | takes a thermal phonon out of the bath |
+
+**Inside the blanket.** Electron `k` emits phonon `q`, and its partner `−k` reabsorbs it. The pair goes from
+`(k, −k)` to `(k−q, −k+q)`, so its total momentum is still zero. The lattice ends where it started. As a word on the
+pair, the exchange is `+q` followed by `−q`, which is closed. It leaves no record in the bath, and the bath cannot
+resolve the pair into its parts. This is the glue. It runs on the spontaneous channel, so it survives at `T = 0`.
+
+**Outside the blanket.** A thermal phonon absorbed from the bath, or a phonon emitted and left to thermalise,
+changes the bath's state. That is a record, which prunes the pair's paths, and it shows up as resistance. These are
+the `n_B` channels.
+
+**So each mode is weighted 1 inside and `n_B` (or `2n_B`) outside.** The crossover is at `ħω ≈ k_BT`:
+* Spontaneous equals stimulated emission (`n_B = 1`) at `ħω = k_BT log 2`.
+* Spontaneous equals both thermal channels together (`2n_B = 1`) at `ħω = k_BT log 3`.
+
+The constant depends on which channels are counted, so **no `log 2` claim is made here**. The crossover is order
+`k_BT`, and that is all the reading uses.
+
+**What follows from the reading.**
+1. **There is no conflict with Electricity.md §6.** "Decoupled from the bath" refers to the `n_B` channels. A mode
+   with `ħω ≫ k_BT_c` is glue at `T_c` and has almost no bath weight there. The same mode can be bath at 10 K.
+   The two roles are separated by temperature, not by kind.
+2. **Modes far below `k_BT_c` give no glue.** This agrees with the known result of Bergmann & Rainer (1973): the
+   sensitivity `δT_c/δα²F(ω)` goes to zero as `ω → 0` and peaks near `ħω ≈ 7k_BT_c`. That is consistency with
+   established physics, not a test.
+3. **The Kekulé mode is entirely inside.** At 150–200 meV and `T` of a few K, its `n_B` is about `e^{−170}`. It cannot
+   produce linear-in-`T` resistivity. So if the Kekulé mode is the glue (§25), the phonons that scatter and the
+   phonons that pair are different populations.
+
+### The test: are the scatterers the glue in magic-angle graphene?
+
+**H_D, one population in both roles.** The acoustic phonons that give magic-angle graphene its large linear-in-`T`
+resistivity (Polshyn et al. 2019; Wu, Hwang & Das Sarma 2019) also pair its electrons (Wu, MacDonald & Martin 2018).
+Above the Bloch–Grüneisen temperature, phonon-limited scattering gives `ħ/τ = 2πλ_tr k_BT` (Allen 1971). So the
+Planckian `C` of §5 gives `λ_tr = C/2π`. Under H_D the pairing coupling is the same coupling: `λ ≈ λ_tr`, up to the
+transport weighting.
+
+**H_S, separate roles.** The glue is electronic, or a different phonon population. Then `C` and `T_c` are not tied.
+
+The two filling branches of §5a carry `C = 0.3 ± 0.1` on `ν = −2 − δ` and `1.3 ± 0.3` on `ν = −2 + δ` (Cao et al.
+2020). So H_D gives `λ_tr = 0.048` and `0.207`, or at most `0.080` and `0.302` at +2σ.
+
+* **P1, ordering.** The coupling is larger on `−2 + δ`, so H_D predicts that the superconducting dome there has the
+  higher `T_c`. H_S predicts no particular order.
+* **P2, magnitude.** McMillan's formula (Allen–Dynes form), inverted, gives the `λ` needed for the measured `T_c`. It
+  is taken in the form most favourable to phonons:
+  * `μ* = 0`;
+  * `ω_log` at the top of the acoustic branch inside the moiré zone, `ħ v_LA |K_M|`, which is 4.3–4.8 meV for 1.05–1.16°
+    with `v_LA = 21 km/s`.
+
+  H_D is retired on a branch if `λ_tr(C + 2σ) < λ_req/2`. The factor 2 allows for the difference between `α²F` and
+  `α²_tr F`.
+
+**P2 is nearly decided already, because the `C` values were seen in §5a.** It retires H_D on `−2 − δ` if that dome's
+`T_c` is above 0.02 K. On `−2 + δ` it passes unless `T_c` is above 2.6–2.9 K. Both thresholds are fixed by data
+already read, so **P2 is reported but carries little weight. P1 is the blind part of the test.**
+
+| `T_c` (1.10°) | `λ_req` (`μ* = 0`) | H_D needs `λ_tr ≥` |
+|---|---|---|
+| 0.5 K | 0.303 | 0.152 |
+| 1.0 K | 0.380 | 0.190 |
+| 1.5 K | 0.446 | 0.223 |
+| 2.0 K | 0.509 | 0.254 |
+| 3.0 K | 0.635 | 0.317 |
+
+### Data and verdict rules
+
+**Data.** Use magic-angle bilayer devices (1.0–1.2°) that report a superconducting `T_c` on **both** sides of
+`ν = −2` in the same device.
+* `T_c` is taken by the source's own criterion. If the source gives only curves, use 50 % of the normal-state
+  resistance.
+* If a source reports `C`, or the linear-in-`T` slope, per branch in the same device, those values replace the
+  §5a values for that device.
+* The sources are checked in this order: Cao 2018 and Cao 2020, Polshyn 2019, then any other published magic-angle
+  bilayer transport that shows both domes.
+
+**Verdicts** (2σ):
+* **P1.** H_D is **retired** in magic-angle graphene if at least three devices qualify and, in at least two-thirds
+  of them, the `−2 − δ` dome is higher by more than the combined uncertainty. With fewer than three devices the
+  result is **inconclusive**.
+* **P2.** As above, branch by branch, with the weight caveat.
+
+Neither verdict tests the reading itself, which organises the question but does not count anything. The test asks
+whether, in magic-angle graphene, the two roles fall on one population.
+
+**Caveats, stated now.**
+* Magic-angle graphene breaks Migdal's condition: acoustic `ħω` is comparable to the Fermi energy. So McMillan's
+  formula is a model there, and P2 is weaker than P1.
+* `C` comes from a Drude conversion using the measured `m*` and `n`, so it carries Cao 2020's assumptions.
+* Under H_D, a difference in density of states between the branches moves `λ` and `T_c` in the same direction, so it
+  does not spoil P1.
+
+**Stated prior.** From memory, the higher dome in Cao 2018 is on `−2 − δ`, the low-`C` branch. That would retire H_D
+under P1. It would agree with §25's prior (electronic glue, `Ω/2Δ ≤ 1`) and with reading item 3 (the Kekulé mode, if
+it is the glue, does not scatter).
+
+### 26a. Result
+
+*Run on 2026-10-03, after the §26 commit (cb7ea13). The data is in `DATA` in
+[`phonon_double_role.py`](phonon_double_role.py).*
+
+**Devices that qualify.** These are devices with a numeric `T_c` on both sides of `ν = −2`. Values are read from
+Cao et al. 2018, Fig. 2b–c, using the authors' 50 %-resistance contours and the caption's maxima.
+
+| device | θ | `T_c` on `−2 − δ` (low `C`) | `T_c` on `−2 + δ` (high `C`) | P1 | P2, `−2 − δ` | P2, `−2 + δ` |
+|---|---|---|---|---|---|---|
+| Cao 2018 M1 | 1.16° | 0.40 ± 0.10 K | 0.37 ± 0.10 K | tie | retired (`λ_req` 0.28) | stands (0.28) |
+| Cao 2018 M2 | 1.05° | 1.70 ± 0.20 K | 0.20 ± 0.10 K | **against** H_D | retired (0.48) | stands (0.24) |
+
+**P1 is inconclusive under the frozen rule**: only two devices qualify, and the rule needs three. The sources were
+checked in the registered order:
+* Cao 2020 states no per-dome `T_c`, in either the main text or the supplement.
+* Polshyn 2019 reports one `T_c` (≈ 0.9 K) with no side-by-side domes.
+* Lu 2019, Saito 2020 and Stepanov 2020 do not give a numeric `T_c` on both sides of `−2`.
+
+**Every ordering the literature does report runs against H_D. None runs for it.** These sources do not qualify under
+the rule, but they all point the same way:
+* **Cao 2020, device MA2.** This is the device the `C` values themselves come from. The authors write that "the
+  superconducting `T_c` is lower for the fillings where `Γ` is larger", which is the `−2 + δ` branch. They add that
+  electron–phonon scattering "is likely insufficient" to explain the linear-in-`T` resistivity near `−2 − δ`.
+* **Cao 2020, device MA3.** The `T_c` maximum is on `−2 − δ`.
+* **Lu 2019.** The `−2 − δ` dome reaches `T_c > 3 K`. A `−2 + δ` dome is only "likely developing", obscured by
+  inhomogeneity.
+* **Saito 2020, devices 1–5 (1.04–1.18°).** Each has its main dome on `−2 − δ`, with `T_c` of about 0.5–3 K. No
+  `−2 + δ` dome is resolved in the published maps.
+* **Stepanov 2020.** Its two-dome devices flank `ν = +2`, not `−2`, so they bear only indirectly. Where both sides
+  are given, the `T_c` values are comparable.
+
+So the blind part of the test did not reach its device count. The direction it would have measured is uniform across
+about ten devices from four groups: **the higher-`T_c` dome sits on the branch where the electrons scatter least.**
+
+**P2 retires H_D on the `−2 − δ` branch in both qualifying devices.** That branch holds the highest dome in every
+device that reports one. There the transport coupling is `λ_tr ≤ 0.08`, while the phonon-favourable McMillan
+inversion needs `λ ≥ 0.28–0.48`. On `−2 + δ`, `λ_tr ≤ 0.30` is enough, and H_D stands. As registered, P2 was decided
+by the §5a `C` values before any `T_c` was read, so it carries little weight on its own.
+
+**What this says, and what it does not.**
+* **The highest-`T_c` superconductivity in magic-angle graphene is not glued by the phonons that scatter its
+  electrons.** Those phonons couple too weakly on that branch (P2). The ordering across fillings goes the wrong way
+  for a single population (P1's direction, short of its count). In the reading's terms, the glue and the bath are
+  different populations. That is what §26 item 3 expects if the glue is a high-frequency mode such as the Kekulé
+  phonon, or electronic, which is the prior in §25.
+* **It does not decide between those two.** A Kekulé glue gives no scattering, and neither does an electronic glue.
+  The §25 P2 mode-shift test separates them, and its data does not yet exist.
+* **The reading itself is not tested.** It organised the question: inside means the vacuum exchange the partner
+  reabsorbs, and outside means the thermal `n_B` channels. It counted nothing that could fail.
+* **For the §5a lead (§6 item 8):** a phonon-limited `C` would tie `T_c` to `C` positively. The observed ordering is
+  the reverse, so the filling split in `C` is not a phonon-coupling split. Within §5a this points to Cao 2020's own
+  candidate, scattering that grows near the `−2 + δ` side, and away from phonons as the source of both the strange
+  metal and the pairing.
+
+**For a decisive P1:** a magic-angle bilayer series with numeric `T_c` on both sides of `ν = −2` in at least three
+devices, ideally with per-branch linear-in-`T` slopes measured in the same devices. A single new device with a higher
+`−2 + δ` dome would also be informative, because so far no device shows one.
+
+## 27. The colour flux, from the axis cycle as a transport primitive
+
+*Fixed in the commit that adds this section, before any of the computations below were run. This section extends
+the framework. Jim made the decision to extend it on 2026-10-03 (§24 left it as his call).*
+
+**The extension.** §24 derived the colour ℤ₃ as a symmetry: the cyclic relabeling of the axes that preserves every
+baryon number, Lean-verified as `baryon_cyc_invariant`. It also showed that fold transport can never supply the
+2π/3 flux (N1, N2). The extension adds the axis cycle `U = (1 − i(σ_x+σ_y+σ_z))/2` to the folds **as a transport
+primitive**. The question is whether the flux then follows, and whether it follows without further choices.
+
+**The construction, fixed now.**
+* **K1. The transport group.** Map each twist to its unit-determinant fold: `± ↦ ±I`, and spatial `s·σ_a ↦ s·iσ_a`.
+  These eight elements form the quaternion group Q₈, one per twist. Adjoining `U` gives the group `T = ⟨Q₈, U⟩`.
+* **K2. Its phase space.** If `T` is isomorphic to `SL(2, F₃)`, then `T` acts on the plane `F₃²` and preserves its
+  symplectic form `⟨u, v⟩ = u₁v₂ − u₂v₁`. The expectation is the binary tetrahedral group, which is classically
+  isomorphic to `SL(2, 3)`.
+* **K3. Twists as vectors.** Take `v₀` on a line of `F₃²` that the image of `U` fixes, and send twist `t` to
+  `v_t = φ(q_t) v₀`.
+* **K4. The colour rule (the content of the extension).** A colour line is a qutrit, which is the Weyl representation
+  over `F₃²`. Twist `t` acts on it by the displacement `D(v_t)`. This is what spin already does over `F₂`: `σ_x`,
+  `σ_z` and `σ_y` are the displacements by the three nonzero vectors of `F₂²`. The construction only changes the
+  field, from 2 to 3, and that change is forced by K2.
+* **K5. The flux.** A plaquette on axes `a, b` is the word `t_a t_b t̄_a t̄_b`, with `t̄` the reversed twist. Its
+  colour holonomy is `D(v_a) D(v_b) D(v_a)⁻¹ D(v_b)⁻¹ = ω^{⟨v_a, v_b⟩}`.
+
+### What can fail
+
+* **F1, the group.** `|T| = 24` with `T ≅ SL(2, 3)`, checked through an explicit isomorphism tested on every product.
+  If no isomorphism exists, the route fails at K2.
+* **F2, the alphabet.** `t ↦ v_t` is a bijection from the eight twists onto the eight nonzero vectors of `F₃²`, with
+  reversal mapping to `−v`. The gauge pair should go to the line fixed by `U`, and `U` should cycle the `x, y, z`
+  lines in the order of `cycTwist`. If any of this fails, colour cannot be read off the alphabet this way.
+* **F3, canonicity.** The isomorphism is not unique, and neither is `v₀`. Every isomorphism and every allowed `v₀`
+  is enumerated. The derivation counts as **canonical** only if all of them give the same flux table, up to one
+  global `ω ↔ ω̄`, which is the colour/anticolour convention. If the tables differ in anything else, the flux
+  depends on a choice and is **not derived**.
+* **F4, the spatial flux.** §23's definition holds if every mixed spatial plaquette has `|flux| = 2π/3` with one
+  orientation for `(x,y)`, `(y,z)` and `(z,x)`. If a pair gives 0, or the orientations alternate, the result differs
+  from §23. Then §23b's confinement does not transfer as it stands.
+
+### Predictions
+
+* **P1.** F1–F4 all hold, so §23's definition becomes a consequence of the extension. §23b's confinement result then
+  applies to the derived flux.
+* **P2 (new, not in §23).** The gauge twists sit on the fourth line of `F₃²`, and any two distinct lines have a
+  nonzero symplectic product. So **gauge–spatial plaquettes also carry 2π/3 for colour lines**. For spin they carry
+  none, because `±I` commutes with everything. This is a structural prediction, reported whichever way it comes out.
+* **P3.** A count-balanced word displaces by `Σ v_t = 0`, so every ZFA closure picks up a **scalar** colour phase in
+  ℤ₃. The closures are counted by colour phase for lengths 2–8. Mirror symmetry (`baryon_swap_odd`'s transposition)
+  reverses the form, so the phases `ω` and `ω̄` must occur equally often; that is the check. The neutral fraction is
+  exploratory, and no value is predicted for it.
+
+**Stated prior.** F1 is the classical isomorphism `2T ≅ SL(2, 3)`, and F2 follows because Q₈ acts freely on the
+eight nonzero vectors. Both are expected to pass. F3 is the real question. F4 and P2 are expected to follow from F3,
+because `U` preserves the form and distinct lines in `F₃²` never pair to zero.
+
+### 27a. Result
+
+Run by [`colour_flux.py`](colour_flux.py), which uses exact arithmetic throughout and takes under a second. The
+`F₃` side is machine-checked, with no axioms, in [`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
+**F1 passes.** The eight twist folds are exactly Q₈. Adjoining `U` gives a group of order 24. `U` conjugates each
+twist's fold into the fold of `cycTwist t`. There are 24 isomorphisms onto `SL(2, F₃)`, and each was checked on all
+576 products.
+
+**F2 passes, in every case.** For each isomorphism and each `v₀` on the line `U` fixes (48 cases), the map
+`t ↦ v_t` is a bijection from the eight twists onto the eight nonzero vectors of `F₃²`, and reversal maps to `−v`.
+The gauge pair lands on the `U`-fixed line, and `U` cycles the `x, y, z` lines as `cycTwist` does. **The twist
+alphabet is the nonzero colour phase space.** QLF's eight letters (`QLF_AlphabetNecessity`) are `3² − 1`.
+
+**F3 passes: the flux is canonical.** All 48 cases give one of two tables. The products `⟨v_a, v_b⟩` for
+`(xy, yz, zx, gx, gy, gz)` are either all 1 or all 2, and the two tables are complex conjugates of each other. The
+only freedom left is the colour/anticolour convention.
+
+**F4 passes, so P1 holds.** Every mixed spatial plaquette has `|flux| = 2π/3`, with one orientation. With the
+symmetric Weyl displacements (`D(−v) = D(v)⁻¹`, checked), the commutator is exactly `ω^{−⟨u,v⟩}` for all 64
+pairs. **§23's definition is now a consequence of the extension.** §23b showed that a uniform 2π/3 flux confines
+the ℤ₃ loop gas at every weight below equal weight per way. That result now holds for a flux that was derived, not
+assumed.
+
+| plaquette | colour | spin (`pauli_fold`) |
+|---|---|---|
+| `xy`, `yz`, `zx` | `ω̄` (−120°) | −1 |
+| `gx`, `gy`, `gz` | `ω̄` (−120°) | +1 |
+
+**P2 holds: colour flux also threads the gauge–spatial planes.** *(**Withdrawn by the §27b amendment.** This conflicts with colour-blind weak and electromagnetic interactions, §30a.)* Spin does not see those plaquettes, because `±I`
+commutes with everything. Colour does, because the gauge pair is one of the four lines of `F₃²`, and distinct lines
+never pair to zero. A charge line carries no colour qutrit, so electromagnetism is untouched. A *coloured* line is
+confined in every plane it can turn in, gauge planes included.
+
+**P3: colour census of the closures.** By count balance, every closure has a scalar colour phase. The table counts
+the count-balanced words of length `L` by that phase.
+
+| `L` | closures | `ω⁰` | `ω¹` | `ω²` | neutral fraction |
+|---|---|---|---|---|---|
+| 2 | 8 | 8 | 0 | 0 | 1.000 |
+| 4 | 168 | 120 | 24 | 24 | 0.714 |
+| 6 | 5 120 | 2 528 | 1 296 | 1 296 | 0.494 |
+| 8 | 190 120 | 74 296 | 57 912 | 57 912 | 0.391 |
+| 10 | 7 939 008 | 2 795 328 | 2 571 840 | 2 571 840 | 0.352 |
+| 12 | 357 713 664 | 121 310 304 | 118 201 680 | 118 201 680 | 0.339 |
+
+* The mirror check passes at every length: `ω` and `ω̄` occur equally often.
+* The neutral fraction falls from 1 toward 1/3. Short closures are mostly colour-neutral; long ones are spread evenly
+  over the three phases.
+* The phase is canonical. Any rephasing of the displacements that keeps `D(−v) = D(v)⁻¹` cancels in pairs over a
+  balanced word.
+* No value was predicted for this table; it is exploratory.
+
+**What is derived, and what is assumed.**
+* **Assumed: one rule (K4).** A colour line is the Weyl qutrit over the phase space on which the extended transport
+  group acts. This is the extension Jim approved. It is the `F₃` version of what spin already is over `F₂`.
+* **Derived from that rule, with no further choice:**
+  * the phase space, `F₃²`, from `⟨Q₈, U⟩ ≅ SL(2, 3)`;
+  * the placement of each twist;
+  * the flux magnitude, 2π/3;
+  * one orientation for every plaquette;
+  * the gauge–spatial flux.
+* **Not derived:** why colour should be a Weyl qutrit at all. That is the content of the extension.
+
+**Two structural facts, noted here and not interpreted.**
+* **The Weyl basis has eight directions.** The eight displacements `D(v)`, `v ≠ 0`, are a basis of the traceless 3×3
+  matrices, the complexification of su(3). Under this construction the eight twists map one-to-one onto them. How
+  that relates to the two Gell-Mann generators of `QLF_StrongAlgebra` is open.
+* **A coloured spin-½ line sees six phases.** A spatial plaquette carries spin `−1` and colour `ω̄`, a combined phase
+  of order 6. The Standard Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. **§29a retires this as a link:** the
+  `−1` is fermion parity, and the Standard Model's ℤ₆ uses the doublet bit.
+
+### 27b. Amendment (2026-10-03): gauge twists are colour-trivial
+
+Adopted by Jim after §30a. That test showed that §27's rule moves a quark's colour when it emits a W, and the
+Standard Model's photon and W are colour-blind. **The rule now reads: a colour line is moved by `D(v_t)` for a
+spatial twist and by the identity for a gauge twist.**
+* **What stands:**
+  * K1–K3: `⟨Q₈, U⟩ ≅ SL(2, 3)`, and the twists as the nonzero vectors of `F₃²`;
+  * the 2π/3 flux on every spatial plaquette, uniform and canonical;
+  * triality = `N mod 3` (§29).
+* **Withdrawn:**
+  * P2, the colour flux on the gauge–spatial planes;
+  * the physical reading of the gauge rows of `flux_uniform`. They remain true statements about `F₃²`.
+* **§28 changes.** The six spatial twists are the three Cartans `h_x, h_y, h_z`. The fourth Cartan `h_g` is no
+  longer a twist; brackets of spatial twists generate it (`[h_x, h_y] ⊆ h_g ⊕ h_z`). The eight gluon directions are
+  the six spatial twists plus the two that the brackets generate.
+* **The W is now colour-blind.** `d = u + [+]` has the same colour displacement as `u`. This is checked in Lean
+  (`QLF_QuarkSignature`).
+
+## 28. Pre-registered: the eight twists as the Weyl basis of sl(3)
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+§27a found that the eight Weyl displacements `D(v_t)`, one per twist, are a basis of the traceless 3×3 matrices,
+the complexified su(3). `QLF_StrongAlgebra` reads su(3) differently, as "the traceless 3-axis directional tensor".
+In that reading the three colour states are the three spatial axes, a gluon couples two axes, and the colour cycle
+permutes the axes (the permutation matrix `P`). This section asks what the twist basis looks like as a Lie algebra,
+and whether the two readings agree.
+
+### Questions and expectations
+
+* **W1, basis.** The `D(v_t)` are traceless and orthogonal in the Hilbert–Schmidt inner product, so they are a basis
+  of sl(3). Expected: yes. This is standard.
+* **W2, the axes as Cartan subalgebras.** The two twists of one axis commute, and both are diagonalisable, so each
+  axis should span a Cartan subalgebra. The four axes (`g, x, y, z`) should be mutually orthogonal under the trace
+  form, giving `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`. Expected: yes. This is the Pauli grading of Patera & Zassenhaus
+  (1988) and an orthogonal decomposition in the sense of Kostrikin & Tiep (1994).
+* **W3, brackets.** `[D(u), D(v)]` should be a multiple of `D(u+v)`, nonzero exactly when `u` and `v` lie on
+  different axes. So a bracket of two axes lands on the remaining two, and the gauge axis appears in brackets of
+  spatial twists. The full bracket table is computed.
+* **W4, the open question: are the two readings the same colour?** The §27 cycle is a Clifford unitary `V` with
+  `V D(v) V⁻¹ = D(Mv)`. Allowing colour phases (`D(w)V`, nine choices) gives every unitary that relabels the twist
+  axes as `cycTwist` does. Two invariants are computed, each checked against `P`:
+  * whether the eigenvalues, up to an overall phase, are `{1, ω, ω²}` as for `P`;
+  * the dimension of the subspace of sl(3) that conjugation fixes, which is 2 for `P`.
+
+  **Prior:** the exact `V` does not match `P`. The Weil representation of `SL(2, 3)` on `ℂ³` splits as `2 ⊕ 1`, so
+  `V` should have a repeated eigenvalue. Whether some phase choice `D(w)V` matches is unknown.
+
+  **Readings of the outcome.**
+  * **If some `D(w)V` matches `P`,** the readings reconcile. The colour states can be taken to be the axes, at the
+    cost of colour phases on the relabeled twists.
+  * **If none does,** the two are inequivalent realisations of the colour ℤ₃. The one derived in §27 has the four
+    axes as Cartan subalgebras, not the three axes as colour states. `QLF_StrongAlgebra`'s theorems (closure,
+    non-abelian) are untouched either way; only its gloss would be.
+* **W5, 't Hooft's twist.** The §27 commutation phases `n_μν = ⟨v_μ, v_ν⟩` are a 't Hooft twist tensor ('t Hooft
+  1979), and the `D(v)` are its twist-eaters (González-Arroyo & Okawa 1983). Its Pfaffian is
+  `κ = n_gx n_yz + n_gy n_zx + n_gz n_xy (mod 3)`. Four vectors in a 2-dimensional space make `κ ≡ 0`
+  automatically, so this **cannot fail**. It is computed only to record that the twist is orthogonal, with no
+  fractional instanton charge.
+
+### 28a. Result
+
+Run by [`weyl_sl3.py`](weyl_sl3.py), using exact arithmetic in `ℚ(ω)` and the twist vectors of
+[`QLF_ColourFlux`](lean/QLF_ColourFlux.lean).
+
+**W1 holds.** The eight `D(v_t)` are traceless, and their Hilbert–Schmidt Gram matrix is `3I`. **The eight twists are
+an orthogonal basis of sl(3).**
+
+**W2 holds. Each axis is a Cartan subalgebra, and the four are orthogonal.**
+* A twist and its reverse commute.
+* The trace form vanishes between different axes and is nondegenerate within each axis.
+* A generic element of an axis has that axis, and nothing else, as its centraliser among the twists.
+
+*(After the §27b amendment, `h_g` is generated by brackets rather than being a twist.)* So `sl(3) = h_g ⊕ h_x ⊕ h_y ⊕ h_z`, the orthogonal decomposition into four Cartan subalgebras that
+Patera–Zassenhaus and Kostrikin–Tiep describe for sl(3). **In QLF's alphabet, each axis is one maximal set of
+commuting colour charges, and the alphabet's four axes are exactly the four of them.** The cycle `cycTwist` permutes
+`h_x → h_y → h_z` and fixes `h_g`.
+
+**W3 holds. Every bracket of two axes lands on the other two.** `[D(u), D(v)] = ±(1 + 2ω) D(u + v)`, and
+`1 + 2ω = i√3`, so every nonzero bracket has the same magnitude, `√3`. The landing pattern:
+
+| bracket | lands in |
+|---|---|
+| `[h_x, h_y]` | `h_g ⊕ h_z` |
+| `[h_y, h_z]` | `h_g ⊕ h_x` |
+| `[h_z, h_x]` | `h_g ⊕ h_y` |
+| `[h_g, h_x]` | `h_y ⊕ h_z` |
+| `[h_g, h_y]` | `h_x ⊕ h_z` |
+| `[h_g, h_z]` | `h_x ⊕ h_y` |
+
+For example, `[>, v] ∝ +`: two spatial twists bracket to the gauge twist. In this algebra the gauge axis is not
+separate from colour. It is the fourth Cartan, symmetric with the other three.
+
+**W4: the readings reconcile, but only through colour phases.**
+* The exact cycle `V` relabels every twist with no phase (`V D(v_t) V⁻¹ = D(v_cycTwist t)`, unique up to scalar),
+  which is what `colVec_cyc` encodes. It is **not** the axis permutation `P`. Its trace is 3, so it has a repeated
+  eigenvalue, and it fixes a 4-dimensional subspace of sl(3). `P` fixes a 2-dimensional one. This matches the prior.
+* Of the nine phase choices `D(w)V`, **six are conjugate to `P`** up to an overall phase: trace 0, three distinct
+  eigenvalues, and a fixed subspace of dimension 2. These are exactly the six `w` that lie off the gauge line. The
+  other three behave like `V`.
+* In each of the six, the cycle multiplies twist `t` by `ω^{−⟨w, v_cycTwist t⟩}`. The gauge pair always picks up
+  `ω^{±1}`. One spatial axis, the one on `w`'s line, stays phase-free. The other two pick up phases.
+
+**So `QLF_StrongAlgebra`'s reading (colour states = the three axes, colour cycle = `P`) is available, at a price.**
+The colour cycle has to put a colour phase on the gauge twist and single out one spatial axis. The phase-free cycle
+derived in §27 is the other realisation, and in it the axes are Cartan subalgebras rather than colour states. Both
+are consistent. They differ only by a displacement `D(w)`, a colour-frame choice. `QLF_StrongAlgebra`'s theorems
+(closure, non-abelian) hold in both. Its gloss, "gluons couple pairs of axes", holds only in the phased frame.
+
+**W5 (could not fail).** The 't Hooft twist on `(g, x, y, z)` has rows `g: (0,1,1,1)`, `x: (2,0,1,2)`,
+`y: (2,2,0,1)`, `z: (2,1,2,0)`, and its Pfaffian is `κ ≡ 0 (mod 3)`. The twist is orthogonal, with no fractional
+instanton charge, as a rank-2 form must be. In lattice-gauge language, the §27 colour flux is a twist-eater
+configuration in the sense of González-Arroyo & Okawa. The `D(v)` are the twist eaters, and the flux is 't Hooft's
+`ℤ₃` centre flux.
+
+**What this adds.**
+* The eight twists, all eight letters including the two gauge twists, are the Weyl basis of the colour algebra.
+* The four axes are its four orthogonal Cartan subalgebras.
+* A Lie bracket of two axes always lands on the other two.
+
+This is structure, not a count of ways, so by method rule 4 it carries no physical claim of its own. Whether any count of ways distinguishes the phase-free colour frame from the phased one was open here; §35a answers no, because the frame is a gauge choice.
+
+## 29. Pre-registered: the ℤ₆ of spin × colour
+
+*Fixed in the commit that adds this section, before the particle words were collected and before anything below
+was computed.*
+
+§27a noted that a spatial plaquette carries spin `−1` times colour `ω̄`, a phase of order 6, and that the Standard
+Model's gauge group is `(SU(3) × SU(2) × U(1))/ℤ₆`. On its own that says nothing, because `ℤ₂ × ℤ₃ ≅ ℤ₆` for any
+pair of charges. The Standard Model content is a **lock**: every field satisfies
+
+$$Y \equiv \tfrac{d}{2} - \tfrac{t}{3} \pmod 1, \qquad\text{equivalently}\qquad Q \equiv -\tfrac{t}{3} \pmod 1,$$
+
+where `d ∈ {0, 1}` says whether the field is an SU(2) doublet, `t ∈ ℤ₃` is its colour triality, and `Q = T₃ + Y`.
+The lock is what lets the ℤ₆ act trivially (Baez & Huerta 2010; Tong 2017). The script checks it on the
+Standard Model fields as a sanity check, not a test.
+
+### The two centre charges of a twist word, defined from QLF's own structure
+
+* **Colour triality.** `t(w) = ⟨v_g, Σ_{s∈w} v_s⟩ (mod 3)`. This is the colour phase a word picks up when it is
+  carried around the gauge twist (§27, P2). `v_g` spans the line the colour cycle fixes, so `t` is cycle-invariant
+  and canonical up to sign (colour/anticolour).
+* **Doublet bit.** `d(w)` is the number of spatial twists in `w`, mod 2: the number of spin-½ (Pauli) quanta, the
+  parity the SU(2) centre `−I` sees. This is a modelling choice. It reads QLF's Pauli algebra as weak isospin
+  (`τ = iσ`, `BraKetRhoQuCalc`), and it is labelled as a choice.
+
+### Questions
+
+* **Z1, the lock (structural; it follows from the definitions).** With the §27 vectors, is `t` the net spatial
+  count `N = n_x + n_y + n_z` mod 3? Then `(d, t) = N mod 6`, so one spatial twist generates the whole ℤ₆, and the two
+  centre charges are residues of one integer. This is computed and reported as a consequence of the definitions,
+  not as a test.
+* **Z2, what the lock demands of charge (the test).** Substituting `t = N mod 3` into `Q ≡ −t/3` gives
+  `3Q + N ≡ 0 (mod 3)`. **The data** is every particle word named in a Lean theorem: any theorem whose name contains
+  a particle name and which states a concrete twist list. Each word takes the Standard Model charge of the particle
+  it names.
+  * **Verdict.** The lock **fails** for the QLF dictionary if any named word violates `3Q + N ≡ 0 (mod 3)`, and
+    passes otherwise.
+* **Z3, the doublet bit as fermion parity (secondary).** For every named fermion, is `d = 1`?
+
+**Seen before this commit.** The `QLF_BaryonWinding` docstring names the proton `>^/` (`N = 3`, `Q = 1`), the
+neutrino `^v` (`N = 0`) and a meson `^<v>` (`N = 0`). These pass Z2 trivially. The neutrino word has `d = 0`, so it
+**fails Z3**, which is recorded in advance. The electron word and any others have not been looked at.
+
+**Stated prior.** Z1 holds. Every positive spatial vector in `QLF_ColourFlux` has second component 1, which I saw
+when writing it. Z2 likely passes, because named words with integer charge tend to have `N ≡ 0`. The informative
+case is any named word with `N ≢ 0 (mod 3)`. Z3 fails at least for the neutrino.
+
+### 29a. Result
+
+Run by [`z6_spin_colour.py`](z6_spin_colour.py), using exact integers.
+
+**The Standard Model sanity check passes, and it shows what the §27a coincidence got wrong.** With `d` taken as the
+SU(2) doublet bit, `Y ≡ d/2 − t/3` and `Q ≡ −t/3 (mod 1)` hold for every field. With `d` taken as fermion parity,
+the lock fails for `u_R`, `d_R`, `e_R` and the Higgs. The `−1` on a spatial plaquette is the Pauli sign of the spin-½
+quanta, so it is fermion parity, not the doublet bit. **So "spin −1 times colour ω̄ has order 6" is not the Standard
+Model's ℤ₆.** That reading in §27a is retired. Z3 used the same fermion-parity definition, so it inherits the same
+mismatch.
+
+**Z1 holds, and it is the part that survives.** With the §27 vectors, every twist pairs with the gauge vector
+`v_g` as follows: `+1` for `> ^ /`, `−1` for `< v \`, and 0 for the gauge twists. So a word's colour triality is its
+net spatial count, `t = N (mod 3)`. Its spin-½ parity is `N (mod 2)`. Both were checked on all 299,593 words of
+length up to 6. A single spatial twist carries `(d, t) = (1, 1)`, the quantum numbers of a left-handed quark
+doublet. This follows from the definitions and is not a test.
+
+**Z2 passes, but on this dictionary it could not have failed.** The Standard Model lock `Q ≡ −t/3` becomes
+`3Q + N ≡ 0 (mod 3)` on twist words, and every particle word named in Lean satisfies it:
+
+| particle | word | `N` | `Q` | Z2 | spin-½ parity | Z3 |
+|---|---|---|---|---|---|---|
+| proton | `>^/` | 3 | +1 | pass | 1 | pass |
+| antiproton | `\v<` | −3 | −1 | pass | 1 | pass |
+| meson | `>^/\v<` | 0 | 0 | pass | 0 | pass |
+| electron (± charged form) | `^<v>`, `^<v>+` | 0 | −1 | pass | 0 | fail |
+| positron (± charged form) | `v>^<`, `v>^<-` | 0 | +1 | pass | 0 | fail |
+| neutrino | `^v` | 0 | 0 | pass | 0 | fail |
+
+Every named particle has `N ≡ 0`, so Z2 had nothing to bite on. The one named word with `N ≢ 0` is
+`electronPrefix` `^<v` (`N = −1`, `t = 2`). It is the electron's open prefix, not a particle. The lock would give
+it an antiquark-like charge, `Q ≡ 1/3`.
+
+**Z3 fails for every lepton word.** QLF's lepton words are closed cycles with an even spin-½ count. So in the
+current dictionary, fermion parity is not twist-count parity. The neutrino's failure was recorded in advance; the
+electron's and positron's were not, because those words had not been looked at.
+
+**What this leaves.**
+* **Retired:** the §27a ℤ₆ coincidence as a link to the Standard Model's ℤ₆. The plaquette's ℤ₂ is fermion parity,
+  and the Standard Model's ℤ₆ uses the doublet bit.
+* **Derived:** in the §27 colour structure, colour triality is the net spatial twist count mod 3.
+* **A constraint for the open quark-signature problem** (`QLF_QuarkStructure`: the per-flavour u/d twist signature
+  is open). If QLF is to reproduce the Standard Model's charge lock, a word with charge `Q` must have
+  `N ≡ −3Q (mod 3)`:
+  * quarks (2/3 or −1/3) need `N ≡ 1`;
+  * antiquarks need `N ≡ 2`;
+  * every integer-charged particle needs `N ≡ 0`.
+
+  The minimal baryon, one twist per axis, meets this with three quarks of `N = 1`. Any future quark signature with
+  `N ≢ 1 (mod 3)` would break the lock.
+
+## 30. Pre-registered: the quark twist signature
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+`QLF_QuarkStructure` and Quarks.md leave the per-flavour (u/d) twist signature open. §29a added a constraint: the
+Standard Model's charge lock needs `N ≡ 1 (mod 3)` for quark words. This section derives the signature from four
+facts QLF already has, and tests it.
+
+**The four facts used.**
+1. **Charge is a conserved signed count.** It is a weight `w` on twists with `w(t̄) = −w(t)`, so it is conserved and
+   zero on every ZFA closure (`QLF_BMinusL`, `signed_count_conserved`).
+2. **It is colour-blind.** It is invariant under the colour cycle `cycTwist`.
+3. **The charged electron is `^<v>+`** (`QLF_ElectronClosure.electronCharged`, gauge count `+1`), with electric
+   charge `−1`.
+4. **The §29 lock.** `3Q + N ≡ 0 (mod 3)` for every word. A quark is a single spatial twist (`minimal_baryon_one_per_axis`,
+   with the positive twists giving `B = +1`), and its charge is `2/3` or `−1/3`.
+
+### Derivation steps (structural; each is computed)
+
+* **S1.** Facts 1 and 2 leave a two-parameter family, `Q = a·N + b·n_g`. Here `N` is the net spatial count and `n_g`
+  the net gauge count, `#+ − #−`. This is checked by solving the linear constraints over all eight twists.
+* **S2.** Fact 3 gives `b = −1`. Fact 4 gives `a ≡ −1/3 (mod 1)`, and the quark charges then allow only `a = −1/3`
+  or `a = 2/3`. **There are two signatures:**
+  * **d-bare:** `d = >` (one positive twist) and `u = d` plus a `−`.
+  * **u-bare:** `u = >` and `d = u` plus a `+`.
+
+  Colour comes from the axis, and antiquarks are conjugates. The two differ by `N`, so both satisfy the lock.
+* **S3 (consistency, cannot fail).** Hadron charges are computed from each signature: `p, n, Δ⁺⁺, Δ⁻, π±`, the
+  `ud` diquark, hydrogen, a generation's total, and charge conservation in `n → p e⁻ ν̄`. Charge is additive, so
+  these follow from the quark charges. They are recorded, not counted as evidence.
+
+### Tests
+
+* **T1, choosing between the two signatures (decision rule fixed now).**
+  * **(a) Beta decay.** Under one signature, `d → u + W⁻` *transfers* a twist: the W takes the `+` that becomes the
+    charged electron's `+` (fact 3). Under the other, it must create a gauge pair. Prefer the transfer.
+  * **(b) Mass ordering.** Under the reading "more twists, more mass", is `m_n > m_p`, and is `m_d > m_u`? This
+    reading is a heuristic, not a QLF theorem, and is labelled as one.
+
+  The signature that passes both is adopted. If (a) and (b) disagree, neither is adopted and the choice stays open.
+  **Prior:** u-bare passes both.
+* **T2, weak colour-blindness (expected to FAIL; this is the real finding).** In the Standard Model the W and the
+  photon commute with SU(3), so a flavour change leaves colour alone. In §27, the gauge twist acts on a colour line
+  by `D(v_g)`, a shift, not the identity (§27 P2). Under either signature, `u` and `d` differ by one gauge twist.
+  * **The test.** Is `D(v_d) = (phase)·D(v_u)`? This asks whether the W changes a quark's colour operator.
+  * **Verdict.** If it does, then §27's colour action of the gauge twist conflicts with colour-blind weak
+    interactions. That puts §27's P2 in question, not just this signature.
+  * Triality is unaffected either way, since gauge twists add 0 to `N`.
+
+### 30a. Result
+
+Run by [`quark_signature.py`](quark_signature.py), using exact arithmetic.
+
+**S1.** Conjugation and the colour cycle split the eight twists into two orbits: the six spatial twists and the
+gauge pair. So a conserved, colour-blind charge has exactly two parameters, `Q = a·N + b·n_g`.
+
+**S2.** The charged electron `^<v>+` (`N = 0`, `n_g = +1`, `Q = −1`) fixes `b = −1`. The lock and the quark charges
+leave `a = −1/3` (d-bare) or `a = 2/3` (u-bare). Both satisfy `3Q + N ≡ 0 (mod 3)`.
+
+**S3 (cannot fail).** Both signatures give:
+* `p = +1`, `n = 0`, `Δ⁺⁺ = +2`, `Δ⁻ = −1`, `π± = ±1`;
+* the `ud` diquark `+1/3`;
+* hydrogen 0;
+* a full generation 0;
+* charge, `N` and `n_g` each conserved in `n → p e⁻ ν̄`.
+
+**T1 adopts u-bare: `u = >`, `d = >+`, so `Q = (2/3)N − n_g`.**
+* **(a) Beta decay.** Under u-bare, `d → u + W⁻` hands the `+` from the down quark to the W, and that `+` is the
+  charged electron's `+` (`electronCharged = ^<v> ++ [+]`). Beta decay is a single-twist transfer. Under d-bare the
+  W's `+` has to come from a created gauge pair.
+* **(b) Mass ordering.** Under "more twists, more mass", u-bare gives `m_n > m_p` (5 twists against 4) and
+  `m_d > m_u`, and d-bare gives both the wrong way round.
+* **The caveat.** The same heuristic gets the Δ⁺⁺ wrong under u-bare: 3 twists against the proton's 4, yet the Δ is
+  heavier. The heuristic is unreliable as a mass rule, so (b) carries little weight. **The reason to adopt u-bare
+  is (a).**
+
+So the signature is:
+
+| | word | `Q` |
+|---|---|---|
+| up quark, colour axis `c` | the positive twist on `c` (`>`, `^`, `/`) | +2/3 |
+| down quark | `u` followed by `+` | −1/3 |
+| antiquarks | conjugates (`ū = <`, `d̄ = −<`) | −2/3, +1/3 |
+| W⁻, W⁺ | `+`, `−` | −1, +1 |
+
+The W is a single gauge twist. That matches Quarks.md's "`u↔d` is one gauge-fold step, charge changes by 1", and
+the gauge twist that dresses the electron.
+
+**T2 FAILS, as expected: the §27 colour structure is not colour-blind to the W.** Under either signature, `u` and
+`d` differ by one gauge twist, and §27 transports a colour line along a gauge twist by `D(v_g)`, which is a shift.
+Under u-bare, the up quark's colour displacement lies on the `x` line and the down quark's on the `z` line, so the
+W changes the quark's colour. Triality (`N mod 3`) is unchanged.
+
+In the Standard Model the photon and the W commute with SU(3); the e⁺e⁻ → hadrons ratio `R = N_c Σ Q²` counts
+colours precisely because the photon does not touch them. **So §27's P2 (colour flux through the gauge–spatial
+planes) conflicts with established physics.** That conflict comes from §27's construction (K1–K4), not from the
+quark signature.
+
+**The amendment, adopted by Jim on 2026-10-03.** Gauge twists act trivially on a colour line: `D(0)` instead of
+`D(v_g)`. Everything else in §27 stands:
+* the spatial flux (2π/3, uniform, canonical over all 48 choices);
+* the six spatial twists as three orthogonal Cartans (§28);
+* triality = `N mod 3` (§29).
+
+What changes:
+* P2 is withdrawn;
+* the gauge row of `flux_uniform` stays true as mathematics but loses its physical reading;
+* in §28 the gauge Cartan `h_g` is no longer a twist. It is generated by brackets of spatial twists
+  (`[h_x, h_y]` lands in `h_g ⊕ h_z`).
+
+The eight gluon directions are then the six spatial twists plus two directions that the brackets generate. With
+the amendment, `d = u + [+]` keeps its colour, and the W is colour-blind.
+
+**Not settled.** Masses. The heuristic in (b) is not a mass rule. The `R`- and `axis`-dependence of masses stays the
+open target, as in Quarks.md §4.
+
+## 31. Pre-registered: asymptotic freedom from the colour carriers' spins
+
+*Fixed in the commit that adds this section, before the computation below was run.*
+
+QLF has the QCD coefficient `b₀ = 11 − 2n_f/3 = 7` (`QLF_BetaFunction`, `Open_Problems.md`). It gets there by
+putting QLF's counts (three colours, six flavours) into the standard one-loop weights. The weights were imported,
+not derived. This section asks whether QLF's own colour carriers produce the gluon's anti-screening.
+
+**The form used.** At one loop, each massless species contributes (Nielsen 1981; Hughes 1980)
+
+$$b_s = -(-1)^{2s}\left[(2s)^2 - \tfrac13\right] T(R),$$
+
+and `β₀ = −Σ b_s`, with asymptotic freedom exactly when `β₀ > 0`.
+* The `(2s)²` term is spin paramagnetism, and it anti-screens.
+* The `1/3` term is orbital diamagnetism. It is the Feynman-parameter integral `∫x(1−x)dx = 1/6`, taken twice.
+  QLF already derives that integral from its census (`census_split → 1/6`, `Alpha.md`).
+* With the spin-1 gluon in the adjoint (`T = C_A = 3`), this gives `11/3·C_A = 11`.
+* Each Dirac quark gives `−2/3`.
+
+**What QLF supplies, fixed now.**
+* `C_A = 3`: sl(3) is generated by the twists (§28).
+* `T_F = 1/2` for quarks, and `n_f = 6` (three generations, `QLF_Generations`).
+* Quarks are single spatial twists of spin ½ (§29, §30). They contribute the standard `−2/3` each.
+* **The colour carriers (the test).**
+  * **Which words.** The shortest words that are bosons (an even number of spin-½ twists) and carry colour (a
+    nonzero colour displacement under §27b). These are the length-2 words on spatial twists, minus the six
+    colour-neutral reversal pairs.
+  * **Their spin, read from the Pauli fold.** A cross-axis pair folds to a single Pauli matrix, a vector (`s = 1`).
+    A same-axis, same-sign pair folds to `±I`, a scalar (`s = 0`).
+  * **The rule (primary, by method rule 1: frequency is multiplicity).** The gluon's spin factor is the average
+    over those words, weighted by number of ways:
+    `β₀^QLF(n_f) = C_A·[f₁·(11/3) − f₀·(1/3)] − (2/3)·n_f`, where `f₁` and `f₀` are the spin-1 and spin-0
+    fractions.
+
+### Verdicts
+
+* **A1, sign.** Asymptotic freedom holds if `β₀^QLF(6) > 0`.
+* **A2, size.** The test passes if `|β₀^QLF − β₀^QCD| ≤ 10 %` of `β₀^QCD` at `n_f = 5`, where `β₀^QCD = 23/3`.
+  The measured running of `α_s` from the τ mass to the Z mass agrees with QCD's β-function, so a 10 % shift is a
+  loose bar. **A2 fails beyond 10 %.**
+* **Not a test.** Keeping only the vector words as gluons reproduces QCD exactly by construction. It is reported,
+  and it cannot fail.
+* Also reported: the largest `n_f` that keeps asymptotic freedom (QCD: 16).
+
+**Stated prior, from counting before running anything.**
+* There are 24 cross-axis vector words and 6 same-sign scalar words, so `f₁ = 0.8`.
+* That gives `β₀^QLF(6) ≈ 4.6` and `β₀^QLF(5) ≈ 5.3`, against QCD's 7.67: **A1 passes and A2 fails by about 30 %.**
+* If the census does what the prior says, the fault is in the spin-0 coloured pairs, which QCD does not have. A
+  failure would point to a rule that excludes them, and any such rule would have to be justified on its own terms,
+  not chosen to recover 11.
+
+### 31a. Result
+
+Run by [`asymptotic_freedom.py`](asymptotic_freedom.py), using exact fractions. The script reproduces QCD exactly
+when only the vector words count as gluons, as a check (`β₀ = 7` at `n_f = 6`, and `23/3` at `n_f = 5`).
+
+**The colour carriers.** There are 30 shortest coloured bosonic words:
+* 24 are cross-axis pairs, which fold to a single Pauli matrix: spin 1. Exactly the cross-axis pairs are vectors.
+* 6 are same-sign, same-axis pairs (`>>`, `<<`, `^^`, `vv`, `//`, `\\`), which fold to `I`: spin 0.
+
+So `f₁ = 4/5` and `f₀ = 1/5`.
+
+| | `β₀(6)` | `β₀(5)` | largest `n_f` keeping asymptotic freedom |
+|---|---|---|---|
+| QLF, weighted by ways | 23/5 = 4.60 | 79/15 = 5.27 | 12.9 |
+| QCD | 7 | 23/3 = 7.67 | 16.5 |
+
+**A1 passes: QLF's colour carriers are asymptotically free.** Most of them are spin-1 vectors, and their spin
+paramagnetism beats the orbital term. The pass does not hinge on the exact fraction:
+* the gluon term anti-screens for any `f₁ > 1/12`;
+* `β₀(6) > 0` needs only `f₁ > 5/12`.
+
+This is the part QLF derives rather than imports. The colour carriers built from twist pairs are mostly vectors,
+because cross-axis pairs outnumber same-axis ones 24 to 6. If they had been spin-0 or spin-½, asymptotic freedom
+would fail.
+
+**A2 FAILS: β₀ is 31 % too small.** The whole shortfall is the six spin-0 coloured pairs. QCD has no coloured
+scalars, and these screen instead of anti-screening. A 31 % smaller `β₀` is inconsistent with the measured
+running of `α_s`. **So the ways-weighted carrier census, as registered, does not reproduce QCD's size.**
+
+**A candidate fix, post hoc and not adopted.** The six scalar words are two *identical* twists: the same spin-½
+quantum, in the same state, with the same colour. The Pauli principle forbids such a pair, and QLF already uses it
+elsewhere (`pp`/`nn` blocking, the Pauli-bound crystals). Excluding them gives `f₁ = 1` and QCD's `β₀` exactly.
+It is recorded and not adopted, for three reasons.
+1. It was found after the failure.
+2. With it, the result reproduces QCD by construction, so it is no longer a test.
+3. It cannot be applied across the board. The closure census counts repeated twists as ways (walks on `ℤ⁴`), and
+   results such as the Pólya return probability depend on that. So the exclusion would have to apply to bound
+   two-quantum carriers and not to walks. That distinction needs its own derivation.
+
+**What would make it a test.** A consequence of "identical-twist pairs are Pauli-excluded as carriers" that does
+not involve `β₀`. One example is the spin content of the other bosonic bound pairs in QLF: the photon's even
+pairs, and Cooper pairs. That consequence would have to be pre-registered and checked first.
+
+**Standing.** QLF now *derives* the sign of asymptotic freedom from its colour carriers' spins. It does not yet
+derive the size. The weights in `QLF_BetaFunction`'s `b₀ = 7` remain imported.
+
+*Note added after §32b–§33.* The commutator rule, adopted on principle (§32b) and confirmed when the singlet gluon
+was excluded (§33a), removes the six scalar words: `[t, t] = 0`. The carriers are then all spin-1, so `β₀` equals
+QCD's. That closes A2's diagnosis. It is not new evidence for the size, because the rule reproduces QCD by
+construction. What QLF derives is the sign, together with the rule that removes the scalars. What remains imported
+is the normalisation of the spin term, `(2s)²`.
+
+## 32. Pre-registered: carriers as commutators, tested by the colour factors
+
+*Fixed in the commit that adds this section, before any colour-factor value was read. Prompted by Jim: is there a
+principled reason to exclude identical-twist pairs, and do the primes of perfect numbers play a role?*
+
+**The principled reason under test.** §31 counted the colour carriers as **products** of two twists (words). But
+gauge carriers are elements of a Lie algebra, and the non-abelian part of a Lie algebra is spanned by
+**commutators** `[t, u] = tu − ut`. Taking carriers to be commutators (rule **R_comm**) excludes identical pairs
+automatically, because `[t, t] = 0`. It does not exclude them by fiat. Three statements are the same fact:
+* In the Pauli algebra, `σ_aσ_b` splits into a symmetric scalar part `δ_ab I` and an antisymmetric vector part
+  `iε_abc σ_c`.
+* The antisymmetric part is also what Fermi antisymmetry of two spin-½ quanta keeps.
+* So "carriers are commutators", "carriers are the antisymmetric part" and "identical pairs are excluded" coincide.
+
+The motivation, that gauge fields take values in a Lie algebra, does not depend on `β₀`. R_comm does not conflict
+with QLF's existing bosons either: the photon and the Cooper pair are built from Hermitian pairs `t t̄` (distinct
+twists, `concatPairsMatrixFold`), and the closure census keeps counting `tt` as a step of a walk. Products of
+histories and commutators of carriers are different objects.
+
+**The consequence tested, which does not involve `β₀`.** The two rules give different colour algebras.
+* **R_prod** (§31's rule, extended to every two-twist product). The span of `D(t)D(u)` includes `D(v)D(−v) = I`,
+  so the colour algebra is `u(3)`. It has a ninth, colour-singlet gluon. With the normalisation `T_F = 1/2`, that
+  gives `C_F = 3/2`, `C_A = 3`, and `C_A/C_F = 2`.
+* **R_comm.** The span of `[D(t), D(u)]` is `su(3)`, so `C_F = 4/3`, `C_A = 3`, and `C_A/C_F = 9/4`.
+
+The script computes both spans, and the spin (vector or scalar) of every commutator.
+
+**Data rule.**
+* The colour factors as measured at LEP: the combined or final values given in Stenzel, "Final QCD results from LEP"
+  (hep-ex/0410064), if that paper states `C_A` and `C_F` (or their ratio) with uncertainties.
+* Otherwise, the colour-factor fit of Kluth et al., "A measurement of the QCD colour factors using event shape
+  distributions at √s = 14 GeV to 189 GeV" (hep-ex/0012044).
+* Values are taken as reported, with statistical and systematic errors combined in quadrature.
+
+**Verdicts (2σ).**
+* A rule is **retired** if the measured `C_F` (or `C_A/C_F`) excludes its prediction at 2σ.
+* If the measurement excludes neither rule, or both, the result is **inconclusive**.
+* `β₀` under R_comm equals QCD's by construction. It is reported and not counted.
+
+**Perfect numbers (exploratory; no prediction).** Perfect numbers are `2^{p−1}(2^p − 1)` with `2^p − 1` a Mersenne
+prime, and `2^{p−1}(2^p − 1) = C(2^p, 2)`. That is the number of *distinct* unordered pairs from an alphabet of size
+`2^p`. QLF's alphabet sizes are powers of 2 (`|Σ| ∈ {2, 4, 8}`, `QLF_AlphabetNecessity`). So once identical pairs
+are excluded, the pair counts of the axis set (4 axes give 6 planes) and the twist alphabet (8 twists give 28
+pairs) are perfect numbers, because 3 and 7 are prime. The script checks one place where a Mersenne prime might do
+structural work: whether the colour cycle on the qubit phase space `F₂²` (the three spatial axes) is the Singer
+cycle of `F₄`, multiplication by a primitive element, of order `2² − 1 = 3`. **Stated prior:** the cycle is the
+Singer cycle, and perfectness itself (the sum of divisors) changes no count found so far, so it is numerology
+unless a count needs it.
+
+**Stated prior on the test.** From memory, LEP gives `C_F ≈ 1.3` with an uncertainty near 0.1, so R_prod would be
+disfavoured, perhaps not at 2σ. Inconclusive is a real possibility.
+
+### 32a. Result
+
+Run by [`carrier_commutators.py`](carrier_commutators.py), using exact arithmetic in `ℚ(ω)`.
+
+**The structure, as predicted.**
+* **R_prod.** The 36 products `D(t)D(u)` span 9 dimensions, all of `gl(3)`, including the identity. That is
+  `u(3)`, with a colour-singlet ninth gluon.
+* **R_comm.** The 24 nonzero commutators span 8 dimensions, which is `sl(3)`, and the identity is not among them.
+  Every nonzero commutator comes from a cross-axis pair, and every one of them folds to a vector (spin 1). The
+  identical pairs and same-axis pairs all give 0.
+* So R_comm's carriers are exactly the spin-1 words of §31, and its `β₀` is QCD's. That follows by construction and
+  is not counted.
+* The colour factors follow: `C_F = 4/3` (su(3)) or `3/2` (u(3)), with `C_A = 3` for both.
+
+**The data** (Stenzel, hep-ex/0410064, which is the first source under the rule; it gives ALEPH and OPAL separately
+and no combination):
+
+| | `C_F` (stat ⊕ sys) | pull from 4/3 (R_comm) | pull from 3/2 (R_prod) | `C_A` |
+|---|---|---|---|---|
+| ALEPH | 1.35 ± 0.27 | +0.06σ | −0.56σ | 2.93 ± 0.60 |
+| OPAL | 1.34 ± 0.26 | +0.03σ | −0.63σ | 3.02 ± 0.55 |
+
+**Verdict: inconclusive.** Both measurements sit right on SU(3), but their systematic errors (about 0.25) are too
+large to exclude U(3)'s 3/2 at 2σ. The LEP colour factors cannot separate the rules. This was the expected
+possibility, so the test ran and did not bite. A sharper discriminator is the colour-singlet gluon that R_prod
+predicts, which would act as a long-range force between colour-neutral hadrons. It would need its own
+pre-registration.
+
+**The answer to the question asked: yes, there is a principled reason.** Gauge carriers take values in a Lie
+algebra, and the non-abelian part of a Lie algebra is spanned by commutators. Under that rule, identical-twist pairs
+vanish (`[t, t] = 0`) rather than being excluded by hand. The rule recovers su(3) and QCD's `β₀`. It fits QLF's
+existing bosons, which are built from `t t̄`, and it leaves the closure census, which counts `tt` as a walk step,
+untouched. **What the data do not yet do is choose it over R_prod.** Jim adopted R_comm on principle (§32b).
+
+**Perfect numbers (exploratory).**
+* **Where a Mersenne prime does structural work.** On the qubit phase space `F₂²` (the three spatial axes), the
+  colour cycle is the matrix `[[1,1],[1,0]]`, with characteristic polynomial `x² + x + 1`. That is the minimal
+  polynomial of a primitive element of `F₄`, so **the colour ℤ₃ is `F₄*`, the Singer cycle**, of order
+  `2² − 1 = 3`. Because 3 is prime, every non-identity power of the cycle moves all three axes. This ties the colour
+  ℤ₃ (§24) to the qubit structure: the three axes are the nonzero elements of `F₄`.
+* **Where perfect numbers appear, and why it is a coincidence.** With identical pairs excluded, an alphabet of size
+  `2^p` has `C(2^p, 2) = 2^{p−1}(2^p − 1)` distinct pairs. QLF's sizes give `C(4, 2) = 6` (the axis planes) and
+  `C(8, 2) = 28` (twist pairs), and these are perfect because 3 and 7 are prime. But perfectness, `σ(n) = 2n`,
+  changes no count found here. The numbers are perfect because QLF's alphabet sizes are powers of 2 whose
+  predecessors happen to be prime. **So the Mersenne prime 3 plays a role (`F₄*` = colour), and perfectness as such
+  does not.** By method rule 4 it stays exploratory until a count depends on it.
+
+### 32b. The commutator rule, adopted, and QLF's own justification for it
+
+*Adopted by Jim on 2026-10-03. The §32 test of the rule against data was inconclusive, so the rule is adopted on
+principle. This section states that principle in QLF's terms, beyond "gauge theory says so".*
+
+**1. Carriers are curvature, and curvature lives on plaquettes. This is the main reason, and it is Lean-anchored.**
+In QLF, what a line feels from its surroundings is the holonomy of the closure connection around a plaquette:
+* the π flux of spin (`QLF_EdgeSign`, `plaquette_yx`);
+* the 2π/3 flux of colour (`QLF_ColourFlux`, `colour_plaquette`).
+
+A plaquette needs two distinct axes. A pair of twists on one axis, and in particular an identical pair `tt`, walks
+out and straight back along a line, encloses no area, and has trivial holonomy. The Lie bracket is that holonomy in
+infinitesimal form. In `QLF_QuarkSignature`:
+* `bracket_iff_distinct_axes`: a pair has a nonzero bracket exactly when it spans a plaquette;
+* `same_axis_no_curvature`: a one-axis pair has trivial holonomy.
+
+So "carriers are commutators" is the same statement as "carriers are curvature". It is the discrete form of
+`F_μμ = 0`: field strength is antisymmetric because area is oriented.
+
+**2. QLF already builds its weak SU(2) this way.** `BraKetRhoQuCalc` obtains weak isospin from twist commutators
+(`tau_comm_xy`, `tau_comm_yz`, `tau_comm_zx`, giving `weak_isospin_su2`). It does not use products. Building colour's
+carriers from products while weak isospin comes from commutators would treat two gauge sectors of one alphabet by
+two different rules.
+
+**3. Possibilism.** Both orders, `tu` and `ut`, happen ("it happens every way"). Their order-symmetric part,
+`{σ_a, σ_b}/2 = δ_ab I`, is a scalar. It is the same for every way and transfers nothing between lines. Only the
+order-antisymmetric part tells the ways apart, and only it can pass from one line to another. An identical pair has
+no antisymmetric part.
+
+**What this does not do.** Reason 1 identifies carriers with curvature. That is QLF's own reading of its plaquette
+fluxes, applied to carriers, and it is an identification, not a theorem. The closure census is unaffected: a
+history is a product of twists, `tt` is a valid walk step, and the Pólya and Kraft results stand.
+
+## 33. Pre-registered: the singlet gluon
+
+*Fixed in the commit that adds this section, before any bound was read.*
+
+§32 found that the two carrier rules differ in one carrier. The product rule R_prod has a ninth, colour-singlet
+gluon: the generator `T⁰ = I/√6`, normalised so that `tr T⁰T⁰ = 1/2`. The commutator rule R_comm, adopted in
+§32b, has none. A singlet gluon is not confined, because it carries no colour. It is the gauge boson of an unbroken
+`U(1)`, so it is massless. It couples to quark number with strength `g_s/√6` per quark, which is `3g_s/√6` per
+nucleon.
+
+**The prediction under R_prod.** Two nucleons would feel a long-range repulsion `V = (3/2)·α₁·ħc/r`, where `α₁` is
+the singlet coupling at long distance. Compared with gravity between the same two nucleons, the strength is
+`α̃ = (3/2)·α₁·ħc/(G m_N²) ≈ 2.5 × 10³⁸ · α₁`. Two values of `α₁` are taken, fixed now:
+* `α₁ = α_s` at the Z mass;
+* a deliberately small `α₁ = 10⁻³`, to allow for an abelian coupling that weakens at long range.
+
+**Data rule.**
+* The torsion-balance bound on an infinite-range vector force coupled to baryon number, expressed as the strength
+  `|α̃|` relative to gravity, from Wagner, Schlamminger, Gundlach & Adelberger, *Class. Quantum Grav.* 29, 184002
+  (2012).
+* If that paper does not state such a bound, Schlamminger et al., *Phys. Rev. Lett.* 100, 041101 (2008) is used.
+* The bound is taken as reported.
+
+**Verdict.** R_prod's singlet gluon is **excluded** if the predicted `α̃` exceeds the bound for both values of `α₁`.
+It **survives** if the predicted value lies below the bound for either.
+
+**The escape, stated now.** A singlet gluon with a mass above roughly the pion mass would have nuclear range and
+would evade torsion balances. QLF supplies no Higgs mechanism for it, so the test assumes it is massless, as an
+unbroken generator is.
+
+**Stated prior.** Torsion balances bound baryon-coupled forces at somewhere around `10⁻⁹` of gravity or below. The
+prediction is about `10³⁵`–`10³⁷`, so the singlet should be excluded by more than 40 orders of magnitude. That is the
+textbook reason the colour group is SU(3) and not U(3). The test confirms the §32b adoption empirically, and it
+could fail only if the published bound were somehow weaker than the prediction.
+
+### 33a. Result
+
+Run by [`singlet_gluon.py`](singlet_gluon.py).
+
+**Where the bound came from.** Wagner et al. (2012) give the infinite-range baryon bound only as a curve
+(Fig. 6), so the data rule fell back to Schlamminger et al. (2008). That paper also plots the bound (Fig. 3) without
+stating it in the text. It does state the inputs:
+* the Eötvös parameter `η(Be − Ti) = (0.3 ± 1.8) × 10⁻¹³`;
+* `B/µ = 0.99868` for Be and `1.001077` for Ti.
+
+For an infinite-range force sourced by the Earth (`B/µ ≈ 1`), these give the 95 % bound
+`|α̃| ≤ (0.3 + 1.96 × 1.8) × 10⁻¹³ / 0.002397 = 1.6 × 10⁻¹⁰`. This is derived from the stated numbers, not read off
+the figure. The verdict does not depend on its precision.
+
+| `α₁` | predicted `α̃` (relative to gravity) | bound | excluded by |
+|---|---|---|---|
+| `α_s(M_Z) = 0.118` | 3.0 × 10³⁷ | 1.6 × 10⁻¹⁰ | 47 orders |
+| `10⁻³` | 2.6 × 10³⁵ | 1.6 × 10⁻¹⁰ | 45 orders |
+
+**R_prod's singlet gluon is excluded.** A massless colour-singlet gluon would add a baryon-number repulsion about
+`10³⁵`–`10³⁷` times stronger than gravity. Torsion balances bound such a force at `10⁻¹⁰` of gravity. Ordinary matter
+would not hold together under gravity at all. Only a singlet gluon with a mass above roughly the nuclear scale could
+escape, and QLF has no mechanism to give it one.
+
+**So the data confirm the §32b adoption.** The product rule implies a ninth gluon that nature excludes by more than
+40 orders of magnitude. The commutator rule implies exactly SU(3)'s eight. The colour-factor test of §32a could not
+tell the two rules apart; this test does. In short, the reason QCD's group is SU(3) and not U(3) is now also the
+reason QLF's carriers are commutators and not products.
+
+## 34. Pre-registered: why colour is a Weyl qutrit
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+§27's rule K4, that a colour line is the Weyl qutrit over `F₃²`, was the one assumption left in the colour
+derivation. §§27–33 derived and tested everything after it. This section tries to derive K4 from three plainer
+premises.
+
+**The premises.**
+* **(A) Steps add.** A colour line's transport along a word depends only on the word's net colour displacement,
+  up to a phase. So the twists act through a *projective* representation `D` of the step group `F₃²`, with
+  `D(u)D(v) = c(u,v) D(u+v)`. `F₃²` itself is not assumed: §27 derived it from `⟨Q₈, U⟩ ≅ SL(2, 3)`. Spin satisfies
+  the same premise over `F₂²`.
+* **(B) Covariance.** The transport group `SL(2, 3)` maps colour lines to colour lines. For every `g` there is an
+  operator `V_g` with `V_g D(v) V_g⁻¹ ∝ D(gv)`.
+* **(C) Non-triviality.** Some twist acts non-trivially on a colour line. Empirically, colour is non-abelian: LEP
+  measures `C_A ≠ 0` (§32a, ALEPH `2.93 ± 0.60`).
+
+### The claimed derivation, checked step by step
+
+* **K4.1.** Up to equivalence, the projective representations of `F₃²` fall into three classes, `c ~ ω^{k⟨u,v⟩}`
+  for `k = 0, 1, 2`. This is checked by computing the centre of the twisted group algebra for each `k`.
+  * `k = 0`: the centre has dimension 9, giving nine 1-dimensional representations, which are characters.
+  * `k ≠ 0`: the centre has dimension 1, so the algebra is the full 3×3 matrix algebra, with exactly one
+    irreducible representation, of dimension 3.
+* **K4.2.** Covariance (B) kills `k = 0` with (C). A character `χ` that is covariant must satisfy `χ(gv) = χ(v)`.
+  The gauge twist `−` maps to `−I`, so `χ(v) = χ(−v) = χ(v)⁻¹`, which forces `χ = 1` on `F₃²`. That contradicts
+  (C). This is checked exhaustively, and in Lean (over `F₃`).
+* **K4.3.** For `k ≠ 0`, (B) can be met: for every one of the 24 elements `g` of `SL(2, 3)`, a `V_g` is solved for
+  explicitly. This is the Weil representation.
+* **K4.4.** So the irreducible colour line is **3-dimensional and unique up to equivalence**. That is K4, and it
+  makes **the number of colours `3 = √|F₃²|`** a consequence. `k = 1` and `k = 2` are colour and anticolour.
+* **Control.** The same three premises over `F₂²`, with `SL(2, 2)`, must give the Pauli qubit (dimension 2). This
+  checks that spin and colour come out of one construction.
+
+**What can fail.**
+* K4.1 if the classes or dimensions differ.
+* K4.2 if some nontrivial character survives covariance.
+* K4.3 if some `g` has no `V_g`.
+* The control, if `F₂²` does not give the qubit.
+
+**Stated prior.** All pass. These are standard finite-field results: the Stone–von Neumann theorem and the Weil
+representation. So this is a derivation more than a test, and it is labelled that way. What it changes is the
+status of K4: from a rule to a consequence of (A), (B) and (C). (A) and (B) are QLF-native: steps compose, and the
+derived transport group acts. (C) is the empirical input.
+
+### 34a. Result
+
+Run by [`weyl_qutrit_derivation.py`](weyl_qutrit_derivation.py), using exact arithmetic in `ℚ(ω)` and `ℚ(i)`.
+
+**K4.1 passes.** For `F₃²`, the class `k = 0` has a 9-dimensional centre, which gives nine characters. The classes
+`k = 1` and `k = 2` have a 1-dimensional centre. A twisted group algebra is semisimple, so a 1-dimensional centre
+makes it simple: it is `M₃(ℂ)`, with exactly one irreducible representation, of dimension 3. The spin control over
+`F₂²` gives four characters, or `M₂(ℂ)`, which is the Pauli qubit. That `k = 0, 1, 2` exhaust the classes is the
+standard result `H²(ℤ_p², ℂ*) ≅ ℤ_p`. It is cited, not computed.
+
+**K4.3 passes.** All 24 elements of `SL(2, 3)` have a covariant `V_g` on the qutrit, each unique up to scalar, with
+no phases needed. All 6 elements of `SL(2, 2)` have one on the qubit, but only once phases are allowed.
+
+**K4.2 FAILS as pre-registered.**
+* With covariance required exactly, without phases, `−I` alone forces every character to be trivial, as the prior
+  said.
+* But spin does not meet that standard: without phases, only 2 of the 6 elements of `SL(2, 2)` can be implemented
+  on the qubit. So consistency requires that (B) allow phases, `V D(v) V⁻¹ = λ_v D(gv)`.
+* With phases allowed, every character is covariant, because `λ = χ/(χ∘g)` is itself a character.
+* So premises (A), (B) and (C) **do not exclude the abelian case.** A colour line that is a single character, such
+  as the triality character `ω^{N}` of §29, is non-trivial and covariant, and it is not a qutrit.
+
+**The repair, post hoc and labelled as such.** Strengthen (C) to **(C\*): colour lines feel non-zero plaquette
+flux**, which means colour transport does not commute. The script confirms that `k = 0` has zero flux everywhere
+and `k ≠ 0` does not. With (C\*), the only class left is the one whose irreducible line is the Weyl qutrit. **So
+(A), (B) and (C\*) give K4, with `3 = √9` colours**, and the same premises over `F₂` give the spin qubit.
+
+(C\*) is not tailored to this result. It is what QLF already needed elsewhere:
+* §23b found that the ℤ₃ loop gas confines only with the flux;
+* §32b's carriers are curvature, and zero flux means no carriers;
+* empirically, LEP measures `C_A ≠ 0` (§32a), and an abelian colour would give `C_A = 0`.
+
+But it replaced the pre-registered (C) after (C) failed, so the derivation is recorded as **K4 derived from
+(A) + (B) + (C\*), with (C\*) adopted post hoc.**
+
+**What this leaves.** K4 is no longer a free rule. It follows from three things:
+* steps compose (A);
+* the derived transport group acts on colour lines (B);
+* colour is confining and non-abelian (C\*).
+
+The number of colours, 3, is then fixed by the size of the phase space, `|F₃²| = 9`. That phase space was itself
+derived from adjoining the axis cycle to the twist folds (§27). The other branch, the abelian character, is
+exactly the triality charge of §29. It survives as a charge, not as a colour line.
+
+## 35. Pre-registered: the spin-term normalisation, and whether any count sees the colour frame
+
+*Fixed in the commit that adds this section, before the computations below were run.*
+
+### Part 1: the `(2s)²` in asymptotic freedom (a derivation, not a test)
+
+The Nielsen–Hughes spin term is `(g·s)²`, with the gyromagnetic ratio `g = 2` for Dirac fermions and for Yang–Mills
+vectors. If gluons had `g = 1`, the spin term would be `1`. The gluon factor would then be `1 − 1/3 = 2/3` in place
+of `11/3`, and asymptotic freedom would fail at `n_f = 6`. So the import is `g = 2` for spin-1 carriers.
+
+QLF already has `g = 2` for a twist: the field couples to the twist operator `σ`, and spin is `σ/2`
+(`g_minus_2.md`, `QLF_GMinusTwo`). The carriers of §32b are commutators, and they couple to a background through
+the commutator, the adjoint action. The script computes the ratio of the eigenvalues of `ad(σ_z)` (the coupling) to
+those of `ad(σ_z/2)` (the spin) on the carriers. It is 2 by construction. **This cannot fail.** It records that
+QLF's own `g = 2` rule, applied to commutator carriers, supplies the `4`. Ferrara, Porrati & Telegdi (1992) find
+`g = 2` the natural tree-level value for every spin, which is consistent with this.
+
+### Part 2: does any count of ways distinguish the colour frames? (the test)
+
+§28a found two realisations of the colour cycle: the phase-free one, and six phased ones `D(w)V`. The phased ones
+multiply each relabeled twist by a colour phase `c_t = ω^{−⟨w, v_cycTwist t⟩}`. After §27b, gauge twists are
+colour-trivial, so only spatial twists carry phases.
+
+**The prediction.** `c_t` is a character of the colour displacement. So over a word the phases multiply to
+`ω^{−⟨w, M·Σv⟩}`, and that equals 1 whenever the net colour displacement `Σv` is 0. Every ZFA closure has `Σv = 0`.
+**So no count of closures distinguishes the frames.** The frames differ only on open words, which are not closure
+observables. The choice of frame is then a gauge choice.
+
+**The check.** For every count-balanced word up to length 8, compute the colour phase of its relabeled image in the
+phase-free frame and in each of the six phased frames. The census by phase must be identical in all seven.
+
+**Verdict.**
+* The prediction **fails** if any closure's phase differs between frames.
+* It **holds** if none does. In that case the open question of §28 is closed: no count of ways tells the frames
+  apart.
+
+**Stated prior.** It holds. The character argument is short. The computation guards against a slip in how the
+phases compose.
+
+### 35a. Result
+
+Run by [`colour_frames.py`](colour_frames.py), using exact integers.
+
+**Part 1 (by construction, so not evidence).** On the transverse commutator carrier `σ₊`, the coupling `ad(σ_z)`
+has eigenvalue 2 and the spin `ad(σ_z/2)` has eigenvalue 1. So `g = 2`, and the Nielsen–Hughes spin term is
+`(g·s)² = 4`. This follows from QLF's existing rule that fields couple to the twist and spin is half a twist. It is
+not tested by any count.
+
+**The status of `β₀`, stated plainly.**
+* Derived from the census:
+  * the sign of asymptotic freedom (§31a);
+  * the carriers (the commutator rule, §32b, confirmed in §33a);
+  * the orbital `1/3` (`census_split`).
+* Supplied by QLF's `g = 2` rule, by construction: the spin term `4`.
+* Still imported: the one-loop structure itself, that `β₀` is spin paramagnetism minus orbital diamagnetism with a
+  statistics sign.
+
+**Part 2 HOLDS: no closure count distinguishes the colour frames.**
+* The check covered every count-balanced word up to length 8 (190 120 closures at `L = 8`) in each of the six
+  phased frames.
+* The product of the frame phases is 1 on every closure, so the phased and phase-free frames give identical
+  colour phases.
+* This holds with gauge twists colour-trivial (§27b) and without.
+* The reason is the one predicted: the frame phase is a character of the net colour displacement, and every closure
+  has zero net displacement.
+
+**So the open question of §28 is closed.** The phase-free frame (colour states as Cartans) and the phased frames
+(colour states as axes, `QLF_StrongAlgebra`'s reading) are the same physics, differing by a gauge choice. They
+differ only on open words, which are not closure observables. Both readings of su(3) are correct, and neither is
+preferred by any count of ways.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -1567,3 +2825,52 @@ cyclic symmetry of the axes, is machine-checked. No new axioms.
   1011–1016. doi:10.1038/s41567-019-0596-3
 - Calandra, M. & Mauri, F. (2005). Theoretical explanation of superconductivity in C6Ca. *Phys. Rev. Lett.* 95, 237002.
   doi:10.1103/PhysRevLett.95.237002
+- del Corro, E., Kalbac, M., Fantini, C., Frank, O. & Pimenta, M. A. (2013). Isotopic ¹³C/¹²C effect on the resonant
+  Raman spectrum of twisted bilayer graphene. *Phys. Rev. B* 88, 155436. doi:10.1103/PhysRevB.88.155436
+- Iwakiri, S. et al. (2023). High-mobility transport in isotopically enriched ¹²C and ¹³C exfoliated graphene.
+  *Phys. Rev. Research* 5, 043212. doi:10.1103/PhysRevResearch.5.043212
+- Zheng, G. et al. (2024). Gate-defined superconducting channel in magic-angle twisted bilayer graphene. *Phys. Rev.
+  Research* 6, L012051. doi:10.1103/PhysRevResearch.6.L012051
+- Liu, X. et al. (2020). Tuning electron correlation in magic-angle twisted bilayer graphene using Coulomb screening.
+  arXiv:2003.11072.
+- Wu, F., MacDonald, A. H. & Martin, I. (2018). Theory of phonon-mediated superconductivity in twisted bilayer
+  graphene. *Phys. Rev. Lett.* 121, 257001. doi:10.1103/PhysRevLett.121.257001
+- Wu, F., Hwang, E. & Das Sarma, S. (2019). Phonon-induced giant linear-in-T resistivity in magic angle twisted
+  bilayer graphene: ordinary strangeness and exotic superconductivity. *Phys. Rev. B* 99, 165112.
+  doi:10.1103/PhysRevB.99.165112
+- Allen, P. B. (1971). Electron-phonon effects in the infrared properties of metals. *Phys. Rev. B* 3, 305–320.
+  doi:10.1103/PhysRevB.3.305
+- McMillan, W. L. (1968). Transition temperature of strong-coupled superconductors. *Phys. Rev.* 167, 331–344.
+  doi:10.1103/PhysRev.167.331
+- Allen, P. B. & Dynes, R. C. (1975). Transition temperature of strong-coupled superconductors reanalyzed.
+  *Phys. Rev. B* 12, 905–922. doi:10.1103/PhysRevB.12.905
+- Bergmann, G. & Rainer, D. (1973). The sensitivity of the transition temperature to changes in α²F(ω).
+  *Z. Phys.* 263, 59–68. doi:10.1007/BF02351862
+- Lu, X. et al. (2019). Superconductors, orbital magnets and correlated states in magic-angle bilayer graphene.
+  *Nature* 574, 653–657. doi:10.1038/s41586-019-1695-0
+- Saito, Y., Ge, J., Watanabe, K., Taniguchi, T. & Young, A. F. (2020). Independent superconductors and correlated
+  insulators in twisted bilayer graphene. *Nature Physics* 16, 926–930. doi:10.1038/s41567-020-0928-3
+- Stepanov, P. et al. (2020). Untying the insulating and superconducting orders in magic-angle graphene. *Nature*
+  583, 375–378. doi:10.1038/s41586-020-2459-6
+- Patera, J. & Zassenhaus, H. (1988). The Pauli matrices in n dimensions and finest gradings of simple Lie algebras
+  of type A_{n−1}. *J. Math. Phys.* 29, 665–673. doi:10.1063/1.528006
+- Kostrikin, A. I. & Tiep, P. H. (1994). *Orthogonal Decompositions and Integral Lattices.* De Gruyter.
+  doi:10.1515/9783110901757
+- 't Hooft, G. (1979). A property of electric and magnetic flux in non-Abelian gauge theories. *Nucl. Phys. B* 153,
+  141–160. doi:10.1016/0550-3213(79)90595-9
+- González-Arroyo, A. & Okawa, M. (1983). Twisted-Eguchi-Kawai model: a reduced model for large-N lattice gauge
+  theory. *Phys. Rev. D* 27, 2397–2411. doi:10.1103/PhysRevD.27.2397
+- Baez, J. & Huerta, J. (2010). The algebra of grand unified theories. *Bull. Amer. Math. Soc.* 47, 483–552.
+  doi:10.1090/S0273-0979-10-01294-2
+- Tong, D. (2017). Line operators in the Standard Model. *JHEP* 2017(07), 104. doi:10.1007/JHEP07(2017)104
+- Nielsen, N. K. (1981). Asymptotic freedom as a spin effect. *Am. J. Phys.* 49, 1171–1178. doi:10.1119/1.12565
+- Hughes, R. J. (1980). Some comments on asymptotic freedom. *Phys. Lett. B* 97, 246–248.
+  doi:10.1016/0370-2693(80)90593-6
+- Stenzel, H. (2004). Final QCD results from LEP. arXiv:hep-ex/0410064. (Quotes ALEPH, *Eur. Phys. J. C* 27, 1 (2003)
+  and OPAL, *Eur. Phys. J. C* 20, 501 (2001).)
+- Wagner, T. A., Schlamminger, S., Gundlach, J. H. & Adelberger, E. G. (2012). Torsion-balance tests of the weak
+  equivalence principle. *Class. Quantum Grav.* 29, 184002. doi:10.1088/0264-9381/29/18/184002
+- Schlamminger, S., Choi, K.-Y., Wagner, T. A., Gundlach, J. H. & Adelberger, E. G. (2008). Test of the equivalence
+  principle using a rotating torsion balance. *Phys. Rev. Lett.* 100, 041101. doi:10.1103/PhysRevLett.100.041101
+- Ferrara, S., Porrati, M. & Telegdi, V. L. (1992). g = 2 as the natural value of the tree-level gyromagnetic ratio
+  of elementary particles. *Phys. Rev. D* 46, 3529–3537. doi:10.1103/PhysRevD.46.3529
