@@ -79,7 +79,8 @@ def main(argv=None) -> int:
         winners[max(sh, key=sh.get)] += 1
         ex = r["extinct"]
         big = args.ticks + 1                  # never extinct within the run
-        if sh[1] > sh[4] and ex.get(4, big) <= ex.get(3, big) <= ex.get(2, big) <= ex.get(1, big):
+        died = all(k in ex for k in (4, 3, 2))   # an order needs the extinctions to happen
+        if died and sh[1] > sh[4] and ex[4] <= ex[3] <= ex[2] <= ex.get(1, big):
             monotone += 1
         if seed < 3:
             print(f"seed {seed}: share {sh}  extinct at tick {r['extinct']}\n"

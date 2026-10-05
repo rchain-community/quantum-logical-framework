@@ -81,14 +81,36 @@ def entropy(c: Counter) -> float:
 
 
 def chi2_sf(x: float, k: int) -> float:
-    """Survival function of chi-square with k dof (series for the lower incomplete gamma)."""
+    """Survival function of chi-square with k dof: the regularized upper incomplete gamma Q(k/2, x/2),
+    by the lower series for z < a + 1 and by Lentz's continued fraction for the upper tail otherwise."""
     a, z = k / 2, x / 2
-    term = summ = 1 / a
-    for i in range(1, 500):
-        term *= z / (a + i)
-        summ += term
-    lower = summ * math.exp(-z + a * math.log(z) - math.lgamma(a))
-    return max(0.0, 1 - lower)
+    if z <= 0:
+        return 1.0
+    pre = -z + a * math.log(z) - math.lgamma(a)
+    if z < a + 1:
+        term = summ = 1 / a
+        for i in range(1, 1000):
+            term *= z / (a + i)
+            summ += term
+            if term < summ * 1e-16:
+                break
+        return max(0.0, 1 - summ * math.exp(pre))
+    tiny = 1e-300
+    b = z + 1 - a
+    c, d = 1 / tiny, 1 / b
+    h = d
+    for i in range(1, 1000):
+        an = -i * (i - a)
+        b += 2
+        d = an * d + b
+        d = tiny if abs(d) < tiny else d
+        c = b + an / c
+        c = tiny if abs(c) < tiny else c
+        d = 1 / d
+        h *= d * c
+        if abs(d * c - 1) < 1e-16:
+            break
+    return math.exp(pre) * h
 
 
 def report(label: str, winners: list, steps: list, weights2=None) -> None:
@@ -98,14 +120,17 @@ def report(label: str, winners: list, steps: list, weights2=None) -> None:
     pairs = Counter(w for w in done if len(w) == 2)
     m = sum(pairs.values())
     exp = [m * (wt / sum(weights2)) for wt in weights2] if weights2 else [m / 8] * 8
-    chi = sum((pairs.get(p, 0) - e) ** 2 / e for p, e in zip(PAIRS, exp))
+    chi = sum((pairs.get(p, 0) - e) ** 2 / e for p, e in zip(PAIRS, exp)) if m else 0.0
+    chi_u = sum((pairs.get(p, 0) - m / 8) ** 2 / (m / 8) for p in PAIRS) if m else 0.0
     print(f"\n[{label}] runs {runs}, consensus in {len(done)}, median steps {sorted(steps)[runs // 2]}")
     print(f"  winner length counts: {dict(sorted(by_len.items()))}"
           f"  (length-2 share {by_len[2] / max(1, len(done)):.3f})")
     print(f"  length-2 winners by word: {[pairs.get(p, 0) for p in PAIRS]}")
+    if not m:
+        print("  no length-2 winners: entropy and chi-square not computed")
+        return
     print(f"  winner entropy among length-2 winners: {entropy(pairs):.3f} bits (uniform = 3.000)")
-    print(f"  chi-square vs uniform: {sum((pairs.get(p, 0) - m / 8) ** 2 / (m / 8) for p in PAIRS):.2f}"
-          f"  p = {chi2_sf(sum((pairs.get(p, 0) - m / 8) ** 2 / (m / 8) for p in PAIRS), 7):.4f}")
+    print(f"  chi-square vs uniform: {chi_u:.2f}  p = {chi2_sf(chi_u, 7):.4f}")
     if weights2:
         wc = Counter({p: wt for p, wt in zip(PAIRS, weights2)})
         print(f"  entropy of the invention weights: {entropy(wc):.3f} bits")
