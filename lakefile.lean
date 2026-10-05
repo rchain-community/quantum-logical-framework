@@ -254,5 +254,6 @@ lean_lib QLF where
     `QLF_DeSitterCount,
     `QLF_HorizonFirstLaw,
     `QLF_LightBending,
-    `QLF_ClosureMultiplicity
+    `QLF_ClosureMultiplicity,
+    `QLF_ClosureRenewal
   ]
