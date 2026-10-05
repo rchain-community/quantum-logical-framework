@@ -52,7 +52,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
-| 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | pre-registered, not yet run |
+| 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3 |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2806,7 +2806,73 @@ near 0.118 (from memory), that raises it by about 0.004. Against a τ uncertaint
 it is first derived on its own terms. One example would be a consequence of the carrier moving at `c` that does not
 involve `β₀`, checked first.
 
-Script: `beta0_para_dia.py` (to be written after this commit).
+Script: [`beta0_para_dia.py`](beta0_para_dia.py) (written after this commit).
+
+### 36a. Result
+
+Run by [`beta0_para_dia.py`](beta0_para_dia.py) (exact fractions for B1 and R3; about a second).
+
+**B1 FAILS, as the prior said: the orbital term is the Lévy area, not `census_split`.** The exact area moments
+were computed for every count-balanced word up to `L = 24`, which is 6.4 × 10¹⁸ words at `L = 24`.
+* Neither identification matches at any `L`. With `n = L`, `2r(L)` rises 0.095, 0.125, …, 0.159 against
+  `census_split`'s 0.156, 0.162, …, 0.166.
+* With `n` = the in-plane steps `m`, the in-plane subword is a closed square-lattice walk. Its area variance has a
+  closed form, found by the run and holding at every `m ≤ 24`:
+  `2r′(m) = (1/6)(1 − 1/(m − 1))`, that is, `⟨A²⟩ = m²(m − 2)/(48(m − 1))`.
+* The correction is `1/m`, where `census_split`'s is `1/m²`. So the two counts are different objects that share
+  the limit `1/6`. A `1/N` correction to the Lévy law is what Mashkevich & Ouvry (2009) found for the full area
+  distribution of closed square-lattice walks. The closed form is recorded here as computed, without a claim of
+  novelty.
+* **What changes.** The per-state orbital `−1/6` is the area variance of closed walks, a Lévy-area count. The
+  statement that it is `2 × census_split` (`asymptotic_freedom.py`) holds only in the limit. `census_split`'s
+  own result, the Feynman integral `∫x(1−x)dx` as a limit (`QLF_VacuumPolarization`), is untouched. `β₀` uses
+  only the limit, so it is untouched too.
+
+**R3's state count holds as counted.** The 24 carriers fold to `σ_x`, `σ_y` and `σ_z`, 8 ways each, and each folds
+to the third axis. So the census gives the colour carrier three states with equal weight, and the gluon factor is
+`7/2`.
+
+| `n_f` | `β₀`, R3 | `β₀`, QCD |
+|---|---|---|
+| 4 | 47/6 = 7.83 | 25/3 = 8.33 |
+| 5 | 43/6 = 7.17 | 23/3 = 7.67 |
+| 6 | 13/2 = 6.50 | 7 |
+
+**V1:** −6.5 %, inside the §31 bar. It is not blind, so it carries no weight.
+
+**V2 PASSES: the running of `α_s` from τ decays to the lattice value does not exclude R3.**
+* Data: PDG 2024 (§9.4). The τ pre-average is `α_s(M_Z) = 0.1173 ± 0.0017`, which PDG states corresponds to
+  `α_s(m_τ) = 0.314 ± 0.014`. The lattice value is the FLAG 2021 estimate `0.1184 ± 0.0008`, which PDG adopts.
+* The QCD run down reproduces `α_s(m_τ) = 0.3135`, which checks the running code against PDG's own conversion.
+
+| | `α_s(M_Z)` from τ | lattice | pull | verdict |
+|---|---|---|---|---|
+| QCD (R2, control) | 0.1173 ± 0.0017 | 0.1184 ± 0.0008 | −0.59 | pass |
+| QLF, R3 | 0.1216 ± 0.0018 | 0.1184 ± 0.0008 | +1.63 | **pass** |
+
+**What the pass is worth.** It is a pass by the registered rule, and a weak one.
+* QCD fits better: the χ² difference is `1.63² − 0.59² = 2.3` in QCD's favour, about 1.5σ. This test cannot
+  separate the two, and it does not favour R3.
+* R3 keeps QCD's `b₁ … b₃`. A three-state carrier would change those as well, so the comparison is one-loop only.
+* In standard field theory a massless vector has two states, and a third state needs a mass or breaks gauge
+  invariance. QLF has no ghosts and counts states by ways, so whether its carriers are massless with three states
+  is a question internal to QLF. This test leaves it open.
+
+**Standing of `β₀`.**
+* Derived from the census:
+  * the sign of asymptotic freedom (§31a);
+  * the carriers (the commutator rule, §32b);
+  * the orbital `−1/6` per state (the Lévy area of closed walks, this section);
+  * the spin term `(g s_z)²` (`g = 2` by construction, §35a);
+  * the carrier's state count (three, this section).
+* With all of these, QLF's `β₀(5)` is 43/6, not QCD's 23/3. The running of `α_s` allows it at 1.6σ.
+* **Still imported:** that the response per state is a sum of an orbital and a spin term with a statistics sign.
+  This is the worldline form, `e^{iFA}` times the spin factor.
+
+**A sharper test, not yet registered.** Three gluon states would raise the gluon count in a hot quark-gluon plasma
+from 16 to 24, which is a 50 % larger Stefan–Boltzmann limit for pure gauge theory. Lattice thermodynamics measures
+the approach to that limit. It does not involve `β₀`, so it would test R3 independently. If it is taken up, it
+gets its own pre-registration.
 
 ## References
 
@@ -2954,5 +3020,9 @@ Script: `beta0_para_dia.py` (to be written after this commit).
   equivalence principle. *Class. Quantum Grav.* 29, 184002. doi:10.1088/0264-9381/29/18/184002
 - Schlamminger, S., Choi, K.-Y., Wagner, T. A., Gundlach, J. H. & Adelberger, E. G. (2008). Test of the equivalence
   principle using a rotating torsion balance. *Phys. Rev. Lett.* 100, 041101. doi:10.1103/PhysRevLett.100.041101
+- Mashkevich, S. & Ouvry, S. (2009). Area distribution of two-dimensional random walks on a square lattice.
+  *J. Stat. Phys.* 137, 71–78. doi:10.1007/s10955-009-9827-9. [arXiv:0905.1488](https://arxiv.org/abs/0905.1488)
+- Huston, J., Rabbertz, K. & Zanderighi, G. (2024). Quantum chromodynamics. In Navas, S. et al. (Particle Data
+  Group), *Phys. Rev. D* 110, 030001, §9.4.
 - Ferrara, S., Porrati, M. & Telegdi, V. L. (1992). g = 2 as the natural value of the tree-level gyromagnetic ratio
   of elementary particles. *Phys. Rev. D* 46, 3529–3537. doi:10.1103/PhysRevD.46.3529
