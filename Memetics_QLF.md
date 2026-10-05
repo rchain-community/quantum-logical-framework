@@ -37,7 +37,7 @@ What the substrate says about each:
    to the degree its record is copied into independent third parties** (§5).
 
 5. **The pre-registered tests (§8, §9)** found the following:
-   - A shared closure of intersecting light cones leaves each partner holding 5 to 6 bits about the other.
+   - A shared closure of intersecting light cones leaves each partner holding 4.8 to 6.1 bits about the other.
    - Its sign becomes bi-local only for longer strands.
    - When the third party interacts decides most of the sign.
    - Records follow priority, not multiplicity.
@@ -201,10 +201,10 @@ In memetic terms: a meme spreads by redundancy and changes by complementary bind
    phoneme holds no internal bit of its identity, and that identity lives entirely in its listeners. That
    fits the fact that phoneme categories differ between languages, but the fit was noticed after the fact
    and is not evidence. A test has to be chosen before measuring, as #173 says.
-4. **Multiplicity against priority for redundancy (pre-registered question, not run).** In a
-   multi-party census, does the redundancy `R` of a closure's record follow its multiplicity `W`, or the
-   order in which it closed? #172 showed these orderings already differ at the substrate
-   (`depth_one_not_modal`), so the two hypotheses can disagree and the census can decide between them.
+4. **Multiplicity against priority for redundancy.** In a multi-party census, does the redundancy `R` of a
+   closure's record follow its multiplicity `W`, or the order in which it closed? #172 showed these orderings
+   already differ at the substrate (`depth_one_not_modal`), so the two hypotheses can disagree. Pre-registered
+   as T4 (§8); result in §9: records follow priority.
 5. **No new physics prediction.** At the level of measured physics this reproduces quantum Darwinism, so
    the NV-centre redundancy data agree with it but do not discriminate it from standard quantum mechanics.
 
@@ -480,9 +480,14 @@ information.
 
 ### External
 
+- Baronchelli, A., Felici, M., Loreto, V., Caglioti, E. & Steels, L. (2006). Sharp transition towards shared
+  vocabularies in multi-agent systems. *J. Stat. Mech.* P06014.
+  [doi:10.1088/1742-5468/2006/06/P06014](https://doi.org/10.1088/1742-5468/2006/06/P06014)
 - Dawkins, R. (1976). *The Selfish Gene*. Oxford University Press.
 - Ollivier, H., Poulin, D. & Zurek, W. H. (2004). Objective properties from subjective quantum states:
   environment as a witness. *Phys. Rev. Lett.* 93, 220401.
+- Steels, L. (1995). A self-organizing spatial vocabulary. *Artificial Life* 2(3), 319–332.
+  [doi:10.1162/artl.1995.2.3.319](https://doi.org/10.1162/artl.1995.2.3.319)
 - Zurek, W. H. (2009). Quantum Darwinism. *Nature Physics* 5, 181–188.
   [doi:10.1038/nphys1202](https://www.nature.com/articles/nphys1202)
 - Unden, T. K. et al. (2019). Revealing the emergence of classicality using nitrogen-vacancy centers.
