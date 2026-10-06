@@ -53,6 +53,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3 |
+| 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | pre-registered, not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2874,6 +2875,44 @@ from 16 to 24, which is a 50 % larger Stefan–Boltzmann limit for pure gauge th
 the approach to that limit. It does not involve `β₀`, so it would test R3 independently. If it is taken up, it
 gets its own pre-registration.
 
+## 37. Pre-registered: three gluon states in a hot gluon plasma
+
+*Fixed in the commit that adds this section, before the lattice data below are read.*
+
+§36a gave QLF's colour carrier three states, from the fold, and the running of `α_s` could not exclude it. A test
+that does not involve `β₀` is the pressure of hot pure-gauge SU(3) theory. At high temperature the gluons are free
+to leading order, so the pressure approaches the Stefan–Boltzmann value, which counts the states directly:
+`p_SB/T⁴ = d·π²/90`, with `d` the number of bosonic states.
+* **QCD:** `d = 8 colours × 2 states = 16`, so `p_SB/T⁴ = 8π²/45 = 1.7546`.
+* **R3:** `d = 8 × 3 = 24`, so `p_SB/T⁴ = 4π²/15 = 2.6319`, which is 50 % larger.
+
+The interaction lowers the pressure below its free value. To leading order in pure SU(3),
+`p/p_SB = 1 − 15α_s/(4π) + …` (Arnold & Zhai 1994; the higher terms converge poorly at moderate `T`). Write
+`δ = 15α_s/(4π)`, with `α_s` taken at `μ = 2πT`.
+
+**Data.** Borsanyi et al. (2012) give `p/T⁴` for pure SU(3) up to about `1000 T_c`. Giusti & Pepe (2017) are a
+cross-check where they overlap. The highest-temperature point is the primary datum, because it is where the
+plasma is freest. The data are read only after this commit.
+
+**`α_s` at the datum.** Two-loop running with `n_f = 0`, and `Λ_MS̄` from `T_c/Λ_MS̄ = 1.26`, varied by ±0.10.
+This input is fixed now.
+
+**Verdicts.** Take the ratio `x_h = (p/T⁴)_lattice / (p_SB/T⁴)_h` for each hypothesis `h`, at the highest `T`.
+* `h` **passes** if `1 − 2δ ≤ x_h ≤ 1 + 2σ`, where `σ` is the lattice uncertainty on the ratio.
+* `h` **fails** if `x_h < 1 − 3δ` or `x_h > 1 + 3σ`.
+* Otherwise it is **undecided**.
+* **Control:** QCD (`d = 16`) must pass. If it does not, the test is void.
+* **A stated approximation.** The same `δ` is used for both. With three states the `O(α_s)` coefficient would also
+  change. This matters only if R3's verdict lands near a boundary.
+
+**Stated prior, from memory before reading.** Lattice `p/T⁴` near `1000 T_c` is about 1.6. That gives
+`x ≈ 0.92` for QCD and `x ≈ 0.61` for R3. At that temperature `α_s(2πT)` is about 0.06, so `δ ≈ 0.07` and R3 would
+need `x ≥ 0.86`. **Expected: R3 fails clearly.** If it does, the three-state count from the fold is excluded as
+the carrier's physical state count. The question for QLF then becomes which principle removes the longitudinal
+state, and that must be derived without using this result or `β₀`.
+
+Script: `gluon_plasma_dof.py` (to be written after this commit).
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene
@@ -3024,5 +3063,10 @@ gets its own pre-registration.
   *J. Stat. Phys.* 137, 71–78. doi:10.1007/s10955-009-9827-9. [arXiv:0905.1488](https://arxiv.org/abs/0905.1488)
 - Huston, J., Rabbertz, K. & Zanderighi, G. (2024). Quantum chromodynamics. In Navas, S. et al. (Particle Data
   Group), *Phys. Rev. D* 110, 030001, §9.4.
+- Borsanyi, S., Endrődi, G., Fodor, Z., Katz, S. D. & Szabó, K. K. (2012). Precision SU(3) lattice thermodynamics
+  for a large temperature range. *JHEP* 2012(07), 056. doi:10.1007/JHEP07(2012)056. [arXiv:1204.6184](https://arxiv.org/abs/1204.6184)
+- Giusti, L. & Pepe, M. (2017). Equation of state of the SU(3) Yang–Mills theory: a precise determination from a
+  moving frame. *Phys. Lett. B* 769, 385–390. doi:10.1016/j.physletb.2017.04.001. [arXiv:1612.00265](https://arxiv.org/abs/1612.00265)
+- Arnold, P. & Zhai, C. (1994). The three-loop free energy for pure gauge QCD. *Phys. Rev. D* 50, 7603–7623. doi:10.1103/PhysRevD.50.7603
 - Ferrara, S., Porrati, M. & Telegdi, V. L. (1992). g = 2 as the natural value of the tree-level gyromagnetic ratio
   of elementary particles. *Phys. Rev. D* 46, 3529–3537. doi:10.1103/PhysRevD.46.3529
