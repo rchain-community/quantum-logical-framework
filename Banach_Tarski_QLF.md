@@ -157,6 +157,8 @@ Landauer's `k_BT ln 2` — the irreducible cost of fixing one bit ([`Conservatio
 [`Reversibility.md`](Reversibility.md)). You cannot get two distinguishable closures out of one for
 free; you must mint, and pay for, the bits that tell them apart.
 
+The DNA copy has a precise form on the substrate: each strand is the Hermitian adjoint of the other, so the new strand is laid down against a complete record rather than conjured, and the duplex is a closure whatever the message ([`Quantum_Biology.md`](Quantum_Biology.md) §2–§3a).
+
 So mitosis is precisely the duplication Banach–Tarski is *not*: it buys its second copy in information,
 energy, mass, and time. Banach–Tarski is what duplication would look like if those bills never came due
 — which is to say, it is not physics.

@@ -106,6 +106,8 @@ QLF gives this a constructive content: **stable Markov-blanket states are exactl
 
 The environmental "voting" is the parallel composition of many vacuum atoms with the observed system; stable states are those for which the composition stays Pauli-closed and count-balanced (full ZFA). Non-stable states have one or both halves of ZFA fail under composition, so they are pruned by the algebra itself.
 
+Biology supplies a test of the blanket reading: the quantum effects that survive in warm tissue are tunnelling events and spins, the channels a warm bath disturbs least, while extended electronic coherence in photosynthetic proteins did not hold up. [`Quantum_Biology.md`](Quantum_Biology.md) §5 tabulates the evidence and labels the agreement as consistency, not confirmation.
+
 ## 7. The decoherence-impossibility theorem reread
 
 `decoherence_impossibility` is often misread (when QLF is first encountered) as "QLF claims decoherence doesn't happen." That's wrong. The correct reading is:

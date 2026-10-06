@@ -255,5 +255,6 @@ lean_lib QLF where
     `QLF_HorizonFirstLaw,
     `QLF_LightBending,
     `QLF_ClosureMultiplicity,
-    `QLF_ClosureRenewal
+    `QLF_ClosureRenewal,
+    `QLF_Duplex
   ]
