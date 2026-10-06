@@ -42,6 +42,9 @@ fail.
    complementary strand and the polymerase, and Spiegelman's monster is the memetics T6 result observed in
    a test tube. What keeps genes informative is a selection that reads the content, which is the pressure
    the memetics note said its model lacked.
+6. **Which outstanding questions this resolves** (§6a): Schrödinger's question and the
+   aperiodic-versus-informative distinction are resolved in substrate terms; four others get the standard
+   answer in QLF's vocabulary; homochirality stays open, with the obstacle named.
 
 ## 1. Schrödinger's question, restated on the substrate
 
@@ -229,6 +232,26 @@ Each item names what would count against it.
    which is Bennett's (1982) reading of polymerase as a Brownian computer. *Status:* open bridge; QLF
    reproduces the known bound's form and supplies no new number.
 
+## 6a. Outstanding questions in quantum biology, and how far QLF resolves each
+
+"Resolves" is used strictly: a question counts as resolved only where the substrate gives an answer that
+could have come out otherwise. Where QLF only restates the standard answer, the row says so.
+
+| question | what QLF offers | status |
+|---|---|---|
+| **Schrödinger's question:** how can a gene be stable and arbitrary at once? | Stability is closure, content is order, and ZFA charges only for closure. The duplex closes for every sequence with the same fold (§2). | **Resolved in substrate terms** (exact, internal). The chemistry of real duplex stability is a separate layer (§6 item 3). |
+| **Aperiodic or informative?** Is non-repetition what a genetic material needs? | No: the Fibonacci genome is aperiodic with zero entropy. The requirement is positive entropy per unit (§3). | **Resolved** (exact). It sharpens Schrödinger's term; it does not contradict him. |
+| **How does information survive content-blind copying?** (Spiegelman's monster) | Content-blind copying favours the empty replicator (Memetics T6); content survives only under selection that reads it, which is expression (§3a). | **Consistency.** Same answer as standard evolutionary theory, reached from the memetics census. |
+| **Why does functional coherence survive warm, wet tissue in some cases and not others?** | The surviving effects run on quiet channels: tunnelling events and spins (§5). | **Consistency / retrodiction.** Standard dephasing theory gives the same sorting. QLF adds a name, not a number. |
+| **When is a radical pair "measured"?** | The recombination closure is the measurement event; no separate collapse step is needed ([`Measurement_Problem.md`](Measurement_Problem.md), [`Decoherence.md`](Decoherence.md)). | **Consistency.** Spin-chemistry models already work without a collapse postulate, so this removes no tension the field feels. |
+| **Why four bases?** | The alphabet theorem does not apply (§4). | **Rejected route.** Left to evolutionary accounts (Szathmáry 2003). |
+| **Homochirality:** why L-amino acids, D-sugars and a right-handed helix? | Counting cannot choose: mirroring an axis maps closures to closures one-to-one, for folds ([`Protein_Folding.md`](Protein_Folding.md) §7) and the same holds for duplexes, since the `x`-axis mirror (A↔T) is a closure-preserving involution on them, so no duplex census can prefer a class over its mirror. QLF places the bias upstream, in the substrate's handedness ([`QLF_Handedness`](lean/QLF_Handedness.lean), [`CP-Violation-and-Chirality.md`](CP-Violation-and-Chirality.md) §3). | **Open.** The no-go is exact; the upstream claim is a conjecture. It has to beat the known problem that parity-violating energy differences between enantiomers are tiny, so it needs an amplification step, as standard accounts do (autocatalytic amplification, Soai et al. 1995). Until QLF names a mechanism that changes a count, this is not resolved. |
+| **What does copying cost?** | The reversible part is free and the bill is the erased information (§6 item 4). | **Open bridge.** Reproduces Bennett's form, no new number. |
+
+So, of the eight, QLF resolves two in its own terms (Schrödinger's question and the aperiodic/informative
+distinction), agrees with the standard answer on four, rejects one route, and leaves homochirality open with
+the obstacle named.
+
 ## 7. Scope
 
 - QLF does not derive any biological rate, error rate, coherence time or field sensitivity. Where it agrees
@@ -267,6 +290,7 @@ Each item names what would count against it.
 - Zhang, Y. et al. (2017). *A semi-synthetic organism that stores and retrieves increased genetic information.* Nature 551, 644–647.
 - Hoshika, S. et al. (2019). *Hachimoji DNA and RNA: a genetic system with eight building blocks.* Science 363, 884–887.
 - Szathmáry, E. (2003). *Why are there four letters in the genetic alphabet?* Nat. Rev. Genet. 4, 995–1001.
+- Soai, K., Shibata, T., Morioka, H. & Choji, K. (1995). *Asymmetric autocatalysis and amplification of enantiomeric excess of a chiral molecule.* Nature 378, 767–768.
 - Bennett, C. H. (1982). *The thermodynamics of computation — a review.* Int. J. Theor. Phys. 21, 905–940.
 - Lambert, N. et al. (2013). *Quantum biology.* Nature Physics 9, 10–18.
 - Cao, J. et al. (2020). *Quantum biology revisited.* Science Advances 6, eaaz4888.

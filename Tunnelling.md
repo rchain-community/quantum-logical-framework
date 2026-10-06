@@ -115,6 +115,7 @@ Histories containing `+` or `-` that eventually reach net-zero action are exactl
 - **Gauge dimensions** (`+`/`-`) supply the scratchpad memory.
 - **Zeno effect** (`Zeno_Effect.md`) occurs when frequent measurements collapse the gauge memory too soon → tunneling is suppressed.
 - **Entanglement** arises when two histories share the same gauge scratchpad.
+- **Biology** uses tunnelling as one of its established quantum effects: hydrogen transfer in enzymes and proton tunnelling in DNA base pairs. Their status and QLF's reading are in [`Quantum_Biology.md`](Quantum_Biology.md) §5.
 
 Tunneling is therefore not a separate postulate — it is an automatic consequence of the same ZFA + orthogonality rules that generate every other quantum effect.
 

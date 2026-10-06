@@ -136,7 +136,7 @@ A spatial twist like `^>` is topologically distinct from its mirror image. When 
 
 This discrete mathematical bias scales fractally upward through the information ecology:
 
-1. **The Molecular Scale:** It is a known biological phenomenon, termed *homochirality*, that almost all naturally occurring amino acids are "left-handed" (L-isomers), while most biological sugars are "right-handed" (D-isomers) [4]. In QLF, this is not an accident of chemistry; it is the molecular inheritance of the winning topological twist.
+1. **The Molecular Scale:** It is a known biological phenomenon, termed *homochirality*, that almost all naturally occurring amino acids are "left-handed" (L-isomers), while most biological sugars are "right-handed" (D-isomers) [4]. In QLF, this is not an accident of chemistry; it is the molecular inheritance of the winning topological twist. (Status: conjecture. Closure counting provably cannot pick a handedness, so the bias must come from upstream and still needs an amplification step; see [`Quantum_Biology.md`](Quantum_Biology.md) §6a.)
 2. **The Macroscopic Scale:** Human handedness, brain lateralization, and the asymmetric placement of the heart and liver are macroscopic echoes of this exact same parity asymmetry.
 
 If the universe is intelligence explaining the intelligence all around us, the handedness of human biology is a direct, scalable reflection of the topological chirality that allowed matter to survive antimatter at the dawn of the possibilist universe.

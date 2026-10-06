@@ -52,7 +52,7 @@ Independent mainstream research is converging on exactly this, from directions t
 - **Brain proton entanglement** — Kerskens & López Pérez (2022), MRI signatures interpreted as non-classical brain function.
 - **The anesthesia link** — microtubule-stabilizing agents shift anesthetic potency (Wiest et al. 2024), tying loss of consciousness to disruption of a coherent substrate.
 
-Each is a frequency- or spin-isolated channel in warm tissue. Each is a special case of what the premise already requires.
+Each is a frequency- or spin-isolated channel in warm tissue. Each is a special case of what the premise already requires. Their evidential status differs, from measured (superradiance) to speculative (Orch-OR, Posner spins); [`Quantum_Biology.md`](Quantum_Biology.md) §5 sets them beside the established effects (enzyme tunnelling, radical-pair magnetoreception), which are the stronger support for the quiet-channel reading.
 
 ## 3. Why coherence survives a warm, noisy brain — frequency isolation
 

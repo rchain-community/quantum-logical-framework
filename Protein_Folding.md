@@ -315,7 +315,7 @@ The census confirms it directly — the closure histogram is invariant under ref
 I9). This is worth stating because it saves the census from being asked a question it provably
 cannot answer: the L-amino-acid preference needs the **substrate** handedness asymmetry
 ([`QLF_Handedness`](lean/QLF_Handedness.lean), [`CP-Violation-and-Chirality.md`](CP-Violation-and-Chirality.md) §3),
-which is upstream of chemistry entirely.
+which is upstream of chemistry entirely. The same no-go applies to DNA duplexes, and the open status of homochirality is set out in [`Quantum_Biology.md`](Quantum_Biology.md) §6a.
 
 ## 8. Honest scope — and the staged path from here
 
