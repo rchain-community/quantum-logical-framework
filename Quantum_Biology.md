@@ -147,6 +147,13 @@ three replicator properties. Its §5 table, with a column added for the duplex o
 
 Three links to the memetics results, each with its status.
 
+- **The closure passes on no bit of the sequence (proved).** The renewal lemma of
+  [`Memetics_QLF.md`](Memetics_QLF.md) §2 says a closure passes at most one sign to its future. For a
+  duplex that sign is `(−1)^n`, fixed by the length, so two duplexes of equal length act identically on
+  every continuation ([`QLF_Duplex`](lean/QLF_Duplex.lean): `dna_duplex_renewal`,
+  `dna_duplex_future_blind`, no axioms). The content of a gene therefore persists only as a record held
+  outside the closed duplex, a copy made by a polymerase, which is the memetics result that a closure's
+  record lives in third parties (Memetics §4), now as a theorem for genes.
 - **Each strand is a complete record of the other.** Memetics T2 found that each partner of a random shared
   closure holds 4.8 to 6.1 bits about the other. For the duplex the record is total: `I(top; bottom) =
   H(top) = 2n` bits, because the bottom strand is fixed by the top one. The sign question of T2b degenerates:

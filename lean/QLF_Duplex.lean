@@ -20,7 +20,10 @@ Together (`dna_duplex_order_not_fold`): the closure, and with it its fold, is co
 `4ⁿ` duplexes of length `n`, while the duplex itself still determines the sequence. So the
 `2n` bits of a gene are held entirely in the order of the twists, the part ZFA does not
 charge for, and none of them in the closure. This is Schrödinger's split of a gene into
-persistence and specification, on the substrate. No axioms.
+persistence and specification, on the substrate. Through the renewal lemma of
+`QLF_ClosureRenewal` the same holds for the duplex's future (`dna_duplex_renewal`,
+`dna_duplex_future_blind`): the one sign a closure may pass on is fixed by length, so the
+content can persist only as a copy held outside it (`Memetics_QLF.md` §4–§5). No axioms.
 -/
 
 namespace QLF.Duplex
@@ -159,5 +162,27 @@ theorem dna_duplex_order_not_fold {s s' : List Base} (hlen : s.length = s'.lengt
     (dnaDuplex s = dnaDuplex s' → s = s') :=
   ⟨dna_duplex_closes s, dna_duplex_closes s',
     by rw [dna_duplex_fold, dna_duplex_fold, hlen], dna_duplex_injective⟩
+
+-- ==========================================
+-- 3. The memetics link: a duplex passes on no bit of its sequence
+-- ==========================================
+
+/-- **The renewal lemma for a duplex** (`closure_renewal`, `Memetics_QLF.md` §2). A closure passes
+    at most one sign to its future. For a duplex that sign is `(−1)^n`, fixed by the length, so
+    the futures that close and their folds are the same for every sequence. -/
+theorem dna_duplex_renewal (s : List Base) (c : List Twist) :
+    (countBalanced (dnaDuplex s ++ c) ↔ countBalanced c) ∧
+      twistMatrixFold (dnaDuplex s ++ c) = ((-1 : ℂ) ^ s.length) • twistMatrixFold c := by
+  refine ⟨ClosureRenewal.countBalanced_append_iff (dna_duplex_closes s) c, ?_⟩
+  rw [ClosureRenewal.fold_append, dna_duplex_fold, smul_mul_assoc, one_mul]
+
+/-- **No bit of the sequence reaches the future through the closure.** Two duplexes of equal
+    length act identically on every continuation. So a gene's content can persist only as a
+    record outside the closed duplex (a copy made by a polymerase), which is the memetics
+    result that a closure's record lives in third parties. -/
+theorem dna_duplex_future_blind {s s' : List Base} (hlen : s.length = s'.length)
+    (c : List Twist) :
+    twistMatrixFold (dnaDuplex s ++ c) = twistMatrixFold (dnaDuplex s' ++ c) := by
+  rw [(dna_duplex_renewal s c).2, (dna_duplex_renewal s' c).2, hlen]
 
 end QLF.Duplex
