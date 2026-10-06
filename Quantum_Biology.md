@@ -1,9 +1,10 @@
 # Quantum biology in QLF: the aperiodic crystal and the quiet channels
 
-**Status:** one exact computational result (§2, [`quantum_biology_dna.py`](quantum_biology_dna.py)),
+**Status:** one proved theorem with its exact computational check (§2, [`QLF_Duplex`](lean/QLF_Duplex.lean), no
+axioms; [`quantum_biology_dna.py`](quantum_biology_dna.py)),
 one rejected route (§4), a comparison with the memetics results (§3a), an evidence table that separates established biology from contested biology
 (§5), and a set of readings and conjectures that are labelled as such (§3, §6). Status labels follow
-[`ScientificApproach.md`](ScientificApproach.md) §3. Nothing here is a Lean theorem, and no axiom is added.
+[`ScientificApproach.md`](ScientificApproach.md) §3. No axiom is added.
 
 QLF already touches quantum biology in four places, each from its own angle:
 [`Evolution.md`](Evolution.md) §5 (proton tunnelling as the quantum source of mutation),
@@ -88,7 +89,9 @@ and checks three things.
   of length `n`. This also follows in one line: `fold(W†) = (−1)^{|W|} fold(W)^†` and the fold of a twist
   word is unitary, so `fold(W W†) = (−1)^{|W|} I`.
 
-**Status:** exact computational result over the stated domain; the one-line argument makes it general.
+**Status:** **proved** for every strand ([`QLF_Duplex`](lean/QLF_Duplex.lean): `revcomp_is_dagger`,
+`duplex_fold`, `duplex_fold_sequence_blind`, `dna_duplex_injective`, bundled as
+`dna_duplex_order_not_fold`; no axioms), with the enumeration as an independent check.
 Physically it is **internal**: it is a fact about the map, and the map is a modelling choice (§4 says how
 far it can be pushed).
 
@@ -274,7 +277,7 @@ could have come out otherwise. Where QLF only restates the standard answer, the 
 
 | question | what QLF offers | status |
 |---|---|---|
-| **Schrödinger's question:** how can a gene be stable and arbitrary at once? | Stability is closure, content is order, and ZFA charges only for closure. The duplex closes for every sequence with the same fold (§2). | **Resolved in substrate terms** (exact, internal). The chemistry of real duplex stability is a separate layer (§6 item 3). |
+| **Schrödinger's question:** how can a gene be stable and arbitrary at once? | Stability is closure, content is order, and ZFA charges only for closure. The duplex closes for every sequence with the same fold (§2). | **Resolved in substrate terms** (proved in `QLF_Duplex`, internal). The chemistry of real duplex stability is a separate layer (§6 item 3). |
 | **Aperiodic or informative?** Is non-repetition what a genetic material needs? | No: the Fibonacci genome is aperiodic with zero entropy. The requirement is positive entropy per unit (§3). | **Resolved** (exact). It sharpens Schrödinger's term; it does not contradict him. |
 | **How does information survive content-blind copying?** (Spiegelman's monster) | Content-blind copying favours the empty replicator (Memetics T6); content survives only under selection that reads it, which is expression (§3a). | **Consistency.** Same answer as standard evolutionary theory, reached from the memetics census. |
 | **Why does functional coherence survive warm, wet tissue in some cases and not others?** | The surviving effects run on quiet channels: tunnelling events and spins (§5). | **Consistency / retrodiction.** Standard dephasing theory gives the same sorting. QLF adds a name, not a number. |
