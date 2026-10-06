@@ -185,4 +185,31 @@ theorem dna_duplex_future_blind {s s' : List Base} (hlen : s.length = s'.length)
     twistMatrixFold (dnaDuplex s ++ c) = twistMatrixFold (dnaDuplex s' ++ c) := by
   rw [(dna_duplex_renewal s c).2, (dna_duplex_renewal s' c).2, hlen]
 
+-- ==========================================
+-- 4. RNA: a single strand folded into a hairpin
+-- ==========================================
+
+/-- **A hairpin closes iff its loop does.** An RNA hairpin is a stem `w`, a loop `l`, and the
+    stem's reverse complement `dagger w`. The two stem strands cancel count by count, so the
+    whole strand is a closure exactly when the loop is. -/
+theorem hairpin_closes_iff (w l : List Twist) :
+    countBalanced (w ++ l ++ QuantumTurbulence.dagger w) ↔ countBalanced l := by
+  simp only [countBalanced, List.count_append, QuantumTurbulence.dagger, List.count_reverse,
+    QuantumTurbulence.count_map_conj, Twist.conj]
+  constructor
+  · rintro ⟨h1, h2, h3, h4⟩
+    exact ⟨by omega, by omega, by omega, by omega⟩
+  · rintro ⟨h1, h2, h3, h4⟩
+    exact ⟨by omega, by omega, by omega, by omega⟩
+
+/-- **A closed hairpin's fold is its loop's sign times `(−1)^|stem|`.** The stem contributes only
+    its length; whatever the stem's sequence, the loop is the only part whose order reaches the
+    fold. -/
+theorem hairpin_fold {l : List Twist} (hl : countBalanced l) (w : List Twist) :
+    twistMatrixFold (w ++ l ++ QuantumTurbulence.dagger w)
+      = (((EdgeSign.connectionPhase l : ℤ) : ℂ) * (-1 : ℂ) ^ w.length) • (1 : M) := by
+  rw [ClosureRenewal.fold_append, ClosureRenewal.fold_append, EdgeSign.fold_eq_connectionPhase hl,
+    Matrix.mul_smul, Matrix.mul_one, Matrix.smul_mul, ← ClosureRenewal.fold_append, duplex_fold,
+    smul_smul]
+
 end QLF.Duplex

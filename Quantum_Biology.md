@@ -179,6 +179,28 @@ closure is a meme" becomes, for genes: *every duplex is a meme candidate, and it
 that its content is both copied (polymerase) and tested (expression).* That can fail sequence by sequence,
 which is the same standard Memetics §5 set.
 
+## 3b. RNA: one strand that folds back on itself
+
+RNA uses U in place of T (same pairing, so `U ↦ <`) and is usually single-stranded. It gets its double
+strands by folding back on itself into **hairpins**: a stem `w`, a loop `l`, and the stem's reverse
+complement. Two results, both proved in [`QLF_Duplex`](lean/QLF_Duplex.lean) with no axioms:
+
+- **A hairpin closes iff its loop does** (`hairpin_closes_iff`). The two stem strands cancel count by
+  count, so the stem never decides closure; the loop alone does.
+- **A closed hairpin's fold is the loop's sign times `(−1)^|stem|`** (`hairpin_fold`). Whatever the stem
+  says, only the loop's order reaches the fold.
+
+What the substrate then says about RNA, with status:
+
+| point | substrate statement | status |
+|---|---|---|
+| stems are sequence-blind closures | the §2 result, applied to each stem | proved |
+| most well-known stable loops are **open** | of the 256 four-base loops, 36 are balanced; the common stable families GNRA (e.g. GAAA) and UUCG are not, though UACG is | exact count; which loops are stable is chemistry |
+| the open loop is where RNA acts | an unbalanced loop is the residue left open, free to close *with something else*: the tRNA anticodon sits in a loop and pairs with the codon | interpretation |
+| codon–anticodon pairing is a shared closure | a codon `w` and an anticodon `revcomp(w)` together are `w ++ dagger w`, a closure for every one of the 64 codons with fold `−I` (`dna_duplex_fold`, `n = 3`); neither triplet closes alone. This is the shared closure of Memetics T2, which neither partner makes alone | proved (the pairing); interpretation (the memetics reading) |
+| wobble pairs break the dagger | in a G·U pair (Crick 1966), `^` meets `<`: different axes, so the pair is not a conjugate pair and the stem stops being a closure by itself. Wobble sits mostly at the third codon position, the same place the code's redundancy sits (§4a) | exact (the map); the coincidence with redundancy is an observation |
+| the RNA world | RNA is both the record (a sequence that can be copied) and the phenotype (the fold, which selection reads, as in ribozymes). In §3a terms copying and testing act on one molecule, which is why Spiegelman's experiment could select for the fold that the replicase recognises and nothing else | interpretation |
+
 ## 4. Rejected route: four bases because four twists
 
 The tempting next step is that the genetic alphabet has four letters *because* QLF's alphabet theorem
@@ -336,6 +358,7 @@ the obstacle named.
 - Hoshika, S. et al. (2019). *Hachimoji DNA and RNA: a genetic system with eight building blocks.* Science 363, 884–887.
 - Szathmáry, E. (2003). *Why are there four letters in the genetic alphabet?* Nat. Rev. Genet. 4, 995–1001.
 - Soai, K., Shibata, T., Morioka, H. & Choji, K. (1995). *Asymmetric autocatalysis and amplification of enantiomeric excess of a chiral molecule.* Nature 378, 767–768.
+- Crick, F. H. C. (1966). *Codon–anticodon pairing: the wobble hypothesis.* J. Mol. Biol. 19, 548–555.
 - Bennett, C. H. (1982). *The thermodynamics of computation — a review.* Int. J. Theor. Phys. 21, 905–940.
 - Lambert, N. et al. (2013). *Quantum biology.* Nature Physics 9, 10–18.
 - Cao, J. et al. (2020). *Quantum biology revisited.* Science Advances 6, eaaz4888.
