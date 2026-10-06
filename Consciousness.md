@@ -158,7 +158,8 @@ This is exactly what the growing **quantum biology** evidence keeps finding, and
 expected, not surprising: Penrose–Hameroff microtubule Orch-OR, Fisher's phosphorus-31 nuclear-spin
 cognition in Posner molecules, microtubule superradiance (Babcock et al. 2024), and brain proton
 entanglement (Kerskens & López Pérez 2022). Evolution would be wasteful *not* to use quantum processes
-if cognition is resonant closure access — and biology appears to use them.
+if cognition is resonant closure access — and biology appears to use them. Which of these effects are
+established and which are contested is tabulated in [`Quantum_Biology.md`](Quantum_Biology.md) §5.
 
 This yields a **falsifiable prediction** (not a QLF derivation — a lean the model commits to):
 conscious access correlates with EEG/MEG signatures of unusually **narrow-linewidth, isolated

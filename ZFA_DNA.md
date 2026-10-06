@@ -185,6 +185,10 @@ survive. It contains the conjugate pair $\pm i$ — the two strands again — an
 the critical point, its 2-cycle, and the parabolic fixed point. Rendered on the continuum, this is
 the familiar set.
 
+Biological DNA fits this exactly: with A/T and G/C as two conjugate twist pairs, the reverse complement
+*is* the adjoint, every duplex closes, and its fold is the same for every sequence
+([`Quantum_Biology.md`](Quantum_Biology.md) §2).
+
 Scope: a route, not the route — the algebra has other conjugate pairs (the x, y, z axes of §0). The
 exact finite set is the object; the picture is its rendering.
 

@@ -1,0 +1,227 @@
+# Quantum biology in QLF: the aperiodic crystal and the quiet channels
+
+**Status:** one exact computational result (§2, [`quantum_biology_dna.py`](quantum_biology_dna.py)),
+one rejected route (§4), an evidence table that separates established biology from contested biology
+(§5), and a set of readings and conjectures that are labelled as such (§3, §6). Status labels follow
+[`ScientificApproach.md`](ScientificApproach.md) §3. Nothing here is a Lean theorem, and no axiom is added.
+
+QLF already touches quantum biology in four places, each from its own angle:
+[`Evolution.md`](Evolution.md) §5 (proton tunnelling as the quantum source of mutation),
+[`TheQuantumBrain.md`](TheQuantumBrain.md) and [`Consciousness.md`](Consciousness.md) §5 (quiet-frequency
+coherence in neural tissue), [`ZFA_DNA.md`](ZFA_DNA.md) (the twist algebra read as a replication rule) and
+[`Protein_Folding.md`](Protein_Folding.md) (a fold as a closure inventory). This note collects them under
+one framing, adds the piece that was missing (Schrödinger's aperiodic crystal), and states which parts can
+fail.
+
+## 0. The framing in brief
+
+1. **Life needs two things that pull in opposite directions, and ZFA separates them.** Schrödinger (1944)
+   asked how a gene can be both *stable* for generations and *rich* enough to specify an organism. His
+   answer was the aperiodic crystal. On the substrate, stability is closure and richness is order, and
+   ZFA charges only for the first. A Watson–Crick duplex is a closure **for every sequence**, and its
+   Pauli fold is the same for every sequence of a given length. So the closure carries zero bits about
+   the sequence, and all `2n` bits of a length-`n` gene sit in the one place ZFA does not charge: the
+   order of the twists (§2, exact).
+2. **"Aperiodic" is not enough; the code needs positive entropy.** The Fibonacci closure genome of
+   [`ZFA_DNA.md`](ZFA_DNA.md) §11 is aperiodic and carries zero bits per twist, like a periodic crystal. A
+   genetic code needs a free choice per unit. The duplex makes one free four-way choice per base pair, which
+   is 1 bit per twist, half the capacity of the two-axis closures it lives in. The other half is the
+   copy (§3).
+3. **The quantum effects biology actually uses are closures with quiet blankets.** QLF reads each
+   established effect (enzyme tunnelling, radical-pair spin chemistry) as a closure that completes before
+   its Markov blanket is disturbed, and it reads the effects that faded under scrutiny (long-lived
+   electronic coherence in photosynthesis, vibrational olfaction) as cases where no quiet channel was
+   available (§5). This is a consistency reading. It does not yet predict anything that standard
+   open-quantum-systems theory does not.
+4. **The alphabet theorem does not transfer to genetic alphabets** (§4). QLF proves a signed axis frame has
+   2, 4 or 8 letters, never 6. A six-letter genetic alphabet already replicates in a living cell, so
+   "four bases because four twists" is rejected.
+
+## 1. Schrödinger's question, restated on the substrate
+
+Schrödinger's *What is Life?* (1944) set the problem in two parts. A gene must **persist**: it is copied
+with very low error over many generations at body temperature, which classical statistical physics cannot
+explain for a structure of a few thousand atoms. A gene must also **specify**: it has to encode a large,
+arbitrary message. A periodic crystal persists but specifies nothing, because it repeats one motif. A
+liquid can hold arbitrary arrangements but does not persist. His answer was an *aperiodic crystal*: a solid
+whose order is fixed by chemical bonds (persistence) but does not repeat (specification). Watson and Crick
+(1953) found that the double helix is exactly this.
+
+QLF has a precise vocabulary for both halves:
+
+| Schrödinger | QLF | where |
+|---|---|---|
+| persistence of the gene | a ZFA closure, heard at every capacity horizon (`closedAtHorizon_mono`) | [`Memetics_QLF.md`](Memetics_QLF.md) §5, [`ZFA_DNA.md`](ZFA_DNA.md) §1 |
+| quantum stability of the bond (Heitler–London, the Delbrück model) | a shared closure as the bond | [`Chemistry.md`](Chemistry.md) |
+| the message | the order of twists inside a closure, which count balance does not see | [`ZFA_DNA.md`](ZFA_DNA.md) §1 ("the coarse scale is carried entirely in the *order* of the twists") |
+| aperiodic | non-repeating *and* positive entropy (§3) | [`ZFA_DNA.md`](ZFA_DNA.md) §2, §11 |
+| the double strand | the rung `W · W†`, the Hermitian adjoint as the complementary strand | [`ZFA_DNA.md`](ZFA_DNA.md) §5 |
+
+## 2. The duplex is a closure for every sequence (exact)
+
+Map the Watson–Crick pairs onto two conjugate twist pairs on two spatial axes:
+
+| base | A | T | G | C |
+|---|---|---|---|---|
+| twist | `>` | `<` | `^` | `v` |
+
+Under this map the **reverse complement of a strand is its Hermitian adjoint**: `twist_core.adjoint_history`
+reverses the order and replaces every twist by its conjugate, and that is exactly what reverse complementing
+does. A hairpin duplex `w · revcomp(w)` is therefore the rung `W · W†` of [`ZFA_DNA.md`](ZFA_DNA.md) §5.
+[`quantum_biology_dna.py`](quantum_biology_dna.py) enumerates every sequence up to `n = 7` (21,844 sequences)
+and checks three things.
+
+- **Reverse complement = adjoint:** true for all of them.
+- **Every duplex closes:** count-balanced and Pauli-closed for all of them, whatever the sequence.
+- **The closure is blind to the sequence:** the Pauli fold of `w · w†` is `(−1)^n I` for **every** `w`
+  of length `n`. This also follows in one line: `fold(W†) = (−1)^{|W|} fold(W)^†` and the fold of a twist
+  word is unitary, so `fold(W W†) = (−1)^{|W|} I`.
+
+**Status:** exact computational result over the stated domain; the one-line argument makes it general.
+Physically it is **internal**: it is a fact about the map, and the map is a modelling choice (§4 says how
+far it can be pushed).
+
+What it says. [`Memetics_QLF.md`](Memetics_QLF.md) §2 proves that a closure keeps at most one bit of how it
+closed, its fold sign. For the duplex even that bit is fixed by the length. So **whether a duplex persists
+and what it says are independent**: the closure is the same for every message, and the message is not
+stored in the closure at all. This is the substrate form of Schrödinger's separation. It also says where the
+message must be read: something that is still open has to traverse the order (a polymerase, a ribosome).
+That is the memetics result again: the record of *which* way a closure took lives in a third party
+([`Memetics_QLF.md`](Memetics_QLF.md) §4). Gene expression is that third-party reading. This last sentence
+is a reading, not a result.
+
+## 3. The entropy ladder: aperiodic is not the same as informative (exact)
+
+Measured in bits per twist on closures of length `2n` ([`quantum_biology_dna.py`](quantum_biology_dna.py) §3):
+
+| genome | repeats? | bits per twist | note |
+|---|---|---|---|
+| periodic crystal (`e e e …`) | yes | 0 | persists, specifies nothing |
+| Fibonacci closure genome ([`ZFA_DNA.md`](ZFA_DNA.md) §11) | no | 0 | Sturmian: `n+1` factors of length `n`, checked to `n = 10` |
+| primordial DNA ([`ZFA_DNA.md`](ZFA_DNA.md) §1) | no | 1/3 | one free chirality per closure |
+| **Watson–Crick duplex** | no | **1** | `4^n` duplexes on `2n` twists = 2 bits per base pair |
+| all two-axis closures | no | `log₂ C(2n,n)² / 2n → 2` | 4, 36, 400, 4900, … checked by brute force to length 10 |
+
+Two things follow.
+
+- **A quasicrystal is not a gene.** Schrödinger's word "aperiodic" names the necessary symmetry property,
+  but the Fibonacci genome shows it is not sufficient: it never repeats and still carries no information.
+  The property a code needs is positive entropy per unit, which is a free choice at positive density
+  ([`ZFA_DNA.md`](ZFA_DNA.md) §2). DNA has the maximum its four-letter strand allows, 2 bits per base.
+- **The duplex pays half its capacity for the copy.** Two-axis closures of length `2n` approach 2 bits per
+  twist; the duplex uses 1. The other half is the complementary strand, which is fully determined by the
+  first. In information terms the second strand is a repetition code of rate 1/2, and that redundancy is
+  what template copying and mismatch repair read. **Status:** exact count; the "repetition code" sentence
+  is standard coding theory applied to the count, not a QLF claim.
+
+**Single strands do not close.** A single strand closes only if `#A = #T` and `#G = #C` exactly. The
+fraction of strands of length `2n` that do is `C(2n,n)²/16ⁿ ≈ 1/(πn)` (exact, checked to length 10).
+Real genomes satisfy this balance only approximately (Chargaff's second parity rule, which has standard
+explanations of its own), so the rule is not evidence that a single strand is a closure, and this note does
+not claim it.
+
+## 4. Rejected route: four bases because four twists
+
+The tempting next step is that the genetic alphabet has four letters *because* QLF's alphabet theorem
+allows only 2, 4 or 8 signed letters ([`QLF_AlphabetNecessity`](lean/QLF_AlphabetNecessity.lean): a closed
+signed axis frame has `|Σ| ∈ {2,4,8}`, six impossible). The kill condition is a working six-letter genetic
+alphabet, and it exists: the semi-synthetic *E. coli* of Zhang et al. (2017) stores and retrieves
+information with a third, unnatural base pair, and eight-letter hachimoji DNA (Hoshika et al. 2019) also
+pairs and transcribes. Base pairing needs only an involution (each letter has one complement); it does not
+need the product closure that forces the axis frame to be a Klein-four group. So the theorem constrains the
+twist alphabet, not nucleotide chemistry, and the route is **rejected**. The four-letter alphabet stays
+with the evolutionary explanations of Szathmáry (2003), which trade capacity against replication fidelity.
+
+## 5. The established quantum effects, and how QLF reads each
+
+The table keeps biology's own status separate from QLF's reading. "Established" means the effect is
+measured and its quantum character is not seriously disputed; "contested" means the measurement stands but
+the functional or quantum interpretation is disputed or has been largely withdrawn.
+
+| effect | biology's status | QLF reading | QLF status |
+|---|---|---|---|
+| **Hydrogen tunnelling in enzymes** (hydride, proton and H-atom transfer; temperature-independent kinetic isotope effects) | established (Klinman & Kohen 2013) | the transfer is a closure on the far side of the barrier, reached through the gauge axis ([`Tunnelling.md`](Tunnelling.md)); protein motion that narrows the barrier changes which closures are reachable | consistency |
+| **Proton tunnelling in DNA base pairs** (tautomers that mispair on replication) | established in theory, small in magnitude (Löwdin 1963; Slocombe, Sacchi & Al-Khalili 2022) | the quantum source of variation in [`Evolution.md`](Evolution.md) §5; in §2's terms it changes the message and leaves the closure intact | consistency |
+| **Radical-pair magnetoreception** (spin-correlated radical pairs in cryptochrome; singlet and triplet yields depend on field direction) | strong: the mechanism is predicted (Ritz, Adem & Schulten 2000) and the magnetic sensitivity of robin CRY4 is measured in vitro (Xu et al. 2021); the in vivo chain is not complete | the singlet is a joint closure of two spins ([`MultiParticle.md`](MultiParticle.md), [`Entanglement.md`](Entanglement.md)); the compass reads which joint closure completes first, and electron spins are a naturally quiet channel | consistency |
+| **Photosynthetic energy transfer** (2D spectroscopy oscillations in the FMO complex, Engel et al. 2007) | contested: the long-lived beats are now mostly assigned to vibrational or vibronic coherence, and electronic coherence is too short-lived to matter for efficiency (Duan et al. 2017; *Science Advances* 7, eabc4631, 2021) | an electronic excitation delocalised over a warm protein has no quiet channel ([`TheQuantumBrain.md`](TheQuantumBrain.md) §3), so the downgrade is what the quiet-frequency reading expects | retrodiction |
+| **Vibrational olfaction** (receptors sensing molecular vibrations by inelastic electron tunnelling) | contested and mostly disfavoured: deuterated odorants do not change responses of the tested human receptors (Block et al. 2015) | no reading offered | none |
+| **Posner-molecule nuclear spins in cognition** (Fisher 2015) | speculative; the spin dynamics are modelled and constrained (Player & Hore 2018), with no in vivo test | nuclear spins are the cleanest quiet channel, which is why [`TheQuantumBrain.md`](TheQuantumBrain.md) §2 treats Fisher as its strongest anchor | conjecture (inherited) |
+| **Microtubule coherence, Orch-OR** | speculative; decoherence estimates are short (Tegmark 2000); tryptophan-network superradiance is measured but its role in cognition is untested | [`TheQuantumBrain.md`](TheQuantumBrain.md), [`Consciousness.md`](Consciousness.md) | conjecture (inherited) |
+
+Overviews of the field: Lambert et al. (2013); Cao et al. (2020).
+
+**The common thread, stated so it can fail.** Every row where biology's status is *established* is a
+discrete event that completes faster than its environment can disturb it, or that runs on spin, which
+couples weakly to a warm bath. Every row that faded under scrutiny relied on extended electronic coherence
+in warm protein. QLF names this pattern: a functional quantum effect is a closure whose Markov blanket is
+quiet on the time scale of the closure ([`TheQuantumBrain.md`](TheQuantumBrain.md) §3,
+[`Decoherence.md`](Decoherence.md)). Two honesty notes. First, standard open-quantum-systems theory says the
+same thing in terms of dephasing rates, so on this evidence the pattern is **consistency, not
+confirmation** (method rule: symmetry-locked agreement is not evidence). Second, the photosynthesis row was
+read after the field had already downgraded it, so it is a **retrodiction**.
+
+## 6. What could be tested
+
+Each item names what would count against it.
+
+1. **Quiet-channel conjecture.** *Claim:* every biological function shown to depend on quantum coherence
+   uses either a tunnelling event or a spin degree of freedom. *Kill condition:* a
+   function shown, by a knockout or isotope experiment, to require electronic coherence that outlives
+   vibrational dephasing in a warm protein. *Status:* conjecture. It shares its predictions with standard
+   theory, so passing it is weak; failing it would remove §5's common thread.
+2. **Magnetic isotope effects separate spin from mass.** If a biological effect runs on radical-pair spin
+   chemistry, swapping a nucleus with spin for one without (for example ¹²C and ¹³C, or ¹⁴N and ¹⁵N in the
+   flavin) should change the outcome through hyperfine coupling, independently of the mass change. This is
+   the field's own test, not QLF's. QLF adds only that the quiet channel is the spin, so the size of the
+   effect should follow the hyperfine structure and not the mass. *Status:* consistency.
+3. **Sequence blindness of persistence (§2).** *Claim:* the stability of a duplex against the substrate's
+   own closure test is the same for every sequence. Real duplex stability does depend on sequence
+   (stacking energies, GC content), so the claim is about the closure layer only, and any sequence
+   dependence of stability has to come from the chemistry layered on top. *Status:* internal; this marks
+   where the substrate ends and the chemistry begins, and makes no prediction about melting temperatures.
+4. **What it costs to copy.** [`Fredkin_QLF.md`](Fredkin_QLF.md) shows that a reversible operation costs no
+   free action and that the bill is the information discarded. Applied to replication, the minimum
+   dissipation of copying a strand is set by what is erased (error correction, release of the template),
+   which is Bennett's (1982) reading of polymerase as a Brownian computer. *Status:* open bridge; QLF
+   reproduces the known bound's form and supplies no new number.
+
+## 7. Scope
+
+- QLF does not derive any biological rate, error rate, coherence time or field sensitivity. Where it agrees
+  with quantum biology, it inherits quantum mechanics' predictions and adds a vocabulary.
+- The base-to-twist map of §2 is a choice. Other assignments (A/T on `x`, G/C on `z`, and so on) give the
+  same results because only the conjugate pairing is used.
+- Nothing here relies on the speculative rows of §5. They are listed with their status so that a reader can
+  see which parts of [`TheQuantumBrain.md`](TheQuantumBrain.md) rest on them.
+
+## References
+
+### Internal
+- [`ZFA_DNA.md`](ZFA_DNA.md) §1, §2, §5, §11: the replication rule, the entropy spectrum, the double helix as `W · W†`, the Fibonacci genome.
+- [`Memetics_QLF.md`](Memetics_QLF.md): a closure keeps at most one bit of how it closed; records live in third parties.
+- [`Evolution.md`](Evolution.md) §5: proton tunnelling as the quantum generate step.
+- [`TheQuantumBrain.md`](TheQuantumBrain.md) §2–§3, [`Consciousness.md`](Consciousness.md) §5: quiet frequencies in neural tissue.
+- [`Tunnelling.md`](Tunnelling.md), [`Decoherence.md`](Decoherence.md), [`Protein_Folding.md`](Protein_Folding.md), [`Chemistry.md`](Chemistry.md), [`Fredkin_QLF.md`](Fredkin_QLF.md).
+- [`lean/QLF_AlphabetNecessity.lean`](lean/QLF_AlphabetNecessity.lean): `|Σ| ∈ {2,4,8}` (§4).
+
+### External
+- Schrödinger, E. (1944). *What is Life?* Cambridge University Press.
+- Watson, J. D. & Crick, F. H. C. (1953). *Molecular structure of nucleic acids.* Nature 171, 737–738.
+- Löwdin, P.-O. (1963). *Proton tunneling in DNA and its biological implications.* Rev. Mod. Phys. 35, 724.
+- Slocombe, L., Sacchi, M. & Al-Khalili, J. (2022). *An open quantum systems approach to proton tunnelling in DNA.* Communications Physics 5, 109.
+- Klinman, J. P. & Kohen, A. (2013). *Hydrogen tunneling links protein dynamics to enzyme catalysis.* Annu. Rev. Biochem. 82, 471–496.
+- Ritz, T., Adem, S. & Schulten, K. (2000). *A model for photoreceptor-based magnetoreception in birds.* Biophys. J. 78, 707–718.
+- Xu, J. et al. (2021). *Magnetic sensitivity of cryptochrome 4 from a migratory songbird.* Nature 594, 535–540.
+- Engel, G. S. et al. (2007). *Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems.* Nature 446, 782–786.
+- Duan, H.-G. et al. (2017). *Nature does not rely on long-lived electronic quantum coherence for photosynthetic energy transfer.* PNAS 114, 8493–8498.
+- *Do photosynthetic complexes use quantum coherence to increase their efficiency? Probably not.* Science Advances 7, eabc4631 (2021), doi:10.1126/sciadv.abc4631.
+- Block, E. et al. (2015). *Implausibility of the vibrational theory of olfaction.* PNAS 112, E2766–E2774.
+- Fisher, M. P. A. (2015). *Quantum cognition: the possibility of processing with nuclear spins in the brain.* Annals of Physics 362, 593–602.
+- Player, T. C. & Hore, P. J. (2018). *Posner qubits: spin dynamics of entangled Ca₉(PO₄)₆ molecules and their role in neural processing.* J. R. Soc. Interface 15, 20180494.
+- Tegmark, M. (2000). *Importance of quantum decoherence in brain processes.* Phys. Rev. E 61, 4194–4206.
+- Zhang, Y. et al. (2017). *A semi-synthetic organism that stores and retrieves increased genetic information.* Nature 551, 644–647.
+- Hoshika, S. et al. (2019). *Hachimoji DNA and RNA: a genetic system with eight building blocks.* Science 363, 884–887.
+- Szathmáry, E. (2003). *Why are there four letters in the genetic alphabet?* Nat. Rev. Genet. 4, 995–1001.
+- Bennett, C. H. (1982). *The thermodynamics of computation — a review.* Int. J. Theor. Phys. 21, 905–940.
+- Lambert, N. et al. (2013). *Quantum biology.* Nature Physics 9, 10–18.
+- Cao, J. et al. (2020). *Quantum biology revisited.* Science Advances 6, eaaz4888.

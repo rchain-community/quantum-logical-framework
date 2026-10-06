@@ -164,6 +164,7 @@ everything else.
 - [`Philosophy.md`](Philosophy.md) §9 — admissibility, not telos (the causal-arrow discipline).
 - [`CP-Violation-and-Chirality.md`](CP-Violation-and-Chirality.md) — the QLF evolutionary-game-theory perspective (replicator dynamics, homochirality) this extends.
 - [`Active_Inference_Mathematics.md`](Active_Inference_Mathematics.md) — generate (search) vs verify (recognition); the free-energy / active-inference reading.
+- [`Quantum_Biology.md`](Quantum_Biology.md) — the quantum-biology framing collected: the duplex as a sequence-blind closure (Schrödinger's aperiodic crystal), and each established effect with its status.
 - [`Memetics_QLF.md`](Memetics_QLF.md) — cultural replicators: a closure keeps at most one bit of how it closed, so a meme's record lives in third parties.
 
 ### External
