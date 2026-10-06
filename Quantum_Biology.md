@@ -274,6 +274,48 @@ same thing in terms of dephasing rates, so on this evidence the pattern is **con
 confirmation** (method rule: symmetry-locked agreement is not evidence). Second, the photosynthesis row was
 read after the field had already downgraded it, so it is a **retrodiction**.
 
+## 5a. The quiet-frequency criterion, in numbers
+
+The common thread above is stated in words. [`TheQuantumBrain.md`](TheQuantumBrain.md) §3 and
+[`Crystal_QuantumOS.md`](Crystal_QuantumOS.md) §2 give it a quantitative form: a channel is quiet when its
+linewidth is far below its frequency (many coherent cycles, `f·T₂ ≫ 1`) and its coupling to the bath is
+suppressed, so that the coherence outlasts the thermal time `h/kT` (155 fs at 310 K, 163 fs at 295 K) by a
+wide margin. Here is each row of §5 for which the literature gives a coherence time.
+
+| channel | frequency `f` | coherence time `T₂` | cycles `f·T₂` | `T₂ / (h/kT)` | verdict |
+|---|---|---|---|---|---|
+| FMO excitonic coherence, 295 K | splittings of order 100 cm⁻¹, ≈ 3 THz | ≈ 60 fs, measured (Duan et al. 2017) | ≈ 0.2 | ≈ 0.4 | **not quiet**: gone within one thermal time |
+| Microtubule superposition (Orch-OR), 310 K | — | ≈ 10⁻¹³ s, estimated (Tegmark 2000) | — | ≈ 0.6 | **not quiet**: 4 × 10⁻¹² of the 25 ms Orch-OR needs |
+| Radical-pair electron spins in the geomagnetic field (50 µT), 310 K | Larmor 1.40 MHz | longer than a few µs, **needed** for the sharp compass response (Hiscock et al. 2016) | ≈ 3–7 | ≈ 10⁷ | **quiet, if the requirement is met** |
+| ³¹P nuclear spins in Posner molecules (50 µT), 310 K | Larmor 862 Hz | up to 37 min, an **upper bound** under idealised conditions (Player & Hore 2018) | ≈ 2 × 10⁶ | ≈ 10¹⁶ | **quiet, if realised** |
+| ¹⁵¹Eu³⁺:Y₂SiO₅ nuclear spin (engineered reference) | hyperfine, MHz range | 6 h, measured (Zhong et al. 2015) | ≫ 10⁶ | ≈ 10¹⁵ at its 2 K operating point | quiet, but measured cryogenically |
+
+Enzyme and DNA tunnelling have no row: they are single events, not sustained oscillations, and the quiet
+condition for them is that the transfer completes before the bath moves, which is the "discrete event"
+half of the common thread rather than this table.
+
+Three things the numbers show.
+
+1. **Frequency alone does not sort the channels.** Every channel in the table sits below `kT/h`
+   (6.5 THz at 310 K), so the bath has quanta at all of them. What separates the quiet rows from the
+   loud ones is the coupling: spins couple to a warm protein only through weak magnetic interactions,
+   while a delocalised electronic excitation couples through the full Coulomb interaction with the
+   protein's moving charges. That matches [`TheQuantumBrain.md`](TheQuantumBrain.md) §3's statement that
+   protection is structural, not thermodynamic.
+2. **The table splits into two groups that are about seven orders of magnitude apart**, which is why the
+   sorting in §5 does not depend on any borderline case.
+3. **The quiet rows are the ones still unconfirmed in vivo.** The radical-pair coherence time is what
+   the compass's precision needs, not a measurement in a bird; the Posner figure is
+   a theoretical upper bound. The measured times in the table are the short ones. So the criterion
+   predicts which channels *can* carry function; it does not show that they do.
+
+**Status: consistency.** The same sorting follows from ordinary dephasing theory without QLF, and the
+Eu:YSO row shows spectral screening working at 2 K, not at body temperature. What QLF adds is the
+identification of the quiet channel with a deep Markov blanket, and that identification makes no
+numerical prediction here beyond what dephasing theory already gives. The one number that would test the
+quiet-channel reading of the radical-pair compass is a measured spin coherence time in cryptochrome at
+physiological temperature (§6).
+
 ## 6. What could be tested
 
 Each item names what would count against it.
@@ -309,7 +351,7 @@ could have come out otherwise. Where QLF only restates the standard answer, the 
 | **Schrödinger's question:** how can a gene be stable and arbitrary at once? | Stability is closure, content is order, and ZFA charges only for closure. The duplex closes for every sequence with the same fold (§2). | **Resolved in substrate terms** (proved in `QLF_Duplex`, internal). The chemistry of real duplex stability is a separate layer (§6 item 3). |
 | **Aperiodic or informative?** Is non-repetition what a genetic material needs? | No: the Fibonacci genome is aperiodic with zero entropy. The requirement is positive entropy per unit (§3). | **Resolved** (exact). It sharpens Schrödinger's term; it does not contradict him. |
 | **How does information survive content-blind copying?** (Spiegelman's monster) | Content-blind copying favours the empty replicator (Memetics T6); content survives only under selection that reads it, which is expression (§3a). | **Consistency.** Same answer as standard evolutionary theory, reached from the memetics census. |
-| **Why does functional coherence survive warm, wet tissue in some cases and not others?** | The surviving effects run on quiet channels: tunnelling events and spins (§5). | **Consistency / retrodiction.** Standard dephasing theory gives the same sorting. QLF adds a name, not a number. |
+| **Why does functional coherence survive warm, wet tissue in some cases and not others?** | The surviving effects run on quiet channels: tunnelling events and spins (§5); the measured and required coherence times separate by about seven orders of magnitude in thermal times (§5a). | **Consistency / retrodiction.** Standard dephasing theory gives the same sorting. QLF adds a name, not a number. |
 | **When is a radical pair "measured"?** | The recombination closure is the measurement event; no separate collapse step is needed ([`Measurement_Problem.md`](Measurement_Problem.md), [`Decoherence.md`](Decoherence.md)). | **Consistency.** Spin-chemistry models already work without a collapse postulate, so this removes no tension the field feels. |
 | **Why four bases?** | The alphabet theorem does not force four (§4). The working 4-, 6- and 8-letter alphabets use two, three and four twist axes, and six letters fit 21 meanings in two-letter codons most tightly (§4a). | **Rejected route** for a derivation of four; **consistency** for the axis count. The choice of four is left to evolutionary accounts (Szathmáry 2003). |
 | **Homochirality:** why L-amino acids, D-sugars and a right-handed helix? | Counting cannot choose: mirroring an axis maps closures to closures one-to-one, for folds ([`Protein_Folding.md`](Protein_Folding.md) §7) and the same holds for duplexes, since the `x`-axis mirror (A↔T) is a closure-preserving involution on them, so no duplex census can prefer a class over its mirror. QLF places the bias upstream, in the substrate's handedness ([`QLF_Handedness`](lean/QLF_Handedness.lean), [`CP-Violation-and-Chirality.md`](CP-Violation-and-Chirality.md) §3). | **Open.** The no-go is exact; the upstream claim is a conjecture. It has to beat the known problem that parity-violating energy differences between enantiomers are tiny, so it needs an amplification step, as standard accounts do (autocatalytic amplification, Soai et al. 1995). Until QLF names a mechanism that changes a count, this is not resolved. |
@@ -353,6 +395,8 @@ the obstacle named.
 - Block, E. et al. (2015). *Implausibility of the vibrational theory of olfaction.* PNAS 112, E2766–E2774.
 - Fisher, M. P. A. (2015). *Quantum cognition: the possibility of processing with nuclear spins in the brain.* Annals of Physics 362, 593–602.
 - Player, T. C. & Hore, P. J. (2018). *Posner qubits: spin dynamics of entangled Ca₉(PO₄)₆ molecules and their role in neural processing.* J. R. Soc. Interface 15, 20180494.
+- Hiscock, H. G. et al. (2016). *The quantum needle of the avian magnetic compass.* PNAS 113, 4634–4639.
+- Zhong, M. et al. (2015). *Optically addressable nuclear spins in a solid with a six-hour coherence time.* Nature 517, 177–180.
 - Tegmark, M. (2000). *Importance of quantum decoherence in brain processes.* Phys. Rev. E 61, 4194–4206.
 - Zhang, Y. et al. (2017). *A semi-synthetic organism that stores and retrieves increased genetic information.* Nature 551, 644–647.
 - Hoshika, S. et al. (2019). *Hachimoji DNA and RNA: a genetic system with eight building blocks.* Science 363, 884–887.
