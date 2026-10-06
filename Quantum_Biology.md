@@ -35,7 +35,9 @@ fail.
    open-quantum-systems theory does not.
 4. **The alphabet theorem does not transfer to genetic alphabets** (§4). QLF proves a signed axis frame has
    2, 4 or 8 letters, never 6. A six-letter genetic alphabet already replicates in a living cell, so
-   "four bases because four twists" is rejected.
+   "four bases because four twists" is rejected. What survives (§4a) is that the working 4-, 6- and
+   8-letter alphabets use two, three and four twist axes, and that six letters fit the 21 protein meanings
+   most tightly.
 5. **A gene is a meme that solved the copying problem** (§3a). [`Memetics_QLF.md`](Memetics_QLF.md)
    found that a closure has a meme's longevity but no fidelity or fecundity of its own, and that
    content-blind copying favours the meme that carries nothing. DNA supplies the missing two through the
@@ -179,6 +181,39 @@ need the product closure that forces the axis frame to be a Klein-four group. So
 twist alphabet, not nucleotide chemistry, and the route is **rejected**. The four-letter alphabet stays
 with the evolutionary explanations of Szathmáry (2003), which trade capacity against replication fidelity.
 
+### 4a. What the substrate does say about 4, 6 and 8 letters
+
+The theorem's "six impossible" is about a *closed* frame, one whose products stay in the alphabet, and that
+needs the gauge pair. The six **spatial** twists `^ v < > / \` are a perfectly good letter set; they are
+the six signed steps of [`Protein_Folding.md`](Protein_Folding.md)'s lattice. Counted by axes used, the
+three genetic alphabets that work are exactly the three sub-frames:
+
+| alphabet | base pairs | twist axes used | example |
+|---|---|---|---|
+| 4 letters | 2 | two spatial axes | natural DNA (§2) |
+| 6 letters | 3 | all three spatial axes | Zhang et al. (2017) |
+| 8 letters | 4 | three spatial axes and the gauge axis | hachimoji (Hoshika et al. 2019) |
+
+So the substrate does not pick four, but every working alphabet is two letters per axis, with one
+complementary pair per axis. *Status: consistency (a description of known alphabets, nothing excluded that
+chemistry allows).*
+
+**Codon length and compression.** Proteins need 21 meanings (20 amino acids and stop), which is
+`log₂ 21 = 4.39` bits per codon. The shortest codon that covers them depends on the alphabet:
+
+| letters | shortest codon | codons | bits per codon | fraction used (4.39 / bits) |
+|---|---|---|---|---|
+| 4 | 3 | 64 | 6.00 | 0.73 |
+| 6 | 2 | 36 | 5.17 | 0.85 |
+| 8 | 2 | 64 | 6.00 | 0.73 |
+
+Six letters is the alphabet that fits 21 meanings most tightly: two-letter codons with less spare capacity
+than either neighbour. Two caveats keep this from being a claim. First, the natural code's spare 27% is not
+waste. Its degeneracy sits mostly in the third codon position, so most single-letter errors there are
+silent, which is error tolerance rather than missing compression. Second, the six-letter organism of Zhang
+et al. still reads triplet codons; the two-letter code is arithmetic, not something any organism has been
+shown to use. *Status: exact arithmetic; the biological reading is open.*
+
 ## 5. The established quantum effects, and how QLF reads each
 
 The table keeps biology's own status separate from QLF's reading. "Established" means the effect is
@@ -244,7 +279,7 @@ could have come out otherwise. Where QLF only restates the standard answer, the 
 | **How does information survive content-blind copying?** (Spiegelman's monster) | Content-blind copying favours the empty replicator (Memetics T6); content survives only under selection that reads it, which is expression (§3a). | **Consistency.** Same answer as standard evolutionary theory, reached from the memetics census. |
 | **Why does functional coherence survive warm, wet tissue in some cases and not others?** | The surviving effects run on quiet channels: tunnelling events and spins (§5). | **Consistency / retrodiction.** Standard dephasing theory gives the same sorting. QLF adds a name, not a number. |
 | **When is a radical pair "measured"?** | The recombination closure is the measurement event; no separate collapse step is needed ([`Measurement_Problem.md`](Measurement_Problem.md), [`Decoherence.md`](Decoherence.md)). | **Consistency.** Spin-chemistry models already work without a collapse postulate, so this removes no tension the field feels. |
-| **Why four bases?** | The alphabet theorem does not apply (§4). | **Rejected route.** Left to evolutionary accounts (Szathmáry 2003). |
+| **Why four bases?** | The alphabet theorem does not force four (§4). The working 4-, 6- and 8-letter alphabets use two, three and four twist axes, and six letters fit 21 meanings in two-letter codons most tightly (§4a). | **Rejected route** for a derivation of four; **consistency** for the axis count. The choice of four is left to evolutionary accounts (Szathmáry 2003). |
 | **Homochirality:** why L-amino acids, D-sugars and a right-handed helix? | Counting cannot choose: mirroring an axis maps closures to closures one-to-one, for folds ([`Protein_Folding.md`](Protein_Folding.md) §7) and the same holds for duplexes, since the `x`-axis mirror (A↔T) is a closure-preserving involution on them, so no duplex census can prefer a class over its mirror. QLF places the bias upstream, in the substrate's handedness ([`QLF_Handedness`](lean/QLF_Handedness.lean), [`CP-Violation-and-Chirality.md`](CP-Violation-and-Chirality.md) §3). | **Open.** The no-go is exact; the upstream claim is a conjecture. It has to beat the known problem that parity-violating energy differences between enantiomers are tiny, so it needs an amplification step, as standard accounts do (autocatalytic amplification, Soai et al. 1995). Until QLF names a mechanism that changes a count, this is not resolved. |
 | **What does copying cost?** | The reversible part is free and the bill is the erased information (§6 item 4). | **Open bridge.** Reproduces Bennett's form, no new number. |
 
