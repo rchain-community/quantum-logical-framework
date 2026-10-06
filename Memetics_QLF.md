@@ -313,7 +313,9 @@ governs records. Multiplicity governs the census of possibilities.
 **T6 passes.** With copying blind to content, the one-axis variant takes over in 20 of 20 seeds, and the
 variants die out in the order `k = 4, 3, 2` in 18 of 20 seeds at `R = 6` (20 of 20 at `R = 10`). The
 winner is the variant whose closures carry **zero** sign bits (§3). In this model fecundity selects
-against information: the meme that spreads is the one that makes the fewest distinctions.
+against information: the meme that spreads is the one that makes the fewest distinctions. Spiegelman's
+in-vitro RNA experiment is the biological instance, and the DNA duplex's answer to it is compared in
+[`Quantum_Biology.md`](Quantum_Biology.md) §3a.
 
 **Phoneme comparison (made because T2 passed): negative.** Phoneme systems are built from several binary
 contrasts. The simulation collapses to a single one. So persistence through closure plus content-blind

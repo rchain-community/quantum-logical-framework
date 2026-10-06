@@ -1,7 +1,7 @@
 # Quantum biology in QLF: the aperiodic crystal and the quiet channels
 
 **Status:** one exact computational result (§2, [`quantum_biology_dna.py`](quantum_biology_dna.py)),
-one rejected route (§4), an evidence table that separates established biology from contested biology
+one rejected route (§4), a comparison with the memetics results (§3a), an evidence table that separates established biology from contested biology
 (§5), and a set of readings and conjectures that are labelled as such (§3, §6). Status labels follow
 [`ScientificApproach.md`](ScientificApproach.md) §3. Nothing here is a Lean theorem, and no axiom is added.
 
@@ -36,6 +36,12 @@ fail.
 4. **The alphabet theorem does not transfer to genetic alphabets** (§4). QLF proves a signed axis frame has
    2, 4 or 8 letters, never 6. A six-letter genetic alphabet already replicates in a living cell, so
    "four bases because four twists" is rejected.
+5. **A gene is a meme that solved the copying problem** (§3a). [`Memetics_QLF.md`](Memetics_QLF.md)
+   found that a closure has a meme's longevity but no fidelity or fecundity of its own, and that
+   content-blind copying favours the meme that carries nothing. DNA supplies the missing two through the
+   complementary strand and the polymerase, and Spiegelman's monster is the memetics T6 result observed in
+   a test tube. What keeps genes informative is a selection that reads the content, which is the pressure
+   the memetics note said its model lacked.
 
 ## 1. Schrödinger's question, restated on the substrate
 
@@ -120,6 +126,44 @@ Real genomes satisfy this balance only approximately (Chargaff's second parity r
 explanations of its own), so the rule is not evidence that a single strand is a closure, and this note does
 not claim it.
 
+## 3a. Genes and memes: the replicator that solved copying
+
+[`Memetics_QLF.md`](Memetics_QLF.md) asks whether every closure is a meme, scoring closures on Dawkins'
+three replicator properties. Its §5 table, with a column added for the duplex of §2:
+
+| replicator property | a bare closure (Memetics §5) | the DNA duplex |
+|---|---|---|
+| longevity | yes: `closedAtHorizon_mono` | yes: the duplex is a closure for every sequence (§2) |
+| fidelity | no for the closure (no-cloning); yes for a classical record of it | the message is classical order, not a quantum state, so no-cloning does not bite; the complementary strand is a complete record of it |
+| fecundity | zero by itself; only third parties that record it make copies | the polymerase is the third party, and template copying turns one record into two duplexes |
+
+Three links to the memetics results, each with its status.
+
+- **Each strand is a complete record of the other.** Memetics T2 found that each partner of a random shared
+  closure holds 4.8 to 6.1 bits about the other. For the duplex the record is total: `I(top; bottom) =
+  H(top) = 2n` bits, because the bottom strand is fixed by the top one. The sign question of T2b degenerates:
+  the duplex fold is `(−1)^n I`, so `H(σ) = 0` and there is no sign bit to be local or bi-local. *Exact
+  (follows from §2).*
+- **Content-blind copying favours the empty replicator, and biology shows it.** Memetics T6 found that with
+  copying blind to content, the variant whose closures carry zero bits takes over in 20 of 20 seeds. A
+  polymerase is content-blind in exactly this sense: it copies any sequence. The biological test is
+  Spiegelman's in-vitro experiment (Mills, Peterson & Spiegelman 1967): Qβ RNA serially transferred with
+  its replicase and selected only for being copied lost most of its genome and kept only what the replicase
+  needed to recognise it. T6 and Spiegelman's monster are the same outcome. *Consistency: the experiment
+  predates the model, so it is not a confirmation.*
+- **What keeps genes informative is selection that reads the content.** The memetics note concluded that
+  "something has to select for distinctness, which this model does not have." In a cell that selection is
+  expression: the sequence is read by a ribosome into a protein, the protein takes part in closures with
+  the environment (the niche of [`Evolution.md`](Evolution.md) §3), and only those closures depend on the
+  content. Replication keeps the record and expression tests it. *Interpretation; it is the standard
+  genotype-phenotype split, stated in closure terms.*
+
+Read across the two notes, a gene is the case where all three replicator properties are met, and a meme
+in the memetics sense is a record that has fecundity only through others' copying. The proposal "every
+closure is a meme" becomes, for genes: *every duplex is a meme candidate, and it is a gene to the degree
+that its content is both copied (polymerase) and tested (expression).* That can fail sequence by sequence,
+which is the same standard Memetics §5 set.
+
 ## 4. Rejected route: four bases because four twists
 
 The tempting next step is that the genetic alphabet has four letters *because* QLF's alphabet theorem
@@ -198,7 +242,7 @@ Each item names what would count against it.
 
 ### Internal
 - [`ZFA_DNA.md`](ZFA_DNA.md) §1, §2, §5, §11: the replication rule, the entropy spectrum, the double helix as `W · W†`, the Fibonacci genome.
-- [`Memetics_QLF.md`](Memetics_QLF.md): a closure keeps at most one bit of how it closed; records live in third parties.
+- [`Memetics_QLF.md`](Memetics_QLF.md): a closure keeps at most one bit of how it closed; records live in third parties; T2 and T6 are compared with the duplex in §3a.
 - [`Evolution.md`](Evolution.md) §5: proton tunnelling as the quantum generate step.
 - [`TheQuantumBrain.md`](TheQuantumBrain.md) §2–§3, [`Consciousness.md`](Consciousness.md) §5: quiet frequencies in neural tissue.
 - [`Tunnelling.md`](Tunnelling.md), [`Decoherence.md`](Decoherence.md), [`Protein_Folding.md`](Protein_Folding.md), [`Chemistry.md`](Chemistry.md), [`Fredkin_QLF.md`](Fredkin_QLF.md).
@@ -207,6 +251,7 @@ Each item names what would count against it.
 ### External
 - Schrödinger, E. (1944). *What is Life?* Cambridge University Press.
 - Watson, J. D. & Crick, F. H. C. (1953). *Molecular structure of nucleic acids.* Nature 171, 737–738.
+- Mills, D. R., Peterson, R. L. & Spiegelman, S. (1967). *An extracellular Darwinian experiment with a self-duplicating nucleic acid molecule.* PNAS 58, 217–224.
 - Löwdin, P.-O. (1963). *Proton tunneling in DNA and its biological implications.* Rev. Mod. Phys. 35, 724.
 - Slocombe, L., Sacchi, M. & Al-Khalili, J. (2022). *An open quantum systems approach to proton tunnelling in DNA.* Communications Physics 5, 109.
 - Klinman, J. P. & Kohen, A. (2013). *Hydrogen tunneling links protein dynamics to enzyme catalysis.* Annu. Rev. Biochem. 82, 471–496.
