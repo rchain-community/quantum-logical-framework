@@ -1,9 +1,10 @@
 # Quantum biology in QLF: the aperiodic crystal and the quiet channels
 
-**Status:** one proved theorem with its exact computational check (§2, [`QLF_Duplex`](lean/QLF_Duplex.lean), no
-axioms; [`quantum_biology_dna.py`](quantum_biology_dna.py)),
-one rejected route (§4), a comparison with the memetics results (§3a), an evidence table that separates established biology from contested biology
-(§5), and a set of readings and conjectures that are labelled as such (§3, §6). Status labels follow
+**Status:** proved results for the DNA duplex (§2), its renewal as a gene (§3a) and RNA hairpins (§3b), all in
+[`QLF_Duplex`](lean/QLF_Duplex.lean) with no axioms and checked by enumeration in
+[`quantum_biology_dna.py`](quantum_biology_dna.py); one rejected route (§4); an evidence table that separates
+established biology from contested biology (§5), with the quiet-frequency criterion put in numbers (§5a);
+and readings and conjectures labelled as such (§3a, §3b, §6). Status labels follow
 [`ScientificApproach.md`](ScientificApproach.md) §3. No axiom is added.
 
 QLF already touches quantum biology in four places, each from its own angle:
@@ -32,7 +33,7 @@ fail.
    established effect (enzyme tunnelling, radical-pair spin chemistry) as a closure that completes before
    its Markov blanket is disturbed, and it reads the effects that faded under scrutiny (long-lived
    electronic coherence in photosynthesis, vibrational olfaction) as cases where no quiet channel was
-   available (§5). This is a consistency reading. It does not yet predict anything that standard
+   available (§5); in numbers, the two groups sit about seven orders of magnitude apart in thermal times (§5a). This is a consistency reading. It does not yet predict anything that standard
    open-quantum-systems theory does not.
 4. **The alphabet theorem does not transfer to genetic alphabets** (§4). QLF proves a signed axis frame has
    2, 4 or 8 letters, never 6. A six-letter genetic alphabet already replicates in a living cell, so
@@ -46,8 +47,9 @@ fail.
    a test tube. What keeps genes informative is a selection that reads the content, which is the pressure
    the memetics note said its model lacked.
 6. **Which outstanding questions this resolves** (§6a): Schrödinger's question and the
-   aperiodic-versus-informative distinction are resolved in substrate terms; four others get the standard
-   answer in QLF's vocabulary; homochirality stays open, with the obstacle named.
+   aperiodic-versus-informative distinction are resolved in substrate terms; three others get the standard
+   answer in QLF's vocabulary; the cost of copying is an open bridge; homochirality stays open, with the
+   obstacle named.
 
 ## 1. Schrödinger's question, restated on the substrate
 
@@ -358,8 +360,8 @@ could have come out otherwise. Where QLF only restates the standard answer, the 
 | **What does copying cost?** | The reversible part is free and the bill is the erased information (§6 item 4). | **Open bridge.** Reproduces Bennett's form, no new number. |
 
 So, of the eight, QLF resolves two in its own terms (Schrödinger's question and the aperiodic/informative
-distinction), agrees with the standard answer on four, rejects one route, and leaves homochirality open with
-the obstacle named.
+distinction), agrees with the standard answer on three, reproduces the form of Bennett's copying bound without a
+new number, rejects one route, and leaves homochirality open with the obstacle named.
 
 ## 7. Scope
 
