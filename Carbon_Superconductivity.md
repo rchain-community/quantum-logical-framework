@@ -52,8 +52,8 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 33 | the singlet gluon | R_prod's ninth gluon is a massless baryon-number force of order `10³⁵`–`10³⁷` × gravity; tested against torsion-balance bounds | §33a: **excluded by 45–47 orders**: predicted `α̃` of `10³⁵`–`10³⁷` against a torsion-balance bound of `1.6 × 10⁻¹⁰` (Schlamminger 2008, from the stated η); confirms the commutator rule |
 | 34 | why colour is a Weyl qutrit | from (A) steps add, (B) `SL(2,3)` covariance, (C) non-triviality: the cocycle must be nontrivial, so the colour line is the unique 3-dim Weyl representation (3 colours = √9) | §34a: K4.1 and K4.3 pass; **K4.2 fails** (spin's covariance needs phases, and with phases characters survive); repaired post hoc by (C\*), non-zero flux (needed by §23b, §32b, and `C_A ≠ 0`): K4 follows from (A) + (B) + (C\*), with 3 colours = √9 |
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
-| 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3 |
-| 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | pre-registered, not yet run |
+| 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
+| 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2870,6 +2870,8 @@ to the third axis. So the census gives the colour carrier three states with equa
 * **Still imported:** that the response per state is a sum of an orbital and a spin term with a statistics sign.
   This is the worldline form, `e^{iFA}` times the spin factor.
 
+*Note added after §37a: the sharper test below was run and R3 fails it. The three-state count is excluded.*
+
 **A sharper test, not yet registered.** Three gluon states would raise the gluon count in a hot quark-gluon plasma
 from 16 to 24, which is a 50 % larger Stefan–Boltzmann limit for pure gauge theory. Lattice thermodynamics measures
 the approach to that limit. It does not involve `β₀`, so it would test R3 independently. If it is taken up, it
@@ -2911,7 +2913,40 @@ need `x ≥ 0.86`. **Expected: R3 fails clearly.** If it does, the three-state c
 the carrier's physical state count. The question for QLF then becomes which principle removes the longitudinal
 state, and that must be derived without using this result or `β₀`.
 
-Script: `gluon_plasma_dof.py` (to be written after this commit).
+Script: [`gluon_plasma_dof.py`](gluon_plasma_dof.py) (written after this commit).
+
+### 37a. Result
+
+Run by [`gluon_plasma_dof.py`](gluon_plasma_dof.py).
+
+**R3 FAILS: a gluon plasma counts two states per gluon, not three.** At the primary datum, `T = 1000 T_c`,
+Borsanyi et al. (Table 1) give `p/T⁴ = 1.7030 ± 0.0052`. There `α_s(2πT) = 0.055` and `δ = 0.066`.
+
+| hypothesis | `p_SB/T⁴` | `x = p/p_SB` | `1 − x` | verdict |
+|---|---|---|---|---|
+| QCD, `d = 16` (control) | 1.7546 | 0.9706 ± 0.0030 | 0.45 δ | pass |
+| R3, `d = 24` | 2.6319 | 0.6471 ± 0.0020 | **5.4 δ** | **fail** (beyond 3 δ) |
+
+* **It is not near a boundary.** Varying `T_c/Λ_MS̄` by ±0.10 moves `δ` by less than 1 %. The approximation of
+  using the same `δ` for both hypotheses would have to be wrong by a factor of nearly 2 to rescue R3.
+* **The trend agrees.** From 10 to 1000 `T_c`, `x(16)` climbs 0.916 → 0.971 towards 1. `x(24)` stays at 0.61–0.65,
+  which is about two-thirds, 16/24.
+* **The cross-check agrees.** Giusti & Pepe give `p/T⁴ = 1.695 ± 0.007` at `231 T_c`, which is `x(16) = 0.966` and
+  `x(24) = 0.644`.
+* The prior from memory (`p/T⁴ ≈ 1.6`) was low. The data sit closer to the two-state limit than I expected.
+
+**What this does to §36.**
+* The fold's three-state count is excluded as the carrier's physical state count. So §36a's `β₀(5) = 43/6` is
+  excluded too. V2 could not tell, and this test can.
+* The rest of §36a stands: the orbital term is the Lévy area, and `g = 2` supplies the spin term.
+* With two states, the per-state structure gives QCD's `11/3` exactly. But the reduction from three states to two
+  is now **required by data, not derived**.
+
+**The open question, sharpened.** Which QLF principle removes the `s_z = 0` carrier? In standard theory it is
+masslessness: the longitudinal mode of a massless vector is pure gauge, and the ghosts remove it. A QLF
+derivation would need to show that a carrier moving at `c` (every substrate step runs at `c`, `QLF_Inertia`) has
+no closure along its direction of motion. It would also need to be checked first against something other than
+`β₀` or this pressure, for example the photon's two polarisations, which QLF's carriers must also reproduce.
 
 ## References
 
