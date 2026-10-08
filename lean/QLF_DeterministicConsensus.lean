@@ -179,7 +179,7 @@ theorem outcome_stable {k f : ℕ} {N F : Finset σ} {A A' : Finset (σ × α)} 
 theorem split_without_bound :
     let A : Finset (Bool × Bool) := {(false, false), (true, true)}
     Accepted 1 A false ∧ Accepted 1 A true ∧ (∀ s, ¬ Equivocates A s) := by
-  refine ⟨by decide, by decide, ?_⟩
+  refine ⟨by unfold Accepted; decide, by unfold Accepted; decide, ?_⟩
   rintro s ⟨v, w, hne, hv, hw⟩
   simp only [Finset.mem_insert, Finset.mem_singleton, Prod.mk.injEq] at hv hw
   rcases hv with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;> rcases hw with ⟨h, rfl⟩ | ⟨h, rfl⟩ <;> simp_all
@@ -246,7 +246,8 @@ theorem admit_insert_other_ctx (S : Scheme σ α Sig) (N : Finset σ) {c : Conte
     (R : Finset (Signed σ α Sig)) {m : Signed σ α Sig} (h : m.ctx ≠ c) :
     admit S N c (insert m R) = admit S N c R := by
   unfold admit
-  rw [Finset.filter_insert, if_neg (fun hm => h hm.1)]
+  rw [Finset.filter_insert]
+  simp [h]
 
 /-- Every admitted signer is in the policy's signer set. -/
 theorem admit_signers_in_policy (S : Scheme σ α Sig) (N : Finset σ) (c : Context)
@@ -278,7 +279,7 @@ theorem byzantine_safety {S : Scheme σ α Sig} {issued : σ → Context → α 
     (hv : Accepted k (admit S N c R) v) (hw : Accepted k (admit S N c R) w) : v = w := by
   refine quorum_intersection_safety (admit_signers_in_policy S N c R) ?_ hf hk hv hw
   intro s hs
-  obtain ⟨v', w', -, hv', -⟩ := hs
+  obtain ⟨v', w', -, hv', -⟩ := id hs
   have hN : s ∈ N := admit_signers_in_policy S N c R (s, v') hv'
   refine Finset.mem_sdiff.mpr ⟨hN, fun hH => ?_⟩
   exact honest_never_equivocates (hu s hH) (hl s hH) hs

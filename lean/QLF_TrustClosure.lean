@@ -87,10 +87,10 @@ private theorem count_encode_up (a b : ℕ) (hab : a ≠ b) (l : Link) :
     (encode a b l).count Twist.up = if (l.issuer == a && l.subject == b) then 1 else 0 := by
   unfold encode
   by_cases h₁ : (l.issuer == a && l.subject == b) = true
-  · simp [h₁]
+  · simp only [h₁, if_true]; decide
   · by_cases h₂ : (l.issuer == b && l.subject == a) = true
-    · simp [h₁, h₂]
-    · simp [h₁, h₂]
+    · simp only [h₁, h₂, if_true, if_false, Bool.false_eq_true]; decide
+    · simp only [h₁, h₂, if_false, Bool.false_eq_true]; decide
 
 private theorem count_encode_down (a b : ℕ) (hab : a ≠ b) (l : Link) :
     (encode a b l).count Twist.down = if (l.issuer == b && l.subject == a) then 1 else 0 := by
@@ -101,15 +101,15 @@ private theorem count_encode_down (a b : ℕ) (hab : a ≠ b) (l : Link) :
       obtain ⟨hi, _⟩ := h₁
       simp only [Bool.and_eq_false_iff, beq_eq_false_iff_ne]
       left; rw [hi]; exact hab
-    simp [h₁, h₂]
+    simp only [h₁, h₂, if_true]; decide
   · by_cases h₂ : (l.issuer == b && l.subject == a) = true
-    · simp [h₁, h₂]
-    · simp [h₁, h₂]
+    · simp only [h₁, h₂, if_true, if_false, Bool.false_eq_true]; decide
+    · simp only [h₁, h₂, if_false, Bool.false_eq_true]; decide
 
 private theorem count_encode_other (a b : ℕ) (l : Link) (t : Twist)
     (ht₁ : t ≠ Twist.up) (ht₂ : t ≠ Twist.down) : (encode a b l).count t = 0 := by
   unfold encode
-  split_ifs <;> simp [List.count_cons, Ne.symm ht₁, Ne.symm ht₂, ht₁, ht₂]
+  cases t <;> split_ifs <;> first | decide | exact absurd rfl ht₁ | exact absurd rfl ht₂
 
 private theorem count_pairHistory_up (L : Ledger) (a b : ℕ) (hab : a ≠ b) :
     (pairHistory L a b).count Twist.up = linkCount L a b := by
