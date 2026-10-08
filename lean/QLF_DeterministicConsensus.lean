@@ -45,8 +45,17 @@ policy's signers, that verify.
   signer appear to equivocate.
 * **`byzantine_safety`** — honest signers `H` (unforgeable, one value per context), the rest
   arbitrary with `|N \ H| ≤ f`, `n + f < 2k`: at most one value is accepted, for any bag.
-* **`admit_insert_other_ctx`**, **`outcome_replay_invariant`** — a statement signed for another
-  event, policy, epoch or protocol changes nothing (no replay or substitution).
+* **`admitted_was_issued_in_context`** — **context binding**: unforgeability is stated over the
+  whole message `(context, value)`, so a statement admitted for context `c` under an honest
+  signer's key was issued by that signer *in `c`*. Replaying a signature from another context
+  (or editing a statement's declared `ctx`) can only be admitted if the scheme verifies it
+  under `c`, which an unforgeable scheme does only for statements actually issued in `c`.
+* **`context_ignoring_scheme_not_unforgeable`** — the hypothesis has teeth: a scheme whose
+  verification ignores the context fails `Unforgeable` for any honest signer that signs in one
+  context and not another. Context binding is therefore a property the scheme must provide.
+* **`admit_insert_other_ctx`**, **`outcome_ignores_other_declared_context`** — declared-context
+  filtering: a statement whose declared context differs from `c` changes nothing. This step is
+  bookkeeping; the cryptographic content is `admitted_was_issued_in_context`.
 
 ## What this does not cover
 
@@ -240,7 +249,7 @@ theorem mem_admit {S : Scheme σ α Sig} {N : Finset σ} {c : Context} {R : Fins
   · rintro ⟨m, hm, rfl, rfl, hc, hN, hv⟩
     exact ⟨m, ⟨hm, hc, hN, hc ▸ hv⟩, rfl, rfl⟩
 
-/-- **No replay.** A statement signed for any other context (another event, policy, epoch or
+/-- **Declared-context filtering.** A statement declaring any other context (another event, policy, epoch or
     protocol) contributes nothing to the evaluation of `c`. -/
 theorem admit_insert_other_ctx (S : Scheme σ α Sig) (N : Finset σ) {c : Context}
     (R : Finset (Signed σ α Sig)) {m : Signed σ α Sig} (h : m.ctx ≠ c) :
@@ -284,11 +293,32 @@ theorem byzantine_safety {S : Scheme σ α Sig} {issued : σ → Context → α 
   refine Finset.mem_sdiff.mpr ⟨hN, fun hH => ?_⟩
   exact honest_never_equivocates (hu s hH) (hl s hH) hs
 
-/-- **Replay cannot change a verdict.** Adding statements signed for other contexts leaves the
+/-- **Declared-context filtering, at the verdict.** Adding statements that declare other contexts leaves the
     evaluation of `c` exactly as it was. -/
-theorem outcome_replay_invariant (S : Scheme σ α Sig) (N : Finset σ) (k : ℕ) {c : Context}
+theorem outcome_ignores_other_declared_context (S : Scheme σ α Sig) (N : Finset σ) (k : ℕ) {c : Context}
     (R : Finset (Signed σ α Sig)) {m : Signed σ α Sig} (h : m.ctx ≠ c) :
     outcome k (admit S N c (insert m R)) = outcome k (admit S N c R) := by
   rw [admit_insert_other_ctx S N R h]
+
+/-- **Context binding.** If an honest signer's key is unforgeable, anything admitted for
+    context `c` under that key was issued by the signer in `c` — not in some other context
+    whose signature was replayed or relabeled. -/
+theorem admitted_was_issued_in_context {S : Scheme σ α Sig} {issued : σ → Context → α → Prop}
+    {N : Finset σ} {c : Context} {R : Finset (Signed σ α Sig)} {s : σ} {v : α}
+    (hu : Unforgeable S issued s) (h : (s, v) ∈ admit S N c R) : issued s c v := by
+  obtain ⟨m, -, -, -, -, -, hv⟩ := mem_admit.mp h
+  exact hu c v m.sig hv
+
+/-- **A context-ignoring scheme is not unforgeable.** If verification gives the same answer in
+    every context, a signer who issued `v` in `c` but not in `c'` has a forgeable key: the same
+    signature verifies in `c'`. So `Unforgeable` excludes such schemes; context binding is a
+    requirement on the scheme, not something filtering supplies. -/
+theorem context_ignoring_scheme_not_unforgeable {S : Scheme σ α Sig}
+    {issued : σ → Context → α → Prop} {s : σ} {c c' : Context} {v : α} {sg : Sig}
+    (hign : ∀ d d', S.verify s d v sg = S.verify s d' v sg)
+    (hsig : S.verify s c v sg = true) (hnot : ¬ issued s c' v) :
+    ¬ Unforgeable S issued s := by
+  intro hu
+  exact hnot (hu c' v sg (by rw [hign c' c]; exact hsig))
 
 end QLF.Consensus

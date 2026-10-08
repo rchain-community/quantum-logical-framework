@@ -12,16 +12,20 @@ module; a ledger here is what a verifier holds *after* checking them.
 
 ## The encoding (proved)
 
-For a pair of distinct parties `a ≠ b`, a link `a → b` is the twist `^` and a link `b → a`
-is its Hermitian conjugate `v`; links not between `a` and `b` contribute nothing
-(`pairHistory`). Then:
+Reciprocity is **indexed by slot**: a link `a → b` in one role is answered only by a link
+`b → a` in the *same* role. For a pair of distinct parties `a ≠ b` and a slot `s`, a link
+`a → b` in `s` is the twist `^` and a link `b → a` in `s` is its Hermitian conjugate `v`;
+links between other parties or in other slots contribute nothing (`pairHistory`). Then:
 
-* **`pairHistory_countBalanced_iff`** — the pair's history is count-balanced **iff** the
-  links are reciprocated, `flow L a b = 0` (as many `a → b` as `b → a`).
+* **`pairHistory_countBalanced_iff`** — the `(a, b, s)` history is count-balanced **iff** the
+  links are reciprocated in that slot, `flow L a b s = 0`.
 * **`reciprocated_pair_pauli_closed`** — so a reciprocated pair is a full ZFA closure: its
   ordered Pauli fold is a scalar in `{±I, ±iI}` (via `count_balanced_pauli_closed`).
-* **`handshake_reciprocated`** — a tap that produces `a → b` and `b → a` is reciprocated, so
-  "no dangling trust debt" has a precise meaning: `Reciprocated L`, flow zero on every pair.
+* **`handshake_reciprocated`** — a tap that produces `a → b` and `b → a` in one slot is
+  reciprocated, so "no dangling trust debt" has a precise meaning: `Reciprocated L`, flow zero
+  on every pair in every slot.
+* **`mismatched_slot_not_reciprocated`** — `a → b` in one role answered by `b → a` in another
+  role is **not** reciprocated: the debt stays open in both slots.
 
 ## What balance cannot see (proved — the honest boundary)
 
@@ -54,26 +58,26 @@ deriving DecidableEq, Repr
 /-- A verifier's ledger: the signature-checked links it holds. -/
 abbrev Ledger := List Link
 
-/-- Number of links `a → b` in the ledger. -/
-def linkCount (L : Ledger) (a b : ℕ) : ℕ :=
-  L.countP (fun l => l.issuer == a && l.subject == b)
+/-- Number of links `a → b` in slot `s`. -/
+def linkCount (L : Ledger) (a b s : ℕ) : ℕ :=
+  L.countP (fun l => l.issuer == a && l.subject == b && l.slot == s)
 
-/-- Net trust flow from `a` to `b`: links `a → b` minus links `b → a`. -/
-def flow (L : Ledger) (a b : ℕ) : ℤ :=
-  (linkCount L a b : ℤ) - (linkCount L b a : ℤ)
+/-- Net trust flow from `a` to `b` in slot `s`: links `a → b` minus links `b → a`, both in `s`. -/
+def flow (L : Ledger) (a b s : ℕ) : ℤ :=
+  (linkCount L a b s : ℤ) - (linkCount L b a s : ℤ)
 
-/-- **No dangling trust debt**: every pair's links are reciprocated. -/
-def Reciprocated (L : Ledger) : Prop := ∀ a b, flow L a b = 0
+/-- **No dangling trust debt**: every pair's links are reciprocated within every slot. -/
+def Reciprocated (L : Ledger) : Prop := ∀ a b s, flow L a b s = 0
 
-/-- The twist a single link contributes to the `(a, b)` pair history:
-    `a → b` is `^`, `b → a` is its conjugate `v`, anything else is silent. -/
-def encode (a b : ℕ) (l : Link) : List Twist :=
-  if l.issuer == a && l.subject == b then [Twist.up]
-  else if l.issuer == b && l.subject == a then [Twist.down]
+/-- The twist a single link contributes to the `(a, b, s)` history:
+    `a → b` in `s` is `^`, `b → a` in `s` is its conjugate `v`, anything else is silent. -/
+def encode (a b s : ℕ) (l : Link) : List Twist :=
+  if l.issuer == a && l.subject == b && l.slot == s then [Twist.up]
+  else if l.issuer == b && l.subject == a && l.slot == s then [Twist.down]
   else []
 
-/-- The twist history of the pair `(a, b)` read off a ledger. -/
-def pairHistory (L : Ledger) (a b : ℕ) : List Twist := L.flatMap (encode a b)
+/-- The twist history of the pair `(a, b)` in slot `s`, read off a ledger. -/
+def pairHistory (L : Ledger) (a b s : ℕ) : List Twist := L.flatMap (encode a b s)
 
 /-- **An issuer equivocates**: it signed two links in one slot naming different subjects. -/
 def Equivocates (L : Ledger) (i : ℕ) : Prop :=
@@ -83,117 +87,130 @@ def Equivocates (L : Ledger) (i : ℕ) : Prop :=
 -- Counting the encoded history
 -- ==========================================
 
-private theorem count_encode_up (a b : ℕ) (hab : a ≠ b) (l : Link) :
-    (encode a b l).count Twist.up = if (l.issuer == a && l.subject == b) then 1 else 0 := by
+private theorem count_encode_up (a b s : ℕ) (hab : a ≠ b) (l : Link) :
+    (encode a b s l).count Twist.up =
+      if (l.issuer == a && l.subject == b && l.slot == s) then 1 else 0 := by
   unfold encode
-  by_cases h₁ : (l.issuer == a && l.subject == b) = true
+  by_cases h₁ : (l.issuer == a && l.subject == b && l.slot == s) = true
   · simp only [h₁, if_true]; decide
-  · by_cases h₂ : (l.issuer == b && l.subject == a) = true
+  · by_cases h₂ : (l.issuer == b && l.subject == a && l.slot == s) = true
     · simp only [h₁, h₂, if_true, if_false, Bool.false_eq_true]; decide
     · simp only [h₁, h₂, if_false, Bool.false_eq_true]; decide
 
-private theorem count_encode_down (a b : ℕ) (hab : a ≠ b) (l : Link) :
-    (encode a b l).count Twist.down = if (l.issuer == b && l.subject == a) then 1 else 0 := by
+private theorem count_encode_down (a b s : ℕ) (hab : a ≠ b) (l : Link) :
+    (encode a b s l).count Twist.down =
+      if (l.issuer == b && l.subject == a && l.slot == s) then 1 else 0 := by
   unfold encode
-  by_cases h₁ : (l.issuer == a && l.subject == b) = true
-  · have h₂ : (l.issuer == b && l.subject == a) = false := by
+  by_cases h₁ : (l.issuer == a && l.subject == b && l.slot == s) = true
+  · have h₂ : (l.issuer == b && l.subject == a && l.slot == s) = false := by
       simp only [Bool.and_eq_true, beq_iff_eq] at h₁
-      obtain ⟨hi, _⟩ := h₁
+      obtain ⟨⟨hi, _⟩, _⟩ := h₁
       simp only [Bool.and_eq_false_iff, beq_eq_false_iff_ne]
-      left; rw [hi]; exact hab
+      left; left; rw [hi]; exact hab
     simp only [h₁, h₂, if_true]; decide
-  · by_cases h₂ : (l.issuer == b && l.subject == a) = true
+  · by_cases h₂ : (l.issuer == b && l.subject == a && l.slot == s) = true
     · simp only [h₁, h₂, if_true, if_false, Bool.false_eq_true]; decide
     · simp only [h₁, h₂, if_false, Bool.false_eq_true]; decide
 
-private theorem count_encode_other (a b : ℕ) (l : Link) (t : Twist)
-    (ht₁ : t ≠ Twist.up) (ht₂ : t ≠ Twist.down) : (encode a b l).count t = 0 := by
+private theorem count_encode_other (a b s : ℕ) (l : Link) (t : Twist)
+    (ht₁ : t ≠ Twist.up) (ht₂ : t ≠ Twist.down) : (encode a b s l).count t = 0 := by
   unfold encode
   cases t <;> split_ifs <;> first | decide | exact absurd rfl ht₁ | exact absurd rfl ht₂
 
-private theorem count_pairHistory_up (L : Ledger) (a b : ℕ) (hab : a ≠ b) :
-    (pairHistory L a b).count Twist.up = linkCount L a b := by
+private theorem count_pairHistory_up (L : Ledger) (a b s : ℕ) (hab : a ≠ b) :
+    (pairHistory L a b s).count Twist.up = linkCount L a b s := by
   induction L with
   | nil => simp [pairHistory, linkCount]
   | cons l L ih =>
     simp only [pairHistory, linkCount] at ih ⊢
-    rw [List.flatMap_cons, List.count_append, ih, count_encode_up a b hab, List.countP_cons]
+    rw [List.flatMap_cons, List.count_append, ih, count_encode_up a b s hab, List.countP_cons]
     split_ifs <;> omega
 
-private theorem count_pairHistory_down (L : Ledger) (a b : ℕ) (hab : a ≠ b) :
-    (pairHistory L a b).count Twist.down = linkCount L b a := by
+private theorem count_pairHistory_down (L : Ledger) (a b s : ℕ) (hab : a ≠ b) :
+    (pairHistory L a b s).count Twist.down = linkCount L b a s := by
   induction L with
   | nil => simp [pairHistory, linkCount]
   | cons l L ih =>
     simp only [pairHistory, linkCount] at ih ⊢
-    rw [List.flatMap_cons, List.count_append, ih, count_encode_down a b hab, List.countP_cons]
+    rw [List.flatMap_cons, List.count_append, ih, count_encode_down a b s hab, List.countP_cons]
     split_ifs <;> omega
 
-private theorem count_pairHistory_other (L : Ledger) (a b : ℕ) (t : Twist)
-    (ht₁ : t ≠ Twist.up) (ht₂ : t ≠ Twist.down) : (pairHistory L a b).count t = 0 := by
+private theorem count_pairHistory_other (L : Ledger) (a b s : ℕ) (t : Twist)
+    (ht₁ : t ≠ Twist.up) (ht₂ : t ≠ Twist.down) : (pairHistory L a b s).count t = 0 := by
   induction L with
   | nil => simp [pairHistory]
   | cons l L ih =>
     simp only [pairHistory] at ih ⊢
-    rw [List.flatMap_cons, List.count_append, ih, count_encode_other a b l t ht₁ ht₂]
+    rw [List.flatMap_cons, List.count_append, ih, count_encode_other a b s l t ht₁ ht₂]
 
 -- ==========================================
 -- The encoding theorem
 -- ==========================================
 
-/-- **The pair history is a ZFA closure iff the pair's links are reciprocated.** -/
-theorem pairHistory_countBalanced_iff (L : Ledger) {a b : ℕ} (hab : a ≠ b) :
-    countBalanced (pairHistory L a b) ↔ flow L a b = 0 := by
+/-- **The `(a, b, s)` history is a ZFA closure iff the pair's links in slot `s` are
+    reciprocated.** -/
+theorem pairHistory_countBalanced_iff (L : Ledger) {a b : ℕ} (s : ℕ) (hab : a ≠ b) :
+    countBalanced (pairHistory L a b s) ↔ flow L a b s = 0 := by
   unfold countBalanced flow
-  rw [count_pairHistory_up L a b hab, count_pairHistory_down L a b hab,
-    count_pairHistory_other L a b Twist.left (by decide) (by decide),
-    count_pairHistory_other L a b Twist.right (by decide) (by decide),
-    count_pairHistory_other L a b Twist.slash (by decide) (by decide),
-    count_pairHistory_other L a b Twist.backslash (by decide) (by decide),
-    count_pairHistory_other L a b Twist.plus (by decide) (by decide),
-    count_pairHistory_other L a b Twist.minus (by decide) (by decide)]
+  rw [count_pairHistory_up L a b s hab, count_pairHistory_down L a b s hab,
+    count_pairHistory_other L a b s Twist.left (by decide) (by decide),
+    count_pairHistory_other L a b s Twist.right (by decide) (by decide),
+    count_pairHistory_other L a b s Twist.slash (by decide) (by decide),
+    count_pairHistory_other L a b s Twist.backslash (by decide) (by decide),
+    count_pairHistory_other L a b s Twist.plus (by decide) (by decide),
+    count_pairHistory_other L a b s Twist.minus (by decide) (by decide)]
   constructor
   · rintro ⟨h, -, -, -⟩; omega
   · intro h; exact ⟨by omega, rfl, rfl, rfl⟩
 
 /-- **A reciprocated pair is a full ZFA closure**: its ordered Pauli fold is a scalar. -/
-theorem reciprocated_pair_pauli_closed (L : Ledger) {a b : ℕ} (hab : a ≠ b)
-    (h : flow L a b = 0) :
-    ∃ p : PauliScalar, twistMatrixFold (pairHistory L a b) = pauliScalarToMatrix p :=
-  count_balanced_pauli_closed ((pairHistory_countBalanced_iff L hab).mpr h)
+theorem reciprocated_pair_pauli_closed (L : Ledger) {a b : ℕ} (s : ℕ) (hab : a ≠ b)
+    (h : flow L a b s = 0) :
+    ∃ p : PauliScalar, twistMatrixFold (pairHistory L a b s) = pauliScalarToMatrix p :=
+  count_balanced_pauli_closed ((pairHistory_countBalanced_iff L s hab).mpr h)
 
-/-- A ledger with no dangling debt makes every pair of distinct parties a ZFA closure. -/
-theorem reciprocated_all_pairs_closed {L : Ledger} (h : Reciprocated L) {a b : ℕ} (hab : a ≠ b) :
-    countBalanced (pairHistory L a b) :=
-  (pairHistory_countBalanced_iff L hab).mpr (h a b)
+/-- A ledger with no dangling debt makes every pair of distinct parties, in every slot, a
+    ZFA closure. -/
+theorem reciprocated_all_pairs_closed {L : Ledger} (h : Reciprocated L) {a b : ℕ} (s : ℕ)
+    (hab : a ≠ b) : countBalanced (pairHistory L a b s) :=
+  (pairHistory_countBalanced_iff L s hab).mpr (h a b s)
 
 -- ==========================================
 -- Handshakes and composition
 -- ==========================================
 
-private theorem linkCount_append (L₁ L₂ : Ledger) (a b : ℕ) :
-    linkCount (L₁ ++ L₂) a b = linkCount L₁ a b + linkCount L₂ a b := by
+private theorem linkCount_append (L₁ L₂ : Ledger) (a b s : ℕ) :
+    linkCount (L₁ ++ L₂) a b s = linkCount L₁ a b s + linkCount L₂ a b s := by
   simp [linkCount, List.countP_append]
 
 /-- **Closures compose**: concatenating reciprocated ledgers stays reciprocated. -/
 theorem reciprocated_append {L₁ L₂ : Ledger} (h₁ : Reciprocated L₁) (h₂ : Reciprocated L₂) :
     Reciprocated (L₁ ++ L₂) := by
-  intro a b
-  have e₁ := h₁ a b
-  have e₂ := h₂ a b
+  intro a b s
+  have e₁ := h₁ a b s
+  have e₂ := h₂ a b s
   unfold flow at e₁ e₂ ⊢
   rw [linkCount_append, linkCount_append]
   push_cast
   omega
 
-/-- **A tap handshake is reciprocated**: `i → j` and `j → i`, whatever the slots. -/
-theorem handshake_reciprocated (i j s s' : ℕ) :
-    Reciprocated [⟨i, j, s⟩, ⟨j, i, s'⟩] := by
-  intro a b
+/-- **A tap handshake is reciprocated**: `i → j` and `j → i`, in the same slot. -/
+theorem handshake_reciprocated (i j s : ℕ) :
+    Reciprocated [⟨i, j, s⟩, ⟨j, i, s⟩] := by
+  intro a b t
   unfold flow linkCount
   simp only [List.countP_cons, List.countP_nil]
   by_cases hi : i = a <;> by_cases hj : j = b <;> by_cases hj' : j = a <;> by_cases hi' : i = b <;>
-    simp_all
+    by_cases hs : s = t <;> simp_all
+
+/-- **Answering in another role is not reciprocation.** `i → j` in slot `s` and `j → i` in a
+    different slot `s'` leave a debt open in slot `s`. -/
+theorem mismatched_slot_not_reciprocated {i j s s' : ℕ} (hij : i ≠ j) (hs : s ≠ s') :
+    ¬ Reciprocated [⟨i, j, s⟩, ⟨j, i, s'⟩] := by
+  intro h
+  have e := h i j s
+  unfold flow linkCount at e
+  simp [List.countP_cons, hij, Ne.symm hij, Ne.symm hs] at e
 
 -- ==========================================
 -- What balance cannot see
@@ -218,8 +235,8 @@ theorem balance_blind_to_equivocation :
     Reciprocated tapWith1 ∧ Reciprocated tapWith2 ∧
     ¬ Equivocates tapWith1 0 ∧ ¬ Equivocates tapWith2 0 ∧
     Reciprocated (tapWith1 ++ tapWith2) ∧ Equivocates (tapWith1 ++ tapWith2) 0 := by
-  have r₁ : Reciprocated tapWith1 := handshake_reciprocated 0 1 0 0
-  have r₂ : Reciprocated tapWith2 := handshake_reciprocated 0 2 0 0
+  have r₁ : Reciprocated tapWith1 := handshake_reciprocated 0 1 0
+  have r₂ : Reciprocated tapWith2 := handshake_reciprocated 0 2 0
   refine ⟨r₁, r₂, ?_, ?_, reciprocated_append r₁ r₂, ?_⟩
   · rintro ⟨l₁, h₁, l₂, h₂, e₁, e₂, -, ne⟩
     simp only [tapWith1, List.mem_cons, List.not_mem_nil, or_false] at h₁ h₂
