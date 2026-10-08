@@ -31,9 +31,13 @@ Every claim below carries one of five labels, following [`ScientificApproach.md`
   longer balanced extension (append `[+, −]`). That is a true fact about strings. It does **not** show that
   the physical universe keeps producing new structure; that step is Interpretation
   ([`Creation.md`](Creation.md) §8c).
-- **No global "now" — Proved.** The causal order is a partial order and is not total
-  (`causal_order_not_total`). There is no single global time slice, so "the whole universe at one instant"
-  is not an object QLF has. **Standard:** relativity already says this.
+- **No preferred global "now" — Proved, with a limit.** The causal order is a partial order and is not
+  total (`causal_order_not_total`): some events are causally incomparable. That rules out a *preferred*
+  global simultaneity fixed by causal order alone. It does **not** rule out a global time slicing:
+  globally hyperbolic spacetimes admit smooth time functions whose level sets are spacelike Cauchy
+  surfaces (Bernal & Sánchez 2005, [gr-qc/0401112](https://arxiv.org/abs/gr-qc/0401112)). **Standard:**
+  relativity says the same. That QLF has no global slice at all, only local clocks
+  ([`Time.md`](Time.md) §4), is a model choice, labeled Interpretation.
 - **Closed in the bookkeeping sense — Proved + Standard.** Every realized event is a balanced closure
   (`achieves_ZFA`, `bra_ket_always_balanced`). For a spatially closed universe the total Hamiltonian is
   identically zero (ADM / Wheeler–DeWitt `HΨ = 0`), which [`Philosophy.md`](Philosophy.md) reads as ZFA for
@@ -116,21 +120,28 @@ vivid dreams). **Open**, and worth stating as a challenge to §6 rather than as 
 
 Also new here. QLF has a definite answer, and it is deflationary.
 
-- **Proved/Standard: no signalling.** In QLF, correlations between distant closures come only from a shared
-  past ([`Entanglement.md`](Entanglement.md) §5); entanglement cannot carry a chosen message. This is the
-  standard no-signalling theorem.
-- **Consequence.** A correlation between two events with no common cause and no signal, selected for its
-  *meaning* to an observer, would be a signalling-class effect. QLF forbids it for the same reason quantum
-  mechanics does.
+- **Standard: no signalling.** Entanglement cannot be used to send a chosen message: local statistics on
+  one side do not depend on choices made on the other. This does **not** rule out correlations. Quantum
+  correlations stronger than any common-cause (local hidden variable) model allows are real, and
+  correlations stronger still would also respect relativistic causality (Rohrlich & Popescu,
+  [quant-ph/9508009](https://arxiv.org/abs/quant-ph/9508009)). A statistically significant correlation,
+  or one an observer finds meaningful, is not by itself a signalling channel.
+- **QLF model restriction: correlations come from a shared past.** In QLF, distant closures are
+  correlated only through histories that share an origin ([`Entanglement.md`](Entanglement.md) §5). This is
+  QLF's own claim about where correlations come from, stated separately; it is not a consequence of the
+  no-signalling theorem.
 - **What QLF does allow.** Shared closures in overlapping past light cones do correlate distant records
   ([`Memetics_QLF.md`](Memetics_QLF.md) §9). So "meaningful coincidence" has a QLF reading: common causes
   in a shared past, plus the observer's selection of which coincidences to notice. That is the ordinary
   base-rate explanation, said in closure language.
-- **Falsifiable.** A pre-registered synchronicity effect above base rates would refute standard quantum
-  mechanics and QLF together. None has survived such testing.
+- **What would count against QLF's reading.** A pre-registered correlation between macroscopic events that
+  exceeds base rates and has no identifiable shared past would contradict QLF's shared-past restriction.
+  It would refute standard quantum mechanics only if it could be used to send a chosen signal. Under a
+  standard quantum-mechanical analysis, such macroscopic correlations should not appear above base rates,
+  and none has survived pre-registered testing.
 
 So synchronicity is "logical" in QLF only as correlated records with a common past. Acausal meaning is not
-in the framework, and adding it would break the part of the framework that agrees with experiment.
+in the framework; adding it would mean giving up QLF's shared-past restriction, not standard quantum mechanics.
 
 ## 4. Can they be typed, and in what discrete field?
 
@@ -169,11 +180,11 @@ modulo 5 keeps the phases but loses the sizes `a² + b²` that Born probabilitie
 
 | Question | Answer | Label |
 |---|---|---|
-| Open or closed? | Finite at every horizon, unbounded in depth, no global now; spatial topology undetermined | Proved (weakly, for depth) + Standard; topology Open |
+| Open or closed? | Finite at every horizon, unbounded in depth, no preferred global now; spatial topology undetermined | Proved (weakly, for depth) + Standard; topology Open |
 | Fleeting or eternal? | Each closure keeps one bit; records last by redundant copying; the possibility space is timeless | Proved + Standard; timelessness Interpretation |
 | Beginning or end? | No first moment and no heat death are argued, not shown | Speculation; Open |
 | Is consciousness logical? | Its architecture is modeled as closures; the felt quality is not derived | Lean definitions + Interpretation; one testable prediction |
 | Dreams? | Internally sourced closures from stored records; they challenge the zombie criterion of `Consciousness.md` §6 | Interpretation; Open |
-| Synchronicity? | Only as common-cause correlation; acausal meaningful correlation is ruled out by no-signalling | Standard; falsifiable |
+| Synchronicity? | Only as common-cause correlation, by QLF's shared-past restriction (not by no-signalling) | QLF model restriction; falsifiable |
 | Can they be typed? | Yes: ZFA balance is the type system, and every closure is a term | Proved |
 | In what field? | Closure records over `𝔽₂`; amplitudes in the ring `ℤ[i]`; probabilities in `ℚ` | Proved |
