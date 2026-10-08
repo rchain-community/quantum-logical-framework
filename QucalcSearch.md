@@ -193,7 +193,7 @@ and grows like `√n`, so depth 1 is never the most numerous stratum past length
 ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `depth_one_not_modal`). The
 cascade is unchanged; only its justification is corrected
 (see *What search and solve are* above). Determinism is the point: it makes `/solve` a
-reading every caller shares, which is what turns it into a consensus mechanism in a room.
+reading every caller shares, which is what turns it into a consensus mechanism in a room. The threshold form of that agreement (quorum-intersection safety against Byzantine signers, signatures bound to one event, no replay) is proved in [`QLF_DeterministicConsensus`](lean/QLF_DeterministicConsensus.lean); what ZFA balance can and cannot see in a trust ledger is [`QLF_TrustClosure`](lean/QLF_TrustClosure.lean).
 `mode=events` is implied. Depth strategy: the natural closure depths are `floor` and
 `floor+2` (parity, `floor = Σ|residual|`) — search there first, widen to `max_depth` only if
 that misses. `considered` is the event set that was ranked (capped at 5000; the winner is
