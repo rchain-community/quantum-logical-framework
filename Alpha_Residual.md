@@ -631,7 +631,7 @@ continuum running QLF brackets.** The obstacle is not a missing number — it is
 
 ---
 
-## 9a. The pre-registered bridge for route (a)
+### 9a. The pre-registered bridge for route (a)
 
 Route (a) is the live one, and it runs under **R0** ([`ScientificApproach.md`](ScientificApproach.md)
 §4): the bridge is specified in full *before* any comparison, so that a match can count as evidence
@@ -659,7 +659,7 @@ reaches `0.036` by any other path delivers a ninth discarded bridge (§6b).
 
 ---
 
-## 9b. Route (a), executed — the search-registry bridge ([`alpha_residual_bridge.py`](alpha_residual_bridge.py))
+### 9b. Route (a), executed — the search-registry bridge ([`alpha_residual_bridge.py`](alpha_residual_bridge.py))
 
 The §9a construction is now run, value-free, and it splits into three parts with three different
 verdicts. Two census layers: the abstract 1-D walk census (`C(2n,n)` total, `2·Catalan(n−1)` prime,
@@ -772,7 +772,7 @@ genuinely new one since the 4-D projection (§8).
 
 ---
 
-## 9c. The intermittency swing, pre-registered and run ([`intermittency_bridge.py`](intermittency_bridge.py))
+### 9c. The intermittency swing, pre-registered and run ([`intermittency_bridge.py`](intermittency_bridge.py))
 
 **Pre-registration (R0), frozen at the commit that adds `intermittency_bridge.py`.** The full R0 table
 (inputs held fixed, substrate representation, extraction rule, tolerance, comparator, kill condition) is
@@ -832,7 +832,7 @@ un-derived precision frontier, which QLF brackets by design.**
 
 ---
 
-## 9d. Route (b), explored — the A359801 singularity structure ([`alpha_residual_deep.py`](alpha_residual_deep.py), route_b probe)
+### 9d. Route (b), explored — the A359801 singularity structure ([`alpha_residual_deep.py`](alpha_residual_deep.py), route_b probe)
 
 Route (b) asks for an *exact* substrate self-consistency rather than an order-by-order sum. The
 [OEIS A359801](https://oeis.org/A359801) identification (§9b) hands over the raw material: the prime
@@ -872,7 +872,7 @@ scoped calculation: (1) the P–F ODE for `Q(x)` — **done, §9e**; (2) its loc
 constants or the modular L-values reproduce `2/(3π)` or the two-loop `−0.328` cleanly — **open, the next
 step**. Weeks, not a script, but concrete first moves and the right physics.
 
-## 9e. Project 2b — the Picard–Fuchs ODE, pulled and classified ([`alpha_pf_ode.py`](alpha_pf_ode.py))
+### 9e. Project 2b — the Picard–Fuchs ODE, pulled and classified ([`alpha_pf_ode.py`](alpha_pf_ode.py))
 
 `Q(x) = Σ A039699(n) xⁿ` satisfies (Bradley Klee, [OEIS A039699](https://oeis.org/A039699), 2018;
 verified here against the exact transfer-recursion terms and the scalar recurrence
@@ -921,7 +921,7 @@ same unresolvable `~3/π` factor, now explained and firmly **flagged, not built 
 
 ---
 
-## 9f. The two-loop coefficient — route (a)'s obstacle characterised ([`alpha_twoloop_weights.py`](alpha_twoloop_weights.py))
+### 9f. The two-loop coefficient — route (a)'s obstacle characterised ([`alpha_twoloop_weights.py`](alpha_twoloop_weights.py))
 
 The one-loop coefficient `2/(3π) = 2·(1/6)·2·(1/π)` has the split census `1/6 = ∫₀¹ x(1−x) dx` as its
 **proven, value-free** piece and the two `2`s **rendered** (Dirac trace). First move on the two-loop
@@ -961,7 +961,7 @@ turns out to be an irreducible non-census period, the reading is wrong.
 
 ---
 
-## 9g. Three-loop `g−2` — census-representable, and the nesting depth tracks the loop order ([`alpha_threeloop_weights.py`](alpha_threeloop_weights.py))
+### 9g. Three-loop `g−2` — census-representable, and the nesting depth tracks the loop order ([`alpha_threeloop_weights.py`](alpha_threeloop_weights.py))
 
 The 3-loop mass-independent electron anomaly (Laporta–Remiddi 1996, 72 diagrams,
 `A₁⁽⁶⁾ ≈ 1.181241456587`) has ten transcendental constants:
