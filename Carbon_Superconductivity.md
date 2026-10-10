@@ -54,7 +54,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
 | 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
-| 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | pre-registered; not yet run |
+| 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but the alphabet carries one helicity, so the second polarisation is missing; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3017,6 +3017,48 @@ motion is `+½` for **all six** spatial twists. The twist alphabet would then ca
   passes, D1 is what does the work, and C3 is the test that matters.
 
 Script: `carrier_helicity.py` (to be written after this commit).
+
+### 38a. Result
+
+Run by [`carrier_helicity.py`](carrier_helicity.py) (exact fractions, under a second).
+
+**C1 FAILS, as the prior said: the twist alphabet carries one helicity.**
+* **P1.** Every spatial twist has helicity `+½`. `^` moves `+y` with spin `+½ ŷ`, and `v` moves `−y` with spin
+  `−½ ŷ`. The same holds on `x` and `z`. This follows from `M(t) = ε σ_a` with displacement `ε e_a`: the sign `ε`
+  appears in both, so it cancels in the product.
+* **C1.** For all six emitter halves, the mirror half read forward moves with the emitter and has the same
+  helicity. The photon gets `s = +1` along its motion, 6 ways out of 6, and never `−1`. One state, where the photon
+  has two: **fail.**
+* **C2.** The graviton gets `s = +2`, 6 of 6: **fail**, for the same reason.
+
+**What the route does do.** No `s = 0` appears at `c`. With reversals allowed (C3), each half can take either spin
+along its axis, and the count returns all three, `−1 : 0 : +1 = 3 : 6 : 3`. So D1 is what removes `s = 0`, as the
+pre-registration required, and a massive carrier keeps its longitudinal state (`F₀ = 0.693 ± 0.014` for the W;
+not blind). The half of §37a's question about why the third state goes is answered by D1. What fails is the count
+of the states that remain: the alphabet supplies one helicity, not two.
+
+**C4.** None of the 24 commutator carriers advances along any direction without reversing. Each one steps both ways
+on its two axes and not at all on the third. So the rule as posed does not reach them, and the photon and the colour
+carriers are not built the same way: **fail** by the registered criterion. It carries no weight either way.
+
+**What this means.**
+* QLF's twist alphabet, read with these definitions, is **maximally chiral**: every twist is a half-spin of one
+  helicity. That fits [`QLF_Handedness`](lean/QLF_Handedness.lean) (handedness is the primitive), but a photon
+  built from it is circularly polarised one way only, and electromagnetism is parity-invariant.
+* The time-mirror (D3) cannot supply the other helicity, because time reversal keeps helicity.
+* The other helicity needs the parity image: motion `ε e_a` with spin `−½ ε e_a`. No twist has that.
+
+**Not adopted (post hoc, listed for the next step).**
+* (a) The second helicity comes from the antiparticle **alphabet** rather than the antiparticle word: a
+  left-handed copy of the alphabet, which would be a framework extension (Jim's decision).
+* (b) The spin of a twist is not its Pauli matrix read as a vector. One alternative is the generator `τ = iσ`
+  (`BraKetRhoQuCalc`), with a sign that depends on the order of the fold. This would change the assumption that
+  §38 named, so it would need its own pre-registration.
+* (c) The photon is not `[t, t†]` on one axis but a two-axis closure, as the commutator carriers are. Then the
+  rule, which assumes motion along the halves' own axis, would have to be restated for loops.
+
+`QLF_GravitationalWaves`' `photon_polarizations := 2` therefore stays an import. §38 locates the gap precisely:
+masslessness removes `s = 0` (derived), but the second helicity has no source in the alphabet.
 
 ## 2026 update
 
