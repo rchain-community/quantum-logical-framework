@@ -72,8 +72,9 @@ See also: [Entanglement.md](Entanglement.md) — unified synthesis covering bit-
 ## 2026 update
 
 Three 2026 results line up with this document. ATLAS measured entanglement between the two Z bosons
-from Higgs decay; `forced_sharing` proves that a closed parent with an open child forces an open
-partner, so the pair's closure is shared ([Discoveries_2026 §3](Discoveries_2026.md#p3)). STAR traced spin-aligned
+from Higgs decay; `forced_sharing` proves, at the twist level (count balance, which carries full ZFA
+by `count_balanced_pauli_closed`), that a closed parent with an open child forces an open partner, so
+the pair's closure is shared ([Discoveries_2026 §3](Discoveries_2026.md#p3)). STAR traced spin-aligned
 `ΛΛ̄` pairs to virtual `ss̄` pairs in the vacuum; `mirror_closes` proves every history joined to its
 mirror closes, so vacuum twins are entangled from birth ([V3](Discoveries_2026.md#v3)). And Gaztañaga et al.
 reinterpreted the Einstein–Rosen bridge as a pairing of forward and backward time, which is the closure

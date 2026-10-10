@@ -38,8 +38,8 @@ to 16 parts per trillion and its magnetic moment to about 1.5 parts per billion.
 **QLF.** The antiparticle is the Hermitian conjugate read backwards (`antiparticle`, from
 [`QLF_Majorana`](lean/QLF_Majorana.lean)). Section §8 of the module proves, for **every** word:
 
-- `antiparticle_length`: the mirror has the same number of events, so the same mass in QLF's account
-  (mass as fold depth, [`Higgs.md`](Higgs.md)).
+- `antiparticle_length`: the mirror has the same number of events. Any mass read off the word, such
+  as the gauge-fold depth of [`Higgs.md`](Higgs.md), therefore cannot tell the two apart.
 - `charge3W_antiparticle`: the charge is exactly opposite.
 - `junctionBaryon_antiparticle`: the baryon number on the junction is exactly opposite (Part II §1).
 
@@ -87,8 +87,9 @@ collisions with spin correlation of about 18 ± 4%. Pairs emitted close together
 virtual `ss̄` pairs in the vacuum should be; widely separated pairs lost the alignment.
 
 **QLF.** A vacuum pair is a history joined to its own mirror, and `mirror_closes` proves every such
-pair closes, for every word. In [`ER_EPR_QLF`](lean/ER_EPR_QLF.lean) a shared closure *is*
-entanglement, so the vacuum twins are entangled from birth, not by later interaction. When the
+pair closes, for every word. That is count balance on twist histories, which carries full ZFA via
+`count_balanced_pauli_closed`: the twist-level form of `SharedClosure`, which
+[`ER_EPR_QLF`](lean/ER_EPR_QLF.lean) states on phase strings. A shared closure *is* entanglement, so the vacuum twins are entangled from birth, not by later interaction. When the
 pair's members close separately with their surroundings (more interactions as they separate), the
 shared closure is diluted into a larger one. That is decoherence in QLF, and it predicts exactly the
 pattern seen: alignment survives when the twins stay close and fades when they spread. The video
@@ -348,7 +349,8 @@ alternative at about 4.7σ: the first entanglement measured between massive vect
 ([arXiv:2603.26463][atlas]).
 
 **What QLF had.** [`ER_EPR_QLF`](lean/ER_EPR_QLF.lean): two histories are entangled iff their joint
-history closes (`SharedClosure`).
+history closes (`SharedClosure`, stated on phase strings). The theorems below are its twist-level form:
+they prove count balance, which carries full ZFA by `count_balanced_pauli_closed`.
 
 **What QLF proves.**
 
