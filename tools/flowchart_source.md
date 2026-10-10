@@ -81,7 +81,9 @@ explicit rotation matrices and grounding the spinor **Cartan** discovered in 191
 ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean), [`Mathematics_From_QLF.md`](Mathematics_From_QLF.md) §Rung 5a).
 
 **The 2026 discoveries, read on the substrate:** [`Discoveries_2026.md`](Discoveries_2026.md) takes 24
-results of 2026 and gives for each what QLF already said, what is now proved
+results of 2026: [Part I](Discoveries_2026.md#part-i), the twelve segments of Nap Theory's video
+[*The Most Insane Physics Discoveries Of 2026*](https://youtu.be/NwKzvBN9wh4), and
+[Part II](Discoveries_2026.md#part-ii), twelve results the video does not cover. For each it gives what QLF already said, what is now proved
 ([`QLF_Discoveries2026`](lean/QLF_Discoveries2026.lean), no axioms), and a prediction or kill condition.
 They land in domains 7, 10 and 11 below. One of them corrected QLF: STAR's baryon junction exposed that the
 windowed winding reads the neutron as `B = 0`, so baryon number now lives on the junction, the spatial
