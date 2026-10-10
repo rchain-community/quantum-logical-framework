@@ -282,4 +282,76 @@ theorem baryon_swap_odd :
   | [_] => by simp [baryonNumber]
   | [_, _] => by simp [baryonNumber]
 
+-- ===== Baryon number lives on the junction =====
+
+/-! `baryonNumber` above is the **windowed winding**: the signed 3-axis linking of consecutive twists.
+It has two readings. As a geometric winding (`circulation`, `perpChirality`) it is the intended
+object. As **baryon number** it is not, because a gauge twist zeroes every window it touches:
+inserting one `+` (a W emission, `u → d`) changes it (`windowed_not_gauge_invariant`).
+
+Baryon number is the winding read on the **junction**, the spatial projection of the word with the
+gauge (flavour/charge) twists removed. It is unchanged by inserting a gauge twist anywhere
+(`junction_insert_gauge`), opposite on the antiparticle (`junctionBaryon_antiparticle`), and equal to
+the windowed winding on every word with no gauge twist (`junctionBaryon_eq_of_noGauge`), so every
+calibration above (`baryon_proton`, `baryon_meson`, the lepton zeros) carries over unchanged.
+Motivated by STAR's 2026 evidence that baryon number rides on the gluon junction
+(`Discoveries_2026.md` §1). -/
+
+/-- A twist is spatial iff it has an axis (gauge twists `+`, `−` do not). -/
+def isSpatial (t : Twist) : Bool := (axOf t).isSome
+
+/-- The **junction** of a word: its spatial projection, the three-axis skeleton with the gauge
+    (flavour/charge) twists removed. -/
+def junction (ts : List Twist) : List Twist := ts.filter isSpatial
+
+/-- **Baryon number**: the winding read on the junction. -/
+def junctionBaryon (ts : List Twist) : Int := baryonNumber (junction ts)
+
+/-- **Baryon number is conserved under every gauge twist.** Inserting a gauge twist anywhere in a word
+    (a W emission, `u → d`) leaves it unchanged. -/
+theorem junction_insert_gauge (l r : List Twist) (g : Twist) (hg : axOf g = none) :
+    junctionBaryon (l ++ g :: r) = junctionBaryon (l ++ r) := by
+  have hs : isSpatial g = false := by simp [isSpatial, hg]
+  simp [junctionBaryon, junction, List.filter_append, hs]
+
+/-- The windowed winding is **not** gauge-invariant: one `+` inside the proton word takes it from `1`
+    to `0`. This is why baryon number is read on the junction. -/
+theorem windowed_not_gauge_invariant :
+    baryonNumber [Twist.right, Twist.up, Twist.plus, Twist.slash] ≠
+      baryonNumber [Twist.right, Twist.up, Twist.slash] := by decide
+
+/-- On a word with no gauge twist the junction is the word itself. -/
+theorem junction_of_noGauge (ts : List Twist) (h : ∀ t ∈ ts, axOf t ≠ none) : junction ts = ts := by
+  unfold junction
+  rw [List.filter_eq_self]
+  intro t ht
+  simpa [isSpatial, Option.isSome_iff_ne_none] using h t ht
+
+/-- **The two readings agree on gauge-free words**, so every calibration of the windowed winding is a
+    calibration of baryon number. -/
+theorem junctionBaryon_eq_of_noGauge (ts : List Twist) (h : ∀ t ∈ ts, axOf t ≠ none) :
+    junctionBaryon ts = baryonNumber ts := by
+  rw [junctionBaryon, junction_of_noGauge ts h]
+
+/-- Taking the junction commutes with taking the antiparticle. -/
+theorem junction_antiparticle (ts : List Twist) :
+    junction (antiparticle ts) = antiparticle (junction ts) := by
+  simp only [junction, antiparticle, List.filter_reverse, List.filter_map]
+  congr 2
+  apply List.filter_congr
+  intro t _
+  cases t <;> rfl
+
+/-- **Baryon number is opposite on the antiparticle**, for every word. -/
+theorem junctionBaryon_antiparticle (ts : List Twist) :
+    junctionBaryon (antiparticle ts) = - junctionBaryon ts := by
+  simp only [junctionBaryon, junction_antiparticle, baryon_dagger_odd]
+
+/-- Both nucleons, with their quark charge twists, are one baryon; the antiproton is `−1`. -/
+theorem junction_nucleons :
+    junctionBaryon [Twist.right, Twist.up, Twist.slash, Twist.plus] = 1 ∧
+    junctionBaryon [Twist.right, Twist.up, Twist.plus, Twist.slash, Twist.plus] = 1 ∧
+    junctionBaryon (antiparticle [Twist.right, Twist.up, Twist.slash, Twist.plus]) = -1 := by
+  decide
+
 end QLF.BaryonWinding

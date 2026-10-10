@@ -10,9 +10,10 @@ asymmetry arises from any dynamics with **(1) baryon-number violation, (2) C and
 (3) departure from thermal equilibrium**. The substrate meets all three — so a matter excess is
 *generic*, not fine-tuned:
 
-* **(1) B-violation.** Baryon number is a signed 3-axis *winding* (`baryonNumber`,
-  `QLF_BaryonWinding`), not a conserved signed count, and it flips under charge conjugation
-  (`baryon_dagger_odd`: `B(antiparticle ts) = −B(ts)`). And `B−L` is violated in the lepton
+* **(1) B-violation.** Baryon number is a signed 3-axis *winding* read on the junction
+  (`junctionBaryon`, `QLF_BaryonWinding`), not a conserved signed count, and it flips under charge
+  conjugation (`junctionBaryon_antiparticle`: `B(antiparticle ts) = −B(ts)`, for every word including
+  the quark charge twists). And `B−L` is violated in the lepton
   sector (the neutrino is Majorana, `neutrino_majorana`). So matter and antimatter carry
   *opposite* baryon winding (`matter_antimatter_opposite`) — distinguishable, B not protected.
 * **(2) C and CP violation.** The chirality engine of `CP-Violation-and-Chirality.md` spontaneously
@@ -40,25 +41,26 @@ namespace QLF
 open QLF.BaryonWinding QLF.Majorana
 
 /-- **Sakharov B + C violation, generally.** Matter and antimatter carry *opposite* baryon
-    winding — `B(antiparticle ts) = −B(ts)` for every history (`baryon_dagger_odd`) — so they
-    are physically distinguishable and baryon number is not conjugation-protected. -/
+    number — `B(antiparticle ts) = −B(ts)` for every history, read on the junction
+    (`junctionBaryon_antiparticle`) — so they are physically distinguishable and baryon number is
+    not conjugation-protected. -/
 theorem matter_antimatter_opposite (ts : List Twist) :
-    baryonNumber (antiparticle ts) = - baryonNumber ts :=
-  baryon_dagger_odd ts
+    junctionBaryon (antiparticle ts) = - junctionBaryon ts :=
+  junctionBaryon_antiparticle ts
 
-/-- Concrete: the proton has `B = +1`, its antiparticle `B = −1`. -/
+/-- Concrete: the proton `uud` (with its down quark's charge twist) has `B = +1`, its
+    antiparticle `B = −1`. -/
 theorem proton_antiproton_asymmetric :
-    baryonNumber [Twist.right, Twist.up, Twist.slash] = 1 ∧
-    baryonNumber (antiparticle [Twist.right, Twist.up, Twist.slash]) = -1 :=
-  ⟨baryon_proton, baryon_antiproton⟩
+    junctionBaryon [Twist.right, Twist.up, Twist.slash, Twist.plus] = 1 ∧
+    junctionBaryon (antiparticle [Twist.right, Twist.up, Twist.slash, Twist.plus]) = -1 := by
+  decide
 
 /-- **B-violation handle**: a baryon-carrying closure is *not* invariant under conjugation — the
     proton's baryon number differs from its antiparticle's, so C (and hence the matter/antimatter
     census) is not a symmetry of the realized states. -/
 theorem baryon_not_conjugation_invariant :
-    baryonNumber (antiparticle [Twist.right, Twist.up, Twist.slash])
-      ≠ baryonNumber [Twist.right, Twist.up, Twist.slash] := by
-  rw [baryon_antiproton, baryon_proton]
+    junctionBaryon (antiparticle [Twist.right, Twist.up, Twist.slash, Twist.plus])
+      ≠ junctionBaryon [Twist.right, Twist.up, Twist.slash, Twist.plus] := by
   decide
 
 /-- **Established constructively:** matter and antimatter are distinguishable (opposite baryon
