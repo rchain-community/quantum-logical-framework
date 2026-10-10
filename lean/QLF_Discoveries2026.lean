@@ -1,5 +1,6 @@
 import QLF_QuarkSignature
 import Mathlib.Tactic.LinearCombination
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 set_option linter.unusedVariables false
 
@@ -40,6 +41,23 @@ conditional, the condition is a hypothesis of the theorem, not an axiom.
 * **§7 IceCube flavour ratio (2026 Nobel).** If the mixing weights are μ–τ symmetric, a pion-decay source
   `1 : 2 : 0` arrives as exactly `1 : 1 : 1` (`flavour_ratio_mu_tau`), for any doubly stochastic weights.
   QLF does not yet derive μ–τ symmetry; the theorem says exactly what that derivation would buy.
+
+Sections §8–§12 answer the topics of Nap Theory's *The Most Insane Physics Discoveries Of 2026*:
+
+* **§8 The time mirror: CPT, vacuum twins and the temporal bridge.** The antiparticle is the time-mirror
+  (`antiparticle` = conjugate and reverse). It has the same length, hence the same mass
+  (`antiparticle_length`), opposite charge (`charge3W_antiparticle`) and opposite junction baryon number
+  (`junctionBaryon_antiparticle`). A history joined to its own mirror **always closes**
+  (`mirror_closes`). Read three ways: BASE's matter–antimatter mirror, STAR's vacuum `ΛΛ̄` twins, and the
+  forward-plus-backward pairing of the temporal Einstein–Rosen bridge proposal.
+* **§9 Period doubling (time crystals).** A spin flipped once per drive period returns only every second
+  period: `σx^(2k) = 1`, `σx^(2k+1) = σx ≠ 1` (`period_doubling`, `sigma_x_ne_one`).
+* **§10 The even ring (false-vacuum decay on a Rydberg ring).** An alternating ring closes iff it has an
+  even number of sites (`ring_closes_iff_even`).
+* **§11 The critical-collapse floor (spacetime crystals).** With a finite information budget of `B` bits,
+  tuning cannot get closer than `2^{−B}` to threshold, so the critical-collapse mass `C·ε^γ` has a
+  strictly positive floor (`critical_mass_floor`): arbitrarily small black holes and the naked
+  singularity at the threshold need infinite tuning.
 
 No axioms.
 -/
@@ -290,5 +308,134 @@ theorem flavour_ratio_mu_tau (w : Fin 3 → Fin 3 → ℝ)
   simp only [Fin.sum_univ_three]
   linear_combination w b 0 * hcol 0 + w b 1 * hcol 1 + w b 2 * hcol 2 +
     w b 0 * hmt 0 + w b 1 * hmt 1 + w b 2 * hmt 2 + hrow b
+
+-- ============================================================================
+-- §8  The time mirror: CPT, vacuum twins, the temporal bridge
+-- ============================================================================
+
+open QLF.Majorana
+
+/-- Conjugation moves each count to its partner. -/
+theorem count_map_conj (ts : List Twist) (a : Twist) :
+    (ts.map Twist.conj).count a = ts.count (Twist.conj a) := by
+  induction ts with
+  | nil => rfl
+  | cons t ts ih =>
+    simp only [List.map_cons, List.count_cons, ih]
+    cases t <;> cases a <;> rfl
+
+/-- The mirror (antiparticle, time-reversed history) swaps every conjugate count. -/
+theorem count_antiparticle (ts : List Twist) (a : Twist) :
+    (antiparticle ts).count a = ts.count (Twist.conj a) := by
+  simp only [antiparticle, List.count_reverse, count_map_conj]
+
+/-- **A history joined to its own time-mirror always closes.** A vacuum pair `q q̄`, a particle with its
+    antiparticle, a forward history with its backward copy: one theorem. -/
+theorem mirror_closes (ts : List Twist) : countBalanced (ts ++ antiparticle ts) := by
+  simp only [countBalanced, List.count_append, count_antiparticle]
+  simp only [Twist.conj]
+  omega
+
+/-- **Same mass**: the mirror has the same length (same number of closure events). -/
+theorem antiparticle_length (ts : List Twist) : (antiparticle ts).length = ts.length := by
+  simp [antiparticle]
+
+/-- **Opposite charge**, for every word. -/
+theorem charge3W_antiparticle (ts : List Twist) : charge3W (antiparticle ts) = - charge3W ts := by
+  induction ts with
+  | nil => rfl
+  | cons t ts ih =>
+    simp only [charge3W, antiparticle, List.map_cons, List.reverse_cons, List.map_append,
+      List.sum_append] at ih ⊢
+    simp only [List.map_reverse, List.sum_reverse] at ih ⊢
+    rw [ih]
+    cases t <;> simp [charge3, Twist.conj]
+
+/-- Taking the junction commutes with taking the mirror. -/
+theorem junction_antiparticle (ts : List Twist) :
+    junction (antiparticle ts) = antiparticle (junction ts) := by
+  simp only [junction, antiparticle, List.filter_reverse, List.filter_map]
+  congr 2
+  apply List.filter_congr
+  intro t _
+  cases t <;> rfl
+
+/-- **Opposite baryon number** on the junction, for every word. -/
+theorem junctionBaryon_antiparticle (ts : List Twist) :
+    junctionBaryon (antiparticle ts) = - junctionBaryon ts := by
+  simp only [junctionBaryon, junction_antiparticle, baryon_dagger_odd]
+
+-- ============================================================================
+-- §9  Period doubling
+-- ============================================================================
+
+theorem sigma_x_ne_one : σx ≠ (1 : M) := by
+  intro h
+  have := congrFun (congrFun h 0) 0
+  simp [σx] at this
+
+/-- **Period doubling.** A spin flipped by `σx` once per drive period is restored every second period and
+    never after an odd number. -/
+theorem period_doubling (k : ℕ) : σx ^ (2 * k) = (1 : M) ∧ σx ^ (2 * k + 1) = σx := by
+  have h2 : σx ^ (2 * k) = (1 : M) := by rw [pow_mul, sq, sigma_x_sq, one_pow]
+  exact ⟨h2, by rw [pow_succ, h2, one_mul]⟩
+
+-- ============================================================================
+-- §10  The even ring
+-- ============================================================================
+
+/-- An alternating ring of `n` sites starting in state `s`: `s, s̄, s, s̄, …`. -/
+def alt : ℕ → Twist → List Twist
+  | 0, _ => []
+  | n + 1, s => s :: alt n (Twist.conj s)
+
+theorem alt_counts : ∀ n : ℕ,
+    (alt n Twist.plus).count Twist.plus = (n + 1) / 2 ∧ (alt n Twist.plus).count Twist.minus = n / 2 ∧
+    (alt n Twist.minus).count Twist.plus = n / 2 ∧ (alt n Twist.minus).count Twist.minus = (n + 1) / 2
+  | 0 => by simp [alt]
+  | n + 1 => by
+    obtain ⟨h1, h2, h3, h4⟩ := alt_counts n
+    simp only [alt, Twist.conj, List.count_cons]
+    have pp : (Twist.plus == Twist.plus) = true := rfl
+    have mm : (Twist.minus == Twist.minus) = true := rfl
+    have pm : (Twist.plus == Twist.minus) = false := rfl
+    have mp : (Twist.minus == Twist.plus) = false := rfl
+    simp only [h1, h2, h3, h4, pp, mm, pm, mp, Bool.false_eq_true, ↓reduceIte]
+    refine ⟨?_, ?_, ?_, ?_⟩ <;> omega
+
+theorem alt_spatial_zero (n : ℕ) (s t : Twist) (hs : s = Twist.plus ∨ s = Twist.minus)
+    (ht : t ≠ Twist.plus ∧ t ≠ Twist.minus) : (alt n s).count t = 0 := by
+  induction n generalizing s with
+  | zero => rfl
+  | succ n ih =>
+    have hc : Twist.conj s = Twist.plus ∨ Twist.conj s = Twist.minus := by
+      rcases hs with rfl | rfl <;> simp [Twist.conj]
+    simp only [alt, List.count_cons, ih _ hc]
+    rcases hs with rfl | rfl <;> cases t <;> simp_all <;> decide
+
+/-- **An alternating ring closes iff it has an even number of sites.** An odd ring forces two equal
+    neighbours somewhere: a built-in defect, never a clean vacuum. -/
+theorem ring_closes_iff_even (n : ℕ) : countBalanced (alt n Twist.plus) ↔ Even n := by
+  obtain ⟨h1, h2, -, -⟩ := alt_counts n
+  have z : ∀ t, t ≠ Twist.plus ∧ t ≠ Twist.minus → (alt n Twist.plus).count t = 0 :=
+    fun t ht => alt_spatial_zero n Twist.plus t (Or.inl rfl) ht
+  simp only [countBalanced, h1, h2, z Twist.up (by decide), z Twist.down (by decide),
+    z Twist.left (by decide), z Twist.right (by decide), z Twist.slash (by decide),
+    z Twist.backslash (by decide), true_and, Nat.even_iff]
+  omega
+
+-- ============================================================================
+-- §11  The critical-collapse floor
+-- ============================================================================
+
+/-- **Finite tuning bounds the smallest black hole.** Near threshold the black-hole mass scales as
+    `C·ε^γ` (Choptuik, `γ ≈ 0.37`). A region holding `B` bits cannot tune the initial data closer than
+    `2^{−B}` to threshold, so the mass has a strictly positive floor. -/
+theorem critical_mass_floor (C γ ε : ℝ) (B : ℕ) (hC : 0 < C) (hγ : 0 < γ)
+    (hε : ((2:ℝ)⁻¹) ^ B ≤ ε) :
+    0 < C * (((2:ℝ)⁻¹) ^ B) ^ γ ∧ C * (((2:ℝ)⁻¹) ^ B) ^ γ ≤ C * ε ^ γ := by
+  have h0 : 0 < ((2:ℝ)⁻¹) ^ B := by positivity
+  exact ⟨mul_pos hC (Real.rpow_pos_of_pos h0 γ),
+    mul_le_mul_of_nonneg_left (Real.rpow_le_rpow h0.le hε hγ.le) hC.le⟩
 
 end QLF.Discoveries2026

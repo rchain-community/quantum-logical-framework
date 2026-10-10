@@ -5,9 +5,226 @@ where a result is a test that QLF could fail. The proofs are in
 [`lean/QLF_Discoveries2026.lean`](lean/QLF_Discoveries2026.lean) (no axioms). Status labels follow
 [`ScientificApproach.md`](ScientificApproach.md) §3.
 
-The list started from Nap Theory's video *The Most Insane Physics Discoveries Of 2026 (That You Haven't
-Heard Of)*. Its transcript could not be retrieved, so the topics below come from the primary sources
-cited in each section. A topic from the video that is missing here belongs in §13.
+Part I takes the twelve segments of Nap Theory's video *The Most Insane Physics Discoveries Of 2026
+(That You Haven't Heard Of)* in order. The experimental details in Part I are as the video reports
+them; the papers it names are cited. Part II covers other 2026 results the video does not.
+
+# Part I — The video's twelve discoveries
+
+| # | Discovery (as reported) | QLF | Status |
+|---|---|---|---|
+| V1 | Antiprotons moved by truck in a trap (BASE-STEP, CERN) | The antiparticle is the time-mirror: same mass, opposite charge and baryon number, for every word | **proved**; CPT null predicted |
+| V2 | Water as two interconverting liquids | Two closure inventories; the Mpemba stance gains a mechanism | **reading**, a census to compute |
+| V3 | Vacuum `ss̄` twins surviving as spin-aligned `ΛΛ̄` (STAR) | A history joined to its mirror always closes; separation decoheres a shared closure | **proved** (closure) |
+| V4 | Phase singularities outrunning light (Technion) | Pattern features carry no closure, so no signal (`no_ftl_in_epr`); pairs annihilate as closures | **reading** + reuse |
+| V5 | Time crystals: acoustic beads (NYU), 144-qubit sheet (IBM) | Period doubling from `σ² = I`; non-reciprocity is a shared closure with the field | **proved** (single spin) |
+| V6 | Sodium clusters of 5,000–10,000 atoms in superposition (Vienna) | No collapse threshold below closure; objective collapse predicted absent | **consistent**; null predicted |
+| V7 | Collapse models imply a jitter in time | Time has a grain (one event), but no collapse-driven random walk | **prediction**: no jitter |
+| V8 | Thorium-229 nuclear clocks with feedback loops (TU Wien/PTB, Tsinghua) | `α = 1/(128 + d²)` has no time argument | **kill condition** stated |
+| V9 | CMS: no quark substructure to 17–37 TeV | A quark is one twist; substructure only at the event scale | **consistent**; null predicted |
+| V10 | False-vacuum decay on a Rydberg ring (Tsinghua) | An alternating ring closes iff it is even | **proved** |
+| V11 | Exact "spacetime crystals" of critical collapse (Ecker, Ecker, Grumiller) | Finite information puts a floor under the smallest black hole | **proved** (floor) |
+| V12 | The Einstein–Rosen bridge as a mirror in time (Gaztañaga et al.) | QLF's bra–ket closure already pairs a forward history with its mirror | **convergence**, proved core |
+
+## V1. The antimatter truck — CPT as a theorem about words
+
+**Reported.** On 24 March 2026, CERN's BASE-STEP team drove 92 trapped antiprotons around the site by
+truck, the first road transport of usable antimatter. The aim is to move them to a magnetically
+quieter lab and improve on BASE's comparisons, which already match the proton's charge-to-mass ratio
+to 16 parts per trillion and its magnetic moment to about 1.5 parts per billion.
+
+**QLF.** The antiparticle is the Hermitian conjugate read backwards (`antiparticle`, from
+[`QLF_Majorana`](lean/QLF_Majorana.lean)). Section §8 of the module proves, for **every** word:
+
+- `antiparticle_length`: the mirror has the same number of events, so the same mass in QLF's account
+  (mass as fold depth, [`Higgs.md`](Higgs.md)).
+- `charge3W_antiparticle`: the charge is exactly opposite.
+- `junctionBaryon_antiparticle`: the baryon number on the junction is exactly opposite (Part II §1).
+
+So BASE's mirror is structural: QLF has no parameter that could make the proton and antiproton
+masses differ. **Prediction:** every BASE comparison stays null at any precision, including the 100×
+improvement the transport is meant to enable. **Kill condition:** a reproducible proton–antiproton
+mass, charge-to-mass or moment difference. The matter excess itself is a separate, open question
+(baryogenesis, magnitude `η_B` open in [`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §3).
+
+## V2. Two liquids in every glass
+
+**Reported.** A Stockholm team (*Science*, 26 March 2026) flash-melted glassy ices and probed the
+liquid with an X-ray laser, finding a liquid–liquid critical point near 210 K and about 1,000 atm. A
+City University of Hong Kong team (*Nature Physics*, 4 June 2026) let unsupervised machine learning
+sort simulated water into a dense, disordered structure and a lighter, tetrahedral one that
+continually turn into each other.
+
+**QLF.** In [`Chemistry.md`](Chemistry.md) a bond is a shared closure, and water's valence rule gives
+its four hydrogen-bond sites. The two structures are then two closure inventories: four shared
+closures in a tetrahedron (open, ice-like) or a crowded arrangement with a fifth neighbour
+(dense). Room-temperature water, lying beyond the critical point, is a superposition-of-ways: both
+inventories happen, weighted by how many ways each closes.
+
+This gives [`Mpemba.md`](Mpemba.md) something it lacked. Its stance is that the Mpemba effect is real
+but preparation-specific, because relaxation depends on a hidden census rather than on temperature.
+Water's two-structure population is a concrete candidate for that hidden census: two samples at one
+temperature can carry different structure fractions. **Open:** a closure census that reproduces the
+density maximum near 4 °C, and the prediction it would make for which preparations cool fastest.
+
+## V3. Twins from the vacuum
+
+**Reported.** STAR at Brookhaven (*Nature*, announced 4 February 2026) found `Λ`–`Λ̄` pairs from proton
+collisions with spin correlation of about 18 ± 4%. Pairs emitted close together were fully aligned, as
+virtual `ss̄` pairs in the vacuum should be; widely separated pairs lost the alignment.
+
+**QLF.** A vacuum pair is a history joined to its own mirror, and `mirror_closes` proves every such
+pair closes, for every word. In [`ER_EPR_QLF`](lean/ER_EPR_QLF.lean) a shared closure *is*
+entanglement, so the vacuum twins are entangled from birth, not by later interaction. When the
+pair's members close separately with their surroundings (more interactions as they separate), the
+shared closure is diluted into a larger one. That is decoherence in QLF, and it predicts exactly the
+pattern seen: alignment survives when the twins stay close and fades when they spread. The video
+notes STAR cannot yet say whether the surviving link is quantum entanglement or classical
+correlation. QLF says it starts as entanglement. Whether it still is at the detector is the open part.
+
+## V4. Darkness faster than light
+
+**Reported.** A Technion team (*Nature*, April 2026) filmed phase singularities in phonon polaritons
+in hexagonal boron nitride at 3 fs resolution. Singularities of opposite twist approached each other,
+sped up without limit and annihilated, outrunning light just before meeting, as Nye and Berry
+predicted in 1974.
+
+**QLF.** A singularity is a feature of the pattern, not a closure. In QLF only closures carry events,
+and `no_ftl_in_epr` already shows that a connection between spacelike ends transmits nothing. So
+superluminal singularities break nothing, for the same reason the moon-sweeping laser spot doesn't.
+Pair creation and annihilation conserves twist: a vortex with its antivortex is the mirror pair of
+V3, and closes (`pairs_balanced`, Part II §6). **Open:** the divergent approach speed itself
+(separation shrinking like the square root of time to annihilation) is continuum geometry and not
+derived here.
+
+## V5. Time crystals
+
+**Reported.** NYU (*Physical Review Letters*, February 2026) levitated two unequal polystyrene beads
+in a standing sound wave. Each pushes on the other unequally through scattered sound, and the pair
+falls into a self-sustained oscillation. IBM, NIST and Basque Quantum (*Nature Communications*,
+January 2026) built a two-dimensional time crystal on 144 qubits.
+
+**QLF.** Two results apply.
+
+- **Period doubling** (`period_doubling`): flip a spin with `σx` once per drive period and it returns
+  only every second period, since `σx² = I` but `σx ≠ I`. That is the discrete time crystal's
+  signature at the level of one spin. The many-body rigidity that makes the rhythm robust is not
+  proved here.
+- **Non-reciprocity is a shared closure.** The beads' unequal pushes look like a broken third law
+  until the sound's momentum is counted. In QLF that is `countBalanced_append_iff` (Part II §3): the
+  beads alone are open, and the field carries exactly the opposite imbalance. Newton's third law holds
+  for the closure, not for the visible part of it.
+
+## V6. A lump of metal in two places
+
+**Reported.** Vienna (*Nature*, 22 January 2026) showed interference of sodium clusters of 5,000–10,000
+atoms (over 170,000 u), reaching a macroscopicity of 15.5, about ten times the previous record.
+
+**QLF.** Superposition is parallel histories, and measurement is closure, with no separate collapse
+([`Measurement_Problem.md`](Measurement_Problem.md)). A cluster that closes with nothing on its way
+through the interferometer stays in superposition however massive it is. QLF already lists objective
+collapse (GRW, CSL, Penrose) among the rivals that larger superpositions should progressively exclude
+([`Completeness_Evidence.md`](Completeness_Evidence.md)). **Prediction:** no mass threshold for
+interference. Only isolation limits it. **Kill condition:** a reproducible loss of contrast scaling
+with mass that no decoherence channel accounts for.
+
+## V7. A tremor beneath every second
+
+**Reported.** Bortolotti, Curceanu, Diósi, Manti and Piscicchia (*Physical Review Research*, January
+2026) showed that CSL and Diósi–Penrose collapse can be written as random fluctuations of gravity.
+Those fluctuations would give every clock an unavoidable jitter, around 10⁻²⁸ s (CSL) or 10⁻³¹ s
+(Diósi–Penrose) per year, growing like a random walk.
+
+**QLF.** QLF agrees that time has a grain. Time is synthesized one closure event at a time
+([`Time.md`](Time.md)), so it is counted, not continuous. But the grain is a count, not noise. A
+clock's elapsed time is an integer number of events, read with an error of at most one event however
+long it runs; nothing accumulates. **Prediction:** no collapse-driven clock jitter, consistent with QLF's
+no-collapse stance (V6). The two pictures differ in growth: collapse models predict uncertainty
+rising like `√t`, QLF a bound that does not grow. Neither is measurable with present clocks.
+
+## V8. A clock inside the nucleus
+
+**Reported.** In June 2026, Thorsten Schumm's group at TU Wien (with PTB) and Shiqian Ding's group at
+Tsinghua independently locked lasers to the 8.3 eV thorium-229 nuclear transition in calcium fluoride
+crystals: the first nuclear clocks. Vienna used theirs straight away to search for ultralight dark
+matter and found none. The transition is expected to be thousands of times more sensitive to changes
+in `α` than atomic clocks.
+
+**QLF.** Two existing predictions are now tested by the most sensitive instrument there is.
+
+- **No drift of `α`.** `α(d) = 1/(128 + d²)` depends on dimension only, with no time argument
+  ([`QLF_FineStructureSubstrate`](lean/QLF_FineStructureSubstrate.lean)). **Kill condition:** any
+  confirmed variation of `α` in nuclear-versus-atomic clock comparisons. Note that the module's
+  `no_cosmological_drift_of_alpha` is `True := trivial` and anchors nothing; the prediction rests on
+  the formula's form, not on that theorem.
+- **No ultralight dark-matter field.** QLF predicts no dark-matter particle or field (Part II §8), so
+  Vienna's null is the expected result.
+
+## V9. Is there anything inside a quark?
+
+**Reported.** CMS (26 March 2026) compared dijet angular distributions from 138 fb⁻¹ at 13 TeV with
+the most precise Standard Model predictions and found agreement. Quark compositeness is excluded below
+17 or 37 TeV depending on the model. Searches for extra dimensions, quantum black holes, dark-matter
+mediators and axion-like particles found nothing.
+
+**QLF.** In the §30 signature a quark is one twist (the down quark adds one gauge twist), and a twist is
+a single closure event. QLF's quarks are therefore point-like down to the event scale, the Planck scale,
+not some intermediate preon scale. **Prediction:** no compositeness signal at any collider energy. The
+other CMS nulls match QLF's predicted absences: no axion, no fundamental dark-matter particle
+([`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §6), and no Higgs-sector new physics
+([`Higgs.md`](Higgs.md)).
+
+## V10. The universe ending in a ring of atoms
+
+**Reported.** Tsinghua (*Physical Review Letters*, 27 March 2026) prepared an even ring of Rydberg
+atoms in the higher of two alternating patterns, tilted by site-resolved lasers, and watched it decay
+to the lower one through bubble nucleation. The decay rate followed Coleman's exponential dependence
+on the inverse tilt. The ring had to be even for the alternating pattern to close.
+
+**QLF.** `ring_closes_iff_even` proves the ring point: an alternating ring is a closure exactly when its
+number of sites is even. An odd ring forces a defect somewhere. It is the same parity rule as
+contacts at odd sequence separation in [`Protein_Folding.md`](Protein_Folding.md).
+
+On our own vacuum: the Standard Model's metastability comes from running the Higgs quartic up to the
+Planck scale ([`Higgs.md`](Higgs.md)), the kind of continuum extrapolation QLF says fails at the event
+scale. In QLF the vacuum is the closure, zero free action, and no history has less than zero
+imbalance. **Conjecture:** our vacuum is absolutely stable, not metastable. Not testable now, and not
+proved here.
+
+## V11. Crystals made of spacetime
+
+**Reported.** Christian Ecker, Florian Ecker and Daniel Grumiller (*Physical Review Letters*, May 2026)
+found exact formulas for Choptuik's discretely self-similar critical solutions by solving gravity in
+the limit of many dimensions and working back. At threshold, the solution repeats on ever smaller
+scales; just above it, black-hole mass scales as a power (`γ ≈ 0.37`) of the distance from threshold,
+with no lower limit, and the exact threshold hosts a naked singularity.
+
+**QLF.** QLF puts a floor under that. A finite region holds finite information
+([`QLF_Realizability`](lean/QLF_Realizability.lean)), so initial data can be tuned only to finite
+precision. `critical_mass_floor` proves the consequence: with `B` bits of tuning, the mass is at least
+`C·2^{−γB} > 0`. Arbitrarily small black holes and the naked singularity both need infinite tuning,
+which no realizable region has. The physical floor is the Planck mass, where a closure becomes its own
+horizon ([`Planck_Scale.md`](Planck_Scale.md)). Discrete self-similarity itself is the continuum face
+of QLF's self-similar closures ([`self_similar_closures.py`](self_similar_closures.py)), though nothing
+here derives the echo period `Δ ≈ 3.44`.
+
+## V12. A bridge between two directions of time
+
+**Reported.** Gaztañaga, with Kumar and Marto (*Classical and Quantum Gravity*, January 2026), read the
+Einstein–Rosen bridge as a pairing of a forward-in-time and a backward-in-time component of a quantum
+field in curved spacetime, not as a tunnel. Information crossing a horizon keeps evolving in the mirror
+direction. The video presents it as a debated proposal.
+
+**QLF.** This is the closest convergence in the list, and QLF reached it independently. In
+[`BraKetRhoQuCalc`](lean/BraKetRhoQuCalc.lean) a ket is a forward history and a bra its time-reversed
+mirror; ZFA balance *is* bra–ket well-typedness. [`Reversibility.md`](Reversibility.md) identifies
+time reversal with the Hermitian conjugate. `mirror_closes` now proves the general form: **any history
+joined with its time mirror closes**. And [`ER_EPR_QLF`](lean/ER_EPR_QLF.lean) identifies the bridge
+with a shared closure. So in QLF the Einstein–Rosen bridge is a closure of a history with its mirror,
+which is the temporal reading Gaztañaga proposes. The cosmological claims (a bounce, relic black holes
+as dark matter, the CMB parity asymmetry) are theirs, not QLF's.
+
+# Part II — Other 2026 results
 
 ## At a glance
 
@@ -254,10 +471,11 @@ experimental picture is itself unsettled.
 
 ## 13. Not yet covered
 
-Topics from the Nap Theory video, or from later 2026 results, that are missing above. Add them here
-with a source before writing a reading.
+Later 2026 results go here, each with a source before a reading is written.
 
 ## Sources
+
+- Nap Theory, *The Most Insane Physics Discoveries Of 2026 (That You Haven't Heard Of)* — [YouTube](https://youtu.be/NwKzvBN9wh4). Part I's experimental details and the papers named there are as reported in the video.
 
 - STAR Collaboration, "Tracking the baryon number with nuclear collisions", *Science* 393, 727 (2026) — [Rice University news][star]
 - LHCb, "Observation of the doubly charmed baryon Ξcc⁺ with the LHCb Run 3 detector" — [arXiv:2603.28456][xicc]; Ωcc⁺ — [arXiv:2609.21921][omcc]
