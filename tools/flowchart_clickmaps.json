@@ -84,7 +84,10 @@
   "MS": "Per_Qubit_Mass_Quantum.md",
   "SP": "Spin_QLF.md",
   "HG": "Higgs.md",
-  "BIT": "Mathematics_From_QLF.md"
+  "BIT": "Mathematics_From_QLF.md",
+  "BJ": "lean/QLF_BaryonWinding.lean",
+  "DC": "Discoveries_2026.md#p2",
+  "CPT": "Discoveries_2026.md#v1"
  },
  {
   "H8": "#master-map--the-substrate-and-its-ten-domains",
@@ -110,7 +113,11 @@
   "D1": "Beyond_Standard_Model.md",
   "P1": "Beta_Decay_Neutrino_Nature.md",
   "P2": "Alpha.md",
-  "P3": "DarkMatter.md"
+  "P3": "DarkMatter.md",
+  "TH9": "Discoveries_2026.md#v8",
+  "LZ": "Discoveries_2026.md#p8",
+  "P4": "Discoveries_2026.md#p9",
+  "P5": "Discoveries_2026.md#v6"
  },
  {
   "V": "Chemistry.md",
@@ -122,7 +129,8 @@
   "RX": "lean/QLF_Unsaturation.lean",
   "HP": "Chemistry.md",
   "CH": "Chemistry.md",
-  "FOLD": "Protein_Folding.md"
+  "FOLD": "Protein_Folding.md",
+  "W2": "Discoveries_2026.md#v2"
  },
  {
   "PT": "QFT_QLF.md",
