@@ -256,5 +256,7 @@ lean_lib QLF where
     `QLF_LightBending,
     `QLF_ClosureMultiplicity,
     `QLF_ClosureRenewal,
-    `QLF_Duplex
+    `QLF_Duplex,
+    `QLF_TrustClosure,
+    `QLF_DeterministicConsensus
   ]
