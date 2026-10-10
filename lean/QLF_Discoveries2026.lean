@@ -88,33 +88,14 @@ open QLF QLF.BaryonWinding QLF.QuarkSignature
 -- §1  The baryon junction
 -- ============================================================================
 
-/-- A twist is spatial iff it has an axis (gauge twists `+`, `−` do not). -/
-def isSpatial (t : Twist) : Bool := (axOf t).isSome
-
-/-- The **junction** of a word: its spatial projection, the three-axis skeleton with the gauge
-    (flavour/charge) twists removed. -/
-def junction (ts : List Twist) : List Twist := ts.filter isSpatial
-
-/-- Baryon number read on the junction. -/
-def junctionBaryon (ts : List Twist) : Int := baryonNumber (junction ts)
+-- `isSpatial`, `junction`, `junctionBaryon`, `junction_insert_gauge` and the antiparticle lemmas now
+-- live in `QLF_BaryonWinding`, the canonical home of baryon number.
 
 /-- **The windowed winding misses the neutron.** The neutron word `udd` of
     `QLF_QuarkSignature.nucleon_charges` has windowed `baryonNumber = 0`: each `+` (the down quark's gauge
     twist) zeroes every window it touches. -/
 theorem windowed_neutron_zero :
     baryonNumber [Twist.right, Twist.up, Twist.plus, Twist.slash, Twist.plus] = 0 := by decide
-
-/-- On the junction both nucleons carry `B = 1`. -/
-theorem junction_nucleons :
-    junctionBaryon [Twist.right, Twist.up, Twist.slash, Twist.plus] = 1 ∧
-    junctionBaryon [Twist.right, Twist.up, Twist.plus, Twist.slash, Twist.plus] = 1 := by decide
-
-/-- **Junction baryon number is blind to every gauge twist.** Inserting a gauge twist anywhere in a word
-    (a W emission, `u → d`) leaves it unchanged. -/
-theorem junction_insert_gauge (l r : List Twist) (g : Twist) (hg : axOf g = none) :
-    junctionBaryon (l ++ g :: r) = junctionBaryon (l ++ r) := by
-  have hs : isSpatial g = false := by simp [isSpatial, hg]
-  simp [junctionBaryon, junction, List.filter_append, hs]
 
 /-- Beta decay `n → p` (removing one `+` from the neutron word) keeps the junction's `B`. -/
 theorem junction_beta_decay :
@@ -368,20 +349,6 @@ theorem charge3W_antiparticle (ts : List Twist) : charge3W (antiparticle ts) = -
     simp only [List.map_reverse, List.sum_reverse] at ih ⊢
     rw [ih]
     cases t <;> simp [charge3, Twist.conj]
-
-/-- Taking the junction commutes with taking the mirror. -/
-theorem junction_antiparticle (ts : List Twist) :
-    junction (antiparticle ts) = antiparticle (junction ts) := by
-  simp only [junction, antiparticle, List.filter_reverse, List.filter_map]
-  congr 2
-  apply List.filter_congr
-  intro t _
-  cases t <;> rfl
-
-/-- **Opposite baryon number** on the junction, for every word. -/
-theorem junctionBaryon_antiparticle (ts : List Twist) :
-    junctionBaryon (antiparticle ts) = - junctionBaryon ts := by
-  simp only [junctionBaryon, junction_antiparticle, baryon_dagger_odd]
 
 -- ============================================================================
 -- §9  Period doubling

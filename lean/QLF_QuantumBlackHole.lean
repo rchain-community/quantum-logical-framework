@@ -113,23 +113,24 @@ theorem lighter_is_deeper (R₁ R₂ : ℝ) (h0 : 0 < R₁) (h12 : R₁ < R₂) 
   unfold mass_from_depth
   exact one_div_lt_one_div_of_lt h0 h12
 
-/-! ### 4. Meson vs baryon horizon (reuse `baryonNumber`, `QLF_BaryonWinding`) -/
+/-! ### 4. Meson vs baryon horizon (baryon number `junctionBaryon`, `QLF_BaryonWinding`) -/
 
 /-- A **meson horizon** is a hadron with baryon number 0 — a `q q̄` closure (exposed
     chirality, the radiating/decaying horizon). -/
-def isMesonHorizon (ts : List Twist) : Prop := baryonNumber ts = 0
+def isMesonHorizon (ts : List Twist) : Prop := junctionBaryon ts = 0
 
-/-- The pion `q q̄` closure is a meson horizon (`baryonNumber = 0`). -/
+/-- The pion `q q̄` closure is a meson horizon (baryon number `0`). -/
 theorem pion_meson_horizon :
     isMesonHorizon ([Twist.right, Twist.up, Twist.slash] ++
-      antiparticle [Twist.right, Twist.up, Twist.slash]) :=
-  baryon_meson
+      antiparticle [Twist.right, Twist.up, Twist.slash]) := by
+  unfold isMesonHorizon
+  decide
 
-/-- The proton is a baryon horizon (`baryonNumber = 1`) — hidden Borromean chirality, the
+/-- The proton is a baryon horizon (baryon number `1`) — hidden Borromean chirality, the
     non-radiating/stable horizon; *not* a meson horizon. -/
 theorem proton_baryon_horizon :
-    baryonNumber [Twist.right, Twist.up, Twist.slash] = 1 :=
-  baryon_proton
+    junctionBaryon [Twist.right, Twist.up, Twist.slash, Twist.plus] = 1 := by
+  decide
 
 /-! ### Status -/
 

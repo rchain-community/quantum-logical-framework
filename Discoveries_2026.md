@@ -316,6 +316,12 @@ word with every gauge twist removed:
   instance `n → p`.
 - `junction_antiproton`: the antibaryon has `B = −1`, so dagger-oddness survives the projection.
 
+**Migrated.** `junctionBaryon` is now QLF's baryon number, defined in
+[`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean) beside the windowed winding it refines, and
+`QLF_Baryogenesis` and `QLF_QuantumBlackHole` state their results on it. On gauge-free words the two
+agree (`junctionBaryon_eq_of_noGauge`), so no earlier calibration changed. The windowed sum remains
+the geometric winding (`circulation`, `perpChirality`).
+
 So in QLF baryon number lives on the three-axis skeleton, and the flavour and charge twists hang off it
 without touching it. That is the substrate form of STAR's claim, which QLF reached independently: the
 carrier is the junction, not the valence flavours. A spatial twist carries both colour axis and
