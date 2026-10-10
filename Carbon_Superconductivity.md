@@ -54,6 +54,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
 | 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
+| 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | pre-registered; not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -2947,6 +2948,75 @@ masslessness: the longitudinal mode of a massless vector is pure gauge, and the 
 derivation would need to show that a carrier moving at `c` (every substrate step runs at `c`, `QLF_Inertia`) has
 no closure along its direction of motion. It would also need to be checked first against something other than
 `β₀` or this pressure, for example the photon's two polarisations, which QLF's carriers must also reproduce.
+
+## 38. Pre-registered: why a carrier moving at `c` has no `s_z = 0` state
+
+*Fixed in the commit that adds this section, before the script below is written or run.*
+
+§37a showed that a gluon plasma counts two states per gluon, so the fold's third state (`s_z = 0` along the
+motion) must go. That is required by data, not derived. This section proposes a derivation that uses neither `β₀`
+nor the plasma pressure, and checks it first on the photon, whose two polarisations QLF must also reproduce. QLF
+currently imports that number: `photon_polarizations := 2` in
+[`QLF_GravitationalWaves`](lean/QLF_GravitationalWaves.lean) is a definition, and `massless_two_polarizations` is
+`rfl`.
+
+### The proposed derivation
+
+* **D1, no reversal at `c`.** Every substrate step runs at `c` ([`QLF_Inertia`](lean/QLF_Inertia.lean)), and a
+  rest mass is a closed null circulation, so a massive closure reverses its direction of motion. A carrier moving
+  at `c` along `d̂` spends every step on `d̂` and never reverses. This is the substrate form of Feynman's
+  checkerboard, where mass is the amplitude for a reversal (Feynman & Hibbs 1965, problem 2-6).
+* **D2, helicity is locked between reversals.** A twist on axis `a` with sign `ε` moves by `ε·e_a` and carries the
+  Pauli matrix `ε·σ_a` (`twist_core.PAULI_MAP`). So a half-spin's spin along its own motion is fixed by the twist
+  itself. With no reversal (D1) it cannot change. A massive half reverses and can mix both projections.
+* **D3, a carrier is a half and its time-mirror.** The photon is a half-spin and its Hermitian conjugate, the
+  joint emitter–absorber closure (`photon_integer_spin` in [`QLF_Spin`](lean/QLF_Spin.lean)). The conjugate half
+  runs backward in time. Read forward, time reversal flips both its momentum and its spin, so its helicity is
+  unchanged.
+* **Conclusion, if D1–D3 hold:** the two halves' spins along `d̂` add. The carrier has `s = ±1` along its motion
+  and never 0.
+
+**Assumption that is not derived here:** that the spin of a twist is its Pauli matrix read as a vector
+(`M(t) = ε σ_a` ↦ spin `½ ε e_a`), and the momentum of a twist is its displacement `ε e_a`. Both are QLF's existing
+readings (`QLF_Spin`, the signed action vector). The script uses them as defined.
+
+### The checks, in this order
+
+**C1, the photon (primary).** For each of the six spatial twists `t` as the emitter half, form the photon
+`[t, t†]` and read its spin along the propagation direction by D2–D3. Count the states and their ways.
+* **Pass:** exactly two values of `s` along the motion, `+1` and `−1`, with equal ways.
+* **Fail:** one helicity only, or `s = 0` appears, or more than two states.
+* If C1 fails, the route fails, and C2–C4 are reported but carry no weight.
+
+**C2, the graviton.** Spin 2 is two photons, four halves (`graviton_spin_two_photons`). Same rules.
+* **Pass:** exactly `s = ±2`. **Fail:** any of `0, ±1` survives, or only one sign.
+
+**C3, the massive control.** The argument must use `c`. If D1 is dropped (reversals allowed), the same counting
+must give all `2s + 1` projections. Data: a massive W keeps its longitudinal state. In top decay the longitudinal
+W fraction is `F₀ = 0.693 ± 0.014` (ATLAS and CMS, *JHEP* 08 (2020) 051, arXiv:2005.03799). That value was seen
+while confirming the citation, before this commit, so **the data half of C3 is not blind**. It is a control on
+the argument, not a test of it.
+* **Pass:** with reversals the count gives `s ∈ {−1, 0, +1}`, and a longitudinal fraction well above zero is
+  measured.
+* **Fail:** the rule removes `s = 0` without using D1, since it would then also strip the W.
+
+**C4, the colour carrier (last; not blind).** Apply the rule to the 24 commutator carriers of §32b. §37a already
+says two states are needed, so a pass here **carries no weight**. It only checks consistency. A fail (anything
+other than two states) would mean the commutator carriers and the photon are not built the same way.
+
+### Stated prior, before any computation
+
+From reading `PAULI_MAP` alone: every twist has `M(t) = ε σ_a` and displacement `ε e_a`, so its spin along its own
+motion is `+½` for **all six** spatial twists. The twist alphabet would then carry **one helicity only**.
+* If that holds, the photon `[t, t†]` gets `s = +1` along its motion for every `t`, and **C1 fails**: one helicity,
+  where the photon has two.
+* The second helicity would need the other orientation. One candidate is that `ε σ_a` paired with motion `−ε e_a`
+  appears somewhere in QLF's existing structure, for example the bra (`lift`) direction of RhoQuCalc. Using it
+  would be a repair, and it would be labelled post hoc unless it is already forced by an existing definition.
+* **Expected: C1 fails as posed**, and the useful output is the exact reason why. If the prior is wrong and C1
+  passes, D1 is what does the work, and C3 is the test that matters.
+
+Script: `carrier_helicity.py` (to be written after this commit).
 
 ## 2026 update
 
