@@ -149,6 +149,12 @@ These are the standard-model gauge-group identifications. The QLF claim is that 
 - **Standard-model identifications**: complete the gauge-group derivations listed in §8.
 - **Discrete Noether vs continuous Noether**: formalize the bridge between QLF's discrete symmetries and standard Lie-group continuous symmetries in the continuum limit.
 
+## 2026 update
+
+2026: BASE-STEP's road transport of antiprotons aims at sharper CPT tests. In QLF the antiparticle
+mirror conserves length and reverses charge and baryon number for every word, and a history joined to
+its mirror always closes (`mirror_closes`) ([Discoveries_2026 V1](Discoveries_2026.md#v1)).
+
 ## References
 
 ### Internal

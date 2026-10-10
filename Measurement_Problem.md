@@ -141,3 +141,11 @@ Measurement is not a problem. It is the inevitable consequence of living inside 
 
 Contributions, formal proofs, alternative derivations, and experimental tests of the history-closure picture are warmly welcomed via pull request.
 
+## 2026 update
+
+In 2026 Vienna showed interference of sodium clusters of 5,000–10,000 atoms, about ten times the
+previous macroscopicity record, and a Rome–Budapest team calculated that collapse models (CSL,
+Diósi–Penrose) would put a random-walk jitter into every clock. QLF, with closure as measurement and no
+separate collapse, predicts no mass threshold for superposition and no collapse jitter. Time in QLF is
+counted in events, so its grain is bounded (`tick_error_bounded`) rather than accumulating like
+`σ√t` (`random_walk_unbounded`) ([Discoveries_2026 V6](Discoveries_2026.md#v6), [V7](Discoveries_2026.md#v7)).

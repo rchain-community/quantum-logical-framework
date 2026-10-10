@@ -2948,6 +2948,14 @@ derivation would need to show that a carrier moving at `c` (every substrate step
 no closure along its direction of motion. It would also need to be checked first against something other than
 `β₀` or this pressure, for example the photon's two polarisations, which QLF's carriers must also reproduce.
 
+## 2026 update
+
+Two 2026 superconductivity results are read in [Discoveries_2026 §10](Discoveries_2026.md#p10) and
+[§12](Discoveries_2026.md#p12): a 5.4% `T_c` rise for six-layer NbSe₂ in a terahertz cavity (with a theory preprint
+arguing a passive cavity can only suppress `T_c` under minimal coupling), and pair-density-wave
+evidence in UTe₂ (with a bulk X-ray null). Both are open bridges here; no closure census of either has
+been computed.
+
 ## References
 
 - Khalaf, E., Kruchkov, A. J., Tarnopolsky, G. & Vishwanath, A. (2019). Magic angle hierarchy in twisted graphene

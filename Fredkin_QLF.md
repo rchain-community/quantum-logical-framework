@@ -314,6 +314,15 @@ timing and alignment error would finally become measurable instead of assumed aw
 
 ---
 
+## 2026 update
+
+TU Wien's 2026 one-dimensional rubidium gas carried energy and mass with diffusion practically absent:
+a quantum Newton's cradle. It is this document's conservative logic in mechanical form. An equal-mass
+elastic collision in one dimension swaps two velocities, so any run is a permutation (`run_perm`), the
+velocity distribution never changes (`run_count`), every additive charge is conserved
+(`run_conserved`) and each collision is an involution (`collide_involutive`), with nothing to pay for
+([Discoveries_2026 §4](Discoveries_2026.md#p4)).
+
 ## References
 
 - Fredkin, E. & Toffoli, T. (1982). *Conservative logic.* International Journal of

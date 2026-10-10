@@ -369,3 +369,11 @@ Following the discipline established in [`Experimental_Consistency.md`](Experime
 - [`Experimental_Consistency.md`](Experimental_Consistency.md) §6.3 — three-tier discipline applied to α derivation status
 - [`Curvature.md`](Curvature.md) — magnetism as the **differential, two-signed** curvature of the Markov blanket (spin-up expands, spin-down contracts); the local spin-axis analog of cosmological de Sitter/AdS expansion-contraction
 - [`Electricity.md`](Electricity.md) §1a — current as the source of the B-field (Ampère `∮B·dl = μ₀I`); the moving-charge counterpart of the static spin-spin picture developed here
+
+## 2026 update
+
+2026 brought altermagnetic spin splitting in thin and tunable materials (tuned RuO₂, layered
+Co₁/₄TaSe₂): zero net moment, yet split bands. `dwave_forced` (`QLF_Discoveries2026`) proves that any
+splitting that is inversion-even and odd under the `x ↔ y` axis swap is a multiple of the d-wave
+pattern, and a uniform (ferromagnetic) splitting cannot have that symmetry
+([Discoveries_2026 §5](Discoveries_2026.md#p5)).

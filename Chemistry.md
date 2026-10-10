@@ -273,3 +273,10 @@ self-assembling — not a quantum-chemistry solver.
 [`Spacetime_Constructor.md`](Spacetime_Constructor.md) (the visualizer) · [`Bound_States_QLF.md`](Bound_States_QLF.md)
 (why atoms, not free leptons, are the observables) · [`Geometry_Of_Space.md`](Geometry_Of_Space.md) (crystals as
 resonant lattices) · [`SpaceTime.md`](SpaceTime.md) · [`Philosophy.md`](Philosophy.md).
+
+## 2026 update
+
+2026: water appears to be two interconverting liquids. In this document's terms, the open
+tetrahedral structure and the dense one are two closure inventories, and `density_maximum`
+(`QLF_Discoveries2026`) proves the density maximum needs the open one
+([Discoveries_2026 V2](Discoveries_2026.md#v2)).

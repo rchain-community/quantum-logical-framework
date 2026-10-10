@@ -173,11 +173,11 @@ QLF's selection ontology makes several mysteries vanish by predicting there is *
 |---|---|---|
 | **Supersymmetric partners** (squarks/sleptons) | The supercharge is the half-spin shift; SUSY's boson↔fermion symmetry is the even/odd closure parity — realized with **no doubled spectrum** (predicts the LHC null) | `QLF_Supersymmetry.lean`, [`SUSY_QLF.md`](SUSY_QLF.md) |
 | **The axion** | Strong CP is solved by ZFA closure; no Peccei–Quinn field needed | `QLF_StrongCP.lean` |
-| **A fundamental dark-matter particle (WIMP, etc.)** | Dark matter is denser logic near masses, not a particle species | [`DarkMatter.md`](DarkMatter.md) |
+| **A fundamental dark-matter particle (WIMP, etc.)** | Dark matter is denser logic near masses, not a particle species. **2026:** LZ reported one unexplained recoil (~2.6σ); the kill condition (a ≥ 5σ cross-detector WIMP signal) is stated in advance in [`Discoveries_2026.md`](Discoveries_2026.md) §8 | [`DarkMatter.md`](DarkMatter.md) |
 | **Magnetic monopoles** | The EM sector is the abelian (Pauli-scalar, commuting) projection ⟹ `no_magnetic_monopoles` | `QLF_GaugeUnification.lean` |
 | **Proton decay** | Baryon winding is exactly conserved | `QLF_BaryonWinding.lean` |
 | **A light Dirac (sterile) right-handed neutrino** | One generation = 15 Weyl fermions (SU(5)'s `5̄⊕10`), **not** SO(10)'s 16 — no light `ν_R` | `QLF_SU5.lean` |
-| **Cosmological drift of α** | `α(d)=1/(128+d²)` has no time argument — scale/time-invariance is structural | `QLF_FineStructureSubstrate.lean` |
+| **Cosmological drift of α** | `α(d)=1/(128+d²)` has no time argument — scale/time-invariance is structural. **2026:** proved as `alpha_cannot_drift` (a continuous `α` valued in that countable set is constant); thorium-229 nuclear clocks are now the sharpest test ([`Discoveries_2026.md`](Discoveries_2026.md#v8)) | `QLF_FineStructureSubstrate.lean`, `QLF_Discoveries2026.lean` |
 | **GW speed ≠ c** | A massless gauge-fold-free ripple propagates at exactly `c` (GW170817 confirms to `10⁻¹⁵`) | `QLF_GravitationalWaves.lean` |
 
 ## 7. What remains genuinely open — the hard front
@@ -209,6 +209,7 @@ This is the whole point of the [continuum-is-gratuitous](TheContinuum.md) case: 
 ## See also
 
 - [`Open_Problems.md`](Open_Problems.md) — the live gap registry (status-organized; updated as items close).
+- [`Discoveries_2026.md`](Discoveries_2026.md) — the notable results of 2026 read on the substrate, with new proofs (`QLF_Discoveries2026`) and the tests QLF could fail.
 - [`README.md`](README.md) — the project overview and the convergence themes.
 - [`Millennium.md`](Millennium.md) — the six Clay problems on the substrate.
 - [`TheContinuum.md`](TheContinuum.md) — why the continuum (and its infinities) is a rendering.

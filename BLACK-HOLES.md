@@ -443,3 +443,10 @@ No singularities, no information loss, and no external spacetime are required. T
 
 This document is fully aligned with the rest of the framework and ready for simulation, extension, and further refinement.
 
+## 2026 update
+
+In 2026 Ecker, Ecker and Grumiller found exact formulas for Choptuik's critical-collapse
+"spacetime crystals", where black-hole mass scales as `C·ε^γ` with no lower limit. With finite
+information, tuning is finite: `critical_mass_floor` (`QLF_Discoveries2026`) proves that `B` bits of
+tuning give a mass of at least `C·2^{−γB} > 0`, so arbitrarily small black holes and the threshold's
+naked singularity are unrealizable ([Discoveries_2026 V11](Discoveries_2026.md#v11)).

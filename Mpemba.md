@@ -349,6 +349,16 @@ relaxation plus a proven no-go — worth having, and less than a solution.
 
 ---
 
+## 2026 update
+
+Two 2026 results give this document's "hidden census" a concrete candidate in water. Stockholm
+located a liquid–liquid critical point near 210 K and 1,000 atm, and a Hong Kong machine-learning study
+found two interconverting local structures, one dense and one open and tetrahedral. Two samples at
+one temperature can therefore differ in structure fraction, which is the kind of preparation
+dependence the stance here requires. `density_maximum` (`QLF_Discoveries2026`) proves that the
+density maximum needs the second structure ([Discoveries_2026 V2](Discoveries_2026.md#v2)). Open: a closure census
+that fixes the 4 °C maximum and predicts which preparations cool fastest.
+
 ## References
 
 Confident: R. Lu & O. Raz, *PNAS* **114**, 5083 (2017) — Markovian Mpemba and its inverse.

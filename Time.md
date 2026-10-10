@@ -115,3 +115,11 @@ A history only persists if its net free action closes to zero. This makes all pe
 * [`muon_lifetime_demo.py`](./muon_lifetime_demo.py) — Simulates particle lifetime based on logical bit synthesis rates.
 * [`twist_core.py`](./twist_core.py) — The core engine executing ZFA closures.
 * [`QLF_Universality.lean`](./lean/QLF_Universality.lean) — Formal proof that every terminating computation IS a ZFA string (Church-Turing completeness of the ZFA filter).
+
+## 2026 update
+
+2026 brought the first thorium-229 nuclear clocks and a calculation that collapse models would make
+every clock jitter like a random walk. QLF's time is synthesized one event at a time, so it has a
+grain, but the grain does not accumulate: counted time errs by less than one event however long the
+clock runs (`tick_error_bounded`), while a `σ√t` jitter grows without bound (`random_walk_unbounded`)
+([Discoveries_2026 V7](Discoveries_2026.md#v7), [V8](Discoveries_2026.md#v8)).

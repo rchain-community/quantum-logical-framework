@@ -97,3 +97,11 @@ sector (`pmns_in_progress`), and the *rate* of the prime-driven conversion is th
 ---
 
 See also: [Annihilation.md](Annihilation.md) — develops the LH `^<v>` vs RH `^>v<` chiral twist patterns as Hermitian pairs whose composition folds to identity (the algebraic content of pair annihilation); the unspooling described in §2 is the same topological unwinding read at the hadron scale. [Weak_Force.md](Weak_Force.md) — consolidates the weak sector and flags the tension that this account mediates β decay by a gauge-fold pair-flip *operation* without an explicit W *particle* (which appears only in the τ-decay vertex). [`lean/QLF_Majorana.lean`](lean/QLF_Majorana.lean) — the machine-verified self-conjugacy of the neutrino loop.
+
+## 2026 update
+
+Francis Halzen received the 2026 Nobel Prize for IceCube and astrophysical neutrinos. IceCube's
+flavour ratio at Earth is consistent with `1 : 1 : 1`. `flavour_ratio_mu_tau` (`QLF_Discoveries2026`)
+proves that any doubly stochastic, μ–τ symmetric mixing sends a pion-decay source `1 : 2 : 0` to exactly
+`1 : 1 : 1`. QLF does not yet derive μ–τ symmetry, so this is what the derivation would buy
+([Discoveries_2026 §7](Discoveries_2026.md#p7)).
