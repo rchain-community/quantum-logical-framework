@@ -55,6 +55,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
 | 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
 | 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but the alphabet carries one helicity, so the second polarisation is missing; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
+| 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | pre-registered; not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3059,6 +3060,61 @@ carriers are not built the same way: **fail** by the registered criterion. It ca
 
 `QLF_GravitationalWaves`' `photon_polarizations := 2` therefore stays an import. §38 locates the gap precisely:
 masslessness removes `s = 0` (derived), but the second helicity has no source in the alphabet.
+
+## 39. Pre-registered: spin read from the generator `τ = iσ` (repair (b) of §38a)
+
+*Fixed in the commit that adds this section, before the script below is written or run.*
+
+§38a found that every twist has helicity `+½`, so the photon `[t, t†]` gets one helicity. Repair (b) changes the one
+reading §38 named as an assumption: the spin of a twist is read from its **generator** `τ = iσ` (the Σ₈ algebra of
+[`BraKetRhoQuCalc`](lean/BraKetRhoQuCalc.lean); §27 K1's unit-determinant fold, `s·σ_a ↦ s·iσ_a`), not from its Pauli
+matrix `σ`. Everything else in §38 is kept: D1 (no reversal at `c`), the momentum of a twist (its displacement
+`ε e_a`), the photon as `[t, t†]`, and the checks with their pass criteria.
+
+### What the repair changes, fixed now
+
+* **G1, the forward half.** Twist `t` on axis `a` with sign `ε` carries `τ(t) = ε iσ_a`. Its spin is the Hermitian
+  operator that `τ` generates, `S = −(i/2)·τ = ½ ε σ_a`. For a twist read forward this is §38's spin, so P1 is
+  unchanged: helicity `+½`.
+* **G2, time reversal acts on the generator, not on the matrix.** Time reversal is antiunitary: it flips `σ` and also
+  conjugates `i`, so it leaves `τ = iσ` unchanged (`T τ T⁻¹ = +τ`, where §38 used `T σ T⁻¹ = −σ`). Under the repair the
+  conjugate half `t̄ = adjoint_history(t)` carries `τ(t̄) = τ(t)† = −τ(t)` and keeps it when read forward. Its momentum
+  still flips, to `+ε e_a`.
+* **G3, the order of the fold.** With `τ`, products are anti-cyclic (`τ_x τ_y = −τ_z`), so a sign can depend on the
+  order of the halves. On one axis `τ_a` commutes with itself, so **order cannot matter for `[t, t†]`**. The script
+  folds both orders, `[t, t†]` and `[t†, t]`, and reports whether they differ. Order-dependence on two axes belongs to
+  repair (c) and is not tested here.
+* **Convention.** QLF uses `τ = iσ` throughout. The other convention, `τ = −iσ`, flips the sign of every spin at once.
+  That swaps `+` and `−` in every count and cannot change whether a check passes. The script runs both and must give
+  mirror-image counts.
+
+### The checks (§38's, unchanged)
+
+* **P1′.** The helicities of the forward halves and of the conjugate halves read forward, over all six spatial twists.
+  Reported, not scored.
+* **C1, the photon (primary).** **Pass:** exactly two values of `s` along the motion, `+1` and `−1`, with equal ways.
+  **Fail:** one helicity only, or `s = 0` appears, or more than two states. If C1 fails, repair (b) fails, and C2–C3
+  are reported with no weight.
+* **C2, the graviton.** **Pass:** exactly `s = ±2`. **Fail:** any of `0, ±1` survives, or only one sign.
+* **C3, the massive control.** With reversals allowed, the count must give `s ∈ {−1, 0, +1}`, and with D1 it must not
+  contain `s = 0`. If `s = 0` appears **with** D1, then D1 no longer does the work it did in §38a, and that is a fail
+  of the repair even if other states are right.
+* **C4** is dropped: §38a showed the rule does not reach the commutator carriers, and G1–G3 do not change their
+  motion.
+
+### Stated prior, before any computation
+
+From G1 and G2 alone: the forward half has helicity `+½`, and the conjugate half read forward has momentum `+ε e_a`
+and spin `−½ ε e_a`, so helicity `−½`. Under the repair the alphabet does carry **both** helicities, which §38a said
+was missing, but each photon `[t, t†]` pairs one of each.
+* **Expected: C1 fails with `s = 0`, 6 ways of 6**, in both fold orders and both conventions. That is the state D1 was
+  meant to remove, so C3 also fails as worded above.
+* So the expected outcome is that (b) moves the problem instead of fixing it. §38's reading gives the photon one
+  helicity; the generator reading gives it none.
+* If the prior holds, repair (b) is closed, and of §38a's list only (a), a framework extension, and (c), the photon
+  as a two-axis loop, remain. If C1 passes, G2 is wrong as I have worked it out, and the script's output says where.
+
+Script: `carrier_helicity.py`, extended with a `--generator` reading (to be written after this commit).
 
 ## 2026 update
 
