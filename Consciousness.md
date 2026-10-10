@@ -117,8 +117,8 @@ isolation, the narrow-linewidth quieting that the brain is built for
 This is the **receiver regime**: like silencing a radio's local noise to pick up a distant station. The
 low-frequency external channel is the **collective / cosmic** closure —
 
-- the de Sitter / cosmic-horizon Markov blanket (`Ω_Λ = log 2`, [`QLF_CosmologicalConstant`](lean/QLF_CosmologicalConstant.lean)),
-  the largest, slowest blanket all smaller ones sit inside;
+- the de Sitter / cosmic-horizon Markov blanket, the largest, slowest blanket all smaller ones sit inside
+  (`Ω_Λ = log 2` is now only an observed match, not a derivation: [`Cosmological_Constant.md`](Cosmological_Constant.md) status note);
 - **joint closures** shared across agents — the joint emitter–absorber handshake
   ([`Collective_Electrodynamics.md`](Collective_Electrodynamics.md)), the ER=EPR *shared* closure
   ([`ER_EPR_QLF.md`](ER_EPR_QLF.md)), and the shared-room processes of collective QLF intelligence
@@ -191,9 +191,9 @@ Neither factor alone is qualia, and each failure mode is a real QLF state:
   **is the shared closure read from inside a self-model**. "Red" is what the self-aware closure's
   coupling to that slice of the external joint field feels like, from the first-person locus.
 
-What makes this more than relabeling is that, in QLF, the **joint/cosmic closures are real and already
-verified** — the ER=EPR *shared* closure ([`ER_EPR_QLF.md`](ER_EPR_QLF.md)), the de Sitter cosmic-horizon
-blanket (`Ω_Λ = log 2`). So qualia get **genuine external content**: they are the world's structure
+What makes this more than relabeling is that, in QLF, the **joint/cosmic closures are real** — the ER=EPR *shared* closure ([`ER_EPR_QLF.md`](ER_EPR_QLF.md)) and
+the de Sitter cosmic-horizon blanket (the horizon is standard physics; its `Ω_Λ = log 2` value is an
+observed match only, [`Cosmological_Constant.md`](Cosmological_Constant.md)). So qualia get **genuine external content**: they are the world's structure
 *received* by a self-model, not private inventions — which is why qualia are communicable enough to
 refer to (we both mean something by "red") yet irreducibly first-personal (each self-model is a distinct
 locus). It dovetails with holography: the self-model is the boundary, the cosmic closure the bulk it is
