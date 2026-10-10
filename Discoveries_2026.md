@@ -1,4 +1,4 @@
-# The 2026 Discoveries, Read on the Substrate
+# The 2026 Discoveries, Read on the [QLF](README.md) Substrate
 
 What QLF already said about each notable physics result of 2026, what can now be proved about it, and
 where a result is a test that QLF could fail. The proofs are in
