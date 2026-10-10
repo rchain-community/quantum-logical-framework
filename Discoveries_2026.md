@@ -5,9 +5,12 @@ where a result is a test that QLF could fail. The proofs are in
 [`lean/QLF_Discoveries2026.lean`](lean/QLF_Discoveries2026.lean) (no axioms). Status labels follow
 [`ScientificApproach.md`](ScientificApproach.md) §3.
 
-Part I takes the twelve segments of Nap Theory's video *The Most Insane Physics Discoveries Of 2026
-(That You Haven't Heard Of)* in order. The experimental details in Part I are as the video reports
-them; the papers it names are cited. Part II covers other 2026 results the video does not.
+[Part I](#part-i) takes the twelve segments of Nap Theory's video
+[*The Most Insane Physics Discoveries Of 2026 (That You Haven't Heard Of)*](https://youtu.be/NwKzvBN9wh4)
+in order. The experimental details in Part I are as the video reports them; the papers it names are
+cited. [Part II](#part-ii) covers other 2026 results the video does not.
+
+<a id="part-i"></a>
 
 # Part I — The video's twelve discoveries
 
@@ -263,6 +266,8 @@ joined with its time mirror closes**. And [`ER_EPR_QLF`](lean/ER_EPR_QLF.lean) i
 with a shared closure. So in QLF the Einstein–Rosen bridge is a closure of a history with its mirror,
 which is the temporal reading Gaztañaga proposes. The cosmological claims (a bounce, relic black holes
 as dark matter, the CMB parity asymmetry) are theirs, not QLF's.
+
+<a id="part-ii"></a>
 
 # Part II — Other 2026 results
 
