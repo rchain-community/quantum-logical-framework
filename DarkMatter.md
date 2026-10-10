@@ -562,6 +562,16 @@ logical density around mass.
 
 ---
 
+## 2026 update
+
+Two 2026 results bear on this document's central claim that dark matter is not a particle.
+LUX-ZEPLIN reported one nuclear recoil that known backgrounds explain poorly (about 2.6σ, implying a WIMP
+of at least ~200 GeV if real). One event moves nothing, but the kill condition is now recorded in
+advance: a ≥ 5σ WIMP-like signal confirmed across detectors would falsify the no-particle claim
+([Discoveries_2026 §8](Discoveries_2026.md#p8)). Separately, the first thorium-229 nuclear clocks searched for an
+ultralight dark-matter field and found none, the expected outcome here ([V8](Discoveries_2026.md#v8)). CMS's 2026 dijet
+analysis also found no dark-matter mediator ([V9](Discoveries_2026.md#v9)).
+
 ## References
 
 - M. Milgrom, *A modification of the Newtonian dynamics*, ApJ **270** (1983) 365 — the `a₀` acceleration scale.

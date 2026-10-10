@@ -62,6 +62,13 @@ alphabet `{+I,−I}`) vs *zero* for a single-valued vector `{+I}` — the `2π` 
 explicit rotation matrices and grounding the spinor **Cartan** discovered in 1913 as the carrier of information
 ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean), [`Mathematics_From_QLF.md`](Mathematics_From_QLF.md) §Rung 5a).
 
+**The 2026 discoveries, read on the substrate:** [`Discoveries_2026.md`](Discoveries_2026.md) takes 24
+results of 2026 and gives for each what QLF already said, what is now proved
+([`QLF_Discoveries2026`](lean/QLF_Discoveries2026.lean), no axioms), and a prediction or kill condition.
+They land in domains 7, 10 and 11 below. One of them corrected QLF: STAR's baryon junction exposed that the
+windowed winding reads the neutron as `B = 0`, so baryon number now lives on the junction, the spatial
+projection that no gauge twist can move ([`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean)).
+
 **Harmonic-closure model:** reality and constructable truth are the *closing spectrum* of frequency-component closures — each frequency `f = 1/R` is one ZFA closure, i.e. a quantum-logical **computation** (a set of Feynman diagrams: path integral = generate, ZFA closure = the firebreak selecting the physical ones) ([`Frequency_Synchronization.md`](Frequency_Synchronization.md) §0).
 
 ---
@@ -147,9 +154,19 @@ Dark matter is the closure-balance RAR, blind-tested parameter-free on 147 SPARC
 ## 7. Particles and the Standard Model
 
 
-**Connectors:** *axis count* &rarr; 3 fermion generations &middot; *Q = 2/3* &rarr; Koide -> m_tau &middot; *3 angles + CP* &rarr; CKM / PMNS mixing &middot; *self-conjugate* &rarr; neutrino is Majorana &middot; *DeltaL = 2* &rarr; beta-decay / 0nubetabeta &middot; *one scale x ratios* &rarr; mass spectrum &middot; *m = 1/R fold delay* &rarr; mass (Higgs mechanism) &middot; *log 2 = one bit* &rarr; spin-1/2 = one bit (it from bit)
+**Connectors:** *axis count* &rarr; 3 fermion generations &middot; *Q = 2/3* &rarr; Koide -> m_tau &middot; *3 angles + CP* &rarr; CKM / PMNS mixing &middot; *self-conjugate* &rarr; neutrino is Majorana &middot; *DeltaL = 2* &rarr; beta-decay / 0nubetabeta &middot; *one scale x ratios* &rarr; mass spectrum &middot; *m = 1/R fold delay* &rarr; mass (Higgs mechanism) &middot; *log 2 = one bit* &rarr; spin-1/2 = one bit (it from bit) &middot; *spatial projection (STAR 2026)* &rarr; baryon number = junction winding &middot; *doubly charmed (LHCb 2026)* &rarr; charge ladder 3Q = 6 - 3k &middot; *Hermitian conjugate (BASE 2026)* &rarr; antiparticle = time mirror
 
-**Open:** [`Standard_Model.md`](Standard_Model.md) · [`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md) · [`Per_Qubit_Mass_Quantum.md`](Per_Qubit_Mass_Quantum.md) · [`Spin_QLF.md`](Spin_QLF.md) · [`Higgs.md`](Higgs.md) · [`Mathematics_From_QLF.md`](Mathematics_From_QLF.md)
+**Open:** [`Standard_Model.md`](Standard_Model.md) · [`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md) · [`Per_Qubit_Mass_Quantum.md`](Per_Qubit_Mass_Quantum.md) · [`Spin_QLF.md`](Spin_QLF.md) · [`Higgs.md`](Higgs.md) · [`Mathematics_From_QLF.md`](Mathematics_From_QLF.md) · [`Discoveries_2026.md`](Discoveries_2026.md)
+
+**2026: baryon number moved to the junction.** QLF's own neutron word `>^+/+` reads `B = 0` on the
+windowed winding, because each down quark's gauge twist breaks the windows beside it. Read on the
+**junction**, the word with its gauge twists removed, both nucleons have `B = 1`, and no gauge-twist
+insertion (a W emission, `u ↔ d`) can change it (`junction_insert_gauge`). That is STAR's 2026 claim
+that the carrier is the gluon junction, not the valence flavours, reached on the substrate; it agrees on
+the carrier, not on STAR's factor-of-two stopping excess. On the same junction LHCb's doubly charmed
+baryons sit on `3Q = 6 − 3k` with `B = 1` on every rung, and the antiparticle is the time mirror with the
+same length and opposite charge and baryon number, for every word
+([`Discoveries_2026.md`](Discoveries_2026.md) §1, §2, V1; [`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean)).
 
 **It from bit — information is the ½-spin closure.** The unit of information is the two-valued spinor closure: one bit (`log 2`) for `{+I,−I}` vs *zero* for a single-valued vector `{+I}` (a single-valued object cannot express a distinction). The `2π` double-valuedness is reproven from the explicit rotation matrices (`spinor_double_valued_vector_blind`: `+I` on the vector `SO(3)` rep, `−I` on the spin-½ `SU(2)` rep), grounding **Cartan**'s 1913 spinor as its carrier. Priority runs *abstraction → physical*: information **is** the distinction, the ½-spin closure its minimal realization ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean), [`Mathematics_From_QLF.md`](Mathematics_From_QLF.md) §Rung 5a).
 
@@ -185,9 +202,15 @@ Overview: [`Millennium.md`](Millennium.md).
 What QLF derives that the SM treats as free input, and the falsifiable predictions it makes.
 
 
-**Connectors:** *not free* &rarr; derived: alpha, Koide, theta-bar=0, Omega_La… &middot; *test now* &rarr; Majorana neutrino -> 0nubetabeta &middot; *scale-free by construction* &rarr; no cosmological drift of alpha(0) &middot; *soft* &rarr; dark matter is not a particle
+**Connectors:** *not free* &rarr; derived: alpha, Koide, theta-bar=0, Omega_La… &middot; *test now* &rarr; Majorana neutrino -> 0nubetabeta &middot; *scale-free by construction* &rarr; no cosmological drift of alpha(0) &middot; *soft* &rarr; dark matter is not a particle &middot; *kill test (2026)* &rarr; Th-229 nuclear clocks &middot; *test pending* &rarr; LZ single event &middot; *GIM: no new particle* &rarr; B-meson tension &middot; *nulls predicted* &rarr; CPT null; no objective collapse, no time jitter
 
-**Open:** [`Beyond_Standard_Model.md`](Beyond_Standard_Model.md) · [`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md) · [`Alpha.md`](Alpha.md) · [`DarkMatter.md`](DarkMatter.md)
+**Open:** [`Beyond_Standard_Model.md`](Beyond_Standard_Model.md) · [`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md) · [`Alpha.md`](Alpha.md) · [`DarkMatter.md`](DarkMatter.md) · [`Discoveries_2026.md`](Discoveries_2026.md)
+
+**The 2026 tests.** Each 2026 result that QLF could fail has its kill condition written down before the
+data settle it ([`Discoveries_2026.md`](Discoveries_2026.md)): a nuclear-clock drift of `α`
+(`alpha_cannot_drift`, since `α = 1/(128 + d²)` has no time argument), a reproducible proton–antiproton
+difference at BASE, a confirmed dark-matter signal at LZ, a new particle behind the `B → Kπμμ` tension,
+and a collapse-model signal in large superpositions or a random walk in time. All are predicted null.
 
 ---
 
@@ -198,7 +221,7 @@ no forces and no orbitals put in by hand ([`Chemistry.md`](Chemistry.md)). Nothi
 everything is domains 3–4 assembled.
 
 
-**Connectors:** *saturate* &rarr; shared closure = bond &middot; *H2O, CO2, graphite, rust* &rarr; molecules and carbon allotropes &middot; *Pauli holds them apart* &rarr; crystals and condensates &middot; *(v-2)/2 each* &rarr; closure count &middot; *b1 counts them* &rarr; double bond = ring = one closure &middot; *only k is free* &rarr; reaction class &middot; *free valence for water?* &rarr; hydrophobic / polar &middot; *valence 2 is neutral* &rarr; divalent chains &middot; *backbone carries none* &rarr; folding &middot; *only H-H pays* &rarr; folding
+**Connectors:** *saturate* &rarr; shared closure = bond &middot; *H2O, CO2, graphite, rust* &rarr; molecules and carbon allotropes &middot; *Pauli holds them apart* &rarr; crystals and condensates &middot; *(v-2)/2 each* &rarr; closure count &middot; *b1 counts them* &rarr; double bond = ring = one closure &middot; *only k is free* &rarr; reaction class &middot; *free valence for water?* &rarr; hydrophobic / polar &middot; *valence 2 is neutral* &rarr; divalent chains &middot; *backbone carries none* &rarr; folding &middot; *only H-H pays* &rarr; folding &middot; *two liquids (2026)* &rarr; water = two closure inventories
 
 **Open:** [`Chemistry.md`](Chemistry.md) · [`Protein_Folding.md`](Protein_Folding.md) · [`lean/QLF_Unsaturation.lean`](lean/QLF_Unsaturation.lean) · [`lean/QLF_Folding.lean`](lean/QLF_Folding.lean) · [`hydrocarbon_census.py`](hydrocarbon_census.py) · [`protein_census.py`](protein_census.py)
 
@@ -217,6 +240,12 @@ contact is a ZFA closure in the literal sense: zero net displacement, count-bala
 keystone ([`QLF_Folding`](lean/QLF_Folding.lean)). The lattice-protein parity rule and the `log 2` contact
 quantum follow; the **mirror no-go** — counting cannot select a handedness — bounds what the census can
 ever answer ([`Protein_Folding.md`](Protein_Folding.md)).
+
+**Water as two liquids (2026).** The two interconverting structures reported in 2026 read as two closure
+inventories: four shared closures in a tetrahedron, or a crowded fifth neighbour. In the two-state model
+the density maximum is proved (`density_maximum`, and none without the open structure). It gives
+[`Mpemba.md`](Mpemba.md) a concrete hidden census; the census that reproduces 4 °C is still open
+([`Discoveries_2026.md`](Discoveries_2026.md) V2).
 
 ---
 
@@ -266,6 +295,8 @@ the one explicit crossing, carries QFT's empirical content.
 - [`Open_Problems.md`](Open_Problems.md) — the honest gap registry (closed / principled-boundary / open).
 - [`Beyond_Standard_Model.md`](Beyond_Standard_Model.md) — the derived / predicted / open scorecard.
 - [`Alpha.md`](Alpha.md) — one result mapped end to end, as a worked example.
+- [`Discoveries_2026.md`](Discoveries_2026.md) — the 2026 physics results read on the substrate: what is
+  proved, what is predicted null, and the one correction (baryon number on the junction).
 - [`Chemistry.md`](Chemistry.md) · [`Protein_Folding.md`](Protein_Folding.md) — domain 11 end to end: one
   rule (a bond is a shared closure) up through the closure count to a fold as a closure census.
 - [`Fredkin_QLF.md`](Fredkin_QLF.md) — conservative logic on the substrate: Fredkin's conservation law

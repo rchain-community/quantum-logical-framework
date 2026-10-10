@@ -125,6 +125,13 @@ This is the standard relational-quantum-mechanics framing applied at the QLF sub
 - **Recovery experiments**: a precise prediction — under what conditions can an apparently-decohered state be recovered by carefully integrating the environment back into the observer's blanket? QLF predicts this is always possible in principle; standard decoherence theory often hedges.
 - **Quantum-error-correction connection**: error-correcting codes work because they distribute logical information across many physical qubits in a way that survives partial blanket coarse-graining. Develop the connection to `Error_Correction.md`.
 
+## 2026 update
+
+STAR's 2026 vacuum twins show decoherence directly: `ΛΛ̄` pairs emitted close together keep the spin
+alignment of their virtual `ss̄` parents, and pairs that separate lose it. Here that is a shared
+closure diluted into a larger one as each member closes with its surroundings
+([Discoveries_2026 V3](Discoveries_2026.md#v3)).
+
 ## References
 
 ### Internal

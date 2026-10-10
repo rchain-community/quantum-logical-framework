@@ -77,7 +77,10 @@
    "NU>BD": "DeltaL = 2",
    "TH>MS": "one scale x ratios",
    "SP>HG": "m = 1/R fold delay",
-   "SP>BIT": "log 2 = one bit"
+   "SP>BIT": "log 2 = one bit",
+   "TH>BJ": "spatial projection (STAR 2026)",
+   "BJ>DC": "doubly charmed (LHCb 2026)",
+   "TH>CPT": "Hermitian conjugate (BASE 2026)"
   },
   {
    "H8>S": "domain 8",
@@ -100,7 +103,11 @@
    "B>D1": "not free",
    "B>P1": "test now",
    "B>P2": "scale-free by construction",
-   "B>P3": "soft"
+   "B>P3": "soft",
+   "P2>TH9": "kill test (2026)",
+   "P3>LZ": "test pending",
+   "B>P4": "GIM: no new particle",
+   "B>P5": "nulls predicted"
   },
   {
    "V>BD": "saturate",
@@ -112,7 +119,8 @@
    "V>HP": "free valence for water?",
    "V>CH": "valence 2 is neutral",
    "CH>FOLD": "backbone carries none",
-   "HP>FOLD": "only H-H pays"
+   "HP>FOLD": "only H-H pays",
+   "V>W2": "two liquids (2026)"
   },
   {
    "PT>ORD": "grade by closure",

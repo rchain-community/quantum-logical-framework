@@ -299,6 +299,16 @@ relevance). **3** and the `1/3`-from-three-colours of **4** are proven; the dime
 - ✗ **Open:** quark masses; the string-tension value and the
   asymptotic-freedom→confinement RG flow.
 
+## 2026 update
+
+2026 results: LHCb observed the doubly charmed `Ξcc⁺` (above 7σ) and `Ωcc⁺` (8.7σ). Their charges follow
+from the signature, `3Q = 6 − 3k` (`baryon_charge_ladder`), since generation does not enter the word
+([Discoveries_2026 §2](Discoveries_2026.md#p2)). STAR's evidence that baryon number rides on the gluon junction exposed
+a flaw here: the windowed `baryonNumber` reads the neutron word as `0`. Read on the junction, both
+nucleons have `B = 1`, and no gauge twist can change it (`junction_insert_gauge`)
+([§1](Discoveries_2026.md#p1)). CMS excluded quark substructure up to 17–37 TeV; in QLF a quark is one twist and is
+point-like down to the event scale ([V9](Discoveries_2026.md#v9)).
+
 ## References
 
 ### Internal (QLF)

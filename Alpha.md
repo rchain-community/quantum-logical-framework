@@ -682,6 +682,16 @@ continuum vacuum-polarisation running, the Standard Model's own frontier, not a 
 
 ---
 
+## 2026 update
+
+The 2026 thorium-229 nuclear clocks (TU Wien/PTB and Tsinghua) are expected to be thousands of
+times more sensitive to a change in `α` than atomic clocks, making them the sharpest test of the
+prediction that `α` does not drift. The prediction now has a real Lean anchor: `alpha_cannot_drift`
+(`QLF_Discoveries2026`) proves that a continuous history of `α` whose values are all of the form
+`1/(128 + d²)` is constant, because that value set is countable. The earlier
+`no_cosmological_drift_of_alpha` was `True := trivial`. **Kill condition:** any confirmed variation of
+`α` ([Discoveries_2026 V8](Discoveries_2026.md#v8)).
+
 ## See also
 
 - [`Alpha_Residual.md`](Alpha_Residual.md) §0a (the discovery/confirmation firewall and the pre-filter),

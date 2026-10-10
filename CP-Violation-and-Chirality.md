@@ -156,3 +156,11 @@ If the universe is intelligence explaining the intelligence all around us, the h
 * [`QuCalc.md`](https://www.google.com/search?q=./QuCalc.md) - The 8-Twist Alphabet and RhoQuCalc Process Composition.
 * [`cp_violation_sim.py`](https://www.google.com/search?q=./cp_violation_sim.py) - Executable Python simulation of topological symmetry breaking.
 * [`Annihilation.md`](./Annihilation.md) — annihilation as Hermitian-conjugate topological unwinding (LH closure unwound by RH closure); the cosmological residual described in this file is §5 of that synthesis.
+
+## 2026 update
+
+In 2026 CERN's BASE-STEP moved trapped antiprotons by truck so that BASE can improve comparisons
+already at 16 parts per trillion (charge-to-mass) and 1.5 parts per billion (magnetic moment). QLF
+proves the mirror for every word: the antiparticle has the same length and opposite charge and
+junction baryon number (`antiparticle_length`, `charge3W_antiparticle`, `junctionBaryon_antiparticle`).
+CPT-violating differences are predicted absent at any precision ([Discoveries_2026 V1](Discoveries_2026.md#v1)).
