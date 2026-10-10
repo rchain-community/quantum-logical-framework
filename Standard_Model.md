@@ -145,6 +145,12 @@ The path forward is to:
 - **Mixing angles from chirality rotation**: develop the structural account into a quantitative prediction.
 - **Higgs particle**: distinguish the Higgs *field* (vacuum gauge-fold density, qualitatively derived) from the Higgs *boson* (excitation of that field, observed at 125 GeV); derive the boson mass.
 
+## 2026 update
+
+2026 Standard Model results read on the substrate: the doubly charmed `Ξcc⁺` and `Ωcc⁺`, the baryon
+junction, entangled Z pairs, the `B → Kπμμ` tension (GIM proved as `gim_shift`), and CMS's
+compositeness limits. See [Discoveries_2026](Discoveries_2026.md#p2) §1–§3, §9 and V9.
+
 ## References
 
 ### Internal

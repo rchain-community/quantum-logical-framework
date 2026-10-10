@@ -340,3 +340,10 @@ the substrate's state ring — a finite-rank `ℤ[i]`-lattice, not Hilbert space
 [`The_QLF_State_Space.md`](The_QLF_State_Space.md). See [`Decoherence.md`](Decoherence.md),
 [`Entropy.md`](Entropy.md), [`Conservation.md`](Conservation.md), [`Philosophy.md`](Philosophy.md), and the
 synthesized-spacetime account in [`ZFAEventDynamics.lean`](lean/ZFAEventDynamics.lean).
+
+## 2026 update
+
+In 2026 Gaztañaga, Kumar and Marto proposed that the Einstein–Rosen bridge is a pairing of a
+forward-in-time and a backward-in-time component rather than a tunnel. Here time reversal is the
+Hermitian conjugate, and `mirror_closes` (`QLF_Discoveries2026`) proves that any history joined to its
+time-mirror closes. QLF reached the temporal reading independently ([Discoveries_2026 V12](Discoveries_2026.md#v12)).

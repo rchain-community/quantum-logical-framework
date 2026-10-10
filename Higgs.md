@@ -273,3 +273,11 @@ What the QLF Higgs program still needs:
 These are natural next targets for the QLF physics program.
 
 See also: [Standard_Model.md](Standard_Model.md) — honest scoreboard placing the Higgs sector among partial derivations (the *why mass exists* part is qualitatively derived; the specific Higgs boson mass and Yukawa coupling structure are open); [Bound_States_QLF.md](Bound_States_QLF.md) — gauge-fold depth contributions to fermion mass should be read as contributions to atomic-system mass (positronium, muonium, hydrogen), not to free-fermion mass directly. Free fermions are not stable QLF observables.
+
+## 2026 update
+
+2026 tests of this document's predicted-absent list: CMS's dijet analysis found no compositeness,
+extra dimensions, quantum black holes or axion-like particles ([Discoveries_2026 V9](Discoveries_2026.md#v9)).
+Tsinghua simulated false-vacuum decay on a Rydberg ring ([V10](Discoveries_2026.md#v10)). QLF's conjecture, not
+proved, is that our vacuum is absolutely stable: the metastability verdict rests on running the
+quartic to the Planck scale, the continuum extrapolation QLF says fails there.

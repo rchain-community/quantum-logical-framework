@@ -262,3 +262,11 @@ See also: [`NavierStokes_QLF.md`](NavierStokes_QLF.md) (the existence/smoothness
 [`Geometry_Of_Space.md`](Geometry_Of_Space.md) (the geometry these dynamics live on),
 [`Conservation.md`](Conservation.md) (Noether currents), [`Curvature.md`](Curvature.md) (blanket
 deformation), [`TheContinuum.md`](TheContinuum.md) (why discreteness removes the infinities).
+
+## 2026 update
+
+2026 vortex results: cold-atom quantum Shapiro steps, where each step corresponds to a number of
+vortex–antivortex pairs nucleated per drive cycle (`pairs_balanced`, [Discoveries_2026 §6](Discoveries_2026.md#p6)),
+and the Technion's films of optical phase singularities annihilating in pairs at speeds above light.
+Their approach speed `κ/(2√s)` is unbounded (`vortex_speed_unbounded`) but carries no signal
+([V4](Discoveries_2026.md#v4)).

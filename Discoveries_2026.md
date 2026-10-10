@@ -13,18 +13,20 @@ them; the papers it names are cited. Part II covers other 2026 results the video
 
 | # | Discovery (as reported) | QLF | Status |
 |---|---|---|---|
-| V1 | Antiprotons moved by truck in a trap (BASE-STEP, CERN) | The antiparticle is the time-mirror: same mass, opposite charge and baryon number, for every word | **proved**; CPT null predicted |
-| V2 | Water as two interconverting liquids | Two closure inventories; the Mpemba stance gains a mechanism | **reading**, a census to compute |
-| V3 | Vacuum `ss̄` twins surviving as spin-aligned `ΛΛ̄` (STAR) | A history joined to its mirror always closes; separation decoheres a shared closure | **proved** (closure) |
-| V4 | Phase singularities outrunning light (Technion) | Pattern features carry no closure, so no signal (`no_ftl_in_epr`); pairs annihilate as closures | **reading** + reuse |
-| V5 | Time crystals: acoustic beads (NYU), 144-qubit sheet (IBM) | Period doubling from `σ² = I`; non-reciprocity is a shared closure with the field | **proved** (single spin) |
-| V6 | Sodium clusters of 5,000–10,000 atoms in superposition (Vienna) | No collapse threshold below closure; objective collapse predicted absent | **consistent**; null predicted |
-| V7 | Collapse models imply a jitter in time | Time has a grain (one event), but no collapse-driven random walk | **prediction**: no jitter |
-| V8 | Thorium-229 nuclear clocks with feedback loops (TU Wien/PTB, Tsinghua) | `α = 1/(128 + d²)` has no time argument | **kill condition** stated |
-| V9 | CMS: no quark substructure to 17–37 TeV | A quark is one twist; substructure only at the event scale | **consistent**; null predicted |
-| V10 | False-vacuum decay on a Rydberg ring (Tsinghua) | An alternating ring closes iff it is even | **proved** |
-| V11 | Exact "spacetime crystals" of critical collapse (Ecker, Ecker, Grumiller) | Finite information puts a floor under the smallest black hole | **proved** (floor) |
-| V12 | The Einstein–Rosen bridge as a mirror in time (Gaztañaga et al.) | QLF's bra–ket closure already pairs a forward history with its mirror | **convergence**, proved core |
+| [V1](#v1) | Antiprotons moved by truck in a trap (BASE-STEP, CERN) | The antiparticle is the time-mirror: same mass, opposite charge and baryon number, for every word | **proved**; CPT null predicted |
+| [V2](#v2) | Water as two interconverting liquids | Two closure inventories; the Mpemba stance gains a mechanism | **proved** (two-state density maximum); census to compute |
+| [V3](#v3) | Vacuum `ss̄` twins surviving as spin-aligned `ΛΛ̄` (STAR) | A history joined to its mirror always closes; separation decoheres a shared closure | **proved** (closure) |
+| [V4](#v4) | Phase singularities outrunning light (Technion) | Pattern features carry no closure, so no signal (`no_ftl_in_epr`); pairs annihilate as closures | **proved** (speed unbounded, no signal) |
+| [V5](#v5) | Time crystals: acoustic beads (NYU), 144-qubit sheet (IBM) | Period doubling from `σ² = I`; non-reciprocity is a shared closure with the field | **proved** (single spin) |
+| [V6](#v6) | Sodium clusters of 5,000–10,000 atoms in superposition (Vienna) | No collapse threshold below closure; objective collapse predicted absent | **consistent**; null predicted |
+| [V7](#v7) | Collapse models imply a jitter in time | Time has a grain (one event), but no collapse-driven random walk | **proved** (bounded grain vs unbounded walk); no jitter predicted |
+| [V8](#v8) | Thorium-229 nuclear clocks with feedback loops (TU Wien/PTB, Tsinghua) | `α = 1/(128 + d²)` has no time argument | **proved** (`α` cannot drift); kill condition stated |
+| [V9](#v9) | CMS: no quark substructure to 17–37 TeV | A quark is one twist; substructure only at the event scale | **consistent**; null predicted |
+| [V10](#v10) | False-vacuum decay on a Rydberg ring (Tsinghua) | An alternating ring closes iff it is even | **proved** |
+| [V11](#v11) | Exact "spacetime crystals" of critical collapse (Ecker, Ecker, Grumiller) | Finite information puts a floor under the smallest black hole | **proved** (floor) |
+| [V12](#v12) | The Einstein–Rosen bridge as a mirror in time (Gaztañaga et al.) | QLF's bra–ket closure already pairs a forward history with its mirror | **convergence**, proved core |
+
+<a id="v1"></a>
 
 ## V1. The antimatter truck — CPT as a theorem about words
 
@@ -47,6 +49,8 @@ improvement the transport is meant to enable. **Kill condition:** a reproducible
 mass, charge-to-mass or moment difference. The matter excess itself is a separate, open question
 (baryogenesis, magnitude `η_B` open in [`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §3).
 
+<a id="v2"></a>
+
 ## V2. Two liquids in every glass
 
 **Reported.** A Stockholm team (*Science*, 26 March 2026) flash-melted glassy ices and probed the
@@ -67,6 +71,15 @@ Water's two-structure population is a concrete candidate for that hidden census:
 temperature can carry different structure fractions. **Open:** a closure census that reproduces the
 density maximum near 4 °C, and the prediction it would make for which preparations cool fastest.
 
+**What is proved** (`density_maximum`, `no_anomaly_single`). In the simplest two-state model the open,
+low-density fraction falls with temperature, shrinking the volume at rate `k`, while both structures
+expand normally (coefficient `β`). If the open structure exists (`k > 0`), the volume has a strict
+minimum, so the density a maximum, at `T₀ = k/2β > 0`. Without it (`k ≤ 0`), heating never shrinks
+the liquid. So the density maximum *requires* the second structure: Röntgen's 1892 idea in one line.
+The model fixes the mechanism, not the 4 °C; that number needs the census.
+
+<a id="v3"></a>
+
 ## V3. Twins from the vacuum
 
 **Reported.** STAR at Brookhaven (*Nature*, announced 4 February 2026) found `Λ`–`Λ̄` pairs from proton
@@ -82,6 +95,8 @@ pattern seen: alignment survives when the twins stay close and fades when they s
 notes STAR cannot yet say whether the surviving link is quantum entanglement or classical
 correlation. QLF says it starts as entanglement. Whether it still is at the detector is the open part.
 
+<a id="v4"></a>
+
 ## V4. Darkness faster than light
 
 **Reported.** A Technion team (*Nature*, April 2026) filmed phase singularities in phonon polaritons
@@ -93,9 +108,13 @@ predicted in 1974.
 and `no_ftl_in_epr` already shows that a connection between spacelike ends transmits nothing. So
 superluminal singularities break nothing, for the same reason the moon-sweeping laser spot doesn't.
 Pair creation and annihilation conserves twist: a vortex with its antivortex is the mirror pair of
-V3, and closes (`pairs_balanced`, Part II §6). **Open:** the divergent approach speed itself
-(separation shrinking like the square root of time to annihilation) is continuum geometry and not
-derived here.
+V3, and closes (`pairs_balanced`, Part II §6). `vortex_speed_unbounded` proves the
+divergence: if two singularities annihilate with separation `κ√s` (`s` the time left), their approach
+speed `κ/(2√s)` exceeds every bound, the speed of light included, at some moment before they meet. The
+square-root law is the generic local form of a pair annihilation (Nye and Berry); it is assumed here,
+not derived from the twist census.
+
+<a id="v5"></a>
 
 ## V5. Time crystals
 
@@ -115,6 +134,8 @@ January 2026) built a two-dimensional time crystal on 144 qubits.
   beads alone are open, and the field carries exactly the opposite imbalance. Newton's third law holds
   for the closure, not for the visible part of it.
 
+<a id="v6"></a>
+
 ## V6. A lump of metal in two places
 
 **Reported.** Vienna (*Nature*, 22 January 2026) showed interference of sodium clusters of 5,000–10,000
@@ -128,6 +149,8 @@ collapse (GRW, CSL, Penrose) among the rivals that larger superpositions should 
 interference. Only isolation limits it. **Kill condition:** a reproducible loss of contrast scaling
 with mass that no decoherence channel accounts for.
 
+<a id="v7"></a>
+
 ## V7. A tremor beneath every second
 
 **Reported.** Bortolotti, Curceanu, Diósi, Manti and Piscicchia (*Physical Review Research*, January
@@ -140,7 +163,13 @@ Those fluctuations would give every clock an unavoidable jitter, around 10⁻²�
 clock's elapsed time is an integer number of events, read with an error of at most one event however
 long it runs; nothing accumulates. **Prediction:** no collapse-driven clock jitter, consistent with QLF's
 no-collapse stance (V6). The two pictures differ in growth: collapse models predict uncertainty
-rising like `√t`, QLF a bound that does not grow. Neither is measurable with present clocks.
+rising like `√t`, QLF a bound that does not grow. Both halves are proved:
+`tick_error_bounded` (counted time errs by less than one event, for every duration) and
+`random_walk_unbounded` (a jitter `σ√t` exceeds every bound). Neither is measurable with present
+clocks, but they disagree about growth, which is what a long-baseline comparison (pulsars against
+atomic clocks, as the video suggests) would test.
+
+<a id="v8"></a>
 
 ## V8. A clock inside the nucleus
 
@@ -154,11 +183,15 @@ in `α` than atomic clocks.
 
 - **No drift of `α`.** `α(d) = 1/(128 + d²)` depends on dimension only, with no time argument
   ([`QLF_FineStructureSubstrate`](lean/QLF_FineStructureSubstrate.lean)). **Kill condition:** any
-  confirmed variation of `α` in nuclear-versus-atomic clock comparisons. Note that the module's
-  `no_cosmological_drift_of_alpha` is `True := trivial` and anchors nothing; the prediction rests on
-  the formula's form, not on that theorem.
+  confirmed variation of `α` in nuclear-versus-atomic clock comparisons. The existing
+  `no_cosmological_drift_of_alpha` is `True := trivial` and anchored nothing. `alpha_cannot_drift`
+  now proves the claim: a continuous history of `α` whose every value is `1/(128 + d²)` for some
+  natural `d` is constant. The value set is countable, so it contains no interval for `α` to move
+  through. A measured drift would therefore show `α` is not a substrate count.
 - **No ultralight dark-matter field.** QLF predicts no dark-matter particle or field (Part II §8), so
   Vienna's null is the expected result.
+
+<a id="v9"></a>
 
 ## V9. Is there anything inside a quark?
 
@@ -173,6 +206,8 @@ not some intermediate preon scale. **Prediction:** no compositeness signal at an
 other CMS nulls match QLF's predicted absences: no axion, no fundamental dark-matter particle
 ([`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §6), and no Higgs-sector new physics
 ([`Higgs.md`](Higgs.md)).
+
+<a id="v10"></a>
 
 ## V10. The universe ending in a ring of atoms
 
@@ -191,6 +226,8 @@ scale. In QLF the vacuum is the closure, zero free action, and no history has le
 imbalance. **Conjecture:** our vacuum is absolutely stable, not metastable. Not testable now, and not
 proved here.
 
+<a id="v11"></a>
+
 ## V11. Crystals made of spacetime
 
 **Reported.** Christian Ecker, Florian Ecker and Daniel Grumiller (*Physical Review Letters*, May 2026)
@@ -207,6 +244,8 @@ which no realizable region has. The physical floor is the Planck mass, where a c
 horizon ([`Planck_Scale.md`](Planck_Scale.md)). Discrete self-similarity itself is the continuum face
 of QLF's self-similar closures ([`self_similar_closures.py`](self_similar_closures.py)), though nothing
 here derives the echo period `Δ ≈ 3.44`.
+
+<a id="v12"></a>
 
 ## V12. A bridge between two directions of time
 
@@ -230,18 +269,20 @@ as dark matter, the CMB parity asymmetry) are theirs, not QLF's.
 
 | # | Result (2026) | QLF's prior view | What is new here | Status |
 |---|---|---|---|---|
-| 1 | Baryon number carried by a gluon junction (STAR, *Science*) | Baryon number is a 3-axis winding ([`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean)) | The windowed winding reads the neutron as `B = 0`. Read on the junction, `B = 1` and no flavour change can move it | **proved**, and a correction |
-| 2 | Doubly charmed baryons `Ξcc⁺`, `Ωcc⁺` (LHCb) | `Q = (2/3)N − n_g` ([`QLF_QuarkSignature`](lean/QLF_QuarkSignature.lean)) | The charge ladder `3Q = 6 − 3k` with `B = 1` on every rung; charge is generation-blind | **proved** |
-| 3 | Entangled Z pairs from Higgs decay (ATLAS) | Entanglement is a shared closure ([`ER_EPR_QLF`](lean/ER_EPR_QLF.lean)) | Two histories close together iff their action vectors are opposite on every axis; an open child forces an open partner | **proved** |
-| 4 | Dissipationless 1-D transport (TU Wien) | Conservative logic is free ([`QLF_Fredkin`](lean/QLF_Fredkin.lean)) | Elastic 1-D collisions are permutations: the whole velocity distribution is conserved | **proved** |
-| 5 | Altermagnetism in thin, tunable films | Handedness and count balance ([`QLF_Handedness`](lean/QLF_Handedness.lean)) | The d-wave splitting is the only one that is inversion-even and odd under the axis swap | **proved** |
-| 6 | Quantum Shapiro steps in cold atoms | Vorticity quantised to `±1` per cell ([`Navier_Stokes_Geometry.md`](Navier_Stokes_Geometry.md)) | `n` vortex–antivortex pairs close for every `n`; the step index is a closure count | **proved** (structural) |
-| 7 | IceCube and the 2026 Nobel Prize (Halzen) | Neutrino is Majorana; mixing angles open ([`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md)) | μ–τ symmetric mixing sends a `1:2:0` source to exactly `1:1:1` | **proved**, conditional on μ–τ symmetry |
-| 8 | A single unexplained event at LZ | No dark-matter particle ([`DarkMatter.md`](DarkMatter.md)) | Kill condition stated | **test pending** |
-| 9 | `B → Kπμμ` tension, "charming penguins" (LHCb) | No new particles; hadronic sector open | Prediction: the tension resolves inside the Standard Model | **conjecture**, falsifiable |
-| 10 | Vacuum-enhanced superconductivity in a cavity (NbSe₂) | The Casimir effect as a finite census ([`QLF_Casimir`](lean/QLF_Casimir.lean)) | A reading, and the disputed point it has to face | **open bridge** |
-| 11 | A 40-year-old CFT energy ladder measured (Caltech) | Ising exponents tested ([`ising_exponent_test.py`](ising_exponent_test.py)) | Where QLF would have to reproduce it | **open** |
-| 12 | Pair density waves in UTe₂ | Cooper pairs as shared closures ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md)) | A reading only | **open** |
+| [1](#p1) | Baryon number carried by a gluon junction (STAR, *Science*) | Baryon number is a 3-axis winding ([`QLF_BaryonWinding`](lean/QLF_BaryonWinding.lean)) | The windowed winding reads the neutron as `B = 0`. Read on the junction, `B = 1` and no flavour change can move it | **proved**, and a correction |
+| [2](#p2) | Doubly charmed baryons `Ξcc⁺`, `Ωcc⁺` (LHCb) | `Q = (2/3)N − n_g` ([`QLF_QuarkSignature`](lean/QLF_QuarkSignature.lean)) | The charge ladder `3Q = 6 − 3k` with `B = 1` on every rung; charge is generation-blind | **proved** |
+| [3](#p3) | Entangled Z pairs from Higgs decay (ATLAS) | Entanglement is a shared closure ([`ER_EPR_QLF`](lean/ER_EPR_QLF.lean)) | Two histories close together iff their action vectors are opposite on every axis; an open child forces an open partner | **proved** |
+| [4](#p4) | Dissipationless 1-D transport (TU Wien) | Conservative logic is free ([`QLF_Fredkin`](lean/QLF_Fredkin.lean)) | Elastic 1-D collisions are permutations: the whole velocity distribution is conserved | **proved** |
+| [5](#p5) | Altermagnetism in thin, tunable films | Handedness and count balance ([`QLF_Handedness`](lean/QLF_Handedness.lean)) | The d-wave splitting is the only one that is inversion-even and odd under the axis swap | **proved** |
+| [6](#p6) | Quantum Shapiro steps in cold atoms | Vorticity quantised to `±1` per cell ([`Navier_Stokes_Geometry.md`](Navier_Stokes_Geometry.md)) | `n` vortex–antivortex pairs close for every `n`; the step index is a closure count | **proved** (structural) |
+| [7](#p7) | IceCube and the 2026 Nobel Prize (Halzen) | Neutrino is Majorana; mixing angles open ([`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md)) | μ–τ symmetric mixing sends a `1:2:0` source to exactly `1:1:1` | **proved**, conditional on μ–τ symmetry |
+| [8](#p8) | A single unexplained event at LZ | No dark-matter particle ([`DarkMatter.md`](DarkMatter.md)) | Kill condition stated | **test pending** |
+| [9](#p9) | `B → Kπμμ` tension, "charming penguins" (LHCb) | No new particles; hadronic sector open | GIM: only mass differences enter; the tension should resolve inside the Standard Model | **proved** (GIM); prediction falsifiable |
+| [10](#p10) | Vacuum-enhanced superconductivity in a cavity (NbSe₂) | The Casimir effect as a finite census ([`QLF_Casimir`](lean/QLF_Casimir.lean)) | A reading, and the disputed point it has to face | **open bridge** |
+| [11](#p11) | A 40-year-old CFT energy ladder measured (Caltech) | Ising exponents tested ([`ising_exponent_test.py`](ising_exponent_test.py)) | Where QLF would have to reproduce it | **open** |
+| [12](#p12) | Pair density waves in UTe₂ | Cooper pairs as shared closures ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md)) | A reading only | **open** |
+
+<a id="p1"></a>
 
 ## 1. The baryon junction — a correction to QLF, and STAR agrees with it
 
@@ -278,6 +319,8 @@ stripped off, the part of the word that `QLF_ColourFlux` already treats as colou
 **What it does not settle.** STAR's evidence is a stopping excess in collisions. QLF has no transport
 model to predict the factor of two, so this is agreement on the carrier, not on the number.
 
+<a id="p2"></a>
+
 ## 2. Doubly charmed baryons — the charge is blind to generation
 
 **The result.** LHCb's Run 3 detector observed `Ξcc⁺ (ccd)` above 7σ, its first new particle
@@ -295,6 +338,8 @@ With one up-type quark per colour axis and `k` down-type conversions:
 This is a consistency check that QLF passes, not a prediction. Any quark model gets these charges. What
 it shows is that the 2026 states need nothing the signature lacks, and that the §1 correction is what
 gives them `B = 1`.
+
+<a id="p3"></a>
 
 ## 3. Entangled Z bosons — a shared closure forces anti-correlation
 
@@ -318,6 +363,8 @@ history closes (`SharedClosure`).
 nothing about the measured *degree* of entanglement (the 4.7σ figure is a statistic of a specific
 non-entangled alternative). What it says is that a closed parent leaves its products no way to be
 separately closed, so "the Higgs's Z bosons are entangled" is structural in QLF, not a surprise.
+
+<a id="p4"></a>
 
 ## 4. A quantum Newton's cradle — conservative logic in mechanical form
 
@@ -343,6 +390,8 @@ classical skeleton: it explains why diffusion vanishes and why thermalisation ne
 the permutation structure (unequal masses, a transverse degree of freedom, three-body collisions).
 The bound on how fast weak breaking thermalises is not derived here.
 
+<a id="p5"></a>
+
 ## 5. Altermagnetism — the d-wave pattern is forced
 
 **The result.** Several 2026 groups reported altermagnetic spin splitting in thin and tunable
@@ -365,6 +414,8 @@ zero net magnetisation, like an antiferromagnet, but its bands are spin-split, l
 This is QLF's count-balance versus order distinction on a magnet. Count balance (zero net moment) does
 not mean nothing is there: the structure lives in *how* the balance is arranged across axes.
 
+<a id="p6"></a>
+
 ## 6. Quantum Shapiro steps — the step index counts closures
 
 **The result.** Two teams (LENS/Florence with Fermi gases, Kaiserslautern with a BEC) drove a moving
@@ -381,6 +432,8 @@ each step corresponds to a definite number of vortex–antivortex pairs nucleate
 The physics is that the chemical-potential step `Δμ = n·hν` is quantised because `n` counts closures.
 The proof is structural and modest: it shows the pair picture is consistent at every step, not that the
 drive selects step `n`.
+
+<a id="p7"></a>
 
 ## 7. IceCube and the 2026 Nobel Prize — what μ–τ symmetry would buy
 
@@ -402,6 +455,8 @@ QLF reads generations as the three spatial axes ([`QLF_Generations`](lean/QLF_Ge
 and an axis-swap symmetry between two of them would be μ–τ symmetry, but that is a conjecture. With the
 measured angles, μ–τ symmetry is broken at a few percent, below IceCube's present flavour resolution.
 
+<a id="p8"></a>
+
 ## 8. LZ's single event — a test QLF could fail
 
 **The result.** On 1 September 2026 LUX-ZEPLIN reported one nuclear-recoil event that known
@@ -418,6 +473,8 @@ dark-matter particle" null is **falsified**. QLF's derived RAR would survive onl
 the baryonic sector beside a real particle. One event at 2.6σ moves nothing. It is recorded here so the
 outcome cannot be rationalised after the fact.
 
+<a id="p9"></a>
+
 ## 9. The B-meson tension — a prediction of no new particle
 
 **The result.** An analysis of `B → Kπμμ` disagrees with the Standard Model, and the tension is tied
@@ -427,10 +484,16 @@ to "charming penguins": charm-loop contributions that are hard to compute ([Phys
 fundamental dark-matter particle ([`Mysteries_Of_Physics.md`](Mysteries_Of_Physics.md) §6). The same
 economy predicts no Z′ or leptoquark behind flavour anomalies. CKM unitarity is closure
 ([`QLF_CKM`](lean/QLF_CKM.lean)), and the hadronic sector is QLF's open frontier, the same frontier as
-muon `g − 2` ([`g_minus_2.md`](g_minus_2.md)). **Prediction:** the tension resolves within the
-Standard Model as the charm-loop contribution is pinned down. **Kill condition:** a 5σ deviation in a
+muon `g − 2` ([`g_minus_2.md`](g_minus_2.md)). `gim_shift` and `gim_degenerate` prove the
+GIM mechanism in QLF's unitarity-as-closure form: if the CKM factors of a flavour-changing loop sum to
+zero, the loop depends only on mass differences and vanishes for degenerate masses. What survives in
+`b → s` is the top term and the charm term, and the charm term is exactly the hadronically uncertain
+"charming penguin". **Prediction:** the tension resolves within the Standard Model as the charm-loop
+contribution is pinned down. **Kill condition:** a 5σ deviation in a
 clean channel (one with negligible charm-loop contamination, such as `B_s → μμ` or lepton-universality
 ratios) that a new mediator fits.
+
+<a id="p10"></a>
 
 ## 10. Vacuum-enhanced superconductivity — a reading, and the disputed point
 
@@ -447,6 +510,8 @@ the minimal-coupling sign is negative, so a QLF account of the enhancement would
 outside minimal coupling, where the experiment's own resonance points. Nothing is derived here. The open
 bridge is the cavity-restricted pairing census, and its sign is the test.
 
+<a id="p11"></a>
+
 ## 11. The conformal energy ladder — where QLF would have to reproduce it
 
 **The result.** Caltech's Endres group used chains of strontium Rydberg atoms as a quantum simulator
@@ -460,6 +525,8 @@ rendering claim implies they are census data. The Ising exponent test
 are now a target: a closure census of the critical chain should give the Ising tower (`0, 1/8, 1`) in
 the stated ratios. Until it does, this is **open**.
 
+<a id="p12"></a>
+
 ## 12. Pair density waves in UTe₂ — a reading only
 
 A July 2026 *PNAS* paper finds charge-density-wave peaks in UTe₂ that track a pair density wave coupled to
@@ -468,6 +535,8 @@ signature ([NIST][nist]). In QLF a Cooper pair is a shared closure
 ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md)), and a pair density wave is a pair whose
 closure balances over a wavelength rather than at each site. That is a reading, not a result, and the
 experimental picture is itself unsettled.
+
+<a id="p13"></a>
 
 ## 13. Not yet covered
 

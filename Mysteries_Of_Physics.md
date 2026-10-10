@@ -177,7 +177,7 @@ QLF's selection ontology makes several mysteries vanish by predicting there is *
 | **Magnetic monopoles** | The EM sector is the abelian (Pauli-scalar, commuting) projection ⟹ `no_magnetic_monopoles` | `QLF_GaugeUnification.lean` |
 | **Proton decay** | Baryon winding is exactly conserved | `QLF_BaryonWinding.lean` |
 | **A light Dirac (sterile) right-handed neutrino** | One generation = 15 Weyl fermions (SU(5)'s `5̄⊕10`), **not** SO(10)'s 16 — no light `ν_R` | `QLF_SU5.lean` |
-| **Cosmological drift of α** | `α(d)=1/(128+d²)` has no time argument — scale/time-invariance is structural | `QLF_FineStructureSubstrate.lean` |
+| **Cosmological drift of α** | `α(d)=1/(128+d²)` has no time argument — scale/time-invariance is structural. **2026:** proved as `alpha_cannot_drift` (a continuous `α` valued in that countable set is constant); thorium-229 nuclear clocks are now the sharpest test ([`Discoveries_2026.md`](Discoveries_2026.md#v8)) | `QLF_FineStructureSubstrate.lean`, `QLF_Discoveries2026.lean` |
 | **GW speed ≠ c** | A massless gauge-fold-free ripple propagates at exactly `c` (GW170817 confirms to `10⁻¹⁵`) | `QLF_GravitationalWaves.lean` |
 
 ## 7. What remains genuinely open — the hard front

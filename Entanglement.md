@@ -114,6 +114,13 @@ These use `QuCalc.py`, `twist_core.py`, and `qucalc_engine.py` to simulate a len
 - **Holographic entanglement entropy**: the Ryu-Takayanagi formula relates entanglement entropy to minimal surface area. With QLF's holographic embedding ([Holographic.md](Holographic.md)) and per-event $\log 2$ quantum ([MRE.md](MRE.md)), this may be derivable rather than postulated.
 - **Lean theorem**: `entanglement_monogamy_from_hermitian_uniqueness` formalizing §4 in the same standard as the other open Lean items.
 
+## 2026 update
+
+2026 evidence: ATLAS's entangled Z pairs from Higgs decay and STAR's spin-aligned `ΛΛ̄` vacuum twins.
+In QLF both are shared closures: `forced_sharing` and `mirror_closes` (`QLF_Discoveries2026`). STAR's
+observation that the alignment fades as the pair separates is decoherence read as dilution of the
+shared closure into a larger one ([Discoveries_2026 §3](Discoveries_2026.md#p3), [V3](Discoveries_2026.md#v3)).
+
 ## References
 
 ### Internal
