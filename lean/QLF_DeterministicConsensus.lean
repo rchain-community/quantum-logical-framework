@@ -21,7 +21,9 @@ What a verifier holds after checking signatures is a finite set `A` of attestati
 ## Results (no axioms)
 
 * **`outcome_toFinset_perm`, `outcome_toFinset_dup`** — the outcome depends only on the *set*
-  of attestations: arrival order and duplicates cannot change it (determinism).
+  of attestations: arrival order and duplicates cannot change it (determinism). These hold by
+  construction — any function of a `Finset` has them; the content is the choice to evaluate
+  the deduplicated set.
 * **`quorum_intersection_safety`** — if every equivocating signer is among at most `f` faulty
   signers and `n + f < 2k`, no two different values can both be accepted. This is the
   classical quorum-intersection bound (`k > (n+f)/2`; with `n = 3f+1`, `k = 2f+1`).
@@ -32,27 +34,43 @@ What a verifier holds after checking signatures is a finite set `A` of attestati
   a function of the inputs.
 * **`split_without_bound`** — without the bound, two honest signers on different values
   both reach a threshold of `1`: the hypothesis is doing work.
+* **`honest_unanimity_accepted`**, **`byzantine_liveness`** — the other side: if `k + f ≤ n`,
+  the honest signers alone reach the threshold. Safety alone is cheap (with `k > n` nothing is
+  ever accepted), so the bound must also be *meetable*. **`safety_and_liveness_need_three_f`**:
+  both together force `3f < n`, the classical `n ≥ 3f + 1`, derived rather than quoted.
 
 ## Signatures, Byzantine signers and replay (no axioms)
 
 Signatures enter as an abstract `Scheme` with **unforgeability as a hypothesis** on each honest
-signer's key (`Unforgeable`), not as an axiom: Lean cannot prove a cryptographic assumption,
-so every theorem holds for any scheme that meets it. Each signature covers a `Context`
-(protocol tag, policy, event, epoch); `admit` keeps the statements for one context, from the
-policy's signers, that verify.
+signer's key, not as an axiom: Lean cannot prove a cryptographic assumption, so every theorem
+holds for any scheme that meets it. Each signature covers a `Context` (protocol tag, policy,
+event, epoch); `admit` keeps the statements for one context, from the policy's signers, that
+verify.
+
+**Which unforgeability.** The hypothesis is **`UnforgeableOn S issued R s`**: every statement *in
+the received bag `R`* that verifies under `s`'s key was issued by `s`. That is what EUF-CMA
+delivers for a run, with overwhelming probability: forgeries exist, the adversary does not find
+one. The stronger **`IdealUnforgeable`** — *no* signature string verifies for an unissued
+message — describes an ideal signature functionality (a verifier that consults the signing log),
+not a real scheme: **`ideal_unforgeable_total_scheme_trivial`** shows that for any scheme in which
+every message has some valid signature (Ed25519, ECDSA, …), `IdealUnforgeable` together with
+`HonestLog` forces a single possible value, so theorems resting on it would be vacuous there.
+`IdealUnforgeable` implies `UnforgeableOn` for every bag (`IdealUnforgeable.on`), so nothing
+proved under the ideal model is lost.
 
 * **`honest_never_equivocates`** — no messages a Byzantine signer injects can make an honest
   signer appear to equivocate.
-* **`byzantine_safety`** — honest signers `H` (unforgeable, one value per context), the rest
-  arbitrary with `|N \ H| ≤ f`, `n + f < 2k`: at most one value is accepted, for any bag.
+* **`byzantine_safety`** — honest signers `H` (unforgeable on the bag, one value per context),
+  the rest arbitrary with `|N \ H| ≤ f`, `n + f < 2k`: at most one value is accepted.
 * **`admitted_was_issued_in_context`** — **context binding**: unforgeability is stated over the
   whole message `(context, value)`, so a statement admitted for context `c` under an honest
   signer's key was issued by that signer *in `c`*. Replaying a signature from another context
   (or editing a statement's declared `ctx`) can only be admitted if the scheme verifies it
   under `c`, which an unforgeable scheme does only for statements actually issued in `c`.
-* **`context_ignoring_scheme_not_unforgeable`** — the hypothesis has teeth: a scheme whose
-  verification ignores the context fails `Unforgeable` for any honest signer that signs in one
-  context and not another. Context binding is therefore a property the scheme must provide.
+* **`context_ignoring_scheme_not_unforgeable`** — the hypothesis has teeth: if verification
+  ignores the context and the bag holds a replay of an honest signature relabeled to a context
+  the signer never signed in, `UnforgeableOn` fails. Context binding is therefore a property the
+  scheme must provide.
 * **`admit_insert_other_ctx`**, **`outcome_ignores_other_declared_context`** — declared-context
   filtering: a statement whose declared context differs from `c` changes nothing. This step is
   bookkeeping; the cryptographic content is `admitted_was_issued_in_context`.
@@ -194,6 +212,44 @@ theorem split_without_bound :
   rcases hv with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;> rcases hw with ⟨h, rfl⟩ | ⟨h, rfl⟩ <;> simp_all
 
 -- ==========================================
+-- Liveness: the bound must be meetable
+-- ==========================================
+
+/-- **Unanimity is accepted.** If every signer in `H` attested `v` and `k ≤ |H|`, `v` is accepted. -/
+theorem honest_unanimity_accepted {k : ℕ} {A : Finset (σ × α)} {H : Finset σ} {v : α}
+    (hH : ∀ s ∈ H, (s, v) ∈ A) (hk : k ≤ H.card) : Accepted k A v := by
+  unfold Accepted
+  refine le_trans hk (Finset.card_le_card ?_)
+  intro s hs
+  exact mem_support.mpr (hH s hs)
+
+/-- At most `f` signers outside `H` means `H` holds all but `f` of the policy. -/
+theorem policy_card_le_honest_add {N H : Finset σ} {f : ℕ} (hf : (N \ H).card ≤ f) :
+    N.card ≤ H.card + f := by
+  have hsub : N ⊆ (N \ H) ∪ H := by
+    intro s hs
+    by_cases h : s ∈ H
+    · exact Finset.mem_union_right _ h
+    · exact Finset.mem_union_left _ (Finset.mem_sdiff.mpr ⟨hs, h⟩)
+  have := (Finset.card_le_card hsub).trans (Finset.card_union_le _ _)
+  omega
+
+/-- **Byzantine liveness.** With at most `f` non-honest signers and `k + f ≤ n`, if every honest
+    signer attests `v`, then `v` is accepted — whatever the Byzantine signers do or withhold. -/
+theorem byzantine_liveness {k f : ℕ} {N H : Finset σ} {A : Finset (σ × α)} {v : α}
+    (hf : (N \ H).card ≤ f) (hk : k + f ≤ N.card) (hH : ∀ s ∈ H, (s, v) ∈ A) :
+    Accepted k A v := by
+  have := policy_card_le_honest_add hf
+  exact honest_unanimity_accepted hH (by omega)
+
+/-- **Safety and liveness together need `n > 3f`.** The safety bound `n + f < 2k` and the
+    liveness bound `k + f ≤ n` are jointly satisfiable only when `3f < n` — the classical
+    `n ≥ 3f + 1`, derived from the two counting bounds rather than assumed. -/
+theorem safety_and_liveness_need_three_f {n f k : ℕ} (hsafe : n + f < 2 * k)
+    (hlive : k + f ≤ n) : 3 * f < n := by
+  omega
+
+-- ==========================================
 -- Signatures, Byzantine signers and replay
 -- ==========================================
 
@@ -220,15 +276,45 @@ structure Scheme (σ α Sig : Type*) where
 
 variable {Sig : Type*} [DecidableEq Sig]
 
-/-- **Unforgeability, as a hypothesis on a scheme and a signer.** Every statement that verifies
-    under `s`'s key was actually issued by `s` (`issued` is `s`'s own signing log). This is the
-    cryptographic assumption (EUF-CMA in the standard model); it is a premise, not an axiom. -/
-def Unforgeable (S : Scheme σ α Sig) (issued : σ → Context → α → Prop) (s : σ) : Prop :=
+/-- **Unforgeability on a received bag, as a hypothesis.** Every statement in `R` that claims
+    signer `s` and verifies under `s`'s key was actually issued by `s` (`issued` is `s`'s own
+    signing log). This is what EUF-CMA gives for a run, with overwhelming probability; it is a
+    premise, not an axiom. -/
+def UnforgeableOn (S : Scheme σ α Sig) (issued : σ → Context → α → Prop)
+    (R : Finset (Signed σ α Sig)) (s : σ) : Prop :=
+  ∀ m ∈ R, m.signer = s → S.verify s m.ctx m.value m.sig = true → issued s m.ctx m.value
+
+/-- **Ideal unforgeability**: *no* signature string verifies under `s`'s key for a message `s`
+    did not issue. This is an ideal signature functionality (a verifier that consults the
+    signing log), not a property of any real scheme — see
+    `ideal_unforgeable_total_scheme_trivial`. -/
+def IdealUnforgeable (S : Scheme σ α Sig) (issued : σ → Context → α → Prop) (s : σ) : Prop :=
   ∀ c v sg, S.verify s c v sg = true → issued s c v
 
 /-- **An honest signer issues at most one value per context.** -/
 def HonestLog (issued : σ → Context → α → Prop) (s : σ) : Prop :=
   ∀ c v w, issued s c v → issued s c w → v = w
+
+/-- The ideal model implies unforgeability on every bag. -/
+theorem IdealUnforgeable.on {S : Scheme σ α Sig} {issued : σ → Context → α → Prop} {s : σ}
+    (hu : IdealUnforgeable S issued s) (R : Finset (Signed σ α Sig)) :
+    UnforgeableOn S issued R s := by
+  intro m _ _ hv
+  exact hu m.ctx m.value m.sig hv
+
+/-- **The ideal model is vacuous for real schemes.** If every message has *some* signature that
+    verifies under `s`'s key — true of Ed25519, ECDSA and every scheme whose signer can sign
+    at all — then `IdealUnforgeable` makes `s` issue every value, and `HonestLog` then forces
+    all values equal. Theorems resting on `IdealUnforgeable ∧ HonestLog` say nothing about such
+    schemes; that is why the theorems below assume `UnforgeableOn` instead. -/
+theorem ideal_unforgeable_total_scheme_trivial {S : Scheme σ α Sig}
+    {issued : σ → Context → α → Prop} {s : σ}
+    (htotal : ∀ c v, ∃ sg, S.verify s c v sg = true)
+    (hu : IdealUnforgeable S issued s) (hl : HonestLog issued s) (c : Context) (v w : α) :
+    v = w := by
+  obtain ⟨sg, hsg⟩ := htotal c v
+  obtain ⟨sg', hsg'⟩ := htotal c w
+  exact hl c v w (hu c v sg hsg) (hu c w sg' hsg')
 
 /-- **Admission.** From a bag of received statements, keep those for context `c`, from a signer
     in the policy's set `N`, whose signature verifies; reduce each to `(signer, value)`. -/
@@ -265,25 +351,34 @@ theorem admit_signers_in_policy (S : Scheme σ α Sig) (N : Finset σ) (c : Cont
   obtain ⟨-, -, -, -, -, hN, -⟩ := mem_admit.mp h
   exact hN
 
-/-- **Honest signers cannot be framed.** If `s`'s key is unforgeable and `s` signs one value
-    per context, no bag of messages — whatever Byzantine signers inject — makes `s` equivocate
-    in the admitted set. -/
+/-- **Context binding.** If an honest signer's key is unforgeable on the bag, anything admitted
+    for context `c` under that key was issued by the signer in `c` — not in some other context
+    whose signature was replayed or relabeled. -/
+theorem admitted_was_issued_in_context {S : Scheme σ α Sig} {issued : σ → Context → α → Prop}
+    {N : Finset σ} {c : Context} {R : Finset (Signed σ α Sig)} {s : σ} {v : α}
+    (hu : UnforgeableOn S issued R s) (h : (s, v) ∈ admit S N c R) : issued s c v := by
+  obtain ⟨m, hm, hs, hv, hc, -, hsig⟩ := mem_admit.mp h
+  have hi := hu m hm hs (by rw [hc, hv]; exact hsig)
+  rwa [hc, hv] at hi
+
+/-- **Honest signers cannot be framed.** If `s`'s key is unforgeable on the bag and `s` signs
+    one value per context, no messages Byzantine signers inject make `s` equivocate in the
+    admitted set. -/
 theorem honest_never_equivocates {S : Scheme σ α Sig} {issued : σ → Context → α → Prop}
     {N : Finset σ} {c : Context} {R : Finset (Signed σ α Sig)} {s : σ}
-    (hu : Unforgeable S issued s) (hl : HonestLog issued s) :
+    (hu : UnforgeableOn S issued R s) (hl : HonestLog issued s) :
     ¬ Equivocates (admit S N c R) s := by
   rintro ⟨v, w, hne, hv, hw⟩
-  obtain ⟨_, _, -, -, -, -, sv⟩ := mem_admit.mp hv
-  obtain ⟨_, _, -, -, -, -, sw⟩ := mem_admit.mp hw
-  exact hne (hl c v w (hu c v _ sv) (hu c w _ sw))
+  exact hne (hl c v w (admitted_was_issued_in_context hu hv)
+    (admitted_was_issued_in_context hu hw))
 
 /-- **Byzantine-tolerant safety, end to end.** A policy names signers `N` (`|N| = n`); the honest
-    ones `H` have unforgeable keys and sign one value per context; the rest (`N \ H`, at most `f`)
-    may do anything — sign several values, withhold, or inject arbitrary messages. If
-    `n + f < 2k`, then for any received bag `R` at most one value is accepted for context `c`. -/
+    ones `H` are unforgeable on the received bag `R` and sign one value per context; the rest
+    (`N \ H`, at most `f`) may do anything — sign several values, withhold, or inject arbitrary
+    messages. If `n + f < 2k`, at most one value is accepted for context `c`. -/
 theorem byzantine_safety {S : Scheme σ α Sig} {issued : σ → Context → α → Prop}
     {N H : Finset σ} {k f : ℕ} {c : Context} {R : Finset (Signed σ α Sig)}
-    (hu : ∀ s ∈ H, Unforgeable S issued s) (hl : ∀ s ∈ H, HonestLog issued s)
+    (hu : ∀ s ∈ H, UnforgeableOn S issued R s) (hl : ∀ s ∈ H, HonestLog issued s)
     (hf : (N \ H).card ≤ f) (hk : N.card + f < 2 * k) {v w : α}
     (hv : Accepted k (admit S N c R) v) (hw : Accepted k (admit S N c R) w) : v = w := by
   refine quorum_intersection_safety (admit_signers_in_policy S N c R) ?_ hf hk hv hw
@@ -300,25 +395,20 @@ theorem outcome_ignores_other_declared_context (S : Scheme σ α Sig) (N : Finse
     outcome k (admit S N c (insert m R)) = outcome k (admit S N c R) := by
   rw [admit_insert_other_ctx S N R h]
 
-/-- **Context binding.** If an honest signer's key is unforgeable, anything admitted for
-    context `c` under that key was issued by the signer in `c` — not in some other context
-    whose signature was replayed or relabeled. -/
-theorem admitted_was_issued_in_context {S : Scheme σ α Sig} {issued : σ → Context → α → Prop}
-    {N : Finset σ} {c : Context} {R : Finset (Signed σ α Sig)} {s : σ} {v : α}
-    (hu : Unforgeable S issued s) (h : (s, v) ∈ admit S N c R) : issued s c v := by
-  obtain ⟨m, -, -, -, -, -, hv⟩ := mem_admit.mp h
-  exact hu c v m.sig hv
-
 /-- **A context-ignoring scheme is not unforgeable.** If verification gives the same answer in
-    every context, a signer who issued `v` in `c` but not in `c'` has a forgeable key: the same
-    signature verifies in `c'`. So `Unforgeable` excludes such schemes; context binding is a
-    requirement on the scheme, not something filtering supplies. -/
+    every context, a valid signature `m` relabeled to a context `c'` its signer never signed in
+    still verifies; once that replay is in the bag, `UnforgeableOn` fails. So the hypothesis
+    excludes such schemes; context binding is a requirement on the scheme, not something
+    filtering supplies. -/
 theorem context_ignoring_scheme_not_unforgeable {S : Scheme σ α Sig}
-    {issued : σ → Context → α → Prop} {s : σ} {c c' : Context} {v : α} {sg : Sig}
-    (hign : ∀ d d', S.verify s d v sg = S.verify s d' v sg)
-    (hsig : S.verify s c v sg = true) (hnot : ¬ issued s c' v) :
-    ¬ Unforgeable S issued s := by
+    {issued : σ → Context → α → Prop} {R : Finset (Signed σ α Sig)} {m : Signed σ α Sig}
+    {c' : Context}
+    (hign : ∀ d d', S.verify m.signer d m.value m.sig = S.verify m.signer d' m.value m.sig)
+    (hsig : S.verify m.signer m.ctx m.value m.sig = true)
+    (hreplay : { m with ctx := c' } ∈ R) (hnot : ¬ issued m.signer c' m.value) :
+    ¬ UnforgeableOn S issued R m.signer := by
   intro hu
-  exact hnot (hu c' v sg (by rw [hign c' c]; exact hsig))
+  have hv : S.verify m.signer c' m.value m.sig = true := by rw [hign c' m.ctx]; exact hsig
+  exact hnot (hu { m with ctx := c' } hreplay rfl hv)
 
 end QLF.Consensus
