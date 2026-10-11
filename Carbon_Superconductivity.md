@@ -63,6 +63,8 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
 | 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | §45a: **M1 fails, as the prior said**: ratio 0.0230 at length 14 (0 → 0.0097 → 0.0230 over lengths 10–14). `C(O)` stays at ≈0.00016 while `C(collinear)` halves per step. Exact zero kept in 5 of 10 classes; rule over lengths 10–14: exact unless the remainder has two normal pairs, or a normal pair with a shared pair. The cancellation rule holds only at low depth |
 | 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | §46a: **Q1 fails, as the prior said** (registration not blind: `f_2 = 7/13` by hand): `α⁻¹ = 137.040493`, off by +0.0045 vs `w = ½`'s −0.0040; `f_n` about halves per order (1, 7/13, 1/4, 0.112, …); per-multiset = global; equivalent `w = 0.763`, 63% of the total census's overshoot removed |
+| 47 | the two readings weighted by their frequency (post hoc, a record) | Jim: each way has a frequency; the unit is the Kraft mass `8^(−L)` of the closures each reading counts; mode `0.2163`, order reading `0.1662` | `α⁻¹ = 137.035691` (−0.00031), weight 0.4345 on the order reading; not evidence: stated after §46a, three choices in it |
+| 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | pre-registered; prior: fails structurally (both readings give π below `π`, so `m_p/m_e ≤ ~1 320`) |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3767,6 +3769,65 @@ reaches the residual, now counted. The open quantity is still the multiplicity b
 **Observation, post hoc and not a test.** The two parameter-free values bracket CODATA from opposite sides at almost
 equal distances: `w = ½` gives `−0.0040` and the order mapping gives `+0.0045`. No combination of the two is proposed.
 Choosing one after seeing this would be a fit.
+
+## 47. Post hoc: the two readings weighted by their frequency
+
+*A record, not a test. The rule was stated after §46a showed that CODATA lies between the two parameter-free values,
+and its value was seen in the same step it was defined.*
+
+Jim: since closures happen every way, the combination is set by the number of ways each happens, and each way has a
+specific frequency. In the census a closure's frequency is its cylinder (Kraft) weight `8^(−L)` (`twist_kraft`), so
+the unit is each reading's **frequency mass**: the summed `8^(−L)` of the closures that contribute to it.
+
+* **Mode (every listening language, `137.032002`).** Every prime is heard, and each composite in half the languages
+  (Alpha_Residual §9n): mass `p + ½(G(p) − p)`, with `p = 0.1932017` the prime mass (Pólya's return probability,
+  [Closure_Walk.md](Closure_Walk.md)) and `G(m) = m/(1 − m)` the mass of all closures built from primes of mass `m`.
+  `m_A = 0.216334`.
+* **Order reading (§46a, `137.040493`).** Only the sign-surviving prime amplitude, every composite counted:
+  `q = Σ K_n 8^(−2n) = 0.142514` (to `n = 8`, remaining terms below `5·10⁻⁶`), mass `G(q) = 0.166200`.
+
+The order reading's ways close less often, so its weight is `0.4345`, not ½:
+
+> `α⁻¹ = 137.032002 + 0.4345 × (137.040493 − 137.032002) = 137.035691`, off CODATA by `−0.00031`.
+
+That is about thirteen times closer than either reading alone. It is one way, counted with a weight that is not
+chosen, but it is not evidence. Three choices in it could have gone otherwise: Kraft mass as the frequency, the
+8-twist alphabet's mass standing for a one-axis α reading, and half the composites as the mode's mass. Only a test
+the rule could fail can support it, and §48 is that test.
+
+## 48. Pre-registered: does the frequency weighting transfer to the proton?
+
+*Fixed in the commit that adds this section, before the script below is written or run.*
+
+Alpha_Residual §9o tested the plain ½ rule on the proton and it missed by 51%. This section applies §47's rule,
+unchanged, to the same construction.
+
+### The test, fixed now
+
+* **Census π by sector (§9o, unchanged).** The one-axis walk at coupling `4⁻ⁿ`:
+  `π_sector = 2 Σ_{n≥0} c_n / (4ⁿ (2n + 1))`, with `c_0 = 1`. The total sector (`c_n = C(2n,n)`) gives `π` exactly.
+* **Mode:** `c_n = ½(2·Catalan(n−1) + C(2n,n))`, so `π_mode = (π_irr + π_tot)/2 = 2 + π/4` (closed form, from
+  §9o's `π_irr = 4 − π/2`).
+* **Order reading:** `c_n = g′_n` from `G′ = 1/(1 − I′)`, `I′ = Σ 2·Catalan(n−1) f_n xⁿ`, with §46a's `f_n` computed
+  to `n = 8`. Beyond that, `f_n` is bracketed between 0 and `f_8` (it falls monotonically). Both ends are reported,
+  and the verdict must hold at both.
+* **Weights:** §47's frequency masses, unchanged (`w_order = 0.4345`). They are substrate frequencies, not refitted
+  to the proton.
+* **Prediction:** `m_p/m_e = 6 π_rule⁵`, with `π_rule = (1 − w) π_mode + w π_order`, against `1836.15267343`.
+
+**Pass** if `|m_rule / 1836.15267343 − 1| < 10⁻³` (§9o's threshold). **Fail** otherwise.
+
+### Stated prior: fails, and the reason is structural
+
+Both readings give a census π below `π`. The mode gives `2 + π/4 = 2.785`, and the order reading's coefficients
+are termwise no larger than `C(2n,n)`, because `f_n ≤ 1` and `G′` increases with `I′`. So
+`π_rule ≤ (1 − w)(2 + π/4) + w π ≈ 2.94`, and `m_p/m_e ≤ about 1 320`, at least 28% low. **The rule cannot
+transfer under this construction, at any weight short of putting everything on the total sector.** The run gives the
+size of the miss. If it fails, §47's agreement stays specific to α at its weak coupling (`1/128`), where the
+sectors differ only at the `10⁻²` level. At the proton's `4⁻ⁿ` they differ at order one. The alternative, as in
+§9o, is that census π by sector is not the proton's construction.
+
+Script: `frequency_weighted_census.py` (to be written after this commit).
 
 ## 2026 update
 
