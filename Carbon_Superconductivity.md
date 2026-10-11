@@ -62,6 +62,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
 | 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
 | 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | §45a: **M1 fails, as the prior said**: ratio 0.0230 at length 14 (0 → 0.0097 → 0.0230 over lengths 10–14). `C(O)` stays at ≈0.00016 while `C(collinear)` halves per step. Exact zero kept in 5 of 10 classes; rule over lengths 10–14: exact unless the remainder has two normal pairs, or a normal pair with a shared pair. The cancellation rule holds only at low depth |
+| 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | pre-registered, not blind: hand count `f_2 = 7/13` puts `α⁻¹` in 137.0404–137.0407; prior: fails by about +0.0045 |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3670,6 +3671,63 @@ entanglements may decide whether a closure forms. In this census the order is in
 gives is what cancels or survives, so the census is already a count over entanglement orders. A test of the reading
 would ask which orders close (survive the signed sum) and whether that ordering structure carries a measurable number.
 Jim suggests the fine-structure residual (`+0.036`) as the place to look. That needs its own pre-registration.
+
+## 46. Pre-registered: does the order of entanglement close the α residual?
+
+*Fixed in the commit that adds this section, before the script below is written or run. Jim chose to fix the
+mapping to α before any signed census of prime closures was computed.*
+
+Jim's reading (§45a): every qubit is potentially orthogonal, and the order of the initial entanglements decides
+whether a closure forms. This section turns that into one number, `α⁻¹`, through a mapping fixed here.
+
+### Two structural facts, used to fix the mapping
+
+* **The α census cannot see order.** Its counts, `C(2n,n)` (total) and `2·Catalan(n−1)` (irreducible), are words
+  on one axis ([Alpha_Residual.md](Alpha_Residual.md) §1). Twists on one axis commute, so every order of the same
+  twists folds to the same sign. Order cancels nothing there.
+* **Order cancels only inside irreducible closures.** A composite closure is a sequence of irreducible ones (first
+  return), and its fold is the product of their folds. So the signed census keeps the resummation `G = 1/(1 − I)`,
+  and order can only reduce `I`. This agrees with §44a: separate electron pairs keep `C = 1`, and only entangled
+  (interleaved) ones cancel. The composite weight `w` of Alpha_Residual §2 is not where order acts.
+
+### The mapping, fixed now
+
+* **Alphabet.** All 8 twists with the current `PAULI_MAP` (the same alphabet that gives `α_bare = 2⁻⁷`). A word of
+  length `2n` is a closure when it is count-balanced (it then folds to `±I`, §43). It is **prime** when no proper
+  prefix is count-balanced.
+* **Order interference.** For each multiset `M` of twists, sum the fold signs of its prime orders:
+  `S(M) = Σ sign`. The surviving prime amplitude at order `n` is `K_n = Σ_M |S(M)|`, over the `P_n` prime words of
+  length `2n`. The **prime survival fraction** is `f_n = K_n / P_n`.
+* **To α.** The one-axis irreducible coefficient becomes `2·Catalan(n−1) · f_n`. The total follows from
+  `G = 1/(1 − I)`, every composite counted (no `w`). Then `α⁻¹ = 137 + Σ_{n≥2} g_n (1/128)^{n−1}`, as in
+  `censusTail`. With every `f_n = 1` this reproduces the cap `137.048130` (checked).
+
+### Checks
+
+* **Q0 (method).** The balanced-word counts 8, 168, 5 120, 190 120 at lengths 2–8 (§43) are reproduced. A sample of
+  prime words is checked against `twist_core.pauli_fold`. With `f_n = 1` the cap `137.048130` comes back.
+* **Q1 (primary).** **Pass** if `|α⁻¹ − 137.035999| < 0.0040`, that is, if the order mapping comes closer to CODATA
+  than the existing structural prediction `w = ½` (`137.032002`, off by `0.0040`). **Fail** otherwise.
+* **Q2 (reported).** `f_n` for every order computed, the global signed fraction `|Σ_M S(M)| / P_n` next to it, and
+  the equivalent `w` of the result.
+
+### Stated prior: not blind
+
+While fixing the mapping, the order that carries about 97% of the residual was worked out by hand. At length 4 there
+are 104 prime words:
+* the 8 same-axis primes `x x x̄ x̄`, `x̄ x̄ x x` all fold `+I`;
+* the 48 primes on a spatial axis and the gauge axis all fold `+I` (the gauge twists are `±I` and commute);
+* the 48 primes on two spatial axes cancel exactly: the 24 interleaved ones (the electron loops `a b ā b̄`) fold
+  `−I`, and the 24 nested ones (`a b b̄ ā`) fold `+I`.
+
+So `f_2 = 56/104 = 7/13`. Whatever the higher `f_n` are (each lies between 0 and 1), `α⁻¹` then lies between
+`137.04043` (`f_n = 0` for `n ≥ 3`) and `137.04069` (`f_n = 1`). **Q1 fails**, missing CODATA by about `+0.0045`,
+slightly worse than `w = ½`. The registration therefore cannot discover the outcome. What it fixes is the method,
+and the run checks the hand count and pins the exact value. Recorded anyway: it is the first α value in which the
+fold sign, rather than a chosen weight, moves the census off its total. The order mapping removes about 64% of the
+total census's overshoot (`0.0481 → 0.0404`, against `0.0360` measured).
+
+Script: `entanglement_order_alpha.py` (to be written after this commit).
 
 ## 2026 update
 
