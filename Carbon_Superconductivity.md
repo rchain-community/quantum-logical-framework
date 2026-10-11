@@ -59,7 +59,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 40 | the photon as an exchange between electrons | helicity = the emitter's spin change along the line of flight, `s = m − m′`; X1a any twist (primary), X1b §38's motion rule; absorber balance; transversality reported, not scored | §40a: **X1a fails by its registered criterion**, but read relationally the count is the exchange itself: spin-flip exchanges `±1` with equal ways (the four perpendicular twists flip the emitter's spin, 4 : 4 per direction) and no-flip exchanges `s = 0` from the two twists on the line (`24 : 24 : 24`); absorber balances 72/72. §38–39's one-sided counts came from giving the photon a spin of its own. `s = 0` is the Coulomb-like part of the exchange; "two polarisations" counts radiative exchange, tested in §41 |
 | 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | §41a: **both fail, as the prior said**: W1 gives `|A₀| = |A₁|` at every `R` and `k` (`ρ = 1` exactly); W2 gives the spin-flip class no walks at `k ≤ 1` and `ρ` rising ~`R²` at `k = 2, 3` (15 → 445). A count of paths does not tell near from far; the radiative count of two stays imported. Jim's reading (post hoc): in the light frame distance is zero, so exchanges differ only in phase |
 | 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
-| 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | pre-registered; not yet run |
+| 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3471,6 +3471,46 @@ and that is the one way the census can decide orthogonality without a stipulatio
   length 12 before it is adopted.
 
 Script: `logical_bang_census.py` (to be written after this commit).
+
+### 43a. Result
+
+Run by [`logical_bang_census.py`](logical_bang_census.py) (every fold computed exactly by `twist_core.pauli_fold`,
+about 30 s). Length 8: 20 160 ways; length 10: 9 676 800.
+
+**K0 passes:** every contiguous class has `C = 1`, as it must.
+
+**K1 FAILS: the no-flip exchange is suppressed but does not cancel.** Interleaved, at length 10:
+
+| relation | no-flip `C` | flip `C` | gauge `C` | no-flip / flip |
+|---|---|---|---|---|
+| P (parallel) | 0.0057 (`S = −1 728`) | 0.0312 (`S = −18 816`) | 0.0822 | 0.184 |
+| A (antiparallel) | 0.0057 | 0.0312 | 0.0822 | 0.184 |
+
+The ratio is 0.184, above the 0.1 the pass required, and `C(flip) = 0.031` is below the 0.05 floor. The guess in the
+prior (suppressed, not below 0.1) holds. Over all placements (contiguous and interleaved together) the factors are
+exact: relative to the gauge remainder, the no-flip remainder keeps `1/9` and the flip remainder `11/27`, so
+no-flip / flip = `3/11`. The `1/9` is the pair factor the prior worked out (25 even gaps against 20 odd, of 45).
+
+**A correction to the prior.** It said the gauge remainder's coherence equals the length-8 coherence of the same
+relation. That holds for the totals (P: `288/3 360 = 25 920/302 400 = 0.0857`), not class by class. Inserting the
+gauge pair inside a loop turns a contiguous length-8 placement into an interleaved length-10 one.
+
+**What the census shows that was not tested (K2, exploratory; not adopted).**
+* **Two entangled electrons with orthogonal spins cancel exactly.** At length 8, the interleaved ways with the loops
+  in orthogonal planes have `S = 0` out of 13 056. The collinear ones survive: P and A each have `S = +192` of
+  3 264. Only the contiguous orthogonal pairs, where the two electrons are not entangled, keep a sign. In this census,
+  then, entanglement leaves collinear spin relations and cancels orthogonal ones, which is close to Jim's reading
+  that entanglement decides orthogonality. At length 10 the orthogonal classes with a spatial remainder nearly cancel
+  too (`C = 0.0006`).
+* **Parallel and antiparallel are identical in every class.** A loop's turn changes only which of `a`, `ā` comes
+  first, never the axis order, and every loop has two negative twists. So the fold sign cannot tell P from A. The
+  census sees whether two spins are collinear, not whether they point the same way.
+* The no-flip suppression to `1/9` of the gauge exchange is a property of the pair's placement among anticommuting
+  letters. It is not a cancellation, so this census does not remove the `s = 0` exchange, and the photon's count of
+  two stays imported.
+
+The exact cancellation of entangled orthogonal pairs is a definite statement about the closures. Whether it holds at
+length 12, and what it means for spin correlations, needs its own pre-registration before it is used.
 
 ## 2026 update
 
