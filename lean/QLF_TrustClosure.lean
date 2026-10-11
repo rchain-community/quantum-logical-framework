@@ -27,6 +27,11 @@ links between other parties or in other slots contribute nothing (`pairHistory`)
 * **`mismatched_slot_not_reciprocated`** — `a → b` in one role answered by `b → a` in another
   role is **not** reciprocated: the debt stays open in both slots.
 
+The encoding theorems hold by construction: links map onto one axis (`^`/`v`), so count balance
+*is* `flow = 0`, and the Pauli closure is the single-axis case of the keystone. They change no
+count of ways (method rule 4) — they show reciprocity can be read as a closure, not that it is
+evidence for one. The content of the module is the boundary below.
+
 ## What balance cannot see (proved — the honest boundary)
 
 * **`reciprocated_append`** — closures compose: two reciprocated ledgers concatenate to a
