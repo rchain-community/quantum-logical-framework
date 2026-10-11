@@ -54,8 +54,9 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 35 | spin-term normalisation; can a count see the colour frame? | `(2s)² = (g·s)²` with QLF's `g = 2` rule applied to commutator carriers (by construction); frame phases are a character of displacement, so no closure count distinguishes the frames | §35a: `g = 2` for spin-1 carriers from QLF's twist rule (by construction); **no closure count distinguishes the colour frames** (0 of 190 120 closures × 6 frames at `L = 8`): the frame is a gauge choice, which closes §28's open question |
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
 | 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
-| 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but the alphabet carries one helicity, so the second polarisation is missing; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
-| 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | §39a: **C1 fails, as the prior said**: the conjugate half now has helicity `−½`, so the alphabet carries both helicities, but each `[t, t†]` pairs one of each and the photon gets `s = 0` only (6 of 6, both fold orders, both conventions); C2 `0` only; C3 fails (`s = 0` survives D1). `σ` (T-odd) gives `+1` only, `τ` (T-even) gives `0` only: no spin reading makes both photon states from `[t, t†]`; (b) closed |
+| 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but with each half's spin fixed by its own twist the photon gets one helicity; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
+| 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | §39a: **C1 fails, as the prior said**: the conjugate half now has helicity `−½`, so the alphabet carries both helicities, but each `[t, t†]` pairs one of each and the photon gets `s = 0` only (6 of 6, both fold orders, both conventions); C2 `0` only; C3 fails (`s = 0` survives D1). `σ` (T-odd) gives `+1` only, `τ` (T-even) gives `0` only: neither reading of two free halves gives both photon states; (b) closed |
+| 40 | the photon as an exchange between electrons | helicity = the emitter's spin change along the line of flight, `s = m − m′`; X1a any twist (primary), X1b §38's motion rule; absorber balance; transversality reported, not scored | pre-registered; not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3023,7 +3024,7 @@ Script: `carrier_helicity.py` (to be written after this commit).
 
 Run by [`carrier_helicity.py`](carrier_helicity.py) (exact fractions, under a second).
 
-**C1 FAILS, as the prior said: the twist alphabet carries one helicity.**
+**C1 FAILS, as the prior said: read as two free halves, the photon carries one helicity.**
 * **P1.** Every spatial twist has helicity `+½`. `^` moves `+y` with spin `+½ ŷ`, and `v` moves `−y` with spin
   `−½ ŷ`. The same holds on `x` and `z`. This follows from `M(t) = ε σ_a` with displacement `ε e_a`: the sign `ε`
   appears in both, so it cancels in the product.
@@ -3036,18 +3037,19 @@ Run by [`carrier_helicity.py`](carrier_helicity.py) (exact fractions, under a se
 along its axis, and the count returns all three, `−1 : 0 : +1 = 3 : 6 : 3`. So D1 is what removes `s = 0`, as the
 pre-registration required, and a massive carrier keeps its longitudinal state (`F₀ = 0.693 ± 0.014` for the W;
 not blind). The half of §37a's question about why the third state goes is answered by D1. What fails is the count
-of the states that remain: the alphabet supplies one helicity, not two.
+of the states that remain: with each half's spin fixed by its own twist, the photon gets one helicity, not two.
 
 **C4.** None of the 24 commutator carriers advances along any direction without reversing. Each one steps both ways
 on its two axes and not at all on the third. So the rule as posed does not reach them, and the photon and the colour
 carriers are not built the same way: **fail** by the registered criterion. It carries no weight either way.
 
 **What this means.**
-* QLF's twist alphabet, read with these definitions, is **maximally chiral**: every twist is a half-spin of one
-  helicity. That fits [`QLF_Handedness`](lean/QLF_Handedness.lean) (handedness is the primitive), but a photon
-  built from it is circularly polarised one way only, and electromagnetism is parity-invariant.
-* The time-mirror (D3) cannot supply the other helicity, because time reversal keeps helicity.
-* The other helicity needs the parity image: motion `ε e_a` with spin `−½ ε e_a`. No twist has that.
+* The result is about a reading, not about the photon. The test gave each half of `[t, t†]` a spin fixed by its own
+  twist and took the photon's spin as their sum. In that reading every twist is a half-spin of helicity `+½`, so the
+  sign of `ε` cancels and the electrons that emit and absorb the photon never enter.
+* The time-mirror (D3) cannot supply the other helicity in that reading, because time reversal keeps helicity.
+* Read as an exchange between electrons, the photon's helicity is the angular momentum the emitter hands to the
+  absorber, and that takes both signs, one for each direction of the electron's spin flip. §40 tests that reading.
 
 **Not adopted (post hoc, listed for the next step).**
 * (a) The second helicity comes from the antiparticle **alphabet** rather than the antiparticle word: a
@@ -3058,8 +3060,8 @@ carriers are not built the same way: **fail** by the registered criterion. It ca
 * (c) The photon is not `[t, t†]` on one axis but a two-axis closure, as the commutator carriers are. Then the
   rule, which assumes motion along the halves' own axis, would have to be restated for loops.
 
-`QLF_GravitationalWaves`' `photon_polarizations := 2` therefore stays an import. §38 locates the gap precisely:
-masslessness removes `s = 0` (derived), but the second helicity has no source in the alphabet.
+`QLF_GravitationalWaves`' `photon_polarizations := 2` therefore stays an import for now. What §38 shows:
+masslessness removes `s = 0` (derived), and a photon read as two free halves gets only one helicity.
 
 ## 39. Pre-registered: spin read from the generator `τ = iσ` (repair (b) of §38a)
 
@@ -3138,15 +3140,70 @@ script confirms the arithmetic rather than discovering anything. The content is 
   `s = +1` only.
 * `τ = iσ` is time-reversal-even. Read with `τ`, the conjugate half has the opposite helicity, and the photon gets
   `s = 0` only, the longitudinal state a massless carrier must not have.
-* Neither reading gives `±1` with equal ways. On one axis, `[t, t†]` can only add two equal helicities or cancel
-  them, so no choice of which matrix carries the spin can produce both photon states from this word.
+* Neither reading gives `±1` with equal ways. With each half's spin fixed by its own twist, `[t, t†]` on one axis can
+  only add two equal helicities or cancel them. The emitting and absorbing electrons do not enter either reading.
 
 **Repair (b) is closed.** Of §38a's list, (a), a left-handed copy of the alphabet (a framework extension, Jim's
-decision), and (c), the photon as a two-axis loop, remain. `photon_polarizations := 2` stays an import.
+decision), and (c), the photon as a two-axis loop, remain, and §40 tests the exchange reading, which needs neither. `photon_polarizations := 2` stays an import.
 
 **Not adopted (post hoc).** Under the generator reading, the photon's `±1` would need two halves of the same
 helicity: two forward halves or two conjugate halves, not `[t, t†]`. Such a word is not a ZFA closure (its counts do
 not balance), so this would change what a photon is. It is listed, not tested.
+
+## 40. Pre-registered: the photon as an exchange between electrons
+
+*Fixed in the commit that adds this section, before the script below is written or run.*
+
+§38 and §39 read the photon `[t, t†]` as two free halves, each with a spin fixed by its own twist. The electrons
+that emit and absorb it never entered. This section reads the photon as what `[t, t†]` is: an emission by one
+electron and an absorption by another. Its helicity is then the angular momentum the emitter hands to the
+absorber, which can take either sign. No extension of the alphabet is used.
+
+### The reading, fixed now
+
+* **E1, the electrons.** Emitter and absorber are spin-½ closures. Each starts in a spin eigenstate `|m⟩`,
+  `m = ±½`, along the line of flight `d̂`, which runs from emitter to absorber. `d̂` runs over the six axis directions.
+* **E2, the exchange.** The emitter applies a twist `t`, acting on its spinor by `σ(t)` (`twist_core.PAULI_MAP`).
+  The absorber applies `t† = adjoint_history(t)`. One **way** is one emitter twist `t` and one initial state `|m⟩` for
+  which `⟨m′|σ(t)|m⟩ ≠ 0`, with `|m′⟩` an eigenstate along `d̂`.
+* **E3, the helicity.** Angular momentum is conserved, so the photon carries `s = m − m′` along `d̂`.
+* **E4, which twists can carry the exchange along `d̂`.** This is the open choice, and both readings are fixed now:
+  * **X1a (primary): any twist.** All six spatial twists can be the emitter's twist. This is the exchange reading
+    with nothing added.
+  * **X1b: §38's motion rule.** The photon's momentum is its twists' displacement, so only twists on `d̂`'s own axis
+    carry an exchange along `d̂`.
+
+### The checks
+
+* **X1, the photon (primary; X1a, then X1b).** Count the ways for each `s` over all `d̂`, twists and initial states.
+  **Pass:** exactly `s = ±1`, with equal ways. **Fail:** `s = 0` appears, or only one sign appears.
+* **X2, the absorber balances.** For every way, the absorber's `t†` must change its spin along `d̂` by `+s`, so that
+  the exchange is spin-neutral. This is a consistency check; if it fails, E2 is wrong as stated.
+* **X3, D1's role.** Report whether any way that X1 counts with `s = 0` comes from a twist pair that reverses along
+  `d̂`. If none does, D1 (no reversal at `c`) cannot remove `s = 0` in this reading.
+* **X4, the graviton (no weight).** Two exchanges along one `d̂`. Reported only.
+* **X5, transversality (not a test).** The count restricted to twists perpendicular to `d̂`. This imposes the
+  transversality of Maxwell's equations (polarisation ⊥ motion), which QLF has not derived. It is reported to show
+  what that condition supplies, and it cannot count as a pass.
+
+### Stated prior, before any computation
+
+* `σ_a` on an axis perpendicular to `d̂` flips the spin along `d̂`, and `σ_d` does not. So in **X1a**, for each `d̂`,
+  the four perpendicular twists give `s = +1` from `m = +½` and `s = −1` from `m = −½`, and the two twists on `d̂`
+  give `s = 0`. Expected: `−1 : 0 : +1 = 4 : 4 : 4` per direction, so **X1a fails**, because `s = 0` appears. The
+  exchange reading does supply both helicities, with equal ways. That is what §38 lacked. But it keeps the
+  longitudinal state.
+* **X1b** keeps only the twists on `d̂`, so it expects `s = 0` only: **fail**.
+* **X3** is expected to report no reversal, since a twist and its adjoint on `d̂` both advance along `d̂` (§38a C1). In
+  this reading D1 does not remove `s = 0`.
+* **X5** should give `±1` only, `4 : 4` per direction, by construction.
+* So the expected outcome is that the photon's two helicities come from the electron's two spin flips, as
+  expected, and the open question narrows to one thing: why a twist along the line of flight carries no exchange.
+  In nature, `Δm = 0` dipole radiation has zero amplitude along the quantisation axis (the `sin²θ` pattern). A QLF
+  derivation of that zero would close the photon's count; until then it is imported.
+* If X1a passes, E2 or E3 is not doing what is worked out here, and the script's output says where.
+
+Script: `carrier_helicity.py --exchange` (to be written after this commit).
 
 ## 2026 update
 
