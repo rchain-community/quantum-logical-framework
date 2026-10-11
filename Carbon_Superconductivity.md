@@ -61,6 +61,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
 | 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
 | 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
+| 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | pre-registered; not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3604,6 +3605,36 @@ and nothing more.
 be tied to something measured, such as the spin correlation of two entangled electrons, by a test fixed in advance.
 The thin margin at length 12 also means a length-14 run could fail the same criterion, so a §45 would pre-register
 that too.
+
+## 45. Pre-registered: the orthogonal cancellation at length 14
+
+*Fixed in the commit that adds this section, before the run.*
+
+§44a: entangled electron pairs with orthogonal spins cancel exactly at length 10, and at length 12 except when the
+remainder has two spatial pairs with one on a loop's normal. Overall, `C(O)/C(collinear) = 0.00975`, inside the 0.01
+criterion by 2.5%. This section runs the same census one level deeper, with a remainder of six twists.
+
+**Unchanged from §44:** the electrons, the definition of entangled (the two loops' spans overlap), the sign rule,
+the pooling of P and A, the remainder classes (now multisets of six roles), and the dynamic program, which must again
+reproduce §44a's length-12 table before length 14 is read.
+
+**Checks.**
+* **M0 (method).** The length-12 table of §44a is reproduced exactly.
+* **M1 (primary).** At length 14, entangled pairs over all remainders: **pass** if
+  `C(O) ≤ 0.01 · C(collinear)` with `C(collinear) > 0`; **fail** otherwise.
+* **M2 (reported).** The ratio's trend over lengths 10, 12, 14; which remainder classes keep `S(O) = 0` exactly.
+
+**Stated prior.** The breaking at length 12 came only from remainders with spatial pairs on a loop's normal. At
+length 14 there are more such remainders (three spatial pairs are possible), so the non-zero orthogonal classes should
+gain weight. From 0 at length 10 to 0.00975 at length 12, I expect the ratio to keep rising: **M1 fails**, with the
+ratio somewhere between 0.01 and 0.05. Moderate confidence. Classes with only gauge twists, or with one spatial pair
+and the rest gauge, should still cancel exactly, as they did at length 12.
+* If M1 fails, the cancellation is exact only for two electrons with little else in the closure, and its strength
+  falls with the depth of the closure. That is a definite trend, recorded as such, and the rule "entanglement cancels
+  orthogonal spin relations" holds only at low depth.
+* If M1 passes, the cancellation is stable over three depths.
+
+Script: `logical_bang_census.py --depth 14` (generalising `--depth12`).
 
 ## 2026 update
 
