@@ -59,6 +59,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 40 | the photon as an exchange between electrons | helicity = the emitter's spin change along the line of flight, `s = m − m′`; X1a any twist (primary), X1b §38's motion rule; absorber balance; transversality reported, not scored | §40a: **X1a fails by its registered criterion**, but read relationally the count is the exchange itself: spin-flip exchanges `±1` with equal ways (the four perpendicular twists flip the emitter's spin, 4 : 4 per direction) and no-flip exchanges `s = 0` from the two twists on the line (`24 : 24 : 24`); absorber balances 72/72. §38–39's one-sided counts came from giving the photon a spin of its own. `s = 0` is the Coulomb-like part of the exchange; "two polarisations" counts radiative exchange, tested in §41 |
 | 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | §41a: **both fail, as the prior said**: W1 gives `|A₀| = |A₁|` at every `R` and `k` (`ρ = 1` exactly); W2 gives the spin-flip class no walks at `k ≤ 1` and `ρ` rising ~`R²` at `k = 2, 3` (15 → 445). A count of paths does not tell near from far; the radiative count of two stays imported. Jim's reading (post hoc): in the light frame distance is zero, so exchanges differ only in phase |
 | 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
+| 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | pre-registered; not yet run |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3408,6 +3409,68 @@ folds is part of the exchange, not a given. This fits §40a, where both signs of
 of the two electrons' flips. A test of it has to say what "relative" fixes before anything is computed; with the
 checkerboard sign, an absorber step along `t`'s axis in either direction still gives `C = 1`, so the relative choice
 would have to involve the step's axis or the fold order, or the gauge pair `+`/`−`.
+
+## 43. Pre-registered: the logical bang as a signed census of two electrons
+
+*Fixed in the commit that adds this section, before the script below is written or run.*
+
+Jim: nothing exists besides entanglement, and there is no photon unless the two electrons close together. Whether
+two axes are aligned or orthogonal is decided by the entanglement, not given. So this section does not choose an
+exchange word or an absorber rule. It runs the closure census in depth order (the logical bang, fast before slow) and
+reads what the closures themselves say about two electrons.
+
+**What ZFA can and cannot decide (checked before this section, by enumeration to length 8).** With the current
+`PAULI_MAP`, every count-balanced word is Pauli-closed: 8, 168, 5 120 and 190 120 balanced words at lengths 2–8,
+none left open. Each axis appears an even number of times, so reordering the product leaves only a sign, and the
+fold is always `±I`. So ZFA excludes no arrangement of two electrons. The only thing a closure carries beyond its
+counts is the **sign of its fold**. Summed with that sign, as amplitudes, the closures of one relation can cancel,
+and that is the one way the census can decide orthogonality without a stipulation.
+
+### The census, fixed now
+
+* **Electrons.** The 24 four-twist fermion closures (fold `−I`), which are exactly the loops `a b ā b̄` on two spatial
+  axes, found by enumerating all four-twist ZFA words. A loop's **normal** is its third axis, and its **turn** is the
+  sign of `e(t₁) × e(t₂)` along the normal.
+* **Depth.** Every ZFA word of length 8 and 10 that contains two disjoint electron loops as subsequences. At length 8
+  the two loops are the whole word. At length 10 the rest is one balanced pair `c c̄` or `c̄ c` on one axis `c` (the
+  only balanced remainder of length 2). Each (word, choice of the two loops) is one **way**; the two loops are
+  unordered.
+* **Sign.** Each way counts with its word's fold, `+1` for `+I` and `−1` for `−I` (`twist_core.pauli_fold`).
+* **Relations, all read from the twists.**
+  * Between the loops: **P** (same plane, same turn), **A** (same plane, opposite turn), **O** (orthogonal planes).
+  * The remainder at length 10, for P and A: **no-flip** (`c` on the common normal: `σ_c` leaves both loops' spin
+    axis alone), **flip** (`c` in the plane), **gauge** (`c` the `±` pair). For O: on loop 1's or loop 2's normal, on
+    the axis the two planes share, or gauge.
+  * **Contiguous** (each loop occupies consecutive positions) versus **interleaved**.
+* **Readout per class:** the unsigned count `N`, the signed sum `S`, and the coherence `C = |S| / N`.
+
+### Checks
+
+* **K0 (control, by construction).** Contiguous loops fold to the scalar `−I` and commute out, so every contiguous
+  class must have `C = 1`, the same sign for P, A and O. If not, the script is wrong.
+* **K1 (primary; length 10, interleaved, P and A).** The radiative pattern, discovered rather than imposed: the
+  no-flip remainder cancels and the flip remainder does not.
+  * **Pass:** for both P and A, `C(no-flip) ≤ 0.1 · C(flip)` and `C(flip) ≥ 0.05`.
+  * **Fail:** otherwise.
+* **K2 (exploratory, no criterion).** The length-8 coherences of P, A and O, and every length-10 class. Reported.
+
+### Stated prior, before any computation
+
+* **K0** passes by construction.
+* **K1, partly worked out.** Two letters on different spatial axes anticommute, so a letter's position changes the
+  sign. For the no-flip remainder, `σ_c` anticommutes with every loop letter, so the pair contributes `(−1)^m`, `m`
+  the number of letters between `c` and `c̄`. Over the 45 placements of the pair among 10 slots that is 25 even gaps
+  against 20 odd, a factor of `5/45 = 1/9` from the pair alone. For the flip remainder, `σ_c` commutes with the loop
+  letters on its own axis, so the factor depends on how the loops are interleaved. I cannot work that out cleanly,
+  so the comparison is open. **Guess:** no-flip suppressed to about a ninth of the loops' own coherence, flip less
+  suppressed, so `C(no-flip)/C(flip)` small but **not below 0.1**: K1 fails narrowly. Low confidence.
+* The gauge pair commutes with everything, so a gauge remainder only multiplies the length-8 sum by `−1` and the
+  number of placements: gauge coherence = the length-8 coherence of the same relation. Expected exactly.
+* If K1 passes, the closures' own signs remove the no-flip exchange between collinear electrons, which would be the
+  first part of the photon's two-state count to come from ZFA rather than be imported. It would then need a check at
+  length 12 before it is adopted.
+
+Script: `logical_bang_census.py` (to be written after this commit).
 
 ## 2026 update
 
