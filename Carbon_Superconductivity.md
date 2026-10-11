@@ -55,7 +55,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 36 | the para−dia structure of `β₀`; how many states a carrier has | per state `−1/6 + (g s_z)²/2`; B1: is the orbital term `census_split`'s `1/6`? R3: the fold gives three carrier states (8 ways each to `σ_x, σ_y, σ_z`), so the gluon factor is `7/2` and `β₀(5) = 43/6`; V2 tests it against the running of `α_s` (τ vs lattice) | §36a: **B1 fails**: the orbital term is the Lévy area of closed walks, `2r′(m) = (1/6)(1 − 1/(m−1))`, sharing only the limit with `census_split`; R3's three states hold as counted; **V2 passes** (pull +1.63 against QCD's −0.59), weakly: QCD fits better by Δχ² = 2.3; R3 then excluded by §37a |
 | 37 | three gluon states in a hot gluon plasma | Stefan–Boltzmann pressure counts states: `d = 16` (QCD) vs 24 (R3); lattice pure-SU(3) `p/T⁴` at the highest `T` against `1 − 2δ`, `δ = 15α_s/4π` | §37a: **R3 fails**: at 1000 `T_c` the pressure is 0.971 of the 16-state limit and 0.647 of the 24-state limit (`1 − x` = 5.4 δ); Giusti & Pepe agree; the fold's three states and §36a's `β₀(5) = 43/6` are excluded; two states are required by data, not derived |
 | 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but the alphabet carries one helicity, so the second polarisation is missing; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
-| 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | pre-registered; not yet run |
+| 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | §39a: **C1 fails, as the prior said**: the conjugate half now has helicity `−½`, so the alphabet carries both helicities, but each `[t, t†]` pairs one of each and the photon gets `s = 0` only (6 of 6, both fold orders, both conventions); C2 `0` only; C3 fails (`s = 0` survives D1). `σ` (T-odd) gives `+1` only, `τ` (T-even) gives `0` only: no spin reading makes both photon states from `[t, t†]`; (b) closed |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3115,6 +3115,38 @@ was missing, but each photon `[t, t†]` pairs one of each.
   as a two-axis loop, remain. If C1 passes, G2 is wrong as I have worked it out, and the script's output says where.
 
 Script: `carrier_helicity.py`, extended with a `--generator` reading (to be written after this commit).
+
+### 39a. Result
+
+Run by [`carrier_helicity.py --generator`](carrier_helicity.py) (exact fractions, under a second). The default run
+reproduces §38a unchanged.
+
+**C1 FAILS, as the prior said: the generator reading gives the photon `s = 0`.**
+* **P1′.** Every forward half has helicity `+½`, and every conjugate half read forward has helicity `−½`: 6 of 6
+  each. Under this reading the alphabet does carry both helicities, which §38a found missing.
+* **C1.** Each photon `[t, t†]` pairs one half of each helicity, so `s = 0` along the motion, 6 ways of 6. The two fold
+  orders give the same fold for every `t` (G3: one axis, so order cannot matter). **Fail.**
+* **C2.** The graviton gets `s = 0`, 6 of 6: **fail.**
+* **C3.** With reversals allowed the count is still `−1 : 0 : +1 = 3 : 6 : 3`. With no reversal at `c` (C1), `s = 0`
+  is present, so D1 no longer removes it: **fail** by the registered wording.
+* **Convention.** `τ = −iσ` flips every half's helicity (forward `−½`, conjugate `+½`) and gives the same counts:
+  `s = 0`, 6 of 6. The result does not depend on the convention.
+
+**Why, and how much the run adds.** The outcome follows from G1 and G2 in two lines, as the prior worked out, so the
+script confirms the arithmetic rather than discovering anything. The content is the comparison with §38a:
+* `σ` is time-reversal-odd. Read with `σ`, the conjugate half has the emitter's helicity, and the photon gets
+  `s = +1` only.
+* `τ = iσ` is time-reversal-even. Read with `τ`, the conjugate half has the opposite helicity, and the photon gets
+  `s = 0` only, the longitudinal state a massless carrier must not have.
+* Neither reading gives `±1` with equal ways. On one axis, `[t, t†]` can only add two equal helicities or cancel
+  them, so no choice of which matrix carries the spin can produce both photon states from this word.
+
+**Repair (b) is closed.** Of §38a's list, (a), a left-handed copy of the alphabet (a framework extension, Jim's
+decision), and (c), the photon as a two-axis loop, remain. `photon_polarizations := 2` stays an import.
+
+**Not adopted (post hoc).** Under the generator reading, the photon's `±1` would need two halves of the same
+helicity: two forward halves or two conjugate halves, not `[t, t†]`. Such a word is not a ZFA closure (its counts do
+not balance), so this would change what a photon is. It is listed, not tested.
 
 ## 2026 update
 

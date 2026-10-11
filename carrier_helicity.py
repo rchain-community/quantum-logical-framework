@@ -15,15 +15,20 @@ Readings used, as the pre-registration fixed them:
   C3  massive control: drop D1 (reversals allowed), so each half takes either spin along the axis
   C4  the 24 commutator carriers of sec 32b (not blind; consistency only)
 
+--generator (sec 39, pre-registered in commit 87a8978): spin read from the generator tau = conv * i * sigma,
+  S = -(i/2) tau. Time reversal leaves tau unchanged, so the conjugate half keeps tau(t+) = -tau(t) read forward
+  (its momentum still flips). Runs conv = +1 (QLF's tau = i sigma) and conv = -1, both fold orders; C4 dropped.
+
 Exact arithmetic (Fractions). Stdlib only, plus twist_core.
-Run:  python3 carrier_helicity.py
+Run:  python3 carrier_helicity.py [--generator]
 """
 from __future__ import annotations
 
+import sys
 from collections import Counter
 from fractions import Fraction as Fr
 
-from twist_core import PAULI_MAP, adjoint_history, calculate_action
+from twist_core import PAULI_MAP, _mat_mul, adjoint_history, calculate_action
 
 SPATIAL = ['^', 'v', '>', '<', '/', '\\']
 
@@ -59,6 +64,73 @@ def forward_mirror(t):
     """The conjugate half, read forward in time: time reversal flips momentum and spin."""
     c = adjoint_history(t)
     return c, neg(momentum(c)), neg(spin(c))
+
+
+def tau(t, conv):
+    """The generator tau = conv * i * sigma as a 2x2 matrix (a, b, c, d)."""
+    return tuple(conv * 1j * x for x in PAULI_MAP[t])
+
+
+def spin_from_generator(m, conv):
+    """S = -(i/2) tau, read as a vector; for tau = conv*i*n.sigma this is conv*n/2."""
+    herm = tuple(-1j * conv * x for x in m)          # n.sigma, Hermitian
+    a, b, c, dd = herm
+    vec = []
+    for n in ((b + c) / 2, (c - b) / 2j, (a - dd) / 2):
+        assert abs(n.imag) < 1e-12
+        vec.append(Fr(round(n.real)) / 2)
+    return tuple(conv * x for x in vec)
+
+
+def forward_mirror_generator(t, conv):
+    """sec 39 G2: the conjugate half keeps tau(t+) read forward; only its momentum flips."""
+    c = adjoint_history(t)
+    return c, neg(momentum(c)), spin_from_generator(tau(c, conv), conv)
+
+
+def main_generator():
+    for conv in (1, -1):
+        print(f"=== convention tau = {'+' if conv > 0 else '-'}i sigma ===")
+        print("P1'  helicities of forward halves and of conjugate halves read forward")
+        for t in SPATIAL:
+            d = momentum(t)
+            c, p2, s2 = forward_mirror_generator(t, conv)
+            print(f"  {t!r:5} forward {dot(spin_from_generator(tau(t, conv), conv), d)}   "
+                  f"mirror {c!r} (p={p2}) {dot(s2, d)}")
+
+        print("C1  the photon [t, t+], both fold orders")
+        c1 = Counter()
+        for t in SPATIAL:
+            d = momentum(t)
+            c, p2, s2 = forward_mirror_generator(t, conv)
+            assert p2 == d
+            f1 = _mat_mul(tau(t, conv), tau(c, conv))
+            f2 = _mat_mul(tau(c, conv), tau(t, conv))
+            s_tot = dot(spin_from_generator(tau(t, conv), conv), d) + dot(s2, d)
+            c1[s_tot] += 1
+            print(f"  emitter {t!r}  s = {s_tot}   folds equal in both orders: "
+                  f"{all(abs(x - y) < 1e-12 for x, y in zip(f1, f2))}")
+        c1_pass = sorted(c1) == [-1, 1] and c1[-1] == c1[1]
+        print(f"  states: {dict(sorted(c1.items()))}  ->  C1 {'PASS' if c1_pass else 'FAIL'}")
+
+        c2 = Counter()
+        for t in SPATIAL:
+            d = momentum(t)
+            for u in SPATIAL:
+                if momentum(u) == d:
+                    c2[sum(dot(spin_from_generator(tau(w, conv), conv), d)
+                           + dot(forward_mirror_generator(w, conv)[2], d) for w in (t, u))] += 1
+        print(f"C2  graviton states: {dict(sorted(c2.items()))}  ->  "
+              f"C2 {'PASS' if sorted(c2) == [-2, 2] else 'FAIL'}")
+
+        c3 = Counter()
+        for pair in (('^', 'v'), ('>', '<'), ('/', '\\')):
+            d = momentum(pair[0])
+            for h1 in pair:
+                for h2 in pair:
+                    c3[sum(dot(spin_from_generator(tau(h, conv), conv), d) for h in (h1, h2))] += 1
+        print(f"C3  reversals allowed: {dict(sorted(c3.items()))};  with D1 (C1): s = 0 "
+              f"{'present -> C3 FAILS' if 0 in c1 else 'absent'}\n")
 
 
 def main():
@@ -124,4 +196,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main_generator() if '--generator' in sys.argv else main()
