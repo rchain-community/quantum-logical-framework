@@ -19,12 +19,18 @@ sec 48 (test):    census pi by sector on the one-axis walk at 4^-n (Alpha_Residu
                   beyond n = 8 bracketed by 0 and f_8; pi_rule = (1 - w) pi_mode + w pi_order;
                   pass iff |6 pi_rule^5 / 1836.15267343 - 1| < 1e-3 at both ends of the bracket.
 
-Run:  python3 frequency_weighted_census.py   (about 15 s; reuses entanglement_order_alpha.census)
+--proton-tail (sec 50, pre-registered in commit 895ff8a): m_p/m_e = 6 pi^5 + T, T each reading's alpha tail unchanged
+                  (coupling 1/128), against delta_p = 1836.15267343 - 6 pi^5.
+                  P1 pass iff |T_freq - delta_p| <= 0.00031 (the frequency reading's miss on alpha);
+                  P2 the frequency reading is the closest of the five.
+
+Run:  python3 frequency_weighted_census.py [--proton-tail]   (about 7 s; reuses entanglement_order_alpha.census)
 """
 from __future__ import annotations
 
 import json
 import math
+import sys
 from fractions import Fraction as Fr
 
 import entanglement_order_alpha as eo
@@ -81,6 +87,10 @@ def main():
     print(f"    alpha^-1: mode {MODE_ALPHA:.6f}, order {a_order:.6f}, weighted {a_rule:.6f}"
           f"   (CODATA {CODATA_ALPHA:.6f}, diff {a_rule - CODATA_ALPHA:+.6f})")
 
+    if '--proton-tail' in sys.argv:
+        proton_tail(a_order - 137, a_rule - 137)
+        return
+
     print("\nsec 48  the proton (pre-registered)")
     ctrl, _ = order_pi(lambda n: 1.0)       # f_n = 1 is the total sector: pi, up to the tail 2/sqrt(pi N)
     assert abs(ctrl + 2 / math.sqrt(math.pi * N_PI) - math.pi) < 1e-5, ctrl
@@ -100,6 +110,26 @@ def main():
     print(f"    structural bound: pi_rule <= {bound:.4f}, 6 bound^5 = {6 * bound ** 5:.1f}")
     ok = all(abs(r) < 1e-3 for r in res.values())
     print(f"    sec 48: {'PASS' if ok else 'FAIL'}  (pass iff |off| < 1e-3 at both ends)")
+
+
+def proton_tail(t_order, t_freq):
+    s62 = math.sqrt(62)
+    tails = {'irreducible': 126 - 16 * s62, 'total': 512 * s62 / 31 - 130, 'mode (w = 1/2)': MODE_ALPHA - 137,
+             'order (sec 46a)': t_order, 'frequency (sec 47)': t_freq}
+    lead = 6 * math.pi ** 5
+    dp = MP_ME - lead
+    da = CODATA_ALPHA - 137
+    print("\nsec 50  alpha's census tail on the proton (pre-registered)")
+    print(f"    delta_p = {MP_ME} - 6 pi^5 = {dp:.6f}     alpha's residual {da:.6f}")
+    print(f"    {'reading':<20} {'T':>9} {'T - delta_p':>12} {'T - delta_alpha':>16} {'m_p/m_e':>15}")
+    for k, t in tails.items():
+        print(f"    {k:<20} {t:>9.6f} {t - dp:>+12.6f} {t - da:>+16.6f} {lead + t:>15.6f}")
+    miss = tails['frequency (sec 47)'] - dp
+    best = min(tails, key=lambda k: abs(tails[k] - dp))
+    p1 = abs(miss) <= 0.00031
+    print(f"    P1: {'PASS' if p1 else 'FAIL'}  (|T_freq - delta_p| = {abs(miss):.6f}, "
+          f"{abs(miss) / dp:.1%} of the residual; alpha: {abs(t_freq - da):.6f}, {abs(t_freq - da) / da:.1%})")
+    print(f"    P2: {'PASS' if best == 'frequency (sec 47)' else 'FAIL'}  (closest reading: {best})")
 
 
 if __name__ == '__main__':

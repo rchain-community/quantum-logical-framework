@@ -237,3 +237,8 @@ reading any of the five angles through the frequency rule (which puts `α⁻¹` 
 `π` by `2.700`, and the ratio falls 14% per angle (26% for the two chirality-mixing angles). The rule cannot act at
 the angular scale. A like-for-like test would need a weak-coupling census tail on `6π⁵`, compared against its own
 `−1.9·10⁻⁵` residual.
+
+**The like-for-like test ([§50](Carbon_Superconductivity.md#50-pre-registered-αs-census-tail-on-the-proton)).**
+α's census tail at coupling `1/128`, added unchanged to `6π⁵`, puts the frequency reading at `1836.1538` against
+`1836.15267`, 30 times closer than `6π⁵` alone. It misses the residual `0.034565` by 3.3%, against 0.9% for α. That
+fails the like-for-like criterion, though it is the best of the five census readings. Not blind.

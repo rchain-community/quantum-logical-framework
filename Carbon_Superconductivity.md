@@ -66,7 +66,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 47 | the two readings weighted by their frequency (post hoc, a record) | Jim: each way has a frequency; the unit is the Kraft mass `8^(−L)` of the closures each reading counts; mode `0.2163`, order reading `0.1662` | `α⁻¹ = 137.035691` (−0.00031), weight 0.4345 on the order reading; not evidence: stated after §46a, three choices in it |
 | 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | §48a: **fails, as the prior said**: `π_rule = 2.700`, `6π_rule⁵ = 861.4`, 53% low (bracket on `f_n` moves it `10⁻⁴`); §47 stays a post-hoc way for α only |
 | 49 | the frequency rule on the 5-angle proton construction | the construction carries no census; `k` of the five angles read as `π_rule` | arithmetic, not a test: every `k ≥ 1` fails (−14% to −53%; the chirality-mixing pair −26%); a like-for-like test needs a weak-coupling tail on `6π⁵` against its `−1.9·10⁻⁵` residual |
-| 50 | α's census tail on the proton | `m_p/m_e = 6π⁵ + T`, each reading's α tail unchanged, against `δ_p = 0.034562`; P1 frequency reading within α's miss (0.00031); P2 it is the closest of five | pre-registered, not blind (subtraction): prior P1 fails (+0.0011), P2 passes |
+| 50 | α's census tail on the proton | `m_p/m_e = 6π⁵ + T`, each reading's α tail unchanged, against `δ_p = 0.034565`; P1 frequency reading within α's miss (0.00031); P2 it is the closest of five | §50a: **P1 fails, P2 passes, as the prior said**: frequency tail misses `δ_p` by +0.0011 (3.3%; α 0.9%) but is closest of five; `6π⁵ + T_freq = 1836.1538`, 30× closer than `6π⁵`, nothing adjusted, not blind |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3901,7 +3901,7 @@ with the proton's own residual. This section builds the one version that adds no
 * **Hypothesis.** The census tail at coupling `1/128` is a substrate correction common to every structural leading
   value, so `m_p/m_e = 6π⁵ + T`, where `T` is a reading's α tail with nothing rescaled. Rescaling the tail or using
   another coupling would be a choice, so none is tried.
-* **Proton residual:** `δ_p = 1836.15267343 − 6π⁵ = 0.034562` (the measured ratio's uncertainty, `1.1·10⁻⁷`, is
+* **Proton residual:** `δ_p = 1836.15267343 − 6π⁵ = 0.034565` (the measured ratio's uncertainty, `1.1·10⁻⁷`, is
   negligible here).
 * **The five readings and their tails `T`:** irreducible `0.015874`, total `0.048130`, mode (`w = ½`) `0.032002`,
   order (§46a) `0.040493`, frequency-weighted (§47) `0.035691`.
@@ -3918,6 +3918,33 @@ census readings do to each other. That resemblance is noted here for the first t
 reading that fits α best also fits the proton best at the same precision.
 
 Script: `frequency_weighted_census.py --proton-tail` (to be added after this commit).
+
+### 50a. Result
+
+Run by [`frequency_weighted_census.py --proton-tail`](frequency_weighted_census.py) (about 7 s).
+`δ_p = 0.034565`; α's residual is `0.035999`.
+
+| reading | tail `T` | `T − δ_p` (proton) | `T − δ_α` (α) | `m_p/m_e = 6π⁵ + T` |
+|---|---|---|---|---|
+| irreducible | 0.015874 | −0.018691 | −0.020125 | 1836.133983 |
+| total | 0.048130 | +0.013565 | +0.012131 | 1836.166239 |
+| mode (`w = ½`) | 0.032002 | −0.002563 | −0.003997 | 1836.150111 |
+| order (§46a) | 0.040493 | +0.005928 | +0.004494 | 1836.158602 |
+| **frequency (§47)** | **0.035691** | **+0.001126** | **−0.000308** | **1836.153800** |
+
+**P1 FAILS, as the prior said.** The frequency reading misses the proton's residual by `+0.0011` (3.3% of it),
+against `−0.0003` (0.9%) for α. **P2 PASSES:** it is still the closest of the five, and the order of the readings is
+the same for both constants (irreducible and total far off, mode and order on opposite sides, frequency nearest).
+
+**What this says.**
+* Under §47's rule, α's tail added to `6π⁵` gives `m_p/m_e = 1836.1538` against `1836.15267`, a relative miss of
+  `6·10⁻⁷`, compared with `1.9·10⁻⁵` for `6π⁵` alone. Thirty times closer, with nothing adjusted for the proton.
+  None of it is blind: the readings, the rule and both residuals were known before this section.
+* The two residuals bracket the frequency tail from opposite sides: α's is `0.00031` above it and the proton's
+  `0.00113` below it. A common census tail fits both to about 3%, and does not fit them to α's 0.9%.
+* So the resemblance of the two residuals (`0.0346`, `0.0360`) is real at the 4% level. Whether a shared tail is a
+  mechanism needs a quantity whose residual has not been seen yet. G's `0.0336` (Gravity.md §4a, recorded there as
+  an observation) is the obvious third, but it is already known, so it cannot serve either.
 
 ## 2026 update
 
