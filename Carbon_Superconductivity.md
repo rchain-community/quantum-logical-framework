@@ -60,7 +60,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | §41a: **both fail, as the prior said**: W1 gives `|A₀| = |A₁|` at every `R` and `k` (`ρ = 1` exactly); W2 gives the spin-flip class no walks at `k ≤ 1` and `ρ` rising ~`R²` at `k = 2, 3` (15 → 445). A count of paths does not tell near from far; the radiative count of two stays imported. Jim's reading (post hoc): in the light frame distance is zero, so exchanges differ only in phase |
 | 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
 | 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
-| 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | pre-registered; not yet run |
+| 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3561,6 +3561,49 @@ electrons.
   before it is adopted.
 
 Script: `logical_bang_census.py --depth12` (to be written after this commit).
+
+### 44a. Result
+
+Run by [`logical_bang_census.py --depth12`](logical_bang_census.py) (exact integers, under a second; the dynamic
+program replaces word-by-word folding).
+
+**L0 passes.** 2 000 sampled words at each of lengths 8 and 10 agree with `pauli_fold`, every §43a total is
+reproduced exactly, and at length 8 the entangled orthogonal pairs have `S = 0` of 13 056.
+
+**L1 PASSES, narrowly; the exact zero FAILS.** At length 12, entangled pairs, summed over all remainders:
+
+| relation | ways `N` | signed sum `S` | `C = |S|/N` |
+|---|---|---|---|
+| collinear | 542 868 480 | +8 825 856 | 0.01626 |
+| orthogonal | 1 085 736 960 | −172 032 | 0.000158 |
+
+`C(O)/C(collinear) = 0.00975`, inside the 0.01 the pass required by 2.5%. The margin is thin: the criterion is met,
+and nothing more.
+
+**Where the zero holds and where it breaks.**
+* **Length 10, under §44's definition: exactly zero in every remainder class.** Entangled orthogonal pairs have
+  `S = 0` with a gauge pair, a pair on a loop's normal and a pair on the shared axis (4 700 160 ways in all). §43a's
+  non-zero values there (`C = 0.0006`) came from counting placements where only the remainder broke up a loop.
+* **Length 12: exactly zero in four of six remainder classes**: four gauge twists, two gauge plus a normal pair, two
+  gauge plus a shared-axis pair, and four twists on the shared axis.
+* **It breaks only when the remainder carries at least two spatial pairs and at least one of them is on a loop's
+  normal**: four twists on normals (`S = +147 456`, `C = 0.00063`) and a normal pair with a shared-axis pair
+  (`S = −319 488`, `C = 0.00103`). Both are small, but they are not zero.
+
+**What this says.**
+* Up to length 10, every entangled pair of electrons with orthogonal spins cancels exactly, whatever else is in the
+  closure. At length 12 the cancellation is exact unless a third body with spatial structure on the loops' normals is
+  present, and even then the orthogonal sum is a hundred times weaker than the collinear one.
+* So the closures do decide orthogonality, in the sense Jim proposed: entangled orthogonal spin relations cancel, and
+  collinear ones survive. The decision is exact for two electrons alone and gets less clean as more structure joins
+  the closure, which fits "we can only go so far in determining orthogonality".
+* Separate (non-entangled) pairs are untouched: their contiguous parts keep `C = 1`, and with a spatial remainder they
+  show the `1/9` placement factor of §43a.
+
+**Not adopted yet.** This is a census result about signed sums, not yet a physical prediction. To be used it has to
+be tied to something measured, such as the spin correlation of two entangled electrons, by a test fixed in advance.
+The thin margin at length 12 also means a length-14 run could fail the same criterion, so a §45 would pre-register
+that too.
 
 ## 2026 update
 
