@@ -229,3 +229,11 @@ the census as the integrated closure probability of the one-axis walk. The total
 so `6π⁵` is the total-sector result. The pre-registered test applied `α`'s near-½ mix of arbitrary and grown
 listening to `π`, with no new parameter: `m_p/m_e` came out at `903`, 51 % off. The prediction that it would
 fail held. So `6π⁵` stands as the total-sector value, and the mix that sits near `α` is not a universal rule.
+
+## Cross-test: the frequency rule on the five angles. Fails at every angle
+
+[Carbon_Superconductivity.md §49](Carbon_Superconductivity.md#49-the-frequency-rule-on-the-5-angle-proton-construction):
+reading any of the five angles through the frequency rule (which puts `α⁻¹` within `0.0003`, post hoc) replaces its
+`π` by `2.700`, and the ratio falls 14% per angle (26% for the two chirality-mixing angles). The rule cannot act at
+the angular scale. A like-for-like test would need a weak-coupling census tail on `6π⁵`, compared against its own
+`−1.9·10⁻⁵` residual.

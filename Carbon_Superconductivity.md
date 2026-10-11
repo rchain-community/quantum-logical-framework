@@ -65,6 +65,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | §46a: **Q1 fails, as the prior said** (registration not blind: `f_2 = 7/13` by hand): `α⁻¹ = 137.040493`, off by +0.0045 vs `w = ½`'s −0.0040; `f_n` about halves per order (1, 7/13, 1/4, 0.112, …); per-multiset = global; equivalent `w = 0.763`, 63% of the total census's overshoot removed |
 | 47 | the two readings weighted by their frequency (post hoc, a record) | Jim: each way has a frequency; the unit is the Kraft mass `8^(−L)` of the closures each reading counts; mode `0.2163`, order reading `0.1662` | `α⁻¹ = 137.035691` (−0.00031), weight 0.4345 on the order reading; not evidence: stated after §46a, three choices in it |
 | 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | §48a: **fails, as the prior said**: `π_rule = 2.700`, `6π_rule⁵ = 861.4`, 53% low (bracket on `f_n` moves it `10⁻⁴`); §47 stays a post-hoc way for α only |
+| 49 | the frequency rule on the 5-angle proton construction | the construction carries no census; `k` of the five angles read as `π_rule` | arithmetic, not a test: every `k ≥ 1` fails (−14% to −53%; the chirality-mixing pair −26%); a like-for-like test needs a weak-coupling tail on `6π⁵` against its `−1.9·10⁻⁵` residual |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3854,6 +3855,38 @@ construction. Two readings remain, and this test cannot separate them:
 
 So §47 stays a post-hoc way for α, counted but unsupported by an independent test. No value is derived and no axiom
 is added.
+
+## 49. The frequency rule on the 5-angle proton construction
+
+*Arithmetic, not a test. Nothing in it was uncertain once §48a's `π_rule` was known, so there was nothing to
+pre-register.*
+
+Jim asked for the frequency rule on [Proton_Resonance_R_e.md](Proton_Resonance_R_e.md) §6's construction:
+`m_p/m_e = |S₃| · π⁵`, five angles (three Jacobi internal coordinates and two chirality-mixing angles, one per
+Hermitian-conjugate pair), each contributing `π`.
+
+**The construction carries no census.** Each angle's `π` is a stipulated integration, so the rule has nothing to
+weight until an angle's `π` is read from the census. Read through the rule, an angle gives §48a's
+`π_rule = 2.700295` in place of `π`. With `k` of the five angles read that way:
+
+| angles read by the rule | `6 π^(5−k) π_rule^k` | off |
+|---|---|---|
+| 0 (the existing `6π⁵`) | 1836.12 | −1.9·10⁻⁵ |
+| 1 | 1578.2 | −14.1% |
+| 2 (the chirality-mixing pair) | 1356.5 | −26.1% |
+| 3 | 1166.0 | −36.5% |
+| 4 | 1002.2 | −45.4% |
+| 5 (§48) | 861.4 | −53.1% |
+
+The two chirality-mixing angles are the reading with the most motivation, since they are the ones tied to
+Hermitian-conjugate twist pairs, where fold-sign order acts. They put the ratio 26% low. No assignment comes near.
+
+**What this shows.** At the proton's angular scale, the rule replaces a factor of order one (`π_rule/π = 0.860`),
+so it cannot be the proton's construction at any angle. At α it acted on a tail suppressed by the coupling `1/128`,
+where the readings differ by `10⁻²` and the weighted shift was `0.0037`. A like-for-like proton test needs the same
+setting: a weak-coupling census tail on top of `6π⁵`, against the proton's own residual of `−1.9·10⁻⁵`
+(`1836.118` vs `1836.153`). [Proton_Resonance_R_e.md](Proton_Resonance_R_e.md) has no such tail, so building one is
+the open step. Without it, §47 stays specific to α.
 
 ## 2026 update
 
