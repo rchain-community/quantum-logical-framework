@@ -1272,3 +1272,15 @@ to `α`'s weak (`1/128`) coupling; or the ket/bra reason is wrong; or census-`π
 proton's construction. What stands: `6π⁵` (total-sector `π`) remains the proton result, and `g = 0.504`
 remains a lead for `α` without an independent reason. Every way contributes — but the proton says the
 ways do not mix by a universal ½. No value is derived; no axiom is added.
+
+### 9p. Entanglement order as fold-sign interference — counted, `137.0405` ([`entanglement_order_alpha.py`](entanglement_order_alpha.py))
+
+Pre-registered and run in [Carbon_Superconductivity.md §46](Carbon_Superconductivity.md#46-pre-registered-does-the-order-of-entanglement-close-the-α-residual).
+The one-axis census here cannot see order: twists on one axis commute, so every order folds alike. On the 8-twist
+alphabet, order cancels only inside prime closures, because a composite's fold is the product of its primes' folds,
+so `G = 1/(1 − I)` holds for the signed census too. Summing the fold signs over the orders of each prime closure
+leaves a fraction `f_n` of the primes (1, 7/13, 1/4, 0.112, … about halving per order). Scaling the irreducible
+coefficient by `f_n`, with every composite counted, gives **`α⁻¹ = 137.040493`** with no weight chosen: inside the
+bracket, `+0.0045` from CODATA (the structural `w = ½` is `−0.0040`), equivalent `w = 0.763`. The pre-registered
+pass (closer than `w = ½`) fails. It is one more way, now counted. The multiplicity between the ways and the
+measured value is still open.

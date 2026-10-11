@@ -62,7 +62,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
 | 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
 | 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | §45a: **M1 fails, as the prior said**: ratio 0.0230 at length 14 (0 → 0.0097 → 0.0230 over lengths 10–14). `C(O)` stays at ≈0.00016 while `C(collinear)` halves per step. Exact zero kept in 5 of 10 classes; rule over lengths 10–14: exact unless the remainder has two normal pairs, or a normal pair with a shared pair. The cancellation rule holds only at low depth |
-| 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | pre-registered, not blind: hand count `f_2 = 7/13` puts `α⁻¹` in 137.0404–137.0407; prior: fails by about +0.0045 |
+| 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | §46a: **Q1 fails, as the prior said** (registration not blind: `f_2 = 7/13` by hand): `α⁻¹ = 137.040493`, off by +0.0045 vs `w = ½`'s −0.0040; `f_n` about halves per order (1, 7/13, 1/4, 0.112, …); per-multiset = global; equivalent `w = 0.763`, 63% of the total census's overshoot removed |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3728,6 +3728,45 @@ fold sign, rather than a chosen weight, moves the census off its total. The orde
 total census's overshoot (`0.0481 → 0.0404`, against `0.0360` measured).
 
 Script: `entanglement_order_alpha.py` (to be written after this commit).
+
+### 46a. Result
+
+Run by [`entanglement_order_alpha.py`](entanglement_order_alpha.py) (exact integers, about 2 s to order 7). **Q0
+passes:** the balanced-word counts 8, 168, 5 120, 190 120 come back, 3 000 sampled prime words agree with
+`pauli_fold`, and `f_n = 1` returns the cap `137.048130`. The prime counts `P_n` also match the independent
+first-closure census of [`alpha_residual_bridge.py`](alpha_residual_bridge.py) (8, 104, 2 944, 108 136, 4 525 888).
+
+**Q1 FAILS, as the prior said:** `α⁻¹ = 137.040493`, off CODATA by `+0.004494`. The structural `w = ½` is off by
+`−0.003997`, so the order mapping does not come closer.
+
+| `n` | prime words `P_n` | surviving `K_n` | `f_n` |
+|---|---|---|---|
+| 1 | 8 | 8 | 1 |
+| 2 | 104 | 56 | 7/13 = 0.538 |
+| 3 | 2 944 | 736 | 1/4 |
+| 4 | 108 136 | 12 136 | 0.1122 |
+| 5 | 4 525 888 | 227 968 | 0.0504 |
+| 6 | 204 981 888 | 4 663 296 | 0.0228 |
+| 7 | 9 792 786 432 | 101 279 232 | 0.0103 |
+
+**What the run adds (Q2).**
+* **The hand count holds:** `f_2 = 7/13`. The cancelling primes at length 4 are exactly the two-spatial-axis ones,
+  where the interleaved electron loops and the nested words have opposite folds.
+* **Per-multiset and global cancellation agree at every order.** At each length the multisets that do not cancel to
+  zero all have the same sign, so `Σ_M |S(M)| = |Σ_M S(M)|`. The choice between the two readings in §46 does no work.
+* **The surviving fraction about halves per order** (ratios 0.54, 0.46, 0.45, 0.45, 0.45, 0.45). The prime closures
+  lose coherence steadily with length, as the collinear electron pairs did in §45a.
+* **The equivalent `w` is 0.763**, against 0.624 measured and the structural 0.5. The order mapping removes 63% of
+  the total census's overshoot.
+
+**What this settles.** Entanglement order, read as fold-sign interference among the orders of each prime closure,
+gives a parameter-free value, `α⁻¹ = 137.0405`. No weight is chosen anywhere in it. It sits inside the proven
+bracket, below the total census and above CODATA, and it does not close the residual. It is one way the census
+reaches the residual, now counted. The open quantity is still the multiplicity between it and the measured value.
+
+**Observation, post hoc and not a test.** The two parameter-free values bracket CODATA from opposite sides at almost
+equal distances: `w = ½` gives `−0.0040` and the order mapping gives `+0.0045`. No combination of the two is proposed.
+Choosing one after seeing this would be a fit.
 
 ## 2026 update
 
