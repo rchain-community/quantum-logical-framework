@@ -58,7 +58,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | §39a: **C1 fails, as the prior said**: the conjugate half now has helicity `−½`, so the alphabet carries both helicities, but each `[t, t†]` pairs one of each and the photon gets `s = 0` only (6 of 6, both fold orders, both conventions); C2 `0` only; C3 fails (`s = 0` survives D1). `σ` (T-odd) gives `+1` only, `τ` (T-even) gives `0` only: neither reading of two free halves gives both photon states; (b) closed |
 | 40 | the photon as an exchange between electrons | helicity = the emitter's spin change along the line of flight, `s = m − m′`; X1a any twist (primary), X1b §38's motion rule; absorber balance; transversality reported, not scored | §40a: **X1a fails by its registered criterion**, but read relationally the count is the exchange itself: spin-flip exchanges `±1` with equal ways (the four perpendicular twists flip the emitter's spin, 4 : 4 per direction) and no-flip exchanges `s = 0` from the two twists on the line (`24 : 24 : 24`); absorber balances 72/72. §38–39's one-sided counts came from giving the photon a spin of its own. `s = 0` is the Coulomb-like part of the exchange; "two polarisations" counts radiative exchange, tested in §41 |
 | 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | §41a: **both fail, as the prior said**: W1 gives `|A₀| = |A₁|` at every `R` and `k` (`ρ = 1` exactly); W2 gives the spin-flip class no walks at `k ≤ 1` and `ρ` rising ~`R²` at `k = 2, 3` (15 → 445). A count of paths does not tell near from far; the radiative count of two stays imported. Jim's reading (post hoc): in the light frame distance is zero, so exchanges differ only in phase |
-| 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | pre-registered; not yet run |
+| 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3381,6 +3381,33 @@ on its own line, and the spin-flip exchange should.
 * If Φ2 passes, the checkerboard argument above is wrong, and the script's output shows where.
 
 Script: `exchange_phase.py` (to be written after this commit).
+
+### 42a. Result
+
+Run by [`exchange_phase.py`](exchange_phase.py) (exact integers, under a second).
+
+**Φ2 FAILS, as the prior said: the fold-sign phase does not separate the classes.**
+* **Φ1.** Along the line, the twists on `x` (no-flip) have sign `+` at every `R`; the twists on `y` and `z`
+  (spin-flip) alternate, `(−1)^R`. As expected.
+* **Φ2.** The coherence is `C = 1` for both classes at every site, along and perpendicular, at `k = 0` and at
+  `k = 1`. The two sites an absorber joins are always in phase, because its step runs along `t`'s own axis and the
+  sign changes only across that axis. **Fail.**
+* **Φ3 (no weight).** At `k = 0`, `|B₀| = 2` along the line and `R + 2` perpendicular, so `ρ₀ = 2/(R + 2)`, from 2/3
+  at `R = 1` to 1/7 at `R = 12`. The spin-flip class has `|B₁| = R + 2` both ways, so `ρ₁ = 1`. At `k = 1` the same
+  shape holds (`ρ₀` from 0.68 to 0.17, `ρ₁ = 1`). These are the values worked out while defining Φ3. The fall of `ρ₀`
+  comes from the number of walks to a sideways neighbour, and the spin-flip ratio is 1 where radiation gives 2.
+
+**What this says.** The Pauli fold sign is a fixed checkerboard: constant along a twist's own axis, alternating across
+it. An absorber that receives through the same twist never sees it change. So this sign is not the light-frame phase
+that would distinguish radiative from no-flip exchange, and the radiative count of two stays imported.
+
+**Jim's reading (post hoc, not tested): the two fold directions may be relative.** §42 fixed each absorber's step to
+`t`'s own direction, an absolute choice. If the two directions of a fold (a twist and its opposite on one axis, or the
+two orders of a fold) mean something only relative to the other end of the exchange, then which way the absorber
+folds is part of the exchange, not a given. This fits §40a, where both signs of `s` came from the relative direction
+of the two electrons' flips. A test of it has to say what "relative" fixes before anything is computed; with the
+checkerboard sign, an absorber step along `t`'s axis in either direction still gives `C = 1`, so the relative choice
+would have to involve the step's axis or the fold order, or the gauge pair `+`/`−`.
 
 ## 2026 update
 
