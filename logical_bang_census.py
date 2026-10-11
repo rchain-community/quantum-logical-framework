@@ -28,7 +28,10 @@ sign assignments). L0 checks this against the sec 43a totals and against pauli_f
   L2  length 10 under the new definition, and every remainder class at length 12
 
 Exact integers. Stdlib only, plus twist_core.
-Run:  python3 logical_bang_census.py [--depth12]
+--depth N (sec 45, pre-registered in commit a97c302): the same census at length N (14), after reproducing the
+sec 44a length-12 table; prints the entangled C(O)/C(collinear) trend over lengths 10..N.
+
+Run:  python3 logical_bang_census.py [--depth12 | --depth N]
 """
 from __future__ import annotations
 
@@ -345,6 +348,35 @@ def main_depth12():
                   f"{'yes' if so == 0 else 'no'}")
 
 
+def main_depth(L):
+    ent = lambda tab, rel: [sum(v[i] for k, v in tab.items() if k[0] == rel and k[2] == 'entangled') for i in (0, 1)]
+    t12 = census_dp(12)
+    m0 = (ent(t12, 'collinear') == [542868480, 8825856] and ent(t12, 'O') == [1085736960, -172032]
+          and t12['O', 'nnnn', 'entangled'] == [232657920, 147456] and t12['O', 'nnss', 'entangled'] == [310210560, -319488])
+    print(f"M0  sec 44a length-12 table reproduced: {'yes' if m0 else 'NO'}")
+    assert m0
+    trend = {}
+    tabs = {10: census_dp(10), 12: t12}
+    for n in range(14, L + 1, 2):
+        tabs[n] = census_dp(n)
+    for n, tab in sorted(tabs.items()):
+        nc, sc = ent(tab, 'collinear')
+        no, so = ent(tab, 'O')
+        trend[n] = (Fr(abs(sc), nc), Fr(abs(so), no), so)
+    tab = tabs[L]
+    print(f"\n=== length {L}, orthogonal classes ===")
+    for key in sorted(k for k in tab if k[0] == 'O'):
+        n, s_ = tab[key]
+        print(f"  {key[1]:7} {key[2]:9}  N={n:<13} S={s_:<11} C={float(Fr(abs(s_), n)) if n else 0:.6f}")
+    zero = [k[1] for k in tab if k[0] == 'O' and k[2] == 'entangled' and tab[k][1] == 0]
+    print(f"  entangled O classes with S = 0 exactly: {sorted(zero)}")
+    print("\nM2  trend (entangled, all remainders)")
+    for n, (cc, co, so) in sorted(trend.items()):
+        print(f"  length {n}: C(collinear)={float(cc):.6f}  C(O)={float(co):.6f}  S(O)={so}  ratio={float(co / cc):.6f}")
+    cc, co, _ = trend[L]
+    print(f"\nM1  length {L}: ratio = {float(co / cc):.6f}  ->  {'PASS' if cc > 0 and co <= cc / 100 else 'FAIL'}")
+
+
 def main():
     for L in (8, 10):
         print(f"=== length {L} ===")
@@ -365,4 +397,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main_depth12() if '--depth12' in sys.argv else main()
+    if '--depth12' in sys.argv:
+        main_depth12()
+    elif '--depth' in sys.argv:
+        main_depth(int(sys.argv[sys.argv.index('--depth') + 1]))
+    else:
+        main()

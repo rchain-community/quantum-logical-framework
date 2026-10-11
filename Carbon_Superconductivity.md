@@ -61,7 +61,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 42 | does the exchange's phase separate spin-flip from no-flip? | light-frame exchange (walks at `c`) with §41's fold sign as the phase; the absorber is a twist joining `r` and `r + e_t` coherently; primary: phase-only coherence along the line (no-flip `≤ ½`, spin-flip `≥ 0.9`); the radiative `|B|` pattern reported with no weight | §42a: **Φ2 fails, as the prior said**: coherence `C = 1` for both classes at every site (`k = 0, 1`); the fold sign is a fixed checkerboard, constant along a twist's own axis, so it is not the light-frame phase. Φ3 (no weight): `ρ₀ = 2/(R + 2)`, `ρ₁ = 1`, from walk counts. Jim's reading (post hoc): the two fold directions may be relative |
 | 43 | the logical bang as a signed census of two electrons | count balance already implies Pauli closure (fold always `±I`), so ZFA excludes nothing and only the fold sign can decide; every ZFA word of length 8 and 10 with two electron loops, summed with its fold sign, by relation (parallel, antiparallel, orthogonal; remainder on the normal, in the plane, gauge); primary: does the no-flip remainder cancel and the flip not? | §43a: **K1 fails**: the no-flip remainder is suppressed but does not cancel (no-flip/flip `C` = 0.184 > 0.1; exact totals `1/9` vs `11/27` of the gauge exchange, ratio `3/11`). Exploratory, not adopted: **entangled (interleaved) electrons with orthogonal spins cancel exactly** at length 8 (`S = 0` of 13 056) while collinear ones survive (`S = 192` of 3 264 each); P and A are identical, so the sign sees collinearity, not direction |
 | 44 | do entangled electrons with orthogonal spins still cancel at length 12? | entangled = the two loops' spans overlap; remainder any balanced word of length 4; exact signed sums by dynamic program, checked against §43a; pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs | §44a: **L1 passes narrowly** (`C(O)/C(collinear) = 0.00975` against 0.01); **the exact zero fails**: entangled orthogonal pairs cancel exactly in every remainder class at length 10 and in four of six at length 12, breaking only when the remainder has two spatial pairs with one on a loop's normal (`C` ≈ 0.001). Closures decide orthogonality exactly for two electrons alone, less cleanly with more structure. Not adopted: needs a measured spin correlation |
-| 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | pre-registered; not yet run |
+| 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | §45a: **M1 fails, as the prior said**: ratio 0.0230 at length 14 (0 → 0.0097 → 0.0230 over lengths 10–14). `C(O)` stays at ≈0.00016 while `C(collinear)` halves per step. Exact zero kept in 5 of 10 classes; rule over lengths 10–14: exact unless the remainder has two normal pairs, or a normal pair with a shared pair. The cancellation rule holds only at low depth |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3635,6 +3635,41 @@ and the rest gauge, should still cancel exactly, as they did at length 12.
 * If M1 passes, the cancellation is stable over three depths.
 
 Script: `logical_bang_census.py --depth 14` (generalising `--depth12`).
+
+### 45a. Result
+
+Run by [`logical_bang_census.py --depth 14`](logical_bang_census.py) (exact integers, about 10 s). **M0 passes:**
+§44a's length-12 table is reproduced exactly.
+
+**M1 FAILS, as the prior said:** at length 14 the entangled ratio is `C(O)/C(collinear) = 0.0230`, above 0.01 and
+inside the 0.01–0.05 range the prior gave.
+
+| length | `C(collinear)` | `C(O)` | `S(O)` | ratio |
+|---|---|---|---|---|
+| 10 | 0.03268 | 0 | 0 | 0 |
+| 12 | 0.01626 | 0.000158 | −172 032 | 0.0097 |
+| 14 | 0.00739 | 0.000170 | +34 111 488 | 0.0230 |
+
+**Two things the trend shows (M2).**
+* **The orthogonal residue stays at about the same size; the collinear signal halves with each step.** `C(O)` goes
+  from 0.000158 to 0.000170, while `C(collinear)` falls by about half per two twists. So the ratio rises because the
+  coherence of the collinear pairs is diluted by the larger closures, not because the orthogonal pairs stop cancelling.
+* **Which remainders keep the exact zero.** At length 14, five of ten orthogonal classes still have `S = 0` exactly:
+  only gauge twists, gauge plus one pair on a loop's normal, gauge plus one shared-axis pair, gauge plus two shared
+  pairs, and three shared pairs. Over lengths 10–14 the rule is the same: **the cancellation is exact unless the
+  remainder has two or more pairs on the loops' normals, or a normal pair together with a shared-axis pair.** Every
+  class that breaks it has `C ≤ 0.0011`.
+
+**What this settles.** As registered, the rule "entanglement cancels orthogonal spin relations" holds only at low
+depth: exactly to length 10, within 1% at length 12, and not within 1% at length 14. The exact part is a definite
+statement about which third bodies preserve the cancellation: it survives any amount of gauge structure and any
+amount of structure along the axis the two electrons share, and it is broken only by structure along their spin axes.
+
+**Jim's reading (post hoc, not tested).** Every qubit is potentially orthogonal, and the order of the initial
+entanglements may decide whether a closure forms. In this census the order is in the interleaving, and the sign it
+gives is what cancels or survives, so the census is already a count over entanglement orders. A test of the reading
+would ask which orders close (survive the signed sum) and whether that ordering structure carries a measurable number.
+Jim suggests the fine-structure residual (`+0.036`) as the place to look. That needs its own pre-registration.
 
 ## 2026 update
 
