@@ -57,7 +57,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 38 | why a carrier moving at `c` has no `s_z = 0` state | route: no direction reversal at `c` ⇒ each half-spin keeps its helicity; a carrier is a half and its time-mirror, so `s` along the motion is `±1`, never 0; checked first on the photon, then the graviton, a massive control (W from top decay), and only then the gluon | §38a: **C1 fails, as the prior said**: every twist has helicity `+½`, so the photon gets `s = +1` only. D1 does remove `s = 0` (with reversals allowed, `s = 0` returns: C3 passes), but with each half's spin fixed by its own twist the photon gets one helicity; C2 fails the same way (`+2` only); C4: the rule does not reach the commutator carriers (0 of 24 advance without reversing) |
 | 39 | repair (b): spin read from the generator `τ = iσ` | `τ` is time-reversal-even where `σ` is odd, so the conjugate half keeps `τ(t̄) = −τ(t)` read forward; §38's checks rerun unchanged (photon, graviton, massive control) | §39a: **C1 fails, as the prior said**: the conjugate half now has helicity `−½`, so the alphabet carries both helicities, but each `[t, t†]` pairs one of each and the photon gets `s = 0` only (6 of 6, both fold orders, both conventions); C2 `0` only; C3 fails (`s = 0` survives D1). `σ` (T-odd) gives `+1` only, `τ` (T-even) gives `0` only: neither reading of two free halves gives both photon states; (b) closed |
 | 40 | the photon as an exchange between electrons | helicity = the emitter's spin change along the line of flight, `s = m − m′`; X1a any twist (primary), X1b §38's motion rule; absorber balance; transversality reported, not scored | §40a: **X1a fails by its registered criterion**, but read relationally the count is the exchange itself: spin-flip exchanges `±1` with equal ways (the four perpendicular twists flip the emitter's spin, 4 : 4 per direction) and no-flip exchanges `s = 0` from the two twists on the line (`24 : 24 : 24`); absorber balances 72/72. §38–39's one-sided counts came from giving the photon a spin of its own. `s = 0` is the Coulomb-like part of the exchange; "two polarisations" counts radiative exchange, tested in §41 |
-| 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | pre-registered; not yet run |
+| 41 | does the no-flip exchange reach a distant absorber? | exchange paths from emitter to absorber at `R d̂`, `R = 1 … 12`, excess `k = 0 … 3`; W1 fold sign, W2 the twists as the path's ends; pass if `|A₀|/|A₁|` falls with `R` | §41a: **both fail, as the prior said**: W1 gives `|A₀| = |A₁|` at every `R` and `k` (`ρ = 1` exactly); W2 gives the spin-flip class no walks at `k ≤ 1` and `ρ` rising ~`R²` at `k = 2, 3` (15 → 445). A count of paths does not tell near from far; the radiative count of two stays imported. Jim's reading (post hoc): in the light frame distance is zero, so exchanges differ only in phase |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3295,6 +3295,33 @@ For each weighting and each `k`, the ratio `ρ(R) = |A₀(R, k)| / |A₁(R, k)|`
 * If either weighting passes, the script's output shows where the prior's argument breaks.
 
 Script: `exchange_range.py` (to be written after this commit).
+
+### 41a. Result
+
+Run by [`exchange_range.py`](exchange_range.py) (exact integers, about 20 s). All six directions `d̂` give the same
+table.
+
+**Both weightings FAIL, as the prior said: a count of paths does not tell near from far.**
+* **W1, the fold sign.** `|A₀| = |A₁|` at every `R` and every `k`, so `ρ = 1` exactly. At `k = 0` each class has one
+  path, the straight one. At `k = 1, 2, 3` both classes have the full walk count (`15, 28, 45, …` at `k = 1`). Every
+  walk to `R d̂` has the same sign within a class, as the prior argued. **Fail.**
+* **W2, the twists as the path's ends.** At `k = 0` and `k = 1` the spin-flip class has no walks at all (`A₁ = 0`):
+  a sideways first and last step cannot be undone with fewer than four extra steps. At `k = 2`, `ρ` rises from 15
+  (`R = 2`) to 445 (`R = 12`); at `k = 3`, from 6.2 to 131. It grows roughly as `R²`, the opposite of radiation.
+  **Fail, inverted.**
+
+**What this says.** In W1 the amplitude depends on `R` only through the number of walks, and that is the same for
+both classes. The exchange does not see the distance through its sign. W2 makes the no-flip exchange the better
+traveller, because it is the one whose own step points at the absorber. Neither weighting gives the radiative
+pattern. The radiative count of two stays imported.
+
+**A reading that fits the result (Jim's; post hoc, not tested).** In the light frame the distance between emitter
+and absorber is zero: an exchange at `c` is always local, the two ends adjacent in the hologram, and only the
+**phase** differs. Then no count of paths should separate near from far, which is what W1's `ρ = 1` shows, and the
+radiative and no-flip exchanges must differ in phase, not in reach. That matches the physics in one respect: a
+`Δm = ±1` exchange is a dipole rotating about `d̂`, whose phase winds once per cycle, while a `Δm = 0` exchange along
+`d̂` has no winding about it. Whether the substrate's phase separates the two classes is the next question. It needs
+its own pre-registration, with the phase of the exchange defined before any computation.
 
 ## 2026 update
 
