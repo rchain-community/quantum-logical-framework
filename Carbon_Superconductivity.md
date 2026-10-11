@@ -66,6 +66,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 47 | the two readings weighted by their frequency (post hoc, a record) | Jim: each way has a frequency; the unit is the Kraft mass `8^(−L)` of the closures each reading counts; mode `0.2163`, order reading `0.1662` | `α⁻¹ = 137.035691` (−0.00031), weight 0.4345 on the order reading; not evidence: stated after §46a, three choices in it |
 | 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | §48a: **fails, as the prior said**: `π_rule = 2.700`, `6π_rule⁵ = 861.4`, 53% low (bracket on `f_n` moves it `10⁻⁴`); §47 stays a post-hoc way for α only |
 | 49 | the frequency rule on the 5-angle proton construction | the construction carries no census; `k` of the five angles read as `π_rule` | arithmetic, not a test: every `k ≥ 1` fails (−14% to −53%; the chirality-mixing pair −26%); a like-for-like test needs a weak-coupling tail on `6π⁵` against its `−1.9·10⁻⁵` residual |
+| 50 | α's census tail on the proton | `m_p/m_e = 6π⁵ + T`, each reading's α tail unchanged, against `δ_p = 0.034562`; P1 frequency reading within α's miss (0.00031); P2 it is the closest of five | pre-registered, not blind (subtraction): prior P1 fails (+0.0011), P2 passes |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3887,6 +3888,36 @@ where the readings differ by `10⁻²` and the weighted shift was `0.0037`. A li
 setting: a weak-coupling census tail on top of `6π⁵`, against the proton's own residual of `−1.9·10⁻⁵`
 (`1836.118` vs `1836.153`). [Proton_Resonance_R_e.md](Proton_Resonance_R_e.md) has no such tail, so building one is
 the open step. Without it, §47 stays specific to α.
+
+## 50. Pre-registered: α's census tail on the proton
+
+*Fixed in the commit that adds this section, before the script below is written or run. Not blind: see the prior.*
+
+§49 found that the like-for-like setting for the proton is a weak-coupling census tail on top of `6π⁵`, compared
+with the proton's own residual. This section builds the one version that adds no choice: **the α tail, unchanged.**
+
+### The test, fixed now
+
+* **Hypothesis.** The census tail at coupling `1/128` is a substrate correction common to every structural leading
+  value, so `m_p/m_e = 6π⁵ + T`, where `T` is a reading's α tail with nothing rescaled. Rescaling the tail or using
+  another coupling would be a choice, so none is tried.
+* **Proton residual:** `δ_p = 1836.15267343 − 6π⁵ = 0.034562` (the measured ratio's uncertainty, `1.1·10⁻⁷`, is
+  negligible here).
+* **The five readings and their tails `T`:** irreducible `0.015874`, total `0.048130`, mode (`w = ½`) `0.032002`,
+  order (§46a) `0.040493`, frequency-weighted (§47) `0.035691`.
+* **P1 (primary, like-for-like):** pass if `|T_freq − δ_p| ≤ 0.00031`, the frequency reading's miss on α. **Fail**
+  otherwise.
+* **P2 (secondary):** the frequency reading is the closest of the five to `δ_p`, as it is for α.
+
+### Stated prior: not blind
+
+Every `T` is known from §46a–§47, and `δ_p` follows from the measured ratio, so the outcome is subtraction:
+`T_freq − δ_p = +0.0011`. **P1 fails** (3.3% of the residual, against 0.9% for α) and **P2 passes** (next closest is
+the mode, at `−0.0026`). Recorded because the proton's residual, `0.0346`, sits as close to α's (`0.0360`) as the
+census readings do to each other. That resemblance is noted here for the first time, and the test asks whether the
+reading that fits α best also fits the proton best at the same precision.
+
+Script: `frequency_weighted_census.py --proton-tail` (to be added after this commit).
 
 ## 2026 update
 
