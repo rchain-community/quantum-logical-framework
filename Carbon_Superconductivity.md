@@ -64,7 +64,7 @@ Script: [`carbon_zfa_dna.py`](carbon_zfa_dna.py) (under a second; every claim in
 | 45 | the orthogonal cancellation at length 14 | §44's census one level deeper (remainder of six twists); pass if `C(O) ≤ 0.01 · C(collinear)` for entangled pairs; prior: fails, ratio rising | §45a: **M1 fails, as the prior said**: ratio 0.0230 at length 14 (0 → 0.0097 → 0.0230 over lengths 10–14). `C(O)` stays at ≈0.00016 while `C(collinear)` halves per step. Exact zero kept in 5 of 10 classes; rule over lengths 10–14: exact unless the remainder has two normal pairs, or a normal pair with a shared pair. The cancellation rule holds only at low depth |
 | 46 | does the order of entanglement close the α residual? | prime closures of the 8-twist alphabet, fold signs summed over the orders of each multiset; the surviving fraction `f_n` scales the irreducible α coefficient, total by `G = 1/(1 − I)`; pass if closer to CODATA than `w = ½` (0.0040) | §46a: **Q1 fails, as the prior said** (registration not blind: `f_2 = 7/13` by hand): `α⁻¹ = 137.040493`, off by +0.0045 vs `w = ½`'s −0.0040; `f_n` about halves per order (1, 7/13, 1/4, 0.112, …); per-multiset = global; equivalent `w = 0.763`, 63% of the total census's overshoot removed |
 | 47 | the two readings weighted by their frequency (post hoc, a record) | Jim: each way has a frequency; the unit is the Kraft mass `8^(−L)` of the closures each reading counts; mode `0.2163`, order reading `0.1662` | `α⁻¹ = 137.035691` (−0.00031), weight 0.4345 on the order reading; not evidence: stated after §46a, three choices in it |
-| 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | pre-registered; prior: fails structurally (both readings give π below `π`, so `m_p/m_e ≤ ~1 320`) |
+| 48 | does the frequency weighting transfer to the proton? | §9o's census π by sector at `4⁻ⁿ`, mode `2 + π/4`, order reading from `f_n`; §47's weights unchanged; pass if `6π_rule⁵` within `10⁻³` | §48a: **fails, as the prior said**: `π_rule = 2.700`, `6π_rule⁵ = 861.4`, 53% low (bracket on `f_n` moves it `10⁻⁴`); §47 stays a post-hoc way for α only |
 
 **Open:** the pairing energy from the substrate itself (the `log 2` quantum fails, §15a). Also open: the trilayer stiffness taken
 through to zero, an independent measurement of `α`, and turbulence as a vortex-noise spectrum.
@@ -3828,6 +3828,32 @@ sectors differ only at the `10⁻²` level. At the proton's `4⁻ⁿ` they diffe
 §9o, is that census π by sector is not the proton's construction.
 
 Script: `frequency_weighted_census.py` (to be written after this commit).
+
+### 48a. Result
+
+Run by [`frequency_weighted_census.py`](frequency_weighted_census.py) (about 7 s). It reproduces §47's numbers
+(`w_order = 0.4345`, `α⁻¹ = 137.035691`). As a control, the census-π sum with every `f_n = 1` returns `π` (to
+`10⁻⁶` with its asymptotic tail).
+
+**FAILS, as the prior said:** the frequency weighting does not transfer to the proton.
+
+| `f_n` beyond `n = 8` | `π_order` | `π_rule` | `6 π_rule⁵` | off |
+|---|---|---|---|---|
+| 0 | 2.589519 | 2.700295 | 861.40 | −53.1% |
+| `f_8` | 2.589696 | 2.700371 | 861.53 | −53.1% |
+
+The bracket on the unknown `f_n` moves the result by `10⁻⁴`, so the verdict does not depend on it. The miss is
+larger than the structural bound required (`≤ 1 318`, at least 28% low), because the order reading's π, `2.590`, lies
+well below `π`. It is as large as §9o's miss with the plain ½ rule (51%).
+
+**What this settles.** §47's agreement for α (`−0.0003`) does not carry over to the proton under the census-π
+construction. Two readings remain, and this test cannot separate them:
+* the frequency weighting is right only at α's weak coupling `1/128`, where the readings differ by `10⁻²`;
+* census π by sector is not how the proton is built. The total sector alone gives `6π⁵` (off `−1.9·10⁻⁵`), and every
+  sector below it moves the ratio by tens of percent.
+
+So §47 stays a post-hoc way for α, counted but unsupported by an independent test. No value is derived and no axiom
+is added.
 
 ## 2026 update
 

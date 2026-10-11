@@ -1284,3 +1284,8 @@ coefficient by `f_n`, with every composite counted, gives **`α⁻¹ = 137.04049
 bracket, `+0.0045` from CODATA (the structural `w = ½` is `−0.0040`), equivalent `w = 0.763`. The pre-registered
 pass (closer than `w = ½`) fails. It is one more way, now counted. The multiplicity between the ways and the
 measured value is still open.
+
+**Weighted by frequency (§47–§48 there).** Jim's rule, that ways combine in proportion to their frequency (Kraft mass
+`8^(−L)` of the closures each reading counts), weights the order reading `0.4345` against the mode and gives
+`α⁻¹ = 137.035691`, off by `−0.0003`. It was stated after the bracket was seen, so it is recorded as a way, not as
+evidence. The pre-registered transfer to the proton (§9o's census π) fails: `6π_rule⁵ = 861`, 53% low.
