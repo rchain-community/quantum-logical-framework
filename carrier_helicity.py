@@ -20,7 +20,12 @@ Readings used, as the pre-registration fixed them:
   (its momentum still flips). Runs conv = +1 (QLF's tau = i sigma) and conv = -1, both fold orders; C4 dropped.
 
 Exact arithmetic (Fractions). Stdlib only, plus twist_core.
-Run:  python3 carrier_helicity.py [--generator]
+--exchange (sec 40, pre-registered in commit c037b15): the photon as an exchange between electrons. The emitter
+  starts in |m>, m = +-1/2 along the line of flight d; it applies sigma(t), the absorber applies sigma(t+). One way is
+  (d, t, m) with <m'|sigma(t)|m> != 0; the photon carries s = m - m' along d. X1a any twist, X1b twists on d's axis
+  only; X2 absorber balance; X3 reversal along d; X4 graviton (no weight); X5 transverse twists (not a test).
+
+Run:  python3 carrier_helicity.py [--generator | --exchange]
 """
 from __future__ import annotations
 
@@ -133,6 +138,88 @@ def main_generator():
               f"{'present -> C3 FAILS' if 0 in c1 else 'absent'}\n")
 
 
+def eigenstates_along(d):
+    """Spinors |m>, m = +-1/2, of (d . sigma) with eigenvalue 2m."""
+    dx, dy, dz = d
+    n = (dz, dx - 1j * dy, dx + 1j * dy, -dz)          # d . sigma as (a, b, c, d)
+    out = {}
+    for m, lam in ((Fr(1, 2), 1), (Fr(-1, 2), -1)):
+        a, b, c, _ = n
+        # (a - lam) u + b v = 0
+        u, v = (b, lam - a) if abs(b) > 1e-12 else ((1, 0) if abs(a - lam) < 1e-12 else (0, 1))
+        norm = (abs(u) ** 2 + abs(v) ** 2) ** 0.5
+        out[m] = (u / norm, v / norm)
+    return out
+
+
+def apply(mat, vec):
+    a, b, c, d = mat
+    return (a * vec[0] + b * vec[1], c * vec[0] + d * vec[1])
+
+
+def braket(u, w):
+    return u[0].conjugate() * w[0] + u[1].conjugate() * w[1]
+
+
+def transitions(t, d):
+    """[(m, m')] with <m'|sigma(t)|m> != 0, along d."""
+    es = eigenstates_along(d)
+    return [(m, m2) for m in es for m2 in es
+            if abs(braket(es[m2], apply(PAULI_MAP[t], es[m]))) > 1e-9]
+
+
+def main_exchange():
+    dirs = [momentum(t) for t in SPATIAL]
+
+    def count(allowed):
+        c, ways = Counter(), []
+        for d in dirs:
+            for t in SPATIAL:
+                if not allowed(t, d):
+                    continue
+                for m, m2 in transitions(t, d):
+                    c[m - m2] += 1
+                    ways.append((d, t, m, m2))
+        return c, ways
+
+    def verdict(c):
+        return 'PASS' if sorted(c) == [-1, 1] and c[-1] == c[1] else 'FAIL'
+
+    on_axis = lambda t, d: momentum(t) in (d, neg(d))
+    x1a, ways = count(lambda t, d: True)
+    x1b, _ = count(on_axis)
+    x5, _ = count(lambda t, d: not on_axis(t, d))
+    print("X1a any twist (primary)")
+    for d in dirs:
+        per = Counter(m - m2 for dd, t, m, m2 in ways if dd == d)
+        print(f"  d={d}  {dict(sorted(per.items()))}")
+    print(f"  total {dict(sorted(x1a.items()))}  ->  X1a {verdict(x1a)}")
+    print(f"X1b twists on d's axis only: {dict(sorted(x1b.items()))}  ->  X1b {verdict(x1b)}")
+
+    bad = 0
+    for d, t, m, m2 in ways:
+        s_ = m - m2
+        ok = any(m4 - m3 == s_ for m3, m4 in transitions(adjoint_history(t), d))
+        bad += not ok
+    print(f"X2 absorber balance: {len(ways) - bad} of {len(ways)} ways balanced")
+
+    rev = 0
+    zero = [(d, t) for d, t, m, m2 in ways if m == m2]
+    for d, t in zero:
+        steps = [dot(momentum(t), d), dot(neg(momentum(adjoint_history(t))), d)]
+        rev += any(x > 0 for x in steps) and any(x < 0 for x in steps)
+    print(f"X3 s = 0 ways whose twist pair reverses along d: {rev} of {len(zero)}")
+
+    x4 = Counter()
+    for d in dirs:
+        ss = [m - m2 for dd, t, m, m2 in ways if dd == d]
+        for a in ss:
+            for b in ss:
+                x4[a + b] += 1
+    print(f"X4 graviton, two exchanges along one d (no weight): {dict(sorted(x4.items()))}")
+    print(f"X5 transverse twists only (imposed; not a test): {dict(sorted(x5.items()))}")
+
+
 def main():
     print("P1  helicity of each spatial twist (spin along its own motion)")
     hel = {}
@@ -196,4 +283,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main_generator() if '--generator' in sys.argv else main()
+    if '--generator' in sys.argv:
+        main_generator()
+    elif '--exchange' in sys.argv:
+        main_exchange()
+    else:
+        main()
