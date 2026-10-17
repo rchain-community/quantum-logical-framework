@@ -3,7 +3,7 @@
 closure_multiplicity_census.py — how many ways close at each depth, and where the mode sits.
 
 Issue #171 asked whether "what happens in the most ways happens first" holds for the closure
-census, and asked that the answer be counted rather than assumed. A balanced, gauge-free history
+census (it does not: see MostWays_First.md), and asked that the answer be counted rather than assumed. A balanced, gauge-free history
 of length 2n is a +-1 bridge; by the depth law (QLF_ClosureDepthLaw) its closure depth is its
 maximum excursion. So
 

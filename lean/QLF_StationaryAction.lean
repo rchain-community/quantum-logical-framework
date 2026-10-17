@@ -10,7 +10,7 @@ set_option linter.unusedVariables false
 
 Hamilton's principle `δS = 0` is postulated in every classical field theory. Hilbert's 1915
 derivation of general relativity from `S = ∫ R √−g` is that postulate applied to curvature. This
-module proves the substrate reason it holds: *what happens in the most ways happens first*
+module proves the substrate reason it holds: *what happens in the most ways happens most often*
 (`Philosophy.md` §3a). The realized history is the mode of the census multiplicity `W`. Because every
 twist has its conjugate at equal weight, the mode sits at balance, and there the first variation of
 `W` vanishes. With `S ↔ −ħ log W` that is `δS = 0`.

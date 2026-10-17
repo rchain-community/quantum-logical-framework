@@ -149,7 +149,7 @@ identical verdict on two independent counts. That is the "agree" half, and it is
 yields shared reality rather than solipsism ([`Measurement_Problem.md`](Measurement_Problem.md) §6).
 
 The "one dominates" half is `/solve`: of the many ways a position *can* close, the substrate takes
-exactly **one** — least free action, the most-ways closure, by a deterministic cascade every observer
+exactly **one** — least free action, the first-reached closure, by a deterministic cascade every observer
 computes identically ([`QucalcSearch.md`](QucalcSearch.md); [`Philosophy.md`](Philosophy.md) §9). So
 the pair behaves like the deuteron: complementary perspectives do not average, they meet on a single
 joint closure, and a single dominant outcome leads — not by negotiation between the observers but

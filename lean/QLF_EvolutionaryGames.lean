@@ -27,7 +27,7 @@ With every orbit ending somewhere, **`orbitEnd`** names where, and the **ways** 
 are the states whose orbit ends at `c` — its basin. **`basins_partition`**: the basins of the
 closures partition the state space, so under the uniform prior the **frequency of a closure is its
 multiplicity** `ways c / |S|` (**`sum_frequency`**), and a state that is not a closure has no ways
-at all (**`ways_eq_zero_of_not_fixed`**). This is "what happens in the most ways happens first"
+at all (**`ways_eq_zero_of_not_fixed`**). This is "what happens in the most ways happens most often"
 stated for dynamics: measured to two decimals in `evolutionary_census.py --optimize` (the Stag
 share of cold runs equals `1 − p*`, Young's basin threshold). The stochastic-stability theorem
 proper — that with vanishing mutation the selected closure is the one reached by the most

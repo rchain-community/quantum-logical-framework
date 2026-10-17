@@ -428,8 +428,9 @@ def hydrophobicity_check():
 def loop_closure_closure(sc):
     """`loopclosure|...`: branch = sequence separation, class = separation, ways = closures.
 
-    most_ways_first on this entry returns the folding ORDER: the short loops close in the
-    most ways, so they close first. That is contact order, as a count."""
+    most_ways_first on this entry returns the loop spans ranked by ways: the short loops close
+    in the most ways. Reading that ranking as folding ORDER was tested and withdrawn
+    (Protein_Folding.md 5e; most ways does not by itself mean first, MostWays_First.md)."""
     ec = {}
     for sep, ways in sc["closing"].items():
         ec[sep] = {sep: {"signed": sc["signed"].get(sep, 0), "ways": ways}}
