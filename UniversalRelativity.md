@@ -472,8 +472,20 @@ the hypothesis discharged (`generation_has_no_loops`). A subtracting step cannot
 Closure is many-to-one: $[+,-]$ and $[-,+]$ leave the same empty residue, so no function returns a
 closed event to the history it came from (`no_unclosing`). And widening an observer's horizon never
 revokes a closure (`closure_receipt_stable`). Pruning is not an exception, because it computes a
-history's residue to decide closure and removes nothing from the history itself. What remains a
-postulate is only that nature *is* this construction. **What would falsify it:** any physical closed
+history's residue to decide closure and removes nothing from the history itself.
+
+**From "nature is logical" alone.** None of this needs the assumption that nature *is* QLF's
+construction. Assume only that nature is logical: the laws of logic hold at every state of the world,
+read in the semantics constructive logic already uses (states ordered by what can follow what,
+implication read across the future; Kripke 1965). Then the law of weakening, $p \to (\top \to p)$,
+valid in classical and constructive logic alike, holds at every state **if and only if** every
+established fact stays established at every later state (`weakening_iff_persistence`,
+[`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean)). "Construction only adds" is
+what that law means across time. It follows that a loop can only return to a state holding exactly the
+same facts (`loop_same_facts`), and that no chain of events, each a step at which some new fact holds,
+returns to its start (`no_time_loops_from_logic`). QLF's histories are one model of this
+(`histories_are_a_model`), not its premise. A loop on which nothing new becomes true is not excluded,
+because nothing happens on it: it is one state. **What would falsify it:** any physical closed
 causal curve. Unlike chronology protection, QLF forbids one even with exotic matter that violates the
 energy conditions, so a working time machine of any kind refutes it.
 

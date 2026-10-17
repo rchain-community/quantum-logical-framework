@@ -33,9 +33,10 @@ map, so it cannot be a substrate step.
 ## Honest scope
 
 This proves "construction only adds" for **QLF's defined operators**: every generator in the Lean
-substrate is append-only, and the inverse of closure does not exist as a map. It does not prove that
-nature is QLF's construction — that identification is the framework's founding postulate, tested
-empirically, not in Lean. Pruning (`full_zeno_prune`) is not an exception: it computes a history's
+substrate is append-only, and the inverse of closure does not exist as a map. It does not assume that
+nature is QLF's construction: [`QLF_LogicalPersistence`](QLF_LogicalPersistence.lean) derives
+"only adds" from the law of weakening alone (`weakening_iff_persistence`), with QLF's histories as one
+model of it. Pruning (`full_zeno_prune`) is not an exception: it computes a history's
 residue to decide whether it closes; it does not remove anything from the history, which is the event.
 No new axioms; `anti_pair_closes` evaluates by `native_decide`, following `conjugate_pair_closes`.
 -/
