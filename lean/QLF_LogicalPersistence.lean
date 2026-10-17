@@ -29,6 +29,9 @@ implication is read across the future: `φ → ψ` holds at `w` when every later
 * **`logical_world_globally_hyperbolic`** — add *finite construction* (every state has finitely many
   states in its past, `FinitePasts`) and every causal interval is finite too (`interval_finite`): no
   eventful loops plus finite intervals, the discrete form of global hyperbolicity.
+* **`loopWorld_has_time_loop`** / **`weakening_fails_in_loopWorld`** — the result is sharp. QLF admits
+  every logic possibilistically, and in a logic without weakening (linear, relevant, reversible) a time
+  loop exists. Loops live exactly where facts can be used up, which is where nothing is a record.
 * **`histories_are_a_model`** — QLF's histories, ordered by `reachable` with "`A` lies in my past" as
   the facts, satisfy persistence and finite construction (`histories_finite_pasts`): the construction is
   one model of the law, not the assumption.
@@ -161,5 +164,31 @@ theorem logical_world_globally_hyperbolic (M : World W A) (hK : ∀ w a, forces 
 /-- QLF's histories are finitely constructed: the past of a history is among its prefixes. -/
 theorem histories_finite_pasts (α : Type _) : FinitePasts (historyWorld α) := fun v =>
   (List.finite_toSet v.inits).subset (fun u hu => (List.mem_inits u v).mpr hu)
+
+/-! ## Sharpness: logics without weakening do loop
+
+QLF's possibilism admits every logical system, including those without weakening (linear and relevant
+logic, the reversible closure algebra). The theorem is sharp: a two-state world in which each state can
+follow the other, each with its own fact, has an eventful time loop, and weakening fails there. So time
+loops exist exactly where facts can be used up — where nothing persists as a record. -/
+
+/-- Two states, each able to follow the other; the fact `a` holds exactly at state `a`. -/
+def loopWorld : World Bool Bool where
+  le := fun _ _ => True
+  le_refl := fun _ => trivial
+  le_trans := fun _ _ => trivial
+  val := fun a w => a = w
+
+/-- **A logic without weakening has a time loop**: `true → false → true`, a new fact at each step. -/
+theorem loopWorld_has_time_loop : Relation.TransGen (Event loopWorld) true true := by
+  have h1 : Event loopWorld true false :=
+    ⟨trivial, .atom false, by simp [forces, loopWorld], by simp [forces, loopWorld]⟩
+  have h2 : Event loopWorld false true :=
+    ⟨trivial, .atom true, by simp [forces, loopWorld], by simp [forces, loopWorld]⟩
+  exact .tail (.single h1) h2
+
+/-- **And weakening fails in it** — so the hypothesis of `no_time_loops_from_logic` cannot be dropped. -/
+theorem weakening_fails_in_loopWorld : ¬ ∀ w a, forces loopWorld w (weakening a) :=
+  fun hK => no_time_loops_from_logic loopWorld hK true loopWorld_has_time_loop
 
 end QLF.LogicalPersistence

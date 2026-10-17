@@ -487,6 +487,18 @@ returns to its start (`no_time_loops_from_logic`). QLF's histories are one model
 (`histories_are_a_model`), not its premise. A loop on which nothing new becomes true is not excluded,
 because nothing happens on it: it is one state.
 
+**All logics, possibilistically.** QLF's possibilism admits every logical system, including those
+without weakening: linear and relevant logic, and the reversible closure algebra in which every
+operation can be undone. The result is sharp. In a world where facts can be used up, time loops do
+exist (`loopWorld_has_time_loop`), and weakening fails there (`weakening_fails_in_loopWorld`). So
+loops are possible exactly where nothing persists. A reversible cycle, such as a Fredkin gate applied
+twice or the involution $H \leftrightarrow H^{\dagger}$, returns to its start by consuming what it
+did, and it leaves no record. In QLF time is the record: a closure stays closed at every wider
+horizon (`closure_receipt_stable`), so the realized history is a world where weakening holds, and loops
+remain in the timeless algebra of possibility (`Reversibility.md` §5). The no-loop law is therefore a
+statement about records rather than about every logic. It is partly definitional, because a fact that
+can be un-made is not what QLF calls a record.
+
 **The field equations of a logical universe.** Add one more property that constructive logic carries,
 *finite construction*: every state has only finitely many states in its past, because every fact is
 established by a finite proof and nothing rests on a completed infinity. Then every causal interval is
