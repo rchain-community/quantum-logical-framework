@@ -159,7 +159,8 @@ setting ([`Entanglement.md`](Entanglement.md) §5–6). So measurement independe
 factor structure rather than a postulate QLF must give up.
 
 **And the determinism is a different kind.** QLF is not a single-history theory: everything happens every
-way that closes, and what happens in the most ways happens first ([`Philosophy.md`](Philosophy.md) §3a).
+way that closes; ZFA decides what closes first, and what happens in the most ways happens most often
+([`Philosophy.md`](Philosophy.md) §3a).
 The determinism is **relational and global** — the census is determinate and its ordering is determinate
 ([`UniversalRelativity.md`](UniversalRelativity.md) §6a) — while *which* outcome is had is a perspective
 inside that census (§2 above), not a value fixed in advance by correlated initial data. Superdeterminism

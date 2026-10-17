@@ -169,7 +169,7 @@ multiplicity:** a closure you can assemble by concatenating primes in any order 
 multiplicity; a hypothetical rigid, non-composable structure would carry one. And closure factorization
 is **unique** (every ZFA closure is one ordered sequence of irreducible closures — the free monoid,
 `census_irreducible_resummation`, `G = 1/(1−I)`), so *every* closure is compositionally organized and the
-self-similar organization has multiplicity equal to the entire census. By "the most ways happen first,"
+self-similar organization has multiplicity equal to the entire census. Since frequency is multiplicity,
 it therefore dominates what happens. This is why the recurrences across the repo — the `2π` loop phase,
 the `log 2` quantum, the `H↔H†` Millennium involution, the icosa-blanket at every scale, closures within
 closures — are the *expected* output rather than coincidences: scale-invariant multiplicity is what
@@ -319,7 +319,7 @@ keep that from becoming teleology, and both are theorems rather than modesty:
 
 * **It is the rarest stratum, not the likeliest.** Deeply bound closures are the **least-multiplicity**
   histories — two ways at maximal depth, against a census whose mode sits near depth `√n`
-  ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`; §3b). By §3a the most ways happen first, so
+  ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`; §3b). By §3a frequency is multiplicity, and deep closures close only at the widest horizons, so
   intelligence happens **last, not most**. Nothing aims at it; the census reaches it when capacity
   permits.
 * **No summit is final.** [`no_final_closure`](lean/QLF_LawOfExceptions.lean) forbids reading "pinnacle"

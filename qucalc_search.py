@@ -399,9 +399,9 @@ def solve(qc: str, max_depth: int = MAX_DEPTH_CAP,
         least peak excursion  →  shortest depth  →  phase +1  →  lexicographic
 
     "Least peak excursion" is least free action: the shallowest-horizon closure
-    is the one reachable the most ways (`QLF_ClosureDepthLaw`), which is ZFA
-    selection ("what happens in the most ways happens first") applied to pick a
-    representative. `absorbing` is implied — the events, not every possibility.
+    is the one reached first (`closedAtHorizon_mono`), which is ZFA selection
+    applied to pick a representative. It is not the depth reached the most ways
+    (`depth_one_not_modal`; MostWays_First.md). `absorbing` is implied — the events, not every possibility.
 
     Depth strategy: the natural closure depths are `floor` and `floor + 2`
     (parity), `floor = Σ|residual|`; search there first, only pay for the full

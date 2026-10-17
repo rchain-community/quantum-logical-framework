@@ -188,7 +188,7 @@ depths["16"]
   listening_by_capacity      {R: {ways_heard, fraction}} — the capacity-relative count, cumulative
   one_pass_ways              the depth-1 stratum ( = 2^n, onePass_ways_iff)
   deepest_stratum            the maximal-depth stratum ( = 2, nested_closed_at_d)
-  modal_depth                the depth reached in the most ways — what happens first
+  modal_depth                the depth reached in the most ways — what happens most often (not first)
   depth_equals_max_excursion the depth law, checked ( = true, closedAtHorizon_iff_maxExcursion_le)
   strata_that_are_gaussian_norms  which stratum counts are sums of two squares (mostly not)
 ```

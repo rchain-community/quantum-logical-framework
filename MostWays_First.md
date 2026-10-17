@@ -2,6 +2,14 @@
 
 Jim's question (2026-10-17): *prove that what happens the most ways happens first. Exceptions? Path integrals?*
 
+**The rule (Jim, 2026-10-17).** Assume ZFA and nothing else: **what closes first happens first.** A
+closure is the moment equal and opposite actions balance (the signed action returns to zero), closing *is*
+the event, and it is irrevocable (`closedAtHorizon_mono`), so the first balance is the first event. This is
+trivial once ZFA is assumed, and no second principle is needed. Within one history there is only one way,
+so "most ways" has nothing to rank; across histories, multiplicity says how *often* each closure happens
+(frequency is multiplicity), and overlap says which closes first in a shared history. The rest of this
+document is about that second layer.
+
 **Short answer.** Not in general. The statement is true in one exact sense, true under one extra
 hypothesis, and false otherwise, and the counterexamples are small enough to check by hand.
 

@@ -43,7 +43,7 @@ Nothing collapses in the textbook sense. The which-path closure simply moves the
 There is no paradox because the substrate is always **discrete histories**:
 
 - The "**wave**" is the *phase structure of the multiplicity* — the `e^{iθ(h)}`-weighted sum over admissible paths. Interference is what phase-weighted counting looks like.
-- The "**particle**" is the *single realized ZFA closure* — one history out of the multiplicity, selected with Born probability (the multiplicity principle, *the thing that can happen in the most ways happens first*, [`Born_Rule.md`](Born_Rule.md), [`MRE.md`](MRE.md)).
+- The "**particle**" is the *single realized ZFA closure* — one history out of the multiplicity, selected with Born probability (the multiplicity principle, *the thing that can happen in the most ways happens most often*, [`Born_Rule.md`](Born_Rule.md), [`MRE.md`](MRE.md)).
 
 "Goes through both slits" means the **possibility stream explores both bundles**; "lands as a dot" means **one closure realizes**. The two descriptions are the phase face and the count face of the one closure — the very pair the double slit is built to expose.
 

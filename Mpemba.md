@@ -260,7 +260,7 @@ $$
 W(\text{energy-lowering histories}) \;\gg\; W(\text{energy-raising histories}),
 $$
 
-and then the method's rule applies unchanged — *what happens in the most ways happens first*
+and then the method's rule applies unchanged — *what happens in the most ways happens most often*
 ([`Philosophy.md`](Philosophy.md) §3a). Resonance is already a ways-count in this repository:
 [`QLF_LineSpectra`](lean/QLF_LineSpectra.lean) shows the joint closure completes in many ways on
 resonance and few off it.
@@ -282,7 +282,7 @@ these compete.
 
 On the possibilist reading they need not: they are **different ways of altering the same closure-depth
 census**. Nothing happens one way; every generable way is real, and what happens in the most ways happens
-first. So "what causes the Mpemba effect?" may be the wrong question, with different preparations
+most often. So "what causes the Mpemba effect?" may be the wrong question, with different preparations
 realising the crossing through different mechanisms while one condition stays invariant:
 
 > the hotter preparation carries **more multiplicity in fast-closing sectors**, and/or **less in the

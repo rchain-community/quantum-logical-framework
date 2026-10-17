@@ -169,7 +169,7 @@ directly, but it is the structural reason the counts grow the way they do.
 A renormalization scheme has to pick a reference point where the coupling is *defined* (on-shell, `\bar{MS}`
 at `μ = M_Z`, …). QLF's is not a choice — `qucalc_search.py --solve` returns the single closure the
 substrate takes from a position, by the deterministic cascade **least peak excursion → shortest → phase
-`+1` → lexicographic** (least peak excursion *is* least free action = the most-ways closure):
+`+1` → lexicographic** (least peak excursion *is* least free action = the first-reached closure):
 
 ```
 $ python3 qucalc_search.py "^^<" --solve

@@ -26,7 +26,7 @@ follows from taking that literally, and four things came out that were not known
 
 2. **The closure question lives on a 5-dimensional state, exactly.** Whether a partial history can close, in how
    many ways, and what the substrate does next depend only on `(x ∈ ℤ⁴, steps remaining)`: `h(x, t)` = ways to
-   close from `x` in `t` steps. `/solve` is its argmax; the uniform sampler is its ratio; the drift is `−4x/t`.
+   close from `x` in `t` steps. `/solve` picks the first-reached closure (least peak excursion), which is not its argmax (`depth_one_not_modal`); the uniform sampler is its ratio; the drift is `−4x/t`.
    The `8^L`-dimensional possibility space is fibred over this low-dimensional base, and for closure the base is
    all there is. This is the low-dimensional view of the high-dimensional space — not an approximation, the
    equalizer of [`Category_Theory_QLF.md`](Category_Theory_QLF.md) with its geometry read off.

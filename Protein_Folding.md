@@ -108,7 +108,7 @@ read by the Rust `qucalc` crate ([rchain-rust `qucalc/src/lib.rs`](https://githu
 whose load-bearing invariant is *ways as a coefficient*: a class reachable `N` ways is **one**
 `WeightedClass`, not `N` terms. The exponential lives in a field, never in a list.
 
-That is not a storage trick, it is the ontology: what happens in the most ways happens first, so the
+That is not a storage trick, it is the ontology: what happens in the most ways happens most often, so the
 count *is* the physical quantity and the enumeration was only ever how we learned it. And it means
 `qucalc::most_ways_first` — one existing function, no new code — reads three different results off
 this census:
@@ -180,7 +180,7 @@ the most ways is the one nature uses.
 ### 5c. The folding transition, with the coil winning at high temperature
 
 Counting conformations alone, the **coil wins** — the unfolded state has the most shapes. That is not
-a defect in *most ways first*; it is the denatured state, and it is what the principle should say
+a defect in *frequency is multiplicity*; it is the denatured state, and it is what the principle should say
 above the transition. The closure's own multiplicity is what changes it: a closure resolves a binary
 distinction and is worth exactly one bit, so it carries **multiplicity 2**, and a conformation with
 `c` contacts is realized `g(c)·2^c` ways at `T = 1`. Still an exact integer. Still a count of ways.
@@ -369,5 +369,5 @@ Stated first, per [`ScientificApproach.md`](ScientificApproach.md) R7:
 [`lean/QLF_Folding.lean`](lean/QLF_Folding.lean) · [`protein_census.py`](protein_census.py) ·
 [`Fredkin_QLF.md`](Fredkin_QLF.md) (the same plaquette, as a billiard ball) ·
 [`Evolution.md`](Evolution.md) (why a possible fold can stay unreached) ·
-[`Philosophy.md`](Philosophy.md) §3a (most ways first) ·
+[`Philosophy.md`](Philosophy.md) §3a (ZFA first, then every way) ·
 [`ScientificApproach.md`](ScientificApproach.md) (the labels used here).
