@@ -180,6 +180,11 @@ only. That is why §2 and §3 apply to it directly.
 
 ## 5. Summary for QLF
 
+0. **Order of principles (Jim, 2026-10-17): ZFA is first, most ways is second.** We assume ZFA and prove
+   the ways. Every exception above is decided by *which pattern closes first*: in §3.2–3.3 the winner is
+   the pattern whose completion comes earlier in the shared history, and in §3.1 the shallowest closure is
+   first because closing is irrevocable. Multiplicity is then a theorem about how often each closure
+   happens (the census), not the rule that orders them.
 1. "Most ways ⇒ first" is a theorem only for **independent** competitors (§2). For competitors sharing a
    history it fails, and overlap decides (§3.2–3.3).
 2. QLF's "reached first" selection rule does not need multiplicity. It rests on irrevocability

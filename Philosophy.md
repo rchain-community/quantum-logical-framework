@@ -101,13 +101,14 @@ Only ZFA-closed histories become events. All other histories remain pure possibi
 
 **The inversion of *ex falso*.** In the possibilist view everything is affirmed — every distinction, every history, is true *as a possibility* (the free monoid on the eight twists generates it all). What makes a piece of that space into an actual **event** is the introduction of **one negation** — a single `−`, a distinction that says *not this* — realized *only if it closes*: if it finds its affirmation and cancels to Zero Free Action (`+` against `−`, zero net handedness on every axis). This is the exact opposite of classical logic's fear. There, one false statement triggers *ex falso quodlibet* — unbounded explosion, "provable" severed from "true" (§1). Here the one false statement is the **selection act**, and it cannot explode because it must *close*: the negation is bounded, local, and cancelling (RCA₀, below the Busy Beaver floor), or it is annihilated by `full_zeno_prune` before it becomes an event. The `1 − I` in the closure generating function `G = 1/(1−I)` (§3a, `census_irreducible_resummation`) is that one subtraction, made once; a closure is a negation that met its affirmation and, in Hegel's triple sense, was *cancelled, preserved, and lifted* (§9) — and a contradiction (an unbalanced ledger) closes nothing, so it carries zero realized information (`QLF_ContradictionReceipt`, §9).
 
-## 3a. It happens every way; what happens in the most ways happens first
+## 3a. ZFA first, then every way
 
 Possibilism has an operational face, and it is the working method of this repository, not a decoration
 on it.
 
-> **Nothing happens one way. Everything happens every way that closes. What happens in the most ways
-> happens first — a closure's frequency IS its multiplicity, the census count of ways.**
+> **ZFA is first; most ways is second. We assume ZFA and prove the ways. What happens first is what
+> closes first. Among what closes, everything happens every way that closes, and a closure's frequency
+> IS its multiplicity, the census count of ways.**
 
 There is no single history threading the possibility space, no preferred route, no chosen path. Every
 ZFA-closing way is taken. What we call a rate, a frequency, an amplitude, a preference — each is a
@@ -115,12 +116,12 @@ ZFA-closing way is taken. What we call a rate, a frequency, an amplitude, a pref
 ways. This is the reading enforced in [`Spacetime_Constructor.md`](Spacetime_Constructor.md): the
 census multiplicity is the frequency, read out as space, time, and colour — never a cause.
 
-**Scope (2026-10-17, [`MostWays_First.md`](MostWays_First.md)).** "Frequency is multiplicity" holds
-whenever equally weighted ways are counted. "Most ways happens *first*" is a theorem only for competitors
-that share no history: then more ways at every horizon means at least as likely to come first. For
-competitors in one shared history it can fail. In fair coin flips HHH has more ways than TTHH at every
-length, yet TTHH appears first 7 times in 12, because overlap decides the race. The mode and the
-shallowest closure also differ (`depth_one_not_modal`).
+**Why priority is not multiplicity (2026-10-17, [`MostWays_First.md`](MostWays_First.md)).** Closure is
+irrevocable (`closedAtHorizon_mono`), so which closure comes first is fixed by the logical order of
+closing, before any count. Counting then tells how often each outcome happens. The two can disagree: in
+fair coin flips HHH has more ways than TTHH at every length, yet TTHH completes first 7 times in 12, and the
+shallowest closure is not the modal one (`depth_one_not_modal`). "Most ways ⇒ first" holds only for
+competitors that share no history.
 
 And the counterpart, which is a statement about **us**, not about the substrate: we cannot hope to
 discover every way. When we exhibit a construction, we have shown that it happens in *some* way. That

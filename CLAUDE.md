@@ -294,14 +294,17 @@ QLF is built on a **possibilist ontology**: all logically admissible histories e
 
 This is a **computable** form of modal realism (Lewis 1986) with a selection rule: where Lewis says all logically possible worlds are real, QLF says all computationally generable histories are real, and ZFA identifies the ones that persist. `full_zeno_prune` is the machine-verified implementation of this filter.
 
-### It happens every way; the most ways happen first (the working method — binding)
+### ZFA first, then every way (the working method — binding)
 
 Possibilism's operational face, and it governs **how problems are attacked**, not just how prose is
 written. See [`Philosophy.md`](Philosophy.md) §3a.
 
-> Nothing happens one way. Everything happens every way that closes. What happens in the most ways
-> happens first — **a closure's frequency IS its multiplicity**, the census count of ways. And we cannot
-> discover every way: exhibiting a construction shows it happens in **some** way, never the only way.
+> **ZFA is first; most ways is second.** We assume ZFA and prove the ways. What happens first is what
+> closes first: closure is irrevocable (`closedAtHorizon_mono`), so priority is a logical-order fact, not a
+> count. Among what closes, everything happens every way that closes, and **a closure's frequency IS its
+> multiplicity**, the census count of ways. Multiplicity does not decide priority: most ways ⇒ first is a
+> theorem only for competitors sharing no history ([`MostWays_First.md`](MostWays_First.md)). And we
+> cannot discover every way: exhibiting a construction shows it happens in **some** way, never the only way.
 
 Four rules that follow, to apply when choosing what to compute and what to claim:
 
@@ -311,9 +314,10 @@ Four rules that follow, to apply when choosing what to compute and what to claim
    is capacity-relative — what a horizon of capacity `R` receives, exactly the ways with
    `maxExcursion ≤ R` (`closedAtHorizon_iff_maxExcursion_le`). Both live in `data/census_inventory.json`.
    State which one a number is.
-3. **Report the mode, not the mean.** What happens first is the argmax of multiplicity. A mean over ways
-   is an average of things that all happen and need not be a way at all. Pick the statistic the
-   principle demands *before* measuring.
+3. **Report the mode, not the mean, for frequency; report the first closure for priority.** What happens
+   most often is the argmax of multiplicity; what happens first is the first closure, and the two differ
+   (`depth_one_not_modal`). A mean over ways is an average of things that all happen and need not be a way
+   at all. Pick the statistic the question demands *before* measuring.
 4. **A claim earns physical content only when it changes a count of ways.** The native falsifiability
    test: ask what distribution over ways the claim would be **false** for. "None" ⟹ it is bookkeeping,
    not evidence — however true. (Worked example: the horizon-congestion identity `Δ²C(R) = W_{R+1}` is
