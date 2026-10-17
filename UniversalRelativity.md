@@ -522,7 +522,13 @@ without end: the loop is an infinite descending causal chain (`time_loop_is_infi
 that every step raises excludes every such chain (`finite_depth_no_infinite_regress`), and its record
 fits in no finite event, since for any finite history some number of traversals is not a prefix of it
 (`loop_record_infinite`). A complete record of a time loop would be an infinite history, which is a
-non-terminating computation, the kind of thing ZFA prunes. The converse fails: the integers have an
+non-terminating computation, the kind of thing ZFA prunes. This is the continuum fallacy's
+realizability theorem in another guise: a closed timelike curve is a compact curve traversed without
+end, so it puts infinitely many distinct events in a bounded region, and a finite-information region
+holding them must erase one (`time_loop_forgets`, from `no_continuum_in_finite_region`;
+[`TheContinuum.md`](TheContinuum.md) §5). The continuum shows the same thing from its own side: where
+semiclassical physics tries to form a loop, the vacuum stress-energy diverges at the chronology horizon
+(Kim & Thorne 1991; Hawking 1992). The converse fails: the integers have an
 infinite past and no loop (`regress_without_loop`). Time loops are one kind of infinity, and finite
 construction excludes all of them. Equal and opposite action may repeat forever in space; it never
 closes a loop in time (`equal_and_opposite_forever`).

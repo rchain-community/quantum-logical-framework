@@ -1,5 +1,6 @@
 import QLF_Handedness
 import QLF_NoTimeLoops
+import QLF_Realizability
 
 set_option linter.unusedVariables false
 
@@ -36,6 +37,11 @@ Hermitian adjoint, which reverses the order and flips every handedness (`mirror`
 * **`loop_record_infinite`** — the record of a loop traversed again and again fits in no finite event:
   for every finite history `E`, some number of traversals is not a prefix of `E`. A time loop's complete
   record would be an infinite history, which is a non-terminating computation.
+* **`time_loop_forgets`** — the link to the continuum fallacy. The traversal records are infinitely
+  many distinct histories (`loopTrain_injective`), so by `no_continuum_in_finite_region` any finite
+  region holding them must identify two different traversals. A closed timelike curve is a compact
+  curve traversed without end: infinitely many distinct events in a bounded region, which is exactly
+  what realizability forbids. Holding a loop in a finite region means erasing a record.
 * **`equal_and_opposite_forever`** — the capstone. A history with its mirror, repeated without limit, is a
   closure at every stage, advances at every stage, and has a record no finite event holds. Equal and
   opposite action may repeat forever in space; it never closes a loop in time.
@@ -226,6 +232,30 @@ theorem loop_record_infinite {α : Type _} {w : List α} (hw : w ≠ []) (E : Li
   rw [loopTrain_length] at hle
   have hpos : 0 < w.length := List.length_pos_iff.mpr hw
   nlinarith
+
+/-- Distinct traversal counts give distinct records. -/
+theorem loopTrain_injective {α : Type _} {w : List α} (hw : w ≠ []) :
+    Function.Injective (loopTrain w) := by
+  intro j k h
+  have hl := congrArg List.length h
+  rw [loopTrain_length, loopTrain_length] at hl
+  exact Nat.eq_of_mul_eq_mul_right (List.length_pos_iff.mpr hw) hl
+
+/-- **A finite region that holds a time loop must forget.** The continuum fallacy's realizability
+    theorem (`no_continuum_in_finite_region`) applied to a loop: the records of its traversals are
+    infinitely many distinct histories, so any realization in a finite-information region identifies
+    two different traversals. A loop held in a bounded region is not a record; it is a record that
+    has been erased, which is where weakening fails (`loopWorld_has_time_loop`). -/
+theorem time_loop_forgets {α R : Type _} [Finite R] {w : List α} (hw : w ≠ [])
+    (realize : List α → R) :
+    ∃ j k, j ≠ k ∧ loopTrain w j ≠ loopTrain w k ∧
+      realize (loopTrain w j) = realize (loopTrain w k) := by
+  have h := QLF.Realizability.no_continuum_in_finite_region (S := ℕ)
+    (fun k => realize (loopTrain w k))
+  unfold Function.Injective at h
+  push_neg at h
+  obtain ⟨j, k, heq, hne⟩ := h
+  exact ⟨j, k, hne, fun h' => hne (loopTrain_injective hw h'), heq⟩
 
 /-- **Equal and opposite, forever.** A history with its mirror, repeated without limit, is a ZFA closure
     at every stage and strictly advances at every stage, and no finite event holds its whole record.
