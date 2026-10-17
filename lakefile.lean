@@ -260,5 +260,6 @@ lean_lib QLF where
     `QLF_TrustClosure,
     `QLF_DeterministicConsensus,
     `QLF_Discoveries2026,
-    `QLF_NoTimeLoops
+    `QLF_NoTimeLoops,
+    `QLF_ConstructionAdds
   ]

@@ -32,7 +32,8 @@ substrate statement that excludes it, and shows that the exclusion costs nothing
 ## Honest scope
 
 `no_time_loop_of_depth` is fully general and elementary; its force is in the hypothesis (construction
-strictly adds depth), which is QLF's postulate, not a derived fact. The continuum translation — "the
+strictly adds depth), proved for every QLF construction operator in
+[`QLF_ConstructionAdds`](QLF_ConstructionAdds.lean) (`generation_has_no_loops`, `no_unclosing`). The continuum translation — "the
 rendered metric is globally hyperbolic" — is **not** proved here: it rides on the existing order→metric
 bridge `order_metric_continuum_limit` (`QLF_OrderMetric`) plus the cited Bernal–Sánchez
 characterisation, and is stated in prose ([`UniversalRelativity.md`](../UniversalRelativity.md) §4b), not

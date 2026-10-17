@@ -459,8 +459,21 @@ completions in which the light cones tip far enough to close on themselves
 **Status.** Proved in Lean, no new axioms: the no-loop law, its QLF instance, the finite intervals and
 unbounded rotation. Cited: the Bernal–Sánchez characterisation of global hyperbolicity. Bridge: the step
 from the discrete order to the continuum metric is the existing `order_metric_continuum_limit`
-([`lean/QLF_OrderMetric.lean`](lean/QLF_OrderMetric.lean)). The proof's force sits in its hypothesis,
-that construction only adds, which is QLF's postulate. **What would falsify it:** any physical closed
+([`lean/QLF_OrderMetric.lean`](lean/QLF_OrderMetric.lean)).
+
+**Construction only adds — proved, not assumed.** The no-loop law needs each step to raise depth, and
+that is a theorem about every construction operator QLF defines
+([`lean/QLF_ConstructionAdds.lean`](lean/QLF_ConstructionAdds.lean)). The QuCalc branching step, the
+combinatoric expansion and the event-dynamics step each produce only strict extensions of their input
+(`branch_state_extends`, `expand_string_extends`, `generateNextEvents_extends`). Generation $n$ holds
+only histories of length $n$, each extending a history of generation $n-1$
+(`expand_generation_length`, `expand_generation_has_parent`). So the generation step has no loops with
+the hypothesis discharged (`generation_has_no_loops`). A subtracting step cannot be added either.
+Closure is many-to-one: $[+,-]$ and $[-,+]$ leave the same empty residue, so no function returns a
+closed event to the history it came from (`no_unclosing`). And widening an observer's horizon never
+revokes a closure (`closure_receipt_stable`). Pruning is not an exception, because it computes a
+history's residue to decide closure and removes nothing from the history itself. What remains a
+postulate is only that nature *is* this construction. **What would falsify it:** any physical closed
 causal curve. Unlike chronology protection, QLF forbids one even with exotic matter that violates the
 energy conditions, so a working time machine of any kind refutes it.
 
