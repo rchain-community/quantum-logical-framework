@@ -6,7 +6,7 @@ Project context for Claude Code sessions. Read this before making any changes.
 
 ## Project overview
 
-**Quantum Logical Framework (QLF)** is a formal proof system machine-verified in Lean 4 across **237 modules with zero `sorry` blocks**. It encodes quantum mechanics and spacetime dynamics using phase-string combinatorics (ZFA — Zero-phase Flux Algebra).
+**Quantum Logical Framework (QLF)** is a formal proof system machine-verified in Lean 4 across **240 modules with zero `sorry` blocks**. It encodes quantum mechanics and spacetime dynamics using phase-string combinatorics (ZFA — Zero-phase Flux Algebra).
 
 Core claim: *ZFA balance is the selection principle for physical reality.* Every terminating computation is a ZFA string; every ZFA string is symmetric (lies on the critical line). The Church-Turing universe filtered to ZFA-balanced strings is our physical universe.
 
@@ -28,9 +28,9 @@ setup notes are in the session memory (`local-lean-impractical`).
 
 ---
 
-## Modules — 237, machine-verified, zero `sorry`
+## Modules — 240, machine-verified, zero `sorry`
 
-Registered in `lakefile.lean` roots array (build order); sources in `lean/`. **The full per-module table — descriptions + key-theorem lists for all 237 — lives in [`lean/README.md`](lean/README.md); consult it when working on any specific module.** Thematic families and every individual result are also mapped in [`FlowChart.md`](FlowChart.md). The core anchors a session references most often:
+Registered in `lakefile.lean` roots array (build order); sources in `lean/`. **The full per-module table — descriptions + key-theorem lists for all 240 — lives in [`lean/README.md`](lean/README.md); consult it when working on any specific module.** Thematic families and every individual result are also mapped in [`FlowChart.md`](FlowChart.md). The core anchors a session references most often:
 
 | Module | What it proves |
 |---|---|
@@ -323,6 +323,18 @@ Four rules that follow, to apply when choosing what to compute and what to claim
    redundancy — that is what makes a result dominant (the 18 programs; the shared `H↔H†` Millennium
    involution).
 
+### Only logic is assumed (binding)
+
+Jim, 2026-10-17: *"we cannot assume nature is this construction, we can only assume nature is logical."*
+Never state that a result rests on the postulate that nature **is** QLF's construction. Derive from
+logical laws and treat the construction as **one model** of them. Worked case:
+[`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean) derives "construction only
+adds" from the law of weakening (`weakening_iff_persistence`) and no time loops from it
+(`no_time_loops_from_logic`), with QLF's histories as a model (`histories_are_a_model`). Possibilism
+admits **every** logic, including those without weakening, and those do loop (`loopWorld_has_time_loop`).
+So say *loops live in possibility; time is the record* — never "loops are impossible" without that
+scope. See [`Philosophy.md`](Philosophy.md) §3d and [`UniversalRelativity.md`](UniversalRelativity.md) §4b.
+
 ### ZFA is the only filter — not a restriction
 
 A critical framing point: **ZFA is not a restriction on what can be computed.** `qlf_universality` proves the ZFA filter is Church-Turing complete — every *terminating* computation IS a ZFA string. What is pruned is not computation; it is the physically unrealizable tail (non-terminating, Turing-undecidable, Busy Beaver-class computations). The ZFA filter selects physical reality from the full ruliadic computational universe without discarding any computable physics.
@@ -430,7 +442,7 @@ was where it slipped. Apply these to new work:
 | Path | Purpose |
 |---|---|
 | `lean/` | All Lean source files |
-| `lakefile.lean` | Build config; `roots` array lists all 237 modules |
+| `lakefile.lean` | Build config; `roots` array lists all 240 modules |
 | `lean/README.md` | Module table and proof chain documentation |
 | `README.md` | Project overview with citations and convergence themes |
 | `CLAUDE.md` | This file — project context for new Claude sessions |

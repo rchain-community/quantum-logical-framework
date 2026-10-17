@@ -174,7 +174,13 @@ kept distinct):
   while a single-valued (vector) object carries none — `spinor_double_valued_vector_blind`
   reproving the `2π` double cover from rotation matrices, `single_valued_zero_information` /
   `two_valued_one_bit` the quantitative dichotomy
-  ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean)).
+  ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean)). And the **global causal
+  condition**: from the law of weakening alone, facts persist, so no event lies in its own strict past
+  and every causal interval is finite — the discrete form of global hyperbolicity, which excludes
+  Gödel's closed timelike curves while leaving rotation unbounded (§4b;
+  [`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean),
+  [`lean/QLF_NoTimeLoops.lean`](lean/QLF_NoTimeLoops.lean),
+  [`lean/QLF_ConstructionAdds.lean`](lean/QLF_ConstructionAdds.lean)).
 - **Structural / SOC observables (derived structure; absolute value open).** The four forces as one
   perspective-dependent closure (§4a, [`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md)); dark
   matter as denser logic on the *same* Hubble horizon, `a₀ = cH₀/2π` (the `1/2π` prefactor confirmed by
@@ -411,6 +417,112 @@ See:
 - [`VacuumEnergy.md`](VacuumEnergy.md)
 - [`BLACK-HOLES.md`](BLACK-HOLES.md)
 - [`lean/SpacetimeDynamics.lean`](lean/SpacetimeDynamics.lean)
+
+### 4b. The global correction: no time loops, unrestricted rotation
+
+The equations above are **local**: they relate curvature to stress-energy at each point and say nothing
+about the global causal structure of a solution. Gödel (1949) exploited exactly this gap. His rotating
+dust universe with a cosmological constant solves the field equations exactly, yet a closed timelike
+curve passes through every event. Nothing in $G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4$
+forbids it, and the same is true of the van Stockum dust, the Tipler cylinder and wormhole time
+machines. In GR the absence of time loops is an extra assumption, or at best a semiclassical conjecture
+(Hawking's chronology protection, 1992).
+
+In a quantum logically constructed universe it is a theorem. Every step of construction adds a closure,
+so it raises a natural-number depth, and a relation that always raises such a depth has no cycle of any
+length (`no_time_loop_of_depth`, [`lean/QLF_NoTimeLoops.lean`](lean/QLF_NoTimeLoops.lean)). For QLF's
+causal order this gives **no event in its own strict past** (`no_time_loops`). The same construction
+makes every causal interval a finite set (`causalInterval_finite`). Acyclic order plus finite intervals is
+the discrete form of **global hyperbolicity**: in the continuum, a spacetime is globally hyperbolic
+exactly when it is causal and its causal diamonds are compact (Bernal & Sánchez 2007). So the corrected
+field equations are
+
+$$
+G_{\mu\nu}
+= \frac{8\pi G}{c^4}\left(T_{\mu\nu}^{(\mathrm{matter})} + T_{\mu\nu}^{(\mathrm{synth})}\right),
+\qquad (M, g)\ \text{globally hyperbolic.}
+$$
+
+The condition on the right is not added by hand. It is what a solution must satisfy to be the rendering
+of a QLF causal set, and it is the content the local equations were missing.
+
+**Rotation is not restricted.** In the possibilist ontology, rotation that can happen does happen. The
+substrate places no upper bound on circulation: a train of $k+1$ Borromean $x,y,z$ vortex cells carries
+$3k+1$ quanta (`circulation_vortexTrain`, `rotation_unbounded`), and the field equations admit arbitrary
+rotation too. The correction removes no rotating solution's local physics. It removes only global
+completions in which the light cones tip far enough to close on themselves
+(`rotation_without_time_loops`). Concretely:
+
+- **Gödel's universe** is excluded as a global solution, because it fails global hyperbolicity
+  everywhere. Its local rotation is admissible: inside Gödel's critical radius the light cones have not
+  tipped over, and that local physics is unchanged.
+- **Kerr** is admitted up to its inner (Cauchy) horizon. The extension beyond it, where closed timelike
+  curves appear near the ring singularity, is not a rendering.
+- **Globally hyperbolic rotating cosmologies** (e.g. rotating Bianchi models) are admitted with any
+  vorticity. Observation bounds cosmic vorticity at $\omega/H \lesssim 10^{-10}$ (Saadeh et al. 2016);
+  QLF predicts no value, so the bound is consistent with QLF but does not test it.
+
+**Status.** Proved in Lean, no new axioms: the no-loop law, its QLF instance, the finite intervals and
+unbounded rotation. Cited: the Bernal–Sánchez characterisation of global hyperbolicity. Bridge: the step
+from the discrete order to the continuum metric is the existing `order_metric_continuum_limit`
+([`lean/QLF_OrderMetric.lean`](lean/QLF_OrderMetric.lean)).
+
+**Construction only adds — proved, not assumed.** The no-loop law needs each step to raise depth, and
+that is a theorem about every construction operator QLF defines
+([`lean/QLF_ConstructionAdds.lean`](lean/QLF_ConstructionAdds.lean)). The QuCalc branching step, the
+combinatoric expansion and the event-dynamics step each produce only strict extensions of their input
+(`branch_state_extends`, `expand_string_extends`, `generateNextEvents_extends`). Generation $n$ holds
+only histories of length $n$, each extending a history of generation $n-1$
+(`expand_generation_length`, `expand_generation_has_parent`). So the generation step has no loops with
+the hypothesis discharged (`generation_has_no_loops`). A subtracting step cannot be added either.
+Closure is many-to-one: $[+,-]$ and $[-,+]$ leave the same empty residue, so no function returns a
+closed event to the history it came from (`no_unclosing`). And widening an observer's horizon never
+revokes a closure (`closure_receipt_stable`). Pruning is not an exception, because it computes a
+history's residue to decide closure and removes nothing from the history itself.
+
+**From "nature is logical" alone.** None of this needs the assumption that nature *is* QLF's
+construction. Assume only that nature is logical: the laws of logic hold at every state of the world,
+read in the semantics constructive logic already uses (states ordered by what can follow what,
+implication read across the future; Kripke 1965). Then the law of weakening, $p \to (\top \to p)$,
+valid in classical and constructive logic alike, holds at every state **if and only if** every
+established fact stays established at every later state (`weakening_iff_persistence`,
+[`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean)). "Construction only adds" is
+what that law means across time. It follows that a loop can only return to a state holding exactly the
+same facts (`loop_same_facts`), and that no chain of events, each a step at which some new fact holds,
+returns to its start (`no_time_loops_from_logic`). QLF's histories are one model of this
+(`histories_are_a_model`), not its premise. A loop on which nothing new becomes true is not excluded,
+because nothing happens on it: it is one state.
+
+**All logics, possibilistically.** QLF's possibilism admits every logical system, including those
+without weakening: linear and relevant logic, and the reversible closure algebra in which every
+operation can be undone. The result is sharp. In a world where facts can be used up, time loops do
+exist (`loopWorld_has_time_loop`), and weakening fails there (`weakening_fails_in_loopWorld`). So
+loops are possible exactly where nothing persists. A reversible cycle, such as a Fredkin gate applied
+twice or the involution $H \leftrightarrow H^{\dagger}$, returns to its start by consuming what it
+did, and it leaves no record. In QLF time is the record: a closure stays closed at every wider
+horizon (`closure_receipt_stable`), so the realized history is a world where weakening holds, and loops
+remain in the timeless algebra of possibility (`Reversibility.md` §5). The no-loop law is therefore a
+statement about records rather than about every logic. It is partly definitional, because a fact that
+can be un-made is not what QLF calls a record.
+
+**The field equations of a logical universe.** Add one more property that constructive logic carries,
+*finite construction*: every state has only finitely many states in its past, because every fact is
+established by a finite proof and nothing rests on a completed infinity. Then every causal interval is
+finite as well (`logical_world_globally_hyperbolic`), and QLF's histories again satisfy both properties
+(`histories_finite_pasts`). The corrected equations therefore need only these two logical premises:
+
+$$
+G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu},
+\qquad (M, g)\ \text{globally hyperbolic,}
+$$
+
+with global hyperbolicity following from *weakening* (no eventful loop) together with *finite
+construction* (compact causal diamonds). Logic fixes this global condition and nothing local. The
+values of $G$ and $\Lambda$, the matter content and the event-synthesis term $T^{(\mathrm{synth})}$
+above all come from QLF's construction, not from logic, and the step from the discrete order to the
+smooth metric remains the bridge `order_metric_continuum_limit`. **What would falsify it:** any physical closed
+causal curve. Unlike chronology protection, QLF forbids one even with exotic matter that violates the
+energy conditions, so a working time machine of any kind refutes it.
 
 ## 4a. The Grand Unification — the four forces as relative perspectives on one closure
 
@@ -678,6 +790,11 @@ in [`Experimental_Consistency.md`](Experimental_Consistency.md) §10):
 - **gravitational waves propagate at exactly `c`** (masslessness): a confirmed `v_GW ≠ c` refutes the
   synthesized-metric reading (consistent with GW170817, `|v_GW−c|/c < 10⁻¹⁵`);
 - **no light sterile (right-handed) neutrino as a weak doublet**, and **`θ̄ = 0` with no axion**.
+- **no closed causal curve, anywhere:** a confirmed time machine or closed timelike curve, whatever
+  matter or exotic energy supports it, refutes the global condition of §4b. Unlike the other kill
+  conditions this one rests on logic rather than on QLF's construction: it would mean physics fails the
+  law of weakening (`weakening_iff_persistence`, `no_time_loops_from_logic`). Rotation is not a test of
+  it: arbitrarily large rotation is allowed (`rotation_unbounded`).
 
 **Open absolute-scale residual (labeled — not a prediction).** The one genuinely open quantitative input
 is the absolute mass / electroweak scale `v = R_stable`, reduced structurally to the single SOC density

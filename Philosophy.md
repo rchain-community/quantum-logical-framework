@@ -325,6 +325,55 @@ experience are *what those structures are like from inside* is a **reading** —
 hard problem, which [`Consciousness.md`](Consciousness.md) §6–7 keeps deliberately separate.
 
 
+## 3d. Only logic is assumed — and time loops live in possibility
+
+QLF does not assume that nature *is* its construction. It assumes only that **nature is logical**:
+the laws of logic hold at every state of the world. The construction is then one model of that
+assumption, not its premise. The October 2026 work on Gödel's rotating universe (Gödel 1949), whose
+closed timelike curves pass through every event, made this stance precise. The full derivation is in
+[`UniversalRelativity.md`](UniversalRelativity.md) §4b.
+
+**What logic alone gives** ([`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean)).
+Read logic in the semantics constructive logic already uses (Kripke 1965): states ordered by what can
+follow what, with "if *p* then *q*" holding now when every later state with *p* has *q*.
+
+- **"Only adds" is a law of logic.** Weakening, $p \to (\top \to p)$, valid in classical and
+  constructive logic alike, holds at every state **iff** every established fact stays established
+  (`weakening_iff_persistence`). Construction adding and never subtracting is what that law means
+  across time.
+- **No time loops.** An *event* is a step at which some new fact holds. No chain of events returns to
+  its start (`no_time_loops_from_logic`). States that each follow the other hold exactly the same facts
+  (`loop_same_facts`): a "loop" on which nothing new becomes true is one state, not a journey.
+- **Finite intervals.** Add *finite construction* (every state has finitely many states in its past,
+  the "constructed in finite time" of §1) and every causal interval is finite
+  (`logical_world_globally_hyperbolic`). No loops plus finite intervals is the discrete form of
+  **global hyperbolicity**, the condition that excludes Gödel's universe from the field equations.
+
+**QLF's construction satisfies it, and so does every operator.** QLF's histories are a model of both
+laws (`histories_are_a_model`, `histories_finite_pasts`). Every construction operator the Lean defines
+only appends (`branch_state_extends`, `expand_string_extends`, `generateNextEvents_extends`,
+[`lean/QLF_ConstructionAdds.lean`](lean/QLF_ConstructionAdds.lean)). No function can un-close a closure,
+because closure is many-to-one (`no_unclosing`).
+
+**All logics, possibilistically — and the result is sharp.** §3's possibilism admits every logical
+system, including those without weakening: linear and relevant logic, and the reversible closure
+algebra. In such a logic time loops *do* exist (`loopWorld_has_time_loop`, `weakening_fails_in_loopWorld`).
+So loops are possible exactly where facts can be used up, which is where nothing persists as a record.
+This is the reversible-logic / irreversible-process split of [`Reversibility.md`](Reversibility.md)
+read once more:
+
+> **Loops live in possibility; time is the record.** The timeless algebra is reversible: a Fredkin gate
+> applied twice, or the involution `H ↔ H†`, returns to its start by consuming what it did. The realized
+> history is a world where weakening holds, because a closure, once closed, stays closed at every wider
+> horizon (`closure_receipt_stable`). Gödel's rotation is allowed, but his time loops are not.
+
+**What this does not claim.** That the realized layer obeys weakening is partly definitional: a fact
+that can be un-made is not what QLF calls a record. Logic fixes a *global* condition on the field
+equations and nothing local; $G$, $\Lambda$ and the matter content still come from the construction, and
+the step to the smooth metric is still the bridge `order_metric_continuum_limit`. The kill condition is
+any physical closed causal curve. QLF forbids one even with exotic matter, so a working time machine of
+any kind would refute it.
+
 ## 4. Zero Free Action as the Sole Fundamental Axiom
 
 We replace every traditional postulate with one imperative:

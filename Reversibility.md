@@ -109,7 +109,11 @@ the reversible-logic / irreversible-process split of §3 restates order-theoreti
 
 This is a *distinct* structural anchor from §4's non-injectivity: **non-injectivity (count)** says you
 cannot retrodict *which* history closed; **antisymmetry (order)** says you cannot un-reach the closures
-you have climbed through. Neither is a fine-tuned past condition — both are properties of the closure
+you have climbed through. The order-level anchor no longer depends on QLF's list model: from the law of
+weakening alone, established facts persist and no chain of fact-adding events can loop
+(`weakening_iff_persistence`, `no_time_loops_from_logic`, [`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean)),
+while a logic without weakening — the reversible tier 2 — does admit loops (`loopWorld_has_time_loop`).
+Neither is a fine-tuned past condition — both are properties of the closure
 walk itself. (The [`Evolution.md`](Evolution.md) §3 reading — a *possible* niche left unfilled because it
 is unreachable from where the actual history stands — is exactly this tier-2-vs-tier-3 gap in the
 biological register: the closure exists in symmetric tier-2 possibility, but the one-way tier-3 walk never
