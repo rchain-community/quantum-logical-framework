@@ -98,6 +98,17 @@ Every logical bit resolution must satisfy **ZFA = 0**.
 
 A history only persists if its net free action closes to zero. This makes all persistent events **deterministically closed**, even if the path to finding that closure is a search through possibilities.
 
+## 7a. No Time Loops
+
+Because time is synthesized by closures, and a closure once closed stays closed, there is no way back
+along it. A logical universe has no time loops: if facts persist (the law of weakening), no chain of
+events returns to its start, and two states that each follow the other are the same state
+(`no_time_loops_from_logic`, `loop_same_facts`, [`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean)).
+This excludes Gödel's rotating universe as a global solution of the field equations while leaving
+rotation unrestricted ([`UniversalRelativity.md`](UniversalRelativity.md) §4b). Loops remain possible in
+the reversible algebra of possibility, where nothing is recorded, and that is exactly why they are not
+time ([`Philosophy.md`](Philosophy.md) §3d).
+
 ## 8. Experimental Agreement
 
 * **Muon Lifetime**: High-velocity muons live longer because their internal logical clocks synthesize bits at a slower rate relative to the lab frame.

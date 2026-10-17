@@ -203,6 +203,15 @@ the replacement. None of this says `ℝ` is *false* (it is consistent); it says 
 > ZFC is flawed logic, suitable only where there are no exploding infinities. ZFA is
 > correct logic.
 
+**The same cure applied to time loops.** Gödel's 1949 solution of the field equations has a closed
+timelike curve through every event. It is consistent, and it is the continuum fallacy in its global
+form: a compact curve traversed without end asks for infinitely many distinct events in a bounded
+region. Discreteness and a computable selection exclude it. A finite depth rules out the infinite
+regress a loop requires (`finite_depth_no_infinite_regress`), and a finite-information region holding
+a loop must erase one traversal (`time_loop_forgets`, which is `no_continuum_in_finite_region` applied
+to the loop). See [`lean/QLF_HandedLoops.lean`](lean/QLF_HandedLoops.lean),
+[`TheContinuum.md`](TheContinuum.md) §5 and [`UniversalRelativity.md`](UniversalRelativity.md) §4b.
+
 ## 4. Why this is exactly where the Millennium problems are hard
 
 Every Millennium problem QLF attacks has a **discrete structural core** that QLF

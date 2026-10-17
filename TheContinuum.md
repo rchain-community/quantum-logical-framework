@@ -47,6 +47,7 @@ In every case below the continuum produces an answer that is **flatly wrong** �
 | **The QED Landau pole** | the coupling becomes **infinite at a finite energy** | located, then cut off by the closure floor ([`QLF_RunningCouplings`](lean/QLF_RunningCouplings.lean), §3.1) | Continuum QED is not even self-consistent at high energy |
 | **The perturbation series itself** (Dyson 1952) | **zero radius of convergence** — the series is asymptotic, and summing it fails | converges absolutely in the cylinder measure (`twist_kraft`, [`Perturbation_Theory_QLF.md`](Perturbation_Theory_QLF.md)) | Continuum expansion cannot be summed; the discrete one can |
 | **Fluid blow-up** (Navier–Stokes) | vorticity may diverge in finite time — open for a century | vorticity is quantized per cell and **capped** at the Planck scale (`planck_caps_vorticity`, [`Navier_Stokes_Geometry.md`](Navier_Stokes_Geometry.md)) | Discrete fluid cannot blow up |
+| **Closed timelike curves** (Gödel 1949) | an exact solution of the field equations with a **time loop through every event**; and where semiclassical physics tries to form a loop, the vacuum stress-energy **diverges** at the chronology horizon (Kim & Thorne 1991, Hawking 1992) | **no time loops**: an event on a loop has an infinite descending past, and its traversals are infinitely many distinct events in a bounded region, which no finite-information region can hold without erasing one (`time_loop_is_infinite_regress`, `time_loop_forgets`, [`QLF_HandedLoops`](lean/QLF_HandedLoops.lean); [`UniversalRelativity.md`](UniversalRelativity.md) §4b) | The continuum gives a wrong *world* again, and its own divergence marks the spot |
 | **Banach–Tarski** (1924) | one ball cut into finitely many pieces and reassembled into **two** of the same size | no free duplication: copying pays `ΔF = −log 2` per bit ([`QLF_NoFreeDuplication`](lean/QLF_NoFreeDuplication.lean), [`Banach_Tarski_QLF.md`](Banach_Tarski_QLF.md)) | The continuum (with Choice) creates matter from nothing |
 
 The pattern is exact, and it has held for a century and a quarter, from Rayleigh–Jeans (1900) to the cosmological constant: **integrate over a continuum and you get a divergence, an acausal runaway, or matter from nothing.** Quantize (discretize) and you get the finite measured value. Planck's 1900 fix was the first instance; the vacuum catastrophe is the same disease at cosmological scale; GR singularities are the same disease in geometry. The continuum is not occasionally wrong — it is *systematically* wrong wherever it is taken literally.
@@ -249,6 +250,18 @@ QLF dissolves both horns of the dilemma.
 
 **The positive statement:** Motion is the propagation of a phase-stable history string through the generated possibility tree. `full_zeno_prune` acts as the convergence guarantee: every candidate history either reaches ZFA closure (a physical event) or is pruned (no event). The Zeno infinite-step sequence corresponds to a history that never terminates — and the ZFA filter correctly classifies it: it does not achieve `full_zeno_prune s = []`. It is not physical.
 
+**Time loops are Zeno's paradox closed into a circle.** Achilles asks for infinitely many distinct
+steps inside a finite stretch of time. A closed timelike curve asks for infinitely many distinct
+traversals inside a compact curve: the event on it lies in its own past, and in the past of that,
+without end (`time_loop_is_infinite_regress`). The same two facts dispose of both. A depth that every
+step raises leaves no room for an infinite regress (`finite_depth_no_infinite_regress`), and a
+finite-information region cannot hold infinitely many distinct records, so a region that "contains" a
+loop must erase one traversal to make room for the next (`time_loop_forgets`, which is
+`no_continuum_in_finite_region` applied to the loop). Gödel's rotating universe is therefore a sixth
+face of the continuum fallacy beside the five strikes: a consistent solution of the field equations
+that no finite-information world can realize. Consistency was never the question here either
+([`lean/QLF_HandedLoops.lean`](lean/QLF_HandedLoops.lean), [`UniversalRelativity.md`](UniversalRelativity.md) §4b).
+
 The "smoothness" of continuous motion at macroscopic scales is the statistical consequence of the ZFA filter admitting only perfectly balanced, symmetric closures. Apparent continuity is the coarse-grained average of a dense but discrete sequence of ZFA events.
 
 ---
@@ -308,3 +321,6 @@ See also: [ReverseMathematics.md](ReverseMathematics.md) for the formal subsyste
 - S. Banach & A. Tarski, *Sur la décomposition des ensembles de points…*, Fund. Math. **6** (1924) 244–277 — the paradoxical decomposition (Choice's visible unsoundness).
 - L. Bombelli, J. Lee, D. Meyer & R. Sorkin, *Space-time as a causal set*, Phys. Rev. Lett. **59** (1987) 521 — Lorentz invariance from the statistics of a causal order.
 - H. Weyl, *Das Kontinuum* (1918); E. Bishop, *Foundations of Constructive Analysis* (1967) — the predicative / constructive tradition.
+- K. Gödel, *An Example of a New Type of Cosmological Solutions of Einstein's Field Equations of Gravitation*, Rev. Mod. Phys. **21** (1949) 447 — rotating dust with closed timelike curves through every event.
+- S.-W. Kim and K. S. Thorne, *Do vacuum fluctuations prevent the creation of closed timelike curves?*, Phys. Rev. D **43** (1991) 3929 — the renormalized stress-energy diverges at the chronology horizon (they argue a Planck-scale cutoff may tame it).
+- S. W. Hawking, *Chronology protection conjecture*, Phys. Rev. D **46** (1992) 603 — the divergence as evidence that physics prevents time machines.
