@@ -505,6 +505,28 @@ remain in the timeless algebra of possibility (`Reversibility.md` §5). The no-l
 statement about records rather than about every logic. It is partly definitional, because a fact that
 can be un-made is not what QLF calls a record.
 
+**Equal and opposite action loops in space, never in time.** ZFA balance does not exclude time loops
+on its own, and it could not: a balanced closure *is* a loop in action space, a walk on `ℤ⁴` that
+returns to the origin ([`Closure_Walk.md`](Closure_Walk.md)). With handedness taken into account, the
+opposite of a history is its mirror, the Hermitian adjoint, which reverses the order and flips every
+handedness. A history followed by its mirror always closes (`equal_and_opposite_balances`) and always
+strictly extends the history, doubling the record (`equal_and_opposite_advances`). The opposite is not
+an undo. It is made of new handed distinctions (`mirror_handed`, after `handedness_ne_zero`), and their
+handedness sums to zero. Going round a closed loop again stays a closure and is a new event every time
+(`loopTrain_balanced`, `loopTrain_advances`). So balance returns the action to zero, persistence moves
+the record forward, and the universe keeps closing without revisiting an event
+([`lean/QLF_HandedLoops.lean`](lean/QLF_HandedLoops.lean)).
+
+**A time loop is an infinity.** An event on a time loop lies in its own past, and in the past of that,
+without end: the loop is an infinite descending causal chain (`time_loop_is_infinite_regress`). A depth
+that every step raises excludes every such chain (`finite_depth_no_infinite_regress`), and its record
+fits in no finite event, since for any finite history some number of traversals is not a prefix of it
+(`loop_record_infinite`). A complete record of a time loop would be an infinite history, which is a
+non-terminating computation, the kind of thing ZFA prunes. The converse fails: the integers have an
+infinite past and no loop (`regress_without_loop`). Time loops are one kind of infinity, and finite
+construction excludes all of them. Equal and opposite action may repeat forever in space; it never
+closes a loop in time (`equal_and_opposite_forever`).
+
 **The field equations of a logical universe.** Add one more property that constructive logic carries,
 *finite construction*: every state has only finitely many states in its past, because every fact is
 established by a finite proof and nothing rests on a completed infinity. Then every causal interval is
