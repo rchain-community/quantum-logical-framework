@@ -262,5 +262,6 @@ lean_lib QLF where
     `QLF_Discoveries2026,
     `QLF_NoTimeLoops,
     `QLF_ConstructionAdds,
-    `QLF_LogicalPersistence
+    `QLF_LogicalPersistence,
+    `QLF_HandedLoops
   ]
