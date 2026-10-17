@@ -354,6 +354,18 @@ toolbox. What is established: the **identification** (Jacobson's local horizon =
 QLF's Markov-blanket / Kitada local clock = a node of the causal set), so the Einstein equations sit on
 two meeting substrate legs — the equation of state (coefficient) and the causal order (curvature).
 
+**The global condition is derived, not open.** Local field equations say nothing about global causal
+structure, which is why Gödel (1949) could solve them with closed timelike curves through every event.
+The condition that excludes this is now proved from logic alone: the law of weakening is equivalent to
+facts persisting (`weakening_iff_persistence`), persisting facts admit no time loop
+(`no_time_loops_from_logic`), and finite construction makes every causal interval finite
+(`logical_world_globally_hyperbolic`). That is the discrete form of global hyperbolicity, so the
+equations of a logical universe are `G_μν + Λ g_μν = 8πG T_μν` *on a globally hyperbolic `(M,g)`*
+([`UniversalRelativity.md`](UniversalRelativity.md) §4b). The continuum reading rides on the same
+`order_metric_continuum_limit` bridge as everything above, plus the cited Bernal–Sánchez (2007)
+characterisation. Logic fixes no local term: `G`, `Λ` and `T` still come from the substrate results in
+§§1–6.
+
 ---
 
 ## §8 Lean anchors
@@ -373,6 +385,9 @@ two meeting substrate legs — the equation of state (coefficient) and the causa
 | `scalar_multiple_is_curvature` | contracted Bianchi + conservation ⟹ `f = R/2 − Λ` with `Λ` **constant** (the integration step) |
 | `einstein_field_equations` | `G_ab + Λ g_ab = κ T_ab` — the field equations over the interface (§6c) |
 | `metric_form_from_null_probes` | chains §6b into §6c: nine integer null probes deliver the metric form `einstein_field_equations` needs |
+| `no_time_loops_from_logic` | ([`QLF_LogicalPersistence`](lean/QLF_LogicalPersistence.lean)) from the law of weakening alone, no event lies in its own strict past; `loopWorld_has_time_loop` shows the law is needed |
+| `logical_world_globally_hyperbolic` | no time loops + finite causal intervals: the discrete global hyperbolicity the field equations need as a global condition (§7) |
+| `rotation_without_time_loops` | ([`QLF_NoTimeLoops`](lean/QLF_NoTimeLoops.lean)) unbounded circulation coexists with no time loops: Gödel's rotation allowed, his closed timelike curves excluded |
 
 ---
 

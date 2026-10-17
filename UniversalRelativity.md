@@ -174,7 +174,13 @@ kept distinct):
   while a single-valued (vector) object carries none — `spinor_double_valued_vector_blind`
   reproving the `2π` double cover from rotation matrices, `single_valued_zero_information` /
   `two_valued_one_bit` the quantitative dichotomy
-  ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean)).
+  ([`lean/QLF_SpinorInformation.lean`](lean/QLF_SpinorInformation.lean)). And the **global causal
+  condition**: from the law of weakening alone, facts persist, so no event lies in its own strict past
+  and every causal interval is finite — the discrete form of global hyperbolicity, which excludes
+  Gödel's closed timelike curves while leaving rotation unbounded (§4b;
+  [`lean/QLF_LogicalPersistence.lean`](lean/QLF_LogicalPersistence.lean),
+  [`lean/QLF_NoTimeLoops.lean`](lean/QLF_NoTimeLoops.lean),
+  [`lean/QLF_ConstructionAdds.lean`](lean/QLF_ConstructionAdds.lean)).
 - **Structural / SOC observables (derived structure; absolute value open).** The four forces as one
   perspective-dependent closure (§4a, [`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md)); dark
   matter as denser logic on the *same* Hubble horizon, `a₀ = cH₀/2π` (the `1/2π` prefactor confirmed by
@@ -784,6 +790,11 @@ in [`Experimental_Consistency.md`](Experimental_Consistency.md) §10):
 - **gravitational waves propagate at exactly `c`** (masslessness): a confirmed `v_GW ≠ c` refutes the
   synthesized-metric reading (consistent with GW170817, `|v_GW−c|/c < 10⁻¹⁵`);
 - **no light sterile (right-handed) neutrino as a weak doublet**, and **`θ̄ = 0` with no axion**.
+- **no closed causal curve, anywhere:** a confirmed time machine or closed timelike curve, whatever
+  matter or exotic energy supports it, refutes the global condition of §4b. Unlike the other kill
+  conditions this one rests on logic rather than on QLF's construction: it would mean physics fails the
+  law of weakening (`weakening_iff_persistence`, `no_time_loops_from_logic`). Rotation is not a test of
+  it: arbitrarily large rotation is allowed (`rotation_unbounded`).
 
 **Open absolute-scale residual (labeled — not a prediction).** The one genuinely open quantitative input
 is the absolute mass / electroweak scale `v = R_stable`, reduced structurally to the single SOC density
