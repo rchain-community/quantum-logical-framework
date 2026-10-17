@@ -1,7 +1,7 @@
 # Lean 4 Formalization — Quantum Logical Framework
 
 **Build:** `lake build` on Lean 4.30.0-rc2 + Mathlib  
-**Status:** CI passing, zero `sorry` blocks across all 237 active modules (registered in [`../lakefile.lean`](../lakefile.lean) roots). This table is the **canonical full per-module index** — [`../CLAUDE.md`](../CLAUDE.md) keeps only a short core-anchor list and points here. The table may trail the roots by a few of the most recent modules.
+**Status:** CI passing, zero `sorry` blocks across all 240 active modules (registered in [`../lakefile.lean`](../lakefile.lean) roots). This table is the **canonical full per-module index** — [`../CLAUDE.md`](../CLAUDE.md) keeps only a short core-anchor list and points here. The table may trail the roots by a few of the most recent modules.
 
 ## What This Formalization Proves
 
