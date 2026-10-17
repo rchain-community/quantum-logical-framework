@@ -115,6 +115,13 @@ ZFA-closing way is taken. What we call a rate, a frequency, an amplitude, a pref
 ways. This is the reading enforced in [`Spacetime_Constructor.md`](Spacetime_Constructor.md): the
 census multiplicity is the frequency, read out as space, time, and colour — never a cause.
 
+**Scope (2026-10-17, [`MostWays_First.md`](MostWays_First.md)).** "Frequency is multiplicity" holds
+whenever equally weighted ways are counted. "Most ways happens *first*" is a theorem only for competitors
+that share no history: then more ways at every horizon means at least as likely to come first. For
+competitors in one shared history it can fail. In fair coin flips HHH has more ways than TTHH at every
+length, yet TTHH appears first 7 times in 12, because overlap decides the race. The mode and the
+shallowest closure also differ (`depth_one_not_modal`).
+
 And the counterpart, which is a statement about **us**, not about the substrate: we cannot hope to
 discover every way. When we exhibit a construction, we have shown that it happens in *some* way. That
 is a real result and worth stating plainly — but it is never the only way, and it must not be dressed
