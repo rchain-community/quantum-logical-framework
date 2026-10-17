@@ -412,6 +412,58 @@ See:
 - [`BLACK-HOLES.md`](BLACK-HOLES.md)
 - [`lean/SpacetimeDynamics.lean`](lean/SpacetimeDynamics.lean)
 
+### 4b. The global correction: no time loops, unrestricted rotation
+
+The equations above are **local**: they relate curvature to stress-energy at each point and say nothing
+about the global causal structure of a solution. Gödel (1949) exploited exactly this gap. His rotating
+dust universe with a cosmological constant solves the field equations exactly, yet a closed timelike
+curve passes through every event. Nothing in $G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4$
+forbids it, and the same is true of the van Stockum dust, the Tipler cylinder and wormhole time
+machines. In GR the absence of time loops is an extra assumption, or at best a semiclassical conjecture
+(Hawking's chronology protection, 1992).
+
+In a quantum logically constructed universe it is a theorem. Every step of construction adds a closure,
+so it raises a natural-number depth, and a relation that always raises such a depth has no cycle of any
+length (`no_time_loop_of_depth`, [`lean/QLF_NoTimeLoops.lean`](lean/QLF_NoTimeLoops.lean)). For QLF's
+causal order this gives **no event in its own strict past** (`no_time_loops`). The same construction
+makes every causal interval a finite set (`causalInterval_finite`). Acyclic order plus finite intervals is
+the discrete form of **global hyperbolicity**: in the continuum, a spacetime is globally hyperbolic
+exactly when it is causal and its causal diamonds are compact (Bernal & Sánchez 2007). So the corrected
+field equations are
+
+$$
+G_{\mu\nu}
+= \frac{8\pi G}{c^4}\left(T_{\mu\nu}^{(\mathrm{matter})} + T_{\mu\nu}^{(\mathrm{synth})}\right),
+\qquad (M, g)\ \text{globally hyperbolic.}
+$$
+
+The condition on the right is not added by hand. It is what a solution must satisfy to be the rendering
+of a QLF causal set, and it is the content the local equations were missing.
+
+**Rotation is not restricted.** In the possibilist ontology, rotation that can happen does happen. The
+substrate places no upper bound on circulation: a train of $k+1$ Borromean $x,y,z$ vortex cells carries
+$3k+1$ quanta (`circulation_vortexTrain`, `rotation_unbounded`), and the field equations admit arbitrary
+rotation too. The correction removes no rotating solution's local physics. It removes only global
+completions in which the light cones tip far enough to close on themselves
+(`rotation_without_time_loops`). Concretely:
+
+- **Gödel's universe** is excluded as a global solution, because it fails global hyperbolicity
+  everywhere. Its local rotation is admissible: inside Gödel's critical radius the light cones have not
+  tipped over, and that local physics is unchanged.
+- **Kerr** is admitted up to its inner (Cauchy) horizon. The extension beyond it, where closed timelike
+  curves appear near the ring singularity, is not a rendering.
+- **Globally hyperbolic rotating cosmologies** (e.g. rotating Bianchi models) are admitted with any
+  vorticity. Observation bounds cosmic vorticity at $\omega/H \lesssim 10^{-10}$ (Saadeh et al. 2016);
+  QLF predicts no value, so the bound is consistent with QLF but does not test it.
+
+**Status.** Proved in Lean, no new axioms: the no-loop law, its QLF instance, the finite intervals and
+unbounded rotation. Cited: the Bernal–Sánchez characterisation of global hyperbolicity. Bridge: the step
+from the discrete order to the continuum metric is the existing `order_metric_continuum_limit`
+([`lean/QLF_OrderMetric.lean`](lean/QLF_OrderMetric.lean)). The proof's force sits in its hypothesis,
+that construction only adds, which is QLF's postulate. **What would falsify it:** any physical closed
+causal curve. Unlike chronology protection, QLF forbids one even with exotic matter that violates the
+energy conditions, so a working time machine of any kind refutes it.
+
 ## 4a. The Grand Unification — the four forces as relative perspectives on one closure
 
 Einstein's relativity made *spacetime* relative — no absolute frame, no absolute simultaneity. Universal
