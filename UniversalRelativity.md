@@ -485,7 +485,24 @@ what that law means across time. It follows that a loop can only return to a sta
 same facts (`loop_same_facts`), and that no chain of events, each a step at which some new fact holds,
 returns to its start (`no_time_loops_from_logic`). QLF's histories are one model of this
 (`histories_are_a_model`), not its premise. A loop on which nothing new becomes true is not excluded,
-because nothing happens on it: it is one state. **What would falsify it:** any physical closed
+because nothing happens on it: it is one state.
+
+**The field equations of a logical universe.** Add one more property that constructive logic carries,
+*finite construction*: every state has only finitely many states in its past, because every fact is
+established by a finite proof and nothing rests on a completed infinity. Then every causal interval is
+finite as well (`logical_world_globally_hyperbolic`), and QLF's histories again satisfy both properties
+(`histories_finite_pasts`). The corrected equations therefore need only these two logical premises:
+
+$$
+G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu},
+\qquad (M, g)\ \text{globally hyperbolic,}
+$$
+
+with global hyperbolicity following from *weakening* (no eventful loop) together with *finite
+construction* (compact causal diamonds). Logic fixes this global condition and nothing local. The
+values of $G$ and $\Lambda$, the matter content and the event-synthesis term $T^{(\mathrm{synth})}$
+above all come from QLF's construction, not from logic, and the step from the discrete order to the
+smooth metric remains the bridge `order_metric_continuum_limit`. **What would falsify it:** any physical closed
 causal curve. Unlike chronology protection, QLF forbids one even with exotic matter that violates the
 energy conditions, so a working time machine of any kind refutes it.
 

@@ -1,5 +1,5 @@
 import QLF_ReachableEvent
-import Mathlib.Data.Set.Basic
+import Mathlib
 
 set_option linter.unusedVariables false
 
@@ -26,8 +26,12 @@ implication is read across the future: `φ → ψ` holds at `w` when every later
   can only return to a state indistinguishable from where it began.
 * **`no_time_loops_from_logic`** — an *event* is a step to a later state where some new fact holds; no
   chain of events of any length returns to its start. The proof needs only weakening.
+* **`logical_world_globally_hyperbolic`** — add *finite construction* (every state has finitely many
+  states in its past, `FinitePasts`) and every causal interval is finite too (`interval_finite`): no
+  eventful loops plus finite intervals, the discrete form of global hyperbolicity.
 * **`histories_are_a_model`** — QLF's histories, ordered by `reachable` with "`A` lies in my past" as
-  the facts, satisfy persistence: the construction is one model of the law, not the assumption.
+  the facts, satisfy persistence and finite construction (`histories_finite_pasts`): the construction is
+  one model of the law, not the assumption.
 
 ## Honest scope
 
@@ -133,5 +137,29 @@ def historyWorld (α : Type _) : World (ReachableEvent.Event α) (ReachableEvent
 
 theorem histories_are_a_model (α : Type _) : Persistent (historyWorld α) :=
   fun _ _ _ hwv ha => ReachableEvent.reachable_trans ha hwv
+
+/-- The **causal interval** between two states: everything that can follow `w` and precede `v`. -/
+def interval (M : World W A) (w v : W) : Set W := {u | M.le w u ∧ M.le u v}
+
+/-- **Finite construction**: every state has only finitely many states in its past — each state is
+    reached by finitely many logical steps, with no completed infinity behind it. -/
+def FinitePasts (M : World W A) : Prop := ∀ v, {u | M.le u v}.Finite
+
+/-- Finite pasts make every causal interval finite. -/
+theorem interval_finite (M : World W A) (hF : FinitePasts M) (w v : W) : (interval M w v).Finite :=
+  (hF v).subset (fun _ hu => hu.2)
+
+/-- **The logical universe is discretely globally hyperbolic.** If weakening holds at every state and
+    every state is finitely constructed, then no chain of events loops and every causal interval is
+    finite — the discrete form of "causal with compact causal diamonds", which in the continuum is
+    exactly global hyperbolicity (Bernal–Sánchez 2007). -/
+theorem logical_world_globally_hyperbolic (M : World W A) (hK : ∀ w a, forces M w (weakening a))
+    (hF : FinitePasts M) :
+    (∀ w, ¬ Relation.TransGen (Event M) w w) ∧ (∀ w v, (interval M w v).Finite) :=
+  ⟨no_time_loops_from_logic M hK, interval_finite M hF⟩
+
+/-- QLF's histories are finitely constructed: the past of a history is among its prefixes. -/
+theorem histories_finite_pasts (α : Type _) : FinitePasts (historyWorld α) := fun v =>
+  (List.finite_toSet v.inits).subset (fun u hu => (List.mem_inits u v).mpr hu)
 
 end QLF.LogicalPersistence
