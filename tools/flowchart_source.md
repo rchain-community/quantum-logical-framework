@@ -45,7 +45,7 @@ precisely because nothing in it is a new law. Chemistry, polymers and folding al
 
 Root reading: **everything derives from the 8-twist substrate under Zero Free Action** —
 [`Philosophy.md`](Philosophy.md) (possibilist ontology, and §3a the *working method*: things happen every
-way that closes, and what happens in the most ways happens first), [`WHITE_PAPER.md`](WHITE_PAPER.md).
+way that closes; ZFA decides what closes first, and what happens in the most ways happens most often), [`WHITE_PAPER.md`](WHITE_PAPER.md).
 
 **The method's limit, proven:** [`Law_Of_Exceptions.md`](Law_Of_Exceptions.md) — *a system with more
 states can always break a finite closure*, so every restrictive law has a real, constructed exception and

@@ -294,7 +294,7 @@ action** is its total regret — and three things are theorems:
   = the conjugate, `u = 1`), Fisher's `1 : 1` as an ESS (`fisher_half_ess`), and a collective **basis
   choice** with an exact threshold (`pair_uninvadable_iff`: the population must pick an axis iff
   `1 + a > 2b`) — the `SEX.md` pairing and the `QLF_BasisIndependence` slogan, from the census alone.
-- **What "most ways happens first" selects.** The ways to a closure are its basin
+- **What "most ways happens most often" selects.** The ways to a closure are its basin
   (`basins_partition`, `sum_frequency`: closure frequency is multiplicity — the finite form of
   Kandori–Mailath–Rob / Young's stochastic stability, measured to two decimals), and every potential of a
   symmetric 2×2 game orders its equilibria by **risk dominance** (`risk_dominance_is_potential_order`).

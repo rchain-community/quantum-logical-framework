@@ -104,8 +104,11 @@ an exception.
 Because **exceptions are the least-multiplicity histories.** The census strata are counted in
 [`QLF_ClosureDepth`](lean/QLF_ClosureDepth.lean): the depth-1 stratum holds `2ⁿ` ways
 ([`onePass_ways_iff`](lean/QLF_ClosureDepth.lean)) while the maximal depth holds only the nested singlet
-and its mirror — two. By the most-ways principle, **what happens in the most ways happens first**, so the
-shallow closures dominate overwhelmingly and the deep exception happens *last*.
+and its mirror — two. So the deep exception is both the **rarest** (frequency is multiplicity, and it has
+the fewest ways) and the **last** (it closes only at the widest horizon, `closedAtHorizon_mono`). These are
+two separate facts: rarity is a count, and lateness is the order of closing. The shallowest closure is
+first but is not the most frequent; the mode sits deeper (`depth_one_not_modal`,
+[`MostWays_First.md`](MostWays_First.md)).
 
 Quantitatively, the fraction of the census a capacity-1 law admits vanishes as histories lengthen
 (exact enumeration, [`census_congestion_freezeout.py`](census_congestion_freezeout.py) part E):
@@ -168,7 +171,7 @@ budget — `R ~ Poisson(λ(T))`, more heat meaning more passes the local causal 
 ([`census_congestion_freezeout.py`](census_congestion_freezeout.py)). So "hotter" and "larger capacity"
 are the same variable, and §4's multiplicity reading applies directly: at everyday temperature the
 overwhelming majority of ways that close keep the proton bound, so it looks exceptionless; raise `T` and
-the deconfined ways come to dominate. What happens in the most ways happens first — and *which* ways are
+the deconfined ways come to dominate. What happens in the most ways happens most often — and *which* ways are
 most is temperature-dependent.
 
 ---
@@ -291,7 +294,7 @@ would break it too.
 **The suppression factor is literally a ratio of ways.** This makes the sphaleron a *better* illustration
 of §4 than deconfinement. Below `T_EW` the rate goes as `exp(−E_sph/T)` — the exception's multiplicity,
 relative to the closure-preserving ways, is exponentially small but **nonzero**. "Rare and certain" is not
-a slogan here; it is the Boltzmann factor. What happens in the most ways happens first, so the sphaleron
+a slogan here; it is the Boltzmann factor. What happens in the most ways happens most often, so the sphaleron
 happens exponentially rarely — and it *does* happen: that is baryogenesis
 ([`Conservation.md`](Conservation.md) §7).
 

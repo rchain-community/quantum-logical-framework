@@ -28,7 +28,7 @@ bookkeeping (Philosophy.md §3a rule 4).  Verified numerically below, then set a
 P_own is not symmetric — b may close many of a's ways while a closes few of b's — so it can
 produce coordination games in which risk dominance and payoff dominance DISAGREE: the Stag Hunt
 proper.  That is where the population dynamics (steps 4–6) have content, and where the two
-readings of "most ways happens first" part company:
+readings of "most ways happens most often" part company:
 
   H_naive  the state with the larger diagonal multiplicity (payoff-dominant) is selected;
   H_KMR    the risk-dominant state is selected (Kandori–Mailath–Rob 1993, Young 1993 — the
@@ -53,7 +53,7 @@ RESULT (recorded, not tuned around — ScientificApproach.md R2a).  At horizons 
 
 Consequence.  With fitness = closure multiplicity the evolutionary game is a potential game, and
 for potential games the stochastically stable state IS the potential maximiser by theorem
-(Blume 1993; Young 1993) — "most ways happens first" holds exactly, but as bookkeeping: no
+(Blume 1993; Young 1993) — "most ways happens most often" holds exactly, but as bookkeeping: no
 distribution over ways could make it false, so steps 4–6 (Moran + mutation) would have no
 content.  A discriminating test needs a payoff that breaks the potential structure — a cost of
 holding a deep strand open (the free-action ledger, QLF_FreeEnergy) or an order-/capacity-

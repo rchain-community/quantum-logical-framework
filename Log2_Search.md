@@ -459,7 +459,7 @@ clock's mean rate relative to the substrate clock is `E[1/K] = Σ_{k≥1} 2⁻�
 as a closure *rate*. As a per-event statistic it holds at every epoch, which the early-universe data
 exclude (§5.7). So S1 can explain `log 2` only as the value at a *selected* epoch.
 
-**Selecting the epoch by the most ways (S2).** QLF's rule is "what happens in the most ways happens first;
+**Selecting the epoch by the most ways (S2).** QLF's rule for frequency is "what happens in the most ways happens most often;
 report the mode". QLF counts closures on horizons (the holographic count, `S ∝ A`). So the observed epoch
 would be where the horizon's count of new closures peaks. Two versions, fixed here before computing, in
 flat matter + constant `Λ` (`Ω_Λ = tanh²x`, `H = H∞ coth x`, `x = (3/2)H∞ t`), with Hubble-horizon

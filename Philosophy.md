@@ -101,19 +101,27 @@ Only ZFA-closed histories become events. All other histories remain pure possibi
 
 **The inversion of *ex falso*.** In the possibilist view everything is affirmed — every distinction, every history, is true *as a possibility* (the free monoid on the eight twists generates it all). What makes a piece of that space into an actual **event** is the introduction of **one negation** — a single `−`, a distinction that says *not this* — realized *only if it closes*: if it finds its affirmation and cancels to Zero Free Action (`+` against `−`, zero net handedness on every axis). This is the exact opposite of classical logic's fear. There, one false statement triggers *ex falso quodlibet* — unbounded explosion, "provable" severed from "true" (§1). Here the one false statement is the **selection act**, and it cannot explode because it must *close*: the negation is bounded, local, and cancelling (RCA₀, below the Busy Beaver floor), or it is annihilated by `full_zeno_prune` before it becomes an event. The `1 − I` in the closure generating function `G = 1/(1−I)` (§3a, `census_irreducible_resummation`) is that one subtraction, made once; a closure is a negation that met its affirmation and, in Hegel's triple sense, was *cancelled, preserved, and lifted* (§9) — and a contradiction (an unbalanced ledger) closes nothing, so it carries zero realized information (`QLF_ContradictionReceipt`, §9).
 
-## 3a. It happens every way; what happens in the most ways happens first
+## 3a. ZFA first, then every way
 
 Possibilism has an operational face, and it is the working method of this repository, not a decoration
 on it.
 
-> **Nothing happens one way. Everything happens every way that closes. What happens in the most ways
-> happens first — a closure's frequency IS its multiplicity, the census count of ways.**
+> **ZFA is first; most ways is second. We assume ZFA and prove the ways. What happens first is what
+> closes first. Among what closes, everything happens every way that closes, and a closure's frequency
+> IS its multiplicity, the census count of ways.**
 
 There is no single history threading the possibility space, no preferred route, no chosen path. Every
 ZFA-closing way is taken. What we call a rate, a frequency, an amplitude, a preference — each is a
 *count of ways*, and the outcome we observe first and most is simply the one realized in the most
 ways. This is the reading enforced in [`Spacetime_Constructor.md`](Spacetime_Constructor.md): the
 census multiplicity is the frequency, read out as space, time, and colour — never a cause.
+
+**Why priority is not multiplicity (2026-10-17, [`MostWays_First.md`](MostWays_First.md)).** Closure is
+irrevocable (`closedAtHorizon_mono`), so which closure comes first is fixed by the logical order of
+closing, before any count. Counting then tells how often each outcome happens. The two can disagree: in
+fair coin flips HHH has more ways than TTHH at every length, yet TTHH completes first 7 times in 12, and the
+shallowest closure is not the modal one (`depth_one_not_modal`). "Most ways ⇒ first" holds only for
+competitors that share no history.
 
 And the counterpart, which is a statement about **us**, not about the substrate: we cannot hope to
 discover every way. When we exhibit a construction, we have shown that it happens in *some* way. That
@@ -161,7 +169,7 @@ multiplicity:** a closure you can assemble by concatenating primes in any order 
 multiplicity; a hypothetical rigid, non-composable structure would carry one. And closure factorization
 is **unique** (every ZFA closure is one ordered sequence of irreducible closures — the free monoid,
 `census_irreducible_resummation`, `G = 1/(1−I)`), so *every* closure is compositionally organized and the
-self-similar organization has multiplicity equal to the entire census. By "the most ways happen first,"
+self-similar organization has multiplicity equal to the entire census. Since frequency is multiplicity,
 it therefore dominates what happens. This is why the recurrences across the repo — the `2π` loop phase,
 the `log 2` quantum, the `H↔H†` Millennium involution, the icosa-blanket at every scale, closures within
 closures — are the *expected* output rather than coincidences: scale-invariant multiplicity is what
@@ -311,7 +319,7 @@ keep that from becoming teleology, and both are theorems rather than modesty:
 
 * **It is the rarest stratum, not the likeliest.** Deeply bound closures are the **least-multiplicity**
   histories — two ways at maximal depth, against a census whose mode sits near depth `√n`
-  ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`; §3b). By §3a the most ways happen first, so
+  ([`QLF_ClosureMultiplicity`](lean/QLF_ClosureMultiplicity.lean), `W_self`; §3b). By §3a frequency is multiplicity, and deep closures close only at the widest horizons, so
   intelligence happens **last, not most**. Nothing aims at it; the census reaches it when capacity
   permits.
 * **No summit is final.** [`no_final_closure`](lean/QLF_LawOfExceptions.lean) forbids reading "pinnacle"

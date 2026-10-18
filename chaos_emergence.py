@@ -158,7 +158,7 @@ def spectrum() -> None:
 
   So chaos does not need a dial, a noise source or a metric -- only free order where the
   closures are. The free bit is the whole of it (Philosophy.md sec 3a: "what happens in the
-  most ways happens first" -- here the most-ways history is the one whose ORDER ZFA leaves
+  most ways happens most often" -- here the most-ways history is the one whose ORDER ZFA leaves
   open, at density 1/3).""")
     # the numbers, restated
     assert h_bits(0.0, 2 ** 33 - 1) == 0.0

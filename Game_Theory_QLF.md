@@ -18,7 +18,8 @@ Origin: quantum-os [#209](https://github.com/rchain-community/quantum-os/issues/
 
 ## 1. The method, and the three no-gos it produced first
 
-The pilot asked whether "what happens in the most ways happens first"
+The pilot asked whether "what happens in the most ways happens first" (now read as "most often":
+[`MostWays_First.md`](MostWays_First.md))
 ([`Philosophy.md`](Philosophy.md) §3a) predicts equilibrium selection the way evolutionary game
 theory does — Kandori–Mailath–Rob (1993) / Young (1993): with vanishing mutation, the selected
 equilibrium is the one reached by the most mutation paths. The test case was the Stag Hunt, where

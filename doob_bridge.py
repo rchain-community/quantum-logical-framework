@@ -9,8 +9,8 @@ with `t` steps left, take twist `e` with probability
     P(e | x, t) = h(x + e, t − 1) / h(x, t),     h(x, t) = #walks of length t from x to 0,
 
 and the result is exactly uniform over the `W_L` closures — the step probabilities telescope
-to `h(0,0)/h(0,L) = 1/W_L`. `qucalc_search.solve` is the argmax of the same `h` (the mode,
-"what happens in the most ways happens first"); this is the sampler. It samples the
+to `h(0,0)/h(0,L) = 1/W_L`. `qucalc_search.solve` picks the first-reached closure (least peak
+excursion), which is not the argmax of `h` (`depth_one_not_modal`); this is the sampler. It samples the
 *unsigned* census — ways, not the half-spin phase, which is a ℤ₂ holonomy on top of the
 walk (`Closure_Walk.md` §2) and cannot drive a sampler (it goes negative).
 

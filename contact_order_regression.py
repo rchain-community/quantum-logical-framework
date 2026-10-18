@@ -8,7 +8,8 @@ multiply, `ways = prod_c p(l_c)`; the census measures `p(l) ~ l^-theta`; therefo
 
     ln(ways) = -theta * SUM_c ln l_c
 
-and since what happens in the most ways happens first, the folding rate should track the **sum of
+and reading the fastest fold as the one realized the most ways (an assumption this test checks; see
+MostWays_First.md: most ways does not by itself mean first), the folding rate should track the **sum of
 the logarithms** of the contact separations -- not the arithmetic mean of the separations, which is
 what relative contact order (Plaxco, Simons & Baker 1998) uses.
 

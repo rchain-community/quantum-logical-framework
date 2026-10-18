@@ -130,7 +130,7 @@ theorem no_finite_closure_is_exceptionless (K : ℕ)
     which restricts nothing, is the one law with no exception. **Modelling assumption (not a theorem):**
     that a restrictive law *is* a finite closure. **Method note:** the exceptions are the
     least-multiplicity histories (two ways at maximal depth against `2ⁿ` at depth 1), which is why laws
-    look exceptionless — the most ways happen first, so the exception happens last. -/
+    look exceptionless — the exception is the rarest, and it closes last (`closedAtHorizon_mono`). -/
 theorem law_of_exceptions_summary : True := trivial
 
 end QLF.LawOfExceptions

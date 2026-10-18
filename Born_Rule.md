@@ -8,7 +8,7 @@
 
 A QLF observer at a given moment has access to a **possibility tree** $\mathcal{T}_\psi$: the set of admissible ZFA-closed histories reachable from the current state $\psi$, filtered by the local Markov blanket's causal frontier ([Hadrons_Markov_Blankets.md](Hadrons_Markov_Blankets.md), [Hierarchical_Control.md](Hierarchical_Control.md)). Each leaf of $\mathcal{T}_\psi$ is a specific admissible closure satisfying both halves of ZFA (count balance + Pauli closure, per [Experimental_Consistency.md §2.1](Experimental_Consistency.md)).
 
-The **uniform prior** on $\mathcal{T}_\psi$ is the assertion that every admissible leaf is equally probable absent further information. This is the [BayesianMechanics.md](BayesianMechanics.md) "multiplicity principle" — *the thing that can happen in the most ways happens first* — read at the leaf level: each leaf corresponds to one micro-path; equally-counted paths get equal weight.
+The **uniform prior** on $\mathcal{T}_\psi$ is the assertion that every admissible leaf is equally probable absent further information. This is the [BayesianMechanics.md](BayesianMechanics.md) "multiplicity principle" — *the thing that can happen in the most ways happens most often* — read at the leaf level: each leaf corresponds to one micro-path; equally-counted paths get equal weight.
 
 ## 2. From paths to amplitudes
 
@@ -396,7 +396,7 @@ QLF reading: the path-integral sum gives $\cos(\theta/2)$ as the constructively-
 ### Internal
 
 - [MRE.md](MRE.md) — per-event $\log 2$ binary-partition optimum, information-theoretic foundation
-- [BayesianMechanics.md](BayesianMechanics.md) — multiplicity principle: "the thing that can happen in the most ways happens first"
+- [BayesianMechanics.md](BayesianMechanics.md) — multiplicity principle: "the thing that can happen in the most ways happens most often"
 - [Measurement_Problem.md](Measurement_Problem.md) — §4a measurement = ZFA closure = log 2 per atom; this doc develops the probability assignment behind that information gain
 - [Hierarchical_Control.md](Hierarchical_Control.md) — Friston FEP derivation; the Born rule is the recognition density $q$ over the conditional possibility tree
 - [Hadrons_Markov_Blankets.md](Hadrons_Markov_Blankets.md) — Markov blanket as the observer-relative conditioning structure

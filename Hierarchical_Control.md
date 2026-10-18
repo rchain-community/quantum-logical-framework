@@ -103,7 +103,7 @@ The hierarchical-control architecture follows from §1–§3.
 - [MRE.md](MRE.md) — 1/2-spin atom as the per-event free-energy quantum
 - [Frequency_Synchronization.md](Frequency_Synchronization.md) — frequency as resonant synchronization rate; $\Delta t = R/f$
 - [active_inference.md](active_inference.md) — agent-side claim derived here from the algebra
-- [BayesianMechanics.md](BayesianMechanics.md) — "the thing that can happen in the most ways happens first"
+- [BayesianMechanics.md](BayesianMechanics.md) — "the thing that can happen in the most ways happens most often"
 - [Hadrons_Markov_Blankets.md](Hadrons_Markov_Blankets.md) — same blanket strategy at different logical densities
 - [Gravity.md](Gravity.md) — gravity as macroscopic top-down screening
 - [UniversalRelativity.md](UniversalRelativity.md) — Einstein's relativity completed via ZFA event synthesis

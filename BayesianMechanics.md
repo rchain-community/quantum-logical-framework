@@ -1,6 +1,6 @@
 # Bayesian Mechanics in the Quantum Logical Framework
 
-In QFL, the foundational principle is that **the thing that can happen in the most ways happens first**. This multiplicity principle serves as the root of probability itself.
+In QFL, the foundational principle is that **the thing that can happen in the most ways happens most often**. This multiplicity principle serves as the root of probability itself. It is a statement about frequency, not order: what happens *first* is what closes first under ZFA, and the two can differ ([`MostWays_First.md`](MostWays_First.md)).
 
 This idea is mathematically isomorphic to Bayesian mechanics: the outcome with the highest number of possible paths naturally carries the highest probability.
 

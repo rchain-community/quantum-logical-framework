@@ -5,7 +5,7 @@
 > generable histories exist a priori as *possibility*, and **nothing happens one way — everything
 > happens every way that closes**: Zero Free Action (ZFA) decides which possibilities become
 > events, and an event's **multiplicity is its frequency — what happens in the most ways happens
-> first** ([`Philosophy.md`](Philosophy.md) §3a). Each closure *is* a resolved distinction — one
+> most often**; what happens first is what closes first ([`Philosophy.md`](Philosophy.md) §3a). Each closure *is* a resolved distinction — one
 > realized bit, and the same event may close through many histories. This document collects the many notions of
 > information (Shannon, algorithmic, Fisher, von Neumann/quantum, Bekenstein/holographic,
 > Landauer, semantic) and shows, with machine-checked proofs where they exist, how each sits on
@@ -235,7 +235,7 @@ Two information-physics consequences follow, both used elsewhere:
   no period-doubling, so the discrete-scale-invariance / log-periodic channel is **closed by
   structure**. Since factorisation is unique, *every* closure is compositionally organised, so
   self-similar organisation carries the census's whole multiplicity mass — *self-similar things
-  dominate existence*, the information-theoretic form of "the most ways happen first"
+  dominate existence*, the information-theoretic form of "frequency is multiplicity"
   ([`Philosophy.md`](Philosophy.md) §3a; [`Category_Theory_QLF.md`](Category_Theory_QLF.md) §3a;
   [`self_similar_closures.py`](self_similar_closures.py)). This is why the α-residual weight `w = 1/2`
   is *structural*, not a fit ([`Alpha_Residual.md`](Alpha_Residual.md) §9b).
