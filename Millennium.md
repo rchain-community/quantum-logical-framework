@@ -189,6 +189,17 @@ boundaries — *not* for the finitary conjectures (Hodge, BSD, P vs NP, the stan
 are ordinary hard statements. The boundary registry is [Open_Problems.md](Open_Problems.md); the
 unifying ontology is [Continuum_Choice_Fallacy.md](Continuum_Choice_Fallacy.md).
 
+**No time loops: the same template, no Millennium problem touched.** The 2026-10-17 result that a
+logical universe has no time loops ([`UniversalRelativity.md`](UniversalRelativity.md) §4b) changes
+none of the six bridges and adds no axiom. It follows the same pattern, though: a discrete core proved
+(`no_time_loops_from_logic`, `logical_world_globally_hyperbolic` in
+[`QLF_LogicalPersistence`](lean/QLF_LogicalPersistence.lean)) and the continuum reading carried by a
+named bridge (`order_metric_continuum_limit`) plus a cited theorem (Bernal–Sánchez 2007), as
+Navier–Stokes is carried by `continuum_vorticity_planck_capped` plus Beale–Kato–Majda. Global
+hyperbolicity is also the condition under which the Einstein Cauchy problem is well posed
+(Choquet-Bruhat–Geroch 1969), the GR counterpart of the global-regularity question Navier–Stokes asks.
+That is an analogy, not a reduction: nothing here bears on the Navier–Stokes bridge.
+
 ### The competing-route trap — an audit of all six
 
 Each bridge axiom sits exactly where a *cheaper-looking* derivation of the same conclusion appears to be available. Those cheaper routes are the danger: one that looked passable would make a Class-A bridge look dischargeable when it is not. All six were checked. **Every one of them is closed** — and it is worth recording *why*, because the failures are not alike.
