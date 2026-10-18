@@ -644,4 +644,40 @@ theorem count_balanced_pauli_closed {ts : List Twist} (h : countBalanced ts) :
   rw [hp, axisProd_eq_I_of_countBalanced h]
   simp [axisMatrix, pauliScalarToMatrix_eq]
 
+-- ==========================================
+-- Twist-built closures are periodic (no chaos from twists alone)
+-- ==========================================
+
+/-- Every axis matrix squares to the identity. -/
+theorem axisMatrix_sq (a : Axis) : axisMatrix a * axisMatrix a = 1 := by
+  cases a
+  · show (1 : M) * 1 = 1; exact mul_one 1
+  · show σx * σx = 1; exact sigma_x_sq
+  · show σy * σy = 1; exact sigma_y_sq
+  · show σz * σz = 1; exact sigma_z_sq
+
+/-- Every Pauli scalar phase is a fourth root of unity. -/
+theorem coePS_pow_four (p : PauliScalar) : coePS p ^ 4 = 1 := by
+  have hI : Complex.I ^ 4 = 1 := by
+    rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, Complex.I_sq]; norm_num
+  cases p
+  · show (1 : ℂ) ^ 4 = 1; norm_num
+  · show Complex.I ^ 4 = 1; exact hI
+  · show (-1 : ℂ) ^ 4 = 1; norm_num
+  · show (-Complex.I) ^ 4 = 1; rw [neg_pow, hI]; norm_num
+
+/-- **Twist-built histories are periodic.** The ordered matrix fold of ANY
+    twist history, closed or not, satisfies `W⁴ = I`: by `nf_decomp` it is a
+    fourth-root-of-unity phase times an axis matrix that squares to `I`. So a
+    closure built only from twists repeats exactly with period dividing 4 and
+    cannot be chaotic, however many axes it uses. Decay or chaos needs
+    something outside this finite group (a stretching step, a coupling to a
+    continuum). See Lepton_Generations_Fourier.md §4. -/
+theorem twist_fold_pow_four (ts : List Twist) : twistMatrixFold ts ^ 4 = 1 := by
+  obtain ⟨p, hp⟩ := nf_decomp ts
+  have hA : axisMatrix (axisProd ts) ^ 4 = 1 := by
+    rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, pow_two (axisMatrix (axisProd ts)),
+      axisMatrix_sq, one_pow]
+  rw [hp, smul_pow, hA, coePS_pow_four, one_smul]
+
 end QLF
