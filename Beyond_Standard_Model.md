@@ -11,7 +11,7 @@ The bright line: ✅ **derived** (machine-verified the value is *not free* but a
 
 | Observation | Verdict on QLF |
 |---|---|
-| **0νββ detected at LEGEND-1000 / nEXO reach** (`m_ββ ≳ 1 meV`) | ❌ **refutes** the refinement — only ν₁ is Majorana, so `m_ββ ≈ 0.25 meV` ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6) |
+| **0νββ detected at LEGEND-1000 / nEXO reach** (`m_ββ ≳ 10 meV`) | ❌ **refutes** the refinement — only ν₁ is Majorana, so `m_ββ ≈ 0.25 meV` ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6) |
 | **0νββ at `m_ββ ≈ 0.25 meV`** (beyond any planned experiment) | ✅ **supports** — the Majorana ν₁ (`neutrino_majorana`, `one_axis_majorana`) |
 | **all three neutrinos shown to be Dirac** (definitive) | ❌ **refutes** — QLF entails a Majorana ν₁ |
 | **inverted mass ordering** established (JUNO / DUNE) | ❌ **refutes** the Koide neutrino solution (normal ordering, `Σm ≈ 0.059 eV`) |

@@ -22,16 +22,17 @@ The electron case makes this non-vacuous: the same test that calls the neutrino 
 
 ## 1a. Which neutrino is Majorana — refinement (2026-10-19)
 
-`^v` is a one-axis closure. The three neutrino mass states are read as closures on 1, 2 and 4 axes,
-which are exactly the sizes a closed axis set can have (`QLF_AlphabetNecessity`). Under that reading,
-self-conjugacy is decided by counting orderings ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6):
+`^v` is a one-axis closure. The three neutrino mass states are read as closures on 1, 2 and 4
+spatial axes. (These are closure complexities, not the frame sizes from `QLF_AlphabetNecessity`,
+which counts total axes including the gauge axis I.) Under that reading, self-conjugacy is decided
+by counting orderings ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6):
 
 - **ν₁ (one axis) must be Majorana.** Every one-axis minimal closure `[t, t†]` is its own antiparticle (`one_axis_majorana`, [`lean/QLF_Majorana.lean`](lean/QLF_Majorana.lean)).
 - **ν₂ (two axes) and ν₃ (four axes) are Dirac in most ways.** Only 8 of 24 two-axis minimal closures are self-conjugate (`twoAxisMinimal_majorana_count`), and 384 of 40,320 four-axis ones. This is a multiplicity, not a necessity.
 - **Koide agrees independently.** Applied to the measured splittings, Koide's `Q = 2/3` needs one negative √m, and in normal ordering it works only with that sign on `m₁` (`m = 0.36, 8.62, 50.1 meV`, `Σm ≈ 0.059 eV`; [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py)).
 
-The flavour state `ν_e` is mostly ν₁ (`|U_e1|² ≈ 0.68`), which is why the electron neutrino behaves as
-Majorana. The Dirac partners of ν₂ and ν₃ are not free right-handed particles. They are field nodes of
+The flavour state `ν_e` is mostly ν₁ (`|U_e1|² ≈ 0.68`), so if ν₁ is Majorana, `ν_e` has the
+largest Majorana component among the flavour states. The Dirac partners of ν₂ and ν₃ are not free right-handed particles. They are field nodes of
 opposite handedness, set near matter by the electrons (Jim's hypothesis; it must reproduce the MSW
 strength `√2·G_F·n_e`). The five pre-registered tests with kill conditions are in
 `Lepton_Generations_Fourier.md` §6: normal ordering with `Σm ≈ 0.059 eV`, `m_ββ = |U_e1|²·m₁ ≈ 0.25 meV`,
