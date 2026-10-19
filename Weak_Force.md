@@ -210,7 +210,7 @@ $$\sqrt{m_k} \;=\; M\bigl(1 + \sqrt{2}\,\cos(\delta + \tfrac{2\pi k}{3})\bigr),\
 
 Two QLF structures fall directly onto this form:
 - the **`2/3`** is the **transverse-axis fraction** — 2 of 3 spatial axes carry the closure (the 6-twist = 2 transverse + 1 longitudinal per axis), the *same* `2/3` as the Lamb prefactor (§5 of [`Lamb_Shift.md`](Lamb_Shift.md)) and the photon polarization sum;
-- the **three 120°-spaced phases** are QLF's recurring "three" — the three spatial axes (cf. `N = 9 = 3²` in the α derivation, the three-quark Borromean closure). The three lepton generations are three *phases* of one gauge-fold closure, not three lengths. (This refines the qualitative `N = 4/8/12` loop-length picture of [`Primordial_Entanglement.md`](Primordial_Entanglement.md) §2, which gives the ordering but not the ratios.) For **neutrinos** a different generation reading is in use: the mass states as closures on 1, 2 and 4 axes, the only sizes a closed axis set can have (`QLF_AlphabetNecessity`). It decides Majorana versus Dirac (ν₁ must be Majorana, ν₂ and ν₃ are Dirac in most ways) but not the masses; see [`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6. Whether the charged leptons fit the same 1/2/4 reading is open.
+- the **three 120°-spaced phases** are QLF's recurring "three" — the three spatial axes (cf. `N = 9 = 3²` in the α derivation, the three-quark Borromean closure). The three lepton generations are three *phases* of one gauge-fold closure, not three lengths. (This refines the qualitative `N = 4/8/12` loop-length picture of [`Primordial_Entanglement.md`](Primordial_Entanglement.md) §2, which gives the ordering but not the ratios.) For **neutrinos** a different generation reading is in use: the mass states as closures on 1, 2 and 4 axes — the progression forced by the quaternion structure (Q₈ = the full frame {I, X, Y, Z} under τ = iσ): the 3D spatial perspective with the gauge axis as time. There is no 3-axis closure (`no_six_twist_alphabet`; `two_spatial_axes_force_three`), so the count jumps 1 → 2 → 4; ν₃ on four axes is the full quaternion. It decides Majorana versus Dirac by counting (ν₁ must be Majorana, ν₂ and ν₃ are Dirac in most ways) but not the masses; see [`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6. Whether the charged leptons fit the same 1/2/4 reading is open.
 
 **The payoff (reproducible — [`koide_tau_demo.py`](koide_tau_demo.py)).** If QLF supplies `Q = 2/3` structurally, then `m_e` and `m_μ` **predict** the third-generation mass:
 
@@ -222,7 +222,7 @@ Only the `2/3` is structural; `m_e, m_μ` are inputs — so this is a *parameter
 
 **The τ-decay vertex, in this reading.** The τ is the deepest phase (largest √m). Being the variety that cannot bind (§4a), it appears not as a bound atom but as the weak **decay vertex** `τ⁻ → ν_τ + W⁻`, un-spooling the deepest generation phase into lighter generations + neutrino — and the energetic threshold the vertex satisfies *is* `m_τ`, pinned to ~0.006% by the Koide/transverse-fraction structure. So the "named blocker" has moved from "no handle" to "a structural mass + a vertex reading," with a clear residual open list (below).
 
-**Honest scope (load-bearing).** The overall phase offset `δ` (the Koide angle `≈ 0.2222220` rad, §5c) and the scale `M` are **not** explained — they are why `m_e, m_μ` must still be inputs. And this is the charged-**lepton** sector only; quark generations and CKM are separate. The `Q = 2/3` itself, however, is no longer just an identification — it is **derived** (§5b).
+**Honest scope (load-bearing).** The overall phase offset `δ` (the Koide angle `≈ 0.2222220` rad, §5c) and the scale `M` are **not** explained — they are why `m_e, m_μ` must still be inputs. And this is the charged-**lepton** sector only; quark generations and CKM are separate. The `Q = 2/3` itself is an **identification** — `A² = 2` in Fourier coordinates (`koide_three_phase_iff`; [`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §1).
 
 ### 5b. Deriving `Q = 2/3` from the closure
 
@@ -230,12 +230,12 @@ The Koide form `√mₖ = M(1 + A·cos(δ + 2πk/N))` — `N` generations as `N`
 
 $$Q \;=\; \frac{\sum m_k}{\left(\sum \sqrt{m_k}\right)^2} \;=\; \frac{1 + A^2/2}{N}.$$
 
-So `Q = 2/3` follows by construction from **exactly two** structural facts:
+So `Q = 2/3` is equivalent to `A² = 2` — an **identification**, not a derivation (`koide_three_phase_iff`):
 
 | input | value | QLF meaning |
 |---|---|---|
-| `N` | `3` | three generations = the **three spatial axes** |
-| `A²` | `2` | amplitude `√2` = the **two transverse axes** (the one longitudinal axis is the common `1` baseline) |
+| `N` | `3` | three generations = the **three spatial axes** of Q₈ |
+| `A²` | `2` | equal power in constant and harmonic Fourier modes ⟺ 45° to `(1,1,1)` (`koide_iff_equal_power`, Foot 1994) |
 
 and nothing else — the counterfactuals are sharp (only `N=3 ∧ A²=2` hits `2/3`):
 
@@ -255,7 +255,7 @@ What remains an **identification** (not a proof) is one sharp physical claim: th
 
 ### 5c. The Koide angle `δ` — the genuine input (and a `2/9` candidate)
 
-With `Q = 2/3` derived (§5b), the three lepton masses are fixed by **two** inputs: the scale `M` and the overall phase offset `δ` (the Koide angle) — equivalently, `m_e` and `m_μ`. Solving the exact-`Q=2/3` form `√mₖ = M(1 + √2·cos(δ + 2πk/3))` for the measured ratio `m_μ/m_e = 206.768282988` pins
+With `Q = 2/3` identified as `A² = 2` (§5b), the three lepton masses are fixed by **two** inputs: the scale `M` and the overall phase offset `δ` (the Koide angle) — equivalently, `m_e` and `m_μ`. Solving the exact-`Q=2/3` form `√mₖ = M(1 + √2·cos(δ + 2πk/3))` for the measured ratio `m_μ/m_e = 206.768282988` pins
 
 $$\delta = 0.222222047\ \text{rad}.$$
 
@@ -469,7 +469,7 @@ A structural proposal for what makes a heavy lepton heavy, tying together §5b (
 - **The SU(2) coupling `g` and the breaking scale** (the Higgs VEV `v ≈ 246 GeV`) — not derived; [`Higgs.md`](Higgs.md) reframes the *mechanism* (gauge-fold delay) but not the numbers.
 - **Fermi constant `G_F`** — no derivation anywhere in the corpus.
 - **The τ-decay-vertex topology** — §5a gives a mass handle (Koide `Q=2/3` ⇒ `m_τ` to 0.006%) and a vertex reading (deepest-phase un-binding), but: **deriving `Q=2/3` from the τ-closure**, the **Koide angle `δ = 0.222222047`** (`2/9` a flagged candidate, §5c), and the **scale `M`** are open (`m_e, m_μ` are still inputs).
-- **Why exactly three generations** — structurally Lean-anchored: the generation count = `substrate_spatial_dimension = 3`, the same `3` as Koide's phases, colour SU(3), and `α`'s `N=3²` ([`QLF_Generations`](lean/QLF_Generations.lean), `three_axis_signature`); this *reduces* "why 3 generations" to "why 3 spatial dimensions" — which is **derived** as the minimal dimension in which any relational/causal graph renders faithfully (every finite graph embeds crossing-free in ℝ³; 2D fails for non-planar graphs), so the closure graph's rendering is minimally 3D ([`SpaceTime.md`](SpaceTime.md) §3a, [`QLF_ReachableEvent`](lean/QLF_ReachableEvent.lean)). The quark generations and the lepton↔quark mass correlation remain separate and open.
+- **Why exactly three generations** — structurally Lean-anchored: the charged-lepton generation count = `substrate_spatial_dimension = 3`, the same `3` as Koide's phases, colour SU(3), and `α`'s `N=3²` ([`QLF_Generations`](lean/QLF_Generations.lean), `three_axis_signature`); this *reduces* "why 3 generations" to "why 3 spatial dimensions" — which is **derived** as the minimal dimension in which any relational/causal graph renders faithfully (every finite graph embeds crossing-free in ℝ³; 2D fails for non-planar graphs), so the closure graph's rendering is minimally 3D ([`SpaceTime.md`](SpaceTime.md) §3a, [`QLF_ReachableEvent`](lean/QLF_ReachableEvent.lean)). The neutrino generations follow a different reading: closures on 1, 2, and 4 axes, forced by the quaternion structure of the full frame Q₈ — there is no 3-axis closure (`no_six_twist_alphabet`, `two_spatial_axes_force_three`; [`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6). The quark generations and the lepton↔quark mass correlation remain separate and open.
 - **Flavor change** (`d → u + e⁻ + ν̄`) — the explicit topological flavor-change process is not detailed.
 - **Hadron mass splittings** (`m_n − m_p`, `π±−π0`, …) — §5e: the EM half's sign and ~MeV scale fall out of QLF (α + proton depth + quark-charge gauge structure), but the strong `d↔u` flavor-step energy and the precise sub-MeV cancellation are open. This is the well-posed "connect the quarks" target (the *difference*, not absolute masses).
 - **CKM / PMNS mixing angles** — open ([`Standard_Model.md`](Standard_Model.md) §4.2).
@@ -482,7 +482,7 @@ A structural proposal for what makes a heavy lepton heavy, tying together §5b (
 - **Not a doublet-representation theory.** `weak_isospin_su2` identifies the SU(2) *Lie algebra*; it does not construct the left-handed doublets / right-handed singlets as representations, nor explain why only left-handed fields couple.
 - **Not an explicit W propagator in beta decay.** QLF's β-decay is boundary restructuring; the W-as-particle is, so far, only the τ-vertex object (§4–5).
 - **Not a replacement for the Higgs mechanism's numbers.** [`Higgs.md`](Higgs.md) reframes mass generation as gauge-fold delay; the 125 GeV Higgs mass and the Yukawa structure stay open.
-- **Not a from-nothing derivation of the lepton masses (§5a–5b).** `Q = 2/3` *is* derived (machine-verified) — but **from** the structural inputs `N = 3` (three axes), `A² = 2` (two transverse axes), and balanced phases. What is *not* proved is the **identification** that the lepton `√`-mass vector actually has that `1 longitudinal + 2 transverse / 3-axis-phase` structure; the Koide angle `δ` and scale `M` remain inputs, so `m_e, m_μ` are still needed to predict `m_τ`. It is a parameter-light prediction with a derived invariant — **not** a closed derivation of the full generation spectrum, and **not** a claim that the lepton-mass↔axis-phase identification is itself proved.
+- **Not a from-nothing derivation of the lepton masses (§5a–5b).** `Q = 2/3` is an **identification** — it *is* `A² = 2` in Fourier coordinates (`koide_three_phase_iff`), equivalent to the √-mass vector sitting at 45° to `(1,1,1)` (`koide_iff_equal_power`, Foot 1994). What is *not* explained is **why** the power splits 50/50 between the generation-blind and generation-distinguishing modes; the Koide angle `δ` and scale `M` remain inputs, so `m_e, m_μ` are still needed to predict `m_τ`. It is a parameter-light prediction with a structural invariant — **not** a closed derivation of the full generation spectrum.
 
 ---
 

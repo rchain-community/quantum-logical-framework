@@ -41,7 +41,7 @@ and [`Information_Physics.md`](Information_Physics.md) — not a claim that the 
 |---|---|---|
 | **0 · Vacuum pair** | [`Creation.md`](Creation.md) — creation = separation of nothing into conjugate pairs (why the first distinction is two-valued) | [▶ e⁺e⁻](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) |
 | **1 · Stable lepton (½-spin)** | [`Spin_QLF.md`](Spin_QLF.md) — spin *is* the twists; the ½-spin closure | |
-| **2 · Generations e/μ/τ** | [`Standard_Model.md`](Standard_Model.md) — three generations = the three spatial axes | |
+| **2 · Generations e/μ/τ** | [`Standard_Model.md`](Standard_Model.md) — three generations = the three spatial axes of Q₈ (charged leptons); neutrinos: 1/2/4-axis closures ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6) | |
 | **3 · Hadron / proton** | [`Quarks.md`](Quarks.md) — colour = the three axes; Borromean confinement | |
 | **4 · Atom** | [`Bound_States_QLF.md`](Bound_States_QLF.md) — atoms as bound joint-ZFA closures (the real observables) | [▶ H](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0) |
 | **5 · Collective** | [`Chemistry.md`](Chemistry.md) — one valence rule; crystals, condensates | |
@@ -61,7 +61,7 @@ and [`Information_Physics.md`](Information_Physics.md) — not a claim that the 
 | **The atom of the ladder** | one ½-spin ZFA Hermitian pair (bra-ket closure folding to `±I`); carries exactly one bit, `ΔF = −log 2` | `QLF_SpinorInformation`, `QLF_FreeEnergy` ([`Information_Physics.md`](Information_Physics.md)) |
 | **Gauge fold `+−`** | a closure carrying a constructing delay `Δt = R/f` → local time + a Planck-scale Markov blanket (a primordial quantum-black-hole seed) | `QLF_PlanckScale` (`planck_self_dual`, `coherent_iff_subplanck`) |
 | **Depth `R` / frequency `f`** | number of nested/sequential folds; sets the mass–frequency scale (`m = ℏf/R`) and the local clock rate (`f = 1/t`) | [`Per_Qubit_Mass_Quantum.md`](Per_Qubit_Mass_Quantum.md), [`Time.md`](Time.md) |
-| **Three axes** | the three spatial twist axes generate the three fermion generations | `num_generations_eq_three`, `generations_from_three_axes_constructive` ([`lean/QLF_Generations.lean`](lean/QLF_Generations.lean)) |
+| **Three axes** | the three spatial twist axes of Q₈ generate the three charged-lepton generations; neutrino generations are 1/2/4-axis closures forced by the quaternion structure | `num_generations_eq_three`, `generations_from_three_axes_constructive` ([`lean/QLF_Generations.lean`](lean/QLF_Generations.lean)); `no_six_twist_alphabet`, `two_spatial_axes_force_three` ([`lean/QLF_AlphabetNecessity.lean`](lean/QLF_AlphabetNecessity.lean)) |
 | **Temperature = logical density** | *precisely:* the local ZFA-closure rate (equivalently the inverse latency, `f = 1/latency`); it does **not** create pairs (the census does, §2) — it sets the **freeze-out fraction** of created pairs that persist as real vs virtual | [`Time.md`](Time.md), [`QLF_FreeEnergy`](lean/QLF_FreeEnergy.lean), [`Spacetime_Constructor.md`](Spacetime_Constructor.md) |
 
 **The particle = micro-black-hole identity is proven.** A closure is a Markov-blanket horizon; the
@@ -79,7 +79,7 @@ from particles to black holes and back.
 |---|---|---|---|
 | **0. Vacuum fluctuation** | transient pair (e.g. `e⁺e⁻`), a horizon-open/unbalanced closure | `R ≈ 1`, short-lived | ✅ conjugate-pair closure (`ER_EPR_QLF`, `conjugate_pair_closes`); promotion *onset law* derived from the finite-capacity prune, normalisation `K_e` an input (#141, §5) |
 | **1. Stable lepton** | one ½-spin (+ optional gauge fold) | `R` small | ✅ spin = twists (`QLF_Spin`); ν is Majorana (`neutrino_majorana`), e is Dirac |
-| **2. Heavier generations** | same topology, deeper fold / higher-frequency axis | axis 2, 3 | ✅ **3 generations = 3 axes** (`num_generations_eq_three`); Koide `Q=2/3 ⟹ m_τ` (`three_generations_satisfy_koide`); free-lepton mass *ratios* not the observable (bound systems are) |
+| **2. Heavier generations** | same topology, deeper fold / higher-frequency axis | axis 2, 3 | ✅ **3 charged-lepton generations = 3 spatial axes** (`num_generations_eq_three`); Koide `Q=2/3` (identification, `koide_three_phase_iff`) `⟹ m_τ` (`three_generations_satisfy_koide`); neutrino generations = 1/2/4-axis closures (quaternion structure); free-lepton mass *ratios* not the observable (bound systems are) |
 | **3. Hadron / proton** | three-axis colour-locked closure + gauge (Borromean) | `R` larger | ✅ **needs all three colours** (`baryon_needs_all_three_axes`, `single_colour_not_baryon`); confinement = a topological necessity; hadron = quantum BH (`compton_eq_schwarzschild_iff`) |
 | **4. Atom** | lepton + hadron complementary joint-ZFA closure | bound state | ✅ structural — the QLF observable is the *bound* system (positronium/muonium/hydrogen), not the free lepton ([`Bound_States_QLF.md`](Bound_States_QLF.md)) |
 | **5. Collective** | many atoms phase-locked | crystal / molecule / condensate | ✅ chemistry (one valence rule), crystals (Pauli), Cooper/BEC ([`Chemistry.md`](Chemistry.md), `QLF_CondensedMatter`) |
@@ -124,8 +124,8 @@ colour charge** from **colour content** — they answer differently.
   So leptons carry genuine axis/colour content, and it is not obviously the same for every generation.
 
 So the right question is not "do μ, τ carry colour?" (no *net* charge — they're free) but **"what is each
-generation's axis/colour content?"** Since `num_generations_eq_three` ties the three generations to the
-three axes, the natural hypothesis is that each generation is a chiral loop engaging a **different set of
+generation's axis/colour content?"** Since `num_generations_eq_three` ties the three charged-lepton generations to the
+three spatial axes of Q₈ (the quaternion frame {I, X, Y, Z} with the gauge axis I as time), the natural hypothesis is that each generation is a chiral loop engaging a **different set of
 axes** — the electron's verified content being `{x, y}`, with the muon and tau reaching the third axis
 (the other coordinate planes `{y,z}`, `{z,x}`, or a deeper multi-axis winding). *What those "colours" are*
 — which axes each generation occupies — is the open, promising structure, exactly as the second look

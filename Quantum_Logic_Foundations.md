@@ -49,8 +49,8 @@ logic" without a tag, read it in this typed sense: the *leading value* is `[mode
 
 **What would falsify this (falsifiability first).** The **`[conjecture]`** (exclusivity) has published
 kill-conditions: an **axion detection** (defeats strong-CP-without-axion), a measured **`α(0)` drift**
-(QLF proves none, `no_cosmological_drift_of_alpha`), an exhaustive **`0νββ` null** (QLF predicts the
-Majorana neutrino), or a **QRNG deviation** from Born statistics. The **`[proven]`** core fails
+(QLF proves none, `no_cosmological_drift_of_alpha`), a **`0νββ` signal at LEGEND-1000/nEXO** (≳ 10 meV;
+QLF's ν₁-only Majorana refinement predicts m_ββ ≈ 0.25 meV, below their reach), or a **QRNG deviation** from Born statistics. The **`[proven]`** core fails
 differently and *independently*: a `sorry` or an inconsistency in the Lean would break a proven claim;
 a wrong residual trend (e.g. a measured `α⁻¹ < 137`) would break a **`[matched]`** one. *The formal
 core and the physical mapping can fail separately* — that separation is the whole point.
@@ -275,7 +275,7 @@ independently, by design. *The formal core* (`[proven]`) fails if a `sorry` or a
 found in the Lean, or if the orthomodular/non-distributive `MO2` result is refuted — a formal-methods
 person can check these directly. *The physical mapping* (`[modeled]`/`[matched]`) fails if a residual
 runs the wrong way (a measured `α⁻¹ < 137` refutes the screening picture) or a named defeater fires
-(axion, `α` drift, `0νββ` null, QRNG deviation). *The exclusivity* (`[conjecture]`) is the weakest
+(axion, `α` drift, `0νββ` signal at LEGEND-1000/nEXO reach ≳ 10 meV, QRNG deviation). *The exclusivity* (`[conjecture]`) is the weakest
 layer and is labelled so. A critic who breaks the mapping does **not** break the theorems, and vice
 versa — which is exactly why the layers are kept separate.
 

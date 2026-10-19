@@ -104,7 +104,7 @@ reproduces the first (some of it now proven) and *reframes* the second.
   `weak_isospin_su2` in [`BraKetRhoQuCalc`](lean/BraKetRhoQuCalc.lean); `u,d` doublet in
   [`QLF_QuarkMass`](lean/QLF_QuarkMass.lean)). `u↔d` is one gauge-fold pair-flip — charge changes by 1
   (`uud=+1`, `udd=0`, §7).
-- **Three generations** = the three axes (`num_generations_eq_three`, [`QLF_Generations`](lean/QLF_Generations.lean)).
+- **Three generations** = the three spatial axes of Q₈ (`num_generations_eq_three`, [`QLF_Generations`](lean/QLF_Generations.lean)); for neutrinos the reading is 1/2/4-axis closures ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6).
 - **CKM:** flavour changes *only* via the W charged current; unitarity = closure, near-diagonal (Cabibbo),
   3 angles + 1 CP phase, CP needing ≥3 generations (Kobayashi–Maskawa) — [`QLF_CKM`](lean/QLF_CKM.lean),
   [`QLF_FlavorMixing`](lean/QLF_FlavorMixing.lean). The angle *values* stay open. (GIM / no tree-level FCNC
@@ -169,7 +169,7 @@ Unlike quarks, charged-lepton masses **are** clean closure observables, and the 
 exactly: `Q = (Σm) / (Σ√m)² = 0.6667 = 2/3` (`koide_two_thirds`, [`QLF_Koide`](lean/QLF_Koide.lean)),
 which predicts `m_τ` to **0.006%** from `m_e, m_μ` — the sharpest case of the depth-ratio reduction (the
 tier collapses to `{m_p, δ}`, with the Koide angle `δ` the one open input). Neutrinos are **Majorana**
-with sub-eV masses (open; [`QLF_NeutrinoMass`](lean/QLF_NeutrinoMass.lean)).
+with sub-eV masses — ν₁ is Majorana (`one_axis_majorana`), ν₂ and ν₃ Dirac in most ways; normal ordering with Σm ≈ 0.059 eV ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6; [`QLF_NeutrinoMass`](lean/QLF_NeutrinoMass.lean)).
 
 **Honest residual (still open ✗):** the Koide **angle `δ`** (which fixes the individual masses within a
 tier), the absolute scale, the per-flavour **twist signature**, and the quark CKM/Yukawa angle *values*.

@@ -117,7 +117,8 @@ are labelled as such.
 
 **Koide needs one negative √m — Exact computation.** With every √-mass positive, `Q` cannot reach
 `2/3` for any lightest mass (maximum 0.584 in normal ordering, 0.499 in inverted). With the sign of
-`√m₁` flipped, as Brannen (2006) proposed, `Q = 2/3` has one solution in each ordering:
+`√m₁` flipped, as Brannen (2006) proposed (who first predicted these masses for the neutrinos
+using Koide with a negative sign), `Q = 2/3` has one solution in each ordering:
 
 | ordering | m₁, m₂, m₃ (meV) | Σm (eV) |
 |---|---|---|
@@ -127,11 +128,16 @@ are labelled as such.
 Script: [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py).
 
 **ν₁ is Majorana; ν₂ and ν₃ are Dirac in most ways — Proved, given the axis reading.** Jim's
-reading: ν₁ closes on one axis, ν₂ on two, ν₃ on four. These are exactly the sizes a closed axis set
-can have (`QLF_AlphabetNecessity`: 1, 2 or 4, never 3). Matching three closed sizes to three
-generations is an identification, not yet a derivation. A minimal closure on `k` axes uses one
-twist of each sign per axis. Its antiparticle is conjugate-and-reverse (`QLF_Majorana`), and the
-fraction that equals its own antiparticle is `1/(2k−1)!!`:
+reading: ν₁ closes on one axis, ν₂ on two, ν₃ on four. The full four-axis frame
+{I, X, Y, Z} is the quaternion group Q₈ under the τ = iσ fold product — the 3D spatial perspective
+with the gauge axis I as time. The axis count 1 → 2 → 4 is forced by the quaternion structure:
+`no_six_twist_alphabet` forbids |Σ| = 6, and `two_spatial_axes_force_three` means any two spatial
+axes already force the full quaternion (all four, including I via `frame_contains_I`), so there is
+no 3-axis closure. ν₃ on four axes IS the full 3D perspective — it uses the whole quaternion. The
+1/2/4-axis neutrino reading is an identification between generations and closure complexity, not a
+consequence of the frame theorem. A minimal closure on `k`
+axes uses one twist of each sign per axis. Its antiparticle is conjugate-and-reverse
+(`QLF_Majorana`), and the fraction that equals its own antiparticle is `1/(2k−1)!!`:
 
 | axes | minimal closures | Majorana | Dirac (handed) |
 |---|---|---|---|
@@ -167,8 +173,14 @@ electron spins, so the bias electrons leave must be net lepton number, not net s
 | P4 | electrons set the field's handedness, so the bias equals the measured matter potential `√2·G_F·n_e` (the MSW effect, seen in the solar `ν_e` spectrum by Borexino and SNO) | a QLF derivation of the bias that lands on a different strength. Matching the sign is not enough |
 | P5 | if the bias is environmental, oscillation parameters may differ slightly between paths through matter and near-vacuum paths | a difference larger than a few percent; the solar–KamLAND `Δm²₂₁` comparison already limits it |
 
-P2 is the sharpest. Double beta decay happens inside a nucleus, deep in electrons, so if electrons
-supply the conjugate, ν₂ and ν₃ stay Dirac in exactly that setting and only ν₁ contributes.
+**Discriminating power.** P1 is close to the normal-ordering minimum (`Σm ≥ 0.058 eV`), so it
+constrains the ordering more than it tests Koide. P2's null (no signal at LEGEND-1000/nEXO) is also
+the standard expectation for all-Dirac neutrinos or all-Majorana normal ordering with
+`m_ββ ≈ 1–4 meV` (below reach). P3 (`N_eff = 3`) is the standard result for any model without
+extra light species. **The distinctive test is the ordering itself** (JUNO/DUNE), and long-term,
+a sub-meV `m_ββ` measurement. P2 is the sharpest of the five: double beta decay happens inside
+a nucleus, deep in electrons, so if electrons supply the conjugate, ν₂ and ν₃ stay Dirac in
+exactly that setting and only ν₁ contributes.
 
 **Open:** why the generations sit on 1, 2 and 4 axes, and the neutrino mass ratios.
 
