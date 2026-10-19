@@ -14,11 +14,31 @@ In QLF the **antiparticle** of a configuration is its **Hermitian conjugate** ([
 
 The electron case makes this non-vacuous: the same test that calls the neutrino Majorana correctly calls the electron Dirac. And the neutrino comes out as the **unique** self-conjugate fermion for a structural reason — it is the only fermion with neither charge nor a chiral/linked structure, so its minimal non-chiral loop is the only one symmetric under conjugate-and-reverse (charged or chiral histories pick up an order they cannot match after reversal). QLF therefore reproduces, from structure, the real-physics fact that **only the neutrino can be Majorana** (a charged fermion cannot — it would violate charge conjugation).
 
-**The prediction.** A Majorana neutrino means **lepton number is violated** — the neutrino carries no conserved lepton charge to distinguish `ν` from `ν̄`. The signature is **neutrinoless double-beta decay**, `2n → 2p + 2e⁻` (`ΔL = 2`), which **LEGEND, nEXO, and KamLAND-Zen are searching for now**. A definitive observation of `0νββ` confirms it; a definitive Dirac result (a measured Dirac-mass mechanism, or `0νββ` excluded at the relevant scale) would challenge the `^v` assignment. This is the corpus's clearest empirical commitment distinguishable from the Standard Model (which is agnostic on Dirac vs Majorana).
+**The prediction.** A Majorana neutrino means **lepton number is violated**: the neutrino carries no conserved lepton charge to distinguish `ν` from `ν̄`. The signature is **neutrinoless double-beta decay**, `2n → 2p + 2e⁻` (`ΔL = 2`). §1a refines *which* neutrino is Majorana and puts a number on the rate: only ν₁ contributes, giving `m_ββ ≈ 0.25 meV`, about 40× below what LEGEND-1000 or nEXO can reach. So a null at those experiments is **expected**, and a signal there would refute the refinement. This is still the corpus's clearest empirical commitment distinguishable from the Standard Model, which is agnostic on Dirac versus Majorana.
 
 **What this means for `B−L`.** Because the neutrino is Majorana, `B−L` is **not an exactly conserved charge** — it is violated by `ΔL = 2` in `0νββ`. This is consistent with the framework's deeper structure: `B−L` is not even a conserved *signed count*. The obstruction `wcount_zero_on_ZFA` ([`lean/QLF_BMinusL.lean`](lean/QLF_BMinusL.lean)) proves any conserved signed count is **zero on every ZFA closure**, yet the deuteron is a stable neutral closure with `B−L = 1` — so `B−L` is at most a winding-type quantity, and the Majorana neutrino shows it is violated outright. **Electric charge, by contrast, *is* an exactly conserved signed count** (`signed_count_conserved`), and every QLF closure is electrically neutral. So charge is exact; `B−L` is not. (This also places QLF in agreement with, not tension with, the quantum-gravity expectation that gravity admits no exact global symmetries.)
 
 **Honest tier.** The Majorana result is **machine-verified**, conditional on two QLF inputs: the assignment neutrino `= ^v`, and antiparticle `=` Hermitian conjugate (the corpus's convention, principled because the operator adjoint reverses order). *Given* those, Majorana is proved, not argued. The remaining physics content — that `0νββ` actually proceeds at a given rate — is the falsifiable empirical claim the experiments test.
+
+## 1a. Which neutrino is Majorana — refinement (2026-10-19)
+
+`^v` is a one-axis closure. The three neutrino mass states are read as closures on 1, 2 and 4 axes,
+which are exactly the sizes a closed axis set can have (`QLF_AlphabetNecessity`). Under that reading,
+self-conjugacy is decided by counting orderings ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6):
+
+- **ν₁ (one axis) must be Majorana.** Every one-axis minimal closure `[t, t†]` is its own antiparticle (`one_axis_majorana`, [`lean/QLF_Majorana.lean`](lean/QLF_Majorana.lean)).
+- **ν₂ (two axes) and ν₃ (four axes) are Dirac in most ways.** Only 8 of 24 two-axis minimal closures are self-conjugate (`twoAxisMinimal_majorana_count`), and 384 of 40,320 four-axis ones. This is a multiplicity, not a necessity.
+- **Koide agrees independently.** Applied to the measured splittings, Koide's `Q = 2/3` needs one negative √m, and in normal ordering it works only with that sign on `m₁` (`m = 0.36, 8.62, 50.1 meV`, `Σm ≈ 0.059 eV`; [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py)).
+
+The flavour state `ν_e` is mostly ν₁ (`|U_e1|² ≈ 0.68`), which is why the electron neutrino behaves as
+Majorana. The Dirac partners of ν₂ and ν₃ are not free right-handed particles. They are field nodes of
+opposite handedness, set near matter by the electrons (Jim's hypothesis; it must reproduce the MSW
+strength `√2·G_F·n_e`). The five pre-registered tests with kill conditions are in
+`Lepton_Generations_Fourier.md` §6: normal ordering with `Σm ≈ 0.059 eV`, `m_ββ = |U_e1|²·m₁ ≈ 0.25 meV`,
+`N_eff = 3`, the MSW strength, and at most a few-percent environment dependence.
+
+This **narrows** §1 rather than contradicting it. `neutrino_majorana` still holds for `^v`, which is now
+ν₁. The phrase "the neutrino is Majorana" should be read as "ν₁ is Majorana".
 
 ## 2. Beta decay as boundary restructuring
 
@@ -43,8 +63,8 @@ Markov-blanket join, and its weak-mediated rarity is what makes the Sun burn slo
 
 Oscillation is the **slow phase evolution** of the neutrino's three-axis closure. The flavor eigenstates
 `ν_e, ν_μ, ν_τ` are different *orientations* of the same twist combinatorics, mixed unitarily by the PMNS
-matrix — and because the neutrino is Majorana, that mixing carries `N−1 = 2` extra phases beyond the CKM
-count (`majorana_phases`, [`lean/QLF_PMNS.lean`](lean/QLF_PMNS.lean); [`Standard_Model.md`](Standard_Model.md) §4.2).
+matrix. If all three were Majorana, that mixing would carry `N−1 = 2` extra phases beyond the CKM
+count; with only ν₁ Majorana (§1a) the physical count of extra phases is open again (`majorana_phases`, [`lean/QLF_PMNS.lean`](lean/QLF_PMNS.lean); [`Standard_Model.md`](Standard_Model.md) §4.2).
 Machine-verified in [`lean/QLF_NeutrinoOscillation.lean`](lean/QLF_NeutrinoOscillation.lean):
 
 - **Driven by fold-depth mass splittings.** In QLF mass is gauge-fold depth, `m = 1/R`

@@ -172,6 +172,10 @@ supply the conjugate, ν₂ and ν₃ stay Dirac in exactly that setting and onl
 
 **Open:** why the generations sit on 1, 2 and 4 axes, and the neutrino mass ratios.
 
+The neutrino docs carry this refinement: [`Beta_Decay_Neutrino_Nature.md`](Beta_Decay_Neutrino_Nature.md) §1a,
+[`Beyond_Standard_Model.md`](Beyond_Standard_Model.md) (falsifier table) and
+[`Experimental_Consistency.md`](Experimental_Consistency.md) §9.
+
 ## 7. Status
 
 | claim | status |
