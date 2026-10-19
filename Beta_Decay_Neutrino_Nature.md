@@ -23,9 +23,11 @@ The electron case makes this non-vacuous: the same test that calls the neutrino 
 ## 1a. Which neutrino is Majorana — refinement (2026-10-19)
 
 `^v` is a one-axis closure. The three neutrino mass states are read as closures on 1, 2 and 4
-spatial axes. (These are closure complexities, not the frame sizes from `QLF_AlphabetNecessity`,
-which counts total axes including the gauge axis I.) Under that reading, self-conjugacy is decided
-by counting orderings ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6):
+spatial axes — the progression forced by the quaternion structure of the full frame {I, X, Y, Z}
+(= Q₈ under τ = iσ): the 3D spatial perspective with the gauge axis as time. There is no 3-axis
+closure (`no_six_twist_alphabet`; `two_spatial_axes_force_three`), so the count jumps 1 → 2 → 4.
+Under that reading, self-conjugacy is decided by counting orderings
+([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6):
 
 - **ν₁ (one axis) must be Majorana.** Every one-axis minimal closure `[t, t†]` is its own antiparticle (`one_axis_majorana`, [`lean/QLF_Majorana.lean`](lean/QLF_Majorana.lean)).
 - **ν₂ (two axes) and ν₃ (four axes) are Dirac in most ways.** Only 8 of 24 two-axis minimal closures are self-conjugate (`twoAxisMinimal_majorana_count`), and 384 of 40,320 four-axis ones. This is a multiplicity, not a necessity.

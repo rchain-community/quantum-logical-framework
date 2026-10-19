@@ -128,12 +128,14 @@ using Koide with a negative sign), `Q = 2/3` has one solution in each ordering:
 Script: [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py).
 
 **ν₁ is Majorana; ν₂ and ν₃ are Dirac in most ways — Proved, given the axis reading.** Jim's
-reading: ν₁ closes on one axis, ν₂ on two, ν₃ on four. Note: these are the number of spatial axes
-the closure *uses*, not the frame sizes from `QLF_AlphabetNecessity`. That theorem counts total axes
-including the gauge axis I (which every frame contains, `frame_contains_I`), giving frame sizes 1, 2
-or 4 — and two spatial axes force all three (`two_spatial_axes_force_three`), so there is no frame
-with exactly two spatial axes. The 1/2/4-axis neutrino reading is an identification between
-generations and closure complexity, not a consequence of the frame theorem. A minimal closure on `k`
+reading: ν₁ closes on one axis, ν₂ on two, ν₃ on four. The full four-axis frame
+{I, X, Y, Z} is the quaternion group Q₈ under the τ = iσ fold product — the 3D spatial perspective
+with the gauge axis I as time. The axis count 1 → 2 → 4 is forced by the quaternion structure:
+`no_six_twist_alphabet` forbids |Σ| = 6, and `two_spatial_axes_force_three` means any two spatial
+axes already force the full quaternion (all four, including I via `frame_contains_I`), so there is
+no 3-axis closure. ν₃ on four axes IS the full 3D perspective — it uses the whole quaternion. The
+1/2/4-axis neutrino reading is an identification between generations and closure complexity, not a
+consequence of the frame theorem. A minimal closure on `k`
 axes uses one twist of each sign per axis. Its antiparticle is conjugate-and-reverse
 (`QLF_Majorana`), and the fraction that equals its own antiparticle is `1/(2k−1)!!`:
 
