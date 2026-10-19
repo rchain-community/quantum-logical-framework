@@ -17,6 +17,9 @@ a decidable property of the string.
   positron). So the test is not vacuous: it separates the unique self-conjugate
   fermion from the rest.
 * `antiparticle_involutive` — `(A†)† = A`, as a particle/antiparticle relation must be.
+* `one_axis_majorana` — every one-axis minimal closure `[t, t†]` is Majorana.
+* `twoAxisMinimal_majorana_count` — on two axes only 8 of the 24 minimal closures are
+  Majorana; the other 16 are Dirac.
 
 This is why the neutrino is the *unique* Majorana fermion: being the only fermion
 with neither charge nor a chiral/linked structure, its minimal non-chiral loop is
@@ -59,5 +62,33 @@ theorem antiparticle_involutive (ts : List Twist) :
   have hcc : (Twist.conj ∘ Twist.conj) = id := by
     funext t; exact Twist.conj_conj t
   rw [hcc, List.map_id]
+
+
+-- ==========================================
+-- Minimal closures by number of axes (Lepton_Generations_Fourier.md §6)
+-- ==========================================
+
+/-- **A one-axis minimal closure is always Majorana.** The minimal closure on one
+    axis is a twist followed by its conjugate, `[t, t†]` (`^v`, `v^`, `<>`, …), and
+    every such pair is its own antiparticle. So a neutrino read as a one-axis
+    closure has no choice: it is self-conjugate. -/
+theorem one_axis_majorana (t : Twist) : Majorana [t, Twist.conj t] := by
+  simp [Majorana, antiparticle, Twist.conj_conj]
+
+/-- The minimal closures on two axes: every ordering of one twist of each sign on
+    the `y` and `x` axes (`^`, `v`, `<`, `>`). -/
+def twoAxisMinimal : List (List Twist) :=
+  List.permutations' [Twist.up, Twist.down, Twist.left, Twist.right]
+
+theorem twoAxisMinimal_length : twoAxisMinimal.length = 24 := by decide
+
+/-- **On two axes, one ordering in three is Majorana; two in three are Dirac.**
+    8 of the 24 minimal closures equal their antiparticle (palindromes under
+    conjugation, such as `^<>v`); the other 16, the electron's `^<v>` among them,
+    carry an ordering their mirror cannot match. So with more than one axis,
+    self-conjugacy is the minority way, not a necessity. (The general fraction is
+    `1/(2k−1)!!` for `k` axes, 384 of 40,320 at four; `lepton_axis_majorana.py`.) -/
+theorem twoAxisMinimal_majorana_count :
+    (twoAxisMinimal.filter (fun p => decide (Majorana p))).length = 8 := by decide
 
 end QLF.Majorana

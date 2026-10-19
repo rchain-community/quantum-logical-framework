@@ -126,9 +126,31 @@ are labelled as such.
 
 Script: [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py).
 
-**Hypothesis (Jim): only ν₁ is its own antiparticle.** A sign flip of one √m is what a Majorana
-phase looks like, and the flip sits on `m₁`, the state that carries most of `ν_e`
-(`|U_e1|² ≈ 0.68`). So: ν₁ is a self-conjugate closure (`H = H†`), and ν₂, ν₃ are Dirac.
+**ν₁ is Majorana; ν₂ and ν₃ are Dirac in most ways — Proved, given the axis reading.** Jim's
+reading: ν₁ closes on one axis, ν₂ on two, ν₃ on four. These are exactly the sizes a closed axis set
+can have (`QLF_AlphabetNecessity`: 1, 2 or 4, never 3). Matching three closed sizes to three
+generations is an identification, not yet a derivation. A minimal closure on `k` axes uses one
+twist of each sign per axis. Its antiparticle is conjugate-and-reverse (`QLF_Majorana`), and the
+fraction that equals its own antiparticle is `1/(2k−1)!!`:
+
+| axes | minimal closures | Majorana | Dirac (handed) |
+|---|---|---|---|
+| 1 (ν₁) | 2 | 2, all | 0 |
+| 2 (ν₂) | 24 | 8 | 16, 2 in 3 ways |
+| 4 (ν₃) | 40,320 | 384 | 39,936, 104 in 105 ways |
+
+So a one-axis closure **must** be Majorana (`one_axis_majorana`), and with two or more axes Dirac is
+the dominant way (`twoAxisMinimal_majorana_count`; the four-axis count is from
+[`lepton_axis_majorana.py`](lepton_axis_majorana.py)). For ν₂ and ν₃ this is a multiplicity, not a
+necessity: a strict "must" would need a rule excluding the self-conjugate orderings such as `^<>v`.
+Net handedness cannot be the distinction, because every closed history has zero net handedness on
+every axis (`zfa_iff_handedness_balanced`). The Dirac closures are handed in the order of their
+twists, which their mirror cannot match.
+
+Koide independently picks out ν₁. In normal ordering `Q = 2/3` has a solution only when the odd
+sign sits on `m₁`. Flipping `m₂` or `m₃` gives none. A sign is not a proof of Majorana character,
+but it falls on the state the axis count makes Majorana. The axis count does not give the masses:
+the ratios `m₂/m₁ ≈ 24` and `m₃/m₂ ≈ 5.8` are not derived.
 
 **Hypothesis (Jim): the Dirac partners are field nodes.** Space is full of field nodes that form
 the conjugate. The handedness of the field nodes complements that of ν₂ and ν₃, so their partners
@@ -148,8 +170,7 @@ electron spins, so the bias electrons leave must be net lepton number, not net s
 P2 is the sharpest. Double beta decay happens inside a nucleus, deep in electrons, so if electrons
 supply the conjugate, ν₂ and ν₃ stay Dirac in exactly that setting and only ν₁ contributes.
 
-**Open:** why the first generation's neutrino closes on itself and the heavier two do not. This may
-be the same question as §4's 2-mode versus 3-mode stability, but nothing connects them yet.
+**Open:** why the generations sit on 1, 2 and 4 axes, and the neutrino mass ratios.
 
 ## 7. Status
 
@@ -162,4 +183,5 @@ be the same question as §4's 2-mode versus 3-mode stability, but nothing connec
 | 2 modes stable, 3+ may decay and leak | Numerical evidence, generic model |
 | why equal power; the phase `Δ = 2/3`; lifetimes from closures | Open |
 | neutrino Koide needs one negative √m; NO masses 0.36, 8.62, 50.1 meV | Exact computation (§6) |
-| ν₁-only Majorana, field-node Dirac partners set by electrons | Hypothesis, pre-registered (P1–P5) |
+| ν₁ (one axis) Majorana; ν₂, ν₃ Dirac in 2/3 and 104/105 of ways | Proved given the 1/2/4-axis reading (`one_axis_majorana`, `twoAxisMinimal_majorana_count`) |
+| field-node Dirac partners, handedness set by electrons | Hypothesis, pre-registered (P1–P5) |
