@@ -109,7 +109,49 @@ Scripts: [`lepton_dimension_counting.py`](lepton_dimension_counting.py),
 [`lepton_three_at_a_time.py`](lepton_three_at_a_time.py), [`lepton_with_time.py`](lepton_with_time.py).
 §2 says why: the electron is a cancellation, not a count.
 
-## 6. Status
+## 6. Neutrinos — **Pre-registered predictions** (2026-10-19)
+
+Written down before any of the tests below report. The inputs are the measured oscillation
+splittings only (`Δm²₂₁ = 7.42×10⁻⁵ eV²`, `|Δm²₃₁| = 2.51×10⁻³ eV²`); the hypotheses are Jim's and
+are labelled as such.
+
+**Koide needs one negative √m — Exact computation.** With every √-mass positive, `Q` cannot reach
+`2/3` for any lightest mass (maximum 0.584 in normal ordering, 0.499 in inverted). With the sign of
+`√m₁` flipped, as Brannen (2006) proposed, `Q = 2/3` has one solution in each ordering:
+
+| ordering | m₁, m₂, m₃ (meV) | Σm (eV) |
+|---|---|---|
+| normal | 0.36, 8.62, 50.1 | 0.059 |
+| inverted | 50.2, 50.9, 3.0 | 0.104 (disfavoured by DESI's Σm bounds) |
+
+Script: [`lepton_neutrino_koide.py`](lepton_neutrino_koide.py).
+
+**Hypothesis (Jim): only ν₁ is its own antiparticle.** A sign flip of one √m is what a Majorana
+phase looks like, and the flip sits on `m₁`, the state that carries most of `ν_e`
+(`|U_e1|² ≈ 0.68`). So: ν₁ is a self-conjugate closure (`H = H†`), and ν₂, ν₃ are Dirac.
+
+**Hypothesis (Jim): the Dirac partners are field nodes.** Space is full of field nodes that form
+the conjugate. The handedness of the field nodes complements that of ν₂ and ν₃, so their partners
+are not free right-handed particles. Near atoms, the electrons set that handedness. Atoms pair
+electron spins, so the bias electrons leave must be net lepton number, not net spin.
+
+**Predictions and kill conditions:**
+
+| # | prediction | kill condition |
+|---|---|---|
+| P1 | normal ordering, `Σm ≈ 0.059 eV`, `m_lightest ≈ 0.36 meV` | JUNO or DUNE establishes inverted ordering; or cosmology measures `Σm` outside about `0.059 ± 0.01 eV` |
+| P2 | `m_ββ = \|U_e1\|²·m₁ ≈ 0.25 meV` (only ν₁ drives 0νββ) | any 0νββ signal at LEGEND-1000 or nEXO, whose reach is ~10 meV |
+| P3 | the field-node partners add no radiation: `N_eff = 3.0` | a measured `ΔN_eff` from extra light species (Planck + DESI give `≈ 3.0 ± 0.2`, consistent) |
+| P4 | electrons set the field's handedness, so the bias equals the measured matter potential `√2·G_F·n_e` (the MSW effect, seen in the solar `ν_e` spectrum by Borexino and SNO) | a QLF derivation of the bias that lands on a different strength. Matching the sign is not enough |
+| P5 | if the bias is environmental, oscillation parameters may differ slightly between paths through matter and near-vacuum paths | a difference larger than a few percent; the solar–KamLAND `Δm²₂₁` comparison already limits it |
+
+P2 is the sharpest. Double beta decay happens inside a nucleus, deep in electrons, so if electrons
+supply the conjugate, ν₂ and ν₃ stay Dirac in exactly that setting and only ν₁ contributes.
+
+**Open:** why the first generation's neutrino closes on itself and the heavier two do not. This may
+be the same question as §4's 2-mode versus 3-mode stability, but nothing connects them yet.
+
+## 7. Status
 
 | claim | status |
 |---|---|
@@ -119,3 +161,5 @@ Scripts: [`lepton_dimension_counting.py`](lepton_dimension_counting.py),
 | twist-only closures are periodic (`W⁴ = I`) | Proved (`twist_fold_pow_four`) |
 | 2 modes stable, 3+ may decay and leak | Numerical evidence, generic model |
 | why equal power; the phase `Δ = 2/3`; lifetimes from closures | Open |
+| neutrino Koide needs one negative √m; NO masses 0.36, 8.62, 50.1 meV | Exact computation (§6) |
+| ν₁-only Majorana, field-node Dirac partners set by electrons | Hypothesis, pre-registered (P1–P5) |
