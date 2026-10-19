@@ -48,7 +48,7 @@ zero publish a table of named defeaters. QLF publishes **seven experiments that 
 |---|---|
 | A confirmed cosmological drift in α | `no_cosmological_drift_of_alpha` |
 | An axion detection | `θ̄ = 0` with **no axion** (`theta_zero_on_closure`) |
-| An exhaustive-sensitivity 0νββ null (LEGEND/nEXO) | Majorana neutrino (`neutrino_majorana`) |
+| A 0νββ signal at LEGEND-1000/nEXO (m_ββ ≳ 10 meV) | ν₁-only Majorana (`one_axis_majorana`); m_ββ ≈ 0.25 meV, below their reach — a signal refutes the refinement |
 | Exact global B−L conservation established | no exact global B−L |
 | A physically realized Navier–Stokes blow-up | no blow-up in preparable flows |
 | A predeclared-sieve QRNG deviation | streams match the ZFA-closure null |
@@ -150,8 +150,8 @@ Trim to platform length as needed; the first post is the whole pitch if only one
 > assistant. github.com/rchain-community/quantum-logical-framework
 
 > **5/** Most theories of everything ask you to believe them. This one publishes its kill conditions —
-> seven experiments that would end it: an axion detection, a confirmed drift in α, an exhaustive 0νββ
-> null, a QRNG deviation, and three more. Each is a standing bet.
+> seven experiments that would end it: an axion detection, a confirmed drift in α, a 0νββ signal at
+> LEGEND-1000/nEXO reach (≳ 10 meV), a QRNG deviation, and three more. Each is a standing bet.
 
 > **6/** And you don't have to trust any of it. Clone the repo, run `lake build`. The proofs check or
 > they don't — more than a hundred machine-verified Lean modules, zero gaps in the core.

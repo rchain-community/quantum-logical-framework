@@ -830,7 +830,7 @@ is the absolute mass / electroweak scale `v = R_stable`, reduced structurally to
 the absolute SI `G`'s mass-scale half, the proton's absolute depth `R_p ≈ 1.30×10¹⁹` (equivalently
 `R_e ≈ 2.389×10²²`, [`Per_Qubit_Mass_Quantum.md`](Per_Qubit_Mass_Quantum.md)), and the threshold third of
 the α `+0.036` running tail (`Alpha.md` §4a) all bottom out at the *same* `ρ*`. Mass **ratios** through
-it are already derived and need no anchor (`m_p/m_e = 6π⁵`, Koide `Q=2/3`) — it is only the absolute
+it are already derived and need no anchor (`m_p/m_e = 6π⁵`, Koide `Q=2/3` — an identification, `koide_three_phase_iff`) — it is only the absolute
 scale that is open. **This was investigated directly and closed, not left dangling**
 ([issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121)): the
 *mechanism* is fully derived and machine-checked — gauge folds provably attract

@@ -93,7 +93,7 @@ The ZFA-specific bonus: certified answers (factoring — the factors multiply or
 |---|---|---|
 | No cosmological α drift | `no_cosmological_drift_of_alpha` | Confirmed α drift |
 | θ̄ = 0 with **no axion** | `theta_zero_on_closure` | Axion detection |
-| Neutrino Majorana → 0νββ exists | `neutrino_majorana` | Exhaustive-sensitivity null (LEGEND/nEXO) |
+| Neutrino Majorana → 0νββ exists (ν₁ only) | `neutrino_majorana`, `one_axis_majorana` | 0νββ signal at LEGEND-1000/nEXO reach (≳ 10 meV); m_ββ ≈ 0.25 meV expected |
 | No exact global B−L | `QLF_BaryonWinding`, `QLF_Majorana` | Exact B−L conservation established |
 | No blow-up in preparable NS flows | `realized_flow_is_stable` | Physically realized blow-up |
 | QRNG streams match the ZFA-closure null | [`QRNG_Closure_Observatory.md`](QRNG_Closure_Observatory.md) | Predeclared-sieve deviation |
@@ -181,4 +181,4 @@ Residue (a) — the orthomodular law — is not a monolith either. It **splits**
 - **Licensed now:** "ZFA is sufficient for all audited observations; overdetermines constants parameter-free; all added-ingredient and deviation-class rivals are experimentally excluded; among surviving exact reconstructions ZFA is uniquely parsimonious and uniquely predictive of constants; exclusivity is conjectured, its defeaters are published (§4c), and its proof target is specified (§6)."
 - **Not licensed:** "hidden variables are ruled out" (unqualified); "quantum computation proves the ontology is complete"; "nothing else can happen" (unconditional); any claim of exclusivity that survives the loss of a §4c row.
 
-**Registry patch** (replaces the completeness paragraph in `Open_Problems.md`): *"Sufficiency is supported by parameter-free overdetermination (§3 here) and confirmed exclusions (§4c); Bell/KS/PBR exclude added local, non-contextual, and ψ-epistemic ingredients; error-corrected QC at scale progressively excludes deviation-class dynamics; among surviving exact reconstructions ZFA is distinguished by parsimony and constants overdetermination. Exclusivity is conjectured pending the reconstruction theorem (Completeness_Evidence.md §6). Defeaters: axion detection, α drift, exhaustive 0νββ null, QRNG deviation."*
+**Registry patch** (replaces the completeness paragraph in `Open_Problems.md`): *"Sufficiency is supported by parameter-free overdetermination (§3 here) and confirmed exclusions (§4c); Bell/KS/PBR exclude added local, non-contextual, and ψ-epistemic ingredients; error-corrected QC at scale progressively excludes deviation-class dynamics; among surviving exact reconstructions ZFA is distinguished by parsimony and constants overdetermination. Exclusivity is conjectured pending the reconstruction theorem (Completeness_Evidence.md §6). Defeaters: axion detection, α drift, 0νββ signal at LEGEND-1000/nEXO reach (≳ 10 meV), QRNG deviation."*
