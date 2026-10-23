@@ -129,7 +129,7 @@ integrating role — the very β⁺ submission that turns a proton into the neut
 why the room practices below seat **one** lead per shared duty, ask for a distinct *checking* role
 rather than a rival leader, and treat a decision as a joint closure rather than a contest of
 dominance — and why the QuantumOS AI agents **elect a single lead per duty** instead of competing
-([`agent.mjs`](https://github.com/rchain-community/quantum-os/blob/main/scripts/qos-cli/agent.mjs) lead election).
+([`agent.mjs`](https://github.com/rhovision-org/quantum-os/blob/main/scripts/qos-cli/agent.mjs) lead election).
 
 **Allen's emergence question** — how higher-order effects arise — has the same answer as the
 neutron's stabilization: **delayed communication across complementary impedances**. Each agent is a
@@ -166,7 +166,7 @@ joint closures, not votes**; even the turn-taking; **protect the complementary m
 role templates (Proposer / Skeptic / Integrator / Evidence keeper / Operator / Boundary keeper), the
 8-point **closure checklist**, the defer/split/escalate/issue protocol, and a worked
 clones-vs-specialists demo room live in the quantum-os repo:
-[**Room_Best_Practices.md**](https://github.com/rchain-community/quantum-os/blob/main/Room_Best_Practices.md)
+[**Room_Best_Practices.md**](https://github.com/rhovision-org/quantum-os/blob/main/Room_Best_Practices.md)
 (companion to `Group_Decisions.md` / `Governance.md`).
 
 ## References

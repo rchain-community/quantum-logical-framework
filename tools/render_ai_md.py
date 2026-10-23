@@ -327,7 +327,7 @@ def build_page(md: str, title: str) -> str:
         + '<div class="copybar"><button id="copybtn">Copy for Google Docs</button></div>\n'
         + '<article id="doc" class="page">\n' + body
         + '<footer class="colophon"><span>Quantum Logical Framework</span>'
-        + '<span>rchain-community/quantum-logical-framework</span></footer>\n</article>\n'
+        + '<span>rhovision-org/quantum-logical-framework</span></footer>\n</article>\n'
         + SCRIPT
     )
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """evolutionary_census.py — evolutionary game theory on the closure census (quantum-os #209).
 
-Step 1–3 of the plan posted on rchain-community/quantum-os#209: the strategy representation,
+Step 1–3 of the plan posted on rhovision-org/quantum-os#209: the strategy representation,
 the pairwise match primitive, and the payoff→multiplicity mapping with its R6a check — run
 BEFORE any population dynamics, because the mapping decides whether the test can fail at all.
 

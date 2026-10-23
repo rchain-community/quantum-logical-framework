@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh api -X PUT repos/rchain-community/quantum-logical-framework/pulls/*/merge*)",
+      "Bash(gh api -X PUT repos/rhovision-org/quantum-logical-framework/pulls/*/merge*)",
       "mcp__github__merge_pull_request"
     ]
   }

@@ -22,7 +22,7 @@ Everything else follows from counting that history:
 
 The output is an **inventory in the shared `closures` schema** — the same one
 data/census_inventory.json uses and the Rust `qucalc` crate loads
-(rchain-community/rchain-rust, qucalc/src/lib.rs). Each entry is
+(rhovision-org/rholo, qucalc/src/lib.rs). Each entry is
 `event_classes[branch][class] = {signed, ways}` with **ways held as a coefficient**: a
 fold reachable N ways is ONE weighted class, not N terms. That is the whole answer to
 Levinthal — the exponential is a number in a record, never a list to be searched — and it

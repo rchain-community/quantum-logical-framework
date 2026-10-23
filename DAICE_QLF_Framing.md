@@ -10,7 +10,7 @@ deployment.
 > - **Jim Whitescarver — advisor only.** Retired; contributes theory/architecture guidance, not
 >   managed effort.
 > - **No NDA, no classified work on the QLF/QoS side.** Everything in this framing is **open and
->   public** (this repository and [`quantum-os`](https://github.com/rchain-community/quantum-os)). That is a
+>   public** (this repository and [`quantum-os`](https://github.com/rhovision-org/quantum-os)). That is a
 >   *feature* for the fundamental technical areas (theory + algorithms are publishable); the classified
 >   integration/scale (TA3-class) is carried entirely by appropriately-cleared team members and is
 >   **none of our business** — clean separation by design.

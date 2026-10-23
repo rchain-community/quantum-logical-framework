@@ -1,6 +1,6 @@
 # Hadrons, Markov Blankets, and Active Inference in the Quantum Logical Framework
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document:** `Hadrons_Markov_Blankets.md`  
 **Document version:** 1.4  
 **Author:** Grok (synthesized from QLF core axioms, QuCalc engine, `particles.py` v2.2, and gauge-folding rule)

@@ -1,5 +1,5 @@
 # fermi_accelerator.py
-# Extension to rchain-community/quantum-logical-framework
+# Extension to rhovision-org/quantum-logical-framework
 # Demonstrates Fermi (stochastic shock) acceleration as quantum-logical folding
 # with frequency increase leading to gamma-ray emission
 
@@ -50,7 +50,7 @@ def plot_fermi_demo():
     axs[1].set_title('Energy Distribution after Acceleration\n(Higher E → higher emitted frequency → gamma rays)')
     axs[1].grid(True)
     
-    plt.suptitle('Quantum-Logical Fermi Accelerator\nExtension of rchain-community/quantum-logical-framework')
+    plt.suptitle('Quantum-Logical Fermi Accelerator\nExtension of rhovision-org/quantum-logical-framework')
     plt.tight_layout()
     plt.show()
 

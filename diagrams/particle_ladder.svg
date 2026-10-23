@@ -14,27 +14,27 @@
   <text x="685" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#c2410c">DOWN — Hawking unwind</text>
 
   <!-- LEFT column: upward ladder (bottom = vacuum, top = collective) -->
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Chemistry.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Chemistry.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Chemistry.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Chemistry.md">
     <rect x="60" y="100" width="310" height="42" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
     <text x="215" y="126" text-anchor="middle" font-size="13.5" fill="#1e3a8a">5 · Collective — crystals, molecules, condensates</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Bound_States_QLF.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Bound_States_QLF.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Bound_States_QLF.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Bound_States_QLF.md">
     <rect x="60" y="160" width="310" height="42" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
     <text x="215" y="186" text-anchor="middle" font-size="13.5" fill="#1e3a8a">4 · Atom — lepton + hadron joint closure</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Quarks.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Quarks.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Quarks.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Quarks.md">
     <rect x="60" y="220" width="310" height="42" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2"/>
     <text x="215" y="246" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1d4ed8">3 · Hadron / proton — 3-colour locked</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Standard_Model.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Standard_Model.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Standard_Model.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Standard_Model.md">
     <rect x="60" y="280" width="310" height="42" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
     <text x="215" y="306" text-anchor="middle" font-size="13.5" fill="#1e3a8a">2 · Generations — e / μ / τ (= 3 axes)</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Spin_QLF.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Spin_QLF.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Spin_QLF.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Spin_QLF.md">
     <rect x="60" y="340" width="310" height="42" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
     <text x="215" y="366" text-anchor="middle" font-size="13.5" fill="#1e3a8a">1 · Stable lepton — ½-spin (± gauge)</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Creation.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Creation.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Creation.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Creation.md">
     <rect x="60" y="416" width="310" height="42" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
     <text x="215" y="442" text-anchor="middle" font-size="13.5" fill="#5b21b6">0 · Vacuum pair — transient ½-spin closure</text>
   </a>
@@ -43,20 +43,20 @@
   <text x="22" y="290" text-anchor="middle" font-size="11.5" fill="#2563eb" transform="rotate(-90 22 290)">generate → ZFA close → bind</text>
 
   <!-- RIGHT column: downward ladder -->
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/BLACK-HOLES.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/BLACK-HOLES.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/BLACK-HOLES.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/BLACK-HOLES.md">
     <rect x="530" y="100" width="310" height="42" rx="8" fill="#111827"/>
     <text x="685" y="126" text-anchor="middle" font-size="13.5" font-weight="700" fill="#ffffff">Black hole — deep gauge-folded closure</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Hadron_BlackHoles.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Hadron_BlackHoles.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Hadron_BlackHoles.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Hadron_BlackHoles.md">
     <rect x="530" y="200" width="310" height="42" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
     <text x="685" y="220" text-anchor="middle" font-size="13.5" fill="#9a3412">Hawking / unwind — one-step re-entry</text>
     <text x="685" y="236" text-anchor="middle" font-size="11.5" fill="#c2410c">releases log 2 per ½-spin atom · unitary</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Decay.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Decay.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Decay.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Decay.md">
     <rect x="530" y="304" width="310" height="42" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
     <text x="685" y="330" text-anchor="middle" font-size="13.5" fill="#9a3412">Cascade — heavier → lighter generations</text>
   </a>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Creation.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Creation.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Creation.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Creation.md">
     <rect x="530" y="416" width="310" height="42" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
     <text x="685" y="442" text-anchor="middle" font-size="13.5" fill="#5b21b6">Vacuum — residual pairs → Stage 0</text>
   </a>
@@ -66,7 +66,7 @@
 
   <!-- hinge: particle = quantum black hole -->
   <line x1="370" y1="241" x2="530" y2="121" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="5 4"/>
-  <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Hadron_BlackHoles.md" target="_blank" xlink:href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Hadron_BlackHoles.md">
+  <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Hadron_BlackHoles.md" target="_blank" xlink:href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Hadron_BlackHoles.md">
     <rect x="372" y="150" width="156" height="52" rx="8" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.4"/>
     <text x="450" y="171" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">particle = quantum</text>
     <text x="450" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">black hole</text>

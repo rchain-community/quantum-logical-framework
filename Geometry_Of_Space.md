@@ -66,7 +66,7 @@ direction, leaving the 3 spatial dimensions we render as space.
 
 A crystal is a **macroscopic resonant closure lattice** ([`Crystal_QuantumOS.md`](Crystal_QuantumOS.md),
 [`Emergent_Markov_Blankets.md`](Emergent_Markov_Blankets.md)) — Pauli exclusion holds it up against the latency
-infall ([▶ see an iron BCC crystal self-bind](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20bcc%203%203%20Fe%20%40%200%2C0%2C0); cold **helium** instead Bose-condenses into a superfluid — [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20sc%203%203%20He%20%40%200%2C0%2C0); [`Chemistry.md`](Chemistry.md)). Quiet-frequency rare-earth and defect
+infall ([▶ see an iron BCC crystal self-bind](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20bcc%203%203%20Fe%20%40%200%2C0%2C0); cold **helium** instead Bose-condenses into a superfluid — [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20sc%203%203%20He%20%40%200%2C0%2C0); [`Chemistry.md`](Chemistry.md)). Quiet-frequency rare-earth and defect
 modes (e.g. `¹⁵¹Eu³⁺:Y₂SiO₅`, six-hour ground-state coherence) are **deep Markov blankets** — narrow
 linewidth + suppressed bath coupling = the `Δt = R/f` isolation of a deep blanket. Resonating atom
 groups self-organize into ZFA-closed logical qubits. **Perfect pitch** is the cleanest case where the

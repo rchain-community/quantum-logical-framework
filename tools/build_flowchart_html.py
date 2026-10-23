@@ -10,7 +10,7 @@ No third-party deps (pandoc/LaTeX/Chromium not required here — the browser ren
 """
 import re, html, json, pathlib
 
-REPO = "https://github.com/rchain-community/quantum-logical-framework/blob/main"
+REPO = "https://github.com/rhovision-org/quantum-logical-framework/blob/main"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MD = ROOT / "tools" / "flowchart_source.md"   # full Mermaid source (build input)
 OUT = ROOT / "FlowChart.html"                 # rendered, clickable, print-to-PDF
@@ -129,7 +129,7 @@ def add_clicks(idx, diagram):
 
 # ---- assemble HTML ----
 intro = """
-<p>This is a one-page visual map of the <strong><a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/README.md" target="_blank" rel="noopener">Quantum Logical Framework (QLF)</a></strong> &mdash; a
+<p>This is a one-page visual map of the <strong><a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/README.md" target="_blank" rel="noopener">Quantum Logical Framework (QLF)</a></strong> &mdash; a
 formal proof system, machine-verified in Lean&nbsp;4 across more than a hundred modules with zero <code>sorry</code>,
 that derives quantum mechanics and spacetime from a single selection principle: <em>Zero Free Action
 (ZFA) balance</em>. Every chart below shows one domain; the <strong>boxes are clickable</strong>
@@ -193,7 +193,7 @@ doc = f"""<!DOCTYPE html>
 {''.join(body_html)}
 <footer>
   Generated from <a href="{REPO}/FlowChart.md" target="_blank" rel="noopener">FlowChart.md</a>.
-  Project: <a href="https://github.com/rchain-community/quantum-logical-framework" target="_blank" rel="noopener">rchain-community/quantum-logical-framework</a>.
+  Project: <a href="https://github.com/rhovision-org/quantum-logical-framework" target="_blank" rel="noopener">rhovision-org/quantum-logical-framework</a>.
   Diagrams render via Mermaid; boxes and links are clickable in the browser and in the printed PDF.
 </footer>
 <script type="module">
@@ -213,8 +213,8 @@ banner = (
     "> **The diagrams don't render reliably on GitHub** (a known GitHub Mermaid/dark-theme issue), "
     "so this page is the text index. For the **rendered, clickable diagrams** and a **printable PDF** "
     "(with internal + external links), open the live version on GitHub Pages: "
-    "**[rchain-community.github.io/quantum-logical-framework/FlowChart.html]"
-    "(https://rchain-community.github.io/quantum-logical-framework/FlowChart.html)** "
+    "**[rhovision-org.github.io/quantum-logical-framework/FlowChart.html]"
+    "(https://rhovision-org.github.io/quantum-logical-framework/FlowChart.html)** "
     "(or clone/pull and open the local `FlowChart.html`). "
     "Regenerate with `python3 tools/build_flowchart_html.py`.\n"
 )

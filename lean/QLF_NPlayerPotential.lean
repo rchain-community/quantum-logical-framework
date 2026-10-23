@@ -5,7 +5,7 @@ import Mathlib
 
 [`QLF_PotentialGames`](QLF_PotentialGames.lean) proves *a game has a free-action functional iff it
 is a potential game* for two players. A QuantumOS room is `n` players, and
-[`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md)
+[`Collective_Optimization.md`](https://github.com/rhovision-org/quantum-os/blob/main/Collective_Optimization.md)
 states the result at that arity — so here it is at that arity. Profiles are dependent functions
 `(i : ι) → S i`; a unilateral move is `Function.update s i x`.
 

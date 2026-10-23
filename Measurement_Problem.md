@@ -102,7 +102,7 @@ Companion documents:
 * [MRE.md](MRE.md) — per-event $\log 2$ derivation; gives §4a its quantitative content
 * [BayesianMechanics.md](BayesianMechanics.md) — multiplicity principle as the root of probability; ZFA as Bayesian update
 * [Hierarchical_Control.md](Hierarchical_Control.md) — measurement as the bottom-up fast-clock event in the hierarchical-control architecture
-* [Simulation_Impossibility.md](https://github.com/rchain-community/quantum-logical-framework/blob/main/Simulation_Impossibility.md)
+* [Simulation_Impossibility.md](https://github.com/rhovision-org/quantum-logical-framework/blob/main/Simulation_Impossibility.md)
 
 ## 6. Philosophical Implications
 

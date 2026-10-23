@@ -3,7 +3,7 @@
 **Document Status**: Improved rigorous derivation for the Quantum Logical Framework repository  
 **File**: `E_mc2_derivation.md`  
 **Version**: 0.3 (June 7, 2026) – cross-linked into the substrate-derivation program  
-**Repo reference**: https://github.com/rchain-community/quantum-logical-framework  
+**Repo reference**: https://github.com/rhovision-org/quantum-logical-framework  
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Two clocks, one history: what the age means in QLF, and what is derived**
 
-**Repository:** [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`rhovision-org/quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Authors:** Jim Whitescarver & Grok (xAI); revised 2026-09-30
 
 ---

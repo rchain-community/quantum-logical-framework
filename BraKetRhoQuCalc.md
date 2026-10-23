@@ -289,7 +289,7 @@ The variational physics foundation underlying this correspondence is covered in 
 
 ## Live Evaluation: quantum-os `/braket` command
 
-The [quantum-os](https://github.com/rchain-community/quantum-os) browser app implements these evaluations live. After connecting, type in the chat input:
+The [quantum-os](https://github.com/rhovision-org/quantum-os) browser app implements these evaluations live. After connecting, type in the chat input:
 
 **`/braket +`** — evaluates `action(Form_+)`, shows the density matrix of `|+⟩`:
 
@@ -319,4 +319,4 @@ bra: ⟨0| + ⟨1|  (eval = ket†  =  ket  [Hermitian: Form.toMatrix_adjoint �
   bra_ket_always_balanced: ✓ (BraKetRhoQuCalc.lean)
 ```
 
-`|0⟩⟨0| + |1⟩⟨1| = I` — the identity matrix, confirming `{|0⟩, |1⟩}` is a complete orthonormal basis. States supported: `0`, `1`, `+`, `-`, `i`, `-i`. Open the app at **https://rchain-community.github.io/quantum-os/** and type `/help` for the full command list.
+`|0⟩⟨0| + |1⟩⟨1| = I` — the identity matrix, confirming `{|0⟩, |1⟩}` is a complete orthonormal basis. States supported: `0`, `1`, `+`, `-`, `i`, `-i`. Open the app at **https://rhovision-org.github.io/quantum-os/** and type `/help` for the full command list.

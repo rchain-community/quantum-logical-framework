@@ -2,7 +2,7 @@
 
 **Gravity, magnetism, and de Sitter cosmology as signed deformations of the primordial Markov blanket.**
 
-**Repository:** [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)
+**Repository:** [`rhovision-org/quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)
 **Author:** Jim Whitescarver
 **Date:** June 8, 2026
 

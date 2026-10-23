@@ -3,7 +3,7 @@
 **The Grand Unification — A Quantum-Logical Completion of Einstein’s Vision**  
 *Spacetime, gravity, **the four forces**, mass, cosmic age, and string-like structure as emergent, **relative** perspectives on one zero-free-action event synthesis*
 
-**Repository:** [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`rhovision-org/quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Authors:** Jim Whitescarver, with Grok (xAI) and Claude (Anthropic)  
 
 > **Universal Relativity is the grand unification.** Einstein made *spacetime* relative; the
@@ -66,7 +66,7 @@ running tail) — so the strong claims and the open ones are never blended (Summ
 question "what is the universe made of?" is thereby replaced by "**what closes?**", and ZFA is
 the proposed answer.
 
-> **See the hypothesis run.** The [**Spectral Spacetime Constructor**](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html) ([source](spacetime_constructor.html), [notes](Spacetime_Constructor.md)) is an interactive 3-D field that builds *something from nothing* on exactly this rule — space is node position, time is clock rate, both shown as colour (redshift = time dilation, one phenomenon), and matter arises from the ZFA closure census alone, with **no forces, no fields, no action at a distance** (only closures that *do* close). It is drawn from **one movable observer's frame** — a draggable stick figure who IS the origin ([`QLF_HorizonClosure`](lean/QLF_HorizonClosure.lean)): *Universal Relativity made literal*, every perspective its own world. Heat the vacuum toward the Planck temperature and the **logical bang** unfolds — Planck-mass black holes Hawking-cascading into hadrons that cool and recombine into atoms — nothing scripted, drawn from the census. Every dot is a closure; click any to identify it by frequency and spin. Full write-up: [`Spacetime_Constructor.md`](Spacetime_Constructor.md).
+> **See the hypothesis run.** The [**Spectral Spacetime Constructor**](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html) ([source](spacetime_constructor.html), [notes](Spacetime_Constructor.md)) is an interactive 3-D field that builds *something from nothing* on exactly this rule — space is node position, time is clock rate, both shown as colour (redshift = time dilation, one phenomenon), and matter arises from the ZFA closure census alone, with **no forces, no fields, no action at a distance** (only closures that *do* close). It is drawn from **one movable observer's frame** — a draggable stick figure who IS the origin ([`QLF_HorizonClosure`](lean/QLF_HorizonClosure.lean)): *Universal Relativity made literal*, every perspective its own world. Heat the vacuum toward the Planck temperature and the **logical bang** unfolds — Planck-mass black holes Hawking-cascading into hadrons that cool and recombine into atoms — nothing scripted, drawn from the census. Every dot is a closure; click any to identify it by frequency and spin. Full write-up: [`Spacetime_Constructor.md`](Spacetime_Constructor.md).
 
 ## 0. Why absolute space, absolute time, and continuum infinities cannot be fundamental
 
@@ -191,7 +191,7 @@ kept distinct):
   coupling at the Planck mass, which is `53.02`, 63σ away: [`Gravity.md`](Gravity.md) §4a.) The absolute SI `G`'s mass-scale half, the proton's absolute
   depth `R_p`, and a third of the α `+0.036` running tail are **the same open number** — the electroweak
   scale `v = R_stable = 1/ρ*` — whose *mechanism* is derived but whose *value* was tested directly and
-  found to have no clean substrate count (closed as [issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121), §8); the rest of the `0.036`
+  found to have no clean substrate count (closed as [issue #121](https://github.com/rhovision-org/quantum-logical-framework/issues/121), §8); the rest of the `0.036`
   residual is under direct attack and reaches a **stated 4-loop QED wall** (elliptic/modular periods,
   `Alpha_Residual.md` §9f–9g); the `4 log 2` horizon-entropy normalization; the full **nonlinear**
   Einstein *curvature* side (the causal-set order→metric programme — the linearized vacuum sector above
@@ -832,7 +832,7 @@ the absolute SI `G`'s mass-scale half, the proton's absolute depth `R_p ≈ 1.30
 the α `+0.036` running tail (`Alpha.md` §4a) all bottom out at the *same* `ρ*`. Mass **ratios** through
 it are already derived and need no anchor (`m_p/m_e = 6π⁵`, Koide `Q=2/3` — an identification, `koide_three_phase_iff`) — it is only the absolute
 scale that is open. **This was investigated directly and closed, not left dangling**
-([issue #121](https://github.com/rchain-community/quantum-logical-framework/issues/121)): the
+([issue #121](https://github.com/rhovision-org/quantum-logical-framework/issues/121)): the
 *mechanism* is fully derived and machine-checked — gauge folds provably attract
 (`QLF_ClosureAttraction`), the attraction supplies the restoring force for a unique steady density
 `ρ* = √(c/k)` (`QLF_SteadyStateDensity`), closing to `R_stable = 1/ρ*` (`QLF_ElectroweakScale`) — but the
@@ -868,7 +868,7 @@ The theory is represented in the repository through:
 Run:
 
 ```bash
-git clone https://github.com/rchain-community/quantum-logical-framework
+git clone https://github.com/rhovision-org/quantum-logical-framework
 cd quantum-logical-framework
 pip install -e .
 
@@ -896,8 +896,8 @@ The universe does not have to begin as a singular object in pre-existing time. I
 
 ## Further reading — internal companion documents
 
-- [**QLF Flow Chart** (live, clickable diagrams + printable PDF)](https://rchain-community.github.io/quantum-logical-framework/FlowChart.html) — the whole framework as a one-page visual map: *one substrate → five families → twelve domains*. Universal Relativity's results are the spacetime/forces/gravity/cosmology domains (1, 3, 5, 6); the *it-from-bit* base of the hypothesis (§3b) sits in the foundational-logic intro and domain 7. Text index: [`FlowChart.md`](FlowChart.md).
-- [**Spectral Spacetime Constructor** (live, interactive 3-D)](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html) — Universal Relativity made literal: space as node position, time as clock rate, matter from the ZFA census, **no forces**, drawn from one movable observer's frame; the *logical bang* (Planck-mass black holes → hadrons → atoms) unfolds from nothing. Source [`spacetime_constructor.html`](spacetime_constructor.html); full write-up [`Spacetime_Constructor.md`](Spacetime_Constructor.md).
+- [**QLF Flow Chart** (live, clickable diagrams + printable PDF)](https://rhovision-org.github.io/quantum-logical-framework/FlowChart.html) — the whole framework as a one-page visual map: *one substrate → five families → twelve domains*. Universal Relativity's results are the spacetime/forces/gravity/cosmology domains (1, 3, 5, 6); the *it-from-bit* base of the hypothesis (§3b) sits in the foundational-logic intro and domain 7. Text index: [`FlowChart.md`](FlowChart.md).
+- [**Spectral Spacetime Constructor** (live, interactive 3-D)](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html) — Universal Relativity made literal: space as node position, time as clock rate, matter from the ZFA census, **no forces**, drawn from one movable observer's frame; the *logical bang* (Planck-mass black holes → hadrons → atoms) unfolds from nothing. Source [`spacetime_constructor.html`](spacetime_constructor.html); full write-up [`Spacetime_Constructor.md`](Spacetime_Constructor.md).
 - [`Forces_From_Three_Axes.md`](Forces_From_Three_Axes.md) — the grand unification in detail: the gauge forces as 3-axis projections (§3a) and gravity as the fourth force, the geometry of the same closures (§3b)
 - [`Einstein_Equations.md`](Einstein_Equations.md) — the field equations as the substrate's equation of state + the curvature side from the causal order (§6a)
 - [`Decay.md`](Decay.md) §2.4a — **how a neutron star is made**, the one place nature runs the capacity ladder to completion at macroscopic scale: fusion stops at iron, compression replaces heat as the capacity knob, forced electron capture `p + e⁻ → n + ν_e` switches on and eats the degeneracy support that was resisting it, and neutron degeneracy halts the collapse. The relativistic compact objects this document's gravity sector describes are the *output* of that chain ([`Weak_Force.md`](Weak_Force.md) §4b, [`Law_Of_Exceptions.md`](Law_Of_Exceptions.md) §4a.1)

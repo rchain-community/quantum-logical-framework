@@ -104,7 +104,7 @@ The counting argument below does not depend on it.)*
 
 **Second, the multiplicity is a number, not an enumeration.** The census is stored in the shared
 inventory schema — the same `closures` layer as [`data/census_inventory.json`](data/census_inventory.json),
-read by the Rust `qucalc` crate ([rchain-rust `qucalc/src/lib.rs`](https://github.com/rchain-community/rchain-rust/blob/dev/qucalc/src/main.rs)),
+read by the Rust `qucalc` crate ([rholo `qucalc/src/lib.rs`](https://github.com/rhovision-org/rholo/blob/dev/qucalc/src/main.rs)),
 whose load-bearing invariant is *ways as a coefficient*: a class reachable `N` ways is **one**
 `WeightedClass`, not `N` terms. The exponential lives in a field, never in a list.
 

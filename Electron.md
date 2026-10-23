@@ -1,6 +1,6 @@
 # Electron in the Quantum Logical Framework (QLF)
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)
 **Document:** `Electron.md`
 **Document version:** 3.0 — the core claim sharpened and machine-verified ([`lean/QLF_ElectronClosure.lean`](lean/QLF_ElectronClosure.lean), zero axioms): the electron is a **closed periodic mode**, not an unfinished fragment; **charge is the residue of non-closure**, and it is blind to spin and energy. Resolves the standing inconsistency between "open Hermitian deficit" and the engine's own `ZFA closed: True`. Earlier: 2.1 — run-commands regenerated against the current `particles.py`; ½-spin-information and two-axis-content findings. Aligned with [`Bound_States_QLF.md`](Bound_States_QLF.md)
 **Author:** Jim/Grok (synthesized from QLF core axioms, QuCalc engine, `particles.py` v2.2, gauge-folding rule, and the bound-state framing)
@@ -17,7 +17,7 @@ In QLF **the electron is not an independent stable observable**, but not because
 
 This is the same structural move that [`Delayed_Choice_Eraser.md`](Delayed_Choice_Eraser.md) makes for photons (joint emitter-absorber closure, not free projectile) and that [`Hadrons_Markov_Blankets.md`](Hadrons_Markov_Blankets.md) makes for quarks (no asymptotic free quarks, only bound hadrons). Applied to electrons: an electron is one half of a joint closure, not an isolated particle whose mass can be extracted in isolation. The QLF observables are atomic systems; the "electron" is the gauge-fold contribution of one constituent.
 
-The remainder of this document is a hands-on tutorial. We give the electron's QuCalc topology (the half it contributes to a joint closure), the photon and antiphoton (which jointly satisfy ZFA), and the electron–proton hydrogen formation (a joint-ZFA bound state). Everything runs live in `particles.py` — and every bound state runs *visually* in the [**Spectral Spacetime Constructor**](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html) (the `▶ live` links in the table below open positronium, hydrogen, and muonium; [`Spacetime_Constructor.md`](Spacetime_Constructor.md)).
+The remainder of this document is a hands-on tutorial. We give the electron's QuCalc topology (the half it contributes to a joint closure), the photon and antiphoton (which jointly satisfy ZFA), and the electron–proton hydrogen formation (a joint-ZFA bound state). Everything runs live in `particles.py` — and every bound state runs *visually* in the [**Spectral Spacetime Constructor**](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html) (the `▶ live` links in the table below open positronium, hydrogen, and muonium; [`Spacetime_Constructor.md`](Spacetime_Constructor.md)).
 
 ## Why the Electron Matters
 
@@ -275,9 +275,9 @@ Statuses on the two axes of [`ScientificApproach.md`](ScientificApproach.md) §3
 
 | Joint closure | Partner | Bound-state mass | Joint topology (schematic) |
 |---|---|---|---|
-| **Positronium** ([▶ live](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0)) | Positron `v>v-` | 1.022 MeV | `^<v>^+ · v<v>v-` (electron half + positron half) |
-| **Hydrogen** ([▶ live](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0)) | Proton (three-quark composite) | 938.78 MeV | electron half + proton internal closure |
-| **Muonium** ([▶ live](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=muonium%20%40%200%2C0%2C0)) | Antimuon (deeper-blanket gauge half) | 106.17 MeV | electron half + antimuon half (asymmetric blanket depths) |
+| **Positronium** ([▶ live](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0)) | Positron `v>v-` | 1.022 MeV | `^<v>^+ · v<v>v-` (electron half + positron half) |
+| **Hydrogen** ([▶ live](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0)) | Proton (three-quark composite) | 938.78 MeV | electron half + proton internal closure |
+| **Muonium** ([▶ live](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=muonium%20%40%200%2C0%2C0)) | Antimuon (deeper-blanket gauge half) | 106.17 MeV | electron half + antimuon half (asymmetric blanket depths) |
 
 In each case the "electron" of this document contributes the same gauge-fold-depth `R_e` to the joint closure. The bound-state mass is `R_e + R_partner` (modulo joint-closure binding corrections), not `R_e` alone. See [`Bound_States_QLF.md`](Bound_States_QLF.md) for the spectrum.
 

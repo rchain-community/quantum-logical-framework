@@ -4,8 +4,8 @@
 [`QLF_EvolutionaryGames`](lean/QLF_EvolutionaryGames.lean), [`QLF_NPlayerPotential`](lean/QLF_NPlayerPotential.lean), no axioms), one exact/numerical tool
 ([`evolutionary_census.py`](evolutionary_census.py)), five pre-registered runs whose outcomes are
 recorded below whichever way they landed, and one operational consequence for the QuantumOS room
-([`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md)).
-Origin: quantum-os [#209](https://github.com/rchain-community/quantum-os/issues/209).
+([`Collective_Optimization.md`](https://github.com/rhovision-org/quantum-os/blob/main/Collective_Optimization.md)).
+Origin: quantum-os [#209](https://github.com/rhovision-org/quantum-os/issues/209).
 
 > **The one-line result.** *The substrate generates potential games and solves all games.* A game
 > has a free-action functional iff it is a potential game (`free_action_iff_four_cycle`); under
@@ -148,7 +148,7 @@ Plus the selection and welfare anchors: `nash_iff_closure`, `risk_dominance_is_p
 ## 7. For the room
 
 The falsifiable, theorem-backed content for
-[`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md):
+[`Collective_Optimization.md`](https://github.com/rhovision-org/quantum-os/blob/main/Collective_Optimization.md):
 
 * **Consensus-by-relaxation is conservative.** In a coordination problem with a risk/payoff split,
   a room that anneals converges on the *safe* convention — reliably, and regardless of schedule.

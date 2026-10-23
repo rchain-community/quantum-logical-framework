@@ -58,9 +58,9 @@
 <h1>The Fredkin Machine</h1>
 <p class="sub">Conservative logic running on the QLF substrate — watch the ball count hold,
 the twist action stay at zero, and the whole computation run backwards.
-<a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/Fredkin_QLF.md">Fredkin_QLF.md</a> ·
-<a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/fredkin_qlf.py">fredkin_qlf.py</a> ·
-<a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/QLF_Fredkin.lean">QLF_Fredkin.lean</a></p>
+<a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/Fredkin_QLF.md">Fredkin_QLF.md</a> ·
+<a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/fredkin_qlf.py">fredkin_qlf.py</a> ·
+<a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/QLF_Fredkin.lean">QLF_Fredkin.lean</a></p>
 <p class="sub" style="margin-top:-14px">Built at the suggestion of <strong>Van Hovey</strong>.</p>
 
 
@@ -156,7 +156,7 @@ the twist action stay at zero, and the whole computation run backwards.
   <div class="note" style="margin-bottom:10px"><strong>On the count:</strong> garbage is
     every wire you decline to keep, which includes the spent input wires — the adder runs on
     32 wires (3 inputs + 29 ancillas) and keeps 2, so 30 are garbage.
-    <a href="https://github.com/rchain-community/quantum-logical-framework/blob/main/fredkin_qlf.py">fredkin_qlf.py</a> reports 29 because it counts ancillas
+    <a href="https://github.com/rhovision-org/quantum-logical-framework/blob/main/fredkin_qlf.py">fredkin_qlf.py</a> reports 29 because it counts ancillas
     <em>allocated</em>. Same circuit, two honest accountings.</div>
   <div class="note">Running the machine is free. Tidying up is not: resetting
     <em>k</em> garbage wires to zero is a <code>2^k → 1</code> map, and that is the only

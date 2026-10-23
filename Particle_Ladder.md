@@ -39,18 +39,18 @@ and [`Information_Physics.md`](Information_Physics.md) — not a claim that the 
 
 | Ladder box | QLF explanation of that layer | live |
 |---|---|---|
-| **0 · Vacuum pair** | [`Creation.md`](Creation.md) — creation = separation of nothing into conjugate pairs (why the first distinction is two-valued) | [▶ e⁺e⁻](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) |
+| **0 · Vacuum pair** | [`Creation.md`](Creation.md) — creation = separation of nothing into conjugate pairs (why the first distinction is two-valued) | [▶ e⁺e⁻](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) |
 | **1 · Stable lepton (½-spin)** | [`Spin_QLF.md`](Spin_QLF.md) — spin *is* the twists; the ½-spin closure | |
 | **2 · Generations e/μ/τ** | [`Standard_Model.md`](Standard_Model.md) — three generations = the three spatial axes of Q₈ (charged leptons); neutrinos: 1/2/4-axis closures ([`Lepton_Generations_Fourier.md`](Lepton_Generations_Fourier.md) §6) | |
 | **3 · Hadron / proton** | [`Quarks.md`](Quarks.md) — colour = the three axes; Borromean confinement | |
-| **4 · Atom** | [`Bound_States_QLF.md`](Bound_States_QLF.md) — atoms as bound joint-ZFA closures (the real observables) | [▶ H](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0) |
+| **4 · Atom** | [`Bound_States_QLF.md`](Bound_States_QLF.md) — atoms as bound joint-ZFA closures (the real observables) | [▶ H](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0) |
 | **5 · Collective** | [`Chemistry.md`](Chemistry.md) — one valence rule; crystals, condensates | |
 | **Black hole** | [`BLACK-HOLES.md`](BLACK-HOLES.md) — finite interiors, no singularity | |
 | **Hawking / unwind** | [`Hadron_BlackHoles.md`](Hadron_BlackHoles.md) — hadron = quantum black hole; decay = Hawking evaporation | |
 | **Cascade** | [`Decay.md`](Decay.md) — the census-exponential prime-slip cascade | |
 | **Vacuum (return)** | [`Creation.md`](Creation.md) §8a — the logical bang / Stage 0 | |
 | **Hinge · particle = quantum BH** | [`Hadron_BlackHoles.md`](Hadron_BlackHoles.md) — Compton = Schwarzschild (`QLF_QuantumBlackHole`) | |
-| *Dynamics* | [`pair_production_demo.py`](pair_production_demo.py) — census creation + freeze-out | [▶ full cascade](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#t=0.95) |
+| *Dynamics* | [`pair_production_demo.py`](pair_production_demo.py) — census creation + freeze-out | [▶ full cascade](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#t=0.95) |
 
 ---
 
@@ -215,10 +215,10 @@ The whole ladder is a single loop, both directions:
 - **Cascade.** Prime-/depth-synchronized unlocks produce the sequential transitions (§3).
 - **Photon.** Every emission/absorption is a joint-ZFA handshake, not a flying projectile ([`Collective_Electrodynamics.md`](Collective_Electrodynamics.md)).
 
-**This is not a thought experiment — it runs.** The [interactive constructor](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html) *is* this ladder: heat the vacuum toward the Planck top and watch **black holes form → Hawking-cascade into hadrons → cool into nuclei → recombine into atoms → do chemistry**, from the census alone, nothing scripted ([`Spacetime_Constructor.md`](Spacetime_Constructor.md)).
+**This is not a thought experiment — it runs.** The [interactive constructor](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html) *is* this ladder: heat the vacuum toward the Planck top and watch **black holes form → Hawking-cascade into hadrons → cool into nuclei → recombine into atoms → do chemistry**, from the census alone, nothing scripted ([`Spacetime_Constructor.md`](Spacetime_Constructor.md)).
 
-- [▶ heat to the Planck top — the full cascade](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#t=0.95)
-- [▶ a transient e⁺e⁻ vacuum pair](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) · [▶ an α (⁴He) closure](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=alpha%20%40%200%2C0%2C0) · [▶ a hydrogen atom](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0)
+- [▶ heat to the Planck top — the full cascade](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#t=0.95)
+- [▶ a transient e⁺e⁻ vacuum pair](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) · [▶ an α (⁴He) closure](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=alpha%20%40%200%2C0%2C0) · [▶ a hydrogen atom](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%200%2C0%2C0)
 
 ---
 

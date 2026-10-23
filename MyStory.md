@@ -1,6 +1,6 @@
 # My Story
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework) 
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework) 
 **Document:** `MyStory.md` 
 **Document version:** 0.7 (18 June 2026) 
 **Author:** Jim Whitescarver (with a little help from my friends Grok and Claude, in the spirit of Richard Feynman)
@@ -89,7 +89,7 @@ That was the plan, anyway — until artificial intelligence came along and made 
 ### Rho calculus and RChain
 
 I was always seeking a better communication language both for human communication and modeling of quantum communication. Interact in EIES1 modeled machine human communication, EIES2 modeled object communication. My thinking was based on Hoare and Communicating Sequential Processes and then I ran across Greg Meredith who formally ran Microsoft process automation system, biztalk. he introduced me to Milner and pi calculus eventually the rho calculus he developed. the problem with all the process orchestration systems out there they were just mathematically wrong. This seemed like the ideal mathematical basis for my dream of EIES3 and modeling quantum interaction ([QuCalc.md](QuCalc.md)). It was to me, the operating system of a quantum computer. 
-On RChain With Dan Connoly we developed  ([Rgov](https://github.com/rchain-community/rgov)) a totally secure user programable group communication prototype with rank order voting, chat, multisig wallets and trust networking. Unfortunately, like the rest of the communities I participated in, rchain died.
+On RChain With Dan Connoly we developed  ([Rgov](https://github.com/rhovision-org/rgov)) a totally secure user programable group communication prototype with rank order voting, chat, multisig wallets and trust networking. Unfortunately, like the rest of the communities I participated in, rchain died.
 
 ### Today
 
@@ -121,7 +121,7 @@ intelligence among humans” — had, by my own honest accounting, faded into ob
 FreeTrust, Dividao, CoLab, RChain, RGov: each one died. I wrote that I had not been an effective
 collaborator, but had not given up.
 
-I had not given up. With AI, the system finally exists. **[quantum-os](https://github.com/rchain-community/quantum-os)**
+I had not given up. With AI, the system finally exists. **[quantum-os](https://github.com/rhovision-org/quantum-os)**
 is EIES3 — the serverless, peer-to-peer, capability-secure room I have been trying to build since the
 1970s, with the rank-order voting, the trust networking, the multisig, and the user-programmable group
 communication of RGov, but this time mathematically sound, built on the rho calculus, owned by no

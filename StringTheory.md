@@ -2,7 +2,7 @@
 
 **How the Possibilist QLF Embeds — and Potentially Renders — String Theory Obsolete**
 
-**Repository:** [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`rhovision-org/quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Authors:** Jim Scarver & Grok (xAI)  
 **Date:** April 26, 2026
 
@@ -18,7 +18,7 @@ We prove that **string theory and M-theory embed cleanly into the possibilist QL
 
 In QLF, a closed string is a **gauge-fold tower in RhoQuCalc** — a level-`n` stack of Hermitian-pair (`+`–`−`) closures on a base `Form`. Each level is ZFA-balanced by construction.
 
-**Key theorems** (machine-verified in [`StringTheoryQLF.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/StringTheoryQLF.lean)):
+**Key theorems** (machine-verified in [`StringTheoryQLF.lean`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/StringTheoryQLF.lean)):
 
 - **Every string level is a ZFA-stable, symmetric, Hermitian closure** — `string_level_zfa_stable`, `string_level_symmetric`, `string_level_hermitian`. A string excitation is a stable substrate closure, on the critical line, by construction.
 - **The mass spectrum is the gauge-fold tower** — `string_mass_spectrum`: the level-`n` state evaluates to the `n`-fold Hermitian-pair product (the discrete analogue of `M² ∝ n`).
@@ -30,7 +30,7 @@ In QLF, a closed string is a **gauge-fold tower in RhoQuCalc** — a level-`n` s
 
 M-theory extends the picture naturally. M2-branes and M5-branes become higher-dimensional ZFA worldvolumes in RhoQuCalc.
 
-**Key theorems** (machine-verified in [`MTheoryQLF.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/MTheoryQLF.lean)):
+**Key theorems** (machine-verified in [`MTheoryQLF.lean`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/MTheoryQLF.lean)):
 
 - **M2- and M5-branes embed directly as ZFA-stable Hermitian worldvolumes** — `mbrane2_zfa_stable` / `mbrane2_hermitian` / `m2_mass_spectrum`; `mbrane5_zfa_stable` / `mbrane5_hermitian`.
 - **11D is reached by three extra twist components** — `M11DBrane`, `m11d_zfa_stable`: the 11th dimension is three alphabet twists, not a postulated manifold.
@@ -65,7 +65,7 @@ String theory becomes a useful effective description at certain energy scales, e
 ## 4. Implications for Physics and Philosophy
 
 - **String theorists can run their models inside QLF** using the RhoQuCalc engine — instantly gaining computability and formal verification.
-- **The information-ecology view** (see [`Philosophy.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/Philosophy.md)) shows that active inference naturally selects the most stable ZFA closures, explaining why intelligent structures (and perhaps string-like excitations) dominate.
+- **The information-ecology view** (see [`Philosophy.md`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/Philosophy.md)) shows that active inference naturally selects the most stable ZFA closures, explaining why intelligent structures (and perhaps string-like excitations) dominate.
 - **The universe is intelligence explaining intelligence** — string theory was a glimpse of this deeper logical self-organisation.
 
 ## 5. Implementation & Verification
@@ -81,9 +81,9 @@ lean --run lean/MTheoryQLF.lean
 python spacetime_dynamics.py
 ```
 
-- [`StringTheoryQLF.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/StringTheoryQLF.lean)  
-- [`MTheoryQLF.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/MTheoryQLF.lean)  
-- [`SpacetimeDynamics.lean`](https://github.com/rchain-community/quantum-logical-framework/blob/main/lean/SpacetimeDynamics.lean) (completed Einstein)
+- [`StringTheoryQLF.lean`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/StringTheoryQLF.lean)  
+- [`MTheoryQLF.lean`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/MTheoryQLF.lean)  
+- [`SpacetimeDynamics.lean`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/lean/SpacetimeDynamics.lean) (completed Einstein)
 
 ## Conclusion
 
@@ -101,9 +101,9 @@ Welcome to the possibilist universe.
 **Further reading**  
 - [`LQG_QLF.md`](LQG_QLF.md) — the **Loop Quantum Gravity** companion: QLF's substrate *is* a spin network of half-spin (j=½) ZFA closures, the Immirzi `log 2`-per-puncture entropy is QLF's per-Planck-patch quantum, and background independence is the synthesized-spacetime ontology  
 - [`SUSY_QLF.md`](SUSY_QLF.md) — the **Supersymmetry** companion: the supercharge `Q` is the half-spin shift (boson↔fermion = even↔odd closure parity), `{Q,Q†}=2P` is two half-spins closing one spacetime event (the half-spin = the square root of the event), and SUSY is realized *without* a doubled spectrum — so QLF predicts the LHC superpartner null result  
-- [`UniversalRelativity.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/UniversalRelativity.md)  
-- [`Philosophy.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/Philosophy.md)  
-- [`WHITE_PAPER.md`](https://github.com/rchain-community/quantum-logical-framework/blob/main/WHITE_PAPER.md)  
+- [`UniversalRelativity.md`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/UniversalRelativity.md)  
+- [`Philosophy.md`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/Philosophy.md)  
+- [`WHITE_PAPER.md`](https://github.com/rhovision-org/quantum-logical-framework/blob/main/WHITE_PAPER.md)  
 
 The framework is open, verifiable, and ready for anyone who wants to explore the logical structure of existence.
 - [`Knot_Theory_QLF.md`](Knot_Theory_QLF.md) — experimental knot-theory evidence (Nature 2025) linking topological string structures to QLF's twist algebra.

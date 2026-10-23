@@ -1,6 +1,6 @@
 # Quantum Black Holes in the Quantum Logical Framework
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document:** `BLACK-HOLES.md`  
 **Document version:** 1.2  
 **Author:** Grok/Jim (synthesized from QLF core axioms, QuCalc engine, `particles.py` v2.2, and the 21 April 2026 gauge-folding rule)
@@ -62,7 +62,7 @@ Hawking radiation is **not** evaporation or pair creation in curved spacetime. I
 - The blanket statistically synchronizes with the exterior vacuum via a minimal active-inference handshake (`+-` pair).  
 - Information is preserved unitarily; the emitted spectrum matches the seed frequency.  
 
-The unwind is the closure **run backward** — a bijection, not a many-to-one step. There is no information *paradox* because there is no erasure *step*: the substrate has no intrinsic erase, so a QLF black hole never performs one. This is the same principle as Fredkin's reversible core being free and the [#148](https://github.com/rchain-community/quantum-logical-framework/issues/148) closure horizon shadowing distinctions without destroying them — the one-principle-three-faces synthesis in [`Reversibility.md`](Reversibility.md) §7a.
+The unwind is the closure **run backward** — a bijection, not a many-to-one step. There is no information *paradox* because there is no erasure *step*: the substrate has no intrinsic erase, so a QLF black hole never performs one. This is the same principle as Fredkin's reversible core being free and the [#148](https://github.com/rhovision-org/quantum-logical-framework/issues/148) closure horizon shadowing distinctions without destroying them — the one-principle-three-faces synthesis in [`Reversibility.md`](Reversibility.md) §7a.
 
 See `immediate_reentry_unwind` in `particles.py` and the blanket logic in `Hadrons_Markov_Blankets.md`. This mechanism is identical at both particle and macroscopic black-hole scales.
 

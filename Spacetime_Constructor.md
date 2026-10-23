@@ -5,7 +5,7 @@ Its sibling tool is [`fredkin_machine.html`](fredkin_machine.html) ([`Fredkin_QL
 same substrate read as a *computer* rather than a world: conservative logic stepping gate by gate, with the
 ball count and the twist action held fixed, and a reverse button that walks a full adder back to its input.
 Open [`spacetime_constructor.html`](spacetime_constructor.html) in any browser, or run it live on GitHub Pages:
-[**spacetime_constructor.html**](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html).
+[**spacetime_constructor.html**](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html).
 Dependency-free, self-contained, mobile.
 
 ---

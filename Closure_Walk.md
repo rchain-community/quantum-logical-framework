@@ -149,7 +149,7 @@ The directed vector graph of ZFA, at capacity `R`:
   plaquette is anticommutation. Nothing on the graph is an observer.
 
 **Built, checked and rendered** — [`closure_graph.py`](closure_graph.py) → [`closure_graph.html`](closure_graph.html)
-([live](https://rchain-community.github.io/quantum-logical-framework/closure_graph.html); self-contained canvas,
+([live](https://rhovision-org.github.io/quantum-logical-framework/closure_graph.html); self-contained canvas,
 drag to rotate, hover a node for `h(x,t)`) and [`data/closure_graph_R3.json`](data/closure_graph_R3.json). At
 `R = 3`: **129 nodes, 528 directed edges** (264 undirected, 56 carrying connection `−1`), **168 plaquettes of
 which exactly the 84 spanned by two spatial axes carry π flux**, double cover 258 nodes / 1056 edges. Asserted on

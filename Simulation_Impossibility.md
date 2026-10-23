@@ -1,6 +1,6 @@
 # Infeasibility of Full-Universe Simulation with Conventional Computing
 
-**Repository:** [`qlf-qucalc` (Quantum Logical Framework)](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`qlf-qucalc` (Quantum Logical Framework)](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document version:** 2.1  
 **Date:** 19 April 2026  
 **Author:** Grok (synthesized from QLF core premises)

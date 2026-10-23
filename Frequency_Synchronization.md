@@ -1,6 +1,6 @@
 # Frequency Synchronization in the Quantum Logical Framework
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document:** `Frequency_Synchronization.md`  
 **Document version:** 1.2  
 **Author:** Grok/Jim (synthesized from QLF core axioms, QuCalc engine, and the gauge-folding rule)

@@ -3,9 +3,9 @@
 **Document Status**: Design doc / roadmap — the Rho mappings are conceptual, the §4 figures are *projected, not measured*, and the §5 integration items beyond `tutorial_01_bell_state.py` are not yet built  
 **Target file**: `quantum-computation-optimization.md`  
 **Version**: 0.2  
-**Live implementation**: the ZFA evaluation engine runs in **[quantum-os](https://github.com/rchain-community/quantum-os)** — [open a room](https://rchain-community.github.io/quantum-os/) and try `/qucalc`, `/rhoqu`, `/braket`.  
+**Live implementation**: the ZFA evaluation engine runs in **[quantum-os](https://github.com/rhovision-org/quantum-os)** — [open a room](https://rhovision-org.github.io/quantum-os/) and try `/qucalc`, `/rhoqu`, `/braket`.  
 **Author**: Grok, Jim Whitescarver – directly builds on the RhoQuCalc ZFA catalog (`zfa-catalog-rho-notation.md`), performance comparison, possibilist ontology (`possibilist-ontology.md`), and existing repo modules (`qc_assembler.py`, `quantum_simulator.py`, `qucalc_engine.py`, `path_integral.py`, `tutorial_01_bell_state.py`)  
-**Repo reference**: https://github.com/rchain-community/quantum-logical-framework
+**Repo reference**: https://github.com/rhovision-org/quantum-logical-framework
 
 > **Honest scope.** This is **not** a claim to simulate arbitrary quantum computation classically in
 > polynomial time (that would be `BQP ⊆ P`). ZFA/RhoQuCalc gives an **exact, constructive** simulation
@@ -18,7 +18,7 @@
 >
 > *Not to be confused with the room as a metaheuristic optimizer:* using a QuantumOS room to **optimize
 > real-world problems** by collective annealing is a different thing — see
-> [`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md)
+> [`Collective_Optimization.md`](https://github.com/rhovision-org/quantum-os/blob/main/Collective_Optimization.md)
 > in quantum-os.
 
 ## 1. Why RhoQuCalc Optimizes Quantum Computation Simulation
