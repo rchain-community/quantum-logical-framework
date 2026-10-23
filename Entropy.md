@@ -1,6 +1,6 @@
 # Entropy in the Quantum Logical Framework
 
-**Repository:** [`quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document:** `Entropy.md`  
 **Document version:** 1.3  
 **Author:** Grok/Jim (synthesized from QLF core axioms, QuCalc engine, `particles.py` v2.2, and gauge-folding rule)

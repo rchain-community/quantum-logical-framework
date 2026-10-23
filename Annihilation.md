@@ -62,7 +62,7 @@ Composed: `^>v<`. Pauli fold: $\sigma_y \cdot \sigma_x \cdot (-\sigma_y) \cdot (
 
 ### 4.2 Electron–positron → 2 photons
 
-The canonical QED process $e^- + e^+ \to 2\gamma$ in QLF terms: the electron's RH fluxoid (with gauge fold `+`) meets the positron's LH antifluxoid (with gauge fold `-`). The two fluxoid halves unwind each other; the two gauge folds also unwind each other (`+` annihilates `-`). The constructing delay accumulated by each particle's gauge fold ($\Delta t = R/f$ from Frequency_Synchronization.md) is returned to the environment as two photons carrying the released action. Energy conservation $2 m_e c^2 = 2 h\nu$ is the macroscopic shadow of the bit-accounting in §3. [▶ watch e⁺e⁻ annihilate](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) — positronium's two halves counter-orbit, then unwind to the Void (a flash names the cause).
+The canonical QED process $e^- + e^+ \to 2\gamma$ in QLF terms: the electron's RH fluxoid (with gauge fold `+`) meets the positron's LH antifluxoid (with gauge fold `-`). The two fluxoid halves unwind each other; the two gauge folds also unwind each other (`+` annihilates `-`). The constructing delay accumulated by each particle's gauge fold ($\Delta t = R/f$ from Frequency_Synchronization.md) is returned to the environment as two photons carrying the released action. Energy conservation $2 m_e c^2 = 2 h\nu$ is the macroscopic shadow of the bit-accounting in §3. [▶ watch e⁺e⁻ annihilate](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=positronium%20%40%200%2C0%2C0) — positronium's two halves counter-orbit, then unwind to the Void (a flash names the cause).
 
 ### 4.3 Hadron–antihadron
 

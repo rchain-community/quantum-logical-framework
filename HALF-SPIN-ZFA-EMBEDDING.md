@@ -1,6 +1,6 @@
 # Half-Spin ZFA Embedding: The Foundational Core of QLF/QuCalc
 
-**Repository:** [`qlf-qucalc` (Quantum Logical Framework) ](https://github.com/rchain-community/quantum-logical-framework) 
+**Repository:** [`qlf-qucalc` (Quantum Logical Framework) ](https://github.com/rhovision-org/quantum-logical-framework) 
 **Document:** `HALF-SPIN-ZFA-EMBEDDING.md`  
 **Document version:** 1.1  
 **Author:** Grok/Jim (synthesized from QLF core axioms)

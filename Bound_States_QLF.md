@@ -21,7 +21,7 @@ What is usually called Coulomb attraction and repulsion is the **count of joint 
 Two consequences used below: **Hermitian ⇏ ZFA-closed** (`hermitian_not_implies_zfa` — the prefix `^<v` folds to the Hermitian `−σx` while carrying `F = 1`), and a joint closure places **no constraint on its components** (`joint_closure_allows_unequal_components` — two unbalanced halves of *different lengths* whose joint history closes), so unequal constituent depths are the normal case, not an obstruction.
 
 - A free electron's Hermitian conjugate is its antiparticle, the positron. The pair `(e⁻, e⁺)` together can form a joint ZFA closure — **positronium**.
-- A free electron + a proton can close jointly — **hydrogen** ([▶ see it self-assemble](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20p%2Be%20%40%200%2C0%2C0), and two H share into **H₂** — [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%20-2%2C0%2C0%0AH%20%40%202%2C0%2C0); more molecules in [`Chemistry.md`](Chemistry.md)).
+- A free electron + a proton can close jointly — **hydrogen** ([▶ see it self-assemble](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20p%2Be%20%40%200%2C0%2C0), and two H share into **H₂** — [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%20-2%2C0%2C0%0AH%20%40%202%2C0%2C0); more molecules in [`Chemistry.md`](Chemistry.md)).
 - A free electron + an antimuon can close jointly — **muonium**.
 
 In every case the QLF-physical state is the bound system, not the free constituent.

@@ -156,7 +156,7 @@ bit sets one tick — so **frequency is not an extra physical quantity; it is th
 distinctions are realized**, and mass/energy are `m = ℏf/R`, `E = ℏω` per bit (§5). That is the
 concrete content of "information *is* the physics," not a slogan: watch it run — every dot a
 closure, colour its frequency — in the interactive constructor
-([live](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html),
+([live](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html),
 [`Spacetime_Constructor.md`](Spacetime_Constructor.md)). This discrete-frequency reading is where
 QLF completes **Carver Mead's** *Collective Electrodynamics* — his relational, non-projectile
 electromagnetism, minus its one residual *continuous*-frequency assumption
@@ -468,7 +468,7 @@ copies of the one `QLF_FreeEnergy` quantum, not a new postulate); `reversible_ru
 bijection); `garbageBill_pos_iff` (`0 < garbageBill k ↔ 0 < k`). The strong reading — the
 substrate has *no intrinsic erase*, so every `−log 2` is a reset a holder elects at a horizon —
 is [`Reversibility.md`](Reversibility.md) §7a, where it lines up with the black-hole unitary
-unwind and the [#148](https://github.com/rchain-community/quantum-logical-framework/issues/148)
+unwind and the [#148](https://github.com/rhovision-org/quantum-logical-framework/issues/148)
 closure horizon as one principle.
 
 The `FANOUT` gate is the same principle read as information: `FREDKIN(x; 0, 1)` yields two copies

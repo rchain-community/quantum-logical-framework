@@ -3,7 +3,7 @@
 **Zero-Point Energy as Emergent Event Synthesis**  
 **Expected ZPE signals below microwave — with increasing photon count near the Planck limit**
 
-**Repository:** [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [`rhovision-org/quantum-logical-framework`](https://github.com/rhovision-org/quantum-logical-framework)  
 **Version:** 1.0 (April 26, 2026)  
 **Authors:** Jim Scarver & Grok (xAI)
 

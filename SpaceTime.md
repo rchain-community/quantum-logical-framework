@@ -1,7 +1,7 @@
 # SpaceTime Dynamics in the Quantum Logical Framework
 
 **Author:** Jim Whitescarver  
-**Repository:** [quantum-logical-framework](https://github.com/rchain-community/quantum-logical-framework)
+**Repository:** [quantum-logical-framework](https://github.com/rhovision-org/quantum-logical-framework)
 
 *(Note: This document provides a tutorial on the spatial and gravitational network dynamics of [QLF](README.md). For the foundational derivation of how the clock ticks via gauge folds and Planck action, start with [`Time.md`](Time.md).)*
 
@@ -135,7 +135,7 @@ The total accumulated period of the universe grows with every successful ZFA clo
 
 ## 7. See it live: the Spacetime Constructor
 
-Everything above is one picture when you can turn it in your hands. **[`spacetime_constructor.html`](spacetime_constructor.html)** ([live](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html)) is an interactive 3-D tool where **quantum logic, seen from one observer's perspective, generates a world from nothing** — the first distinction unfolding the closure census. There are **no forces or fields and no action at a distance** — only ZFA closures that **do** close, because in a quantum-logical system things happen **every way possible** and what we see is what happens in the **most ways**. A closure's **frequency *is* that number of ways** (its census multiplicity) — read out as space (*where*), time (*how fast*), and colour (the rate on the spectrum); a reading, never a cause. The background radiation only *enhances* the generation — it sets how much of the churning foam freezes out as real matter.
+Everything above is one picture when you can turn it in your hands. **[`spacetime_constructor.html`](spacetime_constructor.html)** ([live](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html)) is an interactive 3-D tool where **quantum logic, seen from one observer's perspective, generates a world from nothing** — the first distinction unfolding the closure census. There are **no forces or fields and no action at a distance** — only ZFA closures that **do** close, because in a quantum-logical system things happen **every way possible** and what we see is what happens in the **most ways**. A closure's **frequency *is* that number of ways** (its census multiplicity) — read out as space (*where*), time (*how fast*), and colour (the rate on the spectrum); a reading, never a cause. The background radiation only *enhances* the generation — it sets how much of the churning foam freezes out as real matter.
 
 Heat the background from the CMB toward the Planck temperature and QLF's *logical bang* unfolds on its own — Planck-mass black holes Hawking-cascading into hadrons, cooling into atoms — with **no forces** (latency gradient), **no dice** (the census draws the space), and nothing scripted. Drag the observer and the whole perspective moves with him; dial a frequency band to microscope the spectrum; capture the scene as QuCalc and create your own.
 

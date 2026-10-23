@@ -4,7 +4,7 @@
 **File**: `possibilist-ontology.md` at the repository root (companion: [`zfa-catalog-rho-notation.md`](zfa-catalog-rho-notation.md); the `/docs/` layout and `performance-comparison.md` proposed in v0.1 were never created)  
 **Version**: 0.1  
 **Author**: Jim Whitescarver, Grok – directly extends the RhoQuCalc ZFA catalog, QuCalc engine, and constructive logic already in `qucalc_engine.py`, `hermitian.py`, and `path_integral.py`  
-**Repo reference**: https://github.com/rchain-community/quantum-logical-framework (explicitly described as “constructive possibilist quantum logical synthesis”)
+**Repo reference**: https://github.com/rhovision-org/quantum-logical-framework (explicitly described as “constructive possibilist quantum logical synthesis”)
 
 ## 1. What Is Possibilist Ontology?
 

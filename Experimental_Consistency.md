@@ -315,7 +315,7 @@ achieves_zfa(h)  ≡  count_balanced(h)  ∧  pauli_closed(h)
 This is enforced in every implementation of the kernel:
 
 - **Python** (`twist_core.py`): `is_zfa` calls `is_pauli_closed` after the count check.
-- **Rust** (`crates/zfa-core/src/history.rs` and `pauli.rs` in [quantum-os](https://github.com/rchain-community/quantum-os)): `achieves_zfa` returns `is_count_balanced ∧ is_pauli_closed`; capability tokens use deterministic rejection sampling to guarantee closure.
+- **Rust** (`crates/zfa-core/src/history.rs` and `pauli.rs` in [quantum-os](https://github.com/rhovision-org/quantum-os)): `achieves_zfa` returns `is_count_balanced ∧ is_pauli_closed`; capability tokens use deterministic rejection sampling to guarantee closure.
 - **TypeScript** (`packages/browser/src/zfa.ts`): mirrors the Rust check end-to-end, including the pure-TS Pauli matrix fold for the no-WASM fallback.
 
 Empirically, **every count-balanced history is automatically Pauli-closed** in the QLF Python BFS ensemble at every length tested. This is **a Lean theorem** (`count_balanced_pauli_closed`, below): count balance alone implies Pauli closure, so the second conjunct of the runtime check is entailed by the first — the explicit enforcement formalizes an invariant that is provably present, not merely observed.

@@ -81,7 +81,7 @@ hypothesis such a statement would need.
 
 **Status: structural** (the equalizer reading is a faithful restatement of `count_balanced_pauli_closed`
 + the definitions). **Open:** the coreflection/adjunction claim for `full_zeno_prune` — a candidate
-Lean target, and the sharpest concrete question in [#155](https://github.com/rchain-community/quantum-logical-framework/issues/155).
+Lean target, and the sharpest concrete question in [#155](https://github.com/rhovision-org/quantum-logical-framework/issues/155).
 
 ---
 
@@ -176,7 +176,7 @@ ZFA is the only filter." Curry–Howard closes the loop: in QuantumOS a **capabi
 
 **Status: structural** — the dagger/monoidal reading is a faithful restatement of the `eval` laws and
 `eval_dagger`; a full Lean statement "RhoProcess/≈ is a †-SMC" is not written (the quotient by
-`eval`-equality is the missing step, cf. [#152](https://github.com/rchain-community/quantum-logical-framework/issues/152)).
+`eval`-equality is the missing step, cf. [#152](https://github.com/rhovision-org/quantum-logical-framework/issues/152)).
 
 ---
 
@@ -210,7 +210,7 @@ language (§5).
 2. **The bifibration, formalised** (§3) — the grading functor to `(ℕ,≤)` and the cartesian/cocartesian
    lifts as a Lean structure over `QLF_ExactRG` + `QLF_HorizonClosure`.
 3. **`RhoProcess/≈` is a †-SMC** (§5) — needs the quotient by `eval`-equality
-   ([#152](https://github.com/rchain-community/quantum-logical-framework/issues/152)).
+   ([#152](https://github.com/rhovision-org/quantum-logical-framework/issues/152)).
 4. **The general orthomodular representation theorem** (§6) — the hard one; a real research problem, not
    a formalisation exercise.
 
@@ -233,5 +233,5 @@ the self-similarity result that already does real work in the α-residual progra
 - [`lean/QLF_QuantumLogic.lean`](lean/QLF_QuantumLogic.lean) · [`lean/QLF_Anabelian.lean`](lean/QLF_Anabelian.lean) ·
   [`lean/QLF_MotivicGalois.lean`](lean/QLF_MotivicGalois.lean) · [`lean/QLF_ExactRG.lean`](lean/QLF_ExactRG.lean) ·
   [`lean/QLF_ReachableEvent.lean`](lean/QLF_ReachableEvent.lean) — the anchors.
-- Issue [#155](https://github.com/rchain-community/quantum-logical-framework/issues/155) — the spec this
+- Issue [#155](https://github.com/rhovision-org/quantum-logical-framework/issues/155) — the spec this
   doc answers.

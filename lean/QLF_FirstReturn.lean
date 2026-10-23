@@ -9,7 +9,7 @@ set_option linter.unusedVariables false
 /-!
 # QLF_FirstReturn — the Dyson bijection: `walkCount` as a renewal sum over first closures
 
-[`Closure_Walk.md`](../Closure_Walk.md) §5, closing [issue #157](https://github.com/rchain-community/quantum-logical-framework/issues/157):
+[`Closure_Walk.md`](../Closure_Walk.md) §5, closing [issue #157](https://github.com/rhovision-org/quantum-logical-framework/issues/157):
 a balanced twist-history of length `L ≥ 1` splits *uniquely* at its first closure into a **prime**
 prefix (a balanced history with no proper non-empty balanced prefix of its own) and an arbitrary
 balanced remainder. Counting this bijection gives `walkCount L = Σ_{ℓ=1}^{L} I(ℓ) · walkCount(L−ℓ)`

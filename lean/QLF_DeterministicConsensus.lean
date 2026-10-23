@@ -81,7 +81,7 @@ Two verifiers holding *different subsets* can still disagree: one sees *accepted
 *insufficient*. They can never accept two different values (`quorum_intersection_safety`
 applied to the union). Making every verifier hold the same set under message loss is
 consensus proper, which no deterministic protocol solves in full asynchrony (FLP 1985); a
-BFT protocol or a finalized log (e.g. rchain-rust's Casper finality) supplies that.
+BFT protocol or a finalized log (e.g. rholo's Casper finality) supplies that.
 -/
 
 namespace QLF.Consensus

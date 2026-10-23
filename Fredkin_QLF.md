@@ -10,7 +10,7 @@ turn out to be the same law.**
 Implementation: [`fredkin_qlf.py`](fredkin_qlf.py) · run it with `python3 fredkin_qlf.py`
 Machine-verified core: [`lean/QLF_Fredkin.lean`](lean/QLF_Fredkin.lean)
 Interactive: [`fredkin_machine.html`](fredkin_machine.html) —
-[**run it live**](https://rchain-community.github.io/quantum-logical-framework/fredkin_machine.html)
+[**run it live**](https://rhovision-org.github.io/quantum-logical-framework/fredkin_machine.html)
 
 ---
 
@@ -204,7 +204,7 @@ bookkeeping dominates, because nothing may be thrown away.
 
 ## 4a. Watching it run
 
-[`fredkin_machine.html`](https://rchain-community.github.io/quantum-logical-framework/fredkin_machine.html)
+[`fredkin_machine.html`](https://rhovision-org.github.io/quantum-logical-framework/fredkin_machine.html)
 steps the circuits gate by gate, with the three readouts that matter live: the ball count,
 the signed twist action, and the ledger. It is worth opening for one reason — **the reverse
 button**. Run the adder to the end, press Reverse, and it walks back to the input it started
@@ -268,7 +268,7 @@ postulate); `reversible_run_cost_zero` (`garbageBill 0 = 0`, any depth);
 stops being one-to-one). The **strong reading** — the substrate has no intrinsic erase, so
 every `−log 2` is a reset a holder *elects* at a horizon, and a black hole's Hawking unwind
 never performs one either — is [`Reversibility.md`](Reversibility.md) §7a (one principle,
-three faces: Fredkin / black holes / the [#148](https://github.com/rchain-community/quantum-logical-framework/issues/148) closure horizon).
+three faces: Fredkin / black holes / the [#148](https://github.com/rhovision-org/quantum-logical-framework/issues/148) closure horizon).
 
 ---
 

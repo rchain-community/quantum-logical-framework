@@ -147,7 +147,7 @@ Trim to platform length as needed; the first post is the whole pitch if only one
 > **4/** The Quantum Logical Framework takes the other road: reality is finite and computable, built
 > from one primitive (a single balanced distinction — "Zero Free Action"), and the continuum is a
 > rendering on top. Spacetime, quantum measurement, the constants — derived, then checked in a proof
-> assistant. github.com/rchain-community/quantum-logical-framework
+> assistant. github.com/rhovision-org/quantum-logical-framework
 
 > **5/** Most theories of everything ask you to believe them. This one publishes its kill conditions —
 > seven experiments that would end it: an axion detection, a confirmed drift in α, a 0νββ signal at

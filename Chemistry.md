@@ -45,13 +45,13 @@ rest. Everything below is that one rule playing out.
 ## 3. Molecules — shared closures
 
 - **Hydrogen, H₂** — H(1)+H(1), valence-saturated. The canonical covalent shared closure.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%20-2%2C0%2C0%0AH%20%40%202%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=H%20%40%20-2%2C0%2C0%0AH%20%40%202%2C0%2C0)
 - **Water, H₂O** — O(2) shares one closure with each of two H (via the OH intermediate).
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=O%20%40%200%2C0%2C0%0AH%20%40%20-2.5%2C0%2C0%0AH%20%40%202.5%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=O%20%40%200%2C0%2C0%0AH%20%40%20-2.5%2C0%2C0%0AH%20%40%202.5%2C0%2C0)
 - **Carbon dioxide, CO₂** — C(4) saturates against two O(2).
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=C%20%40%200%2C0%2C0%0AO%20%40%20-2.5%2C0%2C0%0AO%20%40%202.5%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=C%20%40%200%2C0%2C0%0AO%20%40%20-2.5%2C0%2C0%0AO%20%40%202.5%2C0%2C0)
 - **Methane-ish, CHₓ** — C grabs H, but H atoms competing nearby may pair off as H₂ first (real kinetics).
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=C%20%40%200%2C0%2C0%0AH%20%40%20-2.2%2C0%2C0%0AH%20%40%202.2%2C0%2C0%0AH%20%40%200%2C2.2%2C0%0AH%20%40%200%2C-2.2%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=C%20%40%200%2C0%2C0%0AH%20%40%20-2.2%2C0%2C0%0AH%20%40%202.2%2C0%2C0%0AH%20%40%200%2C2.2%2C0%0AH%20%40%200%2C-2.2%2C0)
 
 ## 4. Carbon — one atom, many allotropes
 
@@ -60,19 +60,19 @@ makes very different structures depending on the **bonding geometry** — this i
 The constructor builds each as a distinct form:
 
 - **Ring / loop** (cyclocarbon) — 2 bonds per C, carbons in a closed ring.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=ring%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=ring%20%40%200%2C0%2C0)
 - **Graphene** — sp², **3 bonds per C** in a flat honeycomb sheet.
   The three hybridisations are the twist alphabet's sign-alternating slabs on 2, 3 and 4 axes, and graphene's
   closed walks are ZFA words ([`Carbon_Superconductivity.md`](Carbon_Superconductivity.md) §1).
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphene%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphene%20%40%200%2C0%2C0)
 - **Graphite** — stacked graphene sheets.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphite%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=graphite%20%40%200%2C0%2C0)
 - **Diamond** — sp³, **4 bonds per C** in a tetrahedral 3-D network.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=diamond%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=diamond%20%40%200%2C0%2C0)
 - **Nanotube** — graphene rolled into a honeycomb cylinder.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=nanotube%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=nanotube%20%40%200%2C0%2C0)
 - **Buckyball, C₆₀** — buckminsterfullerene, a truncated-icosahedron carbon cage (60 atoms, exactly 3 bonds each).
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=buckyball%20%40%200%2C0%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=buckyball%20%40%200%2C0%2C0)
 
 Drop loose carbons and they still knit into a generic Cₙ cluster by the one valence rule; the named forms above
 lay the carbons out in the recognisable allotrope geometry (`ring` / `graphene` / `graphite` / `diamond`, or the
@@ -83,7 +83,7 @@ buttons in the QuCalc panel). The bond count per atom (2 → 3 → 4) *is* the a
 A **metal** (iron) doesn't form discrete metal molecules — its atoms **lattice**, held apart by Pauli exclusion
 ([§7](#7-crystals-pauli-holds-them-up)). But iron **does** share closures with oxygen: Fe(3) + O(2) → **iron
 oxide (rust, ~Fe₂O₃)**. Metal–metal bonds are forbidden (so crystals stay intact); metal–non-metal bonds oxidise.
-[▶ see rust](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=Fe%20%40%20-3%2C0%2C0%0AFe%20%40%203%2C0%2C0%0AO%20%40%200%2C-2%2C0%0AO%20%40%200%2C2%2C0%0AO%20%40%200%2C0%2C2)
+[▶ see rust](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=Fe%20%40%20-3%2C0%2C0%0AFe%20%40%203%2C0%2C0%0AO%20%40%200%2C-2%2C0%0AO%20%40%200%2C2%2C0%0AO%20%40%200%2C0%2C2)
 
 ## 6. Noble gases, and why oil and water don't mix
 
@@ -118,7 +118,7 @@ A crystal is not a molecule: it is a lattice of atoms held apart by **Pauli excl
 ([`PauliExclusion`](lean/PauliExclusion.lean)) balancing the latency infall — the outward degeneracy
 pressure, no bonds needed. Seed a lattice and it self-binds (`lattice sc|bcc|fcc`,
 [`Geometry_Of_Space.md`](Geometry_Of_Space.md)).
-[▶ see an iron BCC crystal](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20bcc%203%203%20Fe%20%40%200%2C0%2C0)
+[▶ see an iron BCC crystal](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20bcc%203%203%20Fe%20%40%200%2C0%2C0)
 
 ## 8. Superfluids & Cooper pairs — condensation
 
@@ -127,10 +127,10 @@ The proven fact `boson_even_pairs`/`cooper_pair_boson` ([`QLF_CondensedMatter`](
 
 - **Superfluid helium** — a helium-4 atom is itself a boson (6 fermions, even), so cold He Bose-condenses into a
   superfluid: it overlaps its neighbours, exempt from Pauli exclusion. Heavy atoms crystallise instead.
-  [▶ see (cool helium)](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20sc%203%203%20He%20%40%200%2C0%2C0)
+  [▶ see (cool helium)](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=lattice%20sc%203%203%20He%20%40%200%2C0%2C0)
 - **Cooper pairs** — two opposite-spin electrons pair onto one channel (even count ⇒ boson) at low temperature;
   the bosonic pairs condense. Cool a handful of free electrons and watch them pair.
-  [▶ see](https://rchain-community.github.io/quantum-logical-framework/spacetime_constructor.html#qc=electron%20%40%20-1%2C0%2C0%0Aelectron%20%40%201%2C0%2C0%0Aelectron%20%40%200%2C1%2C0%0Aelectron%20%40%200%2C-1%2C0)
+  [▶ see](https://rhovision-org.github.io/quantum-logical-framework/spacetime_constructor.html#qc=electron%20%40%20-1%2C0%2C0%0Aelectron%20%40%201%2C0%2C0%0Aelectron%20%40%200%2C1%2C0%0Aelectron%20%40%200%2C-1%2C0)
 
 ## 9. Polymers — when the shared closure becomes a loop
 

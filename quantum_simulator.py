@@ -11,7 +11,7 @@ Features:
 • Backward-compatible with old direct engine calls
 
 Author: Jim Whitescarver + Grok (xAI) – April 23, 2026
-Repo: https://github.com/rchain-community/quantum-logical-framework
+Repo: https://github.com/rhovision-org/quantum-logical-framework
 """
 
 from qucalc_engine import PossibilistEngine

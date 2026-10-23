@@ -7,9 +7,9 @@
 Given a twist history `qc`, it enumerates the **continuations** — twist words you can
 append so the whole history is a ZFA closure (count-balanced ∧ Pauli-closed) — shortest
 first. `qucalc_search.py` is the **Python reference implementation + CLI**; it also has an
-optional local HTTP mode (`--serve`) for research use. [quantum-os](https://github.com/rchain-community/quantum-os)
+optional local HTTP mode (`--serve`) for research use. [quantum-os](https://github.com/rhovision-org/quantum-os)
 computes the same `/search` and `/solve` **client-side in the browser** from its own ZFA
-primitives — no deployed service ([quantum-os#119](https://github.com/rchain-community/quantum-os/issues/119)) —
+primitives — no deployed service ([quantum-os#119](https://github.com/rhovision-org/quantum-os/issues/119)) —
 using the contract and cascade below as the spec.
 
 It is a **query, not a stored layer.** Nothing is cached, nothing is written, the answer
@@ -46,7 +46,7 @@ closes at a horizon it stays closed at every wider one (`closedAtHorizon_mono`,
 [`QLF_HorizonClosure`](lean/QLF_HorizonClosure.lean)), so no deeper closure can undo it. Because the cascade is
 deterministic, it is a reading, not an opinion — every caller divines the same answer.
 
-**In [quantum-os](https://github.com/rchain-community/quantum-os), solve is the meeting of
+**In [quantum-os](https://github.com/rhovision-org/quantum-os), solve is the meeting of
 minds.** Run `/solve` on a room's **joint position** — every peer's `/qlf-action` proposal
 concatenated in order — and the deterministic cascade returns the one closure. Every peer
 computes it identically, so the room reaches a shared conclusion **the substrate dictated,
@@ -134,7 +134,7 @@ python3 qucalc_search.py --serve --host 0.0.0.0 --port 8765 --max-depth-cap 7 --
 **Not a deployed dependency.** `qucalc_search.py` is the **Python reference implementation +
 CLI**; `--serve` is here for local research use. quantum-os does **not** call it over HTTP —
 its `/search` and `/solve` compute [client-side in the
-browser](https://github.com/rchain-community/quantum-os/issues/119), reusing the ZFA
+browser](https://github.com/rhovision-org/quantum-os/issues/119), reusing the ZFA
 primitives it already has (`signedAction`, `isPauliClosed`, `pauliFold`) and the deterministic
 `/solve` cascade below. The contract in this section is the **spec that TS port conforms
 to** — same routes, same `version`, same cascade — not a service anyone has to keep alive.
@@ -214,7 +214,7 @@ is disallowed by the hard cap.
 ## Client examples (for a local `--serve` instance)
 
 These consume the NDJSON stream from a local `python3 qucalc_search.py --serve`. The
-in-browser quantum-os implementation ([quantum-os#119](https://github.com/rchain-community/quantum-os/issues/119))
+in-browser quantum-os implementation ([quantum-os#119](https://github.com/rhovision-org/quantum-os/issues/119))
 does not use HTTP — it runs the same enumeration natively — but these show the contract's
 shape and are the reference for the TS port's behaviour (`_meta` line, closures
 shortest-first, `_done` trailer).

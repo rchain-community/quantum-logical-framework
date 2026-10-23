@@ -140,9 +140,9 @@ This is why [`QuantumOS.md`](QuantumOS.md) §2.2 says (one-line, expanded): *"By
 
 ### Live demonstrations
 
-- `/grant label` in [quantum-os](https://github.com/rchain-community/quantum-os) mints a capability token. The minting is the proof; the token is the persistent bearer artifact.
+- `/grant label` in [quantum-os](https://github.com/rhovision-org/quantum-os) mints a capability token. The minting is the proof; the token is the persistent bearer artifact.
 - `/qucalc twists` evaluates a twist sequence and reports whether it's ZFA-closed. ZFA closure = the algebraic theorem the token would represent.
-- The syllogism demo (Major Premise → Minor Premise → Joint consistency → Conclusion → Proof object) in [`SyllogismDemo.md`](https://github.com/rchain-community/quantum-os/blob/main/SyllogismDemo.md) shows tokens persisting across multi-peer multi-step inference. The final `cap:mortal:...` token IS the proof that Socrates is mortal — derivable, transmittable, non-forgeable.
+- The syllogism demo (Major Premise → Minor Premise → Joint consistency → Conclusion → Proof object) in [`SyllogismDemo.md`](https://github.com/rhovision-org/quantum-os/blob/main/SyllogismDemo.md) shows tokens persisting across multi-peer multi-step inference. The final `cap:mortal:...` token IS the proof that Socrates is mortal — derivable, transmittable, non-forgeable.
 
 ### Connection to the Lean program
 
@@ -326,7 +326,7 @@ the hardware the operating system is written for.
 
 ## §8 Collective intelligence via decentralized QuantumOS
 
-Curry-Howard token-persistence is the basis for a structurally different form of collective intelligence. The live [`quantum-os`](https://github.com/rchain-community/quantum-os) browser app instantiates it.
+Curry-Howard token-persistence is the basis for a structurally different form of collective intelligence. The live [`quantum-os`](https://github.com/rhovision-org/quantum-os) browser app instantiates it.
 
 ### Architecture: no server, no trust, just algebra
 
@@ -339,9 +339,9 @@ Curry-Howard token-persistence is the basis for a structurally different form of
 
 Multiple peers contribute closures (twists, lemmas, notes, rendezvous proposals) into a shared room process. Each contribution is a ZFA-balanced closure on its own; the room's `parallel(…)` composition stays balanced as long as each contribution does. This is collective intelligence done *structurally*: the network is performing one large synthesis, with the individual peers as Markov-blanket sub-agents.
 
-The syllogism demonstration ([`SyllogismDemo.md`](https://github.com/rchain-community/quantum-os/blob/main/SyllogismDemo.md), and the extended walkthrough in [`AI.md`](AI.md) *Live Collaboration Script*) makes it concrete: Alice and Bob collaboratively verify the Aristotelian syllogism over a peer-to-peer room, then **the room ratifies the result by a group vote** and records it as a named lemma. Each step is a capability-token-carrying ZFA closure. The conclusion is a `cap:mortal:` token that *any peer can independently verify* — there's no central authority claiming Socrates is mortal; the algebra of the token does.
+The syllogism demonstration ([`SyllogismDemo.md`](https://github.com/rhovision-org/quantum-os/blob/main/SyllogismDemo.md), and the extended walkthrough in [`AI.md`](AI.md) *Live Collaboration Script*) makes it concrete: Alice and Bob collaboratively verify the Aristotelian syllogism over a peer-to-peer room, then **the room ratifies the result by a group vote** and records it as a named lemma. Each step is a capability-token-carrying ZFA closure. The conclusion is a `cap:mortal:` token that *any peer can independently verify* — there's no central authority claiming Socrates is mortal; the algebra of the token does.
 
-When the collective needs to *decide* rather than *derive* — pick one option, agree shared state, allocate a resource — it uses the same substrate: group voting, atomic rendezvous, decisions-of-record, all dyncap-signed envelopes with a deterministic joiner-local tally. The full family is mapped in [`Group_Decisions.md`](https://github.com/rchain-community/quantum-os/blob/main/Group_Decisions.md). Decision and derivation are one mechanism: a vote is just a closure the room ratifies.
+When the collective needs to *decide* rather than *derive* — pick one option, agree shared state, allocate a resource — it uses the same substrate: group voting, atomic rendezvous, decisions-of-record, all dyncap-signed envelopes with a deterministic joiner-local tally. The full family is mapped in [`Group_Decisions.md`](https://github.com/rhovision-org/quantum-os/blob/main/Group_Decisions.md). Decision and derivation are one mechanism: a vote is just a closure the room ratifies.
 
 The sharpest case is **`/solve` on the room's joint position** ([`QucalcSearch.md`](QucalcSearch.md); quantum-os#117). Concatenate every peer's `/qlf-action` proposal and the substrate itself picks the one closure — least free action, the first-reached closure — by a deterministic cascade every peer computes identically. The room reaches a shared conclusion *the substrate dictated, not one negotiated*: consensus by closure. If `/search` is the room's experiment — the possibility space laid out — `/solve` is where the many minds meet on one answer.
 

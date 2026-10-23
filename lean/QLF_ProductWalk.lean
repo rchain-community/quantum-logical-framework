@@ -11,7 +11,7 @@ set_option linter.unusedVariables false
 /-!
 # QLF_ProductWalk — the twist-history ↔ `walkCount` bridge
 
-[`Closure_Walk.md`](../Closure_Walk.md) §5, [issue #157](https://github.com/rchain-community/quantum-logical-framework/issues/157):
+[`Closure_Walk.md`](../Closure_Walk.md) §5, [issue #157](https://github.com/rhovision-org/quantum-logical-framework/issues/157):
 `card {ts : List Twist // ts.length = L ∧ countBalanced ts} = walkCount L`, closing the gap left by
 `QLF_PolyaTransience`. Proved via the diagonal-coordinate encoding the plane count `w₂` is named
 after: `Twist ≃ Fin 4 × Bool` (axis, sign), splitting into two planes `Plane1 = {up,down,left,right}`

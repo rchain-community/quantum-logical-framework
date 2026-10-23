@@ -72,7 +72,7 @@ The mapping is the framework's contribution: it gives a single conceptual axis (
 
 ## §5 QuantumOS as the control plane
 
-The QuantumOS browser app ([github.com/rchain-community/quantum-os](https://github.com/rchain-community/quantum-os)) already implements the slash-command and capability-token primitives needed for a QPU control plane. Existing commands map directly to QPU operations:
+The QuantumOS browser app ([github.com/rhovision-org/quantum-os](https://github.com/rhovision-org/quantum-os)) already implements the slash-command and capability-token primitives needed for a QPU control plane. Existing commands map directly to QPU operations:
 
 | QuantumOS command | QPU control role |
 |---|---|
@@ -93,7 +93,7 @@ The QuantumOS browser app ([github.com/rchain-community/quantum-os](https://gith
 | `/persist <sub>` | agreed cross-peer replication of calibration tables |
 | `/rhoqu <text>` | high-level macro language (`process` / `new` / `\|` parallel / `if` / `on channel` / `for`) compiles to slash commands → pulse sequences |
 
-Multi-node coordination (which calibration to promote, scheduling a shared crystal, retiring a bad pulse) reuses the app's governance primitives — group voting, atomic rendezvous, removal/retraction — all the same dyncap-signed substrate; see [`Group_Decisions.md`](https://github.com/rchain-community/quantum-os/blob/main/Group_Decisions.md).
+Multi-node coordination (which calibration to promote, scheduling a shared crystal, retiring a bad pulse) reuses the app's governance primitives — group voting, atomic rendezvous, removal/retraction — all the same dyncap-signed substrate; see [`Group_Decisions.md`](https://github.com/rhovision-org/quantum-os/blob/main/Group_Decisions.md).
 
 The capability-token model IS the right authorisation model for QPU control: possessing `cap:qubit-euyso-N:hex` IS the authority to apply pulses to that qubit; there is no separate ACL or kernel-mode/user-mode split. Linear-logic no-cloning at the type level matches quantum no-cloning at the substrate level — capability tokens cannot be duplicated by linear-logic typing, and the qubits they reference cannot be duplicated by the no-cloning theorem. The two no-cloning constraints align.
 
@@ -260,7 +260,7 @@ Brief disclaimer to head off the rhetorical traps:
 - `lean/BraKetRhoQuCalc.lean` — Lean module containing `decoherence_impossibility`, `bra_ket_always_balanced`.
 - `lean/RhoQuCalc.lean` — Lean module containing `rho_process_always_zfa`.
 - `active_inference_vfe_demo.py` — brute-force numerical verification of the per-closure log 2 quantum.
-- QuantumOS browser app: [github.com/rchain-community/quantum-os](https://github.com/rchain-community/quantum-os).
+- QuantumOS browser app: [github.com/rhovision-org/quantum-os](https://github.com/rhovision-org/quantum-os).
 
 ### External
 

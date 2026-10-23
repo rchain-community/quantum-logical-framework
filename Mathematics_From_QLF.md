@@ -306,7 +306,7 @@ The boundary is sharp: matching pennies has no free-action functional (`matching
 **The substrate generates potential games and solves all games**, and the line between them is where a
 question's conflict content lives. The operational consequence for the QuantumOS room — consensus by
 relaxation is conservative; the remedy is the objective, not the temperature — is drawn in quantum-os's
-[`Collective_Optimization.md`](https://github.com/rchain-community/quantum-os/blob/main/Collective_Optimization.md).
+[`Collective_Optimization.md`](https://github.com/rhovision-org/quantum-os/blob/main/Collective_Optimization.md).
 
 ---
 

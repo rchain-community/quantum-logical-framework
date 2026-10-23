@@ -1,7 +1,7 @@
 # Group Decisions Demo: A Team Decides, Issues, and Records — over a P2P Room
 
 A worked, multi-peer walkthrough of collaborative **governance** in the live
-[quantum-os](https://github.com/rchain-community/quantum-os) browser app: a team picks a
+[quantum-os](https://github.com/rhovision-org/quantum-os) browser app: a team picks a
 venue by **ranked-choice vote**, records the outcome as a **decision of record**,
 issues a **terms-bearing IOU** that the recipient must **accept** before
 redeeming, and **retracts** a mistaken entry. Every step is the *same* ZFA
@@ -12,7 +12,7 @@ This is the companion demo to the syllogism walkthrough in [`AI.md`](AI.md)
 (*Live Collaboration Script*). For the full map of decision processes the
 interface supports — approval, ranked-choice, consensus, atomic rendezvous,
 delegation, sortition, conviction voting — see
-[`Group_Decisions.md`](https://github.com/rchain-community/quantum-os/blob/main/Group_Decisions.md)
+[`Group_Decisions.md`](https://github.com/rhovision-org/quantum-os/blob/main/Group_Decisions.md)
 in quantum-os.
 
 ---
@@ -31,7 +31,7 @@ winner. Each decision step is two ingredients:
 
 Possessing the room capability token **is** the franchise. The cast: **Alice**
 (organizer), **Bob**, **Carol**, **Dave**, **Eve** — five peers in the room
-`https://rchain-community.github.io/quantum-os/#room=cap:room:…`. Lines prefixed `·` are
+`https://rhovision-org.github.io/quantum-os/#room=cap:room:…`. Lines prefixed `·` are
 system output; `[Name→]` marks what other peers receive via broadcast.
 
 ---
@@ -200,7 +200,7 @@ removes a stray poll or a note.
 ## Part 5 — Durability without a server
 
 When every browser leaves, the room's memory would normally vanish. The headless
-**memory-peer daemon** ([`quantum-os/scripts/qos-cli`](https://github.com/rchain-community/quantum-os/tree/main/scripts/qos-cli))
+**memory-peer daemon** ([`quantum-os/scripts/qos-cli`](https://github.com/rhovision-org/quantum-os/tree/main/scripts/qos-cli))
 persists and re-serves the room's public state to future joiners: the decision
 lemma, the `DINNER~fa3d4691` terms-series, and Carol's retraction tombstone all
 survive a restart — and the daemon **honors the author's retraction**, so it never
@@ -224,6 +224,6 @@ resurrects the typo'd lemma.
 Decision and derivation are one mechanism. A vote is a closure the room ratifies;
 an IOU is a closure that carries its obligations; a retraction is a closure
 withdrawn. The same dyncap-signed, joiner-local substrate carries all of them —
-see [`Group_Decisions.md`](https://github.com/rchain-community/quantum-os/blob/main/Group_Decisions.md)
+see [`Group_Decisions.md`](https://github.com/rhovision-org/quantum-os/blob/main/Group_Decisions.md)
 for the broader family, and [`QuantumOS.md`](QuantumOS.md) for how this is the
 same operation as scheduling, security, and error correction in the kernel.

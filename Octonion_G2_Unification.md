@@ -1,6 +1,6 @@
 # Octonions, G2, and the 3-axes-at-a-time hypothesis — a speculative thread, honestly scoped
 
-Tracking issue: [#162](https://github.com/rchain-community/quantum-logical-framework/issues/162).
+Tracking issue: [#162](https://github.com/rhovision-org/quantum-logical-framework/issues/162).
 
 > **Where it stands.** QLF's weak `SU(2)` is exactly *one* quaternion triple among the seven the
 > octonions' 7 imaginary units decompose into (Fano-plane lines) — a real, independently-verified fact,
@@ -81,7 +81,7 @@ of the whole 15-dimensional map.
 
 ## 4. G2's root system and a positive-geometry connection ([`octonion_g2_root_system.py`](octonion_g2_root_system.py))
 
-Asked whether this thread bears on [issue #151](https://github.com/rchain-community/quantum-logical-framework/issues/151)'s
+Asked whether this thread bears on [issue #151](https://github.com/rhovision-org/quantum-logical-framework/issues/151)'s
 positive-geometries RFC: the honest answer is *not directly* — #151's proposal (the count-balance
 "ZFA-hedron" and the central-binomial census `C(2n,n)`) connects instead to the alpha-residual thread
 ([`Alpha_Residual.md`](Alpha_Residual.md) §9f–9i, which works with the *same* `C(2n,n)` census). But
@@ -103,7 +103,7 @@ everything else in this document (the multiplication table → `Der(O)` → stab
 bracket → root system, all cross-checking cleanly) — and that it is a genuinely **separate**
 positive-geometry object from #151's proposal, not a unification of the two.
 
-## 5. A real fix this comparison surfaced ([PR #161](https://github.com/rchain-community/quantum-logical-framework/pull/161), merged)
+## 5. A real fix this comparison surfaced ([PR #161](https://github.com/rhovision-org/quantum-logical-framework/pull/161), merged)
 
 Cross-checking QLF's own `su(3)` (`lean/QLF_StrongAlgebra.lean`) against the octonion-derived compact
 `su(3)` above required knowing precisely which real form QLF's own construction uses — and its example

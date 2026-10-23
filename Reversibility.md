@@ -267,7 +267,7 @@ Three faces of the one principle:
   erase either — there is no information *paradox* because there is no erasure *step*. (What is not
   returned is the non-conserved global `B−L`, because that was never an exactly-conserved signed count
   — §3a — not because information was destroyed.)
-- **The closure horizon** ([#148](https://github.com/rchain-community/quantum-logical-framework/issues/148)).
+- **The closure horizon** ([#148](https://github.com/rhovision-org/quantum-logical-framework/issues/148)).
   Closure quotients generating histories by their surviving invariants (the ledger, the Pauli scalar,
   the winding) — many microscopic histories map to one closed state. Those distinctions become
   **inaccessible from the closed state**, not destroyed: an information horizon over generating history,

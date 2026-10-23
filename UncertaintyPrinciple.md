@@ -1,6 +1,6 @@
 # Uncertainty Principle in the Quantum Logical Framework (QLF)
 
-**Repository:** [quantum-logical-framework](https://github.com/rchain-community/quantum-logical-framework)  
+**Repository:** [quantum-logical-framework](https://github.com/rhovision-org/quantum-logical-framework)  
 **Document:** UncertaintyPrinciple.md  
 **Document version:** 0.2 — §3a: the count↔phase conjugacy + the entropic uncertainty relation  
 **Author:** Grok / Claude (synthesized from QLF core axioms and jimscarver)  
